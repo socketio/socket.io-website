@@ -680,9 +680,10 @@ Custom
 li.menu-item {
 	margin-left: 10px;
 	margin-right: 10px;
-  font-size: 12pt;
+	font-size: 12pt;
+	font-family: 'Open Sans', sans-serif;
 }
 
 li.menu-item a {
-  color: rgb(130, 130, 130);
+	color: rgb(130, 130, 130);
 }
