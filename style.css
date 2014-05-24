@@ -673,3 +673,16 @@ object {
 	max-width: 11.11%;
 }
 .gallery-caption {}
+
+/*--------------------------------------------------------------
+Custom
+--------------------------------------------------------------*/
+li.menu-item {
+	margin-left: 10px;
+	margin-right: 10px;
+  font-size: 12pt;
+}
+
+li.menu-item a {
+  color: rgb(130, 130, 130);
+}
