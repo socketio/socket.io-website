@@ -724,6 +724,22 @@ nav#site-navigation {
 	margin-bottom: 100px;
 }
 
+nav #logo-container {
+	float: left;
+	font-weight: bold;
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+nav #logo {
+	float: left;
+	background-image: url('imgs/logo.jpeg');
+	background-size: cover;
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+}
+
 li.menu-item {
 	margin-left: 10px;
 	margin-right: 10px;
