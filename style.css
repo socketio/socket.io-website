@@ -717,10 +717,18 @@ li.menu-item a {
 /* Page stuff */
 div#page h1 {
 	font-weight: normal;
+	font-size: 20pt;
 	color: rgb(119, 119, 119)
 }
 
 div#page h2 {
+	font-size: 16pt;
+	font-weight: normal;
+	color: black;
+}
+
+div#page h3 {
+	font-size: 12pt;
 	font-weight: normal;
 	color: rgb(158, 158, 158)
 }

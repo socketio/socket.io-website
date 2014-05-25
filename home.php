@@ -49,26 +49,26 @@
 			<div id="information">
 				<div class="information-column left">
 					<div class="information-entry">
-						<h2>USED BY EVERYONE</h2>
+						<h3>USED BY EVERYONE</h3>
 						<p>From Microsoft Office, Yammer, Zendesk, Trello... to hackathon winners and little startups.</p>
 						<p>One of the most powerful JavaScript frameworks on GitHub, and most depended-upon NPM module.</p>
 					</div>
 
 					<div class="information-entry">
-						<h2>STAY UP TO DATE</h2>
+						<h3>STAY UP TO DATE</h3>
 						<p>Leave your email to hear about <b>new releases</b> and important <b>security</b> updates. <b>Very low traffic.</b></p>
 					</div>
 				</div>
 
 				<div class="information-column right">
 					<div class="information-entry">
-						<h2>IMMENSELY POWERFUL, YET EASY TO USE</h2>
+						<h3>IMMENSELY POWERFUL, YET EASY TO USE</h3>
 						<p>Our getting started guide will show you how to create lots of amazing applications in fewer than 200 lines of code.</p>
 						<p>We're not making that up. Get started <a href="#">now</a>.</p>
 					</div>
 
 					<div class="information-entry">
-						<h2>JOIN THE COMMUNITY</h2>
+						<h3>JOIN THE COMMUNITY</h3>
 						<p>
 						- Post to the <a href="#">mailing list</a> with questions or to show your work<br />
 						- Real-time help? Find us on IRC at #socket.io on irc.freenode.net<br />
