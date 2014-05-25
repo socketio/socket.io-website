@@ -678,6 +678,11 @@ object {
 Custom
 --------------------------------------------------------------*/
 /* Content styles */
+div#page {
+	margin-top: 20px;
+	background-color: white;
+}
+
 main {
 	width: 60%;
 	margin-left: 20%;
@@ -687,6 +692,9 @@ main {
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: lighter;
+	background-image: url('imgs/galaxy.jpg');
+	background-size: cover;
+	background-position: fixed;
 }
 
 body a {
