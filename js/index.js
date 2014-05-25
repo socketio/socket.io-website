@@ -9,7 +9,7 @@
 	$( window ).scroll( function() {
 		var currentY = window.scrollY;
 		$( '.fading' ).each( function(i, el) {
-			var elemY = $( el ).position().top;
+			var elemY = Math.round( $( el ).position().top );
 			var offset = ( elemY / 2 ) - currentY;
 			if ( currentY <= 0 ) {
 				$( el ).css( 'opacity', 1 );
