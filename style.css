@@ -732,3 +732,12 @@ div#page h2.entry-subtitle {
 	font-size: 12pt;
 	font-weight: lighter;
 }
+
+/* Special classes */
+.smaller {
+	font-size: 14px;
+}
+
+.centered {
+	text-align: center;
+}
