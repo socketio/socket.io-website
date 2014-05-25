@@ -721,6 +721,7 @@ body a:visited {
 nav#site-navigation {
 	margin-top: 20px;
 	margin-left: 30px;
+	margin-bottom: 100px;
 }
 
 li.menu-item {
