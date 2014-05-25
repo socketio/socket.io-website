@@ -681,6 +681,12 @@ Custom
 /* Body font */
 body {
 	font-family: 'Open Sans', sans-serif;
+	font-weight: lighter;
+}
+
+body a {
+	color: black;
+	text-decoration: underline;
 }
 
 /* Menu */
@@ -701,10 +707,12 @@ li.menu-item a {
 
 /* Page stuff */
 div#page h1 {
+	font-weight: normal;
 	color: rgb(119, 119, 119)
 }
 
 div#page h2 {
+	font-weight: normal;
 	color: rgb(158, 158, 158)
 }
 
