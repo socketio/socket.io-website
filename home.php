@@ -8,7 +8,7 @@
 
 <?php get_header(); ?>
 <div id="primary" class="content-area">
-	<main id="main" class="site-main" role="main">
+	<main id="main page home" class="site-main" role="main">
 		<header class="entry-header">
 			<h1 class="entry-title">SOCKET.IO 1.0 IS HERE</h1>
 			<h2 class="entry-subtitle">FEATURING THE FASTEST AND MOST RELIABLE REAL-TIME ENGINE</h2>

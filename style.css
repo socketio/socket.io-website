@@ -746,3 +746,14 @@ div#page h2.entry-subtitle {
 .centered {
 	text-align: center;
 }
+
+/* Home stuff */
+.home .left {
+	width: 45%;
+	float: left;
+}
+
+.home .right {
+	width: 45%;
+	float: right;
+}
