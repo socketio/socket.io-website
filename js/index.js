@@ -5,4 +5,13 @@
 
 	$( document ).ready( setHeaderHeight );
 	$( window ).resize( setHeaderHeight );
+	$( window ).scroll( function() {
+		var currentY = window.scrollY;
+		var elemY = $( '#screen-fill span' ).position().top;
+
+		var offset = elemY - currentY;
+		if ( offset > 0 ) {
+			$( '#screen-fill span' ).fadeTo( 0, offset / elemY );
+		}
+	} );
 } )( jQuery );
