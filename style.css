@@ -814,7 +814,22 @@ div#page h2.entry-subtitle {
 	float: right;
 }
 
+.home #screen-fill {
+	font-family: 'untitled-font-2';
+	text-align: center;
+	font-size: 50px;
+}
+
+.home #screen-fill span {
+	position: absolute;
+	bottom: 0;
+}
+
 @media screen and (max-width: 900px) {
+	.home #screen-fill {
+		display: none;
+	}
+
 	.home .left {
 		float: none;
 	}

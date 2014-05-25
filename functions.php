@@ -21,7 +21,6 @@ if ( ! function_exists( 'socket_io_website_setup' ) ) :
  * as indicating support for post thumbnails.
  */
 function socket_io_website_setup() {
-
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
@@ -90,6 +89,7 @@ add_action( 'widgets_init', 'socket_io_website_widgets_init' );
 function socket_io_website_scripts() {
 	wp_enqueue_style( 'socket-io-website-style', get_stylesheet_uri() );
 	wp_enqueue_script( 'socket-io-website-script', get_template_directory_uri() . 'main.js', array(), '1', true );
+	wp_enqueue_script( 'js', get_template_directory_uri() . '/js/index.js', array( 'jquery' ) );
 }
 add_action( 'wp_enqueue_scripts', 'socket_io_website_scripts' );
 
