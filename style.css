@@ -748,13 +748,21 @@ div#page h2.entry-subtitle {
 }
 
 /* Home stuff */
+.home #examples .left {
+	margin-left: 50px;
+}
+
+.home #information .right {
+	margin-right: 50px;
+}
+
 .home .left {
-	width: 45%;
+	width: 40%;
 	float: left;
 }
 
 .home .right {
-	width: 45%;
+	width: 40%;
 	float: right;
 }
 
