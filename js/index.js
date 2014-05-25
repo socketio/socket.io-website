@@ -15,6 +15,8 @@
 				$( el ).css( 'opacity', 1 );
 			} else if ( offset > 0 ) {
 				$( el ).css( 'opacity', ( ( offset * 1.0 ) / elemY ).toFixed(2) );
+			} else {
+				$( el ).css( 'opacity', 0 );
 			}
 		} );
 	} );
