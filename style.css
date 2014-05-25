@@ -694,6 +694,10 @@ body a {
 	text-decoration: underline;
 }
 
+body a:visited {
+	color: black;
+}
+
 /* Menu */
 nav#site-navigation {
 	margin-top: 20px;
