@@ -681,6 +681,7 @@ Custom
 div#page {
 	margin-top: 20px;
 	background-color: white;
+	height: 100%;
 }
 
 main {
