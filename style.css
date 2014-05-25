@@ -678,23 +678,37 @@ object {
 Custom
 --------------------------------------------------------------*/
 
+/* Body font */
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
 /* Menu */
 li.menu-item {
 	margin-left: 10px;
 	margin-right: 10px;
 	font-size: 12pt;
-	font-family: 'Open Sans', sans-serif;
 }
 
 li.menu-item a {
 	color: rgb(130, 130, 130);
 }
 
-/* Headigns */
-h1 {
+/* Page stuff */
+div#page h1 {
 	color: rgb(119, 119, 119)
 }
 
-h2 {
+div#page h2 {
 	color: rgb(158, 158, 158)
+}
+
+div#page h1.entry-title {
+	font-size: 40pt;
+	font-weight: lighter;
+}
+
+div#page h2.entry-subtitle {
+	font-size: 12pt;
+	font-weight: lighter;
 }
