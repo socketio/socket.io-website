@@ -70,8 +70,8 @@
 					<div class="information-entry">
 						<h2>JOIN THE COMMUNITY</h2>
 						<p>
-						- Post to the <a href="#">mailing list</a> with questions or to show your work
-						- Real-time help? Find us on IRC at #socket.io on irc.freenode.net
+						- Post to the <a href="#">mailing list</a> with questions or to show your work<br />
+						- Real-time help? Find us on IRC at #socket.io on irc.freenode.net<br />
 						- Contribute code or report issues on <a href="https://github.com/LearnBoost/socket.io">GitHub</a>
 						</p>
 					</div>
