@@ -689,6 +689,15 @@ main {
 	margin-left: 20%;
 }
 
+
+@media screen and (max-width: 900px) {
+	main {
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+}
+
 /* Body font */
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -829,6 +838,26 @@ div#page h2.entry-subtitle {
 	.home .icon:before {
 		margin-left: -40px !important;
 		font-size: 30px !important;
+	}
+
+	footer {
+		text-align: center;
+	}
+	
+	footer .footer-left {
+		float: none !important;
+	}
+	
+	footer .footer-right {
+		float: none !important;
+	}
+
+	.footer-right #a8c-image {
+		float: none !important;
+	}
+
+	.site-info span {
+		display: block;
 	}
 }
 
