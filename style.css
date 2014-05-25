@@ -733,10 +733,10 @@ nav #logo-container {
 
 nav #logo {
 	float: left;
-	background-image: url('imgs/logo.jpeg');
+	background-image: url('imgs/logo.svg');
 	background-size: cover;
-	width: 40px;
-	height: 40px;
+	width: 200px;
+	height: 60px;
 	margin-right: 10px;
 }
 
