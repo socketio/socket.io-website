@@ -771,6 +771,22 @@ div#page h2.entry-subtitle {
 }
 
 /* Home stuff */
+.home #examples {
+	overflow: auto;
+	margin-top: 50px;
+}
+
+.home #information {
+	overflow: auto;
+	margin-top: 50px;
+}
+
+.home .repel {
+	overflow: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .home #examples .left {
 	margin-left: 50px;
 }

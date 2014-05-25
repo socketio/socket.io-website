@@ -26,7 +26,7 @@
 						<h2>Real-time analytics</h2>
 						<p>Push data to clients that gets represented as real-time counters, charts or logs.</p>
 					</div>
-
+					<div class="repel"></div>
 					<div class="example-entry icon binary">
 						<h2>Binary streaming</h2>
 						<p>Starting in 1.0, it's possible to send any blob back and forth: image, audio, video.</p>
@@ -38,7 +38,7 @@
 						<h2>Instant messaging and chat</h2>
 						<p>Socket.IO's "Hello world" is a chat app in just a few lines of code.</p>
 					</div>
-
+					<div class="repel"></div>
 					<div class="example-entry icon collab">
 						<h2>Document collaboration</h2>
 						<p>Allow users to concurrently edit a document and see each other's changes.</p>
@@ -53,7 +53,7 @@
 						<p>From Microsoft Office, Yammer, Zendesk, Trello... to hackathon winners and little startups.</p>
 						<p>One of the most powerful JavaScript frameworks on GitHub, and most depended-upon NPM module.</p>
 					</div>
-
+					<div class="repel"></div>
 					<div class="information-entry">
 						<h3>STAY UP TO DATE</h3>
 						<p>Leave your email to hear about <b>new releases</b> and important <b>security</b> updates. <b>Very low traffic.</b></p>
@@ -66,7 +66,7 @@
 						<p>Our getting started guide will show you how to create lots of amazing applications in fewer than 200 lines of code.</p>
 						<p>We're not making that up. Get started <a href="#">now</a>.</p>
 					</div>
-
+					<div class="repel"></div>
 					<div class="information-entry">
 						<h3>JOIN THE COMMUNITY</h3>
 						<p>
