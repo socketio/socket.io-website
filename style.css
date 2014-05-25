@@ -781,3 +781,27 @@ div#page h2.entry-subtitle {
 .home .collab:before {
 	content: "J";
 }
+
+/* Footer stuff */
+footer {
+	font-size: 11pt;
+	margin: 20px;
+	vertical-align: middle;
+}
+
+footer .footer-left {
+	float: left;
+}
+
+footer .footer-right {
+	float: right;
+}
+
+.footer-right #a8c-image {
+	float: right;
+	margin-left: 5px;
+	width: 20px;
+	height: 20px;
+	background-size: cover;
+	background-image: url('imgs/a8c.png');
+}
