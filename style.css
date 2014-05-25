@@ -695,6 +695,7 @@ body {
 	background-image: url('imgs/galaxy.jpg');
 	background-size: cover;
 	background-position: fixed;
+	overflow: hidden;
 }
 
 body a {
