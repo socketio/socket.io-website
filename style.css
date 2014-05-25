@@ -684,6 +684,11 @@ body {
 }
 
 /* Menu */
+nav#site-navigation {
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
 li.menu-item {
 	margin-left: 10px;
 	margin-right: 10px;
@@ -704,11 +709,13 @@ div#page h2 {
 }
 
 div#page h1.entry-title {
+	text-align: center;
 	font-size: 40pt;
 	font-weight: lighter;
 }
 
 div#page h2.entry-subtitle {
+	text-align: center;
 	font-size: 12pt;
 	font-weight: lighter;
 }
