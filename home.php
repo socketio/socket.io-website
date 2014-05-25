@@ -9,11 +9,11 @@
 <?php get_header(); ?>
 <div id="primary" class="content-area">
 	<main id="main page home" class="site-main" role="main">
-		<header class="entry-header">
+		<header class="entry-header fading">
 			<h1 class="entry-title">SOCKET.IO 1.0 IS HERE</h1>
 			<h2 class="entry-subtitle">FEATURING THE FASTEST AND MOST RELIABLE REAL-TIME ENGINE</h2>
 		</header><!-- .entry-header -->
-		<div id="screen-fill"><span>B</span></div>
+		<div id="screen-fill"><span class="fading">B</span></div>
 
 		<div class="entry-content">
 			<p class="centered">

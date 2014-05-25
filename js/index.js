@@ -7,11 +7,14 @@
 	$( window ).resize( setHeaderHeight );
 	$( window ).scroll( function() {
 		var currentY = window.scrollY;
-		var elemY = $( '#screen-fill span' ).position().top;
-
-		var offset = elemY - currentY;
-		if ( offset > 0 ) {
-			$( '#screen-fill span' ).fadeTo( 0, offset / elemY );
-		}
+		$( '.fading' ).each( function(i, el) {
+			var elemY = $( el ).position().top;
+			var offset = elemY - currentY;
+			if ( currentY <= 0 ) {
+				$( el ).css( 'opacity', 1 );
+			} else if ( offset > 0 ) {
+				$( el ).css( 'opacity', ( offset * 0.5 ) / elemY );
+			}
+		} );
 	} );
 } )( jQuery );
