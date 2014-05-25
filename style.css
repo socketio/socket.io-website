@@ -819,6 +819,7 @@ div#page h2.entry-subtitle {
 	font-family: 'untitled-font-2';
 	text-align: center;
 	font-size: 50px;
+	height: 100%;
 }
 
 .home #screen-fill span {
