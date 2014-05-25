@@ -757,3 +757,24 @@ div#page h2.entry-subtitle {
 	width: 45%;
 	float: right;
 }
+
+/* Home icons */
+.home .analytics:before {
+	font-family: 'untitled-font-2';
+	content: "y";
+}
+
+.home .binary:before {
+	font-family: 'untitled-font-2';
+	content: "G";
+}
+
+.home .chat:before {
+	font-family: 'untitled-font-2';
+	content: "M";
+}
+
+.home .collab:before {
+	font-family: 'untitled-font-2';
+	content: "J";
+}

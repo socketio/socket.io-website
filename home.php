@@ -22,24 +22,24 @@
 
 			<div id="examples">
 				<div class="example-column left">
-					<div class="example-entry">
+					<div class="example-entry analytics">
 						<h2>Real-time analytics</h2>
 						<p>Push data to clients that gets represented as real-time counters, charts or logs.</p>
 					</div>
 
-					<div class="example-entry">
+					<div class="example-entry binary">
 						<h2>Binary streaming</h2>
 						<p>Starting in 1.0, it's possible to send any blob back and forth: image, audio, video.</p>
 					</div>
 				</div>
 
 				<div class="example-column right">
-					<div class="example-entry">
+					<div class="example-entry chat">
 						<h2>Instant messaging and chat</h2>
 						<p>Socket.IO's "Hello world" is a chat app in just a few lines of code.</p>
 					</div>
 
-					<div class="example-entry">
+					<div class="example-entry collab">
 						<h2>Document collaboration</h2>
 						<p>Allow users to concurrently edit a document and see each other's changes.</p>
 					</div>
