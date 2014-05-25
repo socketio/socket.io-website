@@ -722,6 +722,10 @@ li.menu-item a {
 	color: rgb(130, 130, 130);
 }
 
+li.menu-item a:hover {
+	color: rgb(54, 54, 54);
+}
+
 /* Page stuff */
 div#page h1 {
 	font-weight: normal;
