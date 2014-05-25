@@ -16,9 +16,12 @@
 
 		<div class="entry-content">
 			<p class="centered">
-			<i>Socket.IO enables real-time bidirectional event-based communication.</i>
-			<i class="smaller">It works on every platform, browser or device, focusing equally on reliability and speed.</i>
+				<i>Socket.IO enables real-time bidirectional event-based communication.</i>
 			</p>
+			<p class="centered">
+				<i class="smaller">It works on every platform, browser or device, focusing equally on reliability and speed.</i>
+			</p>
+
 			<h2>Real-time analytics</h2>
 			<p>Push data to clients that gets represented as real-time counters, charts or logs.</p>
 
