@@ -759,22 +759,25 @@ div#page h2.entry-subtitle {
 }
 
 /* Home icons */
-.home .analytics:before {
+.home .icon:before {
 	font-family: 'untitled-font-2';
+	position: absolute;
+	margin-left: -50px;
+	font-size: 40px;
+}
+
+.home .analytics:before {
 	content: "y";
 }
 
 .home .binary:before {
-	font-family: 'untitled-font-2';
 	content: "G";
 }
 
 .home .chat:before {
-	font-family: 'untitled-font-2';
 	content: "M";
 }
 
 .home .collab:before {
-	font-family: 'untitled-font-2';
 	content: "J";
 }
