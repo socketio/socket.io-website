@@ -1022,7 +1022,7 @@ body .post-separator:last-child {
   }
 
   .main-navigation #menu-toggle {
-    margin-top: 20px;
+    margin-top: 10px;
     display: block;
     float: right;
     cursor: pointer;
