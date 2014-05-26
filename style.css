@@ -686,8 +686,6 @@ main {
 @media screen and (max-width: 900px) {
   main {
     width: 90%;
-    margin-left: 4%;
-    margin-right: 4%;
   }
 }
 
