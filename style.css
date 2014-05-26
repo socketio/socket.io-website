@@ -1035,9 +1035,9 @@ footer .footer-right {
 
 /* Codes */
 pre {
-  padding: 0.6em;
-  padding-left: 0.5em;
-  border-left: 0.5em solid #eee;
+  padding: 0.3em;
+  padding-left: 0.8em;
+  border-left: 0.5em solid #D8D8D8;
   background: white;
 }
 
