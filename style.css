@@ -741,6 +741,7 @@ nav #logo {
 }
 
 li.menu-item {
+	margin-top: 20px; /* To align with logo */
 	margin-left: 10px;
 	margin-right: 10px;
 	font-size: 12pt;
