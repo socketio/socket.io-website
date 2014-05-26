@@ -29,6 +29,12 @@ $(window).scroll(function() {
   });
 });
 
+var i = 0;
+$(window).mousemove(function(ev) {
+  $('#bar').css('background-position', 'left ' + i + '%');
+  i++;
+});
+
 // Attach dual rendering
 var nav = require('./lib/nav.js');
 var ajax = require('./lib/ajax.js');
