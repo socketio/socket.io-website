@@ -682,7 +682,7 @@ main {
 
 @media screen and (max-width: 900px) {
   main {
-    width: 90%;
+    width: 95%;
   }
 }
 
@@ -948,6 +948,14 @@ body .post-separator:last-child {
 }
 
 @media screen and (max-width: 900px) {
+  header {
+    margin-bottom: 120px;
+  }
+
+  div#page h1.entry-title {
+    font-size: 24px;
+  }
+
   .home #screen-fill {
     display: none;
   }
@@ -966,28 +974,35 @@ body .post-separator:last-child {
 
   .home .information-column {
     width: 100%;
-    margin-right: 0px;
-    margin-left: 0px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
   }
 
   .home .example-column {
-    width: 80%;
-    margin-left: 40px !important;
-    margin-right: 0px;
+    width: 100%;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+
+
+  .home #entries {
+    margin-left: 0%;
   }
 
   .home .example-entry {
-    height: auto;
+    height: 190px;
+    text-align: center;
   }
 
   .home .information-entry {
-    height: auto;
+    height: 170px;
+    text-align: center;
   }
 
   .home .icon:before {
-    margin-left: -40px !important;
-    font-size: 30px !important;
-    margin-top: 8px !important;
+    margin-left: -30px !important;
+    margin-top: -70px !important;
+    font-size: 50px !important;
   }
 
   footer {
