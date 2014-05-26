@@ -987,6 +987,7 @@ body .post-separator:last-child {
 
   .home #entries {
     margin-left: 0%;
+    margin-top: 150px;
   }
 
   .home .example-entry {
