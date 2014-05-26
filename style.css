@@ -803,9 +803,17 @@ div#page h2.entry-subtitle {
 	margin-top: 50px;
 }
 
+.home .example-entry {
+	height: 100px;
+}
+
+.home .information-entry {
+	height: 170px;
+}
+
 .home #information {
 	overflow: auto;
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .home .repel {
