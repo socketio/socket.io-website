@@ -1120,6 +1120,7 @@ footer .footer-right {
   height: 20px;
   background-size: cover;
   background-image: url('imgs/a8c.png');
+  vertical-align: middle;
 }
 
 #menu-item-43 {
