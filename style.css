@@ -1025,7 +1025,7 @@ body .post-separator:last-child {
   #menu-item-43 a {
     display: block !important;
     padding: 0 0;
-    border-radius: 0;
+    border-radius: none;
     color: rgb(54, 54, 54);
     font-size: inherit;
     font-weight: normal;
