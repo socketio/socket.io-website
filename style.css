@@ -873,7 +873,7 @@ body .post-separator:last-child {
 }
 
 /* Home stuff */
-body {
+main {
   max-width: 1200px;
   margin: auto;
 }
