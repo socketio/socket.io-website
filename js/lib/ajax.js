@@ -5,7 +5,7 @@ exports.getContent = function(pageHTML) {
   var $dom = $.parseHTML(pageHTML);
   var content;
   $.each($dom, function(i, el) {
-    if (el.id == 'wrapper') {
+    if (el.id == 'page') {
       var $content = $(el).find('div#content');
       content = $content.html();
     }

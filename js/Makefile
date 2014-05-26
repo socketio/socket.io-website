@@ -8,4 +8,4 @@ javascripts.js:
 clean:
 	rm javascripts.js
 
-.PHONY: test
+.PHONY: test build javascripts.js
