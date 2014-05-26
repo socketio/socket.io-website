@@ -668,10 +668,6 @@ div#page {
   height: 100%;
 }
 
-div#page header.entry-header {
-  margin-bottom: 150px;
-}
-
 div#page article header.entry-header {
   margin-bottom: 0px;
 }
