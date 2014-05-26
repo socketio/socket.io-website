@@ -1030,7 +1030,8 @@ body .post-separator:last-child {
   
   .main-navigation {
     float: none !important;
-    display: block;
+    display: inline-block;
+    text-align: center;
   }
 
   .main-navigation #logo-container {
@@ -1052,12 +1053,13 @@ body .post-separator:last-child {
 
   .main-navigation ul.menu {
     position: absolute;
+    display: inline-block;
     left: 0px;
     right: 0px;
     top: 10px;
 
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 10%;
+    margin-right: 10%;
   }
 }
 
