@@ -853,7 +853,7 @@ body .post-separator {
 
   width: 20%;
 
-  border: 1px solid rgba(155, 155, 155, .35);
+  border: 1px solid rgba(155, 155, 155, .2275);
 }
 
 body .post-separator:last-child {
@@ -1200,7 +1200,7 @@ pre code {
 }
 
 #primary.with-sidebar #sidebar li.anchor {
-  border-color: rgba(155, 155, 155, .35);
+  border-color: rgba(155, 155, 155, .2275);
   border-style: solid;
   border-width: thin; 
 }
@@ -1209,7 +1209,6 @@ pre code {
   text-decoration: none;
   color: #9B9B9B;
 }
-
 
 @media screen and (max-width: 900px) {
   #primary.with-sidebar #sidebar {
@@ -1221,7 +1220,6 @@ pre code {
 
     font-size: 18px;
   }
-
   
   #primary.with-sidebar #sidebar ul {
     text-align: center;
