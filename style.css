@@ -1052,14 +1052,21 @@ body .post-separator:last-child {
   }
 
   .main-navigation ul.menu {
+    float: none !important;
     position: absolute;
     display: inline-block;
+    text-align: center;
     left: 0px;
     right: 0px;
     top: 10px;
 
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .main-navigation ul.menu li {
+    float: none !important;
+    display: inline-block;
   }
 }
 
