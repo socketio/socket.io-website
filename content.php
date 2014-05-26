@@ -21,7 +21,7 @@
 	</div><!-- .entry-summary -->
 	<?php else : ?>
 	<div class="entry-content">
-		<?php the_excerpt( __( 'Read more', 'socket-io-website' ) ); ?>
+		<?php the_excerpt(); ?>
 		<?php
 			wp_link_pages( array(
 				'before' => '<div class="page-links">' . __( 'Pages:', 'socket-io-website' ),
