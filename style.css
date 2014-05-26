@@ -1042,5 +1042,7 @@ pre {
 }
 
 pre code {
-  color: rgb(119, 119, 119)
+  color: rgb(119, 119, 119);
+  font-weight: lighter;
+  font-size: 14px;
 }
