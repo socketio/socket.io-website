@@ -697,9 +697,9 @@ main {
 
 @media screen and (max-width: 900px) {
   main {
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 90%;
+    margin-left: 4%;
+    margin-right: 4%;
   }
 }
 
@@ -980,7 +980,7 @@ body .post-separator:last-child {
   }
 
   .home .information-column {
-    width: 80%;
+    width: 100%;
     margin-right: 0px;
     margin-left: 0px;
   }
