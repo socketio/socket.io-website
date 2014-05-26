@@ -8,7 +8,7 @@
 	<header class="entry-header">
 		<?php the_title( '<h2 class="entry-title centered">', '</h2>' ); ?>
 
-		<div class="entry-meta">
+		<div class="entry-meta centered">
 			<?php socket_io_website_posted_on(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
