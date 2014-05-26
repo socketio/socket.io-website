@@ -852,8 +852,9 @@ body .post-separator {
   margin-bottom: 20px;
 
   width: 20%;
-
-  border: 1px solid rgba(155, 155, 155, .2275);
+ 
+  border: solid rgba(155, 155, 155, .2275);
+  border-width: 1px 0 0 0;
 }
 
 body .post-separator:last-child {
@@ -1204,7 +1205,7 @@ pre code {
 #primary.with-sidebar #sidebar li.anchor {
   border-color: rgba(155, 155, 155, .2275);
   border-style: solid;
-  border-width: thin; 
+  border-width: 1px 0 0 0; 
 }
 
 #primary.with-sidebar #sidebar li a {
