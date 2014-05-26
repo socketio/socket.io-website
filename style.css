@@ -1033,3 +1033,14 @@ footer .footer-right {
   color: #fff;
 }
 
+/* Codes */
+pre {
+  padding: 0.6em;
+  padding-left: 0.5em;
+  border-left: 0.5em solid #eee;
+  background: white;
+}
+
+pre code {
+  color: rgb(119, 119, 119)
+}
