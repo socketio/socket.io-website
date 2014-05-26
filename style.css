@@ -813,6 +813,11 @@ div#page .byline {
   color: rgb(158, 158, 158)
 }
 
+.more-link {
+  color: #3BA9D0;
+  text-decoration: none;
+}
+
 div#page h1.entry-title {
   text-align: center;
   font-size: 40px;
