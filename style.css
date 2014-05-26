@@ -871,6 +871,10 @@ body .post-separator:last-child {
   text-align: center;
 }
 
+.none {
+  display: none;
+}
+
 /* Home stuff */
 .home #entries {
   margin-left: 10%;
@@ -1017,6 +1021,17 @@ body .post-separator:last-child {
     display: block;
   }
 
+  .main-navigation #menu-toggle {
+    margin-top: 20px;
+    display: block;
+    float: right;
+    cursor: pointer;
+  }
+
+  .main-navigation ul.menu {
+    display: none;
+    float: right;
+  }
 
   .main-navigation li {
     float: none !important;

@@ -1,8 +1,19 @@
 var $ = require('jquery');
 
-// Attach fastclick
 var attachFastClick = require('fastclick');
-$(document).ready(function(){ attachFastClick(document.body); });
+
+$(document).ready(function() {
+  attachFastClick(document.body);
+  $('#menu-toggle').click(function(e) {
+    e.preventDefault();
+    var $el = $('.main-navigation ul.menu');
+    if ($el.css('display') == 'none') {
+      $el.css('display', 'block');
+    } else {
+      $el.css('display', 'none');
+    }
+  });
+});
 
 // Home page header resize and fade in/out
 function setHeaderHeight() {
