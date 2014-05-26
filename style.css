@@ -906,11 +906,11 @@ body .post-separator:last-child {
 }
 
 .home #examples .left {
-  margin-left: 80px;
+  margin-left: 100px;
 }
 
 .home #information .right {
-  margin-right: 80px;
+  margin-right: 100px;
 }
 
 .home .left {
@@ -1054,7 +1054,7 @@ body .post-separator:last-child {
 .home .icon:before {
   font-family: 'untitled-font-2';
   position: absolute;
-  margin-left: -80px;
+  margin-left: -100px;
   margin-top: -15px;
   font-size: 70px;
 }
