@@ -992,7 +992,7 @@ body .post-separator:last-child {
   .home .icon:before {
     margin-left: -40px !important;
     font-size: 30px !important;
-    margin-top: -10px !important;
+    margin-top: 8px !important;
   }
 
   footer {
