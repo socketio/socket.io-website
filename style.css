@@ -834,7 +834,7 @@ div#page h2.entry-subtitle {
 }
 
 .home .example-entry {
-  height: 100px;
+  height: 120px;
 }
 
 .home .information-entry {
@@ -870,6 +870,14 @@ div#page h2.entry-subtitle {
   float: right;
 }
 
+.home .example-column {
+  width: 30%;
+}
+
+.home .example-column {
+  margin-right: 10%;
+}
+
 .home #screen-fill {
   font-family: 'untitled-font-2';
   text-align: center;
@@ -885,6 +893,10 @@ div#page h2.entry-subtitle {
 @media screen and (max-width: 1200px) {
   .home .information-entry {
     height: 220px;
+  }
+
+  .home .example-entry {
+    height: 170px;
   }
 }
 
