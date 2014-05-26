@@ -857,6 +857,10 @@ body .post-separator:last-child {
   border: none;
 }
 
+.single .entry-meta {
+  margin-bottom: 50px;
+}
+
 /* Special classes */
 .smaller {
   font-size: 14px;
