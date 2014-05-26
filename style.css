@@ -677,7 +677,8 @@ div#page article header.entry-header {
 
 main {
   width: 70%;
-  margin-left: 10%;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 16px;
 }
 
@@ -692,6 +693,7 @@ main {
 
 /* Body */
 body {
+  width: 100%;
   font-weight: lighter;
   background-size: cover;
   background-position: fixed;
