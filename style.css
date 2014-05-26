@@ -974,6 +974,13 @@ footer .footer-right {
 }
 
 #menu-item-43 {
+  float: right;
+  padding: 0;
+  margin: 0;
+}
+
+#menu-item-43 a {
+  display: inline-block;
   background: rgb(219, 122, 238);
   border: 0;
   padding: 5px 12px 6px;
@@ -982,10 +989,5 @@ footer .footer-right {
   color: #fff;
   font-size: 12px;
   font-weight: bold;
-  float: right;
-  margin: 0;
-}
-
-#menu-item-43 a {
   color: #fff;
 }
