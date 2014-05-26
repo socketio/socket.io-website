@@ -78,9 +78,8 @@ function socket_io_website_posted_on() {
 		esc_html( get_the_modified_date() )
 	);
 
-	printf( __( '<span class="posted-on">Posted on %1$s</span><span class="byline"> by %2$s</span>', 'socket-io-website' ),
-		sprintf( '<a href="%1$s" rel="bookmark">%2$s</a>',
-			esc_url( get_permalink() ),
+	printf( __( '<span class="posted-on">%1$s</span><span class="byline"> - %2$s</span>', 'socket-io-website' ),
+		sprintf( '%1$s',
 			$time_string
 		),
 		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s">%2$s</a></span>',
