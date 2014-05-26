@@ -848,7 +848,7 @@ body .post-separator {
 
   width: 20%;
 
-  border: 1px solid rgba(255, 0, 0, .5);
+  border: 1px solid rgba(155, 155, 155, .35);
 }
 
 body .post-separator:last-child {
@@ -1170,4 +1170,41 @@ pre code {
   color: rgb(119, 119, 119);
   font-weight: lighter;
   font-size: 13px;
+}
+
+/* Sidebar sub-theme */
+#primary.with-sidebar main {
+  width: 80%;
+  float: right;
+}
+
+#primary.with-sidebar #sidebar {
+  width: 15%;
+  margin-right: 5%;
+  float: left;
+
+  font-size: 12px;
+}
+
+#primary.with-sidebar #sidebar li {
+  list-style-type: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+#primary.with-sidebar #sidebar li#parent {
+  color: #4A4A4A;
+  font-weight: bold;
+}
+
+#primary.with-sidebar #sidebar li.anchor {
+  border-color: rgba(155, 155, 155, .35);
+  border-style: solid;
+  border-width: 1px;
+}
+
+#primary.with-sidebar #sidebar li a {
+  text-decoration: none;
+  color: #9B9B9B;
 }

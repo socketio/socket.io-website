@@ -10,8 +10,8 @@
 
 get_header(); ?>
 
-	<?php get_template_part( 'sidebar' ); ?>
 	<div id="primary" class="content-area with-sidebar">
+		<?php get_template_part( 'sidebar' ); ?>
 		<main id="main" class="site-main" role="main">
 			<?php while ( have_posts() ) : the_post(); ?>
 
