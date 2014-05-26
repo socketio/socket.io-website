@@ -1026,6 +1026,7 @@ body .post-separator:last-child {
   .footer-right #a8c-image {
     float: none !important;
     display: inline-block !important;
+    vertical-align: middle !important;
   }
 
   .site-info span {
@@ -1105,15 +1106,17 @@ body .post-separator:last-child {
 footer {
   font-size: 11px;
   margin: 20px;
-  vertical-align: middle;
+  height: 20px;
 }
 
 footer .footer-left {
   float: left;
+  line-height: 20px;
 }
 
 footer .footer-right {
   float: right;
+  line-height: 20px;
 }
 
 .footer-right #a8c-image {
@@ -1123,7 +1126,6 @@ footer .footer-right {
   height: 20px;
   background-size: cover;
   background-image: url('imgs/a8c.png');
-  vertical-align: middle;
 }
 
 #menu-item-43 {
