@@ -779,11 +779,7 @@ li.menu-item {
 }
 
 li.menu-item a {
-	color: rgb(143, 143, 143);
-}
-
-li.menu-item a:hover {
-	color: rgb(54, 54, 54);
+  color: rgb(54, 54, 54);
 }
 
 /* Page stuff */
