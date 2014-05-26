@@ -14,11 +14,3 @@ exports.findParentByClass = function(elem, clazz) {
   }
   return elem;
 };
-
-exports.showBackArrow = function(show) {
-  if (!show) {
-    $('.nav').addClass('hidden');
-  } else {
-    $('.nav').removeClass('hidden');
-  }
-};
