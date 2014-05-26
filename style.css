@@ -552,7 +552,6 @@ a:active {
 .hentry {
   margin: 0 0 1.5em;
 }
-.byline,
 .updated {
   display: none;
 }
@@ -807,7 +806,8 @@ div#page h3 {
   color: rgb(158, 158, 158)
 }
 
-div#page .posted-on {
+div#page .posted-on,
+div#page .byline {
   font-size: 14px;
   font-weight: lighter;
   color: rgb(158, 158, 158)

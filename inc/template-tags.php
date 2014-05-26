@@ -82,8 +82,7 @@ function socket_io_website_posted_on() {
 		sprintf( '%1$s',
 			$time_string
 		),
-		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s">%2$s</a></span>',
-			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+		sprintf( '<span class="author vcard">%1$s</span>',
 			esc_html( get_the_author() )
 		)
 	);
