@@ -1179,9 +1179,10 @@ pre code {
 }
 
 #primary.with-sidebar #sidebar {
-  width: 15%;
   margin-right: 5%;
   float: left;
+  position: fixed;
+  width: 150px;
 
   font-size: 12px;
 }
