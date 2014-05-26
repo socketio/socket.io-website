@@ -6,14 +6,9 @@ var attachFastClick = require('fastclick');
 $(document).ready(function() {
   attachFastClick(document.body);
   $('#menu-toggle').click(function(e) {
-    console.log('yo');
     e.preventDefault();
     var $el = $('.main-navigation ul.menu');
-    if ($el.css('display') == 'none') {
-      $el.css('display', 'block');
-    } else {
-      $el.css('display', 'none');
-    }
+    $el.toggleClass('small-visible');
   });
 });
 

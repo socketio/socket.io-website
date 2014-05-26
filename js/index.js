@@ -7,11 +7,7 @@ $(document).ready(function() {
   $('#menu-toggle').click(function(e) {
     e.preventDefault();
     var $el = $('.main-navigation ul.menu');
-    if ($el.css('display') == 'none') {
-      $el.css('display', 'block');
-    } else {
-      $el.css('display', 'none');
-    }
+    $el.toggleClass('small-visible');
   });
 });
 
