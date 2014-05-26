@@ -874,6 +874,10 @@ body .post-separator:last-child {
 }
 
 /* Home stuff */
+body.home {
+  max-width: 1200px;
+}
+
 .home #entries {
   margin-left: 10%;
 }
@@ -1142,6 +1146,15 @@ footer .footer-right {
     font-weight: bold;
     color: #fff;
   }
+}
+
+/* Blog stuff */
+body.archive {
+  max-width: 800px;
+}
+
+body.single {
+  max-width: 800px;
 }
 
 /* Codes */
