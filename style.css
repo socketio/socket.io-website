@@ -813,11 +813,6 @@ div#page .byline {
   color: rgb(158, 158, 158)
 }
 
-body a.more-link {
-  color: #3BA9D0 !important;
-  text-decoration: none;
-}
-
 div#page h1.entry-title {
   text-align: center;
   font-size: 40px;
@@ -839,6 +834,27 @@ div#page h2.entry-subtitle {
   font-weight: lighter;
   background: #fff;
   color: rgb(119, 119, 119)
+}
+
+/* Blog stuff */
+body a.more-link {
+  color: #3BA9D0 !important;
+  text-decoration: none;
+}
+
+body .post-separator {
+  margin-left: auto;
+  margin-right:auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  width: 20%;
+
+  border: 1px solid rgba(255, 0, 0, .5);
+}
+
+body .post-separator:last-child {
+  border: none;
 }
 
 /* Special classes */

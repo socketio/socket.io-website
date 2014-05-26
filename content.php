@@ -60,3 +60,4 @@
 		<?php edit_post_link( __( 'Edit', 'socket-io-website' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
+<div class="post-separator"></div>
