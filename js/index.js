@@ -1,4 +1,8 @@
 (function($) {
+  // Attach fastclick
+  var attachFastClick = require('fastclick');
+  $(document).ready(function(){ attachFastClick(document.body); });
+
   function setHeaderHeight() {
     $('#screen-fill').css('height', $(window).height() - 50);
   }
