@@ -31,9 +31,13 @@ $(window).scroll(function() {
 });
 
 var i = 0;
+var to;
 $(window).mousemove(function(ev) {
   $('#bar').css('background-position', 'left ' + i + '%');
-  i++;
+  i += 0.01;
+  if (i > 100) {
+    i = 0;
+  }
 });
 
 // Attach dual rendering
