@@ -1021,22 +1021,6 @@ body .post-separator:last-child {
     display: block;
   }
 
-  .main-navigation ul.menu.small-visible {
-    display: block;
-  }
-
-  .main-navigation ul.menu {
-    float: right;
-  }
-
-  .main-navigation li {
-    float: none !important;
-  }
-
-  .main-navigation ul ul {
-    float: none !important;
-  }
-
   .main-navigation #logo-container {
     float: none !important;
     display: block;
@@ -1096,8 +1080,13 @@ footer .footer-right {
   background-image: url('imgs/a8c.png');
 }
 
+#menu-item-43 {
+  display: none;
+}
+
 @media screen and (min-width: 900px) {
   #menu-item-43 {
+    display: block;
     float: right;
     padding: 0;
     margin: 15px 0 0 0;
