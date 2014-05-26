@@ -1072,7 +1072,8 @@ body.home {
   .main-navigation ul.menu li {
     float: none !important;
     display: inline-block;
-    margin: auto !important;
+    margin-left: 2%;
+    margin-right 2%;
   }
 }
 
