@@ -800,29 +800,11 @@ div#page h2.entry-subtitle {
 .home #examples {
 	overflow: auto;
 	margin-top: 50px;
-	height: 50%;
 }
 
 .home #information {
 	overflow: auto;
 	margin-top: 50px;
-	height: 50%;
-}
-
-.home .example-column {
-	height: 20%;
-}
-
-.home .information-column {
-	height: 20%;
-}
-
-.home .example-entry {
-	height: 10%;
-}
-
-.home .information-entry {
-	height: 10%;
 }
 
 .home .repel {
