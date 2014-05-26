@@ -939,11 +939,12 @@ body .post-separator:last-child {
 
 @media screen and (max-width: 1200px) {
   .home .information-entry {
-    height: 220px;
+    height: 200px !important;
   }
 
   .home .example-entry {
-    height: 170px;
+    height: 200px !important;
+    margin-bottom: 100px;
   }
 }
 
