@@ -924,11 +924,8 @@ body .post-separator:last-child {
 }
 
 .home .example-column {
-  width: 30%;
-}
-
-.home .example-column {
-  margin-right: 10%;
+  width: 28%;
+  margin-right: 12%;
 }
 
 .home #screen-fill {
