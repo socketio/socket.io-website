@@ -1221,8 +1221,9 @@ pre code {
     width: 50%;
     margin: auto;
     padding-bottom: 50px;
+    margin-top: -50px;
 
-    font-size: 16px;
+    font-size: 13px;
   }
   
   #primary.with-sidebar #sidebar ul {
