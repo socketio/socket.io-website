@@ -813,8 +813,8 @@ div#page .byline {
   color: rgb(158, 158, 158)
 }
 
-.more-link {
-  color: #3BA9D0;
+body a.more-link {
+  color: #3BA9D0 !important;
   text-decoration: none;
 }
 
