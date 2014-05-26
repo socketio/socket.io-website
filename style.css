@@ -1209,3 +1209,21 @@ pre code {
   text-decoration: none;
   color: #9B9B9B;
 }
+
+
+@media screen and (max-width: 900px) {
+  #primary.with-sidebar #sidebar {
+    float: none !important;
+    position: relative;
+    width: 30%;
+    margin: auto;
+
+    font-size: 18px;
+  }
+
+
+  #primary.with-sidebar main {
+    float: none !important;
+    width: 90%;
+  }
+}
