@@ -767,7 +767,7 @@ nav #logo {
 	background-image: url('imgs/logo.svg');
 	background-size: cover;
   display: inline-block;
-	width: 140px
+	width: 140px;
 	height: 42px;
 	margin-right: 30px;
   margin-top: 6px;
