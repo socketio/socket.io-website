@@ -807,6 +807,14 @@ div#page h2.entry-subtitle {
 	margin-top: 50px;
 }
 
+.home .example-entry {
+	height: 10%;
+}
+
+.home .instruction-entry {
+	height: 10%;
+}
+
 .home .repel {
 	overflow: auto;
 	margin-top: 10px;
