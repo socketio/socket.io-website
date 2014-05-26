@@ -754,6 +754,11 @@ nav#site-navigation {
   margin-bottom: 100px;
 }
 
+
+.main-navigation #menu-toggle {
+  display: none;
+}
+
 nav #logo-container {
   float: left;
   font-weight: bold;
@@ -1026,6 +1031,10 @@ body .post-separator:last-child {
     display: block;
     float: right;
     cursor: pointer;
+  }
+
+  .main-navigation ul.menu.small-visible {
+    display: block;
   }
 
   .main-navigation ul.menu {
