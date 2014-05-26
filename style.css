@@ -816,6 +816,7 @@ div#page h1.entry-title {
   text-align: center;
   font-size: 40px;
   font-weight: lighter;
+  line-height: 1.2;
 }
 
 div#page .entry-title a {
@@ -825,6 +826,7 @@ div#page .entry-title a {
 div#page h2.entry-title {
   font-size: 25px;
   font-weight: lighter;
+  line-height: 1.2;
 }
 
 div#page h2.entry-subtitle {
