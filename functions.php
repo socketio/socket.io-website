@@ -12,11 +12,6 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 640; /* pixels */
 }
 
-function new_excerpt_more( $more ) {
-	return 'Read more';
-}
-add_filter('excerpt_more', 'new_excerpt_more');
-
 if ( ! function_exists( 'socket_io_website_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
