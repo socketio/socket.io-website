@@ -941,7 +941,7 @@ body.home {
   bottom: 0;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 950px) {
   .home .information-entry {
     height: 200px !important;
   }
