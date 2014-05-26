@@ -10,9 +10,9 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
+	<?php get_template_part( 'sidebar' ); ?>
+	<div id="primary" class="content-area with-sidebar">
 		<main id="main" class="site-main" role="main">
-			<?php get_template_part( 'sidebar' ); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
 				<?php get_template_part( 'content', 'page' ); ?>
