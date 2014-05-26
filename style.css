@@ -410,20 +410,6 @@ a:active {
 .main-navigation .current_page_item a,
 .main-navigation .current-menu-item a {
 }
-/* Small menu */
-.menu-toggle {
-  display: none;
-}
-@media screen and (max-width: 600px) {
-  .menu-toggle,
-  .main-navigation.toggled .nav-menu {
-    display: block;
-  }
-
-  .main-navigation ul {
-    display: none;
-  }
-}
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
