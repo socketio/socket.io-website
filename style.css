@@ -1011,27 +1011,6 @@ body .post-separator:last-child {
   .site-info span {
     display: block;
   }
-
-  #site-navigation li.menu-item {
-    display: block;
-    float: left;
-  }
-
-  #menu-item-43 {
-    float: none !important;
-    margin: 0 0 0 0;
-  }
-
-  #menu-item-43 a {
-    display: block !important;
-    float: left !important;
-    background: none !important;
-    padding: 0 0 !important;
-    border: none !important;
-    color: rgb(54, 54, 54);
-    font-size: inherit;
-    font-weight: normal;
-  }
 }
 
 /* Home icons */
@@ -1083,23 +1062,25 @@ footer .footer-right {
   background-image: url('imgs/a8c.png');
 }
 
-#menu-item-43 {
-  float: right;
-  padding: 0;
-  margin: 15px 0 0 0;
-}
-
-#menu-item-43 a {
-  display: inline-block;
-  background: rgb(219, 122, 238);
-  border: 0;
-  padding: 4px 12px;
-  vertical-align: middle;
-  border-radius: 12px;
-  color: #fff;
-  font-size: 12px;
-  font-weight: bold;
-  color: #fff;
+@media screen and (min-width: 900px) {
+  #menu-item-43 {
+    float: right;
+    padding: 0;
+    margin: 15px 0 0 0;
+  }
+  
+  #menu-item-43 a {
+    display: inline-block;
+    background: rgb(219, 122, 238);
+    border: 0;
+    padding: 4px 12px;
+    vertical-align: middle;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+  }
 }
 
 /* Codes */
