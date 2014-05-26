@@ -30,15 +30,15 @@ $(window).scroll(function() {
   });
 });
 
-var i = 0;
-var to;
-$(window).mousemove(function(ev) {
-  $('#bar').css('background-position', 'left ' + i + '%');
-  i += 0.01;
-  if (i > 100) {
-    i = 0;
-  }
-});
+//var i = 0;
+//var to;
+//$(window).mousemove(function(ev) {
+//  $('#bar').css('background-position', 'left ' + i + '%');
+//  i += 0.01;
+//  if (i > 100) {
+//    i = 0;
+//  }
+//});
 
 // Attach dual rendering
 var nav = require('./lib/nav.js');
