@@ -1153,10 +1153,6 @@ footer .footer-right {
 }
 
 /* Blog stuff */
-body.archive {
-  max-width: 800px;
-}
-
 body.single div#content {
   max-width: 800px;
   margin: auto;
