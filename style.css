@@ -720,6 +720,7 @@ body {
   top: 0;
   width: 100%;
   overflow: hidden;
+  z-index: 1000;
 }
 
 #bar .reflection {
