@@ -674,6 +674,7 @@ div#page article header.entry-header {
 
 main {
   width: 90%;
+  max-height: 1200px;
   margin-left: auto;
   margin-right: auto;
   font-size: 14px;
@@ -873,11 +874,6 @@ body .post-separator:last-child {
 }
 
 /* Home stuff */
-main {
-  max-width: 1200px;
-  margin: auto;
-}
-
 .home #entries {
   margin-left: 10%;
 }
