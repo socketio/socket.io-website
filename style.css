@@ -1024,6 +1024,7 @@ body .post-separator:last-child {
 
   #menu-item-43 a {
     display: block !important;
+    background: none;
     padding: 0 0;
     border-radius: none;
     color: rgb(54, 54, 54);
