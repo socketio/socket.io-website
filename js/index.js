@@ -79,6 +79,7 @@ function setClickHandlers() {
 }
 
 $(document).ready(function() {
+  return; // Disable dual rendering for now (until it's properly working)
   // Normal requests if histry API not supported
   if (!supportsHistoryAPI) return;
 
