@@ -1038,8 +1038,9 @@ body .post-separator:last-child {
   }
 
   .main-navigation ul.menu {
+    position: fixed;
     display: none;
-    float: right;
+    right: 0px;
   }
 
   .main-navigation li {
