@@ -11,6 +11,7 @@
     "zuul": "1.5.4"
   },
   "dependencies": {
+    "jquery": "2.1.0",
     "fastclick": "0.6.12"
   }
 }
