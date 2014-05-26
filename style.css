@@ -852,6 +852,12 @@ div#page h2.entry-subtitle {
 	bottom: 0;
 }
 
+@media screen and (max-width: 1200px) {
+	.home .information-entry {
+		height: 220px;
+	}
+}
+
 @media screen and (max-width: 900px) {
 	.home #screen-fill {
 		display: none;
