@@ -744,7 +744,7 @@ li.menu-item {
 	margin-top: 20px; /* To align with logo */
 	margin-left: 10px;
 	margin-right: 10px;
-	font-size: 12pt;
+	font-size: 12px;
 }
 
 li.menu-item a {
@@ -758,31 +758,31 @@ li.menu-item a:hover {
 /* Page stuff */
 div#page h1 {
 	font-weight: normal;
-	font-size: 20pt;
+	font-size: 20px;
 	color: rgb(119, 119, 119)
 }
 
 div#page h2 {
-	font-size: 16pt;
+	font-size: 16px;
 	font-weight: normal;
 	color: black;
 }
 
 div#page h3 {
-	font-size: 12pt;
+	font-size: 12px;
 	font-weight: normal;
 	color: rgb(158, 158, 158)
 }
 
 div#page h1.entry-title {
 	text-align: center;
-	font-size: 40pt;
+	font-size: 40px;
 	font-weight: lighter;
 }
 
 div#page h2.entry-subtitle {
 	text-align: center;
-	font-size: 12pt;
+	font-size: 12px;
 	font-weight: lighter;
   background: #fff;
 	color: rgb(119, 119, 119)
@@ -922,7 +922,7 @@ div#page h2.entry-subtitle {
 
 /* Footer stuff */
 footer {
-	font-size: 11pt;
+	font-size: 11px;
 	margin: 20px;
 	vertical-align: middle;
 }
