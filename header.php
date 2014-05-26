@@ -33,7 +33,7 @@
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<button class="menu-toggle"><?php _e( 'Primary Menu', 'socket-io-website' ); ?></button>
-			<div id="logo-container"><div id="logo"></div></div>
+			<div id="logo-container"><a href+"/" id="logo">socket.io</a></div>
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->

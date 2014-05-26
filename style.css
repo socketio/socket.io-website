@@ -759,16 +759,19 @@ nav #logo-container {
 	float: left;
 	font-weight: bold;
 	font-size: 20px;
-	margin-right: 10px;
+	margin-right: 20px;
 }
 
 nav #logo {
 	float: left;
 	background-image: url('imgs/logo.svg');
 	background-size: cover;
-	width: 200px;
-	height: 60px;
-	margin-right: 10px;
+  display: inline-block;
+	width: 140px
+	height: 42px;
+	margin-right: 30px;
+  margin-top: 6px;
+  text-indent: -5000px;
 }
 
 li.menu-item {
