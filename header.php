@@ -32,7 +32,6 @@
 		</div>
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<div id="menu-toggle">Menu</div>
 			<div id="logo-container"><a href="/" id="logo">socket.io</a></div>
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 		</nav><!-- #site-navigation -->

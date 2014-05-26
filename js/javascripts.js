@@ -5,11 +5,6 @@ var attachFastClick = require('fastclick');
 
 $(document).ready(function() {
   attachFastClick(document.body);
-  $('#menu-toggle').click(function(e) {
-    e.preventDefault();
-    var $el = $('.main-navigation ul.menu');
-    $el.toggleClass('small-visible');
-  });
 });
 
 // Home page header resize and fade in/out
