@@ -1011,6 +1011,29 @@ body .post-separator:last-child {
   .site-info span {
     display: block;
   }
+  
+  .main-navigation {
+    float: none !important;
+    display: block;
+  }
+
+
+  .main-navigation li {
+    float: none !important;
+  }
+
+  .main-navigation ul ul {
+    float: none !important;
+  }
+
+  .main-navigation #logo-container {
+    float: none !important;
+    display: block;
+  }
+
+  .main-navigation #logo {
+    float: none !important;
+  }
 }
 
 /* Home icons */
