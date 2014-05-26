@@ -1028,6 +1028,24 @@ body .post-separator:last-child {
 
   .main-navigation #logo {
     float: none !important;
+    
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    right: 0px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .main-navigation ul.menu {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
