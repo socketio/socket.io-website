@@ -689,7 +689,7 @@ main {
 /* Body */
 body {
   width: 100%;
-  font-weight: lighter;
+  font-weight: normal;
   background-size: cover;
   background-position: fixed;
   overflow: hidden;
