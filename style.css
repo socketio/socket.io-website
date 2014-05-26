@@ -682,7 +682,7 @@ main {
 
 @media screen and (max-width: 900px) {
   main {
-    width: 95%;
+    width: 90%;
   }
 }
 
@@ -1040,7 +1040,7 @@ body .post-separator:last-child {
     float: none !important;
     
     position: absolute;
-    top: 40px;
+    top: 80px;
     left: 0px;
     right: 0px;
 
@@ -1052,7 +1052,7 @@ body .post-separator:last-child {
     position: absolute;
     left: 0px;
     right: 0px;
-    top: 0px;
+    top: 10px;
 
     margin-left: auto;
     margin-right: auto;
