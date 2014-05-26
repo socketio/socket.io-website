@@ -673,12 +673,11 @@ div#page article header.entry-header {
 }
 
 main {
-  width: 80%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   font-size: 14px;
 }
-
 
 @media screen and (max-width: 900px) {
   main {
@@ -876,6 +875,7 @@ body .post-separator:last-child {
 /* Home stuff */
 body.home {
   max-width: 1200px;
+  margin: auto;
 }
 
 .home #entries {
@@ -1157,8 +1157,9 @@ body.archive {
   max-width: 800px;
 }
 
-body.single {
+body.single div#content {
   max-width: 800px;
+  margin: auto;
 }
 
 /* Codes */
