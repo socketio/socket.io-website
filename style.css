@@ -1021,6 +1021,7 @@ div.empty {
   background: #ccc;
   border-radius: 100%;
   vertical-align: middle;
+  margin-right: 5px;
 }
 
 .window .bullet-red {

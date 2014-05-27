@@ -16,8 +16,7 @@
     <div id="screen-fill">
       <div class="window editor">
         <div class="header">
-          <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span>
-          <span class="title">~/Projects/tweets/index.js</span>
+          <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title">~/Projects/tweets/index.js</span>
         </div>
         <div class="body">
           <ol class="code">
@@ -35,8 +34,7 @@
       
       <div class="window browser">
         <div class="header">
-          <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span>
-          <span class="title"><span class="scheme">https://</span>your-node-app.com</span>
+          <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title"><span class="scheme">https://</span>your-node-app.com</span>
         </div>
         <div class="body">
           <p>Tweets about <b>socket.io</b> and <b>javascript</b></p>
