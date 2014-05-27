@@ -13,12 +13,12 @@
 ?>
 
 <?php $parents = get_post_ancestors( get_the_id() ); ?>
-<?php $parent_post_id = ( ! empty( $parents ) ) ? $parents[0] : get_the_id(); ?>
+<?php $parent = get_post( ( ! empty( $parents ) ) ? $parents[0] : get_the_id() ); ?>
 
 <div id="sidebar" class="content-area">
 	<ul id="posts">
-		<li id="parent"><a href="<?php echo get_permalink( $parent_post_id ); ?>">Overview</a></li>
-		<?php $args = array( 'post_type' => 'page' , 'post_parent' => $parent_post_id, 'orderby' => 'post_id', 'order' => 'ASC' ); ?>
+		<li id="parent"><a href="<?php echo get_permalink( $parent->ID ); ?>"><?php echo $parent->post_title; ?></a></li>
+		<?php $args = array( 'post_type' => 'page' , 'post_parent' => $parent->ID, 'orderby' => 'post_id', 'order' => 'ASC' ); ?>
 		<?php $children = get_children( $args ); ?>
 		<?php foreach ( $children as $child ): ?>
 
