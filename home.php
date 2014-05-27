@@ -14,7 +14,7 @@
 			<h2 class="entry-subtitle">FEATURING THE FASTEST AND MOST RELIABLE REAL-TIME ENGINE</h2>
 		</header><!-- .entry-header -->
     <div id="screen-fill">
-      <div class="window editor">
+      <div class="window editor fading">
         <div class="header">
           <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title">~/Projects/tweets/index.js</span>
         </div>
@@ -32,14 +32,13 @@
         </div>
       </div>
       
-      <div class="window browser">
+      <div class="window browser fading">
         <div class="header">
           <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title"><span class="scheme">https://</span>your-node-app.com</span>
         </div>
         <div class="body">
           <p>Tweets about <b>socket.io</b> and <b>javascript</b></p>
-          <ul id="tweets" class="tweets">
-          </ul>
+          <ul id="tweets" class="tweets"></ul>
         </div>
       </div>
 
