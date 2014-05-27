@@ -1297,12 +1297,12 @@ div.empty {
   height: 20px;
 }
 
-.size-footer .footer-left {
+.site-footer .footer-left {
   float: left;
   line-height: 20px;
 }
 
-.size-footer .footer-right {
+.site-footer .footer-right {
   float: right;
   line-height: 20px;
 }
