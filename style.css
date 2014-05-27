@@ -1163,9 +1163,9 @@ footer .footer-right {
 }
 
 /* Blog stuff */
-body.single div#primary,
-body.page:not(.home) div#primary:not(.with-sidebar),
-body.archive div#primary {
+body.single #primary,
+body.page:not(.home) primary:not(.with-sidebar),
+body.archive #primary {
   max-width: 800px;
   margin: auto;
 }
