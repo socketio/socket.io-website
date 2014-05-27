@@ -1486,6 +1486,11 @@ form input {
   }
 }
 
+/* Mailchimp overwrites and things it may cause */
+.mc4wp-form {
+  overflow-y: visible;
+}
+
 @font-face {
   font-family: "untitled-font-2";
   src:url("http://cdn.socket.io/website/icons/untitled-font-2.eot");
