@@ -1367,11 +1367,6 @@ form input {
 }
 
 /* Sidebar sub-theme */
-#main {
-  margin-right: 5%;
-  min-height: 200px;
-}
-
 #sidebar {
   float: left;
   position: fixed;
