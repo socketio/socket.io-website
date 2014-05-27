@@ -815,7 +815,7 @@ div#page .byline {
   color: rgb(158, 158, 158)
 }
 
-div#page entry-title {
+div#page .entry-title {
   text-align: center;
   font-size: 40px;
   font-weight: lighter;
@@ -826,13 +826,13 @@ div#page .entry-title a {
   text-decoration: none;
 }
 
-div#page entry-title {
+div#page .entry-title {
   font-size: 25px;
   font-weight: lighter;
   line-height: 1.2;
 }
 
-div#page entry-subtitle {
+div#page .entry-subtitle {
   text-align: center;
   font-size: 12px;
   font-weight: lighter;
