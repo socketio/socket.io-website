@@ -89,7 +89,7 @@
 						<div class="information-entry">
 							<h3>STAY UP TO DATE</h3>
 							<p>Leave your email to hear about <b>new releases</b> and important <b>security</b> updates. <b>Very low traffic.</b></p>
-							<form method="POST" actions="/somepage.php">
+							<form id="subscribe" method="POST" actions="/somepage.php">
 								<input type="text" name="mail" placeholder="you@host.com">
 							</form>
 						</div>
