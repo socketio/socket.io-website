@@ -16,9 +16,17 @@
 	<ul id="posts">
 		<li id="parent">Overview</li>
 		<li class="anchor"></li>
+		<?php $i = 0; ?>
 		<?php $children = get_children( array( 'post_type' => 'page' , 'post_parent' => get_the_id(), 'orderby' => 'post_id', 'order' => 'ASC' ) ); ?>
 		<?php foreach ( $children as $child ): ?>
+
 			<li id="post"><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>
+
+			<?php $i++; ?>
+			<?php if ( 2 == $i ): ?>
+				<li class="anchor"></li>
+			<?php endif; ?>
+
 		<?php endforeach; // end of the loop. ?>
 	</ul>
 </div>
