@@ -49,7 +49,7 @@
         </div>
       </div>
 
-      <span class="fading">B</span>
+      <span class="arrow fading">B</span>
     </div>
 
 		<div class="entry-content">

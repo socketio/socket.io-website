@@ -945,7 +945,7 @@ div.empty {
   height: 1000px;
 }
 
-.home #screen-fill span {
+.home #screen-fill .arrow {
   position: absolute;
   bottom: 0;
 }
