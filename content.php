@@ -9,7 +9,7 @@
 		<?php the_title( sprintf( '<h2 class="excerpt-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
 		<?php if ( 'post' == get_post_type() ) : ?>
-		<div class="entry-meta" style="margin-top: 20px; margin-bottom: 20px;">
+		<div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
 			<?php socket_io_website_posted_on(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
