@@ -1374,6 +1374,10 @@ pre code {
 pre code, form input {
   color: rgb(119, 119, 119);
   font-weight: lighter;
+  font-size: 12px;
+}
+
+div.ezcol pre code {
   font-size: 10px;
 }
 
