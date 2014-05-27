@@ -1197,16 +1197,16 @@ div.empty {
     font-size: 50px !important;
   }
 
-  footer {
+  .site-footer {
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
   }
 
-  footer .footer-left {
+  .site-footer .footer-left {
     float: none !important;
   }
 
-  footer .footer-right {
+  .site-footer .footer-right {
     float: none !important;
   }
 
