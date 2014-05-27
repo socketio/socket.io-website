@@ -59,6 +59,7 @@
 						<div class="information-entry">
 							<h3>STAY UP TO DATE</h3>
 							<p>Leave your email to hear about <b>new releases</b> and important <b>security</b> updates. <b>Very low traffic.</b></p>
+							<p><?php echo do_shortcode( '[jetpack-subscription-form]' ); ?></p>
 						</div>
 					</div>
 
