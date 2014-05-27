@@ -804,6 +804,16 @@ div#page .h2-like {
   color: black;
 }
 
+div#page h2.excerpt-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+div#page h2.excerpt-title a {
+  text-decoration: none;
+  color: black;
+}
+
 div#page h3 {
   font-size: 14px;
   font-weight: normal;
