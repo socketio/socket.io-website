@@ -958,10 +958,17 @@ div.empty {
 }
 
 .home #screen-fill .arrow {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-left: -20px;
+  display: none;
+}
+
+@media screen and (min-height: 600px) {
+  .home #screen-fill .arrow {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -20px;
+  }
 }
 
 .window {
