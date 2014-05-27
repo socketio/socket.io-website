@@ -1262,11 +1262,11 @@ pre code {
 
 @font-face {
   font-family: "untitled-font-2";
-  src:url("http://cdn.socket.io/website/fonts/untitled-font-2.eot");
-  src:url("http://cdn.socket.io/website/fonts/untitled-font-2.eot?#iefix") format("embedded-opentype"),
-    url("http://cdn.socket.io/website/fonts/untitled-font-2.woff") format("woff"),
-    url("http://cdn.socket.io/website/fonts/untitled-font-2.ttf") format("truetype"),
-    url("http://cdn.socket.io/website/fonts/untitled-font-2.svg#untitled-font-2") format("svg");
+  src:url("http://cdn.socket.io/website/icons/untitled-font-2.eot");
+  src:url("http://cdn.socket.io/website/icons/untitled-font-2.eot?#iefix") format("embedded-opentype"),
+    url("http://cdn.socket.io/website/icons/untitled-font-2.woff") format("woff"),
+    url("http://cdn.socket.io/website/icons/untitled-font-2.ttf") format("truetype"),
+    url("http://cdn.socket.io/website/icons/untitled-font-2.svg#untitled-font-2") format("svg");
   font-weight: normal;
   font-style: normal;
 
