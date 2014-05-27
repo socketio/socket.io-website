@@ -17,12 +17,16 @@
 
 <div id="sidebar" class="content-area">
 	<ul id="posts">
-		<li id="parent"><a href="<?php echo get_permalink( $parent->ID ); ?>"><?php echo $parent->post_title; ?></a></li>
+		<li <?php if ( get_the_id() == $parent->ID ) echo 'id="parent"'; ?>><a href="<?php echo get_permalink( $parent->ID ); ?>"><?php echo $parent->post_title; ?></a></li>
 		<?php $args = array( 'post_type' => 'page' , 'post_parent' => $parent->ID, 'orderby' => 'post_id', 'order' => 'ASC' ); ?>
 		<?php $children = get_children( $args ); ?>
 		<?php foreach ( $children as $child ): ?>
 
-			<li id="post"><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>
+			<?php if ( get_the_id() == $child->ID ): ?>
+				<li id="parent"><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>
+			<?php else: ?>
+				<li id="post"><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>
+			<?php endif; ?>
 
 		<?php endforeach; // end of the loop. ?>
 	</ul>
