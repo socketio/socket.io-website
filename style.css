@@ -1148,7 +1148,7 @@ div.empty {
   }
 
   .home #screen-fill {
-    height: auto;
+    height: auto !important;
     padding-top: 0;
   }
 

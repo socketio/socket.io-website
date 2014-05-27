@@ -25,7 +25,6 @@ $(document).ready(function() {
 
 // Home page header resize and fade in/out
 function setHeaderHeight() {
-  if ($(window).width() <= 1000) return;
   $('#screen-fill').css('height', $(window).height() - 50);
 }
 
