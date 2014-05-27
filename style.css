@@ -22,6 +22,8 @@ along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normali
 and Blueprint http://www.blueprintcss.org/
 */
 
+@charset "UTF-8";
+
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
@@ -709,7 +711,7 @@ body {
 }
 
 #bar {
-  background: url(imgs/galaxy.jpg);
+  background: url(http://cdn.socket.io/website/imgs/galaxy.jpg);
   height: 7px;
   background-size: cover;
   background-position: left 60%;
@@ -763,7 +765,7 @@ nav #logo-container {
 
 nav #logo {
   float: left;
-  background-image: url('imgs/logo.svg');
+  background-image: url('http://cdn.socket.io/website/imgs/logo.svg');
   background-size: cover;
   display: inline-block;
   width: 140px;
@@ -941,9 +943,164 @@ div.empty {
   height: 1000px;
 }
 
-.home #screen-fill span {
+.home #screen-fill .arrow {
   position: absolute;
   bottom: 0;
+}
+
+
+.window {
+  border: 1px solid rgb(195, 195, 195);
+  width: 400px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
+  -moz-box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
+  box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
+  text-align: left;
+}
+
+.window {
+  margin-bottom: 20px;
+  height: 245px;
+  display: inline-block;
+}
+
+.window .header {
+  padding: 0 9px;
+  line-height: 30px;
+  vertical-align: top;
+}
+
+.window .header .title {
+  font: 11px "Myriad Pro", "Arial";
+}
+
+.editor .title {
+  text-align: center;
+  display: inline-block;
+  width: 280px;
+  color: #766F79;
+  vertical-align: middle;
+}
+
+.editor .body {
+  padding: 18px 10px;
+}
+
+.editor .code {
+  font: 11px Monaco, Courier New;
+  color: #ccc;
+}
+
+.editor .code .code {
+  color: #777;
+}
+
+.editor .code li {
+  padding: 3px 0;
+}
+
+.editor .code .fn {
+  color: #4A90E2;
+}
+
+.editor .code .v {
+  color: #7ED321;
+}
+
+.editor .code .io {
+  color: #000;
+}
+
+.window .bullet {
+  height: 11px;
+  width: 11px;
+  display: inline-block;
+  background: #ccc;
+  border-radius: 100%;
+  vertical-align: middle;
+}
+
+.window .bullet-red {
+  background: #DF7065;
+}
+
+.window .bullet-yellow {
+  background: #E6BB46;
+}
+
+.window .bullet-green {
+  background: #5BCC8B;
+}
+
+.browser .header {
+  background: #E8E8E8;
+  border-radius: 4px 4px 0 0;
+  padding-bottom: 3px;
+}
+
+.browser .header .title {
+  background: #fff;
+  display: inline-block;
+  width: 320px;
+  border-radius: 4px;
+  padding: 6px 14px 4px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.browser .header .title .scheme {
+  color: #7ED321;
+}
+
+.browser .body {
+  padding: 16px;
+  font: 11px "Lucida Grande", "Open Sans";
+}
+
+.browser .tweets {
+  margin: 0;
+  height: 150px;
+  overflow-y: auto;
+}
+
+.browser .tweets li {
+  height: 27px;
+  line-height: 27px;
+  vertical-align: middle;
+  color: #4B434D;
+  list-style-type: none;
+  margin-bottom: 14px;
+}
+
+.browser .tweets img {
+  width: 27px;
+  height: 27px;
+  border-radius: 100%;
+  float: left;
+  margin-right: 10px;
+}
+
+.browser .tweets .tweet {
+  max-width: 300px;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.browser .tweets .time {
+  color: #9B9B9B;
+  float: right;
+}
+
+.browser .tweets .new {
+  -webkit-animation: drop 500ms;
+}
+
+@-webkit-keyframes drop {
+  0%   { opacity: 0; -webkit-transform: translateY(-20px); }
+  100% { opacity: 1; -webkit-transform: translateY(0px); }
 }
 
 @media screen and (max-width: 950px) {
@@ -1135,7 +1292,7 @@ footer .footer-right {
   width: 20px;
   height: 20px;
   background-size: cover;
-  background-image: url('imgs/a8c.png');
+  background-image: url('http://cdn.socket.io/website/imgs/a8c.png');
 }
 
 #menu-item-43 {
@@ -1258,4 +1415,172 @@ pre code {
     float: none !important;
     width: 90%;
   }
+}
+
+@font-face {
+  font-family: "untitled-font-2";
+  src:url("http://cdn.socket.io/website/icons/untitled-font-2.eot");
+  src:url("http://cdn.socket.io/website/icons/untitled-font-2.eot?#iefix") format("embedded-opentype"),
+    url("http://cdn.socket.io/website/icons/untitled-font-2.woff") format("woff"),
+    url("http://cdn.socket.io/website/icons/untitled-font-2.ttf") format("truetype"),
+    url("http://cdn.socket.io/website/icons/untitled-font-2.svg#untitled-font-2") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "untitled-font-2" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "untitled-font-2" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-budicon:before {
+  content: "a";
+}
+.icon-budicon-1:before {
+  content: "b";
+}
+.icon-budicon-2:before {
+  content: "c";
+}
+.icon-budicon-3:before {
+  content: "d";
+}
+.icon-budicon-4:before {
+  content: "e";
+}
+.icon-budicon-5:before {
+  content: "f";
+}
+.icon-budicon-7:before {
+  content: "h";
+}
+.icon-budicon-8:before {
+  content: "i";
+}
+.icon-budicon-9:before {
+  content: "j";
+}
+.icon-budicon-10:before {
+  content: "k";
+}
+.icon-budicon-11:before {
+  content: "l";
+}
+.icon-budicon-12:before {
+  content: "m";
+}
+.icon-budicon-13:before {
+  content: "n";
+}
+.icon-budicon-14:before {
+  content: "o";
+}
+.icon-budicon-15:before {
+  content: "p";
+}
+.icon-budicon-16:before {
+  content: "q";
+}
+.icon-budicon-17:before {
+  content: "r";
+}
+.icon-budicon-18:before {
+  content: "s";
+}
+.icon-budicon-19:before {
+  content: "t";
+}
+.icon-budicon-20:before {
+  content: "u";
+}
+.icon-budicon-21:before {
+  content: "v";
+}
+.icon-budicon-22:before {
+  content: "w";
+}
+.icon-budicon-23:before {
+  content: "x";
+}
+.icon-budicon-24:before {
+  content: "y";
+}
+.icon-budicon-25:before {
+  content: "z";
+}
+.icon-budicon-26:before {
+  content: "A";
+}
+.icon-budicon-27:before {
+  content: "B";
+}
+.icon-budicon-6:before {
+  content: "g";
+}
+.icon-budicon-28:before {
+  content: "C";
+}
+.icon-budicon-29:before {
+  content: "D";
+}
+.icon-budicon-30:before {
+  content: "E";
+}
+.icon-budicon-31:before {
+  content: "F";
+}
+.icon-budicon-32:before {
+  content: "G";
+}
+.icon-budicon-33:before {
+  content: "H";
+}
+.icon-budicon-34:before {
+  content: "I";
+}
+.icon-budicon-35:before {
+  content: "J";
+}
+.icon-budicon-36:before {
+  content: "K";
+}
+.icon-budicon-37:before {
+  content: "L";
+}
+.icon-budicon-38:before {
+  content: "M";
+}
+.icon-budicon-39:before {
+  content: "N";
+}
+.icon-budicon-40:before {
+  content: "O";
+}
+.icon-budicon-41:before {
+  content: "P";
+}
+.icon-budicon-42:before {
+  content: "Q";
 }

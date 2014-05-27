@@ -70,8 +70,6 @@ add_action( 'after_setup_theme', 'socket_io_website_setup' );
  */
 function socket_io_website_scripts() {
 	wp_enqueue_style( 'socket-io-website-style', get_stylesheet_uri() );
-	wp_enqueue_script( 'socket-io-website-script', get_template_directory_uri() . 'main.js', array(), '1', true );
-	wp_enqueue_script( 'js', get_template_directory_uri() . '/js/javascripts.js', array( 'jquery' ) );
 }
 add_action( 'wp_enqueue_scripts', 'socket_io_website_scripts' );
 
