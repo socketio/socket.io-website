@@ -807,6 +807,7 @@ div#page .h2-like {
 div#page h2.excerpt-title {
   font-size: 20px;
   font-weight: bold;
+  line-height: 1.2;
 }
 
 div#page h2.excerpt-title a {
