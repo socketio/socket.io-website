@@ -6,8 +6,11 @@ var attachFastClick = require('fastclick');
 $(document).ready(function() {
   attachFastClick(document.body);
   $('#subscribe').submit(function(ev) {
-    ev.preventDefault();
-    $(this).attr('placeholder', 'Subscribed');
+    var $input = $(this).find('input');
+    var mail = $input.val();
+    $input.val(''); // Reset field
+    $input.attr('placeholder', 'Subscribed');
+    return false;
   });
 });
 
