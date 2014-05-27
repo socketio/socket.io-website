@@ -1357,6 +1357,15 @@ pre code, form input {
   font-size: 13px;
 }
 
+form input {
+  background: none !important;
+  border: none !important;
+  outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+}
+
 /* Sidebar sub-theme */
 #primary.with-sidebar main {
   width: 80%;
