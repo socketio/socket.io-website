@@ -12,7 +12,7 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT) AND RUN BY <a href="#">CONTRIBUTORS</a></span>
+			<span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT) AND RUN BY <a href="https://github.com/LearnBoost/socket.io/graphs/contributors">CONTRIBUTORS</a></span>
 			<span class="footer-right"><a href="http://automattic.com">SUPPORTED BY<div id="a8c-image"></div></a></span>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
