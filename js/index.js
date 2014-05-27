@@ -34,7 +34,7 @@ $(window).scroll(function() {
   var currentY = window.scrollY;
   $('.fading').each(function(i, el) {
     var elemY = Math.round($(el).position().top);
-    var offset = (elemY / 1.25) - currentY;
+    var offset = (elemY / 2) - currentY;
     if (currentY <= 0) {
       $(el).css('opacity', 1);
     } else if (offset > 0) {
