@@ -5,22 +5,6 @@ var attachFastClick = require('fastclick');
 
 $(document).ready(function() {
   attachFastClick(document.body);
-  $('#subscribe').submit(function(ev) {
-    var $input = $(this).find('input');
-    var mail = $input.val();
-
-    $.post('http://cdn.socket.io', mail)
-      .done(function(data) {
-        $input.val(''); // Reset field
-        $input.attr('placeholder', 'Subscribed');
-      })
-      .fail(function() {
-        $input.val(''); // Reset field
-        $input.attr('placeholder', 'Problem occurred');
-      });
-
-    return false;
-  });
 });
 
 // Home page header resize and fade in/out
