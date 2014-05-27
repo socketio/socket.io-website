@@ -1348,6 +1348,18 @@ pre, form {
   background: white;
 }
 
+code {
+  font-size: 11px;
+  padding: 3px 5px;
+  background: #eee;
+  color: #666;
+}
+
+pre code {
+  padding: 0 0;
+  background: none;
+}
+
 pre code, form input {
   color: rgb(119, 119, 119);
   font-weight: lighter;
