@@ -1331,17 +1331,17 @@ footer .footer-right {
 }
 
 /* Blog stuff */
-body.single #primary,
-body.page #primary,
-body.archive #primary {
+body #primary {
   max-width: 800px;
   margin: auto;
 }
 
+/*
 body.home #primary,
 body.page #primary.with-sidebar {
   max-width: 1200px;
 }
+*/
 
 /* Codes */
 pre, form {
@@ -1376,7 +1376,7 @@ form input {
   min-height: 200px;
 }
 
-#primary.with-sidebar #sidebar {
+#sidebar {
   margin-right: 5%;
   float: left;
   position: fixed;
@@ -1385,31 +1385,31 @@ form input {
   font-size: 12px;
 }
 
-#primary.with-sidebar #sidebar li {
+#sidebar li {
   list-style-type: none;
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: right;
 }
 
-#primary.with-sidebar #sidebar li#parent {
+#sidebar li#parent {
   color: #4A4A4A;
   font-weight: bold;
 }
 
-#primary.with-sidebar #sidebar li.anchor {
+#sidebar li.anchor {
   border-color: rgba(155, 155, 155, .2275);
   border-style: solid;
   border-width: 1px 0 0 0; 
 }
 
-#primary.with-sidebar #sidebar li a {
+#sidebar li a {
   text-decoration: none;
   color: #9B9B9B;
 }
 
 @media screen and (max-width: 900px) {
-  #primary.with-sidebar #sidebar {
+  #sidebar {
     float: none !important;
     position: static;
     width: 50%;
@@ -1420,12 +1420,12 @@ form input {
     font-size: 13px;
   }
   
-  #primary.with-sidebar #sidebar ul {
+  #sidebar ul {
     text-align: center;
     margin: auto;
   }
 
-  #primary.with-sidebar #sidebar li {
+  #sidebar li {
     text-align: center;
   }
 
