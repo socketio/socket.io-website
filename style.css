@@ -827,14 +827,12 @@ div#page .entry-title a {
 }
 
 div#page .entry-title {
-  font-size: 25px;
   font-weight: lighter;
   line-height: 1.2;
 }
 
 div#page .entry-subtitle {
   text-align: center;
-  font-size: 12px;
   font-weight: lighter;
   background: #fff;
   color: rgb(119, 119, 119)
@@ -965,7 +963,11 @@ div.empty {
   }
 
   div#page .entry-title {
-    font-size: 24px;
+    font-size: 24px !important;
+  }
+
+  div#page .entry-subtitle {
+    font-size: 12px !important;
   }
 
   .home #screen-fill {
