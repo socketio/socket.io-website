@@ -1167,9 +1167,6 @@ body.single div#primary,
 body.page:not(.home) div#primary:not(.with-sidebar),
 body.archive div#primary {
   max-width: 800px;
-}
-
-body.single div#primary {
   margin: auto;
 }
 
