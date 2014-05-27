@@ -5,7 +5,7 @@ var attachFastClick = require('fastclick');
 $(document).ready(function() {
   attachFastClick(document.body);
   $('#subscribe').submit(function(ev) {
-    $(this).attr('placeholder', 'Subscribed');
+    $('#subscribe').attr('placeholder', 'Subscribed');
     return false;
   });
 });
