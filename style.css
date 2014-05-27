@@ -1148,7 +1148,20 @@ div.empty {
   }
 
   .home #screen-fill {
+    height: auto;
+    padding-top: 0;
+  }
+
+  .home #screen-fill .arrow {
     display: none;
+  }
+
+  .home .window.editor {
+    margin-bottom: 20px;
+  }
+
+  .home .window.browser {
+    margin-bottom: 60px !important;
   }
 
   .home header.fading {
