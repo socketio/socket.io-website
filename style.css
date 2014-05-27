@@ -763,7 +763,7 @@ nav #logo-container {
 
 nav #logo {
   float: left;
-  background-image: url('imgs/logo.svg');
+  background-image: url('http://cdn.socket.io/website/imgs/logo.svg');
   background-size: cover;
   display: inline-block;
   width: 140px;
@@ -1133,7 +1133,7 @@ footer .footer-right {
   width: 20px;
   height: 20px;
   background-size: cover;
-  background-image: url('imgs/a8c.png');
+  background-image: url('http://cdn.socket.io/website/imgs/a8c.png');
 }
 
 #menu-item-43 {
