@@ -1487,6 +1487,14 @@ form input {
 }
 
 /* Mailchimp overwrites and things it may cause */
+.mc4wp-alert {
+  font-size: 12px;
+  color: red;
+}
+
+.mc4wp-form {
+  padding-bottom: 0;
+}
 
 @font-face {
   font-family: "untitled-font-2";
