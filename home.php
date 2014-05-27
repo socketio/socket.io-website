@@ -31,7 +31,7 @@
           </ol>
         </div>
       </div>
-      
+
       <div class="window browser fading">
         <div class="header">
           <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title"><span class="scheme">https://</span>your-node-app.com</span>
@@ -89,7 +89,9 @@
 						<div class="information-entry">
 							<h3>STAY UP TO DATE</h3>
 							<p>Leave your email to hear about <b>new releases</b> and important <b>security</b> updates. <b>Very low traffic.</b></p>
-							<p><?php echo do_shortcode( '[jetpack_subscription_form]' ); ?></p>
+							<form method="POST" actions="/somepage.php">
+								<input type="text" name="mail" placeholder="you@host.com">
+							</form>
 						</div>
 					</div>
 
