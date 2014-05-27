@@ -22,6 +22,7 @@
 
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script src="http://cdn.socket.io/socket.io-1.0.0-pre5.js"></script>
+<script src="/wp-content/themes/socket.io-website/js/javascript.js"></script>
   <?php if (is_home()): ?>
   <script src="/wp-content/themes/socket.io-website/js/home.js"></script>
   <?php endif; ?>
