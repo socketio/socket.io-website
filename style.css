@@ -878,6 +878,11 @@ body .post-separator:last-child {
   display: none;
 }
 
+div.empty {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 /* Home stuff */
 .home #entries {
   margin-left: 10%;
