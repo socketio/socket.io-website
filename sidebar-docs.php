@@ -16,14 +16,18 @@
 
 <div id="sidebar" class="content-area">
 	<ul id="posts">
-		<li id="parent"><a href="<?php echo get_permalink( $parent_post_id ); ?>">Overview</a></li>
+		<li  <?php if ( get_the_id() == $parent_post_id ) echo 'id="parent"'; ?>><a href="<?php echo get_permalink( $parent_post_id ); ?>">Overview</a></li>
 		<li class="anchor"></li>
 		<?php $i = 0; ?>
 		<?php $args = array( 'post_type' => 'page' , 'post_parent' => $parent_post_id, 'orderby' => 'post_id', 'order' => 'ASC' ); ?>
 		<?php $children = get_children( $args ); ?>
 		<?php foreach ( $children as $child ): ?>
 
-			<li id="post"><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>
+			<?php if ( get_the_id() == $child->ID ): ?>
+				<li id="parent"><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>
+			<?php else: ?>
+				<li id="post"><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>
+			<?php endif; ?>
 
 			<?php $i++; ?>
 			<?php if ( 2 == $i ): ?>
