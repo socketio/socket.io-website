@@ -1156,12 +1156,21 @@ div.empty {
     display: none;
   }
 
+  .home .window {
+    width: 90% !important;
+    height: 10%;
+  }
+
   .home .window.editor {
     margin-bottom: 20px;
   }
 
   .home .window.browser {
     margin-bottom: 60px !important;
+  }
+
+  .home .window.browser .title {
+    width: 80%;
   }
 
   .home header.fading {
