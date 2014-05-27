@@ -19,8 +19,7 @@
 	<ul id="posts">
 		<?php $args = array( 'post_type' => 'page' , 'post_parent' => $parent->ID, 'orderby' => 'post_id', 'order' => 'ASC' ); ?>
 		<?php $children = get_children( $args ); ?>
-		<?php $fst = array_shift( $children ); ?>
-		<li <?php if ( get_the_id() == $fst || get_the_id() == $parent->ID ) echo 'id="parent"'; ?>><a href="<?php echo get_permalink( $parent->ID ); ?>"><?php echo $fst->post_title; ?></a></li>
+
 		<?php foreach ( $children as $child ): ?>
 
 			<?php if ( get_the_id() == $child->ID ): ?>
