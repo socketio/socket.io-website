@@ -942,6 +942,8 @@ div.empty {
   text-align: center;
   font-size: 40px;
   height: 1000px;
+  vertical-align: top;
+  padding-top: 40px;
 }
 
 .home #screen-fill .arrow {
@@ -951,7 +953,6 @@ div.empty {
   margin-left: -20px;
 }
 
-
 .window {
   border: 1px solid rgb(195, 195, 195);
   width: 400px;
@@ -960,10 +961,11 @@ div.empty {
   -moz-box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
   box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.11);
   text-align: left;
+  vertical-align: top;
+  margin: 0 20px;
 }
 
 .window {
-  margin-bottom: 20px;
   height: 245px;
   display: inline-block;
 }
