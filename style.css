@@ -943,7 +943,7 @@ div.empty {
   font-size: 40px;
   height: 1000px;
   vertical-align: top;
-  padding-top: 40px;
+  padding-top: 60px;
 }
 
 .home #screen-fill .arrow {
@@ -963,6 +963,7 @@ div.empty {
   text-align: left;
   vertical-align: top;
   margin: 0 20px;
+  -webkit-animation: zoom 500ms;
 }
 
 .window {
@@ -1103,6 +1104,11 @@ div.empty {
 
 .browser .tweets .new {
   -webkit-animation: drop 500ms;
+}
+
+@-webkit-keyframes zoom {
+  0%   { opacity: 0; -webkit-transform: scale(1.15); }
+  100% { opacity: 1; -webkit-transform: scale(1); }
 }
 
 @-webkit-keyframes drop {
