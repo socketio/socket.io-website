@@ -972,6 +972,7 @@ div.empty {
   padding: 0 9px;
   line-height: 30px;
   vertical-align: top;
+  padding: 2px 9px 0;
 }
 
 .window .header .title {
