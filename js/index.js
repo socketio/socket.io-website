@@ -7,8 +7,17 @@ $(document).ready(function() {
   $('#subscribe').submit(function(ev) {
     var $input = $(this).find('input');
     var mail = $input.val();
-    $input.val(''); // Reset field
-    $input.attr('placeholder', 'Subscribed');
+
+    $.post('http://cdn.socket.io', mail)
+      .done(function(data) {
+        $input.val(''); // Reset field
+        $input.attr('placeholder', 'Subscribed');
+      })
+      .fail(function() {
+        $input.val(''); // Reset field
+        $input.attr('placeholder', 'Problem occurred');
+      });
+
     return false;
   });
 });
