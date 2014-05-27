@@ -1492,7 +1492,8 @@ form input {
 }
 
 #information {
-  overflow-y: visible;
+  max-height: 100%;
+  height: auto! important;
 }
 
 @font-face {
