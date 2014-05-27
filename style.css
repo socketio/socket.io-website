@@ -1330,6 +1330,10 @@ div.empty {
   line-height: 20px;
 }
 
+.site-footer .footer-right a {
+  text-decoration: none;
+}
+
 .footer-right #a8c-image {
   float: right;
   margin-left: 5px;
