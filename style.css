@@ -1487,14 +1487,6 @@ form input {
 }
 
 /* Mailchimp overwrites and things it may cause */
-.mc4wp-form {
-  overflow-y: visible;
-}
-
-#information {
-  max-height: 100%;
-  height: auto! important;
-}
 
 @font-face {
   font-family: "untitled-font-2";
