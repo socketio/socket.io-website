@@ -11,6 +11,10 @@
  */
 
 ?>
+
+<?php $parents = get_post_ancestors( get_the_id() ); ?>
+<?php $parent_post_id = ( ! empty( $parents ) ) ? $parents[0] : get_the_id(); ?>
+
 <div id="sidebar" class="content-area">
 	<ul id="posts">
 		<li id="parent"><a href="<?php echo get_permalink( $parent_post_id ); ?>">Overview</a></li>
