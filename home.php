@@ -102,11 +102,9 @@
 						<div class="repel"></div>
 						<div class="information-entry">
 							<h3>JOIN THE COMMUNITY</h3>
-							<p>
-							- Post to the <a href="#">mailing list</a> with questions or to show your work<br />
-							- Real-time help? Find us on IRC at #socket.io on irc.freenode.net<br />
-							- Contribute code or report issues on <a href="https://github.com/LearnBoost/socket.io">GitHub</a>
-							</p>
+							<p>Post to the <a href="#">mailing list</a> with questions or to show your work<br /></p>
+							<p>Real-time help? Find us on IRC at #socket.io on irc.freenode.net</p>
+							<p>Contribute code or report issues on <a href="https://github.com/LearnBoost/socket.io">GitHub</a></p>
 						</div>
 					</div>
 				</div><!-- #information -->
