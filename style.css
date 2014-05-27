@@ -1344,14 +1344,14 @@ body.page #primary.with-sidebar {
 }
 
 /* Codes */
-pre, form {
+code, form {
   padding: 0.3em;
   padding-left: 0.8em;
   border-left: 0.5em solid #D8D8D8;
   background: white;
 }
 
-pre code, form input {
+code, form input {
   color: rgb(119, 119, 119);
   font-weight: lighter;
   font-size: 13px;
