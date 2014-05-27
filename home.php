@@ -102,9 +102,11 @@
 						<div class="repel"></div>
 						<div class="information-entry">
 							<h3>JOIN THE COMMUNITY</h3>
-							<p>Post to the <a href="#">mailing list</a> with questions or to show your work<br /></p>
-							<p>Real-time help? Find us on IRC at #socket.io on irc.freenode.net</p>
-							<p>Contribute code or report issues on <a href="https://github.com/LearnBoost/socket.io">GitHub</a></p>
+							<ul style="margin-left: 0px; list-style-type: none;">
+								<li style="margin-bottom: 5px;">Post to the <a href="#">mailing list</a> with questions or to show your work</li>
+								<li style="margin-bottom: 5px;">Real-time help? Find us on IRC at #socket.io on irc.freenode.net</li>
+								<li style="margin-bottom: 5px;">Contribute code or report issues on <a href="https://github.com/LearnBoost/socket.io">GitHub</a></li>
+							</ul>
 						</div>
 					</div>
 				</div><!-- #information -->
