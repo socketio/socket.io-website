@@ -898,7 +898,6 @@ div.empty {
 
 /* Home stuff */
 .home #entries {
-  margin-left: 10%;
 }
 
 .home #examples {
@@ -929,10 +928,6 @@ div.empty {
   margin-left: 100px;
 }
 
-.home #information .right {
-  margin-right: 100px;
-}
-
 .home .left {
   width: 40%;
   float: left;
@@ -945,7 +940,6 @@ div.empty {
 
 .home .example-column {
   width: 30%;
-  margin-right: 10%;
 }
 
 .home #screen-fill {
