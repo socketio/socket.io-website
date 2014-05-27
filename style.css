@@ -1169,7 +1169,7 @@ body.archive div#primary {
   max-width: 800px;
 }
 
-body-single div#primary {
+body.single div#primary {
   margin: auto;
 }
 
