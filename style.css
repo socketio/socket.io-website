@@ -1336,12 +1336,9 @@ body #primary {
   margin: auto;
 }
 
-/*
-body.home #primary,
-body.page #primary.with-sidebar {
+body.home #primary {
   max-width: 1200px;
 }
-*/
 
 /* Codes */
 pre, form {
