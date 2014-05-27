@@ -1164,10 +1164,15 @@ footer .footer-right {
 
 /* Blog stuff */
 body.single #primary,
-body.page:not(.home) primary:not(.with-sidebar),
+body.page #primary,
 body.archive #primary {
   max-width: 800px;
   margin: auto;
+}
+
+body.home #primary,
+body.page #primary.with-sidebar {
+  max-width: 1200px;
 }
 
 /* Codes */
