@@ -82,7 +82,7 @@ function socket_io_website_posted_on() {
 		sprintf( '%1$s',
 			$time_string
 		),
-		sprintf( '<span class="author vcard">%1$s</span>(<a href="https://twitter.com/%2$s">%2$s</a>)',
+		sprintf( '<span class="author vcard">%1$s</span> (<a class="twitter" href="https://twitter.com/%2$s">@%2$s</a>)',
       esc_html( get_the_author() ),
       esc_html( get_the_author_nickname() )
 		)
