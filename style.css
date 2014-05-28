@@ -1534,7 +1534,7 @@ a h1, a h2, a h3, a h4, a h5, a h6 {
   margin-left: -18px;
   text-decoration: none;
   color: #999;
-  visibility: hidden;
+  opacity: .1;
 }
 
 .deeplink:hover,
@@ -1544,7 +1544,7 @@ h3:hover .deep-link,
 h4:hover .deep-link,
 h5:hover .deep-link,
 h6:hover .deep-link {
-  visibility: visible;
+  opacity: 1;
 }
 
 @font-face {
