@@ -22,7 +22,7 @@ function refreshHash() {
 
 function hashLinks() {
   var hx;
-  if ( $('body').hasClass('single')) {
+  if ($('body').hasClass('single')) {
     hx = $('#content').find('h1, h2, h3, h4, h5, h6');
   } else {
     hx = $('.with-sidebar').find('h1, h2, h3, h4, h5, h6');
@@ -32,6 +32,7 @@ function hashLinks() {
     var header = hx.eq(i);
     if (!header.hasClass('entry-title') && !header.hasClass('excerpt-title')) {
       var s = slug(header.text());
+      console.log('slug: ' + s);
 
       header
       .attr('id', s)
@@ -45,6 +46,7 @@ function hashLinks() {
 }
 
 $(document).ready(function() {
+  console.log('ready');
   attachFastClick(document.body);
   hashLinks();
 });
