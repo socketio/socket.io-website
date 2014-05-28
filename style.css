@@ -1182,12 +1182,12 @@ div.empty {
   }
 
   .home .browser li img {
-    margin: 2px;
+    width: 20%;
+    margin: 2%;
   }
 
-  .home .browser li {
-    height: 20%;
-    line-height: 20%;
+  .home .browser li .tweet {
+    width: 78%;
   }
 
   .home header.fading {
