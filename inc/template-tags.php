@@ -78,7 +78,7 @@ function socket_io_website_posted_on() {
 		esc_html( get_the_modified_date() )
 	);
 
-	printf( __( '<span class="posted-on">%1$s</span><span class="byline"> - %2$s</span>', 'socket-io-website' ),
+	printf( __( '<span class="posted-on">%1$s</span><span class="byline"> – %2$s</span>', 'socket-io-website' ),
 		sprintf( '%1$s',
 			$time_string
 		),
