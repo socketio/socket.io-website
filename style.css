@@ -1505,6 +1505,13 @@ form input {
   font-size: 13px;
 }
 
+/* Anchor stuff */
+a h1, a h2, a h3, a h4, a h5, a h6 {
+  padding-top: 40px;
+  margin-top: -40px;
+  display: inline-block;
+}
+
 @font-face {
   font-family: "untitled-font-2";
   src:url("http://cdn.socket.io/website/icons/untitled-font-2.eot");
