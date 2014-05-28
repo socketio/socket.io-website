@@ -16,6 +16,11 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
+<?php if ( is_single() ): ?>
+	<link href="//vjs.zencdn.net/4.6/video-js.css" rel="stylesheet">
+	<script src="//vjs.zencdn.net/4.6/video.js"></script>
+<?php endif; ?>
+
 <?php wp_head(); ?>
 </head>
 
