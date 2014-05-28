@@ -55,7 +55,13 @@ function setSubscribe() {
     var $this = $(this);
     var $input = $(this).find('input#mc4wp_email');
 
-    $.post(window.location.href, { EMAIL: $input.val() }).
+    var formData = {};
+    $this.find('input[type=hidden]').each(function(i, el) {
+      var $el = $(el);
+      formData[$el.attr('name')] = $(el).val();
+    });
+
+    $.post(window.location.href, $.extend(formData, { EMAIL: $input.val() })).
       done(function(data) {
         $input.val('');
         $input.attr('placeholder', 'Thanks!');
