@@ -1181,9 +1181,10 @@ div.empty {
     width: 80%;
   }
 
-  .home .browser img {
-    width: 5% !important;
-    height: 5% !important;
+  .home .browser li img {
+    width: 10% !important;
+    height: 10% !important;
+    margin: 0;
   }
 
   .home .browser li {
