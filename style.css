@@ -1182,9 +1182,7 @@ div.empty {
   }
 
   .home .browser li img {
-    width: 20% !important;
-    height: 20% !important;
-    margin: 0;
+    margin: 2px;
   }
 
   .home .browser li {
