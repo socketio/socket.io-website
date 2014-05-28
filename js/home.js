@@ -7,7 +7,7 @@ socket.on('tweet', function(t){
 
 socket.on('buffer', function(ts){
   if (!$('#tweets').length) {
-    $($('#tweets-tpl').html()).prependTo('#screen-fill');
+    $('#screen-fill').prepend($('#tweets-tpl').html());
   }
 
   $('#tweets').empty();
