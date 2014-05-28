@@ -1,4 +1,5 @@
 <?php
+if (!is_user_logged_in()) die();
 /**
  * The template for displaying the home page.
  *
