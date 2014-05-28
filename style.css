@@ -701,6 +701,12 @@ body {
   background-position: fixed;
   overflow: hidden;
 
+  animation-delay: 0.1s;
+  animation-name: fontfix;
+  animation-duration: 0.1s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+
   -webkit-animation-delay: 0.1s;
   -webkit-animation-name: fontfix;
   -webkit-animation-duration: 0.1s;
@@ -738,6 +744,10 @@ body {
   box-shadow: 0px 0px 32px 8px rgba(255, 255, 255, 0.76);
   -moz-box-shadow: 0px 0px 32px 8px rgba(255, 255, 255, 0.76);
   -webkit-box-shadow: 0px 0px 32px 8px rgba(255, 255, 255, 0.76);
+
+  animation: move 1.3s infinite;
+  animation-timing-function: linear;
+
   -webkit-animation: move 1.3s infinite;
   -webkit-animation-timing-function: linear;
 }
@@ -982,6 +992,7 @@ div.empty {
   text-align: left;
   vertical-align: top;
   margin: 0 20px;
+  animation: zoom 500ms;
   -webkit-animation: zoom 500ms;
 }
 
@@ -1122,6 +1133,7 @@ div.empty {
 }
 
 .browser .tweets .new {
+  animation: drop 500ms;
   -webkit-animation: drop 500ms;
 }
 
@@ -1133,6 +1145,16 @@ div.empty {
 @-webkit-keyframes drop {
   0%   { opacity: 0; -webkit-transform: translateY(-20px); }
   100% { opacity: 1; -webkit-transform: translateY(0px); }
+}
+
+@keyframes zoom {
+  0%   { opacity: 0; transform: scale(1.15); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes drop {
+  0%   { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0px); }
 }
 
 @media screen and (max-width: 950px) {
