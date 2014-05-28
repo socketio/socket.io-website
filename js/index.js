@@ -20,7 +20,13 @@ function refreshHash() {
 }
 
 function hashLinks() {
-  var hx = this.el.find('h1, h2, h3, h4, h5, h6');
+  var hx;
+  if ( $('body').hasClass('single')) {
+    hx = $('#content').find('h1, h2, h3, h4, h5, h6');
+  } else {
+    hx = $('.with-sidebar').find('h1, h2, h3, h4, h5, h6');
+  }
+
   for (var i = 0; i < hx.length; i++) {
     var header = hx.eq(i);
     if (!header.hasClass('entry-title') && !header.hasClass('excerpt-title')) {
