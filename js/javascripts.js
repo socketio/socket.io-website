@@ -23,9 +23,9 @@ function refreshHash() {
 function hashLinks() {
   var hx;
   if ($('body').hasClass('single')) {
-    hx = $('#content').find('h1, h2, h3, h4, h5, h6');
+    hx = $('#content').find('h1, h2');
   } else {
-    hx = $('.with-sidebar').find('h1, h2, h3, h4, h5, h6');
+    hx = $('.with-sidebar').find('h1, h2');
   }
 
   for (var i = 0; i < hx.length; i++) {
