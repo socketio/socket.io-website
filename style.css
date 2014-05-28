@@ -1189,6 +1189,7 @@ div.empty {
 
   .home .browser li {
     height: 10%;
+    line-height: 10%;
   }
 
   .home header.fading {
