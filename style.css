@@ -1160,8 +1160,11 @@ div.empty {
 .twitter-follow-button {
   position: relative;
   top: 6px;
-  width: 216px; height: 20px;
-  display: inline-block;
+  display: none;
+}
+
+iframe.twitter-follow-button {
+  display: inherit;
 }
 
 @media screen and (max-width: 950px) {
