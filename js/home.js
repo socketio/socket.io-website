@@ -1,4 +1,4 @@
-
+/*global io,$*/
 var socket = io('http://tweets.socket.io');
 socket.on('tweet', function(t){
   add(t).prependTo('#tweets').addClass('new');
@@ -6,10 +6,16 @@ socket.on('tweet', function(t){
 });
 
 socket.on('buffer', function(ts){
+  if (!$('#tweets').length) {
+    $('#screen-fill').prepend($('#tweets-tpl').html());
+  }
+
   $('#tweets').empty();
+
   for (var i = 0; i < ts.length; i++) {
     $('#tweets').append(add(ts[i]));
   }
+
   slice();
 });
 
