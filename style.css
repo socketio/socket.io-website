@@ -1534,7 +1534,8 @@ a h1, a h2, a h3, a h4, a h5, a h6 {
   margin-left: -18px;
   text-decoration: none;
   color: #999;
-  opacity: .1;
+  opacity: .05;
+  padding-right: 10px;
 }
 
 .deeplink:hover,
