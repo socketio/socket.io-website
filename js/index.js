@@ -2,14 +2,45 @@ var $ = require('jquery');
 
 var attachFastClick = require('fastclick');
 
-$(document).ready(function() {
-  attachFastClick(document.body);
-});
-
 // Home page header resize and fade in/out
 function setHeaderHeight() {
   $('#screen-fill').css('height', $(window).height() - 50);
 }
+
+function slug(str) {
+  return str
+    .replace(new RegExp(' ', 'g'), '-')
+    .toLowerCase();
+}
+
+function refreshHash() {
+  var hash = document.location.hash;
+  document.location.hash = '#' + hash;
+  document.location.hash = hash;
+}
+
+function hashLinks() {
+  var hx = this.el.find('h1, h2, h3, h4, h5, h6');
+  for (var i = 0; i < hx.length; i++) {
+    var header = hx.eq(i);
+    if (!header.hasClass('entry-title') && !header.hasClass('excerpt-title')) {
+      var s = slug(header.text());
+
+      header
+      .attr('id', s)
+      .prepend($('<a>', {
+        'class': 'icon-link deep-link',
+        href: window.location.href.split('#')[0] + '#' + s
+      }));
+    }
+  }
+  refreshHash();
+}
+
+$(document).ready(function() {
+  attachFastClick(document.body);
+  hashLink();
+});
 
 $(document).ready(setHeaderHeight);
 $(window).resize(setHeaderHeight);
