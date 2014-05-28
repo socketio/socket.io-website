@@ -51,20 +51,18 @@ function hashLinks() {
 function setSubscribe() {
   $('.mc4wp-form').off('submit').submit(function(ev) {
     ev.preventDefault();
-    $.post(window.location.href, { EMAIL: $('.mc4wp-form input#mc4wp-email').val() }).
-      done(function(data) {
-        var $dom = $.parseHTML(data);
-        for (var i = 0; i < $dom.length; i++) {
-          var el = $dom[i];
 
-          if ('page' == el.id) {
-            var $form = $(el).find('.mc4wp-form');
-            $('.mc4wp-form').html($form.html());
-          }
-        }
+    var $this = $(this);
+    var $input = $(this).find('input#mc4wp_email');
+
+    $.post(window.location.href, { EMAIL: $input.val() }).
+      done(function(data) {
+        $input.val('');
+        $input.attr('placeholder', 'Thanks!');
       }).
       fail(function() {
-        console.log('subscription request error');
+        $input.val('');
+        $input.attr('placeholder', 'Error');
       });
     return false;
   });
