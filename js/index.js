@@ -45,7 +45,7 @@ function hashLinks() {
 
 $(document).ready(function() {
   attachFastClick(document.body);
-  hashLink();
+  hashLinks();
 });
 
 $(document).ready(setHeaderHeight);
