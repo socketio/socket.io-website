@@ -1182,8 +1182,7 @@ div.empty {
   }
 
   .home .browser li img {
-    width: 20%;
-    margin: 2%;
+    margin: 2px;
   }
 
   .home .browser li .tweet {
