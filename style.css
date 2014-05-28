@@ -1456,6 +1456,10 @@ form input {
   color: #9B9B9B;
 }
 
+#primary.with-sidebar main {
+  width: 90%;
+}
+
 @media screen and (max-width: 1100px) {
   #sidebar {
     float: none !important;
