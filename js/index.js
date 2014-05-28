@@ -31,21 +31,21 @@ function hashLinks() {
     var header = hx.eq(i);
     if (!header.hasClass('entry-title') && !header.hasClass('excerpt-title')) {
       var s = slug(header.text());
-      console.log('slug: ' + s);
+
+      var link = $('<a>', {
+        'class': 'icon-link deep-link',
+        href: window.location.href.split('#')[0] + '#' + s
+      });
 
       header
       .attr('id', s)
-      .prepend($('<a>', {
-        'class': 'icon-link deep-link',
-        href: window.location.href.split('#')[0] + '#' + s
-      }));
+      .wrap(link);
     }
+    refreshHash();
   }
-  refreshHash();
 }
 
 $(document).ready(function() {
-  console.log('ready');
   attachFastClick(document.body);
   hashLinks();
 });
