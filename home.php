@@ -14,33 +14,35 @@
 			<h2 class="entry-subtitle">FEATURING THE FASTEST AND MOST RELIABLE REAL-TIME ENGINE</h2>
 		</header><!-- .entry-header -->
     <div id="screen-fill">
-      <div class="window editor fading">
-        <div class="header">
-          <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title">~/Projects/tweets/index.js</span>
+      <script type="text/html" id="tweets-tpl">
+        <div class="window editor fading">
+          <div class="header">
+            <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title">~/Projects/tweets/index.js</span>
+          </div>
+          <div class="body">
+            <ol class="code">
+              <li><span class="code"><span class="v">var</span> io = <span class="io">require('socket.io')(80)</span>;</span></li>
+              <li><span class="code"><span class="v">var</span> cfg = require('./config.json');</span></li>
+              <li><span class="code"><span class="v">var</span> tw = require('node-tweet-stream')(cfg);</span></li>
+              <li><span class="code">tw.track('socket.io');</span></li>
+              <li><span class="code">tw.track('javascript');</span></li>
+              <li><span class="code">tw.on('tweet', <span class="fn">function</span>(tweet){</span></li>
+              <li><span class="code">&nbsp;&nbsp;<span class="io">io.emit('tweet', tweet)</span>;</span></li>
+              <li><span class="code">});</span></li>
+            </ol>
+          </div>
         </div>
-        <div class="body">
-          <ol class="code">
-            <li><span class="code"><span class="v">var</span> io = <span class="io">require('socket.io')(80)</span>;</span></li>
-            <li><span class="code"><span class="v">var</span> cfg = require('./config.json');</span></li>
-            <li><span class="code"><span class="v">var</span> tw = require('node-tweet-stream')(cfg);</span></li>
-            <li><span class="code">tw.track('socket.io');</span></li>
-            <li><span class="code">tw.track('javascript');</span></li>
-            <li><span class="code">tw.on('tweet', <span class="fn">function</span>(tweet){</span></li>
-            <li><span class="code">&nbsp;&nbsp;<span class="io">io.emit('tweet', tweet)</span>;</span></li>
-            <li><span class="code">});</span></li>
-          </ol>
-        </div>
-      </div>
 
-      <div class="window browser fading">
-        <div class="header">
-          <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title"><span class="scheme">https://</span>your-node-app.com</span>
+        <div class="window browser fading">
+          <div class="header">
+            <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title"><span class="scheme">https://</span>your-node-app.com</span>
+          </div>
+          <div class="body">
+            <p>Tweets about <b>socket.io</b> and <b>javascript</b></p>
+            <ul id="tweets" class="tweets"></ul>
+          </div>
         </div>
-        <div class="body">
-          <p>Tweets about <b>socket.io</b> and <b>javascript</b></p>
-          <ul id="tweets" class="tweets"></ul>
-        </div>
-      </div>
+      </script>
 
       <span class="arrow fading">B</span>
     </div>
