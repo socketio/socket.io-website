@@ -1264,8 +1264,13 @@ div.empty {
 
   .site-footer {
     text-align: center;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     font-size: 8px;
+  }
+
+  .twitter-follow-button {
+    position: relative;
+    top: 6px;
   }
 
   .site-footer .footer-left {
