@@ -1157,6 +1157,16 @@ div.empty {
   100% { opacity: 1; transform: translateY(0px); }
 }
 
+.twitter-follow-button {
+  position: relative;
+  top: 6px;
+  display: none;
+}
+
+iframe.twitter-follow-button {
+  display: inline-block;
+}
+
 @media screen and (max-width: 950px) {
   .home .information-entry {
     height: 200px !important;
@@ -1264,8 +1274,8 @@ div.empty {
 
   .site-footer {
     text-align: center;
-    padding-bottom: 40px;
     font-size: 8px;
+    padding-ottom: 20px;
   }
 
   .site-footer .footer-left {
@@ -1737,4 +1747,8 @@ h6:hover .deep-link {
 }
 .icon-budicon-42:before {
   content: "Q";
+}
+
+#content {
+  min-height: 530px;
 }
