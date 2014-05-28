@@ -1495,6 +1495,15 @@ form input {
   margin-bottom: 0;
 }
 
+/* Getting started */
+#extra-left {
+  width: 40%;
+}
+
+#extra-right {
+  width: 40%;
+}
+
 @font-face {
   font-family: "untitled-font-2";
   src:url("http://cdn.socket.io/website/icons/untitled-font-2.eot");
