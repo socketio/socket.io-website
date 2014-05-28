@@ -36,6 +36,7 @@ function hashLinks() {
       var link = $('<a>', {
         'class': 'icon-link deep-link',
         href: window.location.href.split('#')[0] + '#' + s,
+        style: 'position: absolute; margin-left: -18px; text-decoration: none; color: #999;',
         html: '#'
       });
 
@@ -47,8 +48,31 @@ function hashLinks() {
   }
 }
 
+function setSubscribe() {
+  $('.mc4wp-form').off('submit').submit(function(ev) {
+    ev.preventDefault();
+    $.post(window.location.href, { EMAIL: $('.mc4wp-form input#mc4wp-email').val() }).
+      done(function(data) {
+        var $dom = $.parseHTML(data);
+        for (var i = 0; i < $dom.length; i++) {
+          var el = $dom[i];
+
+          if ('page' == el.id) {
+            var $form = $(el).find('.mc4wp-form');
+            $('.mc4wp-form').html($form.html());
+          }
+        }
+      }).
+      fail(function() {
+        console.log('subscription request error');
+      });
+    return false;
+  });
+}
+
 $(document).ready(function() {
   attachFastClick(document.body);
+  setSubscribe();
   hashLinks();
 });
 
