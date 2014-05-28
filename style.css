@@ -1148,13 +1148,13 @@ div.empty {
 }
 
 @keyframes zoom {
-  0%   { opacity: 0; -webkit-transform: scale(1.15); }
-  100% { opacity: 1; -webkit-transform: scale(1); }
+  0%   { opacity: 0; transform: scale(1.15); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes drop {
-  0%   { opacity: 0; -webkit-transform: translateY(-20px); }
-  100% { opacity: 1; -webkit-transform: translateY(0px); }
+  0%   { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0px); }
 }
 
 @media screen and (max-width: 950px) {
