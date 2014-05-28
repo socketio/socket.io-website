@@ -1187,7 +1187,11 @@ div.empty {
 
   .home .browser li .tweet {
     padding-left: 29px;
-    width: 99%;
+    width: 75%;
+  }
+
+  .home .browser .li a {
+    width: 15%;
   }
 
   .home header.fading {
