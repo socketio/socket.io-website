@@ -1157,6 +1157,11 @@ div.empty {
   100% { opacity: 1; transform: translateY(0px); }
 }
 
+.twitter-follow-button {
+  position: relative;
+  top: 6px;
+}
+
 @media screen and (max-width: 950px) {
   .home .information-entry {
     height: 200px !important;
@@ -1266,11 +1271,6 @@ div.empty {
     text-align: center;
     font-size: 8px;
     padding-ottom: 20px;
-  }
-
-  .twitter-follow-button {
-    position: relative;
-    top: 6px;
   }
 
   .site-footer .footer-left {
