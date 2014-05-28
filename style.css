@@ -1098,7 +1098,6 @@ div.empty {
   color: #4B434D;
   list-style-type: none;
   margin-bottom: 14px;
-  overflow-x: hidden;
 }
 
 .browser .tweets img {
@@ -1185,6 +1184,10 @@ div.empty {
   .home .browser img {
     width: 5% !important;
     height: 5% !important;
+  }
+
+  .home .browser li {
+    height: 10%;
   }
 
   .home header.fading {
