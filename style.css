@@ -1493,12 +1493,10 @@ form input {
 }
 
 /* Getting started */
-#extra-left {
-  width: 40%;
-}
-
+#extra-left,
 #extra-right {
   width: 40%;
+  font-size: 13px;
 }
 
 @font-face {
