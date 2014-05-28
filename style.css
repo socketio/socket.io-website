@@ -1182,14 +1182,14 @@ div.empty {
   }
 
   .home .browser li img {
-    width: 10% !important;
-    height: 10% !important;
+    width: 20% !important;
+    height: 20% !important;
     margin: 0;
   }
 
   .home .browser li {
-    height: 10%;
-    line-height: 10%;
+    height: 20%;
+    line-height: 20%;
   }
 
   .home header.fading {
