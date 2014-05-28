@@ -1359,6 +1359,7 @@ div.empty {
 .site-footer {
   font-size: 11px;
   margin: 20px;
+  margin-bottom: 40px;
   height: 20px;
 }
 
