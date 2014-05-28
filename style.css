@@ -678,16 +678,13 @@ div#page article header.entry-header {
 }
 
 main {
-  width: 90%;
   margin-left: auto;
   margin-right: auto;
   font-size: 14px;
 }
 
-@media screen and (max-width: 900px) {
-  main {
-    width: 90%;
-  }
+.home main {
+  width: 90%;
 }
 
 /* Body */
