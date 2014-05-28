@@ -1529,6 +1529,24 @@ a h1, a h2, a h3, a h4, a h5, a h6 {
   display: inline-block;
 }
 
+.deep-link {
+  position: absolute;
+  margin-left: -18px;
+  text-decoration: none;
+  color: #999;
+  visibility: hidden;
+}
+
+.deeplink:hover,
+h1:hover .deep-link,
+h2:hover .deep-link,
+h3:hover .deep-link,
+h4:hover .deep-link,
+h5:hover .deep-link,
+h6:hover .deep-link {
+  visibility: visible;
+}
+
 @font-face {
   font-family: "untitled-font-2";
   src:url("http://cdn.socket.io/website/icons/untitled-font-2.eot");

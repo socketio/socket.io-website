@@ -36,7 +36,6 @@ function hashLinks() {
       var link = $('<a>', {
         'class': 'icon-link deep-link',
         href: window.location.href.split('#')[0] + '#' + s,
-        style: 'position: absolute; margin-left: -18px; text-decoration: none; color: #999;',
         html: '#'
       });
 
