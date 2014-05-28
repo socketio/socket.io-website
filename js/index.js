@@ -54,9 +54,25 @@ function setSubscribe() {
     var $this = $(this);
     var $input = $(this).find('input#mc4wp_email');
 
-    $.post(window.location.href, { EMAIL: $input.val() }).
+    var formData = {};
+    $this.find('input[type=hidden]').each(function(i, el) {
+      var $el = $(el);
+      formData[$el.attr('name')] = $(el).val();
+    });
+
+    $.post(window.location.href, $.extend(formData, { EMAIL: $input.val() })).
       done(function(data) {
         $input.val('');
+
+        var $dom = $.parseHTML(data);
+        for (var i = 0; i < $dom.length; i++) {
+          if ('page' == $dom[i].id) {
+            var $form = $($dom[i]).find('.mc4wp-form');
+            $this.html($form.html());
+            return;
+          }
+        }
+
         $input.attr('placeholder', 'Thanks!');
       }).
       fail(function() {
