@@ -1415,10 +1415,6 @@ pre code, form input {
   font-size: 12px;
 }
 
-div.ezcol pre code {
-  font-size: 10px;
-}
-
 form input {
   background: none !important;
   border: none !important;
