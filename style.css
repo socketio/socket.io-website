@@ -1743,3 +1743,7 @@ h6:hover .deep-link {
 .icon-budicon-42:before {
   content: "Q";
 }
+
+#content {
+  min-height: 530px;
+}
