@@ -34,12 +34,14 @@ function hashLinks() {
 
       var link = $('<a>', {
         'class': 'icon-link deep-link',
-        href: window.location.href.split('#')[0] + '#' + s
+        href: window.location.href.split('#')[0] + '#' + s,
+        style: 'position: absolute; margin-left: -18px; text-decoration: none; color: #999;',
+        html: '#'
       });
 
       header
       .attr('id', s)
-      .wrap(link);
+      .prepend(link);
     }
     refreshHash();
   }
