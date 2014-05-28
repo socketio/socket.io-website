@@ -22,7 +22,7 @@ function refreshHash() {
 function hashLinks() {
   var hx;
   if ($('body').hasClass('single')) {
-    hx = $('#content').find('h1, h2');
+    hx = $('#content').find('h1, h2, h3');
   } else {
     hx = $('.with-sidebar').find('h1, h2');
   }
