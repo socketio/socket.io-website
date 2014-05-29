@@ -1178,24 +1178,7 @@ iframe.twitter-follow-button {
   }
 }
 
-@media screen and (max-width: 900px) {
-  header {
-    margin-bottom: 120px;
-  }
-
-  div#page .entry-title {
-    font-size: 24px !important;
-  }
-
-  .home #screen-fill {
-    height: auto !important;
-    padding-top: 0;
-  }
-
-  .home #screen-fill .arrow {
-    display: none;
-  }
-
+@media screen and (max-width: 990px) {
   .home .window {
     width: 90% !important;
     height: 10%;
@@ -1226,6 +1209,25 @@ iframe.twitter-follow-button {
 
   .home .browser .li a {
     width: 15%;
+  }
+
+  .home #screen-fill {
+    height: auto !important;
+    padding-top: 0;
+  }
+
+  .home #screen-fill .arrow {
+    display: none;
+  }
+
+  header {
+    margin-bottom: 120px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  div#page .entry-title {
+    font-size: 24px !important;
   }
 
   .home header.fading {
