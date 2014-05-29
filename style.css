@@ -1199,6 +1199,8 @@ iframe.twitter-follow-button {
   .home .window {
     width: 90% !important;
     height: 10%;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .home .window.editor {
