@@ -37,8 +37,8 @@ function add(data){
    .attr('href', 'https://twitter.com/' + data.user + '/status/' + data.id)
    .attr('target', '_blank')
    .data('time', data.at)
-   .text(pretty(data.at)
-  ));
+   .text(pretty(data.at) || 'now')
+  );
   return t;
 }
 
