@@ -1178,7 +1178,7 @@ iframe.twitter-follow-button {
   }
 }
 
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 1100px) {
   .home .window {
     width: 90% !important;
     height: 10%;
