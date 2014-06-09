@@ -1279,7 +1279,7 @@ iframe.twitter-follow-button {
   .site-footer {
     text-align: center;
     font-size: 8px;
-    padding-ottom: 20px;
+    margin-bottom: 80px !important;
   }
 
   .site-footer .footer-left {
