@@ -1237,6 +1237,10 @@ iframe.twitter-follow-button {
     font-size: 24px !important;
   }
 
+  .home .entry-subtitle span.row {
+    display: block;
+  }
+
   .home header.fading {
     opacity: 1.0 !important;
   }

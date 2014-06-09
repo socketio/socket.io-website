@@ -11,7 +11,7 @@
 	<main id="main page home" class="site-main" role="main">
 		<header class="entry-header fading">
 			<h1 class="entry-title">SOCKET.IO 1.0 IS HERE</h1>
-			<h2 class="entry-subtitle">FEATURING THE FASTEST AND MOST RELIABLE REAL-TIME ENGINE</h2>
+			<h2 class="entry-subtitle"><span class="row">FEATURING THE FASTEST AND MOST RELIABLE</span> <span class="row">REAL-TIME ENGINE</span></h2>
 		</header><!-- .entry-header -->
     <div id="screen-fill">
       <script type="text/html" id="tweets-tpl">
