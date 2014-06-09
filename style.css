@@ -1225,6 +1225,12 @@ iframe.twitter-follow-button {
   }
 }
 
+@media screen and (max-width: 600px) {
+  .home .window .title {
+    width: 60%;
+  }
+}
+
 @media screen and (max-width: 900px) {
   div#page .entry-title {
     font-size: 24px !important;
