@@ -7,6 +7,11 @@ var attachFastClick = require('fastclick');
 function setHeaderHeight() {
   $('#screen-fill').css('height', $(window).height() - 50);
 }
+function setHeaderScroll() {
+  var height = $(document).outerHeight() - $(window).outerHeight(),
+    perc = Math.round($(window).scrollTop()/height*100);
+  $('#bar').css({"backgroundPosition": "left "+perc+"%"});
+}
 
 function slug(str) {
   return str
@@ -92,6 +97,7 @@ $(document).ready(function() {
 
 $(document).ready(setHeaderHeight);
 $(window).resize(setHeaderHeight);
+$(window).scroll(setHeaderScroll);
 
 
 },{"fastclick":2,"jquery":3}],2:[function(require,module,exports){
