@@ -1415,14 +1415,22 @@ iframe.twitter-follow-button {
   display: none;
 }
 
+#gh-watchers {
+  display: none;
+}
+
 @media screen and (min-width: 900px) {
-  #menu-item-43 {
+  #menu-item-43, #gh-watchers {
     display: block;
     float: right;
     padding: 0;
     margin: 15px 0 0 0;
   }
-  
+
+  #gh-watchers {
+    margin-top: 18px;
+  }
+
   #menu-item-43 a {
     display: inline-block;
     background: rgb(219, 122, 238);
