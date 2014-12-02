@@ -105,7 +105,7 @@
 						<div class="information-entry">
 							<h3>JOIN THE COMMUNITY</h3>
 							<ul style="margin-left: 0px; list-style-type: none;">
-								<li style="margin-bottom: 5px;">Post to the <a href="#">mailing list</a> with questions or to show your work</li>
+								<li style="margin-bottom: 5px;">Post to the <a href="https://groups.google.com/forum/#!forum/socket_io">mailing list</a> with questions or to show your work</li>
 								<li style="margin-bottom: 5px;">Real-time help? Find us on IRC at #socket.io on irc.freenode.net</li>
 								<li style="margin-bottom: 5px;">Contribute code or report issues on <a href="https://github.com/Automattic/socket.io">GitHub</a></li>
 							</ul>
