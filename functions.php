@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
 /**
  * socket.io-website functions and definitions
  *
