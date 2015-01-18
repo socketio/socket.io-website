@@ -99,7 +99,7 @@
 						<div class="information-entry">
 							<h3>IMMENSELY POWERFUL, YET EASY TO USE</h3>
 							<p>Our getting started guide will show you how to create lots of amazing applications in fewer than 200 lines of code.</p>
-							<p>We're not making that up. Get started <a href="#">now</a>.</p>
+							<p>We're not making that up. Get started <a href="/get-started">now</a>.</p>
 						</div>
 						<div class="repel"></div>
 						<div class="information-entry">
