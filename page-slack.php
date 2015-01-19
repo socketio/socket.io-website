@@ -17,7 +17,7 @@ get_header(); ?>
       <p>Join our <a href="http://socketio.slack.com" target="_blank">Slack</a> server to discuss the project in realtime.</p>
       <ul>
         <li><b>Talk</b> to the core devs and the Socket.IO community.</li>
-        <li><b>Learn</b> and share your kwowledge with others.</li>
+        <li><b>Learn</b> from others and ask questions.</li>
         <li><b>Share</b> your work and demos.</li>
       </ul>
 <p>Enter your email to join the Socket.IO community Slack 
@@ -28,12 +28,13 @@ get_header(); ?>
       <p id="join-footer">At this time 
         <b class="slack-users-count"><?php echo $redis->get('slack_users_count') ?></b> people
         are active out of <b class="slack-users-count-total"><?php echo $redis->get('slack_users_count_total') ?></b> registered users.</p>
+      <p>Please be nice, respectful and inclusive of others!</p>
     </main>
   </div>
   
 <style>
  #primary form p input[type="text"] {
-   width: 200px;
+   width: 100%;
  }
  h2.entry-subtitle {
    margin-bottom: 50px;
@@ -64,12 +65,10 @@ get_header(); ?>
 <script src="/wp-content/themes/socket.io-website/js/superagent.js"></script>
 <script>
 var form = document.querySelector('form');
-var button = document.querySelector('button');
 var input = document.querySelector('input[type=text]');
 var request = superagent;
 form.addEventListener('submit', function(ev){
   ev.preventDefault();
-  button.setAttribute('disabled', 'disabled');
   request
   .post('http://slack.socket.io/invite')
   .send({ email: input.value })

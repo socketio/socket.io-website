@@ -25,7 +25,7 @@
 ?>
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://cdn.socket.io/socket.io-1.2.1.js"></script>
+<script src="http://cdn.socket.io/socket.io-1.3.0.js"></script>
 <!-- Twitter script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 

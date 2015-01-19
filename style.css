@@ -1105,6 +1105,7 @@ div.empty {
 .browser .tweets li {
   height: 27px;
   line-height: 27px;
+  width: 368px;
   vertical-align: middle;
   color: #4B434D;
   list-style-type: none;
