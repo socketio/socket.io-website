@@ -12,8 +12,9 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT) AND RUN BY <a href="https://github.com/Automattic/socket.io/graphs/contributors">CONTRIBUTORS</a>. <a href="https://twitter.com/socketio" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @socketio</a></span>
-			<span class="footer-right"><a href="http://automattic.com">SUPPORTED BY<div id="a8c-image"></div></a></span>
+			<span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT). RUN BY <a href="https://github.com/Automattic/socket.io/graphs/contributors">CONTRIBUTORS</a>. <a href="https://twitter.com/socketio" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @socketio</a></span>
+      <span class="footer-right">
+      </span>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
@@ -34,7 +35,7 @@
   var slack_users_count = <?php echo $redis->get('slack_users_count') ?>;
   var li = $('<li class="menu-item"><a href="/slack">Slack</a></li>')
   var count = $('<span id="slack-count">').text(slack_users_count);
-  var socket = io('http://slack.socket.io');
+  var socket = io('http://slack-io.socket.io');
 
   li.find('a').append(count);
   $('#menu-item-43').before(li);
