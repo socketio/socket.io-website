@@ -70,7 +70,7 @@ var request = superagent;
 form.addEventListener('submit', function(ev){
   ev.preventDefault();
   request
-  .post('http://slack.socket.io/invite')
+  .post('http://slack-io.socket.io/invite')
   .send({ email: input.value })
   .end(function(res){
     if (res.ok) {
