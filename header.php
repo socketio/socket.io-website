@@ -37,7 +37,7 @@
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<div id="logo-container"><a href="/" id="logo">socket.io</a></div>
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-      <iframe src="http://ghbtns.com/github-btn.html?user=Automattic&repo=socket.io&type=watch&count=true"
+      <iframe src="http://ghbtns.com/github-btn.html?user=socketio&repo=socket.io&type=watch&count=true"
           allowtransparency="true" frameborder="0" scrolling="0" width="120" id="gh-watchers" height="20"></iframe>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
