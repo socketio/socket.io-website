@@ -12,8 +12,9 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT). RUN BY <a href="https://github.com/Automattic/socket.io/graphs/contributors">CONTRIBUTORS</a>. <a href="https://twitter.com/socketio" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @socketio</a></span>
+			<span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT). RUN BY <a href="https://github.com/Automattic/socket.io/graphs/contributors">CONTRIBUTORS</a>. </span>
       <span class="footer-right">
+        <a href="https://twitter.com/socketio" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @socketio</a>
       </span>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
@@ -32,15 +33,12 @@
 
 <script>
 (function() {
-  var slack_users_count = <?php echo $redis->get('slack_users_count') ?>;
-  var li = $('<li class="menu-item"><a href="/slack">Slack</a></li>')
+  var slack_users_count = <?php echo $redis->get('slackin_active') ?>;
   var count = $('<span id="slack-count">').text(slack_users_count);
-  var socket = io('http://slack-io.socket.io');
+  var socket = io('http://slack.socket.io');
+  $('#menu-item-972 a').append(count);
 
-  li.find('a').append(count);
-  $('#menu-item-43').before(li);
-
-  socket.on('slack users count', function(val, total){
+  socket.on('active', function(val, total){
     var old = Number(count.text());
     count.text(val);
     li.find('a').attr('title', val + ' users of online of ' + total);
