@@ -21,13 +21,11 @@
 		<?php $children = get_children( $args ); ?>
 
 		<?php foreach ( $children as $child ): ?>
-
 			<?php if ( get_the_id() == $child->ID ): ?>
-				<li id="parent"><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>
+				<li id="parent"><a href="<?php echo esc_url( get_permalink( get_the_id() ) ); ?>"><?php echo esc_html( get_the_title( get_the_id() ) ) ; ?></a></li>
 			<?php else: ?>
-				<li id="post"><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>
+				<li id="post"><a href="<?php echo esc_url( get_permalink( $child->ID ) ); ?>"><?php echo esc_html( $child->post_title ); ?></a></li>
 			<?php endif; ?>
-
 		<?php endforeach; // end of the loop. ?>
 	</ul>
 </div>
