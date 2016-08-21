@@ -35,7 +35,7 @@
 (function() {
   var slack_users_count = <?php echo $redis->get('slackin_active') ?>;
   var count = $('<span id="slack-count">').text(slack_users_count);
-  var socket = io('http://slack.socket.io');
+  var socket = io('http://socket.io/slack/');
   $('#menu-item-972 a').append(count);
 
   socket.on('active', function(val, total){
