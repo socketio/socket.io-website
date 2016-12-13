@@ -7,6 +7,11 @@ var attachFastClick = require('fastclick');
 function setHeaderHeight() {
   $('#screen-fill').css('height', $(window).height() - 50);
 }
+function setHeaderScroll() {
+  var height = $(document).outerHeight() - $(window).outerHeight(),
+    perc = Math.round($(window).scrollTop()/height*100);
+  $('#bar').css({"backgroundPosition": "left "+perc+"%"});
+}
 
 // Page navigation animation
 function setHeaderScroll() {
