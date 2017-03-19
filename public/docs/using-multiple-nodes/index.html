@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="6hwSNwrfOBp3YhFBHWy08L12QeMTLpqNI3LvIB4lZEI" />
+  <title>Socket.IO  —  Using multiple nodes</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+
+  <link rel='stylesheet' id='socket-io-website-style-css'  href='/assets/css/style.css?ver=4.5.1' type='text/css' media='all' />
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18488944-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="blog group-blog">
+<div id="bar"></div>
+<div id="page" class="hfeed site">
+
+  <header id="masthead" class="site-header" role="banner">
+    <div class="site-branding">
+      <h1 class="site-title"><a href="/" rel="home"></a></h1>
+      <h2 class="site-description"></h2>
+    </div>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+      <div id="logo-container"><a href="/" id="logo">socket.io</a></div>
+      <div class="menu-menu-container">
+
+      <ul id="menu-menu" class="menu">
+        <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-6"><a href="/">Home</a></li>
+        <li id="menu-item-153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153"><a href="/demos/chat/">Demos</a></li>
+        <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="/get-started">Get started</a></li>
+        <li id="menu-item-29" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="/docs">Docs</a></li>
+        <!-- <li id="menu-item-95" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-95"><a href="http://socket.io/blog/">Blog</a></li> -->
+        <li id="menu-item-43" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-43"><a href="https://cdnjs.com/libraries/socket.io">Download v1.7.3</a></li>
+        <li id="menu-item-972" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-972"><a href="https://slackin-socketio.now.sh/">Slack</a></li>
+      </ul>
+    </div>      <iframe src="https://ghbtns.com/github-btn.html?user=socketio&repo=socket.io&type=watch&count=true"
+          allowtransparency="true" frameborder="0" scrolling="0" width="120" id="gh-watchers" height="20"></iframe>
+    </nav><!-- #site-navigation -->
+  </header><!-- #masthead -->
+
+  <div id="content" class="site-content">
+
+    <div id="sidebar" class="content-area">
+      <ul id="posts">
+        <li><a href="/docs/">Overview</a></li>
+        <li class="anchor"></li>
+        <li><a href="/docs/server-api/">Server API</a></li>
+        <li><a href="/docs/client-api/">Client API</a></li>
+        <li class="anchor"></li>
+        <li><a href="/docs/rooms-and-namespaces/">Rooms and Namespaces</a></li>
+        <li><a href="/docs/migrating-from-0-9/">Migrating from 0.9</a></li>
+        <li id="parent"><a href="/docs/using-multiple-nodes/">Using multiple nodes</a></li>
+        <li><a href="/docs/logging-and-debugging/">Logging and Debugging</a></li>
+        <li><a href="/docs/emit-cheatsheet/">Emit cheatsheet</a></li>
+        <li><a href="/docs/faq/">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div id="primary" class="content-area with-sidebar">
+
+  <main id="main" class="site-main" role="main">
+
+<article id="post-102" class="post-102 page type-page status-publish hentry">
+  <div class="entry-content">
+    <h1>Using multiple nodes</h1>
+<h2>Sticky load balancing</h2>
+<p>If you plan to distribute the load of connections among different processes or machines, you have to make sure that requests associated with a particular session id connect to the process that originated them.</p>
+<p>This is due to certain transports like XHR Polling or JSONP Polling relying on firing several requests during the lifetime of the &#8220;socket&#8221;.</p>
+<p>To illustrate why this is needed, consider the example of emitting an event to all connected clients:</p>
+<pre><code>io.emit('hi', 'all sockets');</code></pre>
+<p>Chances are that some of those clients might have an active bi-directional communication channel like <code>WebSocket</code> that we can write to immediately, but some of them might be using long-polling.</p>
+<p>If they&#8217;re using long polling, they might or might not have sent a request that we can write to. They could be &#8220;in between&#8221; those requests. In those situations, it means we have to buffer messages in the process. In order for the client to successfully claim those messages when he sends his request, the easiest way is for him to connect to be routed to that same process.</p>
+<p>An easy way to do that is by routing clients based on their originating address. An example follows using the NginX server:</p>
+<h2>NginX configuration</h2>
+<p>Within the <code>http { }</code> section of your <code>nginx.conf</code> file, you can declare a <code>upstream</code> section with a list of Socket.IO process you want to balance load between:</p>
+<pre><code>upstream io_nodes {
+  ip_hash;
+  server 127.0.0.1:6001;
+  server 127.0.0.1:6002;
+  server 127.0.0.1:6003;
+  server 127.0.0.1:6004;
+}</code></pre>
+<p>Notice the <code>ip_hash</code> instruction that indicates the connections will be sticky.</p>
+<p>In the same <code>http { }</code> section, you can declare a <code>server { }</code> that points to this upstream. In order for NginX to support and forward the <code>WebSocket</code> protocol, we explicitly pass along the required <code>Upgrade</code> headers:</p>
+<pre><code>server {
+  listen 3000;
+  server_name io.yourhost.com;
+  location / {
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $host;
+    proxy_http_version 1.1;
+    proxy_pass http://io_nodes;
+  }
+}</code></pre>
+<p>Make sure you also configure <code>worker_processes</code> in the topmost level to indicate how many workers NginX should use. You might also want to look into tweaking the <code>worker_connections</code> setting within the <code>events { }</code> block.</p>
+<h2>Using Node.JS Cluster</h2>
+<p>Just like NginX, Node.JS comes with built-in clustering support through the <code>cluster</code> module.</p>
+<p>Fedor Indutny has created a module called <a href="https://github.com/indutny/sticky-session">sticky session</a> that ensures file descriptors (ie: connections) are routed based on the originating <code>remoteAddress</code> (ie: IP).</p>
+<h2>Passing events between nodes</h2>
+<p>Now that you have multiple Socket.IO nodes accepting connections, if you want to broadcast events to everyone (or even everyone in a certain <a href="/docs/rooms-and-namespaces/">room</a>) you&#8217;ll need some way of passing messages between processes or computers.</p>
+<p>The interface in charge of routing messages is what we call the <code>Adapter</code>. You can implement your own on top of the <a href="https://github.com/socketio/socket.io-adapter">socket.io-adapter</a> (by inheriting from it) or you can use the one we provide on top of <a href="https://redis.io/">Redis</a>: <a href="https://github.com/socketio/socket.io-redis">socket.io-redis</a>:</p>
+<pre><code>var io = require('socket.io')(3000);
+var redis = require('socket.io-redis');
+io.adapter(redis({ host: 'localhost', port: 6379 }));</code></pre>
+<p>If you want to pass messages to it from non-socket.io processes, you should look into <a href="/docs/rooms-and-namespaces/#sending-messages-from-the-outside-world">&#8220;Sending messages from the outside-world&#8221;</a>.</p>
+      </div><!-- .entry-content -->
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+  </main><!-- #main -->
+</div><!-- #primary -->
+
+  </div><!-- #content -->
+
+  <footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="site-info">
+      <span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT). RUN BY <a href="https://github.com/socketio/socket.io/graphs/contributors">CONTRIBUTORS</a>. </span>
+      <span class="footer-right">
+        <a href="https://twitter.com/socketio" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @socketio</a>
+      </span>
+    </div><!-- .site-info -->
+  </footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<!-- Twitter script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<script src="/assets/js/default.min.js"></script>
+
+</body>
+</html>

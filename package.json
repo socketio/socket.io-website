@@ -1,0 +1,13 @@
+{
+  "name": "socket.io-website",
+  "version": "0.0.1",
+  "description": "socket.io website and blog",
+  "scripts": {
+    "start": "serve public/"
+  },
+  "author": "Damien Arrachequesne",
+  "license": "MIT",
+  "dependencies": {
+    "serve": "^3.4.0"
+  }
+}

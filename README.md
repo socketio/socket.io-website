@@ -1,4 +1,5 @@
 
 # socket.io-website
 
-Socket.IO website and blog at http://socket.io/. WordPress theme.
+Socket.IO website and blog at https://socket.io/.
+

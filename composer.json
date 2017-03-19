@@ -1,5 +1,0 @@
-{
-  "require": {
-    "ptrofimov/tinyredisclient": "1.1.1"
-  }
-}

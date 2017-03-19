@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="6hwSNwrfOBp3YhFBHWy08L12QeMTLpqNI3LvIB4lZEI" />
+  <title>Socket.IO  —  Migrating from 0.9</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+
+  <link rel='stylesheet' id='socket-io-website-style-css'  href='/assets/css/style.css?ver=4.5.1' type='text/css' media='all' />
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18488944-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="blog group-blog">
+<div id="bar"></div>
+<div id="page" class="hfeed site">
+
+  <header id="masthead" class="site-header" role="banner">
+    <div class="site-branding">
+      <h1 class="site-title"><a href="/" rel="home"></a></h1>
+      <h2 class="site-description"></h2>
+    </div>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+      <div id="logo-container"><a href="/" id="logo">socket.io</a></div>
+      <div class="menu-menu-container">
+
+      <ul id="menu-menu" class="menu">
+        <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-6"><a href="/">Home</a></li>
+        <li id="menu-item-153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153"><a href="/demos/chat/">Demos</a></li>
+        <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="/get-started">Get started</a></li>
+        <li id="menu-item-29" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="/docs">Docs</a></li>
+        <!-- <li id="menu-item-95" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-95"><a href="http://socket.io/blog/">Blog</a></li> -->
+        <li id="menu-item-43" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-43"><a href="https://cdnjs.com/libraries/socket.io">Download v1.7.3</a></li>
+        <li id="menu-item-972" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-972"><a href="https://slackin-socketio.now.sh/">Slack</a></li>
+      </ul>
+    </div>      <iframe src="https://ghbtns.com/github-btn.html?user=socketio&repo=socket.io&type=watch&count=true"
+          allowtransparency="true" frameborder="0" scrolling="0" width="120" id="gh-watchers" height="20"></iframe>
+    </nav><!-- #site-navigation -->
+  </header><!-- #masthead -->
+
+  <div id="content" class="site-content">
+
+    <div id="sidebar" class="content-area">
+      <ul id="posts">
+        <li><a href="/docs/">Overview</a></li>
+        <li class="anchor"></li>
+        <li><a href="/docs/server-api/">Server API</a></li>
+        <li><a href="/docs/client-api/">Client API</a></li>
+        <li class="anchor"></li>
+        <li><a href="/docs/rooms-and-namespaces/">Rooms and Namespaces</a></li>
+        <li id="parent"><a href="/docs/migrating-from-0-9/">Migrating from 0.9</a></li>
+        <li><a href="/docs/using-multiple-nodes/">Using multiple nodes</a></li>
+        <li><a href="/docs/logging-and-debugging/">Logging and Debugging</a></li>
+        <li><a href="/docs/emit-cheatsheet/">Emit cheatsheet</a></li>
+        <li><a href="/docs/faq/">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div id="primary" class="content-area with-sidebar">
+
+  <main id="main" class="site-main" role="main">
+
+<article id="post-100" class="post-100 page type-page status-publish hentry">
+  <div class="entry-content">
+    <h1 id="migration-from-0.9"><a class="icon-link deep-link" href="/docs/migrating-from-0-9#migration-from-0.9" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Migration from 0.9</h1>
+<p>For most applications, the transition to 1.0 should be completely seamless and devoid of any hiccups. That said, we’ve done some work to streamline some APIs, and we have changed some internals, so this is a recommended read for most existing users.</p>
+<h2 id="authentication-differences"><a class="icon-link deep-link" href="/docs/migrating-from-0-9#authentication-differences" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Authentication differences</h2>
+<h3>Socket.io uses middleware now</h3>
+<p>You can give a Socket.io server arbitrary functions via <code>io.use()</code> that are run when a socket is created. Check out this example:</p>
+<pre><code>var srv = require('http').createServer();
+var io = require('socket.io')(srv);
+var run = 0;
+io.use(function(socket, next){
+  run++; // 0 -&gt; 1
+  next();
+});
+io.use(function(socket, next) {
+  run++; // 1 -&gt; 2
+  next();
+});
+var socket = require('socket.io-client')();
+socket.on('connect', function(){
+  // run == 2 at this time
+});</code></pre>
+<h3>… so its cleaner to do auth via middleware now</h3>
+<p>The old <code>io.set()</code> and <code>io.get()</code> methods are deprecated and only supported for backwards compatibility. Here is a translation of an old authorization example into middleware-style.</p>
+<pre><code>io.set('authorization', function (handshakeData, callback) {
+  // make sure the handshake data looks good
+  callback(null, true); // error first, 'authorized' boolean second 
+});</code></pre>
+<p>vs.</p>
+<pre><code>io.use(function(socket, next) {
+  var handshakeData = socket.request;
+  // make sure the handshake data looks good as before
+  // if error do this:
+    // next(new Error('not authorized');
+  // else just call next
+  next();
+});</code></pre>
+<h3>Namespace authorization?</h3>
+<pre><code>io.of('/namespace').use(function(socket, next) {
+  var handshakeData = socket.request;
+  next();
+});</code></pre>
+<h2 id="log-differences"><a class="icon-link deep-link" href="/docs/migrating-from-0-9#log-differences" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Log differences</h2>
+<h3>Logging is now based on debug</h3>
+<p>To print all debug logging, set the environment variable DEBUG to *. ie: <code>DEBUG=* node index.js</code></p>
+<p>To print only socket.io related logging: <code>DEBUG=socket.io:* node index.js</code>.</p>
+<p>To print logging only from the socket object: <code>DEBUG=socket.io:socket node index.js</code>.</p>
+<p>This pattern should hopefully be making sense at this point. The names of the files in socket.io/lib are equivalent to their debug names.</p>
+<p>Debug also works in the browser; logs are persisted to localstorage.<br>
+To use: open the developer console and type <code>localStorage.debug = 'socket.io:*'</code> (or any debug level) and then refresh the page. Everything is logged until you run <code>localStorage.debug = ''</code></p>
+<p>See more at the debug documentation <a href="https://www.npmjs.org/package/debug">here</a>.</p>
+<h2 id="shortcuts"><a class="icon-link deep-link" href="/docs/migrating-from-0-9#shortcuts" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Shortcuts</h2>
+<p>In general there are some new shortcuts for common things. The old versions should still work, but shortcuts are nice.</p>
+<h3>Broadcasting to all clients in default namespace</h3>
+<p>Previously:</p>
+<pre><code>io.sockets.emit('eventname', 'eventdata');</code></pre>
+<p>Now:</p>
+<pre><code>io.emit('eventname', 'eventdata');</code></pre>
+<p>Neat. Note that in both cases, these messages reach all clients connected to the default ‘/’ namespace, but not clients in other namespaces.</p>
+<h3>Starting the server</h3>
+<p>Previously:</p>
+<pre><code>var io = require('socket.io');
+var socket = io.listen(80, { /* options */ });</code></pre>
+<p>Now:</p>
+<pre><code>var io = require('socket.io');
+var socket = io({ /* options */ });</code></pre>
+<h2 id="configuration-differences"><a class="icon-link deep-link" href="/docs/migrating-from-0-9#configuration-differences" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Configuration differences</h2>
+<h3>io.set is gone</h3>
+<p>Instead do configuration in server initialization like this:</p>
+<pre><code>var socket = require('socket.io')({
+  // options go here
+});</code></pre>
+<p>Options like log-level are gone. <code>io.set('transports')</code>, <code>io.set('heartbeat interval')</code>, <code>io.set('heartbeat timeout'</code>, and <code>io.set('resource')</code> are still supported for backwards compatibility.</p>
+<h3>Setting resource path</h3>
+<p>The previous <code>resource</code> option is equivalent to the new <code>path</code> option, but needs a <code>/</code> in the beginning. For example, the following configuration</p>
+<pre><code>var socket = io.connect('localhost:3000', {
+  'resource': 'path/to/socket.io';
+});</code></pre>
+<p>becomes</p>
+<pre><code>var socket = io.connect('localhost:3000', {
+  'path': '/path/to/socket.io';
+});</code></pre>
+<h2 id="parser-/-protocol-differences"><a class="icon-link deep-link" href="/docs/migrating-from-0-9#parser-/-protocol-differences" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Parser / Protocol differences</h2>
+<p>This is only relevant for updating things like socket.io implementations in other languages, custom socket.io clients, etc.</p>
+<h3>Difference 1 – packet encoding</h3>
+<p>Parsing is now class based and asynchronous. Instead of returning a single encoded string, encode calls callback with an array of encodings as the only argument. Each encoding should be written to the transport in order. This is more flexible and makes binary data transport work. Here’s an example:</p>
+<pre><code>var encoding = parser.encode(packet);
+console.log(encoding); // fully encoded packet</code></pre>
+<p>vs.</p>
+<pre><code>var encoder = new parser.Encoder();
+encoder.encode(packet, function(encodings) {
+  for (var i = 0; i &lt; encodings.length; i++) {
+    console.log(encodings[i]); // encoded parts of the packet
+  }
+});</code></pre>
+<h3>Difference 2 – packet decoding</h3>
+<p>Decoding takes things a step further and is event-based. This is done because some objects (binary-containing) are both encoded and decoded in multiple parts. This example should help:</p>
+<pre><code>var packet = parser.decode(decoding);
+console.log(packet); // formed socket.io packet to handle</code></pre>
+<p>vs.</p>
+<pre><code>var decoder = new parser.Decoder();
+decoder.on('decoded', function(packet) {
+  console.log(packet); // formed socket.io packet to handle
+});
+decoder.add(encodings[0]); // say encodings is array of two encodings received from transport
+decoder.add(encodings[1]); // after adding the last element, 'decoded' is emitted from decoder</code></pre>
+      </div><!-- .entry-content -->
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+  </main><!-- #main -->
+</div><!-- #primary -->
+
+  </div><!-- #content -->
+
+  <footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="site-info">
+      <span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT). RUN BY <a href="https://github.com/socketio/socket.io/graphs/contributors">CONTRIBUTORS</a>. </span>
+      <span class="footer-right">
+        <a href="https://twitter.com/socketio" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @socketio</a>
+      </span>
+    </div><!-- .site-info -->
+  </footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<!-- Twitter script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<script src="/assets/js/default.min.js"></script>
+
+</body>
+</html>

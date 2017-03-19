@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="6hwSNwrfOBp3YhFBHWy08L12QeMTLpqNI3LvIB4lZEI" />
+  <title>Socket.IO  —  Migrating from 0.9</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+
+  <link rel='stylesheet' id='socket-io-website-style-css'  href='/assets/css/style.css?ver=4.5.1' type='text/css' media='all' />
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18488944-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="blog group-blog">
+<div id="bar"></div>
+<div id="page" class="hfeed site">
+
+  <header id="masthead" class="site-header" role="banner">
+    <div class="site-branding">
+      <h1 class="site-title"><a href="/" rel="home"></a></h1>
+      <h2 class="site-description"></h2>
+    </div>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+      <div id="logo-container"><a href="/" id="logo">socket.io</a></div>
+      <div class="menu-menu-container">
+
+      <ul id="menu-menu" class="menu">
+        <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-6"><a href="/">Home</a></li>
+        <li id="menu-item-153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153"><a href="/demos/chat/">Demos</a></li>
+        <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="/get-started">Get started</a></li>
+        <li id="menu-item-29" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="/docs">Docs</a></li>
+        <!-- <li id="menu-item-95" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-95"><a href="http://socket.io/blog/">Blog</a></li> -->
+        <li id="menu-item-43" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-43"><a href="https://cdnjs.com/libraries/socket.io">Download v1.7.3</a></li>
+        <li id="menu-item-972" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-972"><a href="https://slackin-socketio.now.sh/">Slack</a></li>
+      </ul>
+    </div>      <iframe src="https://ghbtns.com/github-btn.html?user=socketio&repo=socket.io&type=watch&count=true"
+          allowtransparency="true" frameborder="0" scrolling="0" width="120" id="gh-watchers" height="20"></iframe>
+    </nav><!-- #site-navigation -->
+  </header><!-- #masthead -->
+
+  <div id="content" class="site-content">
+    <div id="primary" class="content-area">
+
+  <main id="main" class="site-main" role="main">
+
+<article id="post-345" class="post-345 page type-page status-publish hentry">
+  <div class="entry-content">
+    <h1>Socket.IO with Apache Cordova</h1>
+<p>Since Apache Cordova apps are written mostly in JS, it is actually really easy to use Socket.IO! Let&#8217;s walk through a small example.</p>
+<p>First we prepare a simple server:</p>
+<pre><code>var server = require('http').createServer();
+var io = require('socket.io')(server);
+
+io.sockets.on('connection', function (socket) {
+    console.log('socket connected');
+
+    socket.on('disconnect', function () {
+        console.log('socket disconnected');
+    });
+
+    socket.emit('text', 'wow. such event. very real time.');
+});
+
+server.listen(3000);</code></pre>
+<p>This server will simply listen to Socket.IO client connections, and will emit some text to them via a <code>text</code> event.</p>
+<p>Now let&#8217;s get get down to the point. We want to start off by creating a new Cordova project to start modifying. Let&#8217;s start from scratch.</p>
+<p>Running</p>
+<pre><code>npm install -g cordova</code></pre>
+<p>will install the actual Cordova cli tool we use to create projects, install/remove dependencies, and launch our emulator among other things.</p>
+<pre><code>cordova create socket.io-example socket.io.example socket.io-example</code></pre>
+<p>will make a new project template for us to start modifying. Feel free to poke around the newly created folder, called <code>socket.io-example</code> and take a look at some of the created files.</p>
+<p>You should now be in the project folder. If you didn&#8217;t navigate there yet in command line, do it now with <code>cd socket.io-example</code>.</p>
+<p>Since I&#8217;m developing this example on OS X, I&#8217;m going to build for iOS. You could do it similarly for Android. To add the build target, run the following:</p>
+<pre><code>cordova platform add ios</code></pre>
+<p>Next we want to build all the native components. We can do this by running</p>
+<pre><code>cordova build ios</code></pre>
+<p>Now let&#8217;s actually run the template application to see that everything is working. If you are on OS X, you can install the iOS emulator like so</p>
+<pre><code>brew install ios-sim</code></pre>
+<p>You should see the emulator open up with something like this when running <code>cordova emulate ios</code>:</p>
+<p><img src="https://cloudup.com/cKoYEzCeKKY+" alt="null" /></p>
+<p>Now that you see everything working with the actual setup, let&#8217;s start write some code. Open up <code>www/index.html</code> in your project directory. It should look something like this:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf-8" /&gt;
+        &lt;meta name="format-detection" content="telephone=no" /&gt;
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        &lt;meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /&gt;
+        &lt;link rel="stylesheet" type="text/css" href="css/index.css" /&gt;
+        &lt;meta name="msapplication-tap-highlight" content="no" /&gt;
+        &lt;title&gt;Hello World&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class="app"&gt;
+            &lt;h1&gt;Apache Cordova&lt;/h1&gt;
+            &lt;div id="deviceready" class="blink"&gt;
+                &lt;p class="event listening"&gt;Connecting to Device&lt;/p&gt;
+                &lt;p class="event received"&gt;Device is Ready&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;script type="text/javascript" src="cordova.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="js/index.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript"&gt;
+            app.initialize();
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>To begin, we need to get the Socket.IO-client script. We can take it from the CDN like so:</p>
+<pre><code>&lt;script type="text/javascript" src="cordova.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="http://cdn.socket.io/socket.io-1.0.3.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/index.js"&gt;&lt;/script&gt;</code></pre>
+<p>Now to add actual logic, let&#8217;s write things below the <code>app.initialize</code> call. We might want to make sure that the device has loaded the application before running any of our code. We can do this like so:</p>
+<pre><code>&lt;script type="text/javascript"&gt;
+  app.initialize();
+
+  document.addEventListener('deviceready', function() {
+    // code goes here
+  });
+&lt;/script&gt;</code></pre>
+<p>This event will fire when the application has fully loaded. To add some actual logic, we just need to fill in that function. Let&#8217;s make something that receives the data emitted by our server on socket connection, and bring a notification box to show that text. Here&#8217;s what you could do:</p>
+<pre><code>&lt;script type="text/javascript"&gt;
+  app.initialize();
+
+  document.addEventListener('deviceready', function() {
+    socket.on('connect', function() {
+      socket.on('text', function(text) {
+        alert(text);
+       });
+     });
+  });
+&lt;/script&gt;</code></pre>
+<p>Let&#8217;s run the emulator again with <code>cordova emulate ios</code>, and here&#8217;s what you should see:</p>
+<p><img src="https://cloudup.com/cuIaVMrmcyP+" alt="null" /></p>
+<p>That&#8217;s it! I hope this will help to get you started! Have fun hacking!</p>
+      </div><!-- .entry-content -->
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+  </main><!-- #main -->
+</div><!-- #primary -->
+
+  </div><!-- #content -->
+
+  <footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="site-info">
+      <span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT). RUN BY <a href="https://github.com/socketio/socket.io/graphs/contributors">CONTRIBUTORS</a>. </span>
+      <span class="footer-right">
+        <a href="https://twitter.com/socketio" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @socketio</a>
+      </span>
+    </div><!-- .site-info -->
+  </footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<!-- Twitter script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<script src="/assets/js/default.min.js"></script>
+
+</body>
+</html>

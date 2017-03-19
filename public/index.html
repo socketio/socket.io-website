@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="6hwSNwrfOBp3YhFBHWy08L12QeMTLpqNI3LvIB4lZEI" />
+  <title>Socket.IO</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+
+  <link rel='stylesheet' id='socket-io-website-style-css'  href='/assets/css/style.css?ver=4.5.1' type='text/css' media='all' />
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18488944-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="home blog group-blog">
+<div id="bar"></div>
+<div id="page" class="hfeed site">
+
+  <header id="masthead" class="site-header" role="banner">
+    <div class="site-branding">
+      <h1 class="site-title"><a href="/" rel="home"></a></h1>
+      <h2 class="site-description"></h2>
+    </div>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+      <div id="logo-container"><a href="/" id="logo">socket.io</a></div>
+      <div class="menu-menu-container">
+
+      <ul id="menu-menu" class="menu">
+        <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-6"><a href="/">Home</a></li>
+        <li id="menu-item-153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153"><a href="/demos/chat/">Demos</a></li>
+        <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="/get-started">Get started</a></li>
+        <li id="menu-item-29" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="/docs">Docs</a></li>
+        <!-- <li id="menu-item-95" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-95"><a href="http://socket.io/blog/">Blog</a></li> -->
+        <li id="menu-item-43" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-43"><a href="https://cdnjs.com/libraries/socket.io">Download v1.7.3</a></li>
+        <li id="menu-item-972" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-972"><a href="https://slackin-socketio.now.sh/">Slack</a></li>
+      </ul>
+    </div>      <iframe src="https://ghbtns.com/github-btn.html?user=socketio&repo=socket.io&type=watch&count=true"
+          allowtransparency="true" frameborder="0" scrolling="0" width="120" id="gh-watchers" height="20"></iframe>
+    </nav><!-- #site-navigation -->
+  </header><!-- #masthead -->
+
+  <div id="content" class="site-content">
+    <div id="primary" class="content-area">
+  <main id="main page home" class="site-main" role="main">
+    <header class="entry-header fading">
+      <h1 class="entry-title">SOCKET.IO 1.0 IS HERE</h1>
+      <h2 class="entry-subtitle"><span class="row">FEATURING THE FASTEST AND MOST RELIABLE</span> <span class="row">REAL-TIME ENGINE</span></h2>
+    </header><!-- .entry-header -->
+    <div id="screen-fill">
+      <script type="text/html" id="tweets-tpl">
+        <div class="window editor fading">
+          <div class="header">
+            <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title">~/Projects/tweets/index.js</span>
+          </div>
+          <div class="body">
+            <ol class="code">
+              <li><span class="code"><span class="v">var</span> io = <span class="io">require('socket.io')(80)</span>;</span></li>
+              <li><span class="code"><span class="v">var</span> cfg = require('./config.json');</span></li>
+              <li><span class="code"><span class="v">var</span> tw = require('node-tweet-stream')(cfg);</span></li>
+              <li><span class="code">tw.track('socket.io');</span></li>
+              <li><span class="code">tw.track('javascript');</span></li>
+              <li><span class="code">tw.on('tweet', <span class="fn">function</span>(tweet){</span></li>
+              <li><span class="code">&nbsp;&nbsp;<span class="io">io.emit('tweet', tweet)</span>;</span></li>
+              <li><span class="code">});</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="window browser fading">
+          <div class="header">
+            <span class="bullet bullet-red"></span><span class="bullet bullet-yellow"></span><span class="bullet bullet-green"></span><span class="title"><span class="scheme">https://</span>your-node-app.com</span>
+          </div>
+          <div class="body">
+            <p>Tweets about <b>socket.io</b> and <b>javascript</b></p>
+            <ul id="tweets" class="tweets"></ul>
+          </div>
+        </div>
+      </script>
+
+      <span class="arrow fading">B</span>
+    </div>
+
+    <div class="entry-content">
+      <p class="centered">
+        <i class="larger">Socket.IO enables real-time bidirectional event-based communication.</i><br />
+        <i>It works on every platform, browser or device, focusing equally on reliability and speed.</i>
+      </p>
+
+      <div id="entries">
+        <div id="examples">
+          <div class="example-column left">
+            <div class="example-entry icon analytics">
+              <h2>Real-time analytics</h2>
+              <p>Push data to clients that gets represented as real-time counters, charts or logs.</p>
+            </div>
+            <div class="repel"></div>
+            <div class="example-entry icon binary">
+              <h2>Binary streaming</h2>
+              <p>Starting in 1.0, it's possible to send any blob back and forth: image, audio, video.</p>
+            </div>
+          </div>
+
+          <div class="example-column right">
+            <div class="example-entry icon chat">
+              <h2>Instant messaging and chat</h2>
+              <p>Socket.IO's "Hello world" is a chat app in just a few lines of code.</p>
+            </div>
+            <div class="repel"></div>
+            <div class="example-entry icon collab">
+              <h2>Document collaboration</h2>
+              <p>Allow users to concurrently edit a document and see each other's changes.</p>
+            </div>
+          </div>
+        </div><!-- #examples -->
+
+        <div id="information">
+          <div class="information-column left">
+            <div class="information-entry">
+              <h3>USED BY EVERYONE</h3>
+              <p>From Microsoft Office, Yammer, Zendesk, Trello... to hackathon winners and little startups.</p>
+              <p>One of the most powerful JavaScript frameworks on GitHub, and most depended-upon NPM module.</p>
+            </div>
+            <div class="repel"></div>
+            <!-- <div class="information-entry">
+              <h3>STAY UP TO DATE</h3>
+              <p>Leave your email to hear about <b>new releases</b> and important <b>security</b> updates. <b>Very low traffic.</b></p> -->
+
+<!-- Form by MailChimp for WordPress plugin v2.0.1 - http://dannyvankooten.com/mailchimp-for-wordpress/ -->
+<!-- <form method="post" action="http://socket.io/" id="mc4wp-form-1" class="form mc4wp-form"><p>
+  <input type="email" id="mc4wp_email" name="EMAIL" placeholder="you@host.com" required />
+</p><textarea name="_mc4wp_required_but_not_really" style="display: none !important;"></textarea><input type="hidden" name="_mc4wp_form_submit" value="1" /><input type="hidden" name="_mc4wp_form_instance" value="1" /><input type="hidden" name="_mc4wp_form_nonce" value="bd489a59df" /></form> -->
+<!-- / MailChimp for WP Plugin -->
+            <!-- </div> -->
+          </div>
+
+          <div class="information-column right">
+            <div class="information-entry">
+              <h3>IMMENSELY POWERFUL, YET EASY TO USE</h3>
+              <p>Our getting started guide will show you how to create lots of amazing applications in fewer than 200 lines of code.</p>
+              <p>We're not making that up. Get started <a href="/get-started">now</a>.</p>
+            </div>
+            <div class="repel"></div>
+            <div class="information-entry">
+              <h3>JOIN THE COMMUNITY</h3>
+              <ul style="margin-left: 0px; list-style-type: none;">
+                <li style="margin-bottom: 5px;">Real-time help? Find us on <a href="https://slackin-socketio.now.sh/">Slack</a></li>
+                <li style="margin-bottom: 5px;">Contribute code or report issues on <a href="https://github.com/socketio/socket.io">GitHub</a></li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- #information -->
+      </div><!-- #entries -->
+    </div><!-- .entry-content -->
+  </main><!-- #main -->
+</div><!-- #primary -->
+
+  </div><!-- #content -->
+
+  <footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="site-info">
+      <span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT). RUN BY <a href="https://github.com/socketio/socket.io/graphs/contributors">CONTRIBUTORS</a>. </span>
+      <span class="footer-right">
+        <a href="https://twitter.com/socketio" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @socketio</a>
+      </span>
+    </div><!-- .site-info -->
+  </footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<!-- Twitter script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<script src="/assets/js/home.min.js"></script>
+
+</body>
+</html>
