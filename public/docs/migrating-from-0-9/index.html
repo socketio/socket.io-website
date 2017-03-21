@@ -105,7 +105,7 @@ socket.on('connect', function(){
   var handshakeData = socket.request;
   // make sure the handshake data looks good as before
   // if error do this:
-    // next(new Error('not authorized');
+    // next(new Error('not authorized'));
   // else just call next
   next();
 });</code></pre>
