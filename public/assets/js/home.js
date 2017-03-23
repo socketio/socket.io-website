@@ -89,3 +89,11 @@
     $('.slack-users-count-total').text(total);
   });
 })();
+
+$(document).ready(function() {
+  $(".arrow > a").click(function() {
+    $('html, body').animate({
+      scrollTop: $("#examples").offset().top
+    }, 500);
+  });
+});

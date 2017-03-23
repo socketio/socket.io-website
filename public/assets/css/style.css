@@ -972,6 +972,10 @@ div.empty {
   display: none;
 }
 
+.home #screen-fill .arrow > a {
+  text-decoration: none;
+}
+
 @media screen and (min-height: 600px) {
   .home #screen-fill .arrow {
     display: block;
