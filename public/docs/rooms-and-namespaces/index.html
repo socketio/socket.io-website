@@ -130,7 +130,7 @@ nsp.emit('hi', 'everyone!');</code></pre>
 var redis = require('socket.io-redis');
 io.adapter(redis({ host: 'localhost', port: 6379 }));</code></pre>
 <p>you can then <code>emit</code> messages from any other process to any channel</p>
-<pre><code>var io = require('socket.io-emitter')();
+<pre><code>var io = require('socket.io-emitter')({ host: '127.0.0.1', port: 6379 });
 setInterval(function(){
   io.emit('time', new Date);
 }, 5000);</code></pre>
