@@ -1503,7 +1503,7 @@ form input {
 }
 
 /* Sidebar sub-theme */
-#sidebar {
+.sidebar {
   float: left;
   position: fixed;
   width: 170px;
@@ -1511,25 +1511,25 @@ form input {
   font-size: 12px;
 }
 
-#sidebar li {
+.sidebar li {
   list-style-type: none;
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: right;
 }
 
-#sidebar li#parent {
+.sidebar li#parent {
   color: #4A4A4A;
   font-weight: bold;
 }
 
-#sidebar li.anchor {
+.sidebar li.anchor {
   border-color: rgba(155, 155, 155, .2275);
   border-style: solid;
   border-width: 1px 0 0 0; 
 }
 
-#sidebar li a {
+.sidebar li a {
   text-decoration: none;
   color: #9B9B9B;
 }
@@ -1539,7 +1539,7 @@ form input {
 }
 
 @media screen and (max-width: 1100px) {
-  #sidebar {
+  .sidebar {
     float: none !important;
     position: static;
     width: 50%;
@@ -1550,18 +1550,47 @@ form input {
     font-size: 13px;
   }
   
-  #sidebar ul {
+  .sidebar ul {
     text-align: center;
     margin: auto;
   }
 
-  #sidebar li {
+  .sidebar li {
     text-align: center;
   }
 
   #primary.with-sidebar main {
     float: none !important;
     width: 90%;
+  }
+}
+
+.sidebar-right {
+  right: 0;
+  margin-right: 10px;
+  margin-top: -40px;
+  width: auto;
+}
+
+.sidebar-right .navigation-class {
+  font-weight: bold;
+}
+
+.sidebar-right .class-details.hidden {
+  height: 0;
+  overflow: hidden;
+}
+
+.sidebar-right li {
+  list-style-type: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+@media screen and (max-width: 1100px) {
+  .sidebar-right {
+    display: none;
   }
 }
 

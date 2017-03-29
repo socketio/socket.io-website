@@ -52,7 +52,7 @@
 
   <div id="content" class="site-content">
 
-    <div id="sidebar" class="content-area">
+    <div class="sidebar" class="content-area">
       <ul id="posts">
         <li><a href="/docs/">Overview</a></li>
         <li class="anchor"></li>
@@ -65,6 +65,80 @@
         <li><a href="/docs/logging-and-debugging/">Logging and Debugging</a></li>
         <li><a href="/docs/emit-cheatsheet/">Emit cheatsheet</a></li>
         <li><a href="/docs/faq/">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar sidebar-right">
+      <ul>
+        <li>
+          <a class="navigation-class" href="#server">Class: Server</a>
+          <ul class="class-details">
+            <li><a href="#new-server-httpserver-options">new Server(httpServer[, options])</a></li>
+            <li><a href="#new-server-port-options">new Server(port[, options])</a></li>
+            <li><a href="#new-server-options">new Server(options)</a></li>
+            <li><a href="#server-sockets">server.sockets</a></li>
+            <li><a href="#server-serveclient-value">server.serveClient([value])</a></li>
+            <li><a href="#server-path-value">server.path([value])</a></li>
+            <li><a href="#server-adapter-value">server.adapter([value])</a></li>
+            <li><a href="#server-origins-value">server.origins([value])</a></li>
+            <li><a href="#server-origins-fn">server.origins(fn)</a></li>
+            <li><a href="#server-attach-httpserver-options">server.attach(httpServer[, options])</a></li>
+            <li><a href="#server-attach-port-options">server.attach(port[, options])</a></li>
+            <li><a href="#server-listen-httpserver-options">server.listen(httpServer[, options])</a></li>
+            <li><a href="#server-listen-port-options">server.listen(port[, options])</a></li>
+            <li><a href="#server-bind-engine">server.bind(engine)</a></li>
+            <li><a href="#server-onconnection-socket">server.onconnection(socket)</a></li>
+            <li><a href="#server-of-nsp">server.of(nsp)</a></li>
+            <li><a href="#server-close-callback">server.close([callback])</a></li>
+          </ul>
+        <li>
+        <li>
+          <a class="navigation-class" href="#namespace">Class: Namespace</a>
+          <ul class="class-details hidden">
+            <li><a href="#namespace-name">namespace.name</a></li>
+            <li><a href="#namespace-connected">namespace.connected</a></li>
+            <li><a href="#namespace-emit-eventname-args">namespace.emit(eventName[, ...args])</a></li>
+            <li><a href="#namespace-clients-callback">namespace.clients(callback)</a></li>
+            <li><a href="#namespace-use-fn">namespace.use(fn)</a></li>
+            <li><a href="#event-connect">Event: &#39;connect&#39;</a></li>
+            <li><a href="#event-connection">Event: &#39;connection&#39;</a></li>
+            <li><a href="#flag-volatile">Flag: &#39;volatile&#39;</a></li>
+            <li><a href="#flag-local">Flag: &#39;local&#39;</a></li>
+          </ul>
+        <li>
+        <li>
+          <a class="navigation-class" href="#socket">Class: Socket</a>
+          <ul class="class-details hidden">
+            <li><a href="#socket-id">socket.id</a></li>
+            <li><a href="#socket-rooms">socket.rooms</a></li>
+            <li><a href="#socket-client">socket.client</a></li>
+            <li><a href="#socket-conn">socket.conn</a></li>
+            <li><a href="#socket-request">socket.request</a></li>
+            <li><a href="#socket-use-fn">socket.use(fn)</a></li>
+            <li><a href="#socket-send-args-ack">socket.send([...args][, ack])</a></li>
+            <li><a href="#socket-emit-eventname-args-ack">socket.emit(eventName[, ...args][, ack])</a></li>
+            <li><a href="#socket-on-eventname-callback">socket.on(eventName, callback)</a></li>
+            <li><a href="#socket-join-room-callback">socket.join(room[, callback])</a></li>
+            <li><a href="#socket-join-rooms-callback">socket.join(rooms[, callback])</a></li>
+            <li><a href="#socket-leave-room-callback">socket.leave(room[, callback])</a></li>
+            <li><a href="#socket-to-room">socket.to(room)</a></li>
+            <li><a href="#socket-in-room">socket.in(room)</a></li>
+            <li><a href="#socket-compress-value">socket.compress(value)</a></li>
+            <li><a href="#socket-disconnect-close">socket.disconnect(close)</a></li>
+            <li><a href="#flag-broadcast">Flag: &#39;broadcast&#39;</a></li>
+            <li><a href="#flag-volatile-1">Flag: &#39;volatile&#39;</a></li>
+            <li><a href="#event-disconnect">Event: &#39;disconnect&#39;</a></li>
+            <li><a href="#event-error">Event: &#39;error&#39;</a></li>
+            <li><a href="#event-disconnecting">Event: &#39;disconnecting&#39;</a></li>
+          </ul>
+        <li>
+        <li>
+          <a class="navigation-class" href="#client">Class: Client</a>
+          <ul class="class-details hidden">
+            <li><a href="#client-conn">client.conn</a></li>
+            <li><a href="#client-request">client.request</a></li>
+          </ul>
+        <li>
       </ul>
     </div>
 
@@ -113,12 +187,12 @@ var io = new Server();
 <li><code>port</code> <em>(Number)</em> a port to listen to (a new <code>http.Server</code> will be created)</li>
 <li><code>options</code> <em>(Object)</em></li>
 </ul>
-<p>See <a href="#new-serverhttpserver-options">above</a> for available options.</p>
+<p>See <a href="#new-server-httpserver-options">above</a> for available options.</p>
 <h3 id="new-server-options"><a class="icon-link deep-link" href="/docs/server-api/#new-server-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>new Server(options)</h3>
 <ul>
 <li><code>options</code> <em>(Object)</em></li>
 </ul>
-<p>See <a href="#new-serverhttpserver-options">above</a> for available options.</p>
+<p>See <a href="#new-server-httpserver-options">above</a> for available options.</p>
 <h3 id="server-sockets"><a class="icon-link deep-link" href="/docs/server-api/#server-sockets" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.sockets</h3>
 <ul>
 <li><em>(Namespace)</em></li>
@@ -174,7 +248,7 @@ io.attach(http);
 <li><code>options</code> <em>(Object)</em></li>
 </ul>
 <p>Attaches the <code>Server</code> to an engine.io instance on <code>httpServer</code> with the supplied <code>options</code> (optionally).</p>
-<h3 id="server-attach-port-options-">server.attach(port[, options])</h3>
+<h3 id="server-attach-port-options"><a class="icon-link deep-link" href="/docs/server-api/#server-attach-port-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.attach(port[, options])</h3>
 <ul>
 <li><code>port</code> <em>(Number)</em> the port to listen on</li>
 <li><code>options</code> <em>(Object)</em></li>
@@ -346,7 +420,7 @@ io.on(&#39;connection&#39;, function(socket){
 <li><code>ack</code> <em>(Function)</em></li>
 <li><strong>Returns</strong> <code>Socket</code></li>
 </ul>
-<p>Sends a <code>message</code> event. See <a href="#socketemiteventname-args-ack">socket.emit(eventName[, ...args][, ack])</a>.</p>
+<p>Sends a <code>message</code> event. See <a href="#socket-emit-eventname-args-ack">socket.emit(eventName[, ...args][, ack])</a>.</p>
 <h3 id="socket-emit-eventname-args-ack"><a class="icon-link deep-link" href="/docs/server-api/#socket-emit-eventname-args-ack" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.emit(eventName[, ...args][, ack])</h3>
 <ul>
 <li><code>eventName</code> <em>(String)</em></li>
@@ -459,7 +533,7 @@ io.on(&#39;connection&#39;, function(socket){
   socket.broadcast.emit(&#39;an event&#39;, { some: &#39;data&#39; }); // everyone gets it but the sender
 });
 </code></pre>
-<h3 id="flag-volatile"><a class="icon-link deep-link" href="/docs/server-api/#flag-volatile" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Flag: &#39;volatile&#39;</h3>
+<h3 id="flag-volatile-1"><a class="icon-link deep-link" href="/docs/server-api/#flag-volatile-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Flag: &#39;volatile&#39;</h3>
 <p>Sets a modifier for a subsequent event emission that the event data may be lost if the client is not ready to receive messages (because of network slowness or other issues, or because they’re connected through long polling and is in the middle of a request-response cycle).</p>
 <pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
 io.on(&#39;connection&#39;, function(socket){

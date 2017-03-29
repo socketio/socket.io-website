@@ -80,10 +80,18 @@ function setSubscribe() {
   });
 }
 
+function initNavMenu() {
+  $('.navigation-class').click(function () {
+    $('.class-details').addClass('hidden');
+    $(this).siblings().removeClass('hidden');
+  });
+}
+
 $(document).ready(function() {
   FastClick.attach(document.body);
   setSubscribe();
   hashLinks();
+  initNavMenu();
 });
 
 $(document).ready(setHeaderHeight);

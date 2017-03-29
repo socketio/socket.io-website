@@ -52,7 +52,7 @@
 
   <div id="content" class="site-content">
 
-    <div id="sidebar" class="content-area">
+    <div class="sidebar" class="content-area">
       <ul id="posts">
         <li><a href="/docs/">Overview</a></li>
         <li class="anchor"></li>
@@ -65,6 +65,65 @@
         <li><a href="/docs/logging-and-debugging/">Logging and Debugging</a></li>
         <li><a href="/docs/emit-cheatsheet/">Emit cheatsheet</a></li>
         <li><a href="/docs/faq/">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar sidebar-right">
+      <ul>
+        <li>
+          <a class="navigation-class" href="#io">IO</a>
+          <ul class="class-details">
+            <li><a href="#io-protocol">io.protocol</a></li>
+            <li><a href="#io-url-options">io(url[, options])</a></li>
+          </ul>
+        <li>
+        <li>
+          <a class="navigation-class" href="#manager">Class: io.Manager</a>
+          <ul class="class-details hidden">
+            <li><a href="#new-manager-url-options">new Manager(url[, options])</a></li>
+            <li><a href="#manager-reconnection-value">manager.reconnection([value])</a></li>
+            <li><a href="#manager-reconnectionattempts-value">manager.reconnectionAttempts([value])</a></li>
+            <li><a href="#manager-reconnectiondelay-value">manager.reconnectionDelay([value])</a></li>
+            <li><a href="#manager-reconnectiondelaymax-value">manager.reconnectionDelayMax([value])</a></li>
+            <li><a href="#manager-timeout-value">manager.timeout([value])</a></li>
+            <li><a href="#manager-open-callback">manager.open([callback])</a></li>
+            <li><a href="#manager-connect-callback">manager.connect([callback])</a></li>
+            <li><a href="#manager-socket-nsp-options">manager.socket(nsp, options)</a></li>
+            <li><a href="#event-connect_error">Event: &#39;connect_error&#39;</a></li>
+            <li><a href="#event-connect_timeout">Event: &#39;connect_timeout&#39;</a></li>
+            <li><a href="#event-reconnect">Event: &#39;reconnect&#39;</a></li>
+            <li><a href="#event-reconnect_attempt">Event: &#39;reconnect_attempt&#39;</a></li>
+            <li><a href="#event-reconnecting">Event: &#39;reconnecting&#39;</a></li>
+            <li><a href="#event-reconnect_error">Event: &#39;reconnect_error&#39;</a></li>
+            <li><a href="#event-reconnect_failed">Event: &#39;reconnect_failed&#39;</a></li>
+            <li><a href="#event-ping">Event: &#39;ping&#39;</a></li>
+            <li><a href="#event-pong">Event: &#39;pong&#39;</a></li>
+          </ul>
+        <li>
+        <li>
+          <a class="navigation-class" href="#socket">Class: io.Socket</a>
+          <ul class="class-details hidden">
+            <li><a href="#socket-id">socket.id</a></li>
+            <li><a href="#socket-open">socket.open()</a></li>
+            <li><a href="#socket-connect">socket.connect()</a></li>
+            <li><a href="#socket-send-args-ack">socket.send([...args][, ack])</a></li>
+            <li><a href="#socket-emit-eventname-args-ack">socket.emit(eventName[, ...args][, ack])</a></li>
+            <li><a href="#socket-on-eventname-callback">socket.on(eventName, callback)</a></li>
+            <li><a href="#socket-compress-value">socket.compress(value)</a></li>
+            <li><a href="#socket-close">socket.close()</a></li>
+            <li><a href="#socket-disconnect">socket.disconnect()</a></li>
+            <li><a href="#event-connect">Event: &#39;connect&#39;</a></li>
+            <li><a href="#event-connect_error-1">Event: &#39;connect_error&#39;</a></li>
+            <li><a href="#event-connect_timeout-1">Event: &#39;connect_timeout&#39;</a></li>
+            <li><a href="#event-error">Event: &#39;error&#39;</a></li>
+            <li><a href="#event-disconnect">Event: &#39;disconnect&#39;</a></li>
+            <li><a href="#event-reconnect-1">Event: &#39;reconnect&#39;</a></li>
+            <li><a href="#event-reconnect_attempt-1">Event: &#39;reconnect_attempt&#39;</a></li>
+            <li><a href="#event-reconnecting-1">Event: &#39;reconnecting&#39;</a></li>
+            <li><a href="#event-reconnect_error-1">Event: &#39;reconnect_error&#39;</a></li>
+            <li><a href="#event-reconnect_failed-1">Event: &#39;reconnect_failed&#39;</a></li>
+          </ul>
+        <li>
       </ul>
     </div>
 
@@ -91,7 +150,7 @@
 </ul>
 <p>Creates a new <code>Manager</code> for the given URL, and attempts to reuse an existing <code>Manager</code> for subsequent calls, unless the <code>multiplex</code> option is passed with <code>false</code>. Passing this option is the equivalent of passing <code>&#39;force new connection&#39;: true</code> or <code>forceNew: true</code>.</p>
 <p>A new <code>Socket</code> instance is returned for the namespace specified by the pathname in the URL, defaulting to <code>/</code>. For example, if the <code>url</code> is <code>http://localhost/users</code>, a transport connection will be established to <code>http://localhost</code> and a Socket.IO connection will be established to <code>/users</code>.</p>
-<p>See <a href="#managerurl-options">new Manager(url[, options])</a> for available <code>options</code>.</p>
+<p>See <a href="#new-manager-url-options">new Manager(url[, options])</a> for available <code>options</code>.</p>
 <h2 id="manager">Manager</h2>
 <h3 id="new-manager-url-options"><a class="icon-link deep-link" href="/docs/client-api#new-manager-url-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>new Manager(url[, options])</h3>
 <ul>
@@ -216,7 +275,7 @@ socket.on(&#39;connect&#39;, function(){
 <li><code>ack</code> <em>(Function)</em></li>
 <li><strong>Returns</strong> <code>Socket</code></li>
 </ul>
-<p>Sends a <code>message</code> event. See <a href="#socketemiteventname-args-ack">socket.emit(eventName[, ...args][, ack])</a>.</p>
+<p>Sends a <code>message</code> event. See <a href="#socket-emit-eventname-args-ack">socket.emit(eventName[, ...args][, ack])</a>.</p>
 <h3 id="socket-emit-eventname-args-ack"><a class="icon-link deep-link" href="/docs/client-api#socket-emit-eventname-args-ack" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.emit(eventName[, ...args][, ack])</h3>
 <ul>
 <li><code>eventName</code> <em>(String)</em></li>
@@ -269,12 +328,12 @@ socket.emit(&#39;with-binary&#39;, 1, &#39;2&#39;, { 3: &#39;4&#39;, 5: new Buff
 <p>Synonym of <a href="#socketclose">socket.close()</a>.</p>
 <h3 id="event-connect"><a class="icon-link deep-link" href="/docs/client-api#event-connect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect&#39;</h3>
 <p>Fired upon a connection including a successful reconnection.</p>
-<h3 id="event-connect_error"><a class="icon-link deep-link" href="/docs/client-api#event-connect_error" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect_error&#39;</h3>
+<h3 id="event-connect_error-1"><a class="icon-link deep-link" href="/docs/client-api#event-connect_error-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect_error&#39;</h3>
 <ul>
 <li><code>error</code> <em>(Object)</em> error object</li>
 </ul>
 <p>Fired upon a connection error.</p>
-<h3 id="event-connect_timeout"><a class="icon-link deep-link" href="/docs/client-api#event-connect_timeout" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect_timeout&#39;</h3>
+<h3 id="event-connect_timeout-1"><a class="icon-link deep-link" href="/docs/client-api#event-connect_timeout-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect_timeout&#39;</h3>
 <p>Fired upon a connection timeout.</p>
 <h3 id="event-error"><a class="icon-link deep-link" href="/docs/client-api#event-error" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;error&#39;</h3>
 <ul>
@@ -283,27 +342,27 @@ socket.emit(&#39;with-binary&#39;, 1, &#39;2&#39;, { 3: &#39;4&#39;, 5: new Buff
 <p>Fired when an error occurs.</p>
 <h3 id="event-disconnect"><a class="icon-link deep-link" href="/docs/client-api#event-disconnect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;disconnect&#39;</h3>
 <p>Fired upon a disconnection.</p>
-<h3 id="event-reconnect"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect&#39;</h3>
+<h3 id="event-reconnect-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect&#39;</h3>
 <ul>
 <li><code>attempt</code> <em>(Number)</em> reconnection attempt number</li>
 </ul>
 <p>Fired upon a successful reconnection.</p>
-<h3 id="event-reconnect_attempt"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_attempt" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_attempt&#39;</h3>
+<h3 id="event-reconnect_attempt-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_attempt-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_attempt&#39;</h3>
 <ul>
 <li><code>attempt</code> <em>(Number)</em> reconnection attempt number</li>
 </ul>
 <p>Fired upon an attempt to reconnect.</p>
-<h3 id="event-reconnecting"><a class="icon-link deep-link" href="/docs/client-api#event-reconnecting" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnecting&#39;</h3>
+<h3 id="event-reconnecting-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnecting-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnecting&#39;</h3>
 <ul>
 <li><code>attempt</code> <em>(Number)</em> reconnection attempt number</li>
 </ul>
 <p>Fired upon an attempt to reconnect.</p>
-<h3 id="event-reconnect_error"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_error" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_error&#39;</h3>
+<h3 id="event-reconnect_error-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_error-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_error&#39;</h3>
 <ul>
 <li><code>error</code> <em>(Object)</em> error object</li>
 </ul>
 <p>Fired upon a reconnection attempt error.</p>
-<h3 id="event-reconnect_failed"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_failed" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_failed&#39;</h3>
+<h3 id="event-reconnect_failed-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_failed-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_failed&#39;</h3>
 <p>Fired when couldn&#39;t reconnect within <code>reconnectionAttempts</code>.</p>
 
       </div><!-- .entry-content -->
