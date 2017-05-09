@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="6hwSNwrfOBp3YhFBHWy08L12QeMTLpqNI3LvIB4lZEI" />
-  <title>Socket.IO  —  Logging and debugging</title>
+  <title>Socket.IO  —  Socket.IO 1.3.6</title>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
 
   <link rel='stylesheet' id='socket-io-website-style-css'  href='/assets/css/style.css?ver=4.5.1' type='text/css' media='all' />
@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="blog group-blog">
+<body class="blog group-blog single">
 <div id="bar"></div>
 <div id="page" class="hfeed site">
 
@@ -51,48 +51,33 @@
   </header><!-- #masthead -->
 
   <div id="content" class="site-content">
+  <section id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
 
-    <div class="sidebar" class="content-area">
-      <ul id="posts">
-        <li><a href="/docs/">Overview</a></li>
-        <li class="anchor"></li>
-        <li><a href="/docs/server-api/">Server API</a></li>
-        <li><a href="/docs/client-api/">Client API</a></li>
-        <li class="anchor"></li>
-        <li><a href="/docs/rooms-and-namespaces/">Rooms and Namespaces</a></li>
-        <li><a href="/docs/migrating-from-0-9/">Migrating from 0.9</a></li>
-        <li><a href="/docs/using-multiple-nodes/">Using multiple nodes</a></li>
-        <li id="parent"><a href="/docs/logging-and-debugging/">Logging and Debugging</a></li>
-        <li><a href="/docs/emit-cheatsheet/">Emit cheatsheet</a></li>
-        <li><a href="/docs/faq/">FAQ</a></li>
-      </ul>
-    </div>
+<article id="post-936" class="post-936 post type-post status-publish format-standard hentry">
+  <header class="entry-header">
+    <h2 class="entry-title centered">Socket.IO 1.3.6</h2>
+    <div class="entry-meta centered">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-07-15T22:46:16+00:00">15 July 2015</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>    </div><!-- .entry-meta -->
+  </header><!-- .entry-header -->
 
-    <div id="primary" class="content-area with-sidebar">
-
-  <main id="main" class="site-main" role="main">
-
-<article id="post-325" class="post-325 page type-page status-publish hentry">
   <div class="entry-content">
-    <h1>Logging and Debugging</h1>
-<p>Socket.IO is now completely instrumented by a minimalistic yet tremendously powerful utility called <a href="https://github.com/visionmedia/debug">debug</a> by TJ Holowaychuk.</p>
-<p>Before 1.0, the Socket.IO server would default to logging everything out to the console. This turned out to be annoyingly verbose for many users (although extremely useful for others), so now we default to being completely silent by default.</p>
-<p>The basic idea is that each module used by Socket.IO provides different debugging scopes that give you insight into the internals. By default, all output is suppressed, and you can opt into seeing messages by supplying the <code>DEBUG</code> env variable (Node.JS) or the <code>localStorage.debug</code> property (Browsers).</p>
-<p>You can see it in action for example on our homepage:</p>
-<p><video id="debugging-vid" data-setup='{"autoplay":true,"loop":true, "techOrder": ["html5", "flash"], "height": 300}' class="video-js vjs-default-skin" autoplay loop width="100%"><source src="https://i.cloudup.com/transcoded/IL9alTr0eO.mp4" type="video/mp4"></video></p>
-<h2>Available debugging scopes</h2>
-<p>The best way to see what information is available is to use the <code>*</code>:</p>
-<pre><code>DEBUG=* node yourfile.js</code></pre>
-<p>or in the browser:</p>
-<pre><code>localStorage.debug = '*';</code></pre>
-<p>And then filter by the scopes you&#8217;re interested in. You can use <code>,</code> to separate them.</p>
+    <p>Socket.IO <strong>1.3.6</strong> addresses a build issue with the <code>ws</code> module on Windows.</p>
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.3.6.js"&gt;&lt;/script&gt;</code></pre>
       </div><!-- .entry-content -->
+
   <footer class="entry-footer">
       </footer><!-- .entry-footer -->
 </article><!-- #post-## -->
 
-  </main><!-- #main -->
-</div><!-- #primary -->
+        <nav class="navigation post-navigation" role="navigation">
+    <h1 class="screen-reader-text">Post navigation</h1>
+    <div class="nav-links">
+      <div class="nav-previous"><a href="/blog/socket-io-p2p/" rel="prev"><span class="meta-nav">&larr;</span> Socket.IO P2P</a></div><div class="nav-next"><a href="/blog/socket-io-1-3-7/" rel="next">Socket.IO 1.3.7 <span class="meta-nav">&rarr;</span></a></div>   </div><!-- .nav-links -->
+  </nav><!-- .navigation -->
+
+    </main><!-- #main -->
+  </section><!-- #primary -->
 
   </div><!-- #content -->
 

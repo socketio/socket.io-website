@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="6hwSNwrfOBp3YhFBHWy08L12QeMTLpqNI3LvIB4lZEI" />
+  <title>Socket.IO  —  Blog</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+
+  <link rel='stylesheet' id='socket-io-website-style-css'  href='/assets/css/style.css?ver=4.5.1' type='text/css' media='all' />
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18488944-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="blog group-blog">
+<div id="bar"></div>
+<div id="page" class="hfeed site">
+
+  <header id="masthead" class="site-header" role="banner">
+    <div class="site-branding">
+      <h1 class="site-title"><a href="/" rel="home"></a></h1>
+      <h2 class="site-description"></h2>
+    </div>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+      <div id="logo-container"><a href="/" id="logo">socket.io</a></div>
+      <div class="menu-menu-container">
+
+      <ul id="menu-menu" class="menu">
+        <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-6"><a href="/">Home</a></li>
+        <li id="menu-item-153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153"><a href="/demos/chat/">Demos</a></li>
+        <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="/get-started">Get started</a></li>
+        <li id="menu-item-29" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="/docs">Docs</a></li>
+        <li id="menu-item-95" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-95"><a href="/blog">Blog</a></li>
+        <li id="menu-item-43" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-43"><a href="https://cdnjs.com/libraries/socket.io">Download v1.7.3</a></li>
+        <li id="menu-item-972" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-972"><a href="https://slackin-socketio.now.sh/">Slack</a></li>
+      </ul>
+    </div>      <iframe src="https://ghbtns.com/github-btn.html?user=socketio&repo=socket.io&type=watch&count=true"
+          allowtransparency="true" frameborder="0" scrolling="0" width="120" id="gh-watchers" height="20"></iframe>
+    </nav><!-- #site-navigation -->
+  </header><!-- #masthead -->
+
+  <div id="content" class="site-content">
+  <section id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+
+
+
+<article id="post-1000" class="post-1000 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-1-4-5/" rel="bookmark">Socket.IO 1.4.5</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2016-01-27T01:09:38+00:00">27 January 2016</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>   </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>We just published some quick fixes!</p>
+<ul>
+<li>Fixed <code>socket.io-client</code> usage with <a href="https://www.nativescript.org/">NativeScript</a>.</li>
+<li>Fixed graceful close of the attached http <code>Server</code> of <code>socket.io</code> and <code>engine.io</code>.</li>
+</ul>
+<p>Get the latest client from the CDN:</p>
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.4.5.js"&gt;&lt;/script&gt;</code></pre>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-994" class="post-994 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-1-4-4/" rel="bookmark">Socket.IO 1.4.4</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2016-01-11T23:08:23+00:00">11 January 2016</time><time class="updated" datetime="2016-01-11T23:08:59+00:00">11 January 2016</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>    </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>We just published to fixes for <code>socket.io-client</code>:</p>
+<ul>
+<li>Building with <code>browserify</code> or <code>webpack</code> is now completely straightforward. No need to <code>exclude/ignore</code> or <code>noParse/externals</code> the <code>ws</code> module.</li>
+<li>Improved the JSONP transport when <code>socket.io-client</code> or <code>engine.io-client</code> are lazily evaluated or the <code>&lt;script&gt;</code> tag that included them gets removed.</li>
+</ul>
+<p>Get the latest client from the CDN:</p>
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.4.4.js"&gt;&lt;/script&gt;</code></pre>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-989" class="post-989 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-1-4-1-1-4-2-and-1-4-3/" rel="bookmark">Socket.IO 1.4.1, 1.4.2 and 1.4.3</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2016-01-08T17:36:11+00:00">8 January 2016</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>    </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>We published three minor releases right after <code>1.4.0</code> addressing build issues in different environments.</p>
+<ul>
+<li>Socket.IO-client now includes the latest version of <a href="https://github.com/socketio/engine.io-client">engine.io-client</a></li>
+<li>Fixed an issue that was preventing bundling with <a href="https://webpack.github.io/">webpack</a>.</li>
+<li>Socket.IO now adds support for <a href="https://www.nativescript.org/">NativeScript</a>!</li>
+</ul>
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.4.3.js"&gt;&lt;/script&gt;</code></pre>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-944" class="post-944 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-1-4-0/" rel="bookmark">Socket.IO 1.4.0</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2016-01-06T13:04:17+00:00">6 January 2016</time><time class="updated" datetime="2016-01-07T18:09:39+00:00">7 January 2016</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>    </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>Socket.IO 1.4.0 ship with new features like <b>automatic compression</b> for XHR and WebSockets, lots of bug fixes and significant performance and memory improvements.</p>
+<p>Compression is enabled by default, as it’s highly beneficial for most application payloads. The following example shows the savings for a realtime stream of tweets.</p>
+<p> <a href="/blog/socket-io-1-4-0/#more-944" class="more-link">Read more</a></p>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-941" class="post-941 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-1-3-7/" rel="bookmark">Socket.IO 1.3.7</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-09-21T02:48:59+00:00">21 September 2015</time><time class="updated" datetime="2015-10-01T02:49:24+00:00">1 October 2015</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>   </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>Socket.IO <strong>1.3.7</strong> includes support for io.js and Node.JS 4.0.0.</p>
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.3.7.js"&gt;&lt;/script&gt;</code></pre>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-936" class="post-936 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-1-3-6/" rel="bookmark">Socket.IO 1.3.6</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-07-15T22:46:16+00:00">15 July 2015</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>    </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>Socket.IO <strong>1.3.6</strong> addresses a build issue with the <code>ws</code> module on Windows.</p>
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.3.6.js"&gt;&lt;/script&gt;</code></pre>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-738" class="post-738 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-p2p/" rel="bookmark">Socket.IO P2P</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-07-14T11:02:31+00:00">14 July 2015</time><time class="updated" datetime="2015-07-15T18:28:24+00:00">15 July 2015</time></span><span class="byline"> – <span class="author vcard">Tom Cartwright</span> (<a class="twitter" href="https://twitter.com/tomcartwrightuk">@tomcartwrightuk</a>)</span>   </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>Today were very happy to introduce Socket.IO P2P, the easiest way to establish <strong>a bidirectional events channel between two peers</strong> with a server fallback to provide maximum reliability.</p>
+<p>Lets look at the API and build a little chat application. Or check out <a href="https://github.com/socketio/socket.io-p2p">the repository</a> directly!</p>
+<p> <a href="/blog/socket-io-p2p/#more-738" class="more-link">Read more</a></p>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-775" class="post-775 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-cpp/" rel="bookmark">Socket.IO C++</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-04-13T09:00:10+00:00">13 April 2015</time><time class="updated" datetime="2015-04-13T16:01:03+00:00">13 April 2015</time></span><span class="byline"> – <span class="author vcard">Melo Yao</span> (<a class="twitter" href="https://twitter.com/melode111">@melode111</a>)</span>   </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>Im really proud to announce the first release of the <a href="https://github.com/socketio/socket.io-client-cpp">Socket.IO C++ Client</a> on GitHub!</p>
+<p>Based on <a href="http://www.boost.org/">Boost</a> and <a href="https://github.com/zaphoyd/websocketpp">WebSocket++</a>, this full-featured Socket.IO 1.0 client has the fundamental advantage of working on <strong>multiple platforms</strong>. Check out the directory of <a href="https://github.com/socketio/socket.io-client-cpp/tree/master/examples">examples</a>. It contains examples of iOS, QT, and CLI chat clients!</p>
+<p>To learn how to use this client, I put together a QT chat example that communicates using a <a href="https://github.com/socketio/socket.io/tree/master/examples/chat">Socket.IO Node.JS chat server</a>. Keep reading for step-by-step instructions.</p>
+<p style="text-align: center">
+<img src="https://cldup.com/98tHyoJJE7.gif"/>
+</p>
+<p> <a href="/blog/socket-io-cpp/#more-775" class="more-link">Read more</a></p>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-674" class="post-674 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-on-ios/" rel="bookmark">Socket.IO on iOS</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-03-09T16:25:06+00:00">9 March 2015</time><time class="updated" datetime="2015-03-11T23:01:43+00:00">11 March 2015</time></span><span class="byline"> – <span class="author vcard">Erik Little</span> (<a class="twitter" href="https://twitter.com/nukeace">@nukeace</a>)</span>   </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p style="text-align: center;">
+<video class="gfyVidIframe" id="gfyVid" autoplay="" loop="" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" height="574" width="323"><source id="webmsource" src="//fat.gfycat.com/EssentialBlueElectriceel.webm" type="video/webm"/><source id="mp4source" src="//giant.gfycat.com/EssentialBlueElectriceel.mp4" type="video/mp4"/></video>
+</p>
+<p>We are pleased to announce the immediate availability of the <a href="https://github.com/socketio/socket.io-client-swift">Socket.IO Swift Client</a>! Youll now be able to write code that runs natively on <strong>iOS</strong> and <strong>OSX</strong>, while maintaining the simplicity and expressiveness of the JavaScript client!</p>
+<pre><code>import Foundation
+let socket = SocketIOClient(socketURL: "localhost:8880")
+socket.on("important message") {data, ack in
+    println("Message for you! \(data?[0])")
+    ack?("I got your message, and I'll send my response")
+    socket.emit("response", "Hello!")
+}
+socket.connect()</code></pre>
+<p>To show how you can use it in a real project, Ill show you how to create a small Tic Tac Toe app like the one shown above.</p>
+<p> <a href="/blog/socket-io-on-ios/#more-674" class="more-link">Read more</a></p>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-661" class="post-661 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-1-3-5/" rel="bookmark">Socket.IO 1.3.5</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-03-03T19:20:41+00:00">3 March 2015</time><time class="updated" datetime="2015-03-03T19:20:54+00:00">3 March 2015</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>    </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>Socket.IO <strong>1.3.5</strong> addresses a parser issue. Upgrade recommended. Completely backwards-compatible.</p>
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.3.5.js"&gt;&lt;/script&gt;</code></pre>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+<article id="post-656" class="post-656 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-1-3-4/" rel="bookmark">Socket.IO 1.3.4</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-02-14T19:05:58+00:00">14 February 2015</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>    </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>Socket.IO <strong>1.3.4</strong> corrects the <code>1.3.3</code> build that included extra unused code.</p>
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.3.4.js"&gt;&lt;/script&gt;</code></pre>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-643" class="post-643 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-1-3-3/" rel="bookmark">Socket.IO 1.3.3</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-02-04T01:53:47+00:00">4 February 2015</time><time class="updated" datetime="2015-02-04T01:56:10+00:00">4 February 2015</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>    </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p>Socket.IO <strong>1.3.3</strong> is a backwards-compatible <strong>recommended upgrade</strong> for everyone.</p>
+<ul>
+<li>It addresses a bug in the parser that could break the decoder with maliciously-crafted binary packets.</li>
+<li>We now <em>warn</em> about errors in the console if you dont manually specify an <code>error</code> event handler for <code>Socket</code> objects on the server.</li>
+</ul>
+<p>As usual, you can grab the latest client from the CDN!</p>
+<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.3.3.js"&gt;&lt;/script&gt;</code></pre>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+
+<article id="post-588" class="post-588 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/native-socket-io-and-android/" rel="bookmark">Native Socket.IO and Android</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-01-20T14:43:12+00:00">20 January 2015</time></span><span class="byline"> – <span class="author vcard">Naoyuki Kanezawa</span> (<a class="twitter" href="https://twitter.com/nkzawa">@nkzawa</a>)</span>    </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+    <p><img class="aligncenter size-full wp-image-626" src="/assets/img/androidchat.gif" alt="android chat demo" width="338" height="600"/></p>
+<p>In this tutorial well learn how to create a chat client that communicates with a Socket.IO <a href="https://github.com/socketio/socket.io/blob/master/examples/chat/index.js">Node.JS chat server</a>, with our <a href="https://github.com/nkzawa/socket.io-client.java">native Android Client</a>! If you want to jump straight to the code, its on <a href="https://github.com/nkzawa/socket.io-android-chat">GitHub</a>. Otherwise, read on!</p>
+<p> <a href="/blog/native-socket-io-and-android/#more-588" class="more-link">Read more</a></p>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
+
+
+    </main><!-- #main -->
+  </section><!-- #primary -->
+
+  </div><!-- #content -->
+
+  <footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="site-info">
+      <span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT). RUN BY <a href="https://github.com/socketio/socket.io/graphs/contributors">CONTRIBUTORS</a>. </span>
+      <span class="footer-right">
+        <a href="https://twitter.com/socketio" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @socketio</a>
+      </span>
+    </div><!-- .site-info -->
+  </footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<!-- Twitter script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<script src="/assets/js/default.min.js"></script>
+
+</body>
+</html>

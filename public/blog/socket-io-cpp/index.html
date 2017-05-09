@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="6hwSNwrfOBp3YhFBHWy08L12QeMTLpqNI3LvIB4lZEI" />
+  <title>Socket.IO  —  Socket.IO C++</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+
+  <link rel='stylesheet' id='socket-io-website-style-css'  href='/assets/css/style.css?ver=4.5.1' type='text/css' media='all' />
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18488944-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="blog group-blog single">
+<div id="bar"></div>
+<div id="page" class="hfeed site">
+
+  <header id="masthead" class="site-header" role="banner">
+    <div class="site-branding">
+      <h1 class="site-title"><a href="/" rel="home"></a></h1>
+      <h2 class="site-description"></h2>
+    </div>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+      <div id="logo-container"><a href="/" id="logo">socket.io</a></div>
+      <div class="menu-menu-container">
+
+      <ul id="menu-menu" class="menu">
+        <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-6"><a href="/">Home</a></li>
+        <li id="menu-item-153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153"><a href="/demos/chat/">Demos</a></li>
+        <li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="/get-started">Get started</a></li>
+        <li id="menu-item-29" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="/docs">Docs</a></li>
+        <li id="menu-item-95" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-95"><a href="/blog">Blog</a></li>
+        <li id="menu-item-43" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-43"><a href="https://cdnjs.com/libraries/socket.io">Download v1.7.3</a></li>
+        <li id="menu-item-972" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-972"><a href="https://slackin-socketio.now.sh/">Slack</a></li>
+      </ul>
+    </div>      <iframe src="https://ghbtns.com/github-btn.html?user=socketio&repo=socket.io&type=watch&count=true"
+          allowtransparency="true" frameborder="0" scrolling="0" width="120" id="gh-watchers" height="20"></iframe>
+    </nav><!-- #site-navigation -->
+  </header><!-- #masthead -->
+
+  <div id="content" class="site-content">
+  <section id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+<article id="post-775" class="post-775 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="entry-title centered">Socket.IO C++</h2>
+    <div class="entry-meta centered">
+      <span class="posted-on"><time class="entry-date published" datetime="2015-04-13T09:00:10+00:00">13 April 2015</time><time class="updated" datetime="2015-04-13T16:01:03+00:00">13 April 2015</time></span><span class="byline"> – <span class="author vcard">Melo Yao</span> (<a class="twitter" href="https://twitter.com/melode111">@melode111</a>)</span>   </div><!-- .entry-meta -->
+  </header><!-- .entry-header -->
+
+  <div class="entry-content">
+    <p>Im really proud to announce the first release of the <a href="https://github.com/socketio/socket.io-client-cpp">Socket.IO C++ Client</a> on GitHub!</p>
+<p>Based on <a href="http://www.boost.org/">Boost</a> and <a href="https://github.com/zaphoyd/websocketpp">WebSocket++</a>, this full-featured Socket.IO 1.0 client has the fundamental advantage of working on <strong>multiple platforms</strong>. Check out the directory of <a href="https://github.com/socketio/socket.io-client-cpp/tree/master/examples">examples</a>. It contains examples of iOS, QT, and CLI chat clients!</p>
+<p>To learn how to use this client, I put together a QT chat example that communicates using a <a href="https://github.com/Automattic/socket.io/tree/master/examples/chat">Socket.IO Node.JS chat server</a>. Keep reading for step-by-step instructions.</p>
+<p style="text-align: center">
+<img src="https://cldup.com/98tHyoJJE7.gif">
+</p>
+<p><span id="more-775"></span></p>
+<h2>Introduction</h2>
+<p>If you’d like to follow along, begin by cloning the <a href="https://github.com/socketio/socket.io-client-cpp">socket.io-client-cpp</a> repository using the following:</p>
+<pre><code class="bash">git clone --recurse-submodules https://github.com/socketio/socket.io-client-cpp.git</code></pre>
+<p>The app includes the following features:</p>
+<ul>
+<li>Send messages to all users joining the room.</p>
+</li>
+<li>
+<p>Receive a notification when users join or leave the room.</p>
+</li>
+<li>
+<p>Receive notifications when a user starts typing a message.</p>
+</li>
+</ul>
+<p>Before you get started, visit the <a href="http://www.qt.io/download-open-source/#section-2">QT community</a> to download and install QT.</p>
+<h2>Creating a QT GUI Application</h2>
+<p>Launch the QT Creator.<br/>
+On the welcome page, select <code>New Project</code>, then create a <code>QT Widget Application.</code> Name it <code>SioChatDemo.</code><br/>
+The project structure should look like this:</p>
+<pre><code>SioChatDemo
+    |__ SioChatDemo.pro
+    |__Headers
+    |   |__mainwindow.h
+    |__Sources
+    |   |__main.cpp
+    |   |__mainwindow.cpp
+    |__Forms
+        |__mainwindow.ui</code></pre>
+<h2>Importing an SioClient</h2>
+<p>Lets copy the SioClient into the QT project under the subfolder <code>sioclient.</code></p>
+<p>Edit <code>SioChatDemo.pro</code> to configure paths and compile options by simply adding:</p>
+<pre><code class="bash">SOURCES += ./sioclient/src/sio_client.cpp
+           ./sioclient/src/sio_packet.cpp
+
+HEADERS  += ./sioclient/src/sio_client.h
+            ./sioclient/src/sio_message.h
+
+INCLUDEPATH += $$PWD/sioclient/lib/rapidjson/include
+INCLUDEPATH += $$PWD/sioclient/lib/websocketpp</code></pre>
+<p>Add two additional compile options:</p>
+<pre><code class="bash">CONFIG+=no_keywords
+CONFIG+=c++11</code></pre>
+<p>The <code>no_keywords</code> flag prevents <code>qmake</code> from treating some function names as <code>emit</code> as the keyword for the signal-slot mechanism.</p>
+<p>Use <code>c++11</code> to ask for C++11 support.</p>
+<h2>Importing Boost</h2>
+<p>We now have our boost <code>headers</code> and a fat boost <code>static lib</code> named <code>libboost.a</code>(non-win32) or <code>boost.lib</code>(win32).</p>
+<p>To import them, we need to edit <code>SioChatDemo.pro</code> again by adding a header including the following:</p>
+<pre><code class="bash">INCLUDEPATH += `our boost headers folder`</code></pre>
+<p>Linker options:</p>
+<pre><code class="bash">win32:CONFIG(release, debug|release): LIBS += -L`our Win32 boost static lib folder` -lboost
+else:win32:CONFIG(debug, debug|release): LIBS += -L`our Win32 boost static lib folder` -lboost
+else:unix: LIBS += -L`our osx boost static lib folder` -lboost</code></pre>
+<h2>Create the Main Window UI</h2>
+<p>Create a simple UI by dragging and dropping a widget from the widget box on the left-hand side.</p>
+<p style="text-align: center">
+<img src="https://cldup.com/RI98CYpYL5.png">
+</p>
+<p>It contains the following:</p>
+<ul>
+<li>A <code>QLineEdit</code> at the top to input a nickname: <code>nickNameEdit</code></p>
+</li>
+<li>
+<p>A <code>QPushButton</code> at the top right for login: <code>loginBtn</code></p>
+</li>
+<li>
+<p>A <code>QListWidget</code> in the center for showing messages: <code>listView</code></p>
+</li>
+<li>
+<p>A <code>QLineEdit</code> at the bottom for typing messages: <code>messageEdit</code></p>
+</li>
+<li>
+<p>A <code>QPushButton</code> at the bottom right for sending messages: <code>sendBtn</code></p>
+</li>
+</ul>
+<h2>Add Slots in the Main Window</h2>
+<p>The following slots need to be added in the <code>mainwindow</code> class to handle UI events:</p>
+<ul>
+<li>Click ‘Login’ button</p>
+</li>
+<li>
+<p>Click ‘Send Message’ button</p>
+</li>
+<li>
+<p>Text change in message editing (to show typing status)</p>
+</li>
+<li>
+<p>Return message editing (for sending responses)</p>
+</li>
+</ul>
+<p>Insert the following code into the <code>MainWindow</code> class in <code>mainwindow.h</code>:</p>
+<pre><code>public Q_SLOTS:
+    void SendBtnClicked();
+    void TypingChanged();
+    void LoginClicked();
+    void OnMessageReturn();</code></pre>
+<h2>Connect the UI Event Signal and Slots</h2>
+<p>Open <code>mainwindow.ui</code> in the design mode. Switch to the <code>signals/slots</code> mode using <code>Menu-&gt;Edit-&gt;Edit Signals/Slots</code>.</p>
+<p>Click and hold the widget and drag it to the window (the cursor will become an electrical ground symbol) to open the connection editor.</p>
+<p>In the connection editor, edit the main window slots on the right side. Add the slot function names added in <code>mainwindow.h</code> before.</p>
+<p>Then we can connect the event signal to the widget with our own slots. The result should look like this:</p>
+<p style="text-align: center">
+<img src="https://cldup.com/Vsb-UXG3FC.jpg">
+</p>
+<h2>Adding UI Refresh Signals/Slots</h2>
+<p>The <code>sio::client</code> callbacks are not in the UI thread. However, the UI must be updated with those callbacks, so we need a signal for the non-UI thread to request the <code>slots</code> functions in the UI thread. To signal that <code>QListWidgetItem</code> has been added, insert the following:</p>
+<pre><code>// in mainwindow.h
+Q_SIGNALS:
+    void RequestAddListItem(QListWidgetItem *item);
+private Q_SLOTS:
+    void AddListItem(QListWidgetItem *item);</code></pre>
+<pre><code>//In mainwindow.cpp
+void MainWindow::AddListItem(QListWidgetItem* item)
+{
+    this-&gt;findChild&lt;QListWidget*&gt;("listView")-&gt;addItem(item);
+}</code></pre>
+<p>Then connect them in the <code>MainWindow</code> constructor.</p>
+<pre><code>    connect(this,SIGNAL(RequestAddListItem(QListWidgetItem*)),this,SLOT(AddListItem(QListWidgetItem*)));</code></pre>
+<h2>Setting up the Socket</h2>
+<p>For single-window applications, simply let <code>MainWindow</code> class hold the <code>sio::client</code> object by declaring a <code>unique_ptr</code> member of the <code>sio::client</code> and several event handling functions in <code>mainwindow.h</code>.</p>
+<pre><code>private:
+    void OnNewMessage(std::string const&amp; name,message::ptr const&amp; data,bool hasAck,message::ptr &amp;ack_resp);
+    void OnUserJoined(std::string const&amp; name,message::ptr const&amp; data,bool hasAck,message::ptr &amp;ack_resp);
+    void OnUserLeft(std::string const&amp; name,message::ptr const&amp; data,bool hasAck,message::ptr &amp;ack_resp);
+    void OnTyping(std::string const&amp; name,message::ptr const&amp; data,bool hasAck,message::ptr &amp;ack_resp);
+    void OnStopTyping(std::string const&amp; name,message::ptr const&amp; data,bool hasAck,message::ptr &amp;ack_resp);
+    void OnLogin(std::string const&amp; name,message::ptr const&amp; data,bool hasAck,message::ptr &amp;ack_resp);
+    void OnConnected();
+    void OnClosed(client::close_reason const&amp; reason);
+    void OnFailed();
+
+    std::unique_ptr&lt;client&gt; _io;</code></pre>
+<p>Initialize <code>sio::client</code> and setup event bindings for the default <code>socket</code> in the <code>MainWindow</code> constructor.</p>
+<p>We also need to handle connectivity and disconnect events.</p>
+<p>Add the following to the <code>MainWindow</code> constructor:</p>
+<pre><code>MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    _io(new client())
+{
+    ui-&gt;setupUi(this);
+    using std::placeholders::_1;
+    using std::placeholders::_2;
+    using std::placeholders::_3;
+    using std::placeholders::_4;
+    socket::ptr sock = _io-&gt;socket();
+    sock-&gt;on("new message",std::bind(&amp;MainWindow::OnNewMessage,this,_1,_2,_3,_4));
+    sock-&gt;on("user joined",std::bind(&amp;MainWindow::OnUserJoined,this,_1,_2,_3,_4));
+    sock-&gt;on("user left",std::bind(&amp;MainWindow::OnUserLeft,this,_1,_2,_3,_4));
+    sock-&gt;on("typing",std::bind(&amp;MainWindow::OnTyping,this,_1,_2,_3,_4));
+    sock-&gt;on("stop typing",std::bind(&amp;MainWindow::OnStopTyping,this,_1,_2,_3,_4));
+    sock-&gt;on("login",std::bind(&amp;MainWindow::OnLogin,this,_1,_2,_3,_4));
+    //default socket opened, also we have "set_open_listener" for monitoring physical connection opened.
+    _io-&gt;set_socket_open_listener(std::bind(&amp;MainWindow::OnConnected,this,std::placeholders::_1));
+    //physical connection closed or drop.
+    _io-&gt;set_close_listener(std::bind(&amp;MainWindow::OnClosed,this,_1));
+    //physical connection fail to establish.
+    _io-&gt;set_fail_listener(std::bind(&amp;MainWindow::OnFailed,this));
+    connect(this,SIGNAL(RequestAddListItem(QListWidgetItem*)),this,SLOT(AddListItem(QListWidgetItem*)));
+}</code></pre>
+<h2>Managing Connection State</h2>
+<p>We have several connection listeners for connection events.</p>
+<p>First, we want to send a login message when were connected; we get the default <code>socket</code> from the <code>client</code> to do that.</p>
+<pre><code>void MainWindow::OnConnected()
+{
+    QByteArray bytes = m_name.toUtf8();
+    std::string nickName(bytes.data(),bytes.length());
+    _io-&gt;socket()-&gt;emit("add user", nickName);
+}</code></pre>
+<p>If the connection closes or fails, we need to restore the UI before we connect.</p>
+<pre><code>void MainWindow::OnClosed(client::close_reason const&amp; reason)
+{
+    //restore UI to pre-login state
+}
+
+void MainWindow::OnFailed()
+{
+    //restore UI to pre-login state
+}
+</code></pre>
+<p>If we exit the <code>MainWindow</code>, we need to clear the event bindings and listeners.</p>
+<p>The <code>sio::client</code> object will be destroyed using <code>unique_ptr</code>.</p>
+<pre><code>MainWindow::~MainWindow()
+{
+    _io-&gt;socket()-&gt;off_all();
+    _io-&gt;socket()-&gt;off_error();
+    delete ui;
+}</code></pre>
+<h2>Handling Socket.IO Events</h2>
+<p>Well need to handle socket.io events in our functions they are bound to.<br/>
+For example, we need to show received messages in the list view.</p>
+<pre><code>void MainWindow::OnNewMessage(std::string const&amp; name,message::ptr const&amp; data,bool hasAck,message::ptr &amp;ack_resp)
+{
+    if(data-&gt;get_flag() == message::flag_object)
+    {
+        std::string msg = data-&gt;get_map()["message"]-&gt;get_string();
+        std::string name = data-&gt;get_map()["username"]-&gt;get_string();
+        QString label = QString::fromUtf8(name.data(),name.length());
+        label.append(':');
+        label.append(QString::fromUtf8(msg.data(),msg.length()));
+        QListWidgetItem *item= new QListWidgetItem(label);
+        //emit RequestAddListItem signal
+        //so that 'AddListItem' will be executed in UI thread.
+        Q_EMIT RequestAddListItem(item);
+    }
+}</code></pre>
+<h2>Wrapping Up: Sending the Message</h2>
+<p>When <code>sendBtn</code> is clicked, we need to send the text in <code>messageEdit</code> to the chatroom.<br/>
+Add the following code to <code>SendBtnClicked()</code>:</p>
+<pre><code>void MainWindow::SendBtnClicked()
+{
+    QLineEdit* messageEdit = this-&gt;findChild&lt;QLineEdit*&gt;("messageEdit");
+    QString text = messageEdit-&gt;text();
+    if(text.length()&gt;0)
+    {
+        QByteArray bytes = text.toUtf8();
+        std::string msg(bytes.data(),bytes.length());
+        _io-&gt;socket()-&gt;emit("new message",msg);//emit new message
+        text.append(":You");
+        QListWidgetItem *item = new QListWidgetItem(text);
+        item-&gt;setTextAlignment(Qt::AlignRight);
+        Q_EMIT RequestAddListItem(item);
+        messageEdit-&gt;clear();
+    }
+}</code></pre>
+<h2>Further Reading</h2>
+<p>You can run the <a href="https://github.com/socketio/socket.io-client-cpp/tree/master/examples/QT/SioChatDemo">demo project</a> to get a closer look. Before you run it, please follow the <a href="https://github.com/socketio/socket.io-client-cpp#-with-cmake">instructions</a> to make the Socket.io client library.</p>
+<p>Dont forget to <a href="https://github.com/socketio/socket.io-client-cpp">star the project</a> on GitHub to get updates!</p>
+      </div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+        <nav class="navigation post-navigation" role="navigation">
+    <h1 class="screen-reader-text">Post navigation</h1>
+    <div class="nav-links">
+      <div class="nav-previous"><a href="/blog/socket-io-on-ios/" rel="prev"><span class="meta-nav">&larr;</span> Socket.IO on iOS</a></div><div class="nav-next"><a href="/blog/socket-io-p2p/" rel="next">Socket.IO P2P <span class="meta-nav">&rarr;</span></a></div>    </div><!-- .nav-links -->
+  </nav><!-- .navigation -->
+
+    </main><!-- #main -->
+  </section><!-- #primary -->
+
+  </div><!-- #content -->
+
+  <footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="site-info">
+      <span class="footer-left">SOCKET.IO IS OPEN-SOURCE (MIT). RUN BY <a href="https://github.com/socketio/socket.io/graphs/contributors">CONTRIBUTORS</a>. </span>
+      <span class="footer-right">
+        <a href="https://twitter.com/socketio" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @socketio</a>
+      </span>
+    </div><!-- .site-info -->
+  </footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<!-- Twitter script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<script src="/assets/js/default.min.js"></script>
+
+</body>
+</html>
