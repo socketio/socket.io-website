@@ -55,6 +55,38 @@
     <main id="main" class="site-main" role="main">
 
 
+<article id="post-1000" class="post-1000 post type-post status-publish format-standard hentry category-blog">
+  <header class="entry-header">
+    <h2 class="excerpt-title"><a href="/blog/socket-io-2-0-0/" rel="bookmark">Socket.IO 2.0.0</a></h2>
+        <div class="entry-meta" style="margin-top: 10px; margin-bottom: 20px;">
+      <span class="posted-on"><time class="entry-date published" datetime="2017-05-13T10:00:00+00:00">13 May 2017</time></span><span class="byline"> – <span class="author vcard">Damien Arrachequesne</span> (<a class="twitter" href="https://twitter.com/darrachequesne">@darrachequesne</a>)</span>   </div><!-- .entry-meta -->
+      </header><!-- .entry-header -->
+
+<div class="entry-content">
+  <p>Socket.IO 2.0.0 is finally here! This major release brings several performance improvements:</p>
+  <ul>
+    <li><a href="https://github.com/uWebSockets/uWebSockets">uws</a> is now the default Websocket engine. It should bring significant improvement in performance (particularly in terms of memory consumption) (<a href="https://github.com/socketio/engine.io/releases/tag/2.0.0">release note of Engine.IO</a>)</li>
+    <li>the Engine.IO and Socket.IO handshake packets were merged, reducing the number of roundtrips necessary to establish a connection. (<a href="https://github.com/socketio/socket.io/pull/2833">#2833</a>)</li>
+    <li>it is now possible to provide a custom parser according to the needs of your application (<a href="https://github.com/socketio/socket.io/pull/2829">#2829</a>). Please take a look at the <a href="https://github.com/socketio/socket.io/tree/master/examples/custom-parsers">example</a> for more information.</li>
+  </ul>
+  <p>Please note that this release is not backward-compatible, due to:</p>
+  <ul>
+    <li>a breaking change related to utf-8 encoding in <a href="https://github.com/socketio/engine.io-parser/pull/81">engine.io-parser</a></li>
+    <li>an update to make the socket id on the client match the id on the server-side (<a href="https://github.com/socketio/socket.io-client/pull/1058">#1058</a>)</li>
+  </ul>
+  <p>Related packages were updated accordingly:</p>
+  <ul>
+    <li>socket.io-redis version <a href="https://github.com/socketio/socket.io-redis/releases/tag/5.0.0">5.x</a></li>
+    <li>socket.io-emitter version <a href="https://github.com/socketio/socket.io-emitter/releases/tag/3.0.0">3.x</a></li>
+  </ul>
+  <p>Get the latest client from the CDN:</p>
+  <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"&gt;&lt;/script&gt;</code></pre>
+</div><!-- .entry-content -->
+
+  <footer class="entry-footer">
+      </footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+<div class="post-separator"></div>
 
 
 <article id="post-1000" class="post-1000 post type-post status-publish format-standard hentry category-blog">

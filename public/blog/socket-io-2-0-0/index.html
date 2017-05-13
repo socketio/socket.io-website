@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="6hwSNwrfOBp3YhFBHWy08L12QeMTLpqNI3LvIB4lZEI" />
-  <title>Socket.IO  —  Socket.IO 1.4.5</title>
+  <title>Socket.IO  —  Socket.IO 2.0.0</title>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
 
   <link rel='stylesheet' id='socket-io-website-style-css'  href='/assets/css/style.css?ver=4.5.1' type='text/css' media='all' />
@@ -56,20 +56,31 @@
 
 <article id="post-1000" class="post-1000 post type-post status-publish format-standard hentry category-blog">
   <header class="entry-header">
-    <h2 class="entry-title centered">Socket.IO 1.4.5</h2>
+    <h2 class="entry-title centered">Socket.IO 2.0.0</h2>
     <div class="entry-meta centered">
-      <span class="posted-on"><time class="entry-date published" datetime="2016-01-27T01:09:38+00:00">27 January 2016</time></span><span class="byline"> – <span class="author vcard">Guillermo Rauch</span> (<a class="twitter" href="https://twitter.com/rauchg">@rauchg</a>)</span>   </div><!-- .entry-meta -->
+      <span class="posted-on"><time class="entry-date published" datetime="2017-05-13T10:00:00+00:00">13 May 2017</time></span><span class="byline"> – <span class="author vcard">Damien Arrachequesne</span> (<a class="twitter" href="https://twitter.com/darrachequesne">@darrachequesne</a>)</span>   </div><!-- .entry-meta -->
   </header><!-- .entry-header -->
 
-  <div class="entry-content">
-    <p>We just published some quick fixes!</p>
-<ul>
-<li>Fixed <code>socket.io-client</code> usage with <a href="https://www.nativescript.org/">NativeScript</a>.</li>
-<li>Fixed graceful close of the attached http <code>Server</code> of <code>socket.io</code> and <code>engine.io</code>.</li>
-</ul>
-<p>Get the latest client from the CDN:</p>
-<pre><code>&lt;script src="https://cdn.socket.io/socket.io-1.4.5.js"&gt;&lt;/script&gt;</code></pre>
-      </div><!-- .entry-content -->
+<div class="entry-content">
+  <p>Socket.IO 2.0.0 is finally here! This major release brings several performance improvements:</p>
+  <ul>
+    <li><a href="https://github.com/uWebSockets/uWebSockets">uws</a> is now the default Websocket engine. It should bring significant improvement in performance (particularly in terms of memory consumption) (<a href="https://github.com/socketio/engine.io/releases/tag/2.0.0">release note of Engine.IO</a>)</li>
+    <li>the Engine.IO and Socket.IO handshake packets were merged, reducing the number of roundtrips necessary to establish a connection. (<a href="https://github.com/socketio/socket.io/pull/2833">#2833</a>)</li>
+    <li>it is now possible to provide a custom parser according to the needs of your application (<a href="https://github.com/socketio/socket.io/pull/2829">#2829</a>). Please take a look at the <a href="https://github.com/socketio/socket.io/tree/master/examples/custom-parsers">example</a> for more information.</li>
+  </ul>
+  <p>Please note that this release is not backward-compatible, due to:</p>
+  <ul>
+    <li>a breaking change related to utf-8 encoding in <a href="https://github.com/socketio/engine.io-parser/pull/81">engine.io-parser</a></li>
+    <li>an update to make the socket id on the client match the id on the server-side (<a href="https://github.com/socketio/socket.io-client/pull/1058">#1058</a>)</li>
+  </ul>
+  <p>Related packages were updated accordingly:</p>
+  <ul>
+    <li>socket.io-redis version <a href="https://github.com/socketio/socket.io-redis/releases/tag/5.0.0">5.x</a></li>
+    <li>socket.io-emitter version <a href="https://github.com/socketio/socket.io-emitter/releases/tag/3.0.0">3.x</a></li>
+  </ul>
+  <p>Get the latest client from the CDN:</p>
+  <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"&gt;&lt;/script&gt;</code></pre>
+</div><!-- .entry-content -->
 
   <footer class="entry-footer">
       </footer><!-- .entry-footer -->
@@ -78,7 +89,7 @@
   <nav class="navigation post-navigation" role="navigation">
     <h1 class="screen-reader-text">Post navigation</h1>
     <div class="nav-links">
-      <div class="nav-previous"><a href="/blog/socket-io-1-4-4/" rel="prev"><span class="meta-nav">&larr;</span>Socket.IO 1.4.4</a></div><div class="nav-next"><a href="/blog/socket-io-2-0-0/" rel="next">Socket.IO 2.0.0<span class="meta-nav">&rarr;</span></a></div>    </div><!-- .nav-links -->
+      <div class="nav-previous"><a href="/blog/socket-io-1-4-5/" rel="prev"><span class="meta-nav">&larr;</span> Socket.IO 1.4.5</a></div>    </div><!-- .nav-links -->
   </nav><!-- .navigation -->
 
     </main><!-- #main -->
