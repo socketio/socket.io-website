@@ -79,6 +79,7 @@
             <li><a href="#new-server-port-options">new Server(port[, options])</a></li>
             <li><a href="#new-server-options">new Server(options)</a></li>
             <li><a href="#server-sockets">server.sockets</a></li>
+            <li><a href="#server-engine-generateid">server.engine.generateId</a></li>
             <li><a href="#server-serveclient-value">server.serveClient([value])</a></li>
             <li><a href="#server-path-value">server.path([value])</a></li>
             <li><a href="#server-adapter-value">server.adapter([value])</a></li>
@@ -99,6 +100,9 @@
           <ul class="class-details hidden">
             <li><a href="#namespace-name">namespace.name</a></li>
             <li><a href="#namespace-connected">namespace.connected</a></li>
+            <li><a href="#namespace-adapter">namespace.adapter</a></li>
+            <li><a href="#namespace-to-room">namespace.to(room)</a></li>
+            <li><a href="#namespace-in-room">namespace.in(room)</a></li>
             <li><a href="#namespace-emit-eventname-args">namespace.emit(eventName[, ...args])</a></li>
             <li><a href="#namespace-clients-callback">namespace.clients(callback)</a></li>
             <li><a href="#namespace-use-fn">namespace.use(fn)</a></li>
@@ -116,6 +120,7 @@
             <li><a href="#socket-client">socket.client</a></li>
             <li><a href="#socket-conn">socket.conn</a></li>
             <li><a href="#socket-request">socket.request</a></li>
+            <li><a href="#socket-handshake">socket.handshake</a></li>
             <li><a href="#socket-use-fn">socket.use(fn)</a></li>
             <li><a href="#socket-send-args-ack">socket.send([...args][, ack])</a></li>
             <li><a href="#socket-emit-eventname-args-ack">socket.emit(eventName[, ...args][, ack])</a></li>
@@ -152,9 +157,9 @@
   <div class="entry-content">
     <h1 id="server-api"><a class="icon-link deep-link" href="/docs/server-api/#server-api" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Server API</h1>
 
-<h2 id="server">Server</h2>
+<h2 id="server"><a class="icon-link deep-link" href="/docs/server-api#server" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Server</h2>
 <p>Exposed by <code>require(&#39;socket.io&#39;)</code>.</p>
-<h3 id="new-server-httpserver-options"><a class="icon-link deep-link" href="/docs/server-api/#new-server-httpserver-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>new Server(httpServer[, options])</h3>
+<h3 id="new-server-httpserver-options"><a class="icon-link deep-link" href="/docs/server-api#new-server-httpserver-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>new Server(httpServer[, options])</h3>
 <ul>
 <li><code>httpServer</code> <em>(http.Server)</em> the server to bind to.</li>
 <li><code>options</code> <em>(Object)</em><ul>
@@ -162,16 +167,15 @@
 <li><code>serveClient</code> <em>(Boolean)</em>: whether to serve the client files (<code>true</code>)</li>
 <li><code>adapter</code> <em>(Adapter)</em>: the adapter to use. Defaults to an instance of the <code>Adapter</code> that ships with socket.io which is memory based. See <a href="https://github.com/socketio/socket.io-adapter">socket.io-adapter</a></li>
 <li><code>origins</code> <em>(String)</em>: the allowed origins (<code>*</code>)</li>
-<li><code>allowRequest</code> <em>(Function)</em>: A function that receives a given handshake or upgrade request as its first parameter, and can decide whether to continue or not. The second argument is a function that needs to be called with the decided information: <code>fn(err, success)</code>, where <code>success</code> is a boolean value where false means that the request is rejected, and err is an error code.</li>
 <li><code>parser</code> <em>(Parser)</em>: the parser to use. Defaults to an instance of the <code>Parser</code> that ships with socket.io. See <a href="https://github.com/socketio/socket.io-parser">socket.io-parser</a>.</li>
 </ul>
 </li>
 </ul>
 <p>Works with and without <code>new</code>:</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
+<pre><code class="lang-js">const io = require(&#39;socket.io&#39;)();
 // or
-var Server = require(&#39;socket.io&#39;);
-var io = new Server();
+const Server = require(&#39;socket.io&#39;);
+const io = new Server();
 </code></pre>
 <p>The same options passed to socket.io are always passed to the <code>engine.io</code> <code>Server</code> that gets created. See engine.io <a href="https://github.com/socketio/engine.io#methods-1">options</a> as reference.</p>
 <p>Among those options:</p>
@@ -184,55 +188,116 @@ var io = new Server();
 <li><code>transports</code> <em>(Array&lt;String&gt;)</em>: transports to allow connections to (<code>[&#39;polling&#39;, &#39;websocket&#39;]</code>).</li>
 </ul>
 <p><strong>Note:</strong> The order is important. By default, a long-polling connection is established first, and then upgraded to WebSocket if possible. Using <code>[&#39;websocket&#39;]</code> means there will be no fallback if a WebSocket connection cannot be opened.</p>
-<h3 id="new-server-port-options"><a class="icon-link deep-link" href="/docs/server-api/#new-server-port-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>new Server(port[, options])</h3>
+<pre><code class="lang-js">const server = require(&#39;http&#39;).createServer();
+
+const io = require(&#39;socket.io&#39;)(server, {
+  path: &#39;/test&#39;,
+  serveClient: false,
+  // below are engine.IO options
+  pingInterval: 10000,
+  pingTimeout: 5000,
+  cookie: false
+});
+
+server.listen(3000);
+</code></pre>
+<h3 id="new-server-port-options"><a class="icon-link deep-link" href="/docs/server-api#new-server-port-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>new Server(port[, options])</h3>
 <ul>
 <li><code>port</code> <em>(Number)</em> a port to listen to (a new <code>http.Server</code> will be created)</li>
 <li><code>options</code> <em>(Object)</em></li>
 </ul>
 <p>See <a href="#new-server-httpserver-options">above</a> for available options.</p>
-<h3 id="new-server-options"><a class="icon-link deep-link" href="/docs/server-api/#new-server-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>new Server(options)</h3>
+<pre><code class="lang-js">const server = require(&#39;http&#39;).createServer();
+
+const io = require(&#39;socket.io&#39;)(3000, {
+  path: &#39;/test&#39;,
+  serveClient: false,
+  // below are engine.IO options
+  pingInterval: 10000,
+  pingTimeout: 5000,
+  cookie: false
+});
+</code></pre>
+<h3 id="new-server-options"><a class="icon-link deep-link" href="/docs/server-api#new-server-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>new Server(options)</h3>
 <ul>
 <li><code>options</code> <em>(Object)</em></li>
 </ul>
 <p>See <a href="#new-server-httpserver-options">above</a> for available options.</p>
-<h3 id="server-sockets"><a class="icon-link deep-link" href="/docs/server-api/#server-sockets" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.sockets</h3>
+<pre><code class="lang-js">const io = require(&#39;socket.io&#39;)({
+  path: &#39;/test&#39;,
+  serveClient: false,
+});
+
+// either
+const server = require(&#39;http&#39;).createServer();
+
+io.attach(server, {
+  pingInterval: 10000,
+  pingTimeout: 5000,
+  cookie: false
+});
+
+server.listen(3000);
+
+// or
+io.attach(3000, {
+  pingInterval: 10000,
+  pingTimeout: 5000,
+  cookie: false
+});
+</code></pre>
+<h3 id="server-sockets"><a class="icon-link deep-link" href="/docs/server-api#server-sockets" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.sockets</h3>
 <ul>
 <li><em>(Namespace)</em></li>
 </ul>
 <p>The default (<code>/</code>) namespace.</p>
-<h3 id="server-serveclient-value"><a class="icon-link deep-link" href="/docs/server-api/#server-serveclient-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.serveClient([value])</h3>
+<h3 id="server-serveclient-value"><a class="icon-link deep-link" href="/docs/server-api#server-serveclient-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.serveClient([value])</h3>
 <ul>
 <li><code>value</code> <em>(Boolean)</em></li>
 <li><strong>Returns</strong> <code>Server|Boolean</code></li>
 </ul>
 <p>If <code>value</code> is <code>true</code> the attached server (see <code>Server#attach</code>) will serve the client files. Defaults to <code>true</code>. This method has no effect after <code>attach</code> is called. If no arguments are supplied this method returns the current value.</p>
 <pre><code class="lang-js">// pass a server and the `serveClient` option
-var io = require(&#39;socket.io&#39;)(http, { serveClient: false });
+const io = require(&#39;socket.io&#39;)(http, { serveClient: false });
 
 // or pass no server and then you can call the method
-var io = require(&#39;socket.io&#39;)();
+const io = require(&#39;socket.io&#39;)();
 io.serveClient(false);
 io.attach(http);
 </code></pre>
-<h3 id="server-path-value"><a class="icon-link deep-link" href="/docs/server-api/#server-path-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.path([value])</h3>
+<h3 id="server-path-value"><a class="icon-link deep-link" href="/docs/server-api#server-path-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.path([value])</h3>
 <ul>
 <li><code>value</code> <em>(String)</em></li>
 <li><strong>Returns</strong> <code>Server|String</code></li>
 </ul>
 <p>Sets the path <code>value</code> under which <code>engine.io</code> and the static files will be served. Defaults to <code>/socket.io</code>. If no arguments are supplied this method returns the current value.</p>
-<h3 id="server-adapter-value"><a class="icon-link deep-link" href="/docs/server-api/#server-adapter-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.adapter([value])</h3>
+<pre><code class="lang-js">const io = require(&#39;socket.io&#39;)();
+io.path(&#39;/myownpath&#39;);
+
+// client-side
+const socket = io({
+  path: &#39;/myownpath&#39;
+});
+</code></pre>
+<h3 id="server-adapter-value"><a class="icon-link deep-link" href="/docs/server-api#server-adapter-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.adapter([value])</h3>
 <ul>
 <li><code>value</code> <em>(Adapter)</em></li>
 <li><strong>Returns</strong> <code>Server|Adapter</code></li>
 </ul>
 <p>Sets the adapter <code>value</code>. Defaults to an instance of the <code>Adapter</code> that ships with socket.io which is memory based. See <a href="https://github.com/socketio/socket.io-adapter">socket.io-adapter</a>. If no arguments are supplied this method returns the current value.</p>
-<h3 id="server-origins-value"><a class="icon-link deep-link" href="/docs/server-api/#server-origins-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.origins([value])</h3>
+<pre><code class="lang-js">const io = require(&#39;socket.io&#39;)(3000);
+const redis = require(&#39;socket.io-redis&#39;);
+io.adapter(redis({ host: &#39;localhost&#39;, port: 6379 }));
+</code></pre>
+<h3 id="server-origins-value"><a class="icon-link deep-link" href="/docs/server-api#server-origins-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.origins([value])</h3>
 <ul>
 <li><code>value</code> <em>(String)</em></li>
 <li><strong>Returns</strong> <code>Server|String</code></li>
 </ul>
 <p>Sets the allowed origins <code>value</code>. Defaults to any origins being allowed. If no arguments are supplied this method returns the current value.</p>
-<h3 id="server-origins-fn"><a class="icon-link deep-link" href="/docs/server-api/#server-origins-fn" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.origins(fn)</h3>
+<pre><code class="lang-js">io.origins([&#39;foo.example.com:443&#39;]);
+</code></pre>
+<h3 id="server-origins-fn"><a class="icon-link deep-link" href="/docs/server-api#server-origins-fn" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.origins(fn)</h3>
 <ul>
 <li><code>fn</code> <em>(Function)</em></li>
 <li><strong>Returns</strong> <code>Server</code></li>
@@ -244,50 +309,59 @@ io.attach(http);
 <li>As this function will be executed for every request, it is advised to make this function work as fast as possible</li>
 <li>If <code>socket.io</code> is used together with <code>Express</code>, the CORS headers will be affected only for <code>socket.io</code> requests. For Express can use <a href="https://github.com/expressjs/cors">cors</a>.</li>
 </ul>
-<h3 id="server-attach-httpserver-options"><a class="icon-link deep-link" href="/docs/server-api/#server-attach-httpserver-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.attach(httpServer[, options])</h3>
+<pre><code class="lang-js">io.origins((origin, callback) =&gt; {
+  if (origin !== &#39;https://foo.example.com&#39;) {
+    return callback(&#39;origin not allowed&#39;, false);
+  }
+  callback(null, true);
+});
+</code></pre>
+<h3 id="server-attach-httpserver-options"><a class="icon-link deep-link" href="/docs/server-api#server-attach-httpserver-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.attach(httpServer[, options])</h3>
 <ul>
 <li><code>httpServer</code> <em>(http.Server)</em> the server to attach to</li>
 <li><code>options</code> <em>(Object)</em></li>
 </ul>
 <p>Attaches the <code>Server</code> to an engine.io instance on <code>httpServer</code> with the supplied <code>options</code> (optionally).</p>
-<h3 id="server-attach-port-options"><a class="icon-link deep-link" href="/docs/server-api/#server-attach-port-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.attach(port[, options])</h3>
+<h3 id="server-attach-port-options"><a class="icon-link deep-link" href="/docs/server-api#server-attach-port-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.attach(port[, options])</h3>
 <ul>
 <li><code>port</code> <em>(Number)</em> the port to listen on</li>
 <li><code>options</code> <em>(Object)</em></li>
 </ul>
 <p>Attaches the <code>Server</code> to an engine.io instance on a new http.Server with the supplied <code>options</code> (optionally).</p>
-<h3 id="server-listen-httpserver-options"><a class="icon-link deep-link" href="/docs/server-api/#server-listen-httpserver-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.listen(httpServer[, options])</h3>
-<p>Synonym of <a href="#serverattachhttpserver-options">server.attach(httpServer[, options])</a>.</p>
-<h3 id="server-listen-port-options"><a class="icon-link deep-link" href="/docs/server-api/#server-listen-port-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.listen(port[, options])</h3>
-<p>Synonym of <a href="#serverattachport-options">server.attach(port[, options])</a>.</p>
-<h3 id="server-bind-engine"><a class="icon-link deep-link" href="/docs/server-api/#server-bind-engine" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.bind(engine)</h3>
+<h3 id="server-listen-httpserver-options"><a class="icon-link deep-link" href="/docs/server-api#server-listen-httpserver-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.listen(httpServer[, options])</h3>
+<p>Synonym of <a href="#server-attach-httpserver-options">server.attach(httpServer[, options])</a>.</p>
+<h3 id="server-listen-port-options"><a class="icon-link deep-link" href="/docs/server-api#server-listen-port-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.listen(port[, options])</h3>
+<p>Synonym of <a href="#server-attach-port-options">server.attach(port[, options])</a>.</p>
+<h3 id="server-bind-engine"><a class="icon-link deep-link" href="/docs/server-api#server-bind-engine" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.bind(engine)</h3>
 <ul>
 <li><code>engine</code> <em>(engine.Server)</em></li>
 <li><strong>Returns</strong> <code>Server</code></li>
 </ul>
 <p>Advanced use only. Binds the server to a specific engine.io <code>Server</code> (or compatible API) instance.</p>
-<h3 id="server-onconnection-socket"><a class="icon-link deep-link" href="/docs/server-api/#server-onconnection-socket" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.onconnection(socket)</h3>
+<h3 id="server-onconnection-socket"><a class="icon-link deep-link" href="/docs/server-api#server-onconnection-socket" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.onconnection(socket)</h3>
 <ul>
 <li><code>socket</code> <em>(engine.Socket)</em></li>
 <li><strong>Returns</strong> <code>Server</code></li>
 </ul>
 <p>Advanced use only. Creates a new <code>socket.io</code> client from the incoming engine.io (or compatible API) <code>Socket</code>.</p>
-<h3 id="server-of-nsp"><a class="icon-link deep-link" href="/docs/server-api/#server-of-nsp" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.of(nsp)</h3>
+<h3 id="server-of-nsp"><a class="icon-link deep-link" href="/docs/server-api#server-of-nsp" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.of(nsp)</h3>
 <ul>
 <li><code>nsp</code> <em>(String)</em></li>
 <li><strong>Returns</strong> <code>Namespace</code></li>
 </ul>
 <p>Initializes and retrieves the given <code>Namespace</code> by its pathname identifier <code>nsp</code>. If the namespace was already initialized it returns it immediately.</p>
-<h3 id="server-close-callback"><a class="icon-link deep-link" href="/docs/server-api/#server-close-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.close([callback])</h3>
+<pre><code class="lang-js">const adminNamespace = io.of(&#39;/admin&#39;);
+</code></pre>
+<h3 id="server-close-callback"><a class="icon-link deep-link" href="/docs/server-api#server-close-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.close([callback])</h3>
 <ul>
 <li><code>callback</code> <em>(Function)</em></li>
 </ul>
 <p>Closes the socket.io server. The <code>callback</code> argument is optional and will be called when all connections are closed.</p>
-<pre><code class="lang-js">var Server = require(&#39;socket.io&#39;);
-var PORT   = 3030;
-var server = require(&#39;http&#39;).Server();
+<pre><code class="lang-js">const Server = require(&#39;socket.io&#39;);
+const PORT   = 3030;
+const server = require(&#39;http&#39;).Server();
 
-var io = Server(PORT);
+const io = Server(PORT);
 
 io.close(); // Close current server
 
@@ -295,135 +369,202 @@ server.listen(PORT); // PORT is free to use
 
 io = Server(server);
 </code></pre>
-<h2 id="namespace">Namespace</h2>
+<h3 id="server-engine-generateid"><a class="icon-link deep-link" href="/docs/server-api#server-engine-generateid" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>server.engine.generateId</h3>
+<p>Overwrites the default method to generate your custom socket id.</p>
+<p>The function is called with a node request object (<code>http.IncomingMessage</code>) as first parameter.</p>
+<pre><code class="lang-js">io.engine.generateId = (req) =&gt; {
+  return &quot;custom:id:&quot; + custom_id++; // custom id must be unique
+}
+</code></pre>
+<h2 id="namespace"><a class="icon-link deep-link" href="/docs/server-api#namespace" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Namespace</h2>
 <p>Represents a pool of sockets connected under a given scope identified<br>by a pathname (eg: <code>/chat</code>).</p>
-<p>By default the client always connects to <code>/</code>.</p>
-<h3 id="namespace-name"><a class="icon-link deep-link" href="/docs/server-api/#namespace-name" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.name</h3>
+<p>A client always connects to <code>/</code> (the main namespace), then potentially connect to other namespaces (while using the same underlying connection).</p>
+<h3 id="namespace-name"><a class="icon-link deep-link" href="/docs/server-api#namespace-name" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.name</h3>
 <ul>
 <li><em>(String)</em></li>
 </ul>
 <p>The namespace identifier property.</p>
-<h3 id="namespace-connected"><a class="icon-link deep-link" href="/docs/server-api/#namespace-connected" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.connected</h3>
+<h3 id="namespace-connected"><a class="icon-link deep-link" href="/docs/server-api#namespace-connected" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.connected</h3>
 <ul>
 <li><em>(Object&lt;Socket&gt;)</em></li>
 </ul>
 <p>The hash of <code>Socket</code> objects that are connected to this namespace, indexed by <code>id</code>.</p>
-<h3 id="namespace-emit-eventname-args"><a class="icon-link deep-link" href="/docs/server-api/#namespace-emit-eventname-args" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.emit(eventName[, ...args])</h3>
+<h3 id="namespace-adapter"><a class="icon-link deep-link" href="/docs/server-api#namespace-adapter" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.adapter</h3>
+<ul>
+<li><em>(Adapter)</em></li>
+</ul>
+<p>The <code>Adapter</code> used for the namespace. Useful when using the <code>Adapter</code> based on <a href="https://github.com/socketio/socket.io-redis">Redis</a>, as it exposes methods to manage sockets and rooms accross your cluster.</p>
+<p><strong>Note:</strong> the adapter of the main namespace can be accessed with <code>io.of(&#39;/&#39;).adapter</code>.</p>
+<h3 id="namespace-to-room"><a class="icon-link deep-link" href="/docs/server-api#namespace-to-room" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.to(room)</h3>
+<ul>
+<li><code>room</code> <em>(String)</em></li>
+<li><strong>Returns</strong> <code>Namespace</code> for chaining</li>
+</ul>
+<p>Sets a modifier for a subsequent event emission that the event will only be <em>broadcasted</em> to clients that have joined the given <code>room</code>.</p>
+<p>To emit to multiple rooms, you can call <code>to</code> several times.</p>
+<pre><code class="lang-js">const io = require(&#39;socket.io&#39;)();
+const adminNamespace = io.of(&#39;/admin&#39;);
+
+adminNamespace.to(&#39;level1&#39;).emit(&#39;an event&#39;, { some: &#39;data&#39; });
+</code></pre>
+<h3 id="namespace-in-room"><a class="icon-link deep-link" href="/docs/server-api#namespace-in-room" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.in(room)</h3>
+<p>Synonym of <a href="#namespace-to-room">namespace.to(room)</a>.</p>
+<h3 id="namespace-emit-eventname-args"><a class="icon-link deep-link" href="/docs/server-api#namespace-emit-eventname-args" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.emit(eventName[, ...args])</h3>
 <ul>
 <li><code>eventName</code> <em>(String)</em></li>
 <li><code>args</code></li>
 </ul>
 <p>Emits an event to all connected clients. The following two are equivalent:</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
-
+<pre><code class="lang-js">const io = require(&#39;socket.io&#39;)();
 io.emit(&#39;an event sent to all connected clients&#39;); // main namespace
 
-var chat = io.of(&#39;/chat&#39;);
+const chat = io.of(&#39;/chat&#39;);
 chat.emit(&#39;an event sent to all connected clients in chat namespace&#39;);
 </code></pre>
-<h3 id="namespace-clients-callback"><a class="icon-link deep-link" href="/docs/server-api/#namespace-clients-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.clients(callback)</h3>
+<p><strong>Note:</strong> acknowledgements are not supported when emitting from namespace.</p>
+<h3 id="namespace-clients-callback"><a class="icon-link deep-link" href="/docs/server-api#namespace-clients-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.clients(callback)</h3>
 <ul>
 <li><code>callback</code> <em>(Function)</em></li>
 </ul>
 <p>Gets a list of client IDs connected to this namespace (across all nodes if applicable).</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
-io.of(&#39;/chat&#39;).clients(function(error, clients){
+<pre><code class="lang-js">const io = require(&#39;socket.io&#39;)();
+io.of(&#39;/chat&#39;).clients((error, clients) =&gt; {
   if (error) throw error;
   console.log(clients); // =&gt; [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD]
 });
 </code></pre>
 <p>An example to get all clients in namespace&#39;s room:</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
-io.of(&#39;/chat&#39;).in(&#39;general&#39;).clients(function(error, clients){
+<pre><code class="lang-js">io.of(&#39;/chat&#39;).in(&#39;general&#39;).clients((error, clients) =&gt; {
   if (error) throw error;
   console.log(clients); // =&gt; [Anw2LatarvGVVXEIAAAD]
 });
 </code></pre>
 <p>As with broadcasting, the default is all clients from the default namespace (&#39;/&#39;):</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
-io.clients(function(error, clients){
+<pre><code class="lang-js">io.clients((error, clients) =&gt; {
   if (error) throw error;
   console.log(clients); // =&gt; [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
 });
 </code></pre>
-<h3 id="namespace-use-fn"><a class="icon-link deep-link" href="/docs/server-api/#namespace-use-fn" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.use(fn)</h3>
+<h3 id="namespace-use-fn"><a class="icon-link deep-link" href="/docs/server-api#namespace-use-fn" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>namespace.use(fn)</h3>
 <ul>
 <li><code>fn</code> <em>(Function)</em></li>
 </ul>
 <p>Registers a middleware, which is a function that gets executed for every incoming <code>Socket</code>, and receives as parameters the socket and a function to optionally defer execution to the next registered middleware.</p>
 <p>Errors passed to middleware callbacks are sent as special <code>error</code> packets to clients.</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
-io.use(function(socket, next){
+<pre><code class="lang-js">io.use((socket, next) =&gt; {
   if (socket.request.headers.cookie) return next();
   next(new Error(&#39;Authentication error&#39;));
 });
 </code></pre>
-<h3 id="event-connect"><a class="icon-link deep-link" href="/docs/server-api/#event-connect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect&#39;</h3>
+<h3 id="event-connect"><a class="icon-link deep-link" href="/docs/server-api#event-connect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect&#39;</h3>
 <ul>
 <li><code>socket</code> <em>(Socket)</em> socket connection with client</li>
 </ul>
 <p>Fired upon a connection from client.</p>
-<h3 id="event-connection"><a class="icon-link deep-link" href="/docs/server-api/#event-connection" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connection&#39;</h3>
+<pre><code class="lang-js">io.on(&#39;connect&#39;, (socket) =&gt; {
+  // ...
+});
+
+io.of(&#39;/admin&#39;).on(&#39;connect&#39;, (socket) =&gt; {
+  // ...
+});
+</code></pre>
+<h3 id="event-connection"><a class="icon-link deep-link" href="/docs/server-api#event-connection" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connection&#39;</h3>
 <p>Synonym of <a href="#event-connect">Event: &#39;connect&#39;</a>.</p>
-<h3 id="flag-volatile"><a class="icon-link deep-link" href="/docs/server-api/#flag-volatile" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Flag: &#39;volatile&#39;</h3>
+<h3 id="flag-volatile"><a class="icon-link deep-link" href="/docs/server-api#flag-volatile" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Flag: &#39;volatile&#39;</h3>
 <p>Sets a modifier for a subsequent event emission that the event data may be lost if the clients are not ready to receive messages (because of network slowness or other issues, or because they’re connected through long polling and is in the middle of a request-response cycle).</p>
 <pre><code class="lang-js">io.volatile.emit(&#39;an event&#39;, { some: &#39;data&#39; }); // the clients may or may not receive it
 </code></pre>
-<h3 id="flag-local"><a class="icon-link deep-link" href="/docs/server-api/#flag-local" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Flag: &#39;local&#39;</h3>
+<h3 id="flag-local"><a class="icon-link deep-link" href="/docs/server-api#flag-local" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Flag: &#39;local&#39;</h3>
 <p>Sets a modifier for a subsequent event emission that the event data will only be <em>broadcast</em> to the current node (when the <a href="https://github.com/socketio/socket.io-redis">Redis adapter</a> is used).</p>
 <pre><code class="lang-js">io.local.emit(&#39;an event&#39;, { some: &#39;data&#39; });
 </code></pre>
-<h2 id="socket">Socket</h2>
+<h2 id="socket"><a class="icon-link deep-link" href="/docs/server-api#socket" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Socket</h2>
 <p>A <code>Socket</code> is the fundamental class for interacting with browser clients. A <code>Socket</code> belongs to a certain <code>Namespace</code> (by default <code>/</code>) and uses an underlying <code>Client</code> to communicate.</p>
 <p>It should be noted the <code>Socket</code> doesn&#39;t relate directly to the actual underlying TCP/IP <code>socket</code> and it is only the name of the class.</p>
 <p>Within each <code>Namespace</code>, you can also define arbitrary channels (called <code>room</code>) that the <code>Socket</code> can join and leave. That provides a convenient way to broadcast to a group of <code>Socket</code>s (see <code>Socket#to</code> below).</p>
-<h3 id="socket-id"><a class="icon-link deep-link" href="/docs/server-api/#socket-id" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.id</h3>
+<p>The <code>Socket</code> class inherits from <a href="https://nodejs.org/api/events.html#events_class_eventemitter">EventEmitter</a>. The <code>Socket</code> class overrides the <code>emit</code> method, and does not modify any other <code>EventEmitter</code> method. All methods documented here which also appear as <code>EventEmitter</code> methods (apart from <code>emit</code>) are implemented by <code>EventEmitter</code>, and documentation for <code>EventEmitter</code> applies.</p>
+<h3 id="socket-id"><a class="icon-link deep-link" href="/docs/server-api#socket-id" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.id</h3>
 <ul>
 <li><em>(String)</em></li>
 </ul>
 <p>A unique identifier for the session, that comes from the underlying <code>Client</code>.</p>
-<h3 id="socket-rooms"><a class="icon-link deep-link" href="/docs/server-api/#socket-rooms" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.rooms</h3>
+<h3 id="socket-rooms"><a class="icon-link deep-link" href="/docs/server-api#socket-rooms" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.rooms</h3>
 <ul>
 <li><em>(Object)</em></li>
 </ul>
 <p>A hash of strings identifying the rooms this client is in, indexed by room name.</p>
-<h3 id="socket-client"><a class="icon-link deep-link" href="/docs/server-api/#socket-client" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.client</h3>
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
+  socket.join(&#39;room 237&#39;, () =&gt; {
+    let rooms = Objects.keys(socket.rooms);
+    console.log(rooms); // [ &lt;socket.id&gt;, &#39;room 237&#39; ]
+  });
+});
+</code></pre>
+<h3 id="socket-client"><a class="icon-link deep-link" href="/docs/server-api#socket-client" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.client</h3>
 <ul>
 <li><em>(Client)</em></li>
 </ul>
 <p>A reference to the underlying <code>Client</code> object.</p>
-<h3 id="socket-conn"><a class="icon-link deep-link" href="/docs/server-api/#socket-conn" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.conn</h3>
+<h3 id="socket-conn"><a class="icon-link deep-link" href="/docs/server-api#socket-conn" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.conn</h3>
 <ul>
 <li><em>(engine.Socket)</em></li>
 </ul>
 <p>A reference to the underlying <code>Client</code> transport connection (engine.io <code>Socket</code> object). This allows access to the IO transport layer, which still (mostly) abstracts the actual TCP/IP socket.</p>
-<h3 id="socket-request"><a class="icon-link deep-link" href="/docs/server-api/#socket-request" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.request</h3>
+<h3 id="socket-request"><a class="icon-link deep-link" href="/docs/server-api#socket-request" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.request</h3>
 <ul>
 <li><em>(Request)</em></li>
 </ul>
 <p>A getter proxy that returns the reference to the <code>request</code> that originated the underlying engine.io <code>Client</code>. Useful for accessing request headers such as <code>Cookie</code> or <code>User-Agent</code>.</p>
-<h3 id="socket-use-fn"><a class="icon-link deep-link" href="/docs/server-api/#socket-use-fn" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.use(fn)</h3>
+<h3 id="socket-handshake"><a class="icon-link deep-link" href="/docs/server-api#socket-handshake" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.handshake</h3>
+<ul>
+<li><em>(Object)</em></li>
+</ul>
+<p>The handshake details:</p>
+<pre><code class="lang-js">{
+  headers: /* the headers sent as part of the handshake */,
+  time: /* the date of creation (as string) */,
+  address: /* the ip of the client */,
+  xdomain: /* whether the connection is cross-domain */,
+  secure: /* whether the connection is secure */,
+  issued: /* the date of creation (as unix timestamp) */,
+  url: /* the request URL string */,
+  query: /* the query object */
+}
+</code></pre>
+<p>Usage:</p>
+<pre><code class="lang-js">io.use((socket, next) =&gt; {
+  let handshake = socket.handshake;
+  // ...
+});
+
+io.on(&#39;connection&#39;, (socket) =&gt; {
+  let handshake = socket.handshake;
+  // ...
+});
+</code></pre>
+<h3 id="socket-use-fn"><a class="icon-link deep-link" href="/docs/server-api#socket-use-fn" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.use(fn)</h3>
 <ul>
 <li><code>fn</code> <em>(Function)</em></li>
 </ul>
 <p>Registers a middleware, which is a function that gets executed for every incoming <code>Packet</code> and receives as parameter the packet and a function to optionally defer execution to the next registered middleware.</p>
 <p>Errors passed to middleware callbacks are sent as special <code>error</code> packets to clients.</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
-io.on(&#39;connection&#39;, function(socket){
-  socket.use(function(packet, next){
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
+  socket.use((packet, next) =&gt; {
     if (packet.doge === true) return next();
     next(new Error(&#39;Not a doge error&#39;));
   });
 });
 </code></pre>
-<h3 id="socket-send-args-ack"><a class="icon-link deep-link" href="/docs/server-api/#socket-send-args-ack" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.send([...args][, ack])</h3>
+<h3 id="socket-send-args-ack"><a class="icon-link deep-link" href="/docs/server-api#socket-send-args-ack" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.send([...args][, ack])</h3>
 <ul>
 <li><code>args</code></li>
 <li><code>ack</code> <em>(Function)</em></li>
 <li><strong>Returns</strong> <code>Socket</code></li>
 </ul>
-<p>Sends a <code>message</code> event. See <a href="#socket-emit-eventname-args-ack">socket.emit(eventName[, ...args][, ack])</a>.</p>
-<h3 id="socket-emit-eventname-args-ack"><a class="icon-link deep-link" href="/docs/server-api/#socket-emit-eventname-args-ack" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.emit(eventName[, ...args][, ack])</h3>
+<p>Sends a <code>message</code> event. See <a href="#socketemiteventname-args-ack">socket.emit(eventName[, ...args][, ack])</a>.</p>
+<h3 id="socket-emit-eventname-args-ack"><a class="icon-link deep-link" href="/docs/server-api#socket-emit-eventname-args-ack" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.emit(eventName[, ...args][, ack])</h3>
+<p><em>(overrides <code>EventEmitter.emit</code>)</em></p>
 <ul>
 <li><code>eventName</code> <em>(String)</em></li>
 <li><code>args</code></li>
@@ -435,63 +576,77 @@ io.on(&#39;connection&#39;, function(socket){
 socket.emit(&#39;with-binary&#39;, 1, &#39;2&#39;, { 3: &#39;4&#39;, 5: new Buffer(6) });
 </code></pre>
 <p>The <code>ack</code> argument is optional and will be called with the client&#39;s answer.</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
-io.on(&#39;connection&#39;, function(client){
-  client.emit(&#39;an event&#39;, { some: &#39;data&#39; });
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
+  socket.emit(&#39;an event&#39;, { some: &#39;data&#39; });
 
-  client.emit(&#39;ferret&#39;, &#39;tobi&#39;, function (data) {
+  socket.emit(&#39;ferret&#39;, &#39;tobi&#39;, (data) =&gt; {
     console.log(data); // data will be &#39;woot&#39;
   });
 
   // the client code
-  // client.on(&#39;ferret&#39;, function (name, fn) {
+  // client.on(&#39;ferret&#39;, (name, fn) =&gt; {
   //   fn(&#39;woot&#39;);
   // });
 
 });
 </code></pre>
-<h3 id="socket-on-eventname-callback"><a class="icon-link deep-link" href="/docs/server-api/#socket-on-eventname-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.on(eventName, callback)</h3>
+<h3 id="socket-on-eventname-callback"><a class="icon-link deep-link" href="/docs/server-api#socket-on-eventname-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.on(eventName, callback)</h3>
+<p><em>(inherited from <code>EventEmitter</code>)</em></p>
 <ul>
 <li><code>eventName</code> <em>(String)</em></li>
 <li><code>callback</code> <em>(Function)</em></li>
 <li><strong>Returns</strong> <code>Socket</code></li>
 </ul>
 <p>Register a new handler for the given event.</p>
-<pre><code class="lang-js">socket.on(&#39;news&#39;, function (data) {
+<pre><code class="lang-js">socket.on(&#39;news&#39;, (data) =&gt; {
   console.log(data);
 });
+// with several arguments
+socket.on(&#39;news&#39;, (arg1, arg2, arg3) =&gt; {
+  // ...
+});
+// or with acknowledgement
+socket.on(&#39;news&#39;, (data, callback) =&gt; {
+  callback(0);
+});
 </code></pre>
-<h3 id="socket-join-room-callback"><a class="icon-link deep-link" href="/docs/server-api/#socket-join-room-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.join(room[, callback])</h3>
+<h3 id="socket-once-eventname-listener"><a class="icon-link deep-link" href="/docs/server-api#socket-once-eventname-listener" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.once(eventName, listener)</h3>
+<h3 id="socket-removelistener-eventname-listener"><a class="icon-link deep-link" href="/docs/server-api#socket-removelistener-eventname-listener" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.removeListener(eventName, listener)</h3>
+<h3 id="socket-removealllisteners-eventname"><a class="icon-link deep-link" href="/docs/server-api#socket-removealllisteners-eventname" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.removeAllListeners([eventName])</h3>
+<h3 id="socket-eventnames"><a class="icon-link deep-link" href="/docs/server-api#socket-eventnames" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.eventNames()</h3>
+<p>Inherited from <code>EventEmitter</code> (along with other methods not mentioned here). See Node.js documentation for the <code>events</code> module.</p>
+<h3 id="socket-join-room-callback"><a class="icon-link deep-link" href="/docs/server-api#socket-join-room-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.join(room[, callback])</h3>
 <ul>
 <li><code>room</code> <em>(String)</em></li>
 <li><code>callback</code> <em>(Function)</em></li>
 <li><strong>Returns</strong> <code>Socket</code> for chaining</li>
 </ul>
 <p>Adds the client to the <code>room</code>, and fires optionally a callback with <code>err</code> signature (if any).</p>
-<pre><code class="lang-js">io.on(&#39;connection&#39;, function(socket){
-  socket.join(&#39;room 237&#39;, function(){
-    console.log(socket.rooms); // [ &lt;socket.id&gt;, &#39;room 237&#39; ]
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
+  socket.join(&#39;room 237&#39;, () =&gt; {
+    let rooms = Objects.keys(socket.rooms);
+    console.log(rooms); // [ &lt;socket.id&gt;, &#39;room 237&#39; ]
     io.to(&#39;room 237&#39;, &#39;a new user has joined the room&#39;); // broadcast to everyone in the room
   });
 });
 </code></pre>
 <p>The mechanics of joining rooms are handled by the <code>Adapter</code> that has been configured (see <code>Server#adapter</code> above), defaulting to <a href="https://github.com/socketio/socket.io-adapter">socket.io-adapter</a>.</p>
-<p>For your convenience, each socket automatically joins a room identified by this id (see <code>Socket#id</code>). This makes it easy to broadcast messages to other sockets:</p>
-<pre><code class="lang-js">io.on(&#39;connection&#39;, function(client){
-  client.on(&#39;say to someone&#39;, function(id, msg){
+<p>For your convenience, each socket automatically joins a room identified by its id (see <code>Socket#id</code>). This makes it easy to broadcast messages to other sockets:</p>
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
+  socket.on(&#39;say to someone&#39;, (id, msg) =&gt; {
     // send a private message to the socket with the given id
-    client.broadcast.to(id).emit(&#39;my message&#39;, msg);
+    socket.to(id).emit(&#39;my message&#39;, msg);
   });
 });
 </code></pre>
-<h3 id="socket-join-rooms-callback"><a class="icon-link deep-link" href="/docs/server-api/#socket-join-rooms-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.join(rooms[, callback])</h3>
+<h3 id="socket-join-rooms-callback"><a class="icon-link deep-link" href="/docs/server-api#socket-join-rooms-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.join(rooms[, callback])</h3>
 <ul>
 <li><code>rooms</code> <em>(Array)</em></li>
 <li><code>callback</code> <em>(Function)</em></li>
 <li><strong>Returns</strong> <code>Socket</code> for chaining</li>
 </ul>
 <p>Adds the client to the list of room, and fires optionally a callback with <code>err</code> signature (if any).</p>
-<h3 id="socket-leave-room-callback"><a class="icon-link deep-link" href="/docs/server-api/#socket-leave-room-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.leave(room[, callback])</h3>
+<h3 id="socket-leave-room-callback"><a class="icon-link deep-link" href="/docs/server-api#socket-leave-room-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.leave(room[, callback])</h3>
 <ul>
 <li><code>room</code> <em>(String)</em></li>
 <li><code>callback</code> <em>(Function)</em></li>
@@ -499,73 +654,100 @@ io.on(&#39;connection&#39;, function(client){
 </ul>
 <p>Removes the client from <code>room</code>, and fires optionally a callback with <code>err</code> signature (if any).</p>
 <p><strong>Rooms are left automatically upon disconnection</strong>.</p>
-<h3 id="socket-to-room"><a class="icon-link deep-link" href="/docs/server-api/#socket-to-room" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.to(room)</h3>
+<h3 id="socket-to-room"><a class="icon-link deep-link" href="/docs/server-api#socket-to-room" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.to(room)</h3>
 <ul>
 <li><code>room</code> <em>(String)</em></li>
 <li><strong>Returns</strong> <code>Socket</code> for chaining</li>
 </ul>
-<p>Sets a modifier for a subsequent event emission that the event will only be <em>broadcasted</em> to clients that have joined the given <code>room</code>.</p>
+<p>Sets a modifier for a subsequent event emission that the event will only be <em>broadcasted</em> to clients that have joined the given <code>room</code> (the socket itself being excluded).</p>
 <p>To emit to multiple rooms, you can call <code>to</code> several times.</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
-io.on(&#39;connection&#39;, function(client){
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
   // to one room
-  client.to(&#39;others&#39;).emit(&#39;an event&#39;, { some: &#39;data&#39; });
+  socket.to(&#39;others&#39;).emit(&#39;an event&#39;, { some: &#39;data&#39; });
   // to multiple rooms
-  client.to(&#39;room1&#39;).to(&#39;room2&#39;).emit(&#39;hello&#39;);
+  socket.to(&#39;room1&#39;).to(&#39;room2&#39;).emit(&#39;hello&#39;);
+  // a private message to another socket
+  socket.to(/* another socket id */).emit(&#39;hey&#39;);
 });
 </code></pre>
-<h3 id="socket-in-room"><a class="icon-link deep-link" href="/docs/server-api/#socket-in-room" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.in(room)</h3>
-<p>Synonym of <a href="#sockettoroom">socket.to(room)</a>.</p>
-<h3 id="socket-compress-value"><a class="icon-link deep-link" href="/docs/server-api/#socket-compress-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.compress(value)</h3>
+<p><strong>Note:</strong> acknowledgements are not supported when broadcasting.</p>
+<h3 id="socket-in-room"><a class="icon-link deep-link" href="/docs/server-api#socket-in-room" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.in(room)</h3>
+<p>Synonym of <a href="#socket-to-room">socket.to(room)</a>.</p>
+<h3 id="socket-compress-value"><a class="icon-link deep-link" href="/docs/server-api#socket-compress-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.compress(value)</h3>
 <ul>
 <li><code>value</code> <em>(Boolean)</em> whether to following packet will be compressed</li>
 <li><strong>Returns</strong> <code>Socket</code> for chaining</li>
 </ul>
 <p>Sets a modifier for a subsequent event emission that the event data will only be <em>compressed</em> if the value is <code>true</code>. Defaults to <code>true</code> when you don&#39;t call the method.</p>
-<h3 id="socket-disconnect-close"><a class="icon-link deep-link" href="/docs/server-api/#socket-disconnect-close" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.disconnect(close)</h3>
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
+  socket.compress(false).emit(&#39;uncompressed&#39;, &quot;that&#39;s rough&quot;);
+});
+</code></pre>
+<h3 id="socket-disconnect-close"><a class="icon-link deep-link" href="/docs/server-api#socket-disconnect-close" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.disconnect(close)</h3>
 <ul>
 <li><code>close</code> <em>(Boolean)</em> whether to close the underlying connection</li>
 <li><strong>Returns</strong> <code>Socket</code></li>
 </ul>
 <p>Disconnects this client. If value of close is <code>true</code>, closes the underlying connection. Otherwise, it just disconnects the namespace.</p>
-<h3 id="flag-broadcast"><a class="icon-link deep-link" href="/docs/server-api/#flag-broadcast" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Flag: &#39;broadcast&#39;</h3>
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
+  setTimeout(() =&gt; socket.disconnect(true), 5000);
+});
+</code></pre>
+<h3 id="flag-broadcast"><a class="icon-link deep-link" href="/docs/server-api#flag-broadcast" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Flag: &#39;broadcast&#39;</h3>
 <p>Sets a modifier for a subsequent event emission that the event data will only be <em>broadcast</em> to every sockets but the sender.</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
-io.on(&#39;connection&#39;, function(socket){
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
   socket.broadcast.emit(&#39;an event&#39;, { some: &#39;data&#39; }); // everyone gets it but the sender
 });
 </code></pre>
-<h3 id="flag-volatile-1"><a class="icon-link deep-link" href="/docs/server-api/#flag-volatile-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Flag: &#39;volatile&#39;</h3>
+<h3 id="flag-volatile-1"><a class="icon-link deep-link" href="/docs/server-api#flag-volatile" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Flag: &#39;volatile&#39;</h3>
 <p>Sets a modifier for a subsequent event emission that the event data may be lost if the client is not ready to receive messages (because of network slowness or other issues, or because they’re connected through long polling and is in the middle of a request-response cycle).</p>
-<pre><code class="lang-js">var io = require(&#39;socket.io&#39;)();
-io.on(&#39;connection&#39;, function(socket){
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
   socket.volatile.emit(&#39;an event&#39;, { some: &#39;data&#39; }); // the client may or may not receive it
 });
 </code></pre>
-<h3 id="event-disconnect"><a class="icon-link deep-link" href="/docs/server-api/#event-disconnect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;disconnect&#39;</h3>
+<h3 id="event-disconnect"><a class="icon-link deep-link" href="/docs/server-api#event-disconnect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;disconnect&#39;</h3>
 <ul>
 <li><code>reason</code> <em>(String)</em> the reason of the disconnection (either client or server-side)</li>
 </ul>
 <p>Fired upon disconnection.</p>
-<h3 id="event-error"><a class="icon-link deep-link" href="/docs/server-api/#event-error" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;error&#39;</h3>
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
+  socket.on(&#39;disconnect&#39;, (reason) =&gt; {
+    // ...
+  });
+});
+</code></pre>
+<h3 id="event-error"><a class="icon-link deep-link" href="/docs/server-api#event-error" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;error&#39;</h3>
 <ul>
 <li><code>error</code> <em>(Object)</em> error object</li>
 </ul>
 <p>Fired when an error occurs.</p>
-<h3 id="event-disconnecting"><a class="icon-link deep-link" href="/docs/server-api/#event-disconnecting" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;disconnecting&#39;</h3>
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
+  socket.on(&#39;error&#39;, (error) =&gt; {
+    // ...
+  });
+});
+</code></pre>
+<h3 id="event-disconnecting"><a class="icon-link deep-link" href="/docs/server-api#event-disconnecting" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;disconnecting&#39;</h3>
 <ul>
 <li><code>reason</code> <em>(String)</em> the reason of the disconnection (either client or server-side)</li>
 </ul>
 <p>Fired when the client is going to be disconnected (but hasn&#39;t left its <code>rooms</code> yet).</p>
+<pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
+  socket.on(&#39;disconnecting&#39;, (reason) =&gt; {
+    let rooms = Object.keys(socket.rooms);
+    // ...
+  });
+});
+</code></pre>
 <p>These are reserved events (along with <code>connect</code>, <code>newListener</code> and <code>removeListener</code>) which cannot be used as event names.</p>
-<h2 id="client">Client</h2>
+<h2 id="client"><a class="icon-link deep-link" href="/docs/server-api#client" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Client</h2>
 <p>The <code>Client</code> class represents an incoming transport (engine.io) connection. A <code>Client</code> can be associated with many multiplexed <code>Socket</code>s that belong to different <code>Namespace</code>s.</p>
-<h3 id="client-conn"><a class="icon-link deep-link" href="/docs/server-api/#client-conn" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>client.conn</h3>
+<h3 id="client-conn"><a class="icon-link deep-link" href="/docs/server-api#client-conn" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>client.conn</h3>
 <ul>
 <li><em>(engine.Socket)</em></li>
 </ul>
 <p>A reference to the underlying <code>engine.io</code> <code>Socket</code> connection.</p>
-<h3 id="client-request"><a class="icon-link deep-link" href="/docs/server-api/#client-request" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>client.request</h3>
+<h3 id="client-request"><a class="icon-link deep-link" href="/docs/server-api#client-request" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>client.request</h3>
 <ul>
 <li><em>(Request)</em></li>
 </ul>

@@ -76,7 +76,17 @@
           <a class="navigation-class" href="#io">IO</a>
           <ul class="class-details">
             <li><a href="#io-protocol">io.protocol</a></li>
-            <li><a href="#io-url-options">io(url[, options])</a></li>
+            <li><a href="#io-url-options">io([url][, options])</a><li>
+            <li><a href="#initialization-examples">Initialization examples</a><li>
+            <ul>
+            <li><a href="#with-multiplexing">With multiplexing</a></li>
+            <li><a href="#with-custom-path">With custom path</a></li>
+            <li><a href="#with-query-parameters">With query parameters</a></li>
+            <li><a href="#with-query-option">With query option</a></li>
+            <li><a href="#with-extraheaders">With extraHeaders</a></li>
+            <li><a href="#with-websocket-transport-only">With websocket transport only</a></li>
+            <li><a href="#with-a-custom-parser">With a custom parser</a></li>
+            </ul>
           </ul>
         <li>
         <li>
@@ -124,6 +134,8 @@
             <li><a href="#event-reconnecting-1">Event: &#39;reconnecting&#39;</a></li>
             <li><a href="#event-reconnect_error-1">Event: &#39;reconnect_error&#39;</a></li>
             <li><a href="#event-reconnect_failed-1">Event: &#39;reconnect_failed&#39;</a></li>
+            <li><a href="#event-ping-1">Event: &#39;ping&#39;</a></li>
+            <li><a href="#event-pong-1">Event: &#39;pong&#39;</a></li>
           </ul>
         <li>
       </ul>
@@ -137,23 +149,153 @@
   <div class="entry-content">
     <h1 id="client-api"><a class="icon-link deep-link" href="/docs/client-api/#client-api" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Client API</h1>
 
-<h2 id="io">IO</h2>
+<h2 id="io"><a class="icon-link deep-link" href="/docs/client-api#io" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>IO</h2>
 <p>Exposed as the <code>io</code> namespace in the standalone build, or the result of calling <code>require(&#39;socket.io-client&#39;)</code>.</p>
+<pre><code class="lang-html">&lt;script src=&quot;/socket.io/socket.io.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  const socket = io(&#39;http://localhost&#39;);
+&lt;/script&gt;
+</code></pre>
+<pre><code class="lang-js">const io = require(&#39;socket.io-client&#39;);
+// or with import syntax
+import io from &#39;socket.io-client&#39;;
+</code></pre>
 <h3 id="io-protocol"><a class="icon-link deep-link" href="/docs/client-api#io-protocol" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>io.protocol</h3>
 <ul>
 <li><em>(Number)</em></li>
 </ul>
 <p>The protocol revision number.</p>
-<h3 id="io-url-options"><a class="icon-link deep-link" href="/docs/client-api#io-url-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>io(url[, options])</h3>
+<h3 id="io-url-options"><a class="icon-link deep-link" href="/docs/client-api#io-url-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>io([url][, options])</h3>
 <ul>
-<li><code>url</code> <em>(String)</em></li>
-<li><code>options</code> <em>(Object)</em></li>
+<li><code>url</code> <em>(String)</em> (defaults to <code>window.location</code>)</li>
+<li><code>options</code> <em>(Object)</em><ul>
+<li><code>forceNew</code> <em>(Boolean)</em> whether to reuse an existing connection</li>
+</ul>
+</li>
 <li><strong>Returns</strong> <code>Socket</code></li>
 </ul>
 <p>Creates a new <code>Manager</code> for the given URL, and attempts to reuse an existing <code>Manager</code> for subsequent calls, unless the <code>multiplex</code> option is passed with <code>false</code>. Passing this option is the equivalent of passing <code>&#39;force new connection&#39;: true</code> or <code>forceNew: true</code>.</p>
 <p>A new <code>Socket</code> instance is returned for the namespace specified by the pathname in the URL, defaulting to <code>/</code>. For example, if the <code>url</code> is <code>http://localhost/users</code>, a transport connection will be established to <code>http://localhost</code> and a Socket.IO connection will be established to <code>/users</code>.</p>
+<p>Query parameters can also be provided, either with the <code>query</code> option or directly in the url (example: <code>http://localhost/users?token=abc</code>).</p>
 <p>See <a href="#new-manager-url-options">new Manager(url[, options])</a> for available <code>options</code>.</p>
-<h2 id="manager">Manager</h2>
+<h3 id="initialization-examples"><a class="icon-link deep-link" href="/docs/client-api#initialization-examples" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Initialization examples</h3>
+<h4 id="with-multiplexing"><a class="icon-link deep-link" href="/docs/client-api#with-multiplexing" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>With multiplexing</h4>
+<p>By default, a single connection is used when connecting to different namespaces (to minimize resources):</p>
+<pre><code class="lang-js">const socket = io();
+const adminSocket = io(&#39;/admin&#39;);
+// a single connection will be established
+</code></pre>
+<p>That behaviour can be disabled with the <code>forceNew</code> option:</p>
+<pre><code class="lang-js">const socket = io();
+const adminSocket = io(&#39;/admin&#39;, { forceNew: true });
+// will create two distinct connections
+</code></pre>
+<p>Note: reusing the same namespace will also create two connections</p>
+<pre><code class="lang-js">const socket = io();
+const socket2 = io();
+// will also create two distinct connections
+</code></pre>
+<h4 id="with-custom-path"><a class="icon-link deep-link" href="/docs/client-api#with-custom-path" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>With custom <code>path</code></h4>
+<pre><code class="lang-js">const socket = io(&#39;http://localhost&#39;, {
+  path: &#39;/myownpath&#39;
+});
+
+// server-side
+const io = require(&#39;socket.io&#39;)({
+  path: &#39;/myownpath&#39;
+});
+</code></pre>
+<p>The request URLs will look like: <code>localhost/myownpath/?EIO=3&amp;transport=polling&amp;sid=&lt;id&gt;</code></p>
+<pre><code class="lang-js">const socket = io(&#39;http://localhost/admin&#39;, {
+  path: &#39;/mypath&#39;
+});
+</code></pre>
+<p>Here, the socket connects to the <code>admin</code> namespace, with the custom path <code>mypath</code>.</p>
+<p>The request URLs will look like: <code>localhost/mypath/?EIO=3&amp;transport=polling&amp;sid=&lt;id&gt;</code> (the namespace is sent as part of the payload).</p>
+<h4 id="with-query-parameters"><a class="icon-link deep-link" href="/docs/client-api#with-query-parameters" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>With query parameters</h4>
+<pre><code class="lang-js">const socket = io(&#39;http://localhost?token=abc&#39;);
+
+// server-side
+const io = require(&#39;socket.io&#39;)();
+
+// middleware
+io.use((socket, next) =&gt; {
+  let token = socket.handshake.query.token;
+  if (isValid(token)) {
+    return next();
+  }
+  return next(new Error(&#39;authentication error&#39;));
+});
+
+// then
+io.on(&#39;connection&#39;, (socket) =&gt; {
+  let token = socket.handshake.query.token;
+  // ...
+});
+</code></pre>
+<h4 id="with-query-option"><a class="icon-link deep-link" href="/docs/client-api#with-query-option" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>With query option</h4>
+<pre><code class="lang-js">const socket = io({
+  query: {
+    token: &#39;cde&#39;
+  }
+});
+</code></pre>
+<p>The query content can also be updated on reconnection:</p>
+<pre><code class="lang-js">socket.on(&#39;reconnect_attempt&#39;, () =&gt; {
+  socket.io.opts.query = {
+    token: &#39;fgh&#39;
+  }
+});
+</code></pre>
+<h4 id="with-extraheaders"><a class="icon-link deep-link" href="/docs/client-api#with-extraheaders" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>With <code>extraHeaders</code></h4>
+<p>This only works if <code>polling</code> transport is enabled (which is the default). Custom headers will not be appended when using <code>websocket</code> as the transport. This happens because the WebSocket handshake does not honor custom headers. (For background see the <a href="https://tools.ietf.org/html/rfc6455#section-4">WebSocket protocol RFC</a>)</p>
+<pre><code class="lang-js">const socket = io({
+  transportOptions: {
+    polling: {
+      extraHeaders: {
+        &#39;x-clientid&#39;: &#39;abc&#39;
+      }
+    }
+  }
+});
+
+// server-side
+const io = require(&#39;socket.io&#39;)();
+
+// middleware
+io.use((socket, next) =&gt; {
+  let clientId = socket.handshake.headers[&#39;x-clientid&#39;];
+  if (isValid(clientId)) {
+    return next();
+  }
+  return next(new Error(&#39;authentication error&#39;));
+});
+</code></pre>
+<h4 id="with-websocket-transport-only"><a class="icon-link deep-link" href="/docs/client-api#with-websocket-transport-only" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>With <code>websocket</code> transport only</h4>
+<p>By default, a long-polling connection is established first, then upgraded to &quot;better&quot; transports (like WebSocket). If you like to live dangerously, this part can be skipped:</p>
+<pre><code class="lang-js">const socket = io({
+  transports: [&#39;websocket&#39;]
+});
+
+// on reconnection, reset the transports option, as the Websocket
+// connection may have failed (caused by proxy, firewall, browser, ...)
+socket.on(&#39;reconnect_attempt&#39;, () =&gt; {
+  socket.io.opts.transports = [&#39;polling&#39;, &#39;websocket&#39;];
+});
+</code></pre>
+<h4 id="with-a-custom-parser"><a class="icon-link deep-link" href="/docs/client-api#with-a-custom-parser" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>With a custom parser</h4>
+<p>The default <a href="https://github.com/socketio/socket.io-parser">parser</a> promotes compatibility (support for <code>Blob</code>, <code>File</code>, binary check) at the expense of performance. A custom parser can be provided to match the needs of your application. Please see the example <a href="https://github.com/socketio/socket.io/tree/master/examples/custom-parsers">here</a>.</p>
+<pre><code class="lang-js">const parser = require(&#39;socket.io-msgpack-parser&#39;); // or require(&#39;socket.io-json-parser&#39;)
+const socket = io({
+  parser: parser
+});
+
+// the server-side must have the same parser, to be able to communicate
+const io = require(&#39;socket.io&#39;)({
+  parser: parser
+});
+</code></pre>
+<h2 id="manager"><a class="icon-link deep-link" href="/docs/client-api#manager" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Manager</h2>
 <h3 id="new-manager-url-options"><a class="icon-link deep-link" href="/docs/client-api#new-manager-url-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>new Manager(url[, options])</h3>
 <ul>
 <li><code>url</code> <em>(String)</em></li>
@@ -166,6 +308,8 @@
 <li><code>randomizationFactor</code> <em>(Number)</em> (<code>0.5</code>), 0 &lt;= randomizationFactor &lt;= 1</li>
 <li><code>timeout</code> <em>(Number)</em> connection timeout before a <code>connect_error</code><br>and <code>connect_timeout</code> events are emitted (<code>20000</code>)</li>
 <li><code>autoConnect</code> <em>(Boolean)</em> by setting this false, you have to call <code>manager.open</code><br>whenever you decide it&#39;s appropriate</li>
+<li><code>query</code> <em>(Object)</em>: additional query parameters that are sent when connecting a namespace (then found in <code>socket.handshake.query</code> object on the server-side)</li>
+<li><code>parser</code> <em>(Parser)</em>: the parser to use. Defaults to an instance of the <code>Parser</code> that ships with socket.io. See <a href="https://github.com/socketio/socket.io-parser">socket.io-parser</a>.</li>
 </ul>
 </li>
 <li><strong>Returns</strong> <code>Manager</code></li>
@@ -189,7 +333,7 @@
 <li><strong>Returns</strong> <code>Manager|Number</code></li>
 </ul>
 <p>Sets the <code>reconnectionDelay</code> option, or returns it if no parameters are passed.</p>
-<h3 id="manager-reconnectiondelaymax-value"><a class="icon-link deep-link" href="/docs/client-api#manager-reconnectiondelaymax-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>manager.reconnectionDelayMax([value])</h3>
+<h3 id="manager-reconnectiondelaymax-value"><a class="icon-link deep-link" href="/docs/client-api#manager-reconnectiondelaymax-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a><a class="icon-link deep-link" href="/docs/client-api#manager-reconnectiondelaymax-value" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>manager.reconnectionDelayMax([value])</h3>
 <ul>
 <li><code>value</code> <em>(Number)</em></li>
 <li><strong>Returns</strong> <code>Manager|Number</code></li>
@@ -209,7 +353,7 @@
 <p>If the manager was initiated with <code>autoConnect</code> to <code>false</code>, launch a new connection attempt.</p>
 <p>The <code>callback</code> argument is optional and will be called once the attempt fails/succeeds.</p>
 <h3 id="manager-connect-callback"><a class="icon-link deep-link" href="/docs/client-api#manager-connect-callback" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>manager.connect([callback])</h3>
-<p>Synonym of <a href="#manageropencallback">manager.open([callback])</a>.</p>
+<p>Synonym of <a href="#manager-open-callback">manager.open([callback])</a>.</p>
 <h3 id="manager-socket-nsp-options"><a class="icon-link deep-link" href="/docs/client-api#manager-socket-nsp-options" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>manager.socket(nsp, options)</h3>
 <ul>
 <li><code>nsp</code> <em>(String)</em></li>
@@ -250,17 +394,17 @@
 <li><code>ms</code> <em>(Number)</em> number of ms elapsed since <code>ping</code> packet (i.e.: latency).</li>
 </ul>
 <p>Fired when a pong is received from the server.</p>
-<h2 id="socket">Socket</h2>
+<h2 id="socket"><a class="icon-link deep-link" href="/docs/client-api#socket" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Socket</h2>
 <h3 id="socket-id"><a class="icon-link deep-link" href="/docs/client-api#socket-id" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.id</h3>
 <ul>
 <li><em>(String)</em></li>
 </ul>
 <p>An unique identifier for the socket session. Set after the <code>connect</code> event is triggered, and updated after the <code>reconnect</code> event.</p>
-<pre><code class="lang-js">var socket = io(&#39;http://localhost&#39;);
+<pre><code class="lang-js">const socket = io(&#39;http://localhost&#39;);
 
 console.log(socket.id); // undefined
 
-socket.on(&#39;connect&#39;, function(){
+socket.on(&#39;connect&#39;, () =&gt; {
   console.log(socket.id); // &#39;G5p5...&#39;
 });
 </code></pre>
@@ -268,9 +412,21 @@ socket.on(&#39;connect&#39;, function(){
 <ul>
 <li><strong>Returns</strong> <code>Socket</code></li>
 </ul>
-<p>Opens the socket.</p>
+<p>Manually opens the socket.</p>
+<pre><code class="lang-js">const socket = io({
+  autoConnect: false
+});
+
+// ...
+socket.open();
+</code></pre>
+<p>It can also be used to manually reconnect:</p>
+<pre><code class="lang-js">socket.on(&#39;disconnect&#39;, () =&gt; {
+  socket.open();
+});
+</code></pre>
 <h3 id="socket-connect"><a class="icon-link deep-link" href="/docs/client-api#socket-connect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.connect()</h3>
-<p>Synonym of <a href="#socketopen">socket.open()</a>.</p>
+<p>Synonym of <a href="#socket-open">socket.open()</a>.</p>
 <h3 id="socket-send-args-ack"><a class="icon-link deep-link" href="/docs/client-api#socket-send-args-ack" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.send([...args][, ack])</h3>
 <ul>
 <li><code>args</code></li>
@@ -290,13 +446,13 @@ socket.on(&#39;connect&#39;, function(){
 socket.emit(&#39;with-binary&#39;, 1, &#39;2&#39;, { 3: &#39;4&#39;, 5: new Buffer(6) });
 </code></pre>
 <p>The <code>ack</code> argument is optional and will be called with the server answer.</p>
-<pre><code class="lang-js">socket.emit(&#39;ferret&#39;, &#39;tobi&#39;, function (data) {
+<pre><code class="lang-js">socket.emit(&#39;ferret&#39;, &#39;tobi&#39;, (data) =&gt; {
   console.log(data); // data will be &#39;woot&#39;
 });
 
 // server:
-//  io.on(&#39;connection&#39;, function (socket) {
-//    socket.on(&#39;ferret&#39;, function (name, fn) {
+//  io.on(&#39;connection&#39;, (socket) =&gt; {
+//    socket.on(&#39;ferret&#39;, (name, fn) =&gt; {
 //      fn(&#39;woot&#39;);
 //    });
 //  });
@@ -308,8 +464,17 @@ socket.emit(&#39;with-binary&#39;, 1, &#39;2&#39;, { 3: &#39;4&#39;, 5: new Buff
 <li><strong>Returns</strong> <code>Socket</code></li>
 </ul>
 <p>Register a new handler for the given event.</p>
-<pre><code class="lang-js">socket.on(&#39;news&#39;, function (data) {
+<pre><code class="lang-js">socket.on(&#39;news&#39;, (data) =&gt; {
   console.log(data);
+});
+
+// with multiple arguments
+socket.on(&#39;news&#39;, (arg1, arg2, arg3, arg4) =&gt; {
+  // ...
+});
+// with callback
+socket.on(&#39;news&#39;, (cb) =&gt; {
+  cb(0);
 });
 </code></pre>
 <p>The socket actually inherits every method of the <a href="https://github.com/component/emitter">Emitter</a> class, like <code>hasListeners</code>, <code>once</code> or <code>off</code> (to remove an event listener).</p>
@@ -327,45 +492,109 @@ socket.emit(&#39;with-binary&#39;, 1, &#39;2&#39;, { 3: &#39;4&#39;, 5: new Buff
 </ul>
 <p>Disconnects the socket manually.</p>
 <h3 id="socket-disconnect"><a class="icon-link deep-link" href="/docs/client-api#socket-disconnect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>socket.disconnect()</h3>
-<p>Synonym of <a href="#socketclose">socket.close()</a>.</p>
+<p>Synonym of <a href="#socket-close">socket.close()</a>.</p>
 <h3 id="event-connect"><a class="icon-link deep-link" href="/docs/client-api#event-connect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect&#39;</h3>
 <p>Fired upon a connection including a successful reconnection.</p>
-<h3 id="event-connect_error-1"><a class="icon-link deep-link" href="/docs/client-api#event-connect_error-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect_error&#39;</h3>
+<pre><code class="lang-js">socket.on(&#39;connect&#39;, () =&gt; {
+  // ...
+});
+
+// note: you should register event handlers outside of connect,
+// so they are not registered again on reconnection
+socket.on(&#39;myevent&#39;, () =&gt; {
+  // ...
+});
+</code></pre>
+<h3 id="event-connect_error-1"><a class="icon-link deep-link" href="/docs/client-api#event-connect_error" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect_error&#39;</h3>
 <ul>
 <li><code>error</code> <em>(Object)</em> error object</li>
 </ul>
 <p>Fired upon a connection error.</p>
-<h3 id="event-connect_timeout-1"><a class="icon-link deep-link" href="/docs/client-api#event-connect_timeout-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect_timeout&#39;</h3>
+<pre><code class="lang-js">socket.on(&#39;connect_error&#39;, (error) =&gt; {
+  // ...
+});
+</code></pre>
+<h3 id="event-connect_timeout-1"><a class="icon-link deep-link" href="/docs/client-api#event-connect_timeout" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;connect_timeout&#39;</h3>
 <p>Fired upon a connection timeout.</p>
+<pre><code class="lang-js">socket.on(&#39;connect_timeout&#39;, (timeout) =&gt; {
+  // ...
+});
+</code></pre>
 <h3 id="event-error"><a class="icon-link deep-link" href="/docs/client-api#event-error" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;error&#39;</h3>
 <ul>
 <li><code>error</code> <em>(Object)</em> error object</li>
 </ul>
 <p>Fired when an error occurs.</p>
+<pre><code class="lang-js">socket.on(&#39;error&#39;, (error) =&gt; {
+  // ...
+});
+</code></pre>
 <h3 id="event-disconnect"><a class="icon-link deep-link" href="/docs/client-api#event-disconnect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;disconnect&#39;</h3>
+<ul>
+<li><code>reason</code> <em>(String)</em> either &#39;io server disconnect&#39; or &#39;io client disconnect&#39;</li>
+</ul>
 <p>Fired upon a disconnection.</p>
-<h3 id="event-reconnect-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect&#39;</h3>
+<pre><code class="lang-js">socket.on(&#39;disconnect&#39;, (reason) =&gt; {
+  // ...
+});
+</code></pre>
+<h3 id="event-reconnect-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect&#39;</h3>
 <ul>
 <li><code>attempt</code> <em>(Number)</em> reconnection attempt number</li>
 </ul>
 <p>Fired upon a successful reconnection.</p>
-<h3 id="event-reconnect_attempt-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_attempt-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_attempt&#39;</h3>
+<pre><code class="lang-js">socket.on(&#39;reconnect&#39;, (attemptNumber) =&gt; {
+  // ...
+});
+</code></pre>
+<h3 id="event-reconnect_attempt-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_attempt" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_attempt&#39;</h3>
 <ul>
 <li><code>attempt</code> <em>(Number)</em> reconnection attempt number</li>
 </ul>
 <p>Fired upon an attempt to reconnect.</p>
-<h3 id="event-reconnecting-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnecting-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnecting&#39;</h3>
+<pre><code class="lang-js">socket.on(&#39;reconnect_attempt&#39;, (attemptNumber) =&gt; {
+  // ...
+});
+</code></pre>
+<h3 id="event-reconnecting-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnecting" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnecting&#39;</h3>
 <ul>
 <li><code>attempt</code> <em>(Number)</em> reconnection attempt number</li>
 </ul>
 <p>Fired upon an attempt to reconnect.</p>
-<h3 id="event-reconnect_error-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_error-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_error&#39;</h3>
+<pre><code class="lang-js">socket.on(&#39;reconnecting&#39;, (attemptNumber) =&gt; {
+  // ...
+});
+</code></pre>
+<h3 id="event-reconnect_error-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_error" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_error&#39;</h3>
 <ul>
 <li><code>error</code> <em>(Object)</em> error object</li>
 </ul>
 <p>Fired upon a reconnection attempt error.</p>
-<h3 id="event-reconnect_failed-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_failed-1" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_failed&#39;</h3>
+<pre><code class="lang-js">socket.on(&#39;reconnect_error&#39;, (error) =&gt; {
+  // ...
+});
+</code></pre>
+<h3 id="event-reconnect_failed-1"><a class="icon-link deep-link" href="/docs/client-api#event-reconnect_failed" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;reconnect_failed&#39;</h3>
 <p>Fired when couldn&#39;t reconnect within <code>reconnectionAttempts</code>.</p>
+<pre><code class="lang-js">socket.on(&#39;reconnect_failed&#39;, () =&gt; {
+  // ...
+});
+</code></pre>
+<h3 id="event-ping-1"><a class="icon-link deep-link" href="/docs/client-api#event-ping" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;ping&#39;</h3>
+<p>Fired when a ping packet is written out to the server.</p>
+<pre><code class="lang-js">socket.on(&#39;ping&#39;, () =&gt; {
+  // ...
+});
+</code></pre>
+<h3 id="event-pong-1"><a class="icon-link deep-link" href="/docs/client-api#event-pong" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Event: &#39;pong&#39;</h3>
+<ul>
+<li><code>ms</code> <em>(Number)</em> number of ms elapsed since <code>ping</code> packet (i.e.: latency).</li>
+</ul>
+<p>Fired when a pong is received from the server.</p>
+<pre><code class="lang-js">socket.on(&#39;pong&#39;, (latency) =&gt; {
+  // ...
+});
+</code></pre>
 
       </div><!-- .entry-content -->
 </article><!-- #post-## -->
