@@ -118,7 +118,7 @@ nsp.emit('hi', 'everyone!');</code></pre>
   });
 });</code></pre>
 <h2 id="disconnection"><a class="icon-link deep-link" href="/docs/rooms-and-namespaces/#disconnection" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Disconnection</h2>
-<p>Upon disconnection, sockets <code>leave</code> all the channels they were part of automatically, and no specially teardown is needed on your part.</p>
+<p>Upon disconnection, sockets <code>leave</code> all the channels they were part of automatically, and no special teardown is needed on your part.</p>
 <h1 id="sending-messages-from-the-outside-world"><a class="icon-link deep-link" href="/docs/rooms-and-namespaces/#sending-messages-from-the-outside-world" style="position: absolute; margin-left: -18px; text-decoration: none; color: #999;">#</a>Sending messages from the outside-world</h1>
 <p>In some cases, you might want to emit events to sockets in Socket.IO namespaces / rooms from outside the context of your Socket.IO processes.</p>
 <p>There’s several ways to tackle this problem, like implementing your own channel to send messages into the process.</p>
