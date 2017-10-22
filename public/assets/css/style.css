@@ -1829,3 +1829,80 @@ Licensed under the MIT license - http://opensource.org/licenses/MIT
 
 Copyright (c) 2014 Daniel Eden
 */.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}.animated.infinite{-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite}.animated.hinge{-webkit-animation-duration:2s;animation-duration:2s}@-webkit-keyframes bounce{0%,100%,20%,53%,80%{-webkit-transition-timing-function:cubic-bezier(0.215,.61,.355,1);transition-timing-function:cubic-bezier(0.215,.61,.355,1);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}40%,43%{-webkit-transition-timing-function:cubic-bezier(0.755,.050,.855,.060);transition-timing-function:cubic-bezier(0.755,.050,.855,.060);-webkit-transform:translate3d(0,-20px,0);transform:translate3d(0,-20px,0)}70%{-webkit-transition-timing-function:cubic-bezier(0.755,.050,.855,.060);transition-timing-function:cubic-bezier(0.755,.050,.855,.060);-webkit-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}90%{-webkit-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0)}}@keyframes bounce{0%,100%,20%,53%,80%{-webkit-transition-timing-function:cubic-bezier(0.215,.61,.355,1);transition-timing-function:cubic-bezier(0.215,.61,.355,1);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}40%,43%{-webkit-transition-timing-function:cubic-bezier(0.755,.050,.855,.060);transition-timing-function:cubic-bezier(0.755,.050,.855,.060);-webkit-transform:translate3d(0,-20px,0);-ms-transform:translate3d(0,-20px,0);transform:translate3d(0,-20px,0)}70%{-webkit-transition-timing-function:cubic-bezier(0.755,.050,.855,.060);transition-timing-function:cubic-bezier(0.755,.050,.855,.060);-webkit-transform:translate3d(0,-10px,0);-ms-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0)}}.bounce{-webkit-animation-name:bounce;animation-name:bounce;-webkit-transform-origin:center bottom;-ms-transform-origin:center bottom;transform-origin:center bottom}
+
+/*!
+ * Carbon ads
+ */
+
+#carbonads {
+  display: block;
+  overflow: hidden;
+  text-align: right;
+  line-height: 1.5;
+}
+
+#carbonads a {
+  color: #9b9b9b;
+  text-decoration: none;
+}
+
+#carbonads a:hover {
+  color: inherit;
+}
+
+#carbonads span {
+  display: block;
+  overflow: hidden;
+}
+
+.carbon-img {
+  display: block;
+  margin: 0 auto 8px;
+  line-height: 0;
+}
+
+.carbon-text {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.carbon-poweredby {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 9px;
+  line-height: 1;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 1100px) {
+  #carbonads {
+    float: none;
+    margin: 20px auto 0;
+    padding: 1em;
+    max-width: 330px;
+    border: solid 1px #e8e8e8;
+    border-radius: 3px;
+    text-align: left;
+  }
+  #carbonads span {
+    position: relative;
+  }
+  #carbonads > span {
+    max-width: none;
+  }
+  .carbon-img {
+    float: left;
+    margin: 0 1em 0 0;
+  }
+  .carbon-text {
+    float: left;
+    margin-bottom: 0;
+    max-width: calc(100% - 130px - 1em);
+  }
+  .carbon-poweredby {
+    position: absolute;
+    bottom: 0;
+    left: 143px;
+    display: block;
+  }
+}
