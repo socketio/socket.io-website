@@ -92,6 +92,7 @@
 
 $(document).ready(function() {
   $(".arrow > a").click(function() {
+    event.preventDefault();
     $('html, body').animate({
       scrollTop: $("#examples").offset().top
     }, 500);
