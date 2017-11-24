@@ -20,6 +20,7 @@
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
   </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 
 </head>
 
@@ -67,6 +68,8 @@
         <li><a href="/docs/logging-and-debugging/">Logging and Debugging</a></li>
         <li><a href="/docs/emit-cheatsheet/">Emit cheatsheet</a></li>
         <li><a href="/docs/faq/">FAQ</a></li>
+        <li class="anchor"></li>
+        <li><input id="docsearch-input" type="text" placeholder="Search the docs" size="16" style="text-align: right;" /></li>
       </ul>
     </div>
 
@@ -162,6 +165,16 @@ setInterval(function(){
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 <script src="/assets/js/default.min.js"></script>
+
+<!-- Algolia DocSearch -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+  apiKey: '58123f8fe0926bd32287730dbc483f6d',
+  indexName: 'socket_io',
+  inputSelector: '#docsearch-input',
+  debug: true  // Set debug to true if you want to inspect the dropdown
+});
+</script>
 
 </body>
 </html>
