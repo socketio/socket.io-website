@@ -722,7 +722,6 @@ body {
 #bar {
   background: url(../img/galaxy.jpg);
   height: 7px;
-  background-position: left 60%;
   position: fixed;
   top: 0;
   width: 100%;
