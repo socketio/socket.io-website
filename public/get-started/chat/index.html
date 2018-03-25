@@ -142,7 +142,7 @@ res.sendFile(__dirname + '/index.html');
     <li>A client library that loads on the browser side: <code>socket.io-client</code></li>
     </ul>
     <p>During development, <code>socket.io</code> serves the client automatically for us, as we’ll see, so for now we only have to install one module:</p>
-    <pre><code>npm install --save socket.io</code></pre>
+    <pre><code>npm install --save socket.io@1.7.3</code></pre>
     <p>That will install the module and add the dependency to <code>package.json</code>. Now let’s edit <code>index.js</code> to add it:</p>
     <pre><code>
 var app = require('express')();
@@ -164,7 +164,7 @@ http.listen(3000, function(){
     <p>Notice that I initialize a new instance of <code>socket.io</code> by passing the <code>http</code> (the HTTP server) object. Then I listen on the <code>connection</code> event for incoming sockets, and I log it to the console.</p>
     <p>Now in index.html I add the following snippet before the <code>&lt;/body&gt;</code>:</p>
     <pre><code>
-&lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.socket.io/socket.io-1.2.0.js"&gt;&lt;/script&gt;
 &lt;script&gt;
   var socket = io();
 &lt;/script&gt;
@@ -189,7 +189,7 @@ io.on('connection', function(socket){
     <p>The main idea behind Socket.IO is that you can send and receive any events you want, with any data you want. Any objects that can be encoded as JSON will do, and <a href="https://socket.io/blog/introducing-socket-io-1-0/#binary">binary data</a> is supported too.</p>
     <p>Let’s make it so that when the user types in a message, the server gets it as a <code>chat message</code> event. The <code>script</code>s section in <code>index.html</code> should now look as follows:</p>
     <pre><code>
-&lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.socket.io/socket.io-1.2.0.js"&gt;&lt;/script&gt;
 &lt;script src="https://code.jquery.com/jquery-1.11.1.js"&gt;&lt;/script&gt;
 &lt;script&gt;
   $(function () {
