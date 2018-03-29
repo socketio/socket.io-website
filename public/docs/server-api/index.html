@@ -500,7 +500,7 @@ io.of(&#39;/admin&#39;).on(&#39;connect&#39;, (socket) =&gt; {
 <p>A hash of strings identifying the rooms this client is in, indexed by room name.</p>
 <pre><code class="lang-js">io.on(&#39;connection&#39;, (socket) =&gt; {
   socket.join(&#39;room 237&#39;, () =&gt; {
-    let rooms = Objects.keys(socket.rooms);
+    let rooms = Object.keys(socket.rooms);
     console.log(rooms); // [ &lt;socket.id&gt;, &#39;room 237&#39; ]
   });
 });
