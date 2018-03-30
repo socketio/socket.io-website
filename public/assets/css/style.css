@@ -1870,6 +1870,24 @@ Copyright (c) 2014 Daniel Eden
   line-height: 1;
 }
 
+.home #carbonads {
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 60px 0;
+}
+
+.home #carbonads > span {
+  max-width: 400px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.home .carbon-poweredby {
+  font-size: 9px;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 1100px) {
   #carbonads {
     float: none;
