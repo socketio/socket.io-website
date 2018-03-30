@@ -722,13 +722,9 @@ body {
 #bar {
   background: url(../img/galaxy.jpg);
   height: 7px;
-  background-size: cover;
-  background-position: left 60%;
   position: fixed;
   top: 0;
   width: 100%;
-  overflow: hidden;
-  z-index: 1000;
 }
 
 #bar .reflection {
