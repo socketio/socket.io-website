@@ -69,24 +69,29 @@
 })();
 
 (function initStackCount() {
-  var slack_users_count = 42;
-  var count = $('<span id="slack-count">').text(slack_users_count);
+  var displaySlackCount = false;
+  var currentCount = -1;
+  var count = $('<span id="slack-count">');
+  var menu = $('#menu-item-972 a');
   var socket = io('https://socketio-slack-count.now.sh');
-  $('#menu-item-972 a').append(count);
 
-  socket.on('active', function(val, total){
-    var old = Number(count.text());
-    count.text(val);
-    $('#menu-item-972 a').attr('title', val + ' users online now of ' + total + ' registered');
-
-    if (val !== old) {
+  socket.on('active', function(userCount, total){
+    if (userCount !== currentCount) {
+      count.text(userCount);
+      menu.attr('title', userCount + ' users online now of ' + total + ' registered');
       count.removeClass().addClass('animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
         $(this).removeClass();
       });
+      currentCount = userCount;
     }
 
-    $('.slack-users-count').text(val);
+    $('.slack-users-count').text(userCount);
     $('.slack-users-count-total').text(total);
+
+    if (!displaySlackCount) {
+      displaySlackCount = true;
+      menu.append(count);
+    }
   });
 })();
 
