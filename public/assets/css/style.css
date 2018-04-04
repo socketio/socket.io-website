@@ -377,7 +377,6 @@ a:active {
 }
 .main-navigation li {
   float: left;
-  position: relative;
 }
 .main-navigation a {
   display: block;
