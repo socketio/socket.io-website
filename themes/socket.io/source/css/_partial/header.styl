@@ -1,0 +1,86 @@
+
+#header
+  padding: 10px
+  z-index: 10
+
+  position: relative
+  background-color: white
+  @media mq-medium
+    position: fixed
+    left: 0
+    right: 0
+    padding: 10px 40px
+    background-color: rgba(255, 255, 255, 0.9)
+
+  #logo
+    background-image: url("images/logo.svg")
+    background-size: cover
+    display: block
+    width: 136px
+    height: 40px
+    margin: 0 auto
+    @media mq-medium
+      margin: 0
+      display: inline-block
+
+  #docsearch-input
+    border: 1px solid #e3e3e3
+    border-radius: 15px
+    padding: 0 10px 0 30px
+    outline: none
+    height: 30px
+    font-size: 1.2rem
+    margin-top: 5px
+
+  .main-nav
+    float: right
+    display: none
+    @media mq-medium
+      display: block
+
+  .nav-items
+    padding: 0
+    margin: 0
+    height: 40px
+    line-height: 40px
+
+  .nav-items > li
+    padding: 0
+    margin: 0 10px
+
+  .nav-item
+    font-size: 1.4rem
+    font
+    line-height: 30px
+
+  nav li
+    display: inline-block
+
+  .nav-link
+    color: #9B9B9B
+    font-size: 1.2rem
+
+  .nav-links-header
+    font-weight: bold
+    font-size: 1.2rem
+
+  .dropdown-toggle
+    cursor: pointer
+
+  .dropdown-content
+    display: none
+    position: absolute
+    background-color: white
+    padding: 0 20px 10px 20px
+    border: 1px solid #eee
+
+  .dropdown:hover .dropdown-content
+    display: block
+
+  .dropdown-content li
+    display: block
+    margin-top: 10px
+    line-height: 20px
+
+  ul
+    padding-left: 1rem

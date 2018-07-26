@@ -1,0 +1,14 @@
+
+<div id="sponsors">
+  <span class="sponsors-header">Sponsors</span>
+
+  <ul class="sponsor-list">
+    <%_ for (const sponsor of config.sponsors) {_%>
+    <li class="sponsor">
+      <a href="<%- sponsor.url %>" target="_blank">
+        <img src="<%- url_for(`/images/${sponsor.img}`) %>" class="sponsor-image">
+      </a>
+    </li>
+    <%_ } _%>
+  </ul>
+</div>

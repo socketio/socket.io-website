@@ -1,0 +1,44 @@
+<%
+  types = {
+    docs: {
+      '/docs/': 'Overview',
+      '/docs/rooms-and-namespaces/': 'Rooms and Namespaces',
+      '/docs/migrating-from-0-9/': 'Migrating from 0.9',
+      '/docs/using-multiple-nodes/': 'Using multiple nodes',
+      '/docs/logging-and-debugging/': 'Logging and debugging',
+      '/docs/emit-cheatsheet/': 'Emit cheatsheet',
+      '/docs/faq/': 'FAQ'
+    },
+    demos: {
+      '/demos/chat/': 'Chat',
+      '/demos/whiteboard/': 'Whiteboard'
+    }
+  }
+%>
+
+<aside id="sidebar">
+
+  <% if (page.type === 'api' || page.type === 'misc') { %>
+    <%- toc(page.content, { list_number: false }) %>
+  <% } else { %>
+    <ol>
+      <%
+        const pages = types[page.type]
+        if (pages) { %>
+        <% for (let path in pages) { %>
+          <% if (is_current(path, true)) { %>
+            <li>
+              <a href="<%- url_for(path) %>" class="sidebar-link selected"><%- pages[path] %></a>
+              <%- toc(page.content, { list_number: false, max_depth: 2 }) %>
+            </li>
+          <% } else { %>
+            <li>
+              <a href="<%- url_for(path) %>" class="sidebar-link"><%- pages[path] %></a>
+            </li>
+          <% } %>
+        <% } %>
+      <% } %>
+    </ol>
+  <% } %>
+
+</aside>

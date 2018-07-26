@@ -3,11 +3,20 @@
   "version": "0.0.1",
   "description": "socket.io website and blog",
   "scripts": {
-    "start": "serve public/"
+    "serve": "hexo serve",
+    "build": "hexo generate",
+    "deploy": "now --static public/"
   },
   "author": "Damien Arrachequesne",
   "license": "MIT",
+  "hexo": {
+    "version": "3.7.1"
+  },
   "dependencies": {
-    "serve": "^3.4.0"
+    "hexo": "^3.2.0",
+    "hexo-renderer-ejs": "^0.3.0",
+    "hexo-renderer-stylus": "^0.3.1",
+    "hexo-renderer-marked": "^0.3.0",
+    "hexo-server": "^0.2.0"
   }
 }

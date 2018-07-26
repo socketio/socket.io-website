@@ -1,0 +1,35 @@
+#sidebar
+  display: none
+  width: 200px
+  @media mq-medium
+    display: block
+
+  position: fixed
+  top: 0
+  left: 0
+  bottom: 0
+  overflow-x: hidden
+  overflow-y: auto
+  margin-top: 80px
+  padding: 0 20px 20px 40px
+
+  ol
+    padding-left: 0.6em
+
+  li
+    list-style-type: none
+    &.selected > a
+      font-weight: bold
+
+  .sidebar-link
+    color: #9B9B9B
+    font-size: 1.4rem
+    &.selected
+      font-weight: bold
+
+  .toc-text
+    color: #9B9B9B
+    font-size: 1.2rem
+
+  .toc-item.toc-level-1 > a
+    font-weight: bold

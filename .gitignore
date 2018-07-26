@@ -13,3 +13,4 @@ sitemap.xml.gz
 wp-config.php
 node_modules
 *.DS_Store
+public/
