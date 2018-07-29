@@ -1,7 +1,11 @@
+<% var isIndex = page.path === 'index.html' %>
+
 <article id="<%= post.layout %>-<%= post.slug %>" class="article">
   <%- page.content %>
 
+  <% if (!isIndex) { %>
   <footer class="article-footer">
-    Caught a mistake? Edit this page on <a href="https://github.com/socketio/socket.io-website/blob/master/source/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank" class="link">GitHub</a>
+    Caught a mistake? Edit this page on <a href="https://github.com/socketio/socket.io-website/blob/master/source/<%- page.source %>" target="_blank" class="link">GitHub</a>
   </footer>
+  <% } %>
 </article>
