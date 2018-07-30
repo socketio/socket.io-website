@@ -4,7 +4,7 @@
     <div id="wrap">
       <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
 
-      <%- partial('_partial/sidebar') %>
+      <%- partial(is_post() ? '_partial/sidebar-post' : '_partial/sidebar') %>
       <%- partial('_partial/ad') %>
       <%- partial('_partial/sponsors') %>
       <%- body %>

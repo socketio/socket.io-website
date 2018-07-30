@@ -1,0 +1,12 @@
+
+<aside id="sidebar">
+
+  <ol>
+    <% site.posts.sort('date', -1).forEach(function (post) { %>
+    <li>
+      <a href="<%- url_for(post.path) %>" class="sidebar-link <%- is_current(post.path, true) ? 'selected' : '' %>"><%- post.title_lite %></a>
+    </li>
+    <% }) %>
+  </ol>
+
+</aside>

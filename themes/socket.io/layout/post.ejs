@@ -1,1 +1,24 @@
-<%- partial('_partial/article', {post: page, index: false}) %>
+
+<article id="<%= page.layout %>-<%= page.slug %>" class="article post">
+  <div class="metadata">
+    <p class="metadata-title"><%- page.title_lite %></p>
+    <p class="metadata-author"><%- page.date.format('DD MMMM YYYY') %> — <a href="<%- page.author_link %>"><%- page.author_name %></a></p>
+  </div>
+
+  <%- page.content %>
+
+  <div class="links">
+    <%_ if (page.prev != null) {_%>
+      <p><< <a href="<%- url_for(page.prev.path) %>" class="previous-post"><%= page.prev.title_lite %></a></p>
+    <%_ } _%>
+
+    <%_ if (page.next != null) {_%>
+      <p>>> <a href="<%- url_for(page.next.path) %>" class="next-post"><%= page.next.title_lite %></a></p>
+    <%_ } _%>
+  </div>
+
+  <footer class="article-footer">
+    Caught a mistake? Edit this page on <a href="https://github.com/socketio/socket.io-website/blob/master/source/<%- page.source %>" target="_blank" class="link">GitHub</a>
+  </footer>
+
+</article>
