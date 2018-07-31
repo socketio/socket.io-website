@@ -682,12 +682,18 @@ To emit to multiple rooms, you can call `to` several times.
 
 ```js
 io.on('connection', (socket) => {
+
   // to one room
   socket.to('others').emit('an event', { some: 'data' });
+
   // to multiple rooms
   socket.to('room1').to('room2').emit('hello');
+
   // a private message to another socket
   socket.to(/* another socket id */).emit('hey');
+
+  // WARNING: `socket.to(socket.id).emit()` will NOT work, as it will send to everyone in the room
+  // named `socket.id` but the sender. Please use the classic `socket.emit()` instead.
 });
 ```
 

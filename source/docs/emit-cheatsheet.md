@@ -31,7 +31,10 @@ function onConnect(socket){
   io.of('myNamespace').to('room').emit('event', 'message');
 
   // sending to individual socketid (private message)
-  io.to(<socketid>).emit('hey', 'I just met you');
+  io.to(`${socketId}`).emit('hey', 'I just met you');
+
+  // WARNING: `socket.to(socket.id).emit()` will NOT work, as it will send to everyone in the room
+  // named `socket.id` but the sender. Please use the classic `socket.emit()` instead.
 
   // sending with acknowledgement
   socket.emit('question', 'do you think so?', function (answer) {});
