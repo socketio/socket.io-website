@@ -82,7 +82,7 @@ io.on('connection', function (socket) {
 </script>
 ```
 
-## Using with Express 3/4
+## Using with Express
 
 ### Server (app.js)
 
@@ -106,41 +106,6 @@ io.on('connection', function (socket) {
 ```
 
 ### Client (index.html)
-
-```html
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io.connect('http://localhost');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
-```
-
-## Using with Express 2.x
-
-### Server (app.js)
-
-```js
-var app = require('express').createServer();
-var io = require('socket.io')(app);
-
-app.listen(80);
-
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
-
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
-```
-
-### Client (index.html)
 
 ```html
 <script src="/socket.io/socket.io.js"></script>
