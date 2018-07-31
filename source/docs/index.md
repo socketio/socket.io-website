@@ -4,9 +4,38 @@ type: docs
 
 ## Installing
 
+### Server
+
 ```
-npm install socket.io
+npm install --save socket.io
 ```
+
+[Source](https://github.com/socketio/socket.io)
+
+### Javascript Client
+
+A standalone build of the client is exposed by default by the server at `/socket.io/socket.io.js`.
+
+It can also be served from a CDN, like [cdnjs](https://cdnjs.com/libraries/socket.io).
+
+To use it from Node.js, or with a bundler like [webpack](https://webpack.js.org/) or [browserify](http://browserify.org/), you can also install the package from npm:
+
+```
+npm install --save socket.io-client
+```
+
+[Source](https://github.com/socketio/socket.io-client)
+
+### Other client implementations
+
+There are several client implementations in other languages, which are maintained by the community:
+
+- Java: https://github.com/socketio/socket.io-client-java
+- C++: https://github.com/socketio/socket.io-client-cpp
+- Swift: https://github.com/socketio/socket.io-client-swift
+- Dart: https://github.com/rikulo/socket.io-client-dart
+- Python: https://github.com/invisibleroads/socketIO-client
+- .Net: https://github.com/Quobject/SocketIoClientDotNet
 
 ## Using with Node http server
 
