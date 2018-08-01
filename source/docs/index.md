@@ -2,6 +2,73 @@ title: Socket.IO  —  Docs
 type: docs
 ---
 
+## What Socket.IO is
+
+Socket.IO is a library that enables real-time, bidirectional and event-based communication between the browser and the server. It consists of:
+
+- a Node.js server ([Source](https://github.com/socketio/socket.io))
+- a Javascript client library for the browser (which can be also run from Node.js) ([Source](https://github.com/socketio/socket.io-client))
+
+Its main features are:
+
+### Reliability
+
+Connections are established even in the presence of:
+
+- proxies and load balancers.
+- personal firewall and antivirus software.
+
+For this purpose, it relies on [Engine.IO](https://github.com/socketio/engine.io), which first establishes a long-polling connection, then tries to upgrade to better transports that are "tested" on the side, like WebSocket. Please see the [Goals](https://github.com/socketio/engine.io#goals) section for more information.
+
+### Auto-reconnection support
+
+Unless instructed otherwise a disconnected client will try to reconnect forever, until the server is available again. Please see the available reconnection options [here](https://socket.io/docs/client-api/#new-Manager-url-options).
+
+### Disconnection detection
+
+A heartbeat mechanism is implemented at the Engine.IO level, allowing both the server and the client to know when the other one is not responding anymore.
+
+That functionality is achieved with timers set on both the server and the client, with timeout values (the pingInterval and pingTimeout parameters) shared during the connection handshake. Those timers require any subsequent client calls to be directed to the same server, hence the sticky-session requirement when using multiples nodes.
+
+### Binary support
+
+Any serializable data structures can be emitted, including:
+
+- [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) and [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) in the browser
+- [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) and [Buffer](https://nodejs.org/api/buffer.html) in Node.js
+
+### Multiplexing support
+
+In order to create separation of concerns within your application (for example per module, or based on permissions), Socket.IO allows you to create several [Namespaces](/docs/rooms-and-namespaces/#Namespaces), which will act as separate communication channels but will share the same underlying connection.
+
+### Room support
+
+Within each [Namespace](/docs/rooms-and-namespaces/#Namespaces), you can define arbitrary channels, called [Rooms](/docs/rooms-and-namespaces/#Rooms), that sockets can join and leave. You can then broadcast to any given room, reaching every socket that has joined it.
+
+This is a useful feature to send notifications to a group of users, or to a given user connected on several devices for example.
+
+
+Those features come with a simple and convenient API, which looks like the following:
+
+```js
+io.on('connection', function(socket){
+  socket.emit('request', /* */); // emit an event to the socket
+  io.emit('broadcast', /* */); // emit an event to all connected sockets
+  socket.on('reply', function(){ /* */ }); // listen to the event
+});
+```
+
+
+## What Socket.IO is not
+
+Socket.IO is **NOT** a WebSocket implementation. Although Socket.IO indeed uses WebSocket as a transport when possible, it adds some metadata to each packet: the packet type, the namespace and the ack id when a message acknowledgement is needed. That is why a WebSocket client will not be able to successfully connect to a Socket.IO server, and a Socket.IO client will not be able to connect to a WebSocket server either. Please see the protocol specification [here](https://github.com/socketio/socket.io-protocol).
+
+```js
+// WARNING: the client will NOT be able to connect!
+const client = io('ws://echo.websocket.org');
+```
+
+
 ## Installing
 
 ### Server
