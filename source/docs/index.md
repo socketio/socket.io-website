@@ -162,7 +162,7 @@ server.listen(80);
 // WARNING: app.listen(80) will NOT work here!
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 io.on('connection', function (socket) {
