@@ -11,11 +11,6 @@ Exposed by `require('socket.io')`.
 
   - `httpServer` _(http.Server)_ the server to bind to.
   - `options` _(Object)_
-    - `path` _(String)_: name of the path to capture (`/socket.io`)
-    - `serveClient` _(Boolean)_: whether to serve the client files (`true`)
-    - `adapter` _(Adapter)_: the adapter to use. Defaults to an instance of the `Adapter` that ships with socket.io which is memory based. See [socket.io-adapter](https://github.com/socketio/socket.io-adapter)
-    - `origins` _(String)_: the allowed origins (`*`)
-    - `parser` _(Parser)_: the parser to use. Defaults to an instance of the `Parser` that ships with socket.io. See [socket.io-parser](https://github.com/socketio/socket.io-parser).
 
 Works with and without `new`:
 
@@ -26,18 +21,39 @@ const Server = require('socket.io');
 const io = new Server();
 ```
 
-The same options passed to socket.io are always passed to the `engine.io` `Server` that gets created. See engine.io [options](https://github.com/socketio/engine.io#methods-1) as reference.
+Available options:
+
+Option | Default value | Description
+------ | ------------- | -----------
+`path` | `/socket.io` | name of the path to capture
+`serveClient` | `true` | whether to serve the client files
+`adapter` | - | the adapter to use. Defaults to an instance of the `Adapter` that ships with socket.io which is memory based. See [socket.io-adapter](https://github.com/socketio/socket.io-adapter)
+`origins` | `*` | the allowed origins
+`parser` | - | the parser to use. Defaults to an instance of the `Parser` that ships with socket.io. See [socket.io-parser](https://github.com/socketio/socket.io-parser).
+
+Available options for the underlying Engine.IO server:
+
+Option | Default value | Description
+------ | ------------- | -----------
+`pingTimeout` | `5000` | how many ms without a pong packet to consider the connection closed
+`pingInterval` | `25000` | how many ms before sending a new ping packet
+`upgradeTimeout` | `10000` | how many ms before an uncompleted transport upgrade is cancelled
+`maxHttpBufferSize` | `10e7` | how many bytes or characters a message can be, before closing the session (to avoid DoS).
+`allowRequest` | | A function that receives a given handshake or upgrade request as its first parameter, and can decide whether to continue or not. The second argument is a function that needs to be called with the decided information: `fn(err, success)`, where `success` is a boolean value where false means that the request is rejected, and err is an error code.
+`transports` | `['polling', 'websocket']` | transports to allow connections to
+`allowUpgrades` | `true` | whether to allow transport upgrades
+`perMessageDeflate` | `true` | parameters of the WebSocket permessage-deflate extension (see [ws module](https://github.com/einaros/ws) api docs). Set to `false` to disable.
+`httpCompression` | `true` | parameters of the http compression for the polling transports (see [zlib](http://nodejs.org/api/zlib.html#zlib_options) api docs). Set to `false` to disable.
+`cookie` | `io` | name of the HTTP cookie that contains the client sid to send as part of handshake response headers. Set to `false` to not send one.
+`cookiePath` | `/` | path of the above `cookie` option. If false, no path will be sent, which means browsers will only send the cookie on the engine.io attached path (`/engine.io`). Set false to not save io cookie on all requests.
+`cookieHttpOnly` | `true` | if `true` HttpOnly io cookie cannot be accessed by client-side APIs, such as JavaScript. _This option has no effect if `cookie` or `cookiePath` is set to `false`._
+`wsEngine` | `ws` | what WebSocket server implementation to use. Specified module must conform to the `ws` interface (see [ws module api docs](https://github.com/websockets/ws/blob/master/doc/ws.md)). Default value is `ws`. An alternative c++ addon is also available by installing `uws` module.
 
 Among those options:
 
-  - `pingTimeout` _(Number)_: how many ms without a pong packet to consider the connection closed (`60000`)
-  - `pingInterval` _(Number)_: how many ms before sending a new ping packet (`25000`).
+- The `pingTimeout` and `pingInterval` parameters will impact the delay before a client knows the server is not available anymore. For example, if the underlying TCP connection is not closed properly due to a network issue, a client may have to wait up to `pingTimeout + pingInterval` ms before getting a `disconnect` event.
 
-Those two parameters will impact the delay before a client knows the server is not available anymore. For example, if the underlying TCP connection is not closed properly due to a network issue, a client may have to wait up to `pingTimeout + pingInterval` ms before getting a `disconnect` event.
-
-  - `transports` _(Array<String>)_: transports to allow connections to (`['polling', 'websocket']`).
-
-**Note:** The order is important. By default, a long-polling connection is established first, and then upgraded to WebSocket if possible. Using `['websocket']` means there will be no fallback if a WebSocket connection cannot be opened.
+- The order of the `transports` array is important. By default, a long-polling connection is established first, and then upgraded to WebSocket if possible. Using `['websocket']` means there will be no fallback if a WebSocket connection cannot be opened.
 
 ```js
 const server = require('http').createServer();
@@ -59,7 +75,7 @@ server.listen(3000);
   - `port` _(Number)_ a port to listen to (a new `http.Server` will be created)
   - `options` _(Object)_
 
-See [above](#new-serverhttpserver-options) for available options.
+See [above](#new-Server-httpServer-options) for the list of available `options`.
 
 ```js
 const server = require('http').createServer();
@@ -78,7 +94,7 @@ const io = require('socket.io')(3000, {
 
   - `options` _(Object)_
 
-See [above](#new-serverhttpserver-options) for available options.
+See [above](#new-Server-httpServer-options) for the list of available `options`.
 
 ```js
 const io = require('socket.io')({
