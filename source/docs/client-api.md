@@ -198,6 +198,29 @@ const io = require('socket.io')({
 });
 ```
 
+### With a self-signed certificate
+
+```js
+// server-side
+const fs = require('fs');
+const server = require('https').createServer({
+  key: fs.readFileSync('server-key.pem'),
+  cert: fs.readFileSync('server-cert.pem')
+});
+const io = require('socket.io')(server);
+server.listen(3000);
+
+// client-side
+const socket = io({
+  // option 1
+  ca: fs.readFileSync('server-cert.pem'),
+
+  // option 2. WARNING: it leaves you vulnerable to MITM attacks!
+  rejectUnauthorized: false
+});
+
+```
+
 # Manager
 
 ## new Manager(url[, options])
