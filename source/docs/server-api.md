@@ -125,7 +125,13 @@ io.attach(3000, {
 
   * _(Namespace)_
 
-The default (`/`) namespace.
+An alias for the default (`/`) namespace.
+
+```js
+io.sockets.emit('hi', 'everyone');
+// is equivalent to
+io.of('/').emit('hi', 'everyone');
+```
 
 ## server.serveClient([value])
 
@@ -315,10 +321,11 @@ io.engine.generateId = (req) => {
 
 # Namespace
 
-Represents a pool of sockets connected under a given scope identified
-by a pathname (eg: `/chat`).
+Represents a pool of sockets connected under a given scope identified by a pathname (eg: `/chat`).
 
 A client always connects to `/` (the main namespace), then potentially connect to other namespaces (while using the same underlying connection).
+
+For the how and why, please take a look at: [Rooms and Namespaces](/docs/rooms-and-namespaces/).
 
 ## namespace.name
 
