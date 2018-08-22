@@ -6,8 +6,8 @@ type: docs
 
 Socket.IO is a library that enables real-time, bidirectional and event-based communication between the browser and the server. It consists of:
 
-- a Node.js server ([Source](https://github.com/socketio/socket.io))
-- a Javascript client library for the browser (which can be also run from Node.js) ([Source](https://github.com/socketio/socket.io-client))
+- a Node.js server: [Source](https://github.com/socketio/socket.io) | [API](/docs/server-api/)
+- a Javascript client library for the browser (which can be also run from Node.js): [Source](https://github.com/socketio/socket.io-client) | [API](/docs/client-api/)
 
 Its main features are:
 
