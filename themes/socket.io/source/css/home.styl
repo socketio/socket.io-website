@@ -97,6 +97,7 @@
     bottom: 0;
     left: 50%;
     margin-left: -20px;
+    font-size: 0
   }
 }
 
@@ -287,6 +288,14 @@
 
 iframe.twitter-follow-button {
   display: inline-block;
+}
+@media screen and (min-width: 1000px) and (max-width: 1440px) {
+  .editor .body {
+    padding: 0px;
+  }
+  .editor .body span.code {
+    font-size: 0.8em;
+  }
 }
 
 @media screen and (max-width: 950px) {
