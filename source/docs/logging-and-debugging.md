@@ -27,4 +27,14 @@ or in the browser:
 localStorage.debug = '*';
 ```
 
-And then filter by the scopes you&#8217;re interested in. You can use `,` to separate them.
+And then filter by the scopes you&#8217;re interested in. You can prefix the `*` with scopes, separated by comma if there is more than one. For example, to only see debug statements from the socket.io client on Node.js try this:
+
+```
+DEBUG=socket.io:client* node yourfile.js
+```
+
+To see all debug messages from the engine *and* socket.io:
+
+```
+DEBUG=engine,socket.io* node yourfile.js
+```
