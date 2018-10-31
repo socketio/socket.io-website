@@ -18,7 +18,7 @@ You can see it in action for example on our homepage:
 The best way to see what information is available is to use the `*`:
 
 ```
-DEBUG=* node yourfile.js`
+DEBUG=* node yourfile.js
 ```
 
 or in the browser:
