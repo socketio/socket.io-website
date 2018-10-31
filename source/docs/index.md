@@ -294,8 +294,8 @@ To do this, simply pass a function as the last parameter of `.send` or `.emit`. 
 var io = require('socket.io')(80);
 
 io.on('connection', function (socket) {
-  socket.on('ferret', function (name, fn) {
-    fn('woot');
+  socket.on('ferret', function (name, word, fn) {
+    fn(name + ' says ' + word);
   });
 });
 ```
@@ -306,8 +306,8 @@ io.on('connection', function (socket) {
 <script>
   var socket = io(); // TIP: io() with no args does auto-discovery
   socket.on('connect', function () { // TIP: you can avoid listening on `connect` and listen on events directly too!
-    socket.emit('ferret', 'tobi', function (data) {
-      console.log(data); // data will be 'woot'
+    socket.emit('ferret', 'tobi', 'woot', function (data) { // args are sent in order to acknowledgement function
+      console.log(data); // data will be 'tobi says woot'
     });
   });
 </script>
