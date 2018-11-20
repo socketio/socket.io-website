@@ -797,6 +797,16 @@ io.on('connection', (socket) => {
 });
 ```
 
+Possible reasons:
+
+| Reason | Side | Description |
+| ------- | ------ | ---------------|
+| `transport error` | Server Side | Transport error |
+| `server namespace disconnect` | Server Side  | Server performs a `socket.disconnect()` |
+| `client namespace disconnect` | Client Side | Got disconnect packet from client |
+| `ping timeout` | Client Side  | Client stopped responding to pings in the allowed amount of time (per the `pingTimeout` config setting) |
+| `transport close`  | Client Side | Client stopped sending data |
+
 ## Event: 'error'
 
   - `error` _(Object)_ error object
