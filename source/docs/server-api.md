@@ -228,11 +228,11 @@ Attaches the `Server` to an engine.io instance on a new http.Server with the sup
 
 ## server.listen(httpServer[, options])
 
-Synonym of [server.attach(httpServer[, options])](#serverattachhttpserver-options).
+Synonym of [server.attach(httpServer[, options])](#server-attach-httpServer-options).
 
 ## server.listen(port[, options])
 
-Synonym of [server.attach(port[, options])](#serverattachport-options).
+Synonym of [server.attach(port[, options])](#server-attach-port-options).
 
 ## server.bind(engine)
 
@@ -365,7 +365,7 @@ adminNamespace.to('level1').emit('an event', { some: 'data' });
 
 ## namespace.in(room)
 
-Synonym of [namespace.to(room)](#namespacetoroom).
+Synonym of [namespace.to(room)](#namespace-to-room).
 
 ## namespace.emit(eventName[, ...args])
 
@@ -449,7 +449,7 @@ io.of('/admin').on('connect', (socket) => {
 
 ## Event: 'connection'
 
-Synonym of [Event: 'connect'](#event-connect).
+Synonym of [Event: 'connect'](#Event-‘connect’).
 
 ## Flag: 'volatile'
 
@@ -724,7 +724,7 @@ io.on('connection', (socket) => {
 
 ## socket.in(room)
 
-Synonym of [socket.to(room)](#sockettoroom).
+Synonym of [socket.to(room)](#socket-to-room).
 
 ## socket.compress(value)
 
