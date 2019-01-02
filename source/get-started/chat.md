@@ -187,7 +187,8 @@ Let’s make it so that when the user types in a message, the server gets it as 
 <script>
   $(function () {
     var socket = io();
-    $('form').submit(function(){
+    $('form').submit(function(e){
+      e.preventDefault(); // prevents page reloading
       socket.emit('chat message', $('#m').val());
       $('#m').val('');
       return false;
@@ -244,7 +245,8 @@ And on the client side when we capture a `chat message` event we’ll include it
 <script>
   $(function () {
     var socket = io();
-    $('form').submit(function(){
+    $('form').submit(function(e){
+      e.preventDefault(); // prevents page reloading
       socket.emit('chat message', $('#m').val());
       $('#m').val('');
       return false;
