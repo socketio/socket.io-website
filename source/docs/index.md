@@ -101,7 +101,7 @@ There are several client implementations in other languages, which are maintaine
 - C++: https://github.com/socketio/socket.io-client-cpp
 - Swift: https://github.com/socketio/socket.io-client-swift
 - Dart: https://github.com/rikulo/socket.io-client-dart
-- Python: https://github.com/invisibleroads/socketIO-client
+- Python: https://github.com/miguelgrinberg/python-socketio
 - .Net: https://github.com/Quobject/SocketIoClientDotNet
 
 ## Using with Node http server
