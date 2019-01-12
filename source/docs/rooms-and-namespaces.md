@@ -69,6 +69,7 @@ io.to('some room').emit('some event');
 ```
 
 To leave a channel you call `leave` in the same fashion as `join`.
+One thing to note is that `leave` method is asynchronous .
 
 ## Default room
 
