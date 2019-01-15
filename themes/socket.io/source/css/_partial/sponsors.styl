@@ -1,28 +1,18 @@
 
 #sponsors
-  display: none
-  @media mq-large
-    display: block
-
-  position: fixed
-  bottom: 0
-  right: 0
-  padding: 2rem
-
-  .sponsors-header
-    font-size: 1.2rem
-    color: #9b9b9b
-
-  .sponsor-list
-    padding-left: 2rem
-
   .sponsor
-    list-style-type: none
-
-  .sponsor-image
-    display: block
-    margin: 1.5rem auto
-    max-width: 120px
-    max-height: 80px
-    width: auto
-    height: auto
+    display: inline-block
+    width: 100%
+    @media mq-medium
+      width: 32%
+    height: 100px
+    margin-top: 1.5rem
+    margin-bottom: 1.5rem
+    text-align: center
+    a
+      text-decoration: none
+    img
+      display: inline-block
+      max-width: 80%
+      max-height: 100%
+      vertical-align: middle

@@ -79,19 +79,3 @@ theme: socket.io
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
-
-sponsors:
-  - url: https://icons8.com/
-    img: icons8.png
-  - url: https://mixmax.com/
-    img: mixmax.png
-  - url: https://www.codeinwp.com/blog/
-    img: codeinwp.png
-  - url: https://www.vpsserver.com/
-    img: vpsserver.jpeg
-  - url: https://www.hosted.nl/
-    img: hosted.png
-  - url: https://www.codefirst.co.uk/
-    img: codefirst.png
-  - url: https://www.dontpayfull.com/
-    img: dontpayfull.png

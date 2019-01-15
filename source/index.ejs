@@ -1,4 +1,51 @@
 
+<%
+  const sponsors = [
+    {
+      url: 'https://icons8.com/',
+      img: 'icons8.png'
+    },
+    {
+      url: 'https://mixmax.com/',
+      img: 'mixmax.png'
+    },
+    {
+      url: 'https://www.codeinwp.com/blog/',
+      img: 'codeinwp.png'
+    },
+    {
+      url: 'https://www.vpsserver.com/',
+      img: 'vpsserver.jpeg'
+    },
+    {
+      url: 'https://www.hosted.nl/',
+      img: 'hosted.png'
+    },
+    {
+      url: 'https://www.codefirst.co.uk/',
+      img: 'codefirst.png'
+    },
+    {
+      url: 'https://www.dontpayfull.com/',
+      img: 'dontpayfull.png'
+    },
+    {
+      url: 'https://uiuxagencies.top',
+      img: 'uiuxagencies.png'
+    },
+    {
+      url: 'http://xn--smlnutensikkerhet-9qbb.com/',
+      img: 'smalanutensikkerhet.png'
+    },
+    {
+      url: 'https://www.casinotopp.net/',
+      img: 'casinotopp.jpeg'
+    }
+  ];
+
+%>
+
+{% raw %}
 <main class="site-main home" role="main">
   <header class="entry-header fading">
     <h1 class="entry-title">SOCKET.IO 2.0 IS HERE</h1>
@@ -85,7 +132,25 @@
             <p>Our getting started guide will show you how to create lots of amazing applications in fewer than 200 lines of code.</p>
             <p>We're not making that up. Get started <a href="/get-started/chat">now</a>.</p>
           </div>
-          <div class="repel"></div>
+        </div>
+      </div>
+{% endraw %}
+
+      <div id="sponsors">
+        <p>OUR AWESOME SPONSORS</p>
+
+        <%_ for (let sponsor of sponsors) {_%>
+        <div class="sponsor">
+          <a href="<%- sponsor.url %>" target="_blank">
+            <img src="<%- `/images/${sponsor.img}` %>">
+          </a>
+        </div>
+        <%_ } _%>
+      </div>
+
+{% raw %}
+      <div>
+        <div class="information-column left">
           <div class="information-entry">
             <h3>JOIN THE COMMUNITY</h3>
             <ul style="margin-left: 0px; list-style-type: none; padding-left: 0">
@@ -98,3 +163,4 @@
     </div>
   </div>
 </main>
+{% endraw %}
