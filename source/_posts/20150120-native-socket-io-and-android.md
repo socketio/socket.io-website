@@ -114,7 +114,7 @@ import com.github.nkzawa.emitter.Emitter;
 
 private Emitter.Listener onNewMessage = new Emitter.Listener() {
     @Override
-    public void call(final Object.. args) {
+    public void call(final Object... args) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
