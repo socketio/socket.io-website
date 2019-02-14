@@ -154,7 +154,7 @@ That’s all it takes to load the `socket.io-client`, which exposes a `io` globa
 
 Notice that I’m not specifying any URL when I call `io()`, since it defaults to trying to connect to the host that serves the page.
 
-If you now reload the server and the website you should see the console print “a user connected”.
+If you now restart the process (by hitting Control+C and running node index again) and then refresh the webpage you should see the console print “a user connected”.
 
 Try opening several tabs, and you’ll see several messages:
 
@@ -218,10 +218,10 @@ The next goal is for us to emit the event from the server to the rest of the use
 In order to send an event to everyone, Socket.IO gives us the `io.emit`:
 
 ```js
-io.emit('some event', { for: 'everyone' });
+io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' }); // This will emit the event to all connected sockets
 ```
 
-If you want to send a message to everyone except for a certain socket, we have the `broadcast` flag:
+If you want to send a message to everyone except for a certain emitting socket, we have the `broadcast` flag for emitting from that socket:
 
 ```js
 io.on('connection', function(socket){
