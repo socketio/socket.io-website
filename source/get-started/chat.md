@@ -38,7 +38,7 @@ Now that express is installed we can create an `index.js` file that will setup o
 
 ```js
 var app = require('express')();
-var http = require('http').Server(app);
+var http = require('http').createServer(app);
 
 app.get('/', function(req, res){
   res.send('<h1>Hello world</h1>');
