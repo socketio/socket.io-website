@@ -131,7 +131,7 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
-  console.log('a user connected');
+  console.log('an user connected');
 });
 
 http.listen(3000, function(){
@@ -154,7 +154,7 @@ That’s all it takes to load the `socket.io-client`, which exposes a `io` globa
 
 Notice that I’m not specifying any URL when I call `io()`, since it defaults to trying to connect to the host that serves the page.
 
-If you now reload the server and the website you should see the console print “a user connected”.
+If you now reload the server and the website you should see the console print “an user connected”.
 
 Try opening several tabs, and you’ll see several messages:
 
@@ -164,7 +164,7 @@ Each socket also fires a special `disconnect` event:
 
 ```js
 io.on('connection', function(socket){
-  console.log('a user connected');
+  console.log('an user connected');
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
