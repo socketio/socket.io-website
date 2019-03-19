@@ -141,6 +141,8 @@ http.listen(3000, function(){
 
 Notice that I initialize a new instance of `socket.io` by passing the `http` (the HTTP server) object. Then I listen on the `connection` event for incoming sockets, and I log it to the console.
 
+You can either download the client JS file to a local directory or use the [CDN](https://cdn.socket.io/socket.io-1.2.0.js). Just make sure to change the `src` of the script tag depending on where the file is being hosted.
+
 Now in index.html I add the following snippet before the `</body>`:
 
 ```html
