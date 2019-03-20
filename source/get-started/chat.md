@@ -141,6 +141,7 @@ http.listen(3000, function(){
 
 Notice that I initialize a new instance of `socket.io` by passing the `http` (the HTTP server) object. Then I listen on the `connection` event for incoming sockets, and I log it to the console.
 
+
 Now in index.html I add the following snippet before the `</body>`:
 
 ```html
@@ -150,7 +151,9 @@ Now in index.html I add the following snippet before the `</body>`:
 </script>
 ```
 
-That’s all it takes to load the `socket.io-client`, which exposes a `io` global, and then connect.
+That’s all it takes to load the `socket.io-client`, which exposes a `io` global (and the endpoint `GET /socket.io/socket.io.js`), and then connect.
+
+If you would like to use the local version of the client-side JS file, you can find it at `node_modules/socket.io-client/dist/socket.io.js`.
 
 Notice that I’m not specifying any URL when I call `io()`, since it defaults to trying to connect to the host that serves the page.
 
