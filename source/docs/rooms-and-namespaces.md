@@ -34,7 +34,7 @@ io.on('connection', function(socket){
 To set up a custom namespace, you can call the `of` function on the server-side:
 
 ```js
-var nsp = io.of('/my-namespace');
+const nsp = io.of('/my-namespace');
 nsp.on('connection', function(socket){
   console.log('someone connected');
 });
@@ -43,7 +43,7 @@ nsp.emit('hi', 'everyone!');
 
 On the client side, you tell Socket.IO client to connect to that namespace:
 ```js
-var socket = io('/my-namespace');
+const socket = io('/my-namespace');
 ```
 
 **Important note:** The namespace is an implementation detail of the Socket.IO protocol, and is not related to the actual URL of the underlying transport, which defaults to `/socket.io/…`.
@@ -102,15 +102,15 @@ To facilitate this use case, we created two modules:
 By implementing the Redis `Adapter`:
 
 ```js
-var io = require('socket.io')(3000);
-var redis = require('socket.io-redis');
+const io = require('socket.io')(3000);
+const redis = require('socket.io-redis');
 io.adapter(redis({ host: 'localhost', port: 6379 }));
 ```
 
 you can then `emit` messages from any other process to any channel
 
 ```js
-var io = require('socket.io-emitter')({ host: '127.0.0.1', port: 6379 });
+const io = require('socket.io-emitter')({ host: '127.0.0.1', port: 6379 });
 setInterval(function(){
   io.emit('time', new Date);
 }, 5000);
