@@ -78,8 +78,6 @@ server.listen(3000);
 See [above](#new-Server-httpServer-options) for the list of available `options`.
 
 ```js
-const server = require('http').createServer();
-
 const io = require('socket.io')(3000, {
   path: '/test',
   serveClient: false,
