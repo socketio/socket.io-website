@@ -32,7 +32,7 @@ For this app, we just add the dependency to `build.gradle`:
 // app/build.gradle
 dependencies {
     ...
-    compile 'com.github.nkzawa:socket.io-client:0.3.0'
+    implementation 'com.github.nkzawa:socket.io-client:0.6.0'
 }
 ```
 
