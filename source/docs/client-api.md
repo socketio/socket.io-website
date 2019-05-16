@@ -601,7 +601,7 @@ socket.on('error', (error) => {
 
 ## Event: 'disconnect'
 
-  - `reason` _(String)_ either 'io server disconnect', 'io client disconnect', or 'ping timeout'
+  - `reason` _(String)_ either 'io server disconnect', 'io client disconnect', 'ping timeout', or 'transport close'
 
 Fired upon a disconnection.
 
