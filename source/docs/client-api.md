@@ -223,7 +223,7 @@ const socket = io({
 
 # Manager
 
-## new Manager(url[, options])
+## new Manager(url, [options])
 
   - `url` _(String)_
   - `options` _(Object)_
