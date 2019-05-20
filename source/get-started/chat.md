@@ -123,7 +123,7 @@ That will install the module and add the dependency to `package.json`. Now let�
 
 ```js
 var app = require('express')();
-var http = require('http').Server(app);
+var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
 app.get('/', function(req, res){
@@ -182,7 +182,7 @@ Then if you refresh a tab several times you can see it in action:
 
 The main idea behind Socket.IO is that you can send and receive any events you want, with any data you want. Any objects that can be encoded as JSON will do, and [binary data](/blog/introducing-socket-io-1-0/#binary) is supported too.
 
-Let’s make it so that when the user types in a message, the server gets it as a `chat message` event. The `script`s section in `index.html` should now look as follows:
+Let’s make it so that when the user types in a message, the server gets it as a `chat message` event. The `script` section in `index.html` should now look as follows:
 
 ```html
 <script src="/socket.io/socket.io.js"></script>
