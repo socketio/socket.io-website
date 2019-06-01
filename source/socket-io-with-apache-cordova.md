@@ -118,7 +118,7 @@ To begin, we need to get the Socket.IO-client script. We can take it from the CD
 
 ```html
 <script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="http://cdn.socket.io/socket.io-1.0.3.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 ```
 
