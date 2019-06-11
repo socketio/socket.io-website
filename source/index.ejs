@@ -2,112 +2,129 @@
 <%
   const sponsors = [
     {
-      url: 'https://icons8.com/',
-      img: 'icons8.png'
-    },
-    {
-      url: 'https://mixmax.com/',
-      img: 'mixmax.png'
-    },
-    {
       url: 'https://www.codeinwp.com/blog/',
-      img: 'codeinwp.png'
+      img: 'codeinwp.png',
+      alt: 'codeinwp logo'
     },
     {
       url: 'https://www.vpsserver.com/',
-      img: 'vpsserver.jpeg'
+      img: 'vpsserver.jpeg',
+      alt: 'VPSServer logo'
     },
     {
       url: 'https://www.hosted.nl/',
-      img: 'hosted.png'
+      img: 'hosted.png',
+      alt: 'HostedNL logo'
     },
     {
       url: 'https://www.codefirst.co.uk/',
-      img: 'codefirst.png'
+      img: 'codefirst.png',
+      alt: 'CodeFirst logo'
     },
     {
       url: 'https://www.dontpayfull.com/',
-      img: 'dontpayfull.png'
+      img: 'dontpayfull.png',
+      alt: 'dontpayfull logo'
     },
     {
       url: 'https://uiuxagencies.top',
-      img: 'uiuxagencies.png'
+      img: 'uiuxagencies.png',
+      alt: 'uiuxagencies logo'
     },
     {
       url: 'http://xn--smlnutensikkerhet-9qbb.com/',
-      img: 'smalanutensikkerhet.png'
+      img: 'smalanutensikkerhet.png',
+      alt: 'Smalanutensikkerhet logo'
     },
     {
       url: 'https://www.casinotopp.net/',
-      img: 'casinotopp.jpeg'
+      img: 'casinotopp.jpeg',
+      alt: 'CasinoTopp logo'
     },
     {
       url: 'https://monovm.com/',
-      img: 'monovm.jpg'
-    },
-    {
-      url: 'https://datantify.com/',
-      img: 'datantify.png'
+      img: 'monovm.jpg',
+      alt: 'Monovm logo'
     },
     {
       url: 'https://www.promocodewatch.com/',
-      img: 'promocodewatch.png'
+      img: 'promocodewatch.png',
+      alt: 'PromoCodeWatch logo'
     },
     {
       url: 'https://www.gameserverkings.com/',
-      img: 'gameserverkings.jpeg'
+      img: 'gameserverkings.jpeg',
+      alt: 'GameserverKings logo'
     },
     {
       url: 'https://www.kreditvergleich24.ch/',
-      img: 'kreditvergleich-24.png'
+      img: 'kreditvergleich-24.png',
+      alt: 'Kreditvergleich24 logo'
     },
     {
       url: 'https://www.handyorten.de/',
-      img: 'handyorten.png'
+      img: 'handyorten.png',
+      alt: 'Handyorten logo'
     },
     {
       url: 'https://www.topratedbingosites.co.uk/',
-      img: 'topratedbingosites.jpeg'
+      img: 'topratedbingosites.jpeg',
+      alt: 'TopRatedBingoSites logo'
     },
     {
       url: 'https://tempest.dk/',
-      img: 'tempest.jpeg'
+      img: 'tempest.jpeg',
+      alt: 'Tempest logo'
     },
     {
       url: 'https://usave.co.uk/utilities/broadband/',
-      img: 'usave.png'
+      img: 'usave.png',
+      alt: 'usave logo'
     },
     {
       url: 'https://www.firesticktricks.com/',
-      img: 'firesticktricks.jpeg'
+      img: 'firesticktricks.jpeg',
+      alt: 'FireStickTricks logo'
     },
     {
       url: 'https://blokt.com/',
-      img: 'blokt.jpeg'
+      img: 'blokt.jpeg',
+      alt: 'blokt logo'
     },
     {
       url: 'https://tekhattan.com/',
-      img: 'tekhattan.png'
+      img: 'tekhattan.png',
+      alt: 'Tekhattan logo'
     },
     {
       url: 'https://gorillasports.no/',
-      img: 'gorillasports.jpeg'
+      img: 'gorillasports.jpeg',
+      alt: 'GorillaSports logo'
     },
     {
       url: 'https://www.cryptonewsz.com/',
-      img: 'cryptonewsz.jpeg'
-    },
-    {
-      url: 'https://www.webton.nl/webdesign.html',
-      img: 'webton.png'
+      img: 'cryptonewsz.jpeg',
+      alt: 'cryptonewsz logo'
     },
     {
       url: 'https://casinofavoritter.com/',
-      img: 'casino-favoritter.png'
+      img: 'casino-favoritter.png',
+      alt: 'CasinoFavoritter logo'
     },
     {
       url: 'https://www.onecompare.com/',
-      img: 'onecompare.png'
+      img: 'onecompare.png',
+      alt: 'OneCompare logo'
+    },
+    {
+      url: 'https://clay.global/',
+      img: 'clay.png',
+      alt: 'ClayGlobal logo'
+    },
+    {
+      url: 'https://paperleaf.ca/essay-writing-service-toronto/',
+      img: 'paperleaf.png',
+      alt: 'Essay writing service in Toronto'
     }
   ];
 
@@ -210,7 +227,7 @@
         <%_ for (let sponsor of sponsors) {_%>
         <div class="sponsor">
           <a href="<%- sponsor.url %>" target="_blank">
-            <img src="<%- `/images/${sponsor.img}` %>">
+            <img src="<%- `/images/${sponsor.img}` %>" alt="<%- sponsor.alt %>">
           </a>
         </div>
         <%_ } _%>
