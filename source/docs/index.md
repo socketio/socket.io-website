@@ -16,7 +16,7 @@ Its main features are:
 Connections are established even in the presence of:
 
 - proxies and load balancers.
-- personal firewall and antivirus software.
+- personal [firewall](https://hosting.review/web-hosting-glossary/#13) and antivirus software.
 
 For this purpose, it relies on [Engine.IO](https://github.com/socketio/engine.io), which first establishes a long-polling connection, then tries to upgrade to better transports that are "tested" on the side, like WebSocket. Please see the [Goals](https://github.com/socketio/engine.io#goals) section for more information.
 
