@@ -134,7 +134,28 @@
     {
       url: 'https://edubirdie.com/write-my-essay',
       img: 'edubirdie.jpeg',
-      alt: 'EduBirdie logo'
+      alt: 'EduBirdie'
+    },
+    {
+      url: 'https://moneezy.com',
+      img: 'moneezy.png',
+      alt: 'Moneezy'
+    },
+    {
+      url: 'https://lemonlaw.site/',
+      img: 'lemon-law.png',
+      alt: 'Lemon Law'
+    },
+    {
+      url: 'https://www.dcslsoftware.com/',
+      img: 'dcsl-software.png',
+      alt: 'DCSL software'
+    }
+  ];
+  const textOnlySponsors = [
+    {
+      url: 'https://pharmorganics.co/',
+      name: 'Pharm Organics'
     }
   ];
 
@@ -238,6 +259,13 @@
         <div class="sponsor">
           <a href="<%- sponsor.url %>" target="_blank">
             <img src="<%- `/images/${sponsor.img}` %>" alt="<%- sponsor.alt %>">
+          </a>
+        </div>
+        <%_ } _%>
+        <%_ for (let sponsor of textOnlySponsors) {_%>
+        <div class="sponsor">
+          <a href="<%- sponsor.url %>" target="_blank">
+            <%- sponsor.name %>
           </a>
         </div>
         <%_ } _%>
