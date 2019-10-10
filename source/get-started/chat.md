@@ -145,7 +145,7 @@ Notice that I initialize a new instance of `socket.io` by passing the `http` (th
 Now in index.html I add the following snippet before the `</body>`:
 
 ```html
-<script src="/socket.io/socket.io.js"></script>
+ <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script>
   var socket = io();
 </script>
