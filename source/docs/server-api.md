@@ -643,7 +643,7 @@ socket.on('news', (data, callback) => {
 
 Inherited from `EventEmitter` (along with other methods not mentioned here). See Node.js documentation for the `events` module.
 
-## socket.join(room[, callback])
+## socket.join([rooms], (callback)=> {})
 
   - `room` _(String)_
   - `callback` _(Function)_
@@ -674,7 +674,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## socket.join(rooms[, callback])
+## socket.join([rooms], (callback)=> {})
 
   - `rooms` _(Array)_
   - `callback` _(Function)_
@@ -682,7 +682,7 @@ io.on('connection', (socket) => {
 
 Adds the client to the list of room, and fires optionally a callback with `err` signature (if any).
 
-## socket.leave(room[, callback])
+## socket.leave([rooms], (callback)=> {})
 
   - `room` _(String)_
   - `callback` _(Function)_
