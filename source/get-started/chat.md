@@ -28,10 +28,10 @@ First let’s create a `package.json` manifest file that describes our project. 
 }
 ```
 
-Now, in order to easily populate the `dependencies` with the things we need, we’ll use `npm install --save`:
+Now, in order to easily populate the `dependencies` with the things we need, we’ll use `npm install`:
 
 ```
-npm install --save express@4.15.2
+npm install express@4.15.2
 ```
 
 Now that express is installed we can create an `index.js` file that will setup our application.
@@ -116,7 +116,7 @@ Socket.IO is composed of two parts:
 During development, `socket.io` serves the client automatically for us, as we’ll see, so for now we only have to install one module:
 
 ```
-npm install --save socket.io
+npm install socket.io
 ```
 
 That will install the module and add the dependency to `package.json`. Now let’s edit `index.js` to add it:
