@@ -28,7 +28,7 @@ First let’s create a `package.json` manifest file that describes our project. 
 }
 ```
 
-Now, in order to easily populate the `dependencies` with the things we need, we’ll use `npm install`:
+Now, in order to easily populate the `dependencies` property with the things we need, we’ll use `npm install`:
 
 ```
 npm install express@4.15.2
