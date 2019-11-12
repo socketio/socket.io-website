@@ -92,7 +92,7 @@ Upon disconnection, sockets `leave` all the channels they were part of automatic
 
 In some cases, you might want to emit events to sockets in Socket.IO namespaces / rooms from outside the context of your Socket.IO processes.
 
-There’s several ways to tackle this problem, like implementing your own channel to send messages into the process.
+There are several ways to tackle this problem, like implementing your own channel to send messages into the process.
 
 To facilitate this use case, we created two modules:
 
