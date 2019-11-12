@@ -282,13 +282,10 @@ dynamicNsp.use((socket, next) => { /* ... */ });
 With a function:
 
 ```js
-io.of((nsp, query, next) => {
-  const token = query.token;
-  
-  // Do your authentication
-  
-  next(null, nsp); // if success
-}).on('connect', (socket) => { /* socket connected to your namespace */ });
+io.of((name, query, next) => {
+  // the checkToken method must return a boolean, indicating whether the client is able to connect or not.
+  next(null, checkToken(query.token));
+}).on('connect', (socket) => { /* ... */ });
 ```
 
 ## server.close([callback])
