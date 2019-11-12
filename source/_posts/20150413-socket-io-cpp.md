@@ -163,7 +163,7 @@ private Q_SLOTS:
 //In mainwindow.cpp
 void MainWindow::AddListItem(QListWidgetItem* item)
 {
-    this->findChild&lt;QListWidget*>("listView")->addItem(item);
+    this->findChild<QListWidget*>("listView")->addItem(item);
 }
 ```
 
@@ -189,7 +189,7 @@ private:
     void OnClosed(client::close_reason const& reason);
     void OnFailed();
 
-    std::unique_ptr&lt;client> _io;
+    std::unique_ptr<client> _io;
 ```
 
 Initialize `sio::client` and setup event bindings for the default `socket` in the `MainWindow` constructor.
@@ -301,7 +301,7 @@ Add the following code to `SendBtnClicked()`:
 ```cpp
 void MainWindow::SendBtnClicked()
 {
-    QLineEdit* messageEdit = this->findChild&lt;QLineEdit*>("messageEdit");
+    QLineEdit* messageEdit = this->findChild<QLineEdit*>("messageEdit");
     QString text = messageEdit->text();
     if(text.length()>0)
     {
