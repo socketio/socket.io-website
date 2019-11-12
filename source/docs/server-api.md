@@ -281,6 +281,7 @@ With a function:
 
 ```js
 io.of((name, query, next) => {
+  // the checkToken method must return a boolean, indicating whether the client is able to connect or not.
   next(null, checkToken(query.token));
 }).on('connect', (socket) => { /* ... */ });
 ```
