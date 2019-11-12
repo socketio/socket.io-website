@@ -130,6 +130,106 @@
       url: 'https://craftresumes.com/',
       img: 'craftresumes.png',
       alt: 'Professional resume writing services'
+    },
+    {
+      url: 'https://edubirdie.com/write-my-essay',
+      img: 'edubirdie.jpeg',
+      alt: 'EduBirdie'
+    },
+    {
+      url: 'https://moneezy.com',
+      img: 'moneezy.png',
+      alt: 'Moneezy'
+    },
+    {
+      url: 'https://lemonlaw.site/',
+      img: 'lemon-law.png',
+      alt: 'Lemon Law'
+    },
+    {
+      url: 'https://www.dcslsoftware.com/',
+      img: 'dcsl-software.png',
+      alt: 'DCSL software'
+    },
+    {
+      url: 'https://www.norgescasino.com/',
+      img: 'norges-casino.png',
+      alt: 'Norges Casino'
+    },
+    {
+      url: 'https://www.bonus.ca/',
+      img: 'bonus-finder.png',
+      alt: 'Bonus Finder'
+    },
+    {
+      url: 'https://writersperhour.com/',
+      img: 'writers-per-hour.png',
+      alt: 'Writers Per Hour'
+    },
+    {
+      url: 'https://bid4papers.com/write-my-essay.html',
+      img: 'bid4papers.png',
+      alt: 'Bid4Papers'
+    },
+    {
+      url: 'https://bitcasino.io/',
+      img: 'bitcasino.png',
+      alt: 'Bitcasino'
+    },
+    {
+      url: 'https://www.worthwagon.com/',
+      img: 'worthwagon.png',
+      alt: 'WorthWagon'
+    },
+    {
+      url: 'https://moneypug.co.uk/',
+      img: 'moneypug.png',
+      alt: 'Money Pug'
+    },
+    {
+      url: 'https://vpngorilla.com/',
+      img: 'vpngorilla.png',
+      alt: 'VPN Gorilla'
+    },
+    {
+      url: 'https://mobilunity.com/',
+      img: 'mobilunity.png',
+      alt: 'Mobilunity'
+    },
+    {
+      url: 'https://www.namecoinnews.com/',
+      img: 'namecoinnews.png',
+      alt: 'NameCoinNews'
+    },
+    {
+      url: 'https://wpsetup.org/',
+      img: 'wpsetup.png',
+      alt: 'WP Setup'
+    },
+    {
+      url: 'https://www.directory.net/',
+      img: 'link-directory.png',
+      alt: 'directory.net'
+    },
+    {
+      url: 'https://www.securityguardtrainingcentral.com/',
+      img: 'securityguard.png',
+      alt: 'Security Guard Training Central'
+    },
+    {
+      url: 'https://fair-laan.se/',
+      img: 'fairlaan.png',
+      alt: 'Fair Laan'
+    }
+  ];
+  const textOnlySponsors = [
+    {
+      url: 'https://pharmorganics.co/',
+      name: 'Pharm Organics'
+    },
+    {
+      url: 'https://www.banksecrets.eu',
+      name: 'Banksecrets'
     }
   ];
 
@@ -233,6 +333,13 @@
         <div class="sponsor">
           <a href="<%- sponsor.url %>" target="_blank">
             <img src="<%- `/images/${sponsor.img}` %>" alt="<%- sponsor.alt %>">
+          </a>
+        </div>
+        <%_ } _%>
+        <%_ for (let sponsor of textOnlySponsors) {_%>
+        <div class="sponsor">
+          <a href="<%- sponsor.url %>" target="_blank">
+            <%- sponsor.name %>
           </a>
         </div>
         <%_ } _%>

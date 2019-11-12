@@ -36,7 +36,7 @@
     t.append($('<img>').attr('src', data.user.profile_image_url_https));
     t.append(text);
     t.append($('<a class="time">')
-     .attr('href', 'https://twitter.com/' + data.user.name + '/status/' + data.id_str)
+     .attr('href', 'https://twitter.com/' + data.user.id_str + '/status/' + data.id_str)
      .attr('target', '_blank')
      .data('time', data.timestamp_ms)
      .text(pretty(data.timestamp_ms) || 'now')
