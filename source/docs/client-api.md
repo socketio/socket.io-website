@@ -28,7 +28,7 @@ The protocol revision number.
 
 ## io([url][, options])
 
-  - `url` _(String)_ (defaults to `window.location`)
+  - `url` _(String)_ (defaults to `window.location.host`)
   - `options` _(Object)_
     - `forceNew` _(Boolean)_ whether to reuse an existing connection
   - **Returns** `Socket`
