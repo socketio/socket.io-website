@@ -53,8 +53,14 @@ const main = async () => {
   console.log(`fetched ${nodes.length} sponsors`);
 
   const sponsors = nodes
-    .filter(n => n.totalDonations.value >= 100)
-    .sort((a, b) => b.totalDonations.value - a.totalDonations.value)
+    .filter(n => n.account.website && n.totalDonations.value >= 100)
+    .sort((a, b) => {
+      const sortByDonation = b.totalDonations.value - a.totalDonations.value;
+      if (sortByDonation !== 0) {
+        return sortByDonation;
+      }
+      return a.createdAt.localeCompare(b.createdAt);
+    })
     .map(nodeToSponsor);
 
   fs.writeFileSync(absoluteFilename, JSON.stringify(sponsors, null, 2));
