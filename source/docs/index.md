@@ -149,7 +149,7 @@ io.on('connection', function (socket) {
 </script>
 ```
 
-## Using with Express
+## Using with Express
 
 ### Server (app.js)
 
@@ -185,6 +185,54 @@ io.on('connection', function (socket) {
   });
 </script>
 ```
+
+## Using with Express and TypeScript
+
+Assuming you have the TypeScript compiler already set up, add type definitions by installing `@types/express` and `@types/socket.io`.
+
+### Server (app.ts)
+
+```ts
+import express from "express";
+import { Server } from "http";
+import socket from "socket.io";
+
+const PORT = process.env.PORT || 80
+const app = express();
+const server = new Server(app);
+const io = socket(server);
+
+server.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
+// WARNING: app.listen(PORT) will NOT work here!
+
+app.get("/", (req, res) => {
+  res.send("hello world, server is listening");
+});
+
+io.on("connection", socket => {
+  socket.emit("news", { hello: "world" });
+  socket.on("my other event", data => {
+    console.log(data);
+  });
+});
+
+```
+
+### Client (index.html)
+
+```html
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://localhost');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+</script>
+```
+
 
 ## Sending and receiving events
 
