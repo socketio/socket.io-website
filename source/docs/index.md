@@ -208,7 +208,7 @@ server.listen(PORT, () => {
 // WARNING: app.listen(PORT) will NOT work here!
 
 app.get("/", (req, res) => {
-  res.send("hello world, server is listening");
+  res.sendFile(__dirname + "/index.html");
 });
 
 io.on("connection", socket => {
