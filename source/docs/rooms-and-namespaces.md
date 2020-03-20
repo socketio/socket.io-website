@@ -65,7 +65,7 @@ io.on('connection', function(socket){
 And then simply use `to` or `in` (they are the same) when broadcasting or emitting:
 
 ```js
-io.to('some room').emit('some event');
+io.sockets.in('some room').emit('some event');
 ```
 
 To leave a channel you call `leave` in the same fashion as `join`. Both methods are asynchronous and accept a `callback` argument.
