@@ -7,7 +7,7 @@ In this guide we’ll create a basic chat application. It requires almost no bas
 
 ## Introduction
 
-Writing a chat application with popular web applications stacks like LAMP (PHP) has traditionally been very hard. It involves polling the server for changes, keeping track of timestamps, and it’s a lot slower than it should be.
+Writing a chat application with popular web applications stacks like LAMP (PHP) has normally been very hard. It involves polling the server for changes, keeping track of timestamps, and it’s a lot slower than it should be.
 
 Sockets have traditionally been the solution around which most real-time chat systems are architected, providing a bi-directional communication channel between a client and a server.
 
@@ -34,22 +34,22 @@ Now, in order to easily populate the `dependencies` property with the things we 
 npm install express@4.15.2
 ```
 
-Now that express is installed we can create an `index.js` file that will setup our application.
+Once it's installed we can create an `index.js` file that will set up our application.
 
 ```js
 var app = require('express')();
 var http = require('http').createServer(app);
 
-app.get('/', function(req, res){
+app.get('/', (req, res) => {
   res.send('<h1>Hello world</h1>');
 });
 
-http.listen(3000, function(){
+http.listen(3000, () => {
   console.log('listening on *:3000');
 });
 ```
 
-This translates into the following:
+This means that it:
 
 - Express initializes `app` to be a function handler that you can supply to an HTTP server (as seen in line 2). </li>
 - We define a route handler `/` that gets called when we hit our website home.</li>
@@ -65,17 +65,17 @@ And if you point your browser to `http://localhost:3000`:
 
 ## Serving HTML
 
-So far in `index.js` we’re calling `res.send` and pass it a HTML string. Our code would look very confusing if we just placed our entire application’s HTML there. Instead, we’re going to create a `index.html` file and serve it.
+So far in `index.js` we’re calling `res.send` and passing it a string of HTML. Our code would look very confusing if we just placed our entire application’s HTML there, so instead we're going to create a `index.html` file and serve that instead.
 
-Let’s refactor our route handler to use `sendFile` instead:
+Let’s refactor our route handler to use `sendFile` instead.
 
 ```js
-app.get('/', function(req, res){
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 ```
 
-And populate `index.html` with the following:
+Put the following in your `index.html` file:
 
 ```html
 <!doctype html>
@@ -86,7 +86,7 @@ And populate `index.html` with the following:
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font: 13px Helvetica, Arial; }
       form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: 0.5%; }
       form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages li { padding: 5px 10px; }
@@ -102,7 +102,7 @@ And populate `index.html` with the following:
 </html>
 ```
 
-If you restart the process (by hitting Control+C and running `node index` again) and refresh the page it should look like this:
+If you restart the process (by hitting Control+C and running `node index.js` again) and refresh the page it should look like this:
 
 <img src="/images/chat-3.png" alt="A browser displaying an input and a 'Send' button">
 
@@ -110,8 +110,8 @@ If you restart the process (by hitting Control+C and running `node index` again)
 
 Socket.IO is composed of two parts:
 
-- A server that integrates with (or mounts on) the Node.JS HTTP Server: [socket.io](https://github.com/socketio/socket.io)
-- A client library that loads on the browser side: [socket.io-client](https://github.com/socketio/socket.io-client)
+- A server that integrates with (or mounts on) the Node.JS HTTP Server [socket.io](https://github.com/socketio/socket.io)
+- A client library that loads on the browser side [socket.io-client](https://github.com/socketio/socket.io-client)
 
 During development, `socket.io` serves the client automatically for us, as we’ll see, so for now we only have to install one module:
 
@@ -126,23 +126,23 @@ var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
-app.get('/', function(req, res){
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function(socket){
+io.on('connection', (socket) => {
   console.log('a user connected');
 });
 
-http.listen(3000, function(){
+http.listen(3000, () => {
   console.log('listening on *:3000');
 });
 ```
 
-Notice that I initialize a new instance of `socket.io` by passing the `http` (the HTTP server) object. Then I listen on the `connection` event for incoming sockets, and I log it to the console.
+Notice that I initialize a new instance of `socket.io` by passing the `http` (the HTTP server) object. Then I listen on the `connection` event for incoming sockets and log it to the console.
 
 
-Now in index.html I add the following snippet before the `</body>`:
+Now in index.html add the following snippet before the `</body>` (end body tag):
 
 ```html
 <script src="/socket.io/socket.io.js"></script>
@@ -157,24 +157,24 @@ If you would like to use the local version of the client-side JS file, you can f
 
 Notice that I’m not specifying any URL when I call `io()`, since it defaults to trying to connect to the host that serves the page.
 
-If you now restart the process (by hitting Control+C and running node index again) and then refresh the webpage you should see the console print “a user connected”.
+If you now restart the process (by hitting Control+C and running `node index.js` again) and then refresh the webpage you should see the console print “a user connected”.
 
-Try opening several tabs, and you’ll see several messages:
+Try opening several tabs, and you’ll see several messages.
 
 <img src="/images/chat-4.png" alt="A console displaying several messages, indicating that some users have connected">
 
 Each socket also fires a special `disconnect` event:
 
 ```js
-io.on('connection', function(socket){
+io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('disconnect', function(){
+  socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 });
 ```
 
-Then if you refresh a tab several times you can see it in action:
+Then if you refresh a tab several times you can see it in action.
 
 <img src="/images/chat-5.png" alt="A console displaying several messages, indicating that some users have connected and disconnected">
 
@@ -186,11 +186,11 @@ Let’s make it so that when the user types in a message, the server gets it as 
 
 ```html
 <script src="/socket.io/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
   $(function () {
     var socket = io();
-    $('form').submit(function(e){
+    $('form').submit(function(e) {
       e.preventDefault(); // prevents page reloading
       socket.emit('chat message', $('#m').val());
       $('#m').val('');
@@ -203,8 +203,8 @@ Let’s make it so that when the user types in a message, the server gets it as 
 And in `index.js` we print out the `chat message` event:
 
 ```js
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => {
     console.log('message: ' + msg);
   });
 });
@@ -218,7 +218,7 @@ The result should be like the following video:
 
 The next goal is for us to emit the event from the server to the rest of the users.
 
-In order to send an event to everyone, Socket.IO gives us the `io.emit`:
+In order to send an event to everyone, Socket.IO gives us the `io.emit()` method.
 
 ```js
 io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' }); // This will emit the event to all connected sockets
@@ -227,7 +227,7 @@ io.emit('some event', { someProperty: 'some value', otherProperty: 'other value'
 If you want to send a message to everyone except for a certain emitting socket, we have the `broadcast` flag for emitting from that socket:
 
 ```js
-io.on('connection', function(socket){
+io.on('connection', (socket) => {
   socket.broadcast.emit('hi');
 });
 ```
@@ -235,14 +235,14 @@ io.on('connection', function(socket){
 In this case, for the sake of simplicity we’ll send the message to everyone, including the sender.
 
 ```js
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => {
     io.emit('chat message', msg);
   });
 });
 ```
 
-And on the client side when we capture a `chat message` event we’ll include it in the page. The total client-side JavaScript code now amounts to:
+And on the client side when we capture a `chat message` event we’ll include it in the page. The _total_ client-side JavaScript code now amounts to:
 
 ```html
 <script>
