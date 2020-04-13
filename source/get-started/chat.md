@@ -83,21 +83,22 @@ And populate `index.html` with the following:
   <head>
     <title>Socket.IO chat</title>
     <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
+      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .bottom_bar { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #messageInput { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
+      #sendButton { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
+      #messageInput:focus { outline: none; }
+      #messagesList { list-style-type: none; margin: 0; padding: 0; }
+      #messagesList > li { padding: 0.5rem 1rem; }
+      #messagesList > li:nth-child(odd) { background: #efefef; }
     </style>
   </head>
   <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+    <ul id="messagesList"></ul>
+    <div class="bottom_bar">
+      <input id="messageInput" autocomplete="off" placeholder="Type a message" />
+      <button id="sendButton">Send</button>
+    </div>
   </body>
 </html>
 ```
@@ -188,14 +189,14 @@ Let’s make it so that when the user types in a message, the server gets it as 
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
-  $(function () {
-    var socket = io();
-    $('form').submit(function(e){
-      e.preventDefault(); // prevents page reloading
-      socket.emit('chat message', $('#m').val());
-      $('#m').val('');
-      return false;
-    });
+  const socket = io();
+
+  const messageInput = document.getElementById('messageInput');
+  const sendButton   = document.getElementById('sendButton');
+
+  sendButton.addEventListener('click', function(){
+    socket.emit('chat message', messageInput.value);
+    messageInput.value = '';
   });
 </script>
 ```
@@ -246,17 +247,20 @@ And on the client side when we capture a `chat message` event we’ll include it
 
 ```html
 <script>
-  $(function () {
-    var socket = io();
-    $('form').submit(function(e){
-      e.preventDefault(); // prevents page reloading
-      socket.emit('chat message', $('#m').val());
-      $('#m').val('');
-      return false;
-    });
-    socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
-    });
+  const socket = io();
+
+  const messagesList = document.getElementById('messagesList');
+  const messageInput = document.getElementById('messageInput');
+  const sendButton   = document.getElementById('sendButton');
+
+  sendButton.addEventListener('click', function(){
+    socket.emit('chat message', messageInput.value);
+    messageInput.value = '';
+  });
+
+  socket.on('chat message', function(msg){
+    messagesList.innerHTML += `<li>${msg}</li>`;
+    window.scrollTo(0, document.body.scrollHeight);
   });
 </script>
 ```
