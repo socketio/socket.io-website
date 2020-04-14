@@ -1,6 +1,6 @@
 
 (function initTweetStream(){
-  var socket = io('https://socket-io-tweet-stream.now.sh');
+  var socket = io('https://socketio-tweet-stream.herokuapp.com');
   socket.on('tweet', function(t){
     add(t).prependTo('#tweets').addClass('new');
     slice();
