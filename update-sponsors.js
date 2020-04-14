@@ -43,6 +43,11 @@ const customLinks = {
     url: "https://www.ramotion.com/agency/ui-ux-design",
     img: "https://images.opencollective.com/truevendor/ddf2f01/logo.png",
     alt: "ui ux design agency"
+  },
+  pinkelephant: {
+    url: "https://akasse-fagforening.dk/",
+    img: "/images/a-kasse.png",
+    alt: "a-kasse"
   }
 }
 
