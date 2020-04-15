@@ -59,11 +59,18 @@ function onConnect(socket){
 ```
 
 **Note:** The following events are reserved and should not be used as event names by your application:
-- `error`
 - `connect`
+- `connect_error`
+- `connect_timeout`
+- `error`
 - `disconnect`
 - `disconnecting`
 - `newListener`
+- `reconnect_attempt`
+- `reconnecting`
+- `reconnect_error`
+- `reconnect_failed`
 - `removeListener`
 - `ping`
 - `pong`
+
