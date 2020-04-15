@@ -72,7 +72,7 @@ To leave a channel you call `leave` in the same fashion as `join`. Both methods 
 
 ## Default room
 
-Each `Socket` in Socket.IO is identified by a random, unguessable, unique identifier `Socket#id`. For your convenience, each socket automatically joins a room identified by this id.
+Each `Socket` in Socket.IO is identified by a random, unguessable, unique identifier `Socket#id`. For your convenience, each socket automatically joins a room identified by its own id.
 
 This makes it easy to broadcast messages to other sockets:
 
