@@ -1,3 +1,6 @@
 {
-  "type": "static"
+  "version": 2,
+  "alias": [
+    "socket.io"
+  ]
 }
