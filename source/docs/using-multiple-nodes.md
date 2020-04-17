@@ -149,8 +149,8 @@ Now that you have multiple Socket.IO nodes accepting connections, if you want to
 The interface in charge of routing messages is what we call the `Adapter`. You can implement your own on top of the [socket.io-adapter](https://github.com/socketio/socket.io-adapter) (by inheriting from it) or you can use the one we provide on top of [Redis](https://redis.io/): [socket.io-redis](https://github.com/socketio/socket.io-redis):
 
 ```js
-var io = require('socket.io')(3000);
-var redis = require('socket.io-redis');
+const io = require('socket.io')(3000);
+const redis = require('socket.io-redis');
 io.adapter(redis({ host: 'localhost', port: 6379 }));
 ```
 

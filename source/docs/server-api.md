@@ -776,8 +776,8 @@ io.on('connection', (socket) => {
 Specifies whether there is binary data in the emitted data. Increases performance when specified. Can be `true` or `false`.
 
 ```js
-var io = require('socket.io')();
-io.on('connection', function(socket){
+const io = require('socket.io')();
+io.on('connection', (socket) => {
   socket.binary(false).emit('an event', { some: 'data' }); // The data to send has no binary data
 });
 ```

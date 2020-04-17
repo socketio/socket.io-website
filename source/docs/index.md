@@ -109,15 +109,15 @@ There are several client implementations in other languages, which are maintaine
 ### Server (app.js)
 
 ```js
-var app = require('http').createServer(handler)
-var io = require('socket.io')(app);
-var fs = require('fs');
+const app = require('http').createServer(handler)
+const io = require('socket.io')(app);
+const fs = require('fs');
 
 app.listen(80);
 
 function handler (req, res) {
   fs.readFile(__dirname + '/index.html',
-  function (err, data) {
+  (err, data) => {
     if (err) {
       res.writeHead(500);
       return res.end('Error loading index.html');
@@ -128,9 +128,9 @@ function handler (req, res) {
   });
 }
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
   socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
+  socket.on('my other event', (data) => {
     console.log(data);
   });
 });
@@ -141,8 +141,8 @@ io.on('connection', function (socket) {
 ```html
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io('http://localhost');
-  socket.on('news', function (data) {
+  const socket = io('http://localhost');
+  socket.on('news', (data) => {
     console.log(data);
     socket.emit('my other event', { my: 'data' });
   });
@@ -154,20 +154,20 @@ io.on('connection', function (socket) {
 ### Server (app.js)
 
 ```js
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 server.listen(80);
 // WARNING: app.listen(80) will NOT work here!
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
   socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
+  socket.on('my other event', (data) => {
     console.log(data);
   });
 });
@@ -178,8 +178,8 @@ io.on('connection', function (socket) {
 ```html
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io.connect('http://localhost');
-  socket.on('news', function (data) {
+  const socket = io.connect('http://localhost');
+  socket.on('news', (data) => {
     console.log(data);
     socket.emit('my other event', { my: 'data' });
   });
@@ -194,16 +194,16 @@ Socket.IO allows you to emit and receive custom events. Besides `connect`, `mess
 
 ```js
 // note, io(<port>) will create a http server for you
-var io = require('socket.io')(80);
+const io = require('socket.io')(80);
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
   io.emit('this', { will: 'be received by everyone'});
 
-  socket.on('private message', function (from, msg) {
+  socket.on('private message', (from, msg) => {
     console.log('I received a private message by ', from, ' saying ', msg);
   });
 
-  socket.on('disconnect', function () {
+  socket.on('disconnect', () => {
     io.emit('user disconnected');
   });
 });
@@ -218,10 +218,10 @@ This has the benefit of `multiplexing` a single connection. Instead of socket.io
 ### Server (app.js)
 
 ```js
-var io = require('socket.io')(80);
-var chat = io
+const io = require('socket.io')(80);
+const chat = io
   .of('/chat')
-  .on('connection', function (socket) {
+  .on('connection', (socket) => {
     socket.emit('a message', {
         that: 'only'
       , '/chat': 'will get'
@@ -232,9 +232,9 @@ var chat = io
     });
   });
 
-var news = io
+const news = io
   .of('/news')
-  .on('connection', function (socket) {
+  .on('connection', (socket) => {
     socket.emit('item', { news: 'item' });
   });
 ```
@@ -243,14 +243,14 @@ var news = io
 
 ```html
 <script>
-  var chat = io.connect('http://localhost/chat')
+  const chat = io.connect('http://localhost/chat')
     , news = io.connect('http://localhost/news');
   
-  chat.on('connect', function () {
+  chat.on('connect', () => {
     chat.emit('hi!');
   });
   
-  news.on('news', function () {
+  news.on('news', () => {
     news.emit('woot');
   });
 </script>
@@ -267,16 +267,16 @@ In that case, you might want to send those messages as volatile messages.
 ### Server
 
 ```js
-var io = require('socket.io')(80);
+const io = require('socket.io')(80);
 
-io.on('connection', function (socket) {
-  var tweets = setInterval(function () {
-    getBieberTweet(function (tweet) {
+io.on('connection', (socket) => {
+  const tweets = setInterval(() => {
+    getBieberTweet((tweet) => {
       socket.volatile.emit('bieber tweet', tweet);
     });
   }, 100);
 
-  socket.on('disconnect', function () {
+  socket.on('disconnect', () => {
     clearInterval(tweets);
   });
 });
@@ -291,10 +291,10 @@ To do this, simply pass a function as the last parameter of `.send` or `.emit`. 
 ### Server (app.js)
 
 ```js
-var io = require('socket.io')(80);
+const io = require('socket.io')(80);
 
-io.on('connection', function (socket) {
-  socket.on('ferret', function (name, word, fn) {
+io.on('connection', (socket) => {
+  socket.on('ferret', (name, word, fn) => {
     fn(name + ' says ' + word);
   });
 });
@@ -304,9 +304,9 @@ io.on('connection', function (socket) {
 
 ```html
 <script>
-  var socket = io(); // TIP: io() with no args does auto-discovery
-  socket.on('connect', function () { // TIP: you can avoid listening on `connect` and listen on events directly too!
-    socket.emit('ferret', 'tobi', 'woot', function (data) { // args are sent in order to acknowledgement function
+  const socket = io(); // TIP: io() with no args does auto-discovery
+  socket.on('connect', () => { // TIP: you can avoid listening on `connect` and listen on events directly too!
+    socket.emit('ferret', 'tobi', 'woot', (data) => { // args are sent in order to acknowledgement function
       console.log(data); // data will be 'tobi says woot'
     });
   });
@@ -320,9 +320,9 @@ To broadcast, simply add a `broadcast` flag to `emit` and `send` method calls. B
 ### Server
 
 ```js
-var io = require('socket.io')(80);
+const io = require('socket.io')(80);
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
   socket.broadcast.emit('user connected');
 });
 ```
@@ -334,11 +334,11 @@ If you just want the WebSocket semantics, you can do that too. Simply leverage `
 ### Server (app.js)
 
 ```js
-var io = require('socket.io')(80);
+const io = require('socket.io')(80);
 
-io.on('connection', function (socket) {
-  socket.on('message', function () { });
-  socket.on('disconnect', function () { });
+io.on('connection', (socket) => {
+  socket.on('message', () => { });
+  socket.on('disconnect', () => { });
 });
 ```
 
@@ -346,11 +346,11 @@ io.on('connection', function (socket) {
 
 ```html
 <script>
-  var socket = io('http://localhost/');
-  socket.on('connect', function () {
+  const socket = io('http://localhost/');
+  socket.on('connect', () => {
     socket.send('hi');
 
-    socket.on('message', function (msg) {
+    socket.on('message', (msg) => {
       // my msg
     });
   });
