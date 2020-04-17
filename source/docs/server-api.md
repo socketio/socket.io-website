@@ -523,6 +523,14 @@ A reference to the underlying `Client` transport connection (engine.io `Socket` 
 
 A getter proxy that returns the reference to the `request` that originated the underlying engine.io `Client`. Useful for accessing request headers such as `Cookie` or `User-Agent`.
 
+```js
+const cookie = require('cookie');
+
+io.on('connection', (socket) => {
+  const cookies = cookie.parse(socket.request.headers.cookie || '');
+});
+```
+
 ## socket.handshake
 
   * _(Object)_
@@ -642,7 +650,7 @@ socket.on('news', (data, callback) => {
 ## socket.removeAllListeners([eventName])
 ## socket.eventNames()
 
-Inherited from `EventEmitter` (along with other methods not mentioned here). See Node.js documentation for the `events` module.
+Inherited from `EventEmitter` (along with other methods not mentioned here). See the Node.js documentation for the [events](https://nodejs.org/docs/latest/api/events.html) module.
 
 ## socket.join(room[, callback])
 
@@ -683,6 +691,16 @@ io.on('connection', (socket) => {
 
 Adds the client to the list of room, and fires optionally a callback with `err` signature (if any).
 
+```js
+io.on('connection', (socket) => {
+  socket.join(['room 237', 'room 238'], () => {
+    const rooms = Object.keys(socket.rooms);
+    console.log(rooms); // [ <socket.id>, 'room 237', 'room 238' ]
+    io.to('room 237').to('room 238').emit('a new user has joined the room'); // broadcast to everyone in both rooms
+  });
+});
+```
+
 ## socket.leave(room[, callback])
 
   - `room` _(String)_
@@ -690,6 +708,14 @@ Adds the client to the list of room, and fires optionally a callback with `err` 
   - **Returns** `Socket` for chaining
 
 Removes the client from `room`, and fires optionally a callback with `err` signature (if any).
+
+```js
+io.on('connection', (socket) => {
+  socket.leave('room 237', () => {
+    io.to('room 237').emit(`user ${socket.id} has left the room`);
+  });
+});
+```
 
 **Rooms are left automatically upon disconnection**.
 
