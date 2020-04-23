@@ -124,7 +124,7 @@ That will install the module and add the dependency to `package.json`. Now letâ€
 ```js
 var app = require('express')();
 var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+var io = require('socket.io').listen(http);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
