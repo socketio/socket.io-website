@@ -48,6 +48,11 @@ const customLinks = {
     url: "https://akasse-fagforening.dk/",
     img: "/images/a-kasse.png",
     alt: "a-kasse"
+  },
+  "veselin-lalev": {
+    url: "https://casinodaddy.com",
+    img: "/images/casinodaddy.png",
+    alt: "Casino Daddy"
   }
 }
 
