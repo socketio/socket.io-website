@@ -1,4 +1,4 @@
-title: Socket.IO  —  Apache Cordova
+title: Apache Cordova
 permalink: /socket-io-with-apache-cordova/
 ---
 

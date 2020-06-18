@@ -1,4 +1,4 @@
-title: Socket.IO  —  Client API
+title: Client API
 permalink: /docs/client-api/
 type: api
 ---

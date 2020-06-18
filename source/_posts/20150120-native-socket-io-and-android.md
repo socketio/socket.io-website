@@ -1,5 +1,4 @@
-title: Socket.IO  —  Native Socket.IO and Android
-title_lite: Native Socket.IO and Android
+title: Native Socket.IO and Android
 permalink: /blog/native-socket-io-and-android/
 date: 2015-01-20
 author_name: Naoyuki Kanezawa

@@ -1,4 +1,4 @@
-title: Socket.IO  —  Using multiple nodes
+title: Using multiple nodes
 permalink: /docs/using-multiple-nodes/
 type: docs
 ---

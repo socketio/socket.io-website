@@ -1,4 +1,4 @@
-title: Socket.IO  —  Chat
+title: Chat
 permalink: /demos/chat/
 type: demos
 ---

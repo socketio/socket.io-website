@@ -1,5 +1,4 @@
-title: Socket.IO  —  Socket.IO is on Open Collective
-title_lite: Socket.IO is on Open Collective
+title: Socket.IO is on Open Collective
 permalink: /blog/socket-io-is-on-open-collective/
 date: 2017-05-15
 author_name: Damien Arrachequesne

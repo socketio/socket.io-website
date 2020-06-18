@@ -1,4 +1,4 @@
-title: Socket.IO  —  Docs
+title: Introduction
 type: docs
 ---
 

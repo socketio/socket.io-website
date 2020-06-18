@@ -1,4 +1,4 @@
-title: Socket.IO  —  Emit cheatsheet
+title: Emit cheatsheet
 permalink: /docs/emit-cheatsheet/
 type: docs
 ---

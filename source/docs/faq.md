@@ -1,4 +1,4 @@
-title: Socket.IO  —  FAQ
+title: FAQ
 permalink: /docs/faq/
 type: docs
 ---

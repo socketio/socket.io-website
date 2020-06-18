@@ -1,5 +1,4 @@
-title: Socket.IO  —  Socket.IO C++
-title_lite: Socket.IO C++
+title: Socket.IO C++
 permalink: /blog/socket-io-cpp/
 date: 2015-04-13
 author_name: Melo Yao

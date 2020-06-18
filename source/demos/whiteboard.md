@@ -1,4 +1,4 @@
-title: Socket.IO  —  Whiteboard
+title: Whiteboard
 permalink: /demos/whiteboard/
 type: demos
 ---

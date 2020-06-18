@@ -1,4 +1,4 @@
-title: Socket.IO  —  Migrating from 0.9
+title: Migrating from 0.9
 permalink: /docs/migrating-from-0-9/
 type: docs
 ---

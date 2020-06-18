@@ -1,4 +1,4 @@
-title: Socket.IO  —  Server API
+title: Server API
 permalink: /docs/server-api/
 type: api
 ---

@@ -1,4 +1,4 @@
-title: Socket.IO  —  Internals
+title: Internals
 permalink: /docs/internals/
 type: docs
 ---

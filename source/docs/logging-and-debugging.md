@@ -1,4 +1,4 @@
-title: Socket.IO  —  Logging and debugging
+title: Logging and debugging
 permalink: /docs/logging-and-debugging/
 type: docs
 ---

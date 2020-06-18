@@ -1,4 +1,4 @@
-title: Socket.IO  —  Rooms and Namespaces
+title: Rooms and Namespaces
 permalink: /docs/rooms-and-namespaces/
 type: docs
 ---

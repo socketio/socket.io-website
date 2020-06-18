@@ -1,4 +1,4 @@
-title: Socket.IO  —  Chat
+title: Get started
 permalink: /get-started/chat/
 type: misc
 ---
