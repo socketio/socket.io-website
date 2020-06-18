@@ -1,6 +1,7 @@
 title: Logging and debugging
 permalink: /docs/logging-and-debugging/
 type: docs
+order: 3
 ---
 
 Socket.IO is now completely instrumented by a minimalistic yet tremendously powerful utility called [debug](https://github.com/visionmedia/debug) by TJ Holowaychuk.

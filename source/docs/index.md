@@ -1,5 +1,6 @@
 title: Introduction
 type: docs
+order: 1
 ---
 
 ## What Socket.IO is

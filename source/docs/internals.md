@@ -1,6 +1,7 @@
-title: Internals
+title: Internals overview
 permalink: /docs/internals/
 type: docs
+order: 401
 ---
 
 # Dependency graph

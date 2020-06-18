@@ -1,6 +1,7 @@
 title: FAQ
 permalink: /docs/faq/
 type: docs
+order: 601
 ---
 
 ## Can I use wildcards in events?

@@ -1,6 +1,7 @@
 title: Emit cheatsheet
 permalink: /docs/emit-cheatsheet/
 type: docs
+order: 2
 ---
 
 ```js
