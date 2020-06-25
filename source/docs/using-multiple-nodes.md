@@ -1,7 +1,7 @@
 title: Using multiple nodes
 permalink: /docs/using-multiple-nodes/
 type: docs
-order: 203
+order: 204
 ---
 
 ## Sticky load balancing

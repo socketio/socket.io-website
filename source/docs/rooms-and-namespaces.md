@@ -1,7 +1,7 @@
 title: Rooms and Namespaces
 permalink: /docs/rooms-and-namespaces/
 type: docs
-order: 202
+order: 203
 ---
 
 # Namespaces

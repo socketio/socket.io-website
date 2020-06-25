@@ -148,7 +148,7 @@ httpServer.listen(3000, () => {
 });
 ```
 
-Here, a classic Node.js [HTTP server](https://nodejs.org/docs/latest/api/http.html#http_class_http_server) is started to serve the `index.html` file, and the Socket.IO server is attached to it.
+Here, a classic Node.js [HTTP server](https://nodejs.org/docs/latest/api/http.html#http_class_http_server) is started to serve the `index.html` file, and the Socket.IO server is attached to it. Please see the [Server initialization](/docs/server-initialization/) page for the various ways to create a server.
 
 Let's create the `index.html` file next to it:
 
