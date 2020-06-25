@@ -10,6 +10,260 @@ Socket.IO is a library that enables real-time, bidirectional and event-based com
 - a Node.js server: [Source](https://github.com/socketio/socket.io) | [API](/docs/server-api/)
 - a Javascript client library for the browser (which can be also run from Node.js): [Source](https://github.com/socketio/socket.io-client) | [API](/docs/client-api/)
 
+<img src="/images/bidirectional-communication.png" alt="Diagram for bidirectional communication" />
+
+There are also several client implementation in other languages, which are maintained by the community:
+
+- Java: https://github.com/socketio/socket.io-client-java
+- C++: https://github.com/socketio/socket.io-client-cpp
+- Swift: https://github.com/socketio/socket.io-client-swift
+- Dart: https://github.com/rikulo/socket.io-client-dart
+- Python: https://github.com/miguelgrinberg/python-socketio
+- .Net: https://github.com/Quobject/SocketIoClientDotNet
+
+### How does that work?
+
+The client will try to establish a [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) connection if possible, and will fall back on HTTP long polling if not.
+
+WebSocket is a communication protocol which provides a full-duplex and low-latency channel between the server and the browser. More information can be found [here](https://en.wikipedia.org/wiki/WebSocket).
+
+So, in the best-case scenario, provided that:
+
+- the browser supports WebSocket ([97%](https://caniuse.com/#search=websocket) of all browsers in 2020)
+- there is no element (proxy, firewall, ...) preventing WebSocket connections between the client and the server  
+
+you can consider the Socket.IO client as a "slight" wrapper around the WebSocket API. Instead of writing:
+
+```js
+const socket = new WebSocket('ws://localhost:3000');
+
+socket.onopen(() => {
+  socket.send('Hello!');
+});
+
+socket.onmessage(data => {
+  console.log(data);
+});
+```
+
+You will have, on the client-side:
+
+```js
+const socket = io('ws://localhost:3000');
+
+socket.on('connect', () => {
+  // either with send()
+  socket.send('Hello!');
+
+  // or with emit() and custom event names
+  socket.emit('salutations', 'Hello!', { 'mr': 'john' }, Uint8Array.from([1, 2, 3, 4]));
+});
+
+// handle the event sent with socket.send()
+socket.on('message', data => {
+  console.log(data);
+});
+
+// handle the event sent with socket.emit()
+socket.on('greetings', (elem1, elem2, elem3) => {
+  console.log(elem1, elem2, elem3);
+});
+```
+
+The API on the server-side is similar, you also get an `socket` object which extends the Node.js [EventEmitter](https://nodejs.org/docs/latest/api/events.html#events_class_eventemitter) class:
+
+```js
+const io = require('socket.io')(3000);
+
+io.on('connect', socket => {
+  // either with send()
+  socket.send('Hello!');
+
+  // or with emit() and custom event names
+  socket.emit('greetings', 'Hey!', { 'ms': 'jane' }, Buffer.from([4, 3, 3, 1]));
+
+  // handle the event sent with socket.send()
+  socket.on('message', (data) => {
+    console.log(data);
+  });
+
+  // handle the event sent with socket.emit()
+  socket.on('salutations', (elem1, elem2, elem3) => {
+    console.log(elem1, elem2, elem3);
+  });
+});
+```
+
+Socket.IO provides additional features over a plain WebSocket object, which are listed [below](#Features).
+
+But first, let's detail what the Socket.IO library is not.
+
+## What Socket.IO is not
+
+Socket.IO is **NOT** a WebSocket implementation. Although Socket.IO indeed uses WebSocket as a transport when possible, it adds additional metadata to each packet. That is why a WebSocket client will not be able to successfully connect to a Socket.IO server, and a Socket.IO client will not be able to connect to a plain WebSocket server either.
+
+```js
+// WARNING: the client will NOT be able to connect!
+const socket = io('ws://echo.websocket.org');
+```
+
+If you are looking for a plain WebSocket server, please take a look at [ws](https://github.com/websockets/ws) or [uWebSockets.js](https://github.com/uNetworking/uWebSockets.js).
+
+There are also [talks](https://github.com/nodejs/node/issues/19308) to include a WebSocket server in the Node.js core.
+
+On the client-side, you might be interested by the [robust-websocket](https://github.com/nathanboktae/robust-websocket) package.
+
+## Minimal working example
+
+If you are new to the Node.js ecosystem, please take a look at the [Get Started](/get-started/chat) guide, which is ideal for beginners. 
+
+Else, let's start right away! The server library can be installed from NPM:
+
+```
+$ npm install socket.io
+```
+
+More information about the installation can be found in the [Server installation](/docs/server-installation/) page. 
+
+Then, let's create an `index.js` file, with the following content:
+
+```js
+const content = require('fs').readFileSync(__dirname + '/index.html', 'utf8');
+
+const httpServer = require('http').createServer((req, res) => {
+  // serve the index.html file
+  res.setHeader('Content-Type', 'text/html');
+  res.setHeader('Content-Length', Buffer.byteLength(content));
+  res.end(content);
+});
+
+const io = require('socket.io')(httpServer);
+
+io.on('connect', socket => {
+  console.log('connect');
+});
+
+httpServer.listen(3000, () => {
+  console.log('go to http://localhost:3000');
+});
+```
+
+Here, a classic Node.js [HTTP server](https://nodejs.org/docs/latest/api/http.html#http_class_http_server) is started to serve the `index.html` file, and the Socket.IO server is attached to it.
+
+Let's create the `index.html` file next to it:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minimal working example</title>
+</head>
+<body>
+    <ul id="events"></ul>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const $events = document.getElementById('events');
+
+        const newItem = (content) => {
+          const item = document.createElement('li');
+          item.innerText = content;
+          return item;
+        };
+
+        const socket = io();
+
+        socket.on('connect', () => {
+          $events.appendChild(newItem('connect'));
+        });
+    </script>
+</body>
+</html>
+```
+
+Finally, let's start our server:
+
+```
+$ node index.js
+```
+
+And voilà!
+
+<img src="/images/minimal-example-connect.gif" alt="Minimal working example - connect event on both sides" />
+
+The `socket` object on both sides extends the EventEmitter class, so:
+
+- sending an event is done with: `socket.emit()`
+- receiving an event is done by registering a listener: `socket.on(<event name>, <listener>)` 
+
+### To send an event from the server to the client
+
+Let's update the `index.js` file (server-side):
+
+```js
+io.on('connect', socket => {
+  let counter = 0;
+  setInterval(() => {
+    socket.emit('hello', ++counter);
+  }, 1000);
+});
+```
+
+And the `index.html` file (client-side):
+
+```js
+const socket = io();
+
+socket.on('connect', () => {
+  $events.appendChild(newItem('connect'));
+});
+
+socket.on('hello', (counter) => {
+  $events.appendChild(newItem(`hello - ${counter}`));
+});
+```
+
+Demo:
+
+<img src="/images/minimal-example-server-to-client.gif" alt="Minimal working example - server to client communication" />
+
+### To send a message from the client to the server
+
+Let's update the `index.js` file (server-side):
+
+```js
+io.on('connect', socket => {
+  socket.on('hey', data => {
+    console.log('hey', data);
+  });
+});
+```
+
+And the `index.html` file (client-side):
+
+```js
+const socket = io();
+
+socket.on('connect', () => {
+  $events.appendChild(newItem('connect'));
+});
+
+let counter = 0;
+setInterval(() => {
+  ++counter;
+  socket.emit('hey', { counter }); // the object will be serialized for you
+}, 1000);
+```
+
+Demo:
+
+<img src="/images/minimal-example-client-to-server.gif" alt="Minimal working example - client to server communication" />
+
+Now, let's detail the features provided by Socket.IO.
+
+## Features
+
 Its main features are:
 
 ### Reliability
@@ -41,321 +295,3 @@ Any serializable data structures can be emitted, including:
 ### Multiplexing support
 
 In order to create separation of concerns within your application (for example per module, or based on permissions), Socket.IO allows you to create several [Namespaces](/docs/rooms-and-namespaces/#Namespaces), which will act as separate communication channels but will share the same underlying connection.
-
-### Room support
-
-Within each [Namespace](/docs/rooms-and-namespaces/#Namespaces), you can define arbitrary channels, called [Rooms](/docs/rooms-and-namespaces/#Rooms), that sockets can join and leave. You can then broadcast to any given room, reaching every socket that has joined it.
-
-This is a useful feature to send notifications to a group of users, or to a given user connected on several devices for example.
-
-
-Those features come with a simple and convenient API, which looks like the following:
-
-```js
-io.on('connection', function(socket){
-  socket.emit('request', /* */); // emit an event to the socket
-  io.emit('broadcast', /* */); // emit an event to all connected sockets
-  socket.on('reply', function(){ /* */ }); // listen to the event
-});
-```
-
-
-## What Socket.IO is not
-
-Socket.IO is **NOT** a WebSocket implementation. Although Socket.IO indeed uses WebSocket as a transport when possible, it adds some metadata to each packet: the packet type, the namespace and the packet id when a message acknowledgement is needed. That is why a WebSocket client will not be able to successfully connect to a Socket.IO server, and a Socket.IO client will not be able to connect to a WebSocket server either. Please see the protocol specification [here](https://github.com/socketio/socket.io-protocol).
-
-```js
-// WARNING: the client will NOT be able to connect!
-const client = io('ws://echo.websocket.org');
-```
-
-
-## Installing
-
-### Server
-
-```
-npm install --save socket.io
-```
-
-[Source](https://github.com/socketio/socket.io)
-
-### Javascript Client
-
-A standalone build of the client is exposed by default by the server at `/socket.io/socket.io.js`.
-
-It can also be served from a CDN, like [cdnjs](https://cdnjs.com/libraries/socket.io).
-
-To use it from Node.js, or with a bundler like [webpack](https://webpack.js.org/) or [browserify](http://browserify.org/), you can also install the package from npm:
-
-```
-npm install --save socket.io-client
-```
-
-[Source](https://github.com/socketio/socket.io-client)
-
-### Other client implementations
-
-There are several client implementations in other languages, which are maintained by the community:
-
-- Java: https://github.com/socketio/socket.io-client-java
-- C++: https://github.com/socketio/socket.io-client-cpp
-- Swift: https://github.com/socketio/socket.io-client-swift
-- Dart: https://github.com/rikulo/socket.io-client-dart
-- Python: https://github.com/miguelgrinberg/python-socketio
-- .Net: https://github.com/Quobject/SocketIoClientDotNet
-
-## Using with Node http server
-
-### Server (app.js)
-
-```js
-const app = require('http').createServer(handler)
-const io = require('socket.io')(app);
-const fs = require('fs');
-
-app.listen(80);
-
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  (err, data) => {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
-
-    res.writeHead(200);
-    res.end(data);
-  });
-}
-
-io.on('connection', (socket) => {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', (data) => {
-    console.log(data);
-  });
-});
-```
-
-### Client (index.html)
-
-```html
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  const socket = io('http://localhost');
-  socket.on('news', (data) => {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
-```
-
-## Using with Express
-
-### Server (app.js)
-
-```js
-const app = require('express')();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
-
-server.listen(80);
-// WARNING: app.listen(80) will NOT work here!
-
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
-
-io.on('connection', (socket) => {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', (data) => {
-    console.log(data);
-  });
-});
-```
-
-### Client (index.html)
-
-```html
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  const socket = io.connect('http://localhost');
-  socket.on('news', (data) => {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
-```
-
-## Sending and receiving events
-
-Socket.IO allows you to emit and receive custom events. Besides `connect`, `message` and `disconnect`, you can emit custom events:
-
-### Server
-
-```js
-// note, io(<port>) will create a http server for you
-const io = require('socket.io')(80);
-
-io.on('connection', (socket) => {
-  io.emit('this', { will: 'be received by everyone'});
-
-  socket.on('private message', (from, msg) => {
-    console.log('I received a private message by ', from, ' saying ', msg);
-  });
-
-  socket.on('disconnect', () => {
-    io.emit('user disconnected');
-  });
-});
-```
-
-## Restricting yourself to a namespace
-
-If you have control over all the messages and events emitted for a particular application, using the default / namespace works. If you want to leverage 3rd-party code, or produce code to share with others, socket.io provides a way of namespacing a socket.
-
-This has the benefit of `multiplexing` a single connection. Instead of socket.io using two `WebSocket` connections, it’ll use one.
-
-### Server (app.js)
-
-```js
-const io = require('socket.io')(80);
-const chat = io
-  .of('/chat')
-  .on('connection', (socket) => {
-    socket.emit('a message', {
-        that: 'only'
-      , '/chat': 'will get'
-    });
-    chat.emit('a message', {
-        everyone: 'in'
-      , '/chat': 'will get'
-    });
-  });
-
-const news = io
-  .of('/news')
-  .on('connection', (socket) => {
-    socket.emit('item', { news: 'item' });
-  });
-```
-
-### Client (index.html)
-
-```html
-<script>
-  const chat = io.connect('http://localhost/chat')
-    , news = io.connect('http://localhost/news');
-  
-  chat.on('connect', () => {
-    chat.emit('hi!');
-  });
-  
-  news.on('news', () => {
-    news.emit('woot');
-  });
-</script>
-```
-
-## Sending volatile messages
-
-Sometimes certain messages can be dropped. Let’s say you have an app that shows realtime tweets for the keyword `bieber`.
-
-If a certain client is not ready to receive messages (because of network slowness or other issues, or because they’re connected through long polling and is in the middle of a request-response cycle), if it doesn’t receive ALL the tweets related to bieber your application won’t suffer.
-
-In that case, you might want to send those messages as volatile messages.
-
-### Server
-
-```js
-const io = require('socket.io')(80);
-
-io.on('connection', (socket) => {
-  const tweets = setInterval(() => {
-    getBieberTweet((tweet) => {
-      socket.volatile.emit('bieber tweet', tweet);
-    });
-  }, 100);
-
-  socket.on('disconnect', () => {
-    clearInterval(tweets);
-  });
-});
-```
-
-## Sending and getting data (acknowledgements)
-
-Sometimes, you might want to get a callback when the client confirmed the message reception.
-
-To do this, simply pass a function as the last parameter of `.send` or `.emit`. What’s more, when you use `.emit`, the acknowledgement is done by you, which means you can also pass data along:
-
-### Server (app.js)
-
-```js
-const io = require('socket.io')(80);
-
-io.on('connection', (socket) => {
-  socket.on('ferret', (name, word, fn) => {
-    fn(name + ' says ' + word);
-  });
-});
-```
-
-### Client (index.html)
-
-```html
-<script>
-  const socket = io(); // TIP: io() with no args does auto-discovery
-  socket.on('connect', () => { // TIP: you can avoid listening on `connect` and listen on events directly too!
-    socket.emit('ferret', 'tobi', 'woot', (data) => { // args are sent in order to acknowledgement function
-      console.log(data); // data will be 'tobi says woot'
-    });
-  });
-</script>
-```
-
-## Broadcasting messages
-
-To broadcast, simply add a `broadcast` flag to `emit` and `send` method calls. Broadcasting means sending a message to everyone else except for the socket that starts it.
-
-### Server
-
-```js
-const io = require('socket.io')(80);
-
-io.on('connection', (socket) => {
-  socket.broadcast.emit('user connected');
-});
-```
-
-## Using it just as a cross-browser WebSocket
-
-If you just want the WebSocket semantics, you can do that too. Simply leverage `send` and listen on the `message` event:
-
-### Server (app.js)
-
-```js
-const io = require('socket.io')(80);
-
-io.on('connection', (socket) => {
-  socket.on('message', () => { });
-  socket.on('disconnect', () => { });
-});
-```
-
-### Client (index.html)
-
-```html
-<script>
-  const socket = io('http://localhost/');
-  socket.on('connect', () => {
-    socket.send('hi');
-
-    socket.on('message', (msg) => {
-      // my msg
-    });
-  });
-</script>
-```
-
-If you don’t care about reconnection logic and such, take a look at <a href="https://github.com/socketio/engine.io">Engine.IO</a>, which is the WebSocket semantics transport layer Socket.IO uses.
