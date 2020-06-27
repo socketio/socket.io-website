@@ -104,6 +104,8 @@ Put the following in your `index.html` file:
 
 If you restart the process (by hitting Control+C and running `node index.js` again) and refresh the page it should look like this:
 
+*Help Tip: You can also use `nodemon` npm package to avoid restarting the server again(this will automatically restart the server if any change is encountered).*
+
 <img src="/images/chat-3.png" alt="A browser displaying an input and a 'Send' button">
 
 ## Integrating Socket.IO
@@ -158,6 +160,8 @@ If you would like to use the local version of the client-side JS file, you can f
 Notice that I’m not specifying any URL when I call `io()`, since it defaults to trying to connect to the host that serves the page.
 
 If you now restart the process (by hitting Control+C and running `node index.js` again) and then refresh the webpage you should see the console print “a user connected”.
+
+*Help Tip: You can also use `nodemon` npm package to avoid restarting the server again(this will automatically restart the server if any change is encountered).*
 
 Try opening several tabs, and you’ll see several messages.
 
