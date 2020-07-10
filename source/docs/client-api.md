@@ -236,8 +236,8 @@ Option | Default value | Description
 `path` | `/socket.io` | name of the path that is captured on the server side
 `reconnection` | `true` | whether to reconnect automatically
 `reconnectionAttempts` | `Infinity` | number of reconnection attempts before giving up
-`reconnectionDelay` | `1000` | how long to initially wait before attempting a new reconnection (`1000`). Affected by +/- `randomizationFactor`, for example the default initial delay will be between 500 to 1500ms.
-`reconnectionDelayMax` | `5000` | maximum amount of time to wait between reconnections (`5000`). Each attempt increases the reconnection delay by 2x along with a randomization as above
+`reconnectionDelay` | `1000` | how long to initially wait before attempting a new reconnection. Affected by +/- `randomizationFactor`, for example the default initial delay will be between 500 to 1500ms.
+`reconnectionDelayMax` | `5000` | maximum amount of time to wait between reconnections. Each attempt increases the reconnection delay by 2x along with a randomization factor.
 `randomizationFactor` | `0.5` | 0 <= randomizationFactor <= 1
 `timeout` | `20000` | connection timeout before a `connect_error` and `connect_timeout` events are emitted
 `autoConnect` | `true` | by setting this false, you have to call `manager.open` whenever you decide it's appropriate
@@ -551,7 +551,7 @@ Synonym of [socket.close()](#socketclose).
 
 ## Event: 'connect'
 
-Fired upon a connection including a successful reconnection.
+Fired upon connection (including a successful reconnection).
 
 ```js
 socket.on('connect', () => {
@@ -603,7 +603,7 @@ socket.on('error', (error) => {
 
   - `reason` _(String)_ either 'io server disconnect', 'io client disconnect', or 'ping timeout'
 
-Fired upon a disconnection.
+Fired upon disconnection.
 
 ```js
 socket.on('disconnect', (reason) => {
@@ -665,7 +665,7 @@ socket.on('reconnect_error', (error) => {
 
 ## Event: 'reconnect_failed'
 
-Fired when couldn't reconnect within `reconnectionAttempts`.
+Fired when the client couldn't reconnect within `reconnectionAttempts`.
 
 ```js
 socket.on('reconnect_failed', () => {
@@ -675,7 +675,7 @@ socket.on('reconnect_failed', () => {
 
 ## Event: 'ping'
 
-Fired when a ping packet is written out to the server.
+Fired when a ping is sent to the server.
 
 ```js
 socket.on('ping', () => {
