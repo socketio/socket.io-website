@@ -19,7 +19,7 @@ Take a look at [this tutorial](/socket-io-with-apache-cordova/).
 
 ## Socket.IO on iOS?
 
-Take a look at [SIOSocket](https://github.com/MegaBits/SIOSocket).
+Take a look at [socket.io-client-swift](https://github.com/socketio/socket.io-client-swift).
 
 ## Socket.IO on Android?
 
