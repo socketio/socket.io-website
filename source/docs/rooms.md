@@ -33,7 +33,7 @@ You can emit to several rooms at the same time:
 io.to('room1').to('room2').to('room3').emit('some event');
 ```
 
-In that case, an [union](https://en.wikipedia.org/wiki/Union_(set_theory) is performed: every socket that is at least in one of the rooms will get the event **once** (even if the socket is in two or more rooms).
+In that case, an [union](https://en.wikipedia.org/wiki/Union_(set_theory)) is performed: every socket that is at least in one of the rooms will get the event **once** (even if the socket is in two or more rooms).
 
 You can also broadcast to a room from a given socket:
 
