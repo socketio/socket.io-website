@@ -86,11 +86,11 @@ server.listen(3000);
 
 More information [here](https://koajs.com/).
 
-## Important options
+## Notable options
 
 The complete list of options can be found [here](/docs/server-api/#new-Server-httpServer-options). Here are those which you will most likely use:
 
-### perMessageDeflate option
+### `perMessageDeflate` option
 
 Default value: `true`
 
@@ -108,7 +108,7 @@ const io = require('socket.io')({
 
 Please note that it will be disabled by default in Socket.IO v3.
 
-### maxHttpBufferSize option
+### `maxHttpBufferSize` option
 
 Default value: `10e7`
 

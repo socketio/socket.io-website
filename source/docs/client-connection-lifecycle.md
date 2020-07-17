@@ -1,7 +1,7 @@
 title: Connection lifecycle
 permalink: /docs/client-connection-lifecycle/
 type: docs
-order: 301
+order: 303
 ---
 
 ## Connection status
