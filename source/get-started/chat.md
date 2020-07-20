@@ -145,7 +145,7 @@ Notice that I initialize a new instance of `socket.io` by passing the `http` (th
 Now in index.html add the following snippet before the `</body>` (end body tag):
 
 ```html
-<script src="/socket.io/socket.io.js"></script>
+<script src="socket.io/socket.io.js"></script>
 <script>
   var socket = io();
 </script>
@@ -185,7 +185,7 @@ The main idea behind Socket.IO is that you can send and receive any events you w
 Let’s make it so that when the user types in a message, the server gets it as a `chat message` event. The `script` section in `index.html` should now look as follows:
 
 ```html
-<script src="/socket.io/socket.io.js"></script>
+<script src="socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
   $(function () {
