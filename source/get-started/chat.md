@@ -96,7 +96,7 @@ Put the following in your `index.html` file:
   <body>
     <ul id="messages"></ul>
     <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
+      <input id="m" autocomplete="off"><button>Send</button>
     </form>
   </body>
 </html>
