@@ -53,6 +53,11 @@ const customLinks = {
     url: "https://casinodaddy.com",
     img: "/images/casinodaddy.png",
     alt: "Casino Daddy"
+  },
+  papersowl2: {
+    url: "https://papersowl.com/research-papers",
+    img: "https://images.opencollective.com/papersowl2/510de59/logo.png",
+    alt: "Papersowl"
   }
 }
 
