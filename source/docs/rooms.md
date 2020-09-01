@@ -43,7 +43,7 @@ io.on('connection', function(socket){
 });
 ```
 
-In that case, every sockets in the room **excluding** the sender will get the event.
+In that case, every socket in the room **excluding** the sender will get the event.
 
 To leave a channel you call `leave` in the same fashion as `join`. Both methods are asynchronous and accept a `callback` argument.
 
