@@ -69,6 +69,7 @@ function onConnect(socket){
 - `newListener`
 - `reconnect_attempt`
 - `reconnecting`
+- `reconnect`
 - `reconnect_error`
 - `reconnect_failed`
 - `removeListener`
