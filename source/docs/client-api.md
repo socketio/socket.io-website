@@ -426,7 +426,7 @@ Whether or not the socket is disconnected from the server.
 ```js
 const socket = io('http://localhost');
 
-socket.on('connect', () => {
+socket.on('disconnect', () => {
   console.log(socket.disconnected); // false
 });
 ```
