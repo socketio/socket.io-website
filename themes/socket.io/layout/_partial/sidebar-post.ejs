@@ -2,11 +2,18 @@
 <aside id="sidebar">
 
   <ol>
-    <% site.posts.sort('date', -1).forEach(function (post) { %>
-    <li>
-      <a href="<%- url_for(post.path) %>" class="sidebar-link <%- is_current(post.path, true) ? 'selected' : '' %>"><%- post.title %></a>
-    </li>
-    <% }) %>
+    <% site.posts.sort('date', -1).forEach(function (p) { %>
+    <% if (is_current(p.path, true)) { %>
+      <li>
+        <a href="<%- page_url(p.path) %>" class="sidebar-link selected"><%- p.title %></a>
+        <%- toc(page.content, { list_number: false, max_depth: 2 }) %>
+      </li>
+    <% } else { %>
+      <li>
+        <a href="<%- page_url(p.path) %>" class="sidebar-link"><%- p.title %></a>
+      </li>
+    <% } %>
+    <% }); %>
   </ol>
 
 </aside>
