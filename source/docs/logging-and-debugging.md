@@ -39,3 +39,23 @@ To see all debug messages from the engine *and* socket.io:
 ```
 DEBUG=engine,socket.io* node yourfile.js
 ```
+
+
+## Removing debug from your browser bundle
+
+While useful during development, the debug package adds an extra weight to the final bundle (about 4KB minified and gzipped), that's why it is excluded from the slim bundle (more details about the various browser bundles can be found [here](/docs/client-installation/#From-a-CDN)).
+
+If you are using webpack, you can remove it with [webpack-remove-debug](https://github.com/johngodley/webpack-remove-debug):
+
+```js
+{
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'webpack-remove-debug'
+      }
+    ]
+  }
+}
+```

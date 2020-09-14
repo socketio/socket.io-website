@@ -65,10 +65,12 @@ For production, please use the `socket.io.slim.js` bundle, which is an optimized
 
 ### From NPM
 
-The Socket.IO client is compatible with bundler like [webpack](https://webpack.js.org/) or [browserify](http://browserify.org/).
+The Socket.IO client is compatible with bundlers like [webpack](https://webpack.js.org/) or [browserify](http://browserify.org/).
 
 ```
 $ npm install socket.io-client
 ```
 
 The client can also be run from Node.js.
+
+Note: for the reasons cited above, you may want to exclude debug from your browser bundle. With webpack, you can use [webpack-remove-debug](https://github.com/johngodley/webpack-remove-debug).
