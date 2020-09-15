@@ -47,7 +47,7 @@ Option | Default value | Description
 `cookie` | `io` | name of the HTTP cookie that contains the client sid to send as part of handshake response headers. Set to `false` to not send one.
 `cookiePath` | `/` | path of the above `cookie` option. If false, no path will be sent, which means browsers will only send the cookie on the engine.io attached path (`/engine.io`). Set false to not save io cookie on all requests.
 `cookieHttpOnly` | `true` | if `true` HttpOnly io cookie cannot be accessed by client-side APIs, such as JavaScript. _This option has no effect if `cookie` or `cookiePath` is set to `false`._
-`wsEngine` | `ws` | what WebSocket server implementation to use. Specified module must conform to the `ws` interface (see [ws module api docs](https://github.com/websockets/ws/blob/master/doc/ws.md)). Default value is `ws`. An alternative c++ addon is also available by installing `uws` module.
+`wsEngine` | `ws` | what WebSocket server implementation to use. Specified module must conform to the `ws` interface (see [ws module api docs](https://github.com/websockets/ws/blob/master/doc/ws.md)). Default value is `ws`. An alternative c++ addon is also available by installing the [eiows](https://www.npmjs.com/package/eiows) module.
 
 Among those options:
 
