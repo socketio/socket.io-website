@@ -763,7 +763,6 @@
       "alt": "Twin"
     }
   ];
-  const textOnlySponsors = [];
 
 %>
 
@@ -863,15 +862,8 @@
 
         <%_ for (let sponsor of sponsors) {_%>
         <div class="sponsor">
-          <a href="<%- sponsor.url %>" target="_blank">
+          <a href="<%- sponsor.url %>" target="_blank" ref="sponsored noopener">
             <img src="<%- sponsor.img %>" alt="<%- sponsor.alt %>">
-          </a>
-        </div>
-        <%_ } _%>
-        <%_ for (let sponsor of textOnlySponsors) {_%>
-        <div class="sponsor">
-          <a href="<%- sponsor.url %>" target="_blank">
-            <%- sponsor.name %>
           </a>
         </div>
         <%_ } _%>
