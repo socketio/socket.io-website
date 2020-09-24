@@ -223,6 +223,13 @@ const socket = io({
 
 # Manager
 
+The `Manager` *manages* the Engine.IO [client](https://github.com/socketio/engine.io-client/) instance, which is the low-level engine that establishes the connection to the server (by using transports like WebSocket or HTTP long-polling).
+
+The `Manager` handles the [reconnection logic](/docs/client-connection-lifecycle/).
+
+A single `Manager` can be used by several [Sockets](#Socket). You can find more information about this multiplexing feature [here](/docs/namespaces).
+
+
 ## new Manager(url[, options])
 
   - `url` _(String)_
@@ -386,6 +393,8 @@ Fired when a ping packet is written out to the server.
 Fired when a pong is received from the server.
 
 # Socket
+
+A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](/docs/namespace) (by default `/`) and uses an underlying [Manager](#Manager) to communicate.
 
 ## socket.id
 
