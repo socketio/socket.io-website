@@ -24,7 +24,11 @@ import io from 'socket.io-client';
 
   * _(Number)_
 
-The protocol revision number.
+The protocol revision number (currently: 4).
+
+The protocol defines the format of the packets exchanged between the client and the server. Both the client and the server must use the same revision in order to understand each other.
+
+You can find more information [here](https://github.com/socketio/socket.io-protocol).
 
 ## io([url][, options])
 
@@ -39,7 +43,34 @@ A new `Socket` instance is returned for the namespace specified by the pathname 
 
 Query parameters can also be provided, either with the `query` option or directly in the url (example: `http://localhost/users?token=abc`).
 
-See [new Manager(url[, options])](#new-Manager-url-options) for the the list of available `options`.
+```js
+const io = require("socket.io-client");
+
+const socket = io("ws://example.com/my-namespace", {
+  reconnectionDelayMax: 10000,
+  query: {
+    auth: "123"
+  }
+});
+```
+
+is the short version of:
+
+```js
+const { Manager } = require("socket.io-client");
+
+const manager = new Manager("ws://example.com", {
+  reconnectionDelayMax: 10000
+});
+
+const socket = manager.socket("/my-namespace", {
+  query: {
+    auth: "123"
+  }
+});
+```
+
+See [new Manager(url[, options])](#new-Manager-url-options) for the list of available `options`.
 
 ## Initialization examples
 
@@ -229,6 +260,7 @@ The `Manager` handles the [reconnection logic](/docs/client-connection-lifecycle
 
 A single `Manager` can be used by several [Sockets](#Socket). You can find more information about this multiplexing feature [here](/docs/namespaces).
 
+Please note that, in most cases, you won't use the Manager directly but use the [Socket](#Socket) instance instead.
 
 ## new Manager(url[, options])
 
@@ -396,6 +428,16 @@ Fired when a pong is received from the server.
 
 A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](/docs/namespace) (by default `/`) and uses an underlying [Manager](#Manager) to communicate.
 
+A `Socket` is basically an [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter) which sends events to — and receive events from — the server over the network.
+
+```js
+socket.emit('hello', { a: 'b', c: [] });
+
+socket.on('hey', (...args) => {
+  // ...
+});
+```
+
 ## socket.id
 
   - _(String)_
@@ -486,7 +528,7 @@ Emits an event to the socket identified by the string name. Any other parameters
 
 ```js
 socket.emit('hello', 'world');
-socket.emit('with-binary', 1, '2', { 3: '4', 5: new Buffer(6) });
+socket.emit('with-binary', 1, '2', { 3: '4', 5: Buffer.from([6, 7, 8]) });
 ```
 
 The `ack` argument is optional and will be called with the server answer.
@@ -558,9 +600,21 @@ Disconnects the socket manually.
 
 Synonym of [socket.close()](#socketclose).
 
+## Events
+
+The `Socket` instance emits all events sent by its underlying [Manager](#Manager), which are related to the state of the connection to the server.
+
+More information about the connection lifecycle can be found [here](/docs/client-connection-lifecycle/).
+
+It also emits events related to the state of the connection to the [Namespace](/docs/namespaces):
+
+- `connect`,
+- `disconnect`
+- `error`.
+
 ## Event: 'connect'
 
-Fired upon connection (including a successful reconnection).
+Fired upon connection to the Namespace (including a successful reconnection).
 
 ```js
 socket.on('connect', () => {
@@ -570,6 +624,34 @@ socket.on('connect', () => {
 // note: you should register event handlers outside of connect,
 // so they are not registered again on reconnection
 socket.on('myevent', () => {
+  // ...
+});
+```
+
+## Event: 'disconnect'
+
+  - `reason` _(String)_ either 'io server disconnect', 'io client disconnect', or 'ping timeout'
+
+Fired upon disconnection.
+
+```js
+socket.on('disconnect', (reason) => {
+  if (reason === 'io server disconnect') {
+    // the disconnection was initiated by the server, you need to reconnect manually
+    socket.connect();
+  }
+  // else the socket will automatically try to reconnect
+});
+```
+
+## Event: 'error'
+
+  - `error` _(Object)_ error object
+
+Fired when an error occurs.
+
+```js
+socket.on('error', (error) => {
   // ...
 });
 ```
@@ -593,34 +675,6 @@ Fired upon a connection timeout.
 ```js
 socket.on('connect_timeout', (timeout) => {
   // ...
-});
-```
-
-## Event: 'error'
-
-  - `error` _(Object)_ error object
-
-Fired when an error occurs.
-
-```js
-socket.on('error', (error) => {
-  // ...
-});
-```
-
-## Event: 'disconnect'
-
-  - `reason` _(String)_ either 'io server disconnect', 'io client disconnect', or 'ping timeout'
-
-Fired upon disconnection.
-
-```js
-socket.on('disconnect', (reason) => {
-  if (reason === 'io server disconnect') {
-    // the disconnection was initiated by the server, you need to reconnect manually
-    socket.connect();
-  }
-  // else the socket will automatically try to reconnect
 });
 ```
 
