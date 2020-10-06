@@ -11,7 +11,7 @@ In the examples below, the `io` object comes either from:
 - the `<script>` import
 
 ```html
-<script src="/socket.io/socket.io.js"></script>
+<script src="/cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 ```
 
 - NPM
