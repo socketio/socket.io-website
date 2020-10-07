@@ -73,6 +73,11 @@ const customLinks = {
     url: "https://www.neueonline-casinos.com/",
     img: "/images/neue.png",
     alt: "Neue Online Casinos"
+  },
+  "aandelen-kopen1": {
+    url: "https://www.aandelenkopen.com",
+    img: "/images/aandelenkopen.png",
+    alt: "Aandelen Kopen"
   }
 }
 
