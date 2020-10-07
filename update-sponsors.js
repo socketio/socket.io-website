@@ -58,6 +58,21 @@ const customLinks = {
     url: "https://papersowl.com/research-papers",
     img: "https://images.opencollective.com/papersowl2/510de59/logo.png",
     alt: "Papersowl"
+  },
+  "buy-fineproxy-org": {
+    url: "https://buy.fineproxy.org/eng/",
+    img: "/images/fineproxy.png",
+    alt: "Buy.Fineproxy.Org"
+  },
+  "nettikasinot-suomalaisille": {
+    url: "https://www.nettikasinotsuomalaisille.com/nettikasinot-ilman-rekisteroitymista/",
+    img: "/images/netti.png",
+    alt: "Nettikasinot Suomalaisille"
+  },
+  "neue-online-casinos1": {
+    url: "https://www.neueonline-casinos.com/",
+    img: "/images/neue.png",
+    alt: "Neue Online Casinos"
   }
 }
 
