@@ -78,7 +78,12 @@ const customLinks = {
     url: "https://www.aandelenkopen.com",
     img: "/images/aandelenkopen.png",
     alt: "Aandelen Kopen"
-  }
+  },
+  vpsservercom: {
+    "url": "https://www.vpsserver.com",
+    "img": "https://images.opencollective.com/vpsservercom/logo.png",
+    "alt": "VPS Hosting"
+  },
 }
 
 const nodeToSponsor = node => (customLinks[node.account.slug] || {
