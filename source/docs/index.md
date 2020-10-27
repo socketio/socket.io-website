@@ -70,7 +70,7 @@ socket.on('greetings', (elem1, elem2, elem3) => {
 });
 ```
 
-The API on the server-side is similar, you also get an `socket` object which extends the Node.js [EventEmitter](https://nodejs.org/docs/latest/api/events.html#events_class_eventemitter) class:
+The API on the server-side is similar, you also get a `socket` object which extends the Node.js [EventEmitter](https://nodejs.org/docs/latest/api/events.html#events_class_eventemitter) class:
 
 ```js
 const io = require('socket.io')(3000);
