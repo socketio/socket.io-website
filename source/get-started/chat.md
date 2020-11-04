@@ -254,7 +254,7 @@ And on the client side when we capture a `chat message` event we’ll include it
       $('#m').val('');
       return false;
     });
-    socket.on('chat message', function(msg){
+    socket.on('message', function(msg){
       $('#messages').append($('<li>').text(msg));
     });
   });
