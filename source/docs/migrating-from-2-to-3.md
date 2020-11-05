@@ -475,23 +475,23 @@ Here is the updated list of events emitted by the Manager:
 
 | Name | Description | Previously (if different) |
 | ---- | ----------- | ------------------------- |
-| open | successful (re)connection | |
+| open | successful (re)connection | - |
 | error | (re)connection failure or error after a successful connection | connect_error |
-| close | disconnection | |
-| ping | ping packet | |
-| packet | data packet | |
-| reconnect_attempt | reconnection attempt | reconnect_attempt & reconnecting | |
-| reconnect | successful reconnection | |
-| reconnect_error | reconnection failure | |
-| reconnect_failed | reconnection failure after all attempts | |
+| close | disconnection | - |
+| ping | ping packet | - |
+| packet | data packet | - |
+| reconnect_attempt | reconnection attempt | reconnect_attempt & reconnecting | - |
+| reconnect | successful reconnection | - |
+| reconnect_error | reconnection failure | - |
+| reconnect_failed | reconnection failure after all attempts | - |
 
 Here is the updated list of events emitted by the Socket:
 
 | Name | Description | Previously (if different) |
 | ---- | ----------- | ------------------------- |
-| connect | successful connection to a Namespace |  |
+| connect | successful connection to a Namespace | - |
 | connect_error | connection failure | error |
-| disconnect | disconnection |  |
+| disconnect | disconnection | - |
 
 
 And finally, here's the updated list of reserved events that you cannot use in your application:
@@ -509,7 +509,7 @@ socket.emit("connect_error"); // will now throw an Error
 
 ## New features
 
-Some of those new features may be back-ported to the `2.4.x` branch, depending on the feedback of the users.
+Some of those new features may be backported to the `2.4.x` branch, depending on the feedback of the users.
 
 
 ### Catch-all listeners
@@ -620,4 +620,25 @@ Besides, Node.js 8 is now [EOL](https://github.com/nodejs/Release). Please upgra
 
 ## How to upgrade an existing production deployment
 
-WIP
+As detailed above, this release contains several non backward compatible changes, and as such a v2 client will not be able to connect to a v3 server (and vice versa).
+
+In order to upgrade a live production environment, you will need to have both a group of v2 servers and v3 servers in parallel, and route the traffic based on either:
+
+- the `EIO` query parameter (`EIO=3` for Socket.IO v2, `EIO=4` for Socket.IO v3)
+- the path (by using a different `path` for the v3 servers)
+- or the domain if you use a different domain for the v3 servers
+
+And then you upgrade the version used by the clients.
+
+You could also take advantage of the [package aliases](https://github.com/npm/rfcs/blob/latest/implemented/0001-package-aliases.md) feature of your favorite package manager in order to have both versions running in parallel:
+
+```js
+// npm i socket.io@2 socket.io-next@npm:socket.io@3
+// or yarn add socket.io@2 socket.io-next@npm:socket.io@3
+const httpServer = require("http").createServer();
+
+const io = require("socket.io")(httpServer);
+const ioNext = require("socket.io-next")(httpServer, {
+  path: "/socket.io-next/"
+});
+```
