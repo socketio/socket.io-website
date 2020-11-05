@@ -7,16 +7,19 @@ order: 502
 **Disclaimer**: This is a work in progress. You can track the progress and submit feedback [here](https://github.com/socketio/socket.io/issues/3250).
 
 This release should fix most of the inconsistencies of the Socket.IO library and provide a more intuitive behavior for
-the end users. It is the result of the feedback of the community over the years. A big thanks to everyone!
+the end users. It is the result of the feedback of the community over the years. A big thanks to everyone involved!
+
+For the low-level details, please see:
+
+- [Engine.IO protocol v4](https://github.com/socketio/engine.io-protocol#difference-between-v3-and-v4)
+- [Socket.IO protocol v5](https://github.com/socketio/socket.io-protocol#difference-between-v5-and-v4)
 
 Here is the complete list of changes:
 
-- [Miscellaneous](#miscellaneous)
-  - [The Socket.IO codebase has been rewritten to TypeScript](#The-Socket-IO-codebase-has-been-rewritten-to-TypeScript)
-  - [Support for IE8 and Node.js 8 is officially dropped](#Support-for-IE8-and-Node-js-8-is-officially-dropped)
 - [Configuration](#Configuration)
   - [Saner default values](#Saner-default-values)
   - [CORS handling](#CORS-handling)
+  - [No more cookie by default](#No-more-cookie-by-default)
 - [API change](#API-change)
   - [io.set() is removed](#io-set-is-removed)
   - [No more implicit connection to the default namespace](#No-more-implicit-connection-to-the-default-namespace)
@@ -26,55 +29,18 @@ Here is the complete list of changes:
   - [Socket.join() and Socket.leave() are now synchronous](#Socket-join-and-Socket-leave-are-now-synchronous)
   - [Socket.use() is removed](#Socket-use-is-removed)
   - [A middleware error will now emit an Error object](#A-middleware-error-will-now-emit-an-Error-object)
+  - [Add a clear distinction between the Manager query option and the Socket query option](#Add-a-clear-distinction-between-the-Manager-query-option-and-the-Socket-query-option)
+  - [The Socket instance will no longer forward the events emitted by its Manager](#The-Socket-instance-will-no-longer-forward-the-events-emitted-by-its-Manager)
 - [New features](#New-features)
   - [Catch-all listeners](#Catch-all-listeners)
   - [Volatile events (client)](#Volatile-events-client)
   - [Official bundle with the msgpack parser](#Official-bundle-with-the-msgpack-parser)
+- [Miscellaneous](#miscellaneous)
+  - [The Socket.IO codebase has been rewritten to TypeScript](#The-Socket-IO-codebase-has-been-rewritten-to-TypeScript)
+  - [Support for IE8 and Node.js 8 is officially dropped](#Support-for-IE8-and-Node-js-8-is-officially-dropped)
 
+- [How to upgrade an existing production deployment](#How-to-upgrade-an-existing-production-deployment)
 
-## Miscellaneous
-
-### The Socket.IO codebase has been rewritten to TypeScript
-
-Which means `npm i -D @types/socket.io` should not be needed anymore.
-
-Server:
-
-```ts
-import { Server, Socket } from "socket.io";
-
-const io = new Server(8080);
-
-io.on("connect", (socket: Socket) => {
-    console.log(`connect ${socket.id}`);
-
-    socket.on("disconnect", () => {
-        console.log(`disconnect ${socket.id}`);
-    });
-});
-```
-
-Client:
-
-```ts
-import { Manager } from "socket.io-client";
-
-const manager = new Manager("ws://localhost:8080");
-const socket = manager.socket("/");
-
-socket.on("connect", () => {
-    console.log(`connect ${socket.id}`);
-});
-```
-
-Plain javascript is obviously still fully supported.
-
-
-### Support for IE8 and Node.js 8 is officially dropped
-
-IE8 is no longer testable on the Sauce Labs platform, and requires a lot of efforts for very few users (if any?), so we are dropping support for it.
-
-Besides, Node.js 8 is now [EOL](https://github.com/nodejs/Release). Please upgrade as soon as possible!  
 
 ## Configuration
 
@@ -82,7 +48,7 @@ Besides, Node.js 8 is now [EOL](https://github.com/nodejs/Release). Please upgra
 
 - the default value of `maxHttpBufferSize` was decreased from `100MB` to `1MB`.
 - the WebSocket [permessage-deflate extension](https://tools.ietf.org/html/draft-ietf-hybi-permessage-compression-19) is now disabled by default
-- you must now explicitly list the domains that are allowed (for CORS, see [below](#cors-handling))
+- you must now explicitly list the domains that are allowed (for CORS, see [below](#CORS-handling))
 
 ### CORS handling
 
@@ -121,6 +87,38 @@ const io = require("socket.io")(httpServer, {
   }
 });
 ```
+
+
+### No more cookie by default
+
+In previous versions, an `io` cookie was sent by default. This cookie can be used to enable sticky-session, which is still required when you have several servers and HTTP long-polling enabled (more information [here](/docs/using-multiple-nodes/)).
+
+However, this cookie is not needed in some cases (i.e. single server deployment, sticky-session based on IP) so it must now be explicitly enabled.
+
+Before:
+
+```js
+const io = require("socket.io")(httpServer, {
+  cookieName: "io",
+  cookieHttpOnly: false,
+  cookiePath: "/custom"
+});
+```
+
+After:
+
+```js
+const io = require("socket.io")(httpServer, {
+  cookie: {
+    name: "test",
+    httpOnly: false,
+    path: "/custom"
+  }
+});
+```
+
+All other options (domain, maxAge, sameSite, ...) are now supported. Please see [here](https://github.com/jshttp/cookie/) for the complete list of options.
+
 
 ## API change
 
@@ -294,7 +292,7 @@ io.to("room1").emit("hello");
 
 ### Socket.use() is removed
 
-`socket.use()` could be used as a catch-all listener. But its API was not intuitive. It is replaced by [socket.onAny()](#Catch-all-listeners).
+`socket.use()` could be used as a catch-all listener. But its API was not really intuitive. It is replaced by [socket.onAny()](#Catch-all-listeners).
 
 Before:
 
@@ -316,7 +314,36 @@ socket.onAny((event, ...args) => {
 
 ### A middleware error will now emit an Error object
 
-Instead of a plain string.
+The `error` event is renamed to `connect_error` and the object emitted is now an actual Error:
+
+Before:
+
+```js
+// server-side
+io.use((socket, next) => {
+  next(new Error("not authorized"));
+});
+
+// client-side
+socket.on("error", err => {
+  console.log(err); // not authorized
+});
+
+// or with an object
+// server-side
+io.use((socket, next) => {
+  const err = new Error("not authorized");
+  err.data = { content: "Please retry later" }; // additional details
+  next(err);
+});
+
+// client-side
+socket.on("error", err => {
+  console.log(err); // { content: "Please retry later" }
+});
+```
+
+After:
 
 ```js
 // server-side
@@ -330,8 +357,153 @@ io.use((socket, next) => {
 socket.on("connect_error", err => {
   console.log(err instanceof Error); // true
   console.log(err.message); // not authorized
-  console.log(err.data.content); // Please retry later
+  console.log(err.data); // { content: "Please retry later" }
 });
+```
+
+
+### Add a clear distinction between the Manager query option and the Socket query option
+
+In previous versions, the `query` option was used in two distinct places:
+
+- in the query parameters of the HTTP requests (`GET /socket.io/?EIO=3&abc=def`)
+- in the `CONNECT` packet
+
+Let's take the following example:
+
+```js
+const socket = io({
+  query: {
+    abc: "def"
+  }
+});
+```
+
+Under the hood, here's what happened in the `io()` method:
+
+```js
+const { Manager } = require("socket.io-client");
+
+// a new Manager is created (which will manage the low-level connection)
+const manager = new Manager({
+  query: { // sent in the query parameters
+    token: "abc"
+  }
+});
+
+// and then a Socket instance is created for the namespace (here, the main namespace, "/")
+const socket = manager.socket("/", {
+  query: { // sent in the CONNECT packet
+    token: "abc"
+  }
+});
+```
+
+This behavior could lead to weird behaviors, for example when the Manager was reused for another namespace (multiplexing):
+
+```js
+// client-side
+const socket1 = io({
+  query: {
+    token: "abc"
+  }
+});
+
+const socket2 = io("/my-namespace", {
+  query: {
+    token: "def"
+  }
+});
+
+// server-side
+io.on("connect", (socket) => {
+  console.log(socket.handshake.query.token); // abc (ok!)
+});
+
+io.of("/my-namespace").on("connect", (socket) => {
+  console.log(socket.handshake.query.token); // abc (what?)
+});
+```
+
+That's why the `query` option of the Socket instance is renamed to ̀`auth` in Socket.IO v3:
+
+```js
+// plain object
+const socket = io({
+  auth: {
+    token: "abc"
+  }
+});
+
+// or with a function
+const socket = io({
+  auth: (cb) => {
+    cb({
+      token: "abc"
+    });
+  }
+});
+
+// server-side
+io.on("connect", (socket) => {
+  console.log(socket.handshake.auth.token); // abc
+});
+```
+
+Note: the `query` option of the Manager can still be used in order to add a specific query parameter to the HTTP requests.
+
+
+### The Socket instance will no longer forward the events emitted by its Manager
+
+In previous versions, the Socket instance emitted the events related to the state of the underlying connection. This will not be the case anymore.
+
+You can still have access to those events on the Manager instance (the `io` property of the socket) :
+
+Before:
+
+```js
+socket.on("reconnect_attempt", () => {});
+```
+
+After:
+
+```js
+socket.io.on("reconnect_attempt", () => {});
+```
+
+Here is the updated list of events emitted by the Manager:
+
+| Name | Description | Previously (if different) |
+| ---- | ----------- | ------------------------- |
+| open | successful (re)connection | |
+| error | (re)connection failure or error after a successful connection | connect_error |
+| close | disconnection | |
+| ping | ping packet | |
+| packet | data packet | |
+| reconnect_attempt | reconnection attempt | reconnect_attempt & reconnecting | |
+| reconnect | successful reconnection | |
+| reconnect_error | reconnection failure | |
+| reconnect_failed | reconnection failure after all attempts | |
+
+Here is the updated list of events emitted by the Socket:
+
+| Name | Description | Previously (if different) |
+| ---- | ----------- | ------------------------- |
+| connect | successful connection to a Namespace |  |
+| connect_error | connection failure | error |
+| disconnect | disconnection |  |
+
+
+And finally, here's the updated list of reserved events that you cannot use in your application:
+
+- `connect` (used on the client-side)
+- `connect_error` (used on the client-side)
+- `disconnect` (used on both sides)
+- `disconnecting` (used on the server-side)
+- `newListener` and `removeListener` (EventEmitter [reserved events](https://nodejs.org/api/events.html#events_event_newlistener))
+
+```js
+socket.emit("connect_error"); // will now throw an Error
 ```
 
 
@@ -399,3 +571,53 @@ const io = require("socket.io")(httpServer, {
 ```
 
 No additional configuration is needed on the client-side.
+
+
+## Miscellaneous
+
+### The Socket.IO codebase has been rewritten to TypeScript
+
+Which means `npm i -D @types/socket.io` should not be needed anymore.
+
+Server:
+
+```ts
+import { Server, Socket } from "socket.io";
+
+const io = new Server(8080);
+
+io.on("connect", (socket: Socket) => {
+    console.log(`connect ${socket.id}`);
+
+    socket.on("disconnect", () => {
+        console.log(`disconnect ${socket.id}`);
+    });
+});
+```
+
+Client:
+
+```ts
+import { Manager } from "socket.io-client";
+
+const manager = new Manager("ws://localhost:8080");
+const socket = manager.socket("/");
+
+socket.on("connect", () => {
+    console.log(`connect ${socket.id}`);
+});
+```
+
+Plain javascript is obviously still fully supported.
+
+
+### Support for IE8 and Node.js 8 is officially dropped
+
+IE8 is no longer testable on the Sauce Labs platform, and requires a lot of efforts for very few users (if any?), so we are dropping support for it.
+
+Besides, Node.js 8 is now [EOL](https://github.com/nodejs/Release). Please upgrade as soon as possible!
+
+
+## How to upgrade an existing production deployment
+
+WIP
