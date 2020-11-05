@@ -4,8 +4,6 @@ type: docs
 order: 502
 ---
 
-**Disclaimer**: This is a work in progress. You can track the progress and submit feedback [here](https://github.com/socketio/socket.io/issues/3250).
-
 This release should fix most of the inconsistencies of the Socket.IO library and provide a more intuitive behavior for
 the end users. It is the result of the feedback of the community over the years. A big thanks to everyone involved!
 

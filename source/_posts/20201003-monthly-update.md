@@ -3,7 +3,6 @@ permalink: /blog/monthly-update-1/
 date: 2020-10-03
 author_name: Damien Arrachequesne
 author_link: https://github.com/darrachequesne
-alias: blog/index.html
 ---
 
 Hi everyone!
