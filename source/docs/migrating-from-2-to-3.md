@@ -29,6 +29,7 @@ Here is the complete list of changes:
   - [A middleware error will now emit an Error object](#A-middleware-error-will-now-emit-an-Error-object)
   - [Add a clear distinction between the Manager query option and the Socket query option](#Add-a-clear-distinction-between-the-Manager-query-option-and-the-Socket-query-option)
   - [The Socket instance will no longer forward the events emitted by its Manager](#The-Socket-instance-will-no-longer-forward-the-events-emitted-by-its-Manager)
+  - [Namespace.clients() is renamed to Namespace.allSockets() and now returns a Promise](#Namespace-clients-is-renamed-to-Namespace-allSockets-and-now-returns-a-Promise)
 - [New features](#New-features)
   - [Catch-all listeners](#Catch-all-listeners)
   - [Volatile events (client)](#Volatile-events-client)
@@ -503,6 +504,45 @@ And finally, here's the updated list of reserved events that you cannot use in y
 ```js
 socket.emit("connect_error"); // will now throw an Error
 ```
+
+
+### Namespace.clients() is renamed to Namespace.allSockets() and now returns a Promise
+
+This function returns the list of socket IDs that are connected to this namespace.
+
+Before:
+
+```js
+// all sockets in default namespace
+io.clients((error, clients) => {
+  console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
+});
+
+// all sockets in the "chat" namespace
+io.of("/chat").clients((error, clients) => {
+  console.log(clients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD]
+});
+
+// all sockets in the "chat" namespace and in the "general" room
+io.of("/chat").in("general").clients((error, clients) => {
+  console.log(clients); // => [Anw2LatarvGVVXEIAAAD]
+});
+```
+
+After:
+
+```js
+// all sockets in default namespace
+const ids = await io.allSockets();
+
+// all sockets in the "chat" namespace
+const ids = await io.of("/chat").allSockets();
+
+// all sockets in the "chat" namespace and in the "general" room
+const ids = await io.of("/chat").in("general").allSockets();
+```
+
+Note: this function was (and still is) supported by the Redis adapter, which means that it will return the list of socket IDs across all the Socket.IO servers.
 
 
 ## New features
