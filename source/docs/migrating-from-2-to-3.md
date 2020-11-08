@@ -373,7 +373,7 @@ Let's take the following example:
 ```js
 const socket = io({
   query: {
-    abc: "def"
+    token: "abc"
   }
 });
 ```
