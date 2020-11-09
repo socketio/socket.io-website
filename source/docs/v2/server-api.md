@@ -1,7 +1,12 @@
 title: Server API
-permalink: /docs/server-api/
+permalink: /docs/v2/server-api/
+release: v2
 type: api
 ---
+
+<div class="tip warning">
+  You're browsing the documentation for v2.x. For v3.x, click <a href="/docs/v3/server-api/">here</a>.
+</div>
 
 # Server
 

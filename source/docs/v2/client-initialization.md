@@ -1,5 +1,6 @@
 title: Initialization
-permalink: /docs/client-initialization/
+permalink: /docs/v2/client-initialization/
+release: v2
 type: docs
 order: 302
 ---

@@ -4,7 +4,7 @@
 <body>
   <div id="container">
     <div id="wrap">
-      <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
+      <%- partial('_partial/header', null, {cache: false}) %>
 
       <% if (!isIndex) { %>
       <%- partial(is_post() ? '_partial/sidebar-post' : '_partial/sidebar') %>
@@ -12,7 +12,7 @@
       <%- partial('_partial/ad') %>
       <%- body %>
     </div>
-    <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
+    <%- partial('_partial/mobile-nav', null, {cache: false}) %>
     <%- partial('_partial/after-footer') %>
   </div>
 </body>

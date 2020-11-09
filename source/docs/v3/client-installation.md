@@ -1,10 +1,12 @@
 title: Installation
-permalink: /docs/client-installation/
+permalink: /docs/v3/client-installation/
+alias: /docs/client-installation/
+release: v3
 type: docs
 order: 301
 ---
 
-## Compatibility
+## Compatibility
 
 Socket.IO does support IE9 and above. IE 6/7/8 are not supported anymore.
 

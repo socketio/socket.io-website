@@ -10,14 +10,14 @@
   "author": "Damien Arrachequesne",
   "license": "MIT",
   "hexo": {
-    "version": "3.9.0"
+    "version": "5.2.0"
   },
   "dependencies": {
-    "hexo": "^3.2.0",
-    "hexo-generator-alias": "^0.1.3",
-    "hexo-renderer-ejs": "^0.3.0",
-    "hexo-renderer-marked": "^0.3.0",
-    "hexo-renderer-stylus": "^0.3.1",
+    "hexo": "^5.2.0",
+    "hexo-generator-alias": "^1.0.0",
+    "hexo-renderer-ejs": "^1.0.0",
+    "hexo-renderer-marked": "^3.3.0",
+    "hexo-renderer-stylus": "^2.0.1",
     "hexo-server": "^0.2.0"
   },
   "devDependencies": {

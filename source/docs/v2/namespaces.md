@@ -1,5 +1,6 @@
 title: Namespaces
-permalink: /docs/namespaces/
+permalink: /docs/v2/namespaces/
+release: v2
 type: docs
 order: 203
 ---

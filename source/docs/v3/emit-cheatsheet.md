@@ -1,5 +1,7 @@
 title: Emit cheatsheet
-permalink: /docs/emit-cheatsheet/
+permalink: /docs/v3/emit-cheatsheet/
+alias: /docs/emit-cheatsheet/
+release: v3
 type: docs
 order: 2
 ---
@@ -60,18 +62,11 @@ function onConnect(socket){
 ```
 
 **Note:** The following events are reserved and should not be used as event names by your application:
+
 - `connect`
 - `connect_error`
-- `connect_timeout`
-- `error`
 - `disconnect`
 - `disconnecting`
 - `newListener`
-- `reconnect_attempt`
-- `reconnecting`
-- `reconnect_error`
-- `reconnect_failed`
 - `removeListener`
-- `ping`
-- `pong`
 

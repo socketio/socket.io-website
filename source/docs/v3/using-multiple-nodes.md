@@ -1,5 +1,7 @@
 title: Using multiple nodes
-permalink: /docs/using-multiple-nodes/
+permalink: /docs/v3/using-multiple-nodes/
+alias: /docs/using-multiple-nodes/
+release: v3
 type: docs
 order: 205
 ---

@@ -1,14 +1,14 @@
 <aside id="sidebar">
   <% if (page.type === 'api' || page.type === 'misc') { %>
     <h3><%- page.title %></h3>
-    <%- toc(page.content, { list_number: false }) %>
+    <%- toc(page.content, { list_number: false }) %>
   <% } else if (page.type === 'docs' || page.type === 'demos') { %>
     <ol class="items">
       <% if (page.type === 'demos') { %>
         <li><h3>Demos</h3></li>
       <% } %>
 
-      <% site.pages.find({ type: page.type }).sort('order').each((p) => { %>
+      <% site.pages.find({ type: page.type, release: page.release }).sort('order').each((p) => { %>
         <% if (page.type === 'docs') { %>
           <% if (p.order === 1) { %>
             <li><h3>Documentation</h3></li>
@@ -30,7 +30,7 @@
         <% if (is_current(p.path, true)) { %>
           <li>
             <a href="<%- page_url(p.path) %>" class="sidebar-link selected"><%- p.title %></a>
-            <%- toc(page.content, { list_number: false, max_depth: 2 }) %>
+            <%- toc(page.content, { list_number: false, max_depth: 2 }) %>
           </li>
         <% } else { %>
           <li>

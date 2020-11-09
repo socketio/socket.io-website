@@ -1,5 +1,7 @@
 title: Logging and debugging
-permalink: /docs/logging-and-debugging/
+permalink: /docs/v3/logging-and-debugging/
+alias: /docs/logging-and-debugging/
+release: v3
 type: docs
 order: 3
 ---

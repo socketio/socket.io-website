@@ -1,5 +1,7 @@
 title: Migrating from 0.9
-permalink: /docs/migrating-from-0-9/
+permalink: /docs/v2/migrating-from-0-9/
+alias: /docs/migrating-from-0-9/
+release: v2
 type: docs
 order: 501
 ---

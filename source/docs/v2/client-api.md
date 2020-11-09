@@ -1,7 +1,12 @@
 title: Client API
-permalink: /docs/client-api/
+permalink: /docs/v2/client-api/
+release: v2
 type: api
 ---
+
+<div class="tip warning">
+  You're browsing the documentation for v2.x. For v3.x, click <a href="/docs/v3/client-api/">here</a>.
+</div>
 
 # IO
 

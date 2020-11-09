@@ -1,5 +1,7 @@
 title: Internals overview
-permalink: /docs/internals/
+permalink: /docs/v2/internals/
+alias: /docs/internals/
+release: v2
 type: docs
 order: 401
 ---

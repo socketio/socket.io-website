@@ -1,5 +1,7 @@
 title: FAQ
-permalink: /docs/faq/
+permalink: /docs/v3/faq/
+alias: /docs/faq/
+release: v3
 type: docs
 order: 601
 ---

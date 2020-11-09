@@ -1,5 +1,6 @@
 title: Installation
-permalink: /docs/server-installation/
+permalink: /docs/v2/server-installation/
+release: v2
 type: docs
 order: 201
 ---
