@@ -1,4 +1,5 @@
-title: Initialization
+title: Server Initialization
+short_title: Initialization
 permalink: /docs/v2/server-initialization/
 release: v2
 type: docs

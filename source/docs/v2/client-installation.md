@@ -1,4 +1,5 @@
-title: Installation
+title: Client Installation
+short_title: Installation
 permalink: /docs/v2/client-installation/
 release: v2
 type: docs

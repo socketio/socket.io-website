@@ -1,4 +1,5 @@
-title: Initialization
+title: Client Initialization
+short_title: Initialization
 permalink: /docs/v3/client-initialization/
 alias: /docs/client-initialization/
 release: v3

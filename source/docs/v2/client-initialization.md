@@ -1,4 +1,5 @@
-title: Initialization
+title: Client Initialization
+short_title: Initialization
 permalink: /docs/v2/client-initialization/
 release: v2
 type: docs

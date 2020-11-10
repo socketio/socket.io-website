@@ -1,4 +1,5 @@
-title: Installation
+title: Server Installation
+short_title: Installation
 permalink: /docs/v2/server-installation/
 release: v2
 type: docs

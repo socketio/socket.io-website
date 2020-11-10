@@ -1,4 +1,5 @@
-title: Initialization
+title: Server Initialization
+short_title: Initialization
 permalink: /docs/v3/server-initialization/
 alias: /docs/server-initialization/
 release: v3

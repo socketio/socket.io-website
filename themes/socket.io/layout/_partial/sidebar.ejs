@@ -29,12 +29,12 @@
 
         <% if (is_current(p.path, true)) { %>
           <li>
-            <a href="<%- page_url(p.path) %>" class="sidebar-link selected"><%- p.title %></a>
+            <a href="<%- page_url(p.path) %>" class="sidebar-link selected"><%- p.short_title || p.title %></a>
             <%- toc(page.content, { list_number: false, max_depth: 2 }) %>
           </li>
         <% } else { %>
           <li>
-            <a href="<%- page_url(p.path) %>" class="sidebar-link"><%- p.title %></a>
+            <a href="<%- page_url(p.path) %>" class="sidebar-link"><%- p.short_title || p.title %></a>
           </li>
         <% } %>
       <% }); %>

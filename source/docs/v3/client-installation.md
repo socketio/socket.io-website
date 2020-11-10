@@ -1,4 +1,5 @@
-title: Installation
+title: Client Installation
+short_title: Installation
 permalink: /docs/v3/client-installation/
 alias: /docs/client-installation/
 release: v3

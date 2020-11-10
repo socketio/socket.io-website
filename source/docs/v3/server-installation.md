@@ -1,4 +1,5 @@
-title: Installation
+title: Server Installation
+short_title: Installation
 permalink: /docs/v3/server-installation/
 alias: /docs/server-installation/
 release: v3
