@@ -2,7 +2,7 @@ title: Namespaces
 permalink: /docs/v2/namespaces/
 release: v2
 type: docs
-order: 203
+order: 204
 ---
 
 A Namespace is a communication channel that allows you to split the logic of your application over a single shared connection.

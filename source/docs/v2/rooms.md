@@ -2,7 +2,7 @@ title: Rooms
 permalink: /docs/v2/rooms/
 release: v2
 type: docs
-order: 204
+order: 203
 alias: /docs/rooms-and-namespaces/ # kept for compatibility
 ---
 
