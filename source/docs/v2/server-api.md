@@ -8,11 +8,11 @@ type: api
   You're browsing the documentation for v2.x. For v3.x, click <a href="/docs/v3/server-api/">here</a>.
 </div>
 
-# Server
+## Server
 
 Exposed by `require('socket.io')`.
 
-## new Server(httpServer[, options])
+### new Server(httpServer[, options])
 
   - `httpServer` _(http.Server)_ the server to bind to.
   - `options` _(Object)_
@@ -75,7 +75,7 @@ const io = require('socket.io')(server, {
 server.listen(3000);
 ```
 
-## new Server(port[, options])
+### new Server(port[, options])
 
   - `port` _(Number)_ a port to listen to (a new `http.Server` will be created)
   - `options` _(Object)_
@@ -93,7 +93,7 @@ const io = require('socket.io')(3000, {
 });
 ```
 
-## new Server(options)
+### new Server(options)
 
   - `options` _(Object)_
 
@@ -124,7 +124,7 @@ io.attach(3000, {
 });
 ```
 
-## server.sockets
+### server.sockets
 
   * _(Namespace)_
 
@@ -136,7 +136,7 @@ io.sockets.emit('hi', 'everyone');
 io.of('/').emit('hi', 'everyone');
 ```
 
-## server.serveClient([value])
+### server.serveClient([value])
 
   - `value` _(Boolean)_
   - **Returns** `Server|Boolean`
@@ -153,7 +153,7 @@ io.serveClient(false);
 io.attach(http);
 ```
 
-## server.path([value])
+### server.path([value])
 
   - `value` _(String)_
   - **Returns** `Server|String`
@@ -170,7 +170,7 @@ const socket = io({
 });
 ```
 
-## server.adapter([value])
+### server.adapter([value])
 
   - `value` _(Adapter)_
   - **Returns** `Server|Adapter`
@@ -183,7 +183,7 @@ const redis = require('socket.io-redis');
 io.adapter(redis({ host: 'localhost', port: 6379 }));
 ```
 
-## server.origins([value])
+### server.origins([value])
 
   - `value` _(String|String[])_
   - **Returns** `Server|String`
@@ -194,7 +194,7 @@ Sets the allowed origins `value`. Defaults to any origins being allowed. If no a
 io.origins(['https://foo.example.com:443']);
 ```
 
-## server.origins(fn)
+### server.origins(fn)
 
   - `fn` _(Function)_
   - **Returns** `Server`
@@ -215,43 +215,43 @@ io.origins((origin, callback) => {
 });
 ```
 
-## server.attach(httpServer[, options])
+### server.attach(httpServer[, options])
 
   - `httpServer` _(http.Server)_ the server to attach to
   - `options` _(Object)_
 
 Attaches the `Server` to an engine.io instance on `httpServer` with the supplied `options` (optionally).
 
-## server.attach(port[, options])
+### server.attach(port[, options])
 
   - `port` _(Number)_ the port to listen on
   - `options` _(Object)_
 
 Attaches the `Server` to an engine.io instance on a new http.Server with the supplied `options` (optionally).
 
-## server.listen(httpServer[, options])
+### server.listen(httpServer[, options])
 
 Synonym of [server.attach(httpServer[, options])](#server-attach-httpServer-options).
 
-## server.listen(port[, options])
+### server.listen(port[, options])
 
 Synonym of [server.attach(port[, options])](#server-attach-port-options).
 
-## server.bind(engine)
+### server.bind(engine)
 
   - `engine` _(engine.Server)_
   - **Returns** `Server`
 
 Advanced use only. Binds the server to a specific engine.io `Server` (or compatible API) instance.
 
-## server.onconnection(socket)
+### server.onconnection(socket)
 
   - `socket` _(engine.Socket)_
   - **Returns** `Server`
 
 Advanced use only. Creates a new `socket.io` client from the incoming engine.io (or compatible API) `Socket`.
 
-## server.of(nsp)
+### server.of(nsp)
 
   - `nsp` _(String|RegExp|Function)_
   - **Returns** `Namespace`
@@ -291,7 +291,7 @@ io.of((name, query, next) => {
 }).on('connect', (socket) => { /* ... */ });
 ```
 
-## server.close([callback])
+### server.close([callback])
 
   - `callback` _(Function)_
 
@@ -311,7 +311,7 @@ server.listen(PORT); // PORT is free to use
 io = Server(server);
 ```
 
-## server.engine.generateId
+### server.engine.generateId
 
 Overwrites the default method to generate your custom socket id.
 
@@ -323,7 +323,7 @@ io.engine.generateId = (req) => {
 }
 ```
 
-# Namespace
+## Namespace
 
 Represents a pool of sockets connected under a given scope identified by a pathname (eg: `/chat`).
 
@@ -331,19 +331,19 @@ A client always connects to `/` (the main namespace), then potentially connect t
 
 For the how and why, please take a look at: [Rooms and Namespaces](/docs/rooms-and-namespaces/).
 
-## namespace.name
+### namespace.name
 
   * _(String)_
 
 The namespace identifier property.
 
-## namespace.connected
+### namespace.connected
 
   * _(Object<Socket>)_
 
 The hash of `Socket` objects that are connected to this namespace, indexed by `id`.
 
-## namespace.adapter
+### namespace.adapter
 
   * _(Adapter)_
 
@@ -351,7 +351,7 @@ The `Adapter` used for the namespace. Useful when using the `Adapter` based on [
 
 **Note:** the adapter of the main namespace can be accessed with `io.of('/').adapter`.
 
-## namespace.to(room)
+### namespace.to(room)
 
   - `room` _(String)_
   - **Returns** `Namespace` for chaining
@@ -367,11 +367,11 @@ const adminNamespace = io.of('/admin');
 adminNamespace.to('level1').emit('an event', { some: 'data' });
 ```
 
-## namespace.in(room)
+### namespace.in(room)
 
 Synonym of [namespace.to(room)](#namespace-to-room).
 
-## namespace.emit(eventName[, ...args])
+### namespace.emit(eventName[, ...args])
 
   - `eventName` _(String)_
   - `args`
@@ -388,7 +388,7 @@ chat.emit('an event sent to all connected clients in chat namespace');
 
 **Note:** acknowledgements are not supported when emitting from namespace.
 
-## namespace.clients(callback)
+### namespace.clients(callback)
 
   - `callback` _(Function)_
 
@@ -420,7 +420,7 @@ io.clients((error, clients) => {
 });
 ```
 
-## namespace.use(fn)
+### namespace.use(fn)
 
   - `fn` _(Function)_
 
@@ -435,7 +435,7 @@ io.use((socket, next) => {
 });
 ```
 
-## Event: 'connect'
+### Event: 'connect'
 
   - `socket` _(Socket)_ socket connection with client
 
@@ -451,11 +451,11 @@ io.of('/admin').on('connect', (socket) => {
 });
 ```
 
-## Event: 'connection'
+### Event: 'connection'
 
 Synonym of [Event: 'connect'](#Event-‘connect’).
 
-## Flag: 'volatile'
+### Flag: 'volatile'
 
 Sets a modifier for a subsequent event emission that the event data may be lost if the clients are not ready to receive messages (because of network slowness or other issues, or because they’re connected through long polling and is in the middle of a request-response cycle).
 
@@ -463,7 +463,7 @@ Sets a modifier for a subsequent event emission that the event data may be lost 
 io.volatile.emit('an event', { some: 'data' }); // the clients may or may not receive it
 ```
 
-## Flag: 'binary'
+### Flag: 'binary'
 
 Specifies whether there is binary data in the emitted data. Increases performance when specified. Can be `true` or `false`.
 
@@ -471,7 +471,7 @@ Specifies whether there is binary data in the emitted data. Increases performanc
 io.binary(false).emit('an event', { some: 'data' });
 ```
 
-## Flag: 'local'
+### Flag: 'local'
 
 Sets a modifier for a subsequent event emission that the event data will only be _broadcast_ to the current node (when the [Redis adapter](https://github.com/socketio/socket.io-redis) is used).
 
@@ -479,7 +479,7 @@ Sets a modifier for a subsequent event emission that the event data will only be
 io.local.emit('an event', { some: 'data' });
 ```
 
-# Socket
+## Socket
 
 A `Socket` is the fundamental class for interacting with browser clients. A `Socket` belongs to a certain `Namespace` (by default `/`) and uses an underlying `Client` to communicate.
 
@@ -489,13 +489,13 @@ Within each `Namespace`, you can also define arbitrary channels (called `room`) 
 
 The `Socket` class inherits from [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter). The `Socket` class overrides the `emit` method, and does not modify any other `EventEmitter` method. All methods documented here which also appear as `EventEmitter` methods (apart from `emit`) are implemented by `EventEmitter`, and documentation for `EventEmitter` applies.
 
-## socket.id
+### socket.id
 
   * _(String)_
 
 A unique identifier for the session, that comes from the underlying `Client`.
 
-## socket.rooms
+### socket.rooms
 
   * _(Object)_
 
@@ -510,19 +510,19 @@ io.on('connection', (socket) => {
 });
 ```
 
-## socket.client
+### socket.client
 
   * _(Client)_
 
 A reference to the underlying `Client` object.
 
-## socket.conn
+### socket.conn
 
   * _(engine.Socket)_
 
 A reference to the underlying `Client` transport connection (engine.io `Socket` object). This allows access to the IO transport layer, which still (mostly) abstracts the actual TCP/IP socket.
 
-## socket.request
+### socket.request
 
   * _(Request)_
 
@@ -536,7 +536,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## socket.handshake
+### socket.handshake
 
   * _(Object)_
 
@@ -569,7 +569,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## socket.use(fn)
+### socket.use(fn)
 
   - `fn` _(Function)_
 
@@ -586,7 +586,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## socket.send([...args][, ack])
+### socket.send([...args][, ack])
 
   - `args`
   - `ack` _(Function)_
@@ -594,7 +594,7 @@ io.on('connection', (socket) => {
 
 Sends a `message` event. See [socket.emit(eventName[, ...args][, ack])](#socketemiteventname-args-ack).
 
-## socket.emit(eventName[, ...args][, ack])
+### socket.emit(eventName[, ...args][, ack])
 
 *(overrides `EventEmitter.emit`)*
   - `eventName` _(String)_
@@ -627,7 +627,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## socket.on(eventName, callback)
+### socket.on(eventName, callback)
 
 *(inherited from `EventEmitter`)*
   - `eventName` _(String)_
@@ -650,14 +650,14 @@ socket.on('news', (data, callback) => {
 });
 ```
 
-## socket.once(eventName, listener)
-## socket.removeListener(eventName, listener)
-## socket.removeAllListeners([eventName])
-## socket.eventNames()
+### socket.once(eventName, listener)
+### socket.removeListener(eventName, listener)
+### socket.removeAllListeners([eventName])
+### socket.eventNames()
 
 Inherited from `EventEmitter` (along with other methods not mentioned here). See the Node.js documentation for the [events](https://nodejs.org/docs/latest/api/events.html) module.
 
-## socket.join(room[, callback])
+### socket.join(room[, callback])
 
   - `room` _(String)_
   - `callback` _(Function)_
@@ -688,7 +688,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## socket.join(rooms[, callback])
+### socket.join(rooms[, callback])
 
   - `rooms` _(Array)_
   - `callback` _(Function)_
@@ -706,7 +706,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## socket.leave(room[, callback])
+### socket.leave(room[, callback])
 
   - `room` _(String)_
   - `callback` _(Function)_
@@ -724,7 +724,7 @@ io.on('connection', (socket) => {
 
 **Rooms are left automatically upon disconnection**.
 
-## socket.to(room)
+### socket.to(room)
 
   - `room` _(String)_
   - **Returns** `Socket` for chaining
@@ -752,11 +752,11 @@ io.on('connection', (socket) => {
 
 **Note:** acknowledgements are not supported when broadcasting.
 
-## socket.in(room)
+### socket.in(room)
 
 Synonym of [socket.to(room)](#socket-to-room).
 
-## socket.compress(value)
+### socket.compress(value)
 
   - `value` _(Boolean)_ whether to following packet will be compressed
   - **Returns** `Socket` for chaining
@@ -769,7 +769,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## socket.disconnect(close)
+### socket.disconnect(close)
 
   - `close` _(Boolean)_ whether to close the underlying connection
   - **Returns** `Socket`
@@ -782,7 +782,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## Flag: 'broadcast'
+### Flag: 'broadcast'
 
 Sets a modifier for a subsequent event emission that the event data will only be _broadcast_ to every sockets but the sender.
 
@@ -792,7 +792,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## Flag: 'volatile'
+### Flag: 'volatile'
 
 Sets a modifier for a subsequent event emission that the event data may be lost if the client is not ready to receive messages (because of network slowness or other issues, or because they’re connected through long polling and is in the middle of a request-response cycle).
 
@@ -802,7 +802,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## Flag: 'binary'
+### Flag: 'binary'
 
 Specifies whether there is binary data in the emitted data. Increases performance when specified. Can be `true` or `false`.
 
@@ -813,7 +813,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## Event: 'disconnect'
+### Event: 'disconnect'
 
   - `reason` _(String)_ the reason of the disconnection (either client or server-side)
 
@@ -837,7 +837,7 @@ Possible reasons:
 | `ping timeout` | Client Side  | Client stopped responding to pings in the allowed amount of time (per the `pingTimeout` config setting) |
 | `transport close`  | Client Side | Client stopped sending data |
 
-## Event: 'error'
+### Event: 'error'
 
   - `error` _(Object)_ error object
 
@@ -851,7 +851,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-## Event: 'disconnecting'
+### Event: 'disconnecting'
 
   - `reason` _(String)_ the reason of the disconnection (either client or server-side)
 
@@ -868,17 +868,17 @@ io.on('connection', (socket) => {
 
 These are reserved events (along with `connect`, `newListener` and `removeListener`) which cannot be used as event names.
 
-# Client
+## Client
 
 The `Client` class represents an incoming transport (engine.io) connection. A `Client` can be associated with many multiplexed `Socket`s that belong to different `Namespace`s.
 
-## client.conn
+### client.conn
 
   * _(engine.Socket)_
 
 A reference to the underlying `engine.io` `Socket` connection.
 
-## client.request
+### client.request
 
   * _(Request)_
 

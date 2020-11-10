@@ -6,7 +6,7 @@ type: docs
 order: 401
 ---
 
-# Dependency graph
+## Dependency graph
 
 The Socket.IO codebase is split accross several repositories:
 
@@ -25,13 +25,13 @@ The following diagram displays the relationships between each project:
 
 Each project brings its own set of features:
 
-## engine.io-parser
+### engine.io-parser
 
 This is the JavaScript parser for the engine.io protocol encoding, shared by both [engine.io-client](https://github.com/socketio/engine.io-client) and [engine.io](https://github.com/socketio/engine.io).
 
 The specification for the protocol can be found here: https://github.com/socketio/engine.io-protocol
 
-## engine.io
+### engine.io
 
 Engine.IO is the implementation of transport-based cross-browser/cross-device bi-directional communication layer for Socket.IO.
 
@@ -39,7 +39,7 @@ Its main feature is the ability to swap transports on the fly. A connection (ini
 
 It uses the [engine.io-parser](https://github.com/socketio/engine.io-parser) to encode/decode packets.
 
-## engine.io-client
+### engine.io-client
 
 This is the client for [Engine.IO](https://github.com/socketio/engine.io), the implementation of transport-based cross-browser/cross-device bi-directional communication layer for [Socket.IO](https://github.com/socketio/socket.io).
 
@@ -47,21 +47,21 @@ It runs in both the browser (including HTML5 [WebWorker](https://developer.mozil
 
 It uses the [engine.io-parser](https://github.com/socketio/engine.io-parser) to encode/decode packets.
 
-## socket.io-adapter
+### socket.io-adapter
 
 This is the default Socket.IO in-memory adapter class.
 
 This module is not intended for end-user usage, but can be used as an interface to inherit from from other adapters you might want to build, like [socket.io-redis](https://github.com/socketio/socket.io-redis).
 
-## socket.io-redis
+### socket.io-redis
 
 This is the adapter using the Redis [Pub/Sub](https://redis.io/topics/pubsub) mechanism to broadcast messages between multiple nodes.
 
-## socket.io-parser
+### socket.io-parser
 
 A socket.io encoder and decoder written in JavaScript complying with version 3 of [socket.io-protocol](). Used by [socket.io](https://github.com/socketio/socket.io) and [socket.io-client](https://github.com/socketio/socket.io-client).
 
-## socket.io
+### socket.io
 
 Socket.IO brings some *syntactic sugar* over the Engine.IO "raw" API. It also brings two new concepts, `Rooms` and `Namespaces`, which introduce a separation of concern between communication channels. Please see the associated documentation [there](https://socket.io/docs/rooms-and-namespaces/).
 
@@ -69,7 +69,7 @@ By default, it exposes a browser build of the client at `/socket.io/socket.io.js
 
 It uses the [socket.io-parser](https://github.com/socketio/socket.io-parser) to encode/decode packets.
 
-## socket.io-client
+### socket.io-client
 
 This is the client for [Socket.IO](https://github.com/socketio/socket.io). It relies on [engine.io-client](https://github.com/socketio/engine.io-client), which manages the transport swapping and the disconnection detection.
 
@@ -78,9 +78,9 @@ It handles reconnection automatically, in case the underlying connection is seve
 It uses the [socket.io-parser](https://github.com/socketio/socket.io-parser) to encode/decode packets.
 
 
-# Under the hood
+## Under the hood
 
-## Connection
+### Connection
 
 ```js
 const client = io('https://myhost.com');
@@ -141,7 +141,7 @@ with:
 
 - a `connect` event is emitted at the `socket.io-client` level
 
-## Upgrade
+### Upgrade
 
 Once all the buffers of the existing transport (XHR polling) are flushed, an upgrade gets tested on the side by sending a probe.
 

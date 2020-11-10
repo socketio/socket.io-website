@@ -8,7 +8,7 @@ type: api
   You're browsing the documentation for v2.x. For v3.x, click <a href="/docs/v3/client-api/">here</a>.
 </div>
 
-# IO
+## IO
 
 Exposed as the `io` namespace in the standalone build, or the result of calling `require('socket.io-client')`.
 
@@ -25,7 +25,7 @@ const io = require('socket.io-client');
 import io from 'socket.io-client';
 ```
 
-## io.protocol
+### io.protocol
 
   * _(Number)_
 
@@ -35,7 +35,7 @@ The protocol defines the format of the packets exchanged between the client and 
 
 You can find more information [here](https://github.com/socketio/socket.io-protocol).
 
-## io([url][, options])
+### io([url][, options])
 
   - `url` _(String)_ (defaults to `window.location`)
   - `options` _(Object)_
@@ -77,9 +77,9 @@ const socket = manager.socket("/my-namespace", {
 
 See [new Manager(url[, options])](#new-Manager-url-options) for the list of available `options`.
 
-## Initialization examples
+### Initialization examples
 
-### With multiplexing
+#### With multiplexing
 
 By default, a single connection is used when connecting to different namespaces (to minimize resources):
 
@@ -105,7 +105,7 @@ const socket2 = io();
 // will also create two distinct connections
 ```
 
-### With custom `path`
+#### With custom `path`
 
 ```js
 const socket = io('http://localhost', {
@@ -130,7 +130,7 @@ Here, the socket connects to the `admin` namespace, with the custom path `mypath
 
 The request URLs will look like: `localhost/mypath/?EIO=3&transport=polling&sid=<id>` (the namespace is sent as part of the payload).
 
-### With query parameters
+#### With query parameters
 
 ```js
 const socket = io('http://localhost?token=abc');
@@ -154,7 +154,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-### With query option
+#### With query option
 
 ```js
 const socket = io({
@@ -174,7 +174,7 @@ socket.on('reconnect_attempt', () => {
 });
 ```
 
-### With `extraHeaders`
+#### With `extraHeaders`
 
 This only works if `polling` transport is enabled (which is the default). Custom headers will not be appended when using `websocket` as the transport. This happens because the WebSocket handshake does not honor custom headers. (For background see the [WebSocket protocol RFC](https://tools.ietf.org/html/rfc6455#section-4))
 
@@ -202,7 +202,7 @@ io.use((socket, next) => {
 });
 ```
 
-### With `websocket` transport only
+#### With `websocket` transport only
 
 By default, a long-polling connection is established first, then upgraded to "better" transports (like WebSocket). If you like to live dangerously, this part can be skipped:
 
@@ -218,7 +218,7 @@ socket.on('reconnect_attempt', () => {
 });
 ```
 
-### With a custom parser
+#### With a custom parser
 
 The default [parser](https://github.com/socketio/socket.io-parser) promotes compatibility (support for `Blob`, `File`, binary check) at the expense of performance. A custom parser can be provided to match the needs of your application. Please see the example [here](https://github.com/socketio/socket.io/tree/master/examples/custom-parsers).
 
@@ -234,7 +234,7 @@ const io = require('socket.io')({
 });
 ```
 
-### With a self-signed certificate
+#### With a self-signed certificate
 
 ```js
 // server-side
@@ -257,7 +257,7 @@ const socket = io({
 
 ```
 
-# Manager
+## Manager
 
 The `Manager` *manages* the Engine.IO [client](https://github.com/socketio/engine.io-client/) instance, which is the low-level engine that establishes the connection to the server (by using transports like WebSocket or HTTP long-polling).
 
@@ -267,7 +267,7 @@ A single `Manager` can be used by several [Sockets](#Socket). You can find more 
 
 Please note that, in most cases, you won't use the Manager directly but use the [Socket](#Socket) instance instead.
 
-## new Manager(url[, options])
+### new Manager(url[, options])
 
   - `url` _(String)_
   - `options` _(Object)_
@@ -325,42 +325,42 @@ Option | Default value | Description
 `localAddress` | - | the local IP address to connect to
 
 
-## manager.reconnection([value])
+### manager.reconnection([value])
 
   - `value` _(Boolean)_
   - **Returns** `Manager|Boolean`
 
 Sets the `reconnection` option, or returns it if no parameters are passed.
 
-## manager.reconnectionAttempts([value])
+### manager.reconnectionAttempts([value])
 
   - `value` _(Number)_
   - **Returns** `Manager|Number`
 
 Sets the `reconnectionAttempts` option, or returns it if no parameters are passed.
 
-## manager.reconnectionDelay([value])
+### manager.reconnectionDelay([value])
 
   - `value` _(Number)_
   - **Returns** `Manager|Number`
 
 Sets the `reconnectionDelay` option, or returns it if no parameters are passed.
 
-## manager.reconnectionDelayMax([value])
+### manager.reconnectionDelayMax([value])
 
   - `value` _(Number)_
   - **Returns** `Manager|Number`
 
 Sets the `reconnectionDelayMax` option, or returns it if no parameters are passed.
 
-## manager.timeout([value])
+### manager.timeout([value])
 
   - `value` _(Number)_
   - **Returns** `Manager|Number`
 
 Sets the `timeout` option, or returns it if no parameters are passed.
 
-## manager.open([callback])
+### manager.open([callback])
 
   - `callback` _(Function)_
   - **Returns** `Manager`
@@ -369,11 +369,11 @@ If the manager was initiated with `autoConnect` to `false`, launch a new connect
 
 The `callback` argument is optional and will be called once the attempt fails/succeeds.
 
-## manager.connect([callback])
+### manager.connect([callback])
 
 Synonym of [manager.open([callback])](#manageropencallback).
 
-## manager.socket(nsp, options)
+### manager.socket(nsp, options)
 
   - `nsp` _(String)_
   - `options` _(Object)_
@@ -381,55 +381,55 @@ Synonym of [manager.open([callback])](#manageropencallback).
 
 Creates a new `Socket` for the given namespace.
 
-## Event: 'connect_error'
+### Event: 'connect_error'
 
   - `error` _(Object)_ error object
 
 Fired upon a connection error.
 
-## Event: 'connect_timeout'
+### Event: 'connect_timeout'
 
 Fired upon a connection timeout.
 
-## Event: 'reconnect'
+### Event: 'reconnect'
 
   - `attempt` _(Number)_ reconnection attempt number
 
 Fired upon a successful reconnection.
 
-## Event: 'reconnect_attempt'
+### Event: 'reconnect_attempt'
 
   - `attempt` _(Number)_ reconnection attempt number
 
 Fired upon an attempt to reconnect.
 
-## Event: 'reconnecting'
+### Event: 'reconnecting'
 
   - `attempt` _(Number)_ reconnection attempt number
 
 Fired upon an attempt to reconnect.
 
-## Event: 'reconnect_error'
+### Event: 'reconnect_error'
 
   - `error` _(Object)_ error object
 
 Fired upon a reconnection attempt error.
 
-## Event: 'reconnect_failed'
+### Event: 'reconnect_failed'
 
 Fired when couldn't reconnect within `reconnectionAttempts`.
 
-## Event: 'ping'
+### Event: 'ping'
 
 Fired when a ping packet is written out to the server.
 
-## Event: 'pong'
+### Event: 'pong'
 
   - `ms` _(Number)_ number of ms elapsed since `ping` packet (i.e.: latency).
 
 Fired when a pong is received from the server.
 
-# Socket
+## Socket
 
 A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](/docs/namespace) (by default `/`) and uses an underlying [Manager](#Manager) to communicate.
 
@@ -443,7 +443,7 @@ socket.on('hey', (...args) => {
 });
 ```
 
-## socket.id
+### socket.id
 
   - _(String)_
 
@@ -459,7 +459,7 @@ socket.on('connect', () => {
 });
 ```
 
-## socket.connected
+### socket.connected
 
   - _(Boolean)_
 
@@ -473,7 +473,7 @@ socket.on('connect', () => {
 });
 ```
 
-## socket.disconnected
+### socket.disconnected
 
   - _(Boolean)_
 
@@ -487,7 +487,7 @@ socket.on('connect', () => {
 });
 ```
 
-## socket.open()
+### socket.open()
 
   - **Returns** `Socket`
 
@@ -510,11 +510,11 @@ socket.on('disconnect', () => {
 });
 ```
 
-## socket.connect()
+### socket.connect()
 
 Synonym of [socket.open()](#socketopen).
 
-## socket.send([...args][, ack])
+### socket.send([...args][, ack])
 
   - `args`
   - `ack` _(Function)_
@@ -522,7 +522,7 @@ Synonym of [socket.open()](#socketopen).
 
 Sends a `message` event. See [socket.emit(eventName[, ...args][, ack])](#socketemiteventname-args-ack).
 
-## socket.emit(eventName[, ...args][, ack])
+### socket.emit(eventName[, ...args][, ack])
 
   - `eventName` _(String)_
   - `args`
@@ -551,7 +551,7 @@ socket.emit('ferret', 'tobi', (data) => {
 //  });
 ```
 
-## socket.on(eventName, callback)
+### socket.on(eventName, callback)
 
   - `eventName` _(String)_
   - `callback` _(Function)_
@@ -576,7 +576,7 @@ socket.on('news', (cb) => {
 
 The socket actually inherits every method of the [Emitter](https://github.com/component/emitter) class, like `hasListeners`, `once` or `off` (to remove an event listener).
 
-## socket.compress(value)
+### socket.compress(value)
 
   - `value` _(Boolean)_
   - **Returns** `Socket`
@@ -587,7 +587,7 @@ Sets a modifier for a subsequent event emission that the event data will only be
 socket.compress(false).emit('an event', { some: 'data' });
 ```
 
-## socket.binary(value)
+### socket.binary(value)
 
 Specifies whether the emitted data contains binary. Increases performance when specified. Can be `true` or `false`.
 
@@ -595,17 +595,17 @@ Specifies whether the emitted data contains binary. Increases performance when s
 socket.binary(false).emit('an event', { some: 'data' });
 ```
 
-## socket.close()
+### socket.close()
 
   - **Returns** `Socket`
 
 Disconnects the socket manually.
 
-## socket.disconnect()
+### socket.disconnect()
 
 Synonym of [socket.close()](#socketclose).
 
-## Events
+### Events
 
 The `Socket` instance emits all events sent by its underlying [Manager](#Manager), which are related to the state of the connection to the server.
 
@@ -617,7 +617,7 @@ It also emits events related to the state of the connection to the [Namespace](/
 - `disconnect`
 - `error`.
 
-## Event: 'connect'
+### Event: 'connect'
 
 Fired upon connection to the Namespace (including a successful reconnection).
 
@@ -633,7 +633,7 @@ socket.on('myevent', () => {
 });
 ```
 
-## Event: 'disconnect'
+### Event: 'disconnect'
 
   - `reason` _(String)_ either 'io server disconnect', 'io client disconnect', or 'ping timeout'
 
@@ -649,7 +649,7 @@ socket.on('disconnect', (reason) => {
 });
 ```
 
-## Event: 'error'
+### Event: 'error'
 
   - `error` _(Object)_ error object
 
@@ -661,7 +661,7 @@ socket.on('error', (error) => {
 });
 ```
 
-## Event: 'connect_error'
+### Event: 'connect_error'
 
   - `error` _(Object)_ error object
 
@@ -673,7 +673,7 @@ socket.on('connect_error', (error) => {
 });
 ```
 
-## Event: 'connect_timeout'
+### Event: 'connect_timeout'
 
 Fired upon a connection timeout.
 
@@ -683,7 +683,7 @@ socket.on('connect_timeout', (timeout) => {
 });
 ```
 
-## Event: 'reconnect'
+### Event: 'reconnect'
 
   - `attempt` _(Number)_ reconnection attempt number
 
@@ -695,7 +695,7 @@ socket.on('reconnect', (attemptNumber) => {
 });
 ```
 
-## Event: 'reconnect_attempt'
+### Event: 'reconnect_attempt'
 
   - `attempt` _(Number)_ reconnection attempt number
 
@@ -707,7 +707,7 @@ socket.on('reconnect_attempt', (attemptNumber) => {
 });
 ```
 
-## Event: 'reconnecting'
+### Event: 'reconnecting'
 
   - `attempt` _(Number)_ reconnection attempt number
 
@@ -719,7 +719,7 @@ socket.on('reconnecting', (attemptNumber) => {
 });
 ```
 
-## Event: 'reconnect_error'
+### Event: 'reconnect_error'
 
   - `error` _(Object)_ error object
 
@@ -731,7 +731,7 @@ socket.on('reconnect_error', (error) => {
 });
 ```
 
-## Event: 'reconnect_failed'
+### Event: 'reconnect_failed'
 
 Fired when the client couldn't reconnect within `reconnectionAttempts`.
 
@@ -741,7 +741,7 @@ socket.on('reconnect_failed', () => {
 });
 ```
 
-## Event: 'ping'
+### Event: 'ping'
 
 Fired when a ping is sent to the server.
 
@@ -751,7 +751,7 @@ socket.on('ping', () => {
 });
 ```
 
-## Event: 'pong'
+### Event: 'pong'
 
   - `ms` _(Number)_ number of ms elapsed since `ping` packet (i.e.: latency).
 
