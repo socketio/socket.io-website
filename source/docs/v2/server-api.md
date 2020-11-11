@@ -329,7 +329,7 @@ Represents a pool of sockets connected under a given scope identified by a pathn
 
 A client always connects to `/` (the main namespace), then potentially connect to other namespaces (while using the same underlying connection).
 
-For the how and why, please take a look at: [Rooms and Namespaces](/docs/rooms-and-namespaces/).
+For the how and why, please take a look at: [Rooms and Namespaces](/docs/v2/rooms-and-namespaces/).
 
 ### namespace.name
 

@@ -7,7 +7,7 @@ type: docs
 order: 202
 ---
 
-Once you have [installed](/docs/server-installation/) the Socket.IO server library, you can now init the server. The complete list of options can be found [here](/docs/server-api/#new-Server-httpServer-options).
+Once you have [installed](/docs/v3/server-installation/) the Socket.IO server library, you can now init the server. The complete list of options can be found [here](/docs/server-api/#new-Server-httpServer-options).
 
 ## Standalone
 
@@ -91,7 +91,7 @@ More information [here](https://koajs.com/).
 
 ## Notable options
 
-The complete list of options can be found [here](/docs/server-api/#new-Server-httpServer-options). Here are those which you will most likely use:
+The complete list of options can be found [here](/docs/v3/server-api/#new-Server-httpServer-options). Here are those which you will most likely use:
 
 ### `perMessageDeflate` option
 

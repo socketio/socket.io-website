@@ -60,7 +60,7 @@ There are several bundles available:
 | socket.io.slim.js | 15.6 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) |
 | socket.io.dev.js  | 38.5 kB gzip     | Unminified version, with [debug](https://www.npmjs.com/package/debug)    |
 
-The [debug](https://www.npmjs.com/package/debug) package allows to print debug information to the console. You can find more information [here](/docs/logging-and-debugging/).
+The [debug](https://www.npmjs.com/package/debug) package allows to print debug information to the console. You can find more information [here](/docs/v3/logging-and-debugging/).
 
 During development, we recommend to use the `socket.io.dev.js` bundle. By setting `localStorage.debug = 'socket.io-client:socket'`, any event received by the client will be printed to the console.
 

@@ -92,7 +92,7 @@ const io = require("socket.io")(httpServer, {
 
 ### No more cookie by default
 
-In previous versions, an `io` cookie was sent by default. This cookie can be used to enable sticky-session, which is still required when you have several servers and HTTP long-polling enabled (more information [here](/docs/using-multiple-nodes/)).
+In previous versions, an `io` cookie was sent by default. This cookie can be used to enable sticky-session, which is still required when you have several servers and HTTP long-polling enabled (more information [here](/docs/v3/using-multiple-nodes/)).
 
 However, this cookie is not needed in some cases (i.e. single server deployment, sticky-session based on IP) so it must now be explicitly enabled.
 
@@ -259,7 +259,7 @@ Please see [socket.io-msgpack-parser](https://github.com/darrachequesne/socket.i
 
 The asynchronicity was needed for the first versions of the Redis adapter, but this is not the case anymore.
 
-For reference, an Adapter is an object that stores the relationships between Sockets and [Rooms](/docs/rooms). There are two official adapters: the in-memory adapter (built-in) and the [Redis adapter](https://github.com/socketio/socket.io-redis) based on Redis [pub-sub mechanism](https://redis.io/topics/pubsub).
+For reference, an Adapter is an object that stores the relationships between Sockets and [Rooms](/docs/v3/rooms). There are two official adapters: the in-memory adapter (built-in) and the [Redis adapter](https://github.com/socketio/socket.io-redis) based on Redis [pub-sub mechanism](https://redis.io/topics/pubsub).
 
 Before:
     

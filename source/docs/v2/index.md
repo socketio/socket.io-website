@@ -8,8 +8,8 @@ order: 1
 
 Socket.IO is a library that enables real-time, bidirectional and event-based communication between the browser and the server. It consists of:
 
-- a Node.js server: [Source](https://github.com/socketio/socket.io) | [API](/docs/server-api/)
-- a Javascript client library for the browser (which can be also run from Node.js): [Source](https://github.com/socketio/socket.io-client) | [API](/docs/client-api/)
+- a Node.js server: [Source](https://github.com/socketio/socket.io) | [API](/docs/v2/server-api/)
+- a Javascript client library for the browser (which can be also run from Node.js): [Source](https://github.com/socketio/socket.io-client) | [API](/docs/v2/client-api/)
 
 <img src="/images/bidirectional-communication.png" alt="Diagram for bidirectional communication" />
 
@@ -124,7 +124,7 @@ Else, let's start right away! The server library can be installed from NPM:
 $ npm install socket.io
 ```
 
-More information about the installation can be found in the [Server installation](/docs/server-installation/) page. 
+More information about the installation can be found in the [Server installation](/docs/v2/server-installation/) page.
 
 Then, let's create an `index.js` file, with the following content:
 
@@ -149,7 +149,7 @@ httpServer.listen(3000, () => {
 });
 ```
 
-Here, a classic Node.js [HTTP server](https://nodejs.org/docs/latest/api/http.html#http_class_http_server) is started to serve the `index.html` file, and the Socket.IO server is attached to it. Please see the [Server initialization](/docs/server-initialization/) page for the various ways to create a server.
+Here, a classic Node.js [HTTP server](https://nodejs.org/docs/latest/api/http.html#http_class_http_server) is started to serve the `index.html` file, and the Socket.IO server is attached to it. Please see the [Server initialization](/docs/v2/server-initialization/) page for the various ways to create a server.
 
 Let's create the `index.html` file next to it:
 
@@ -278,7 +278,7 @@ For this purpose, it relies on [Engine.IO](https://github.com/socketio/engine.io
 
 ### Auto-reconnection support
 
-Unless instructed otherwise a disconnected client will try to reconnect forever, until the server is available again. Please see the available reconnection options [here](https://socket.io/docs/client-api/#new-Manager-url-options).
+Unless instructed otherwise a disconnected client will try to reconnect forever, until the server is available again. Please see the available reconnection options [here](/docs/v2/client-api/#new-Manager-url-options).
 
 ### Disconnection detection
 
@@ -295,4 +295,4 @@ Any serializable data structures can be emitted, including:
 
 ### Multiplexing support
 
-In order to create separation of concerns within your application (for example per module, or based on permissions), Socket.IO allows you to create several [Namespaces](/docs/namespaces), which will act as separate communication channels but will share the same underlying connection.
+In order to create separation of concerns within your application (for example per module, or based on permissions), Socket.IO allows you to create several [Namespaces](/docs/v2/namespaces), which will act as separate communication channels but will share the same underlying connection.

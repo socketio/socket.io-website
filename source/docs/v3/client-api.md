@@ -262,9 +262,9 @@ const socket = io({
 
 The `Manager` *manages* the Engine.IO [client](https://github.com/socketio/engine.io-client/) instance, which is the low-level engine that establishes the connection to the server (by using transports like WebSocket or HTTP long-polling).
 
-The `Manager` handles the [reconnection logic](/docs/client-connection-lifecycle/).
+The `Manager` handles the reconnection logic.
 
-A single `Manager` can be used by several [Sockets](#Socket). You can find more information about this multiplexing feature [here](/docs/namespaces).
+A single `Manager` can be used by several [Sockets](#Socket). You can find more information about this multiplexing feature [here](/docs/v3/namespaces).
 
 Please note that, in most cases, you won't use the Manager directly but use the [Socket](#Socket) instance instead.
 
@@ -416,7 +416,7 @@ Fired when a ping packet is received from the server.
 
 ## Socket
 
-A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](/docs/namespace) (by default `/`) and uses an underlying [Manager](#Manager) to communicate.
+A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](/docs/v3/namespace) (by default `/`) and uses an underlying [Manager](#Manager) to communicate.
 
 A `Socket` is basically an [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter) which sends events to — and receive events from — the server over the network.
 

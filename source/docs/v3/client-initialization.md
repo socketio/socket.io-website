@@ -7,7 +7,7 @@ type: docs
 order: 302
 ---
 
-Once you have [installed](/docs/client-installation/) the Socket.IO client library, you can now init the client. The complete list of options can be found [here](/docs/client-api/#new-Manager-url-options).
+Once you have [installed](/docs/v3/client-installation/) the Socket.IO client library, you can now init the client. The complete list of options can be found [here](/docs/v3/client-api/#new-Manager-url-options).
 
 In the examples below, the `io` object comes either from:
 
@@ -101,7 +101,7 @@ const socket = io('/admin');
 const socket = io('https://server-domain.com/admin');
 ```
 
-You can find more details about namespaces [here](/docs/namespaces/).
+You can find more details about namespaces [here](/docs/v3/namespaces/).
 
 ## Notable options
 
@@ -117,4 +117,4 @@ const socket = io({
 });
 ```
 
-In that case, due to the nature of the WebSocket connection, you can have several server instances without sticky sessions. More information [here](/docs/using-multiple-nodes/).
+In that case, due to the nature of the WebSocket connection, you can have several server instances without sticky sessions. More information [here](/docs/v3/using-multiple-nodes/).

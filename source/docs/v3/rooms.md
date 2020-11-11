@@ -8,7 +8,7 @@ type: docs
 order: 203
 ---
 
-Within each [Namespace](/docs/namespaces/), you can define arbitrary channels called "Rooms" that sockets can `join` and `leave`.
+Within each [Namespace](/docs/v3/namespaces/), you can define arbitrary channels called "Rooms" that sockets can `join` and `leave`.
 
 This is useful to broadcast data to a subset of sockets:
 

@@ -63,7 +63,7 @@ A socket.io encoder and decoder written in JavaScript complying with version 3 o
 
 ### socket.io
 
-Socket.IO brings some *syntactic sugar* over the Engine.IO "raw" API. It also brings two new concepts, `Rooms` and `Namespaces`, which introduce a separation of concern between communication channels. Please see the associated documentation [there](https://socket.io/docs/rooms-and-namespaces/).
+Socket.IO brings some *syntactic sugar* over the Engine.IO "raw" API. It also brings two new concepts, `Rooms` and `Namespaces`, which introduce a separation of concern between communication channels. Please see the associated documentation [there](/docs/v2/rooms/).
 
 By default, it exposes a browser build of the client at `/socket.io/socket.io.js`.
 
