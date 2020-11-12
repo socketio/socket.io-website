@@ -93,33 +93,15 @@ More information [here](https://koajs.com/).
 
 The complete list of options can be found [here](/docs/v3/server-api/#new-Server-httpServer-options). Here are those which you will most likely use:
 
-### `perMessageDeflate` option
-
-Default value: `true`
-
-The WebSocket server provided by the [ws](https://www.npmjs.com/package/ws) package supports the [permessage-deflate extension](https://tools.ietf.org/html/rfc7692), which enables the client and server to negotiate a compression algorithm and its parameters, and then selectively apply it to the data payloads of each WebSocket message.
-
-As of Socket.IO v2, it is **enabled** by default, though it adds a significant overhead in terms of performance and memory consumption (and the ws maintainers [suggest](https://github.com/websockets/ws#websocket-compression) to only enable it if it is really needed).
-
-So you can disable it with:
-
-```js
-const io = require('socket.io')({
-  perMessageDeflate: false
-});
-```
-
-Please note that it will be disabled by default in Socket.IO v3.
-
 ### `maxHttpBufferSize` option
 
-Default value: `10e7`
+Default value: `1e6`
 
-This defines how many bytes a message can be, before closing the socket. It defaults to `10e7` (100MB). You may increase or decrement this value depending on your needs.
+This defines how many bytes a message can be, before closing the socket. It defaults to `1e6` (1MB). You may increase or decrement this value depending on your needs.
 
 ```js
 const io = require('socket.io')({
-  maxHttpBufferSize: 1e5
+  maxHttpBufferSize: 1e8
 });
 ```
 
