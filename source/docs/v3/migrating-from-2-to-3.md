@@ -169,7 +169,7 @@ io.use((socket, next) => {
   // not triggered anymore
 });
 
-io.on("connect", socket => {
+io.on("connection", socket => {
   // not triggered anymore
 })
 
@@ -208,7 +208,7 @@ The `rooms` property contains the list of rooms the Socket is currently in. It w
 Before:
 
 ```js
-io.on("connect", (socket) => {
+io.on("connection", (socket) => {
 
   console.log(Object.keys(socket.rooms)); // [ <socket.id> ]
 
@@ -222,7 +222,7 @@ io.on("connect", (socket) => {
 After:
 
 ```js
-io.on("connect", (socket) => {
+io.on("connection", (socket) => {
 
   console.log(socket.rooms); // Set { <socket.id> }
 
@@ -418,11 +418,11 @@ const socket2 = io("/my-namespace", {
 });
 
 // server-side
-io.on("connect", (socket) => {
+io.on("connection", (socket) => {
   console.log(socket.handshake.query.token); // abc (ok!)
 });
 
-io.of("/my-namespace").on("connect", (socket) => {
+io.of("/my-namespace").on("connection", (socket) => {
   console.log(socket.handshake.query.token); // abc (what?)
 });
 ```
@@ -447,7 +447,7 @@ const socket = io({
 });
 
 // server-side
-io.on("connect", (socket) => {
+io.on("connection", (socket) => {
   console.log(socket.handshake.auth.token); // abc
 });
 ```
@@ -589,7 +589,7 @@ It is available for both the server and the client sides:
 
 ```js
 // server
-io.on("connect", (socket) => {
+io.on("connection", (socket) => {
   socket.onAny((event, ...args) => {});
   socket.prependAny((event, ...args) => {});
   socket.offAny(); // remove all listeners
@@ -655,7 +655,7 @@ import { Server, Socket } from "socket.io";
 
 const io = new Server(8080);
 
-io.on("connect", (socket: Socket) => {
+io.on("connection", (socket: Socket) => {
     console.log(`connect ${socket.id}`);
 
     socket.on("disconnect", () => {

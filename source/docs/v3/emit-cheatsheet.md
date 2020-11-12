@@ -8,7 +8,7 @@ order: 2
 
 ```js
 
-io.on('connect', onConnect);
+io.on('connection', onConnect);
 
 function onConnect(socket){
 

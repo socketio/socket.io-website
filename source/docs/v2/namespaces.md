@@ -162,7 +162,7 @@ const session = require('express-session');
 
 io.use(wrap(session({ secret: 'cats' })));
 
-io.on('connect', (socket) => {
+io.on('connection', (socket) => {
   const session = socket.request.session;
 });
 ```

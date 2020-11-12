@@ -77,7 +77,7 @@ The API on the server-side is similar, you also get an `socket` object which ext
 ```js
 const io = require('socket.io')(3000);
 
-io.on('connect', socket => {
+io.on('connection', socket => {
   // either with send()
   socket.send('Hello!');
 
@@ -141,7 +141,7 @@ const httpServer = require('http').createServer((req, res) => {
 
 const io = require('socket.io')(httpServer);
 
-io.on('connect', socket => {
+io.on('connection', socket => {
   console.log('connect');
 });
 
@@ -204,7 +204,7 @@ The `socket` object on both sides extends the EventEmitter class, so:
 Let's update the `index.js` file (server-side):
 
 ```js
-io.on('connect', socket => {
+io.on('connection', socket => {
   let counter = 0;
   setInterval(() => {
     socket.emit('hello', ++counter);
@@ -235,7 +235,7 @@ Demo:
 Let's update the `index.js` file (server-side):
 
 ```js
-io.on('connect', socket => {
+io.on('connection', socket => {
   socket.on('hey', data => {
     console.log('hey', data);
   });

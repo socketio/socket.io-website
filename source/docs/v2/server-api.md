@@ -265,7 +265,7 @@ const adminNamespace = io.of('/admin');
 A regex or a function can also be provided, in order to create namespace in a dynamic way:
 
 ```js
-const dynamicNsp = io.of(/^\/dynamic-\d+$/).on('connect', (socket) => {
+const dynamicNsp = io.of(/^\/dynamic-\d+$/).on('connection', (socket) => {
   const newNamespace = socket.nsp; // newNamespace.name === '/dynamic-101'
 
   // broadcast to all clients in the given sub-namespace
@@ -288,7 +288,7 @@ With a function:
 io.of((name, query, next) => {
   // the checkToken method must return a boolean, indicating whether the client is able to connect or not.
   next(null, checkToken(query.token));
-}).on('connect', (socket) => { /* ... */ });
+}).on('connection', (socket) => { /* ... */ });
 ```
 
 ### server.close([callback])
@@ -442,11 +442,11 @@ io.use((socket, next) => {
 Fired upon a connection from client.
 
 ```js
-io.on('connect', (socket) => {
+io.on('connection', (socket) => {
   // ...
 });
 
-io.of('/admin').on('connect', (socket) => {
+io.of('/admin').on('connection', (socket) => {
   // ...
 });
 ```

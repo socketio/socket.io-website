@@ -47,7 +47,7 @@ io.use((socket, next) => {
   // connections, as 'socket.request.res' will be undefined in that case
 });
 
-io.on('connect', (socket) => {
+io.on('connection', (socket) => {
   const session = socket.request.session;
   session.connections++;
   session.save();
