@@ -576,7 +576,7 @@ After:
 <script src="/socket.io/socket.io.min.js"></script>
 ```
 
-# No more "pong" event for retrieving latency
+### No more "pong" event for retrieving latency
 
 In Socket.IO v2, you could listen to the `pong` event on the client-side, which included the duration of the last health check round-trip.
 
