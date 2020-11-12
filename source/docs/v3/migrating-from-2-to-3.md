@@ -749,3 +749,48 @@ const ioNext = require("socket.io-next")(httpServer, {
   path: "/socket.io-next/"
 });
 ```
+
+## Known migration issues
+
+- `stream_1.pipeline is not a function`
+
+```
+TypeError: stream_1.pipeline is not a function
+    at Function.sendFile (.../node_modules/socket.io/dist/index.js:249:26)
+    at Server.serve (.../node_modules/socket.io/dist/index.js:225:16)
+    at Server.srv.on (.../node_modules/socket.io/dist/index.js:186:22)
+    at emitTwo (events.js:126:13)
+    at Server.emit (events.js:214:7)
+    at parserOnIncoming (_http_server.js:602:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:116:23)
+```
+
+This error is probably due to your version of Node.js. The [pipeline](https://nodejs.org/api/stream.html#stream_stream_pipeline_source_transforms_destination_callback) method was introduced in Node.js 10.0.0.
+
+
+- `error TS2416: Property 'emit' in type 'Namespace' is not assignable to the same property in base type 'EventEmitter'.`
+
+```
+node_modules/socket.io/dist/namespace.d.ts(89,5): error TS2416: Property 'emit' in type 'Namespace' is not assignable to the same property in base type 'EventEmitter'.
+  Type '(ev: string, ...args: any[]) => Namespace' is not assignable to type '(event: string | symbol, ...args: any[]) => boolean'.
+    Type 'Namespace' is not assignable to type 'boolean'.
+node_modules/socket.io/dist/socket.d.ts(84,5): error TS2416: Property 'emit' in type 'Socket' is not assignable to the same property in base type 'EventEmitter'.
+  Type '(ev: string, ...args: any[]) => this' is not assignable to type '(event: string | symbol, ...args: any[]) => boolean'.
+    Type 'this' is not assignable to type 'boolean'.
+      Type 'Socket' is not assignable to type 'boolean'.
+```
+
+The signature of the `emit()` method was fixed in version `3.0.1` ([commit](https://github.com/socketio/socket.io/commit/50671d984a81535a6a15c704546ca7465e2ea295)).
+
+
+- the client is disconnected when sending a big payload (> 1MB)
+
+This is probably due to the fact that the default value of `maxHttpBufferSize` is now `1MB`. When receiving a packet that is larger than this, the server disconnects the client, in order to prevent malicious clients from overloading the server.
+
+You can adjust the value when creating the server:
+
+```js
+const io = require("socket.io")(httpServer, {
+  maxHttpBufferSize: 1e8
+});
+```
