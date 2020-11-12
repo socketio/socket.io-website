@@ -47,24 +47,28 @@ const io = require('socket.io')({
 You can also include the client bundle from a CDN:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
 ```
 
-Socket.IO is also available from other CDN like [jsDelivr](https://cdn.jsdelivr.net/npm/socket.io-client@2.3.0/dist/socket.io.js) and [unpkg](https://unpkg.com/socket.io-client@2.3.0/dist/socket.io.js).
+Socket.IO is also available from other CDN:
+
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@3.0.1/dist/socket.io.min.js
+- unpkg: https://unpkg.com/socket.io-client@3.0.1/dist/socket.io.min.js
 
 There are several bundles available:
 
 | Name              | Size             | Description |
 |:------------------|:-----------------|:------------|
-| socket.io.js      | 19.8 kB min+gzip | Production version, with [debug](https://www.npmjs.com/package/debug)    |
-| socket.io.slim.js | 15.6 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) |
-| socket.io.dev.js  | 38.5 kB gzip     | Unminified version, with [debug](https://www.npmjs.com/package/debug)    |
+| socket.io.js               | 34.7 kB gzip     | Unminified version, with [debug](https://www.npmjs.com/package/debug)    |
+| socket.io.min.js           | 14.7 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) |
+| socket.io.msgpack.min.js   | 15.3 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) and with the [msgpack parser](https://github.com/darrachequesne/socket.io-msgpack-parser)    |
 
 The [debug](https://www.npmjs.com/package/debug) package allows to print debug information to the console. You can find more information [here](/docs/v3/logging-and-debugging/).
 
-During development, we recommend to use the `socket.io.dev.js` bundle. By setting `localStorage.debug = 'socket.io-client:socket'`, any event received by the client will be printed to the console.
+During development, we recommend using the `socket.io.js` bundle. By setting `localStorage.debug = 'socket.io-client:socket'`, any event received by the client will be printed to the console.
 
-For production, please use the `socket.io.slim.js` bundle, which is an optimized build excluding the debug package.
+For production, please use the `socket.io.min.js` bundle, which is an optimized build excluding the debug package.
 
 ### From NPM
 

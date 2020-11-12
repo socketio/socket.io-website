@@ -32,6 +32,7 @@ Here is the complete list of changes:
   - [Add a clear distinction between the Manager query option and the Socket query option](#Add-a-clear-distinction-between-the-Manager-query-option-and-the-Socket-query-option)
   - [The Socket instance will no longer forward the events emitted by its Manager](#The-Socket-instance-will-no-longer-forward-the-events-emitted-by-its-Manager)
   - [Namespace.clients() is renamed to Namespace.allSockets() and now returns a Promise](#Namespace-clients-is-renamed-to-Namespace-allSockets-and-now-returns-a-Promise)
+  - [Client bundles](#Client-bundles)
 - [New features](#New-features)
   - [Catch-all listeners](#Catch-all-listeners)
   - [Volatile events (client)](#Volatile-events-client)
@@ -545,6 +546,34 @@ const ids = await io.of("/chat").in("general").allSockets();
 ```
 
 Note: this function was (and still is) supported by the Redis adapter, which means that it will return the list of socket IDs across all the Socket.IO servers.
+
+### Client bundles
+
+There are now 3 distinct bundles:
+
+| Name              | Size             | Description |
+|:------------------|:-----------------|:------------|
+| socket.io.js               | 34.7 kB gzip     | Unminified version, with [debug](https://www.npmjs.com/package/debug)    |
+| socket.io.min.js           | 14.7 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) |
+| socket.io.msgpack.min.js   | 15.3 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) and with the [msgpack parser](https://github.com/darrachequesne/socket.io-msgpack-parser)    |
+
+By default, all of them are served by the server, at `/socket.io/<name>`.
+
+Before:
+
+```html
+<!-- note: this bundle was actually minified but included the debug package -->
+<script src="/socket.io/socket.io.js"></script>
+```
+
+After:
+
+```html
+<!-- during development -->
+<script src="/socket.io/socket.io.js"></script>
+<!-- for production -->
+<script src="/socket.io/socket.io.min.js"></script>
+```
 
 
 ## New features
