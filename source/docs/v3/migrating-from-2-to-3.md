@@ -33,6 +33,7 @@ Here is the complete list of changes:
   - [The Socket instance will no longer forward the events emitted by its Manager](#The-Socket-instance-will-no-longer-forward-the-events-emitted-by-its-Manager)
   - [Namespace.clients() is renamed to Namespace.allSockets() and now returns a Promise](#Namespace-clients-is-renamed-to-Namespace-allSockets-and-now-returns-a-Promise)
   - [Client bundles](#Client-bundles)
+  - [No more "pong" event for retrieving latency](#No-more-“pong”-event-for-retrieving-latency)
 - [New features](#New-features)
   - [Catch-all listeners](#Catch-all-listeners)
   - [Volatile events (client)](#Volatile-events-client)
@@ -573,6 +574,43 @@ After:
 <script src="/socket.io/socket.io.js"></script>
 <!-- for production -->
 <script src="/socket.io/socket.io.min.js"></script>
+```
+
+# No more "pong" event for retrieving latency
+
+In Socket.IO v2, you could listen to the `pong` event on the client-side, which included the duration of the last health check round-trip.
+
+Due to the reversal of the heartbeat mechanism (more information [here](/blog/engine-io-4-release/#Heartbeat-mechanism-reversal)), this event has been removed.
+
+Before:
+
+```js
+socket.on("pong", (latency) => {
+  console.log(latency);
+});
+```
+
+After:
+
+```js
+// server-side
+io.on("connection", (socket) => {
+  socket.on("ping", (cb) => {
+    if (typeof cb === "function")
+      cb();
+  });
+});
+
+// client-side
+setInterval(() => {
+  const start = Date.now();
+
+  // volatile, so the packet will be discarded if the socket is not connected
+  socket.volatile.emit("ping", () => {
+    const latency = Date.now() - start;
+    // ...
+  });
+}, 5000);
 ```
 
 
