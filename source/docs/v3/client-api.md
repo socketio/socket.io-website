@@ -651,7 +651,16 @@ socket.on('myevent', () => {
 
 ### Event: 'disconnect'
 
-  - `reason` _(String)_ either 'io server disconnect', 'io client disconnect', or 'ping timeout'
+- `reason` (String) either 'io server disconnect', 'io client disconnect', 'ping timeout' or 'transport close'
+  
+Reason | Description
+------ | -----------
+`io server disconnect` | Server disconnect socket. ref: [socket.disconnect(close)](https://socket.io/docs/v3/server-api/#socket-disconnect-close)
+`io client disconnect` | Disconnect fired manually using [socket.disconnect(true)](https://socket.io/docs/v3/client-api/#socket-disconnect) (client-side)
+`ping timeout` | Server not respond in the `timeout` range
+`transport close`<sup>1</sup> | Connection was closed by network issues. Tipically when change network or lose connection (WiFi <-> 4G)
+
+<sup>1</sup> Socket.io-client can handle automatically reconnection, but is useful if you want to know when the user has network issues and save into logs.
 
 Fired upon disconnection.
 
