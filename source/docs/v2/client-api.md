@@ -635,9 +635,19 @@ socket.on('myevent', () => {
 
 ### Event: 'disconnect'
 
-  - `reason` _(String)_ either 'io server disconnect', 'io client disconnect', or 'ping timeout'
+  - `reason` _(String)_
 
-Fired upon disconnection.
+Fired upon disconnection. The list of possible disconnection reasons:
+
+Reason | Description
+------ | -----------
+`io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](/docs/v2/server-api/#socket-disconnect-close)
+`io client disconnect` | The socket was manually disconnected using [socket.disconnect()](/docs/v2/client-api/#socket-disconnect)
+`ping timeout` | The server did not respond in the `pingTimeout` range
+`transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
+`transport error` | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)
+
+In all cases but the first (disconnection by the server), the client will wait for a small random delay and then reconnect.
 
 ```js
 socket.on('disconnect', (reason) => {
