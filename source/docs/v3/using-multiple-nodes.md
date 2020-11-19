@@ -3,7 +3,7 @@ permalink: /docs/v3/using-multiple-nodes/
 alias: /docs/using-multiple-nodes/
 release: v3
 type: docs
-order: 206
+order: 207
 ---
 
 ## Sticky load balancing
