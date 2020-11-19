@@ -3,7 +3,7 @@ permalink: /docs/v3/namespaces/
 alias: /docs/namespaces/
 release: v3
 type: docs
-order: 204
+order: 205
 ---
 
 A Namespace is a communication channel that allows you to split the logic of your application over a single shared connection.
