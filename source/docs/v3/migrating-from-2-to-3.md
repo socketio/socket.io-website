@@ -198,17 +198,41 @@ The `connected` object (used to store all the Socket connected to the given Name
 Before:
 
 ```js
-const socket = io.sockets.connected[socketId]; // main namespace
+// get a socket by ID in the main namespace
+const socket = io.of("/").connected[socketId];
 
+// get a socket by ID in the "admin" namespace
 const socket = io.of("/admin").connected[socketId];
+
+// loop through all sockets
+const sockets = io.of("/").connected;
+for (const id in sockets) {
+  if (sockets.hasOwnProperty(id)) {
+    const socket = sockets[id];
+    // ...
+  }
+}
+
+// get the number of connected sockets
+const count = Object.keys(io.of("/").connected).length;
 ```
 
 After:
 
 ```js
-const socket = io.sockets.sockets.get(socketId); // main namespace
+// get a socket by ID in the main namespace
+const socket = io.of("/").sockets.get(socketId);
 
+// get a socket by ID in the "admin" namespace
 const socket = io.of("/admin").sockets.get(socketId);
+
+// loop through all sockets
+for (const [_, socket] of io.of("/").sockets) {
+  // ...
+}
+
+// get the number of connected sockets
+const count = io.of("/").sockets.size;
 ```
 
 ### Socket.rooms is now a Set
