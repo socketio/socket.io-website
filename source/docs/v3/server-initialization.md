@@ -9,7 +9,66 @@ order: 202
 
 Once you have [installed](/docs/v3/server-installation/) the Socket.IO server library, you can now init the server. The complete list of options can be found [here](/docs/server-api/#new-Server-httpServer-options).
 
-## Standalone
+## Syntax
+
+### CommonJS
+
+```js
+const httpServer = require("http").createServer();
+const io = require("socket.io")(httpServer, {
+  // ...
+});
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+httpServer.listen(3000);
+```
+
+### ES modules
+
+Please see [here](https://nodejs.org/api/esm.html#esm_enabling) for enabling ECMAScript modules in your Node.js project.
+
+```js
+import { createServer } from "http";
+import { Server } from "socket.io";
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
+  // ...
+});
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+httpServer.listen(3000);
+```
+
+### TypeScript
+
+Socket.IO has now first-class support for TypeScript:
+
+```ts
+import { createServer } from "http";
+import { Server, Socket } from "socket.io";
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
+  // ...
+});
+
+io.on("connection", (socket: Socket) => {
+  // ...
+});
+
+httpServer.listen(3000);
+```
+
+## Initialization
+
+### Standalone
 
 ```js
 const options = { /* ... */ };
@@ -31,7 +90,7 @@ io.on('connection', socket => { /* ... */ });
 
 This implicitly starts a Node.js [HTTP server](https://nodejs.org/docs/latest/api/http.html#http_class_http_server), which can be accessed through `io.httpServer`.
 
-## Attached to an existing HTTP server
+### Attached to an existing HTTP server
 
 ```js
 const server = require('http').createServer();
@@ -59,7 +118,7 @@ io.on('connection', socket => { /* ... */ });
 server.listen(3000);
 ```
 
-## With Express
+### With Express
 
 ```js
 const app = require('express')();
@@ -74,7 +133,7 @@ server.listen(3000);
 
 More information [here](http://expressjs.com/).
 
-## With Koa
+### With Koa
 
 ```js
 const app = require('koa')();
