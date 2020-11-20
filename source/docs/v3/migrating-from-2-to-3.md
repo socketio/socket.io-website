@@ -9,6 +9,8 @@ order: 501
 This release should fix most of the inconsistencies of the Socket.IO library and provide a more intuitive behavior for
 the end users. It is the result of the feedback of the community over the years. A big thanks to everyone involved!
 
+**TL;DR:** due to several breaking changes, a v2 client will not be able to connect to a v3 server (and vice versa)
+
 For the low-level details, please see:
 
 - [Engine.IO protocol v4](https://github.com/socketio/engine.io-protocol#difference-between-v3-and-v4)
@@ -43,7 +45,7 @@ Here is the complete list of changes:
   - [Support for IE8 and Node.js 8 is officially dropped](#Support-for-IE8-and-Node-js-8-is-officially-dropped)
 
 - [How to upgrade an existing production deployment](#How-to-upgrade-an-existing-production-deployment)
-
+- [Known migration issues](#Known-migration-issues)
 
 ## Configuration
 
@@ -55,7 +57,14 @@ Here is the complete list of changes:
 
 ### CORS handling
 
-The `origins` option (used to provide a list of authorized domains) and the `handlePreflightRequest` option (used to edit the `Access-Control-Allow-xxx` headers) are replaced by the `cors` option, which will be forwarded to the [cors](https://www.npmjs.com/package/cors) package.
+In v2, the Socket.IO server automatically added the necessary headers to allow [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS).
+
+This behavior, while convenient, was not great in terms of security, because it meant that all domains were allowed to reach your Socket.IO server, unless otherwise specified with the `origins` option.
+
+That's why, as of Socket.IO v3:
+
+- CORS is now disabled by default
+- the `origins` option (used to provide a list of authorized domains) and the `handlePreflightRequest` option (used to edit the `Access-Control-Allow-xxx` headers) are replaced by the `cors` option, which will be forwarded to the [cors](https://www.npmjs.com/package/cors) package.
 
 The complete list of options can be found [here](https://github.com/expressjs/cors#configuration-options).
 
@@ -794,3 +803,11 @@ const io = require("socket.io")(httpServer, {
   maxHttpBufferSize: 1e8
 });
 ```
+
+- `Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at xxx/socket.io/?EIO=4&transport=polling&t=NMnp2WI. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).`
+
+Since Socket.IO v3, you need to explicitly enable [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS). The documentation can be found [here](/docs/v3/handling-cors/).
+
+- `Uncaught TypeError: packet.data is undefined`
+
+It seems that you are using a v3 client to connect to a v2 server, which is not possible. Please see the [following section](#How-to-upgrade-an-existing-production-deployment).
