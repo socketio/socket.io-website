@@ -103,12 +103,11 @@ You can fetch the rooms the Socket was in by listening to the `disconnecting` ev
 ```js
 io.on('connection', socket => {
   socket.on('disconnecting', () => {
-    const rooms = Object.keys(socket.rooms);
-    // the rooms array contains at least the socket ID
+    console.log(socket.rooms); // the Set contains at least the socket ID
   });
 
   socket.on('disconnect', () => {
-    // socket.rooms === {}
+    // socket.rooms.size === 0
   });
 });
 ```

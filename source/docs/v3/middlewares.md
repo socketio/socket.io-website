@@ -17,7 +17,7 @@ Note: this function will be executed only once per connection (even if the conne
 
 ## Registering a middleware
 
-A middleware function has access to the Socket instance and to the next registered middleware function.
+A middleware function has access to the [Socket instance](/docs/v3/server-socket-instance) and to the next registered middleware function.
 
 ```js
 io.use((socket, next) => {
@@ -70,7 +70,7 @@ const socket = io({
 });
 ```
 
-Those credentials can be accessed in the [handshake]() object on the server-side:
+Those credentials can be accessed in the [handshake](/docs/v3/server-socket-instance/#Socket-handshake) object on the server-side:
 
 ```js
 io.use((socket, next) => {

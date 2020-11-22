@@ -796,13 +796,13 @@ io.on('connection', (socket) => {
 
 Possible reasons:
 
-| Reason | Side | Description |
-| ------- | ------ | ---------------|
-| `transport error` | Server Side | Transport error |
-| `server namespace disconnect` | Server Side  | Server performs a `socket.disconnect()` |
-| `client namespace disconnect` | Client Side | Got disconnect packet from client |
-| `ping timeout` | Client Side  | Client stopped responding to pings in the allowed amount of time (per the `pingTimeout` config setting) |
-| `transport close`  | Client Side | Client stopped sending data |
+Reason | Description
+------ | -----------
+`io server disconnect` | The socket was forcefully disconnected with [socket.disconnect()](/docs/v3/server-api/#socket-disconnect-close)
+`io client disconnect` | The client has manually disconnected the socket using [socket.disconnect()](/docs/v3/client-api/#socket-disconnect)
+`ping timeout` | The client did not respond in the `pingTimeout` range
+`transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
+`transport error` | The connection has encountered an error
 
 ### Event: 'disconnecting'
 
@@ -818,7 +818,12 @@ io.on('connection', (socket) => {
 });
 ```
 
-These are reserved events (along with `connect`, `newListener` and `removeListener`) which cannot be used as event names.
+Note: those events, along with `connect`, `connect_error`, `newListener` and `removeListener`, are special events that shouldn't be used in your application:
+
+```js
+// BAD, will throw an error
+socket.emit("disconnect");
+```
 
 ## Client
 
