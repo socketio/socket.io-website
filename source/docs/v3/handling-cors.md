@@ -2,7 +2,7 @@ title: Handling CORS
 permalink: /docs/v3/handling-cors/
 release: v3
 type: docs
-order: 208
+order: 210
 ---
 
 ## Configuration

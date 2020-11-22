@@ -3,7 +3,7 @@ permalink: /docs/v3/namespaces/
 alias: /docs/namespaces/
 release: v3
 type: docs
-order: 206
+order: 208
 ---
 
 A Namespace is a communication channel that allows you to split the logic of your application over a single shared connection.
@@ -134,15 +134,15 @@ io.use((socket, next) => {
 
 ## Handling middleware error
 
-If the `next` method is called with an Error object, the client will receive an `error` event.
+If the `next` method is called with an Error object, the client will receive an `connect_error` event.
 
 ```js
 import { io } from 'socket.io-client';
 
 const socket = io();
 
-socket.on('error', (reason) => {
-  console.log(reason); // prints the message associated with the error, e.g. "thou shall not pass" in the example above
+socket.on('connect_error', (err) => {
+  console.log(err.message); // prints the message associated with the error, e.g. "thou shall not pass" in the example above
 });
 ```
 
