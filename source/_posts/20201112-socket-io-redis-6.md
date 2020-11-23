@@ -3,7 +3,6 @@ permalink: /blog/socket-io-redis-adapter-6-release/
 date: 2020-11-12
 author_name: Damien Arrachequesne
 author_link: https://github.com/darrachequesne
-alias: blog/index.html
 ---
 
 Following the [release of Socket.IO v3.0.0](/blog/socket-io-3-release/), the Redis Adapter was updated and a new release is out: [6.0.0](https://github.com/socketio/socket.io-redis/releases/tag/6.0.0)
