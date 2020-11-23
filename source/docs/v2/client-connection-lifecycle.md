@@ -4,7 +4,7 @@ type: docs
 order: 303
 ---
 
-## Connection status
+## Connection status
 
 On the client-side, the `connected` attribute of the Socket object returns the current state of the connection:
 
@@ -39,7 +39,7 @@ This is the list of events that can be emitted by the Socket object.
 | connect | Fired upon connection (including a successful reconnection) |
 | disconnect | Fired upon disconnection |
 | connect_error | Fired upon a connection error |
-| connect_timeout | Fired upon a connection timeout |
+| connect_timeout | Fired upon a connection timeout |
 | reconnect_attempt | Fired upon an attempt to reconnect |
 | reconnect_error | Fired upon a reconnection attempt error |
 | reconnect_failed | Fired when the client couldn't reconnect within `reconnectionAttempts` |

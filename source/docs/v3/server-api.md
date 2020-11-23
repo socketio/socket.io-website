@@ -48,7 +48,7 @@ Option | Default value | Description
 `transports` | `['polling', 'websocket']` | transports to allow connections to
 `allowUpgrades` | `true` | whether to allow transport upgrades
 `perMessageDeflate` | `false` | parameters of the WebSocket permessage-deflate extension (see [ws module](https://github.com/einaros/ws) api docs). Set to `true` to enable.
-`httpCompression` | `true` | parameters of the http compression for the polling transports (see [zlib](http://nodejs.org/api/zlib.html#zlib_options) api docs). Set to `false` to disable.
+`httpCompression` | `true` | parameters of the http compression for the polling transports (see [zlib](http://nodejs.org/api/zlib.html#zlib_options) api docs). Set to `false` to disable.
 `wsEngine` | `ws` | what WebSocket server implementation to use. Specified module must conform to the `ws` interface (see [ws module api docs](https://github.com/websockets/ws/blob/master/doc/ws.md)). Default value is `ws`. An alternative c++ addon is also available by installing the [eiows](https://www.npmjs.com/package/eiows) module.
 `cors` | | the list of options that will be forwarded to the [cors](https://www.npmjs.com/package/cors) module
 `cookie` | | the list of options that will be forwarded to the [cookie](https://github.com/jshttp/cookie/) module

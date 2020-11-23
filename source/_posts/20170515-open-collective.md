@@ -9,7 +9,7 @@ author_link: https://github.com/darrachequesne
 
 Open Collective provides a transparent, sustainable, and secure way for people to support and sponsor <a href="https://opencollective.com/opensource">open source projects</a>. We are joining other great projects (you may have heard about <a href="https://opencollective.com/mochajs">MochaJS</a>, <a href="https://opencollective.com/gulpjs">GulpJS</a> or <a href="https://opencollective.com/webpack">webpack</a>, among <a href="https://opencollective.com/discover">lots</a> of other awesome projects) in the quest to ensure the project's sustainability.
 
-## What is an Open Collective?
+## What is an Open Collective?
 
 From their website:
 

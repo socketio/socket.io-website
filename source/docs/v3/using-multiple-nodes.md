@@ -86,7 +86,7 @@ Make sure you also configure `worker_processes` in the topmost level to indicate
 
 [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-nginx)
 
-## Apache HTTPD configuration
+## Apache HTTPD configuration
 
 ```apache
 Header add Set-Cookie "SERVERID=sticky.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED

@@ -6,7 +6,7 @@ type: docs
 order: 301
 ---
 
-## Compatibility
+## Compatibility
 
 Socket.IO does support IE9 and above. IE 6/7/8 are not supported anymore.
 

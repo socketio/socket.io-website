@@ -47,7 +47,7 @@ $ npm install --save-optional bufferutil utf-8-validate
 
 Please note that these packages are optional, the WebSocket server will fallback to the Javascript implementation if they are not available. More information can be found [here](https://github.com/websockets/ws/#opt-in-for-performance-and-spec-compliance).
 
-## Other WebSocket server implementations
+## Other WebSocket server implementations
 
 Any Websocket server implementation which exposes the same API as ws (notably the [handleUpgrade](https://github.com/websockets/ws/blob/master/doc/ws.md#serverhandleupgraderequest-socket-head-callback) method) can be used.
 

@@ -39,7 +39,7 @@ Its main feature is the ability to swap transports on the fly. A connection (ini
 
 It uses the [engine.io-parser](https://github.com/socketio/engine.io-parser) to encode/decode packets.
 
-### engine.io-client
+### engine.io-client
 
 This is the client for [Engine.IO](https://github.com/socketio/engine.io), the implementation of transport-based cross-browser/cross-device bi-directional communication layer for [Socket.IO](https://github.com/socketio/socket.io).
 
@@ -61,7 +61,7 @@ This is the adapter using the Redis [Pub/Sub](https://redis.io/topics/pubsub) me
 
 A socket.io encoder and decoder written in JavaScript complying with version 3 of [socket.io-protocol](). Used by [socket.io](https://github.com/socketio/socket.io) and [socket.io-client](https://github.com/socketio/socket.io-client).
 
-### socket.io
+### socket.io
 
 Socket.IO brings some *syntactic sugar* over the Engine.IO "raw" API. It also brings two new concepts, `Rooms` and `Namespaces`, which introduce a separation of concern between communication channels. Please see the associated documentation [there](/docs/v2/rooms/).
 
@@ -80,7 +80,7 @@ It uses the [socket.io-parser](https://github.com/socketio/socket.io-parser) to 
 
 ## Under the hood
 
-### Connection
+### Connection
 
 ```js
 const client = io('https://myhost.com');

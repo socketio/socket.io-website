@@ -277,14 +277,14 @@ Available options:
 
 Option | Default value | Description
 ------ | ------------- | -----------
-`path` | `/socket.io` | name of the path that is captured on the server side
-`reconnection` | `true` | whether to reconnect automatically
+`path` | `/socket.io` | name of the path that is captured on the server side
+`reconnection` | `true` | whether to reconnect automatically
 `reconnectionAttempts` | `Infinity` | number of reconnection attempts before giving up
 `reconnectionDelay` | `1000` | how long to initially wait before attempting a new reconnection. Affected by +/- `randomizationFactor`, for example the default initial delay will be between 500 to 1500ms.
-`reconnectionDelayMax` | `5000` | maximum amount of time to wait between reconnections. Each attempt increases the reconnection delay by 2x along with a randomization factor.
+`reconnectionDelayMax` | `5000` | maximum amount of time to wait between reconnections. Each attempt increases the reconnection delay by 2x along with a randomization factor.
 `randomizationFactor` | `0.5` | 0 <= randomizationFactor <= 1
 `timeout` | `20000` | connection timeout before a `connect_error` and `connect_timeout` events are emitted
-`autoConnect` | `true` | by setting this false, you have to call `manager.open` whenever you decide it's appropriate
+`autoConnect` | `true` | by setting this false, you have to call `manager.open` whenever you decide it's appropriate
 `query` | `{}` | additional query parameters that are sent when connecting a namespace (then found in `socket.handshake.query` object on the server-side)
 `parser` | - | the parser to use. Defaults to an instance of the `Parser` that ships with socket.io. See [socket.io-parser](https://github.com/socketio/socket.io-parser).
 
@@ -298,7 +298,7 @@ Option | Default value | Description
 `forceBase64` | `false` | forces base 64 encoding for polling transport even when XHR2 responseType is available and WebSocket even if the used standard supports binary.
 `enablesXDR` | `false` | enables XDomainRequest for IE8 to avoid loading bar flashing with click sound. default to `false` because XDomainRequest has a flaw of not sending cookie. |
 `timestampRequests` | - | whether to add the timestamp with each transport request. Note: polling requests are always stamped unless this option is explicitly set to `false`
-`timestampParam` | `t` | the timestamp parameter
+`timestampParam` | `t` | the timestamp parameter
 `policyPort` | `843` | port the policy server listens on
 `transports` | `['polling', 'websocket']` | a list of transports to try (in order). `Engine` always attempts to connect directly with the first one, provided the feature detection test for it passes.
 `transportOptions` | `{}` | hash of options, indexed by transport name, overriding the common options for the given transport
