@@ -8,7 +8,7 @@ order: 206
 
 Besides:
 
-- [emitting events](/docs/v3/emitting-events/#Basic-emit)
+- [emitting](/docs/v3/emitting-events/#Basic-emit) and [listening to](/docs/v3/listening-to-events/) events
 - [broadcasting events](/docs/v3/broadcasting-events/#To-all-connected-clients-excepting-the-sender)
 - [joining and leaving rooms](/docs/v3/rooms/#Joining-and-leaving)
 

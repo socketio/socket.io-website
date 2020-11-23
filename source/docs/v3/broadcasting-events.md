@@ -2,7 +2,7 @@ title: Broadcasting events
 permalink: /docs/v3/broadcasting-events/
 release: v3
 type: docs
-order: 204
+order: 353
 ---
 
 Socket.IO makes it easy to send events to all the connected clients.

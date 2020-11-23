@@ -7,7 +7,7 @@ type: docs
 order: 303
 ---
 
-Besides [emitting events](/docs/v3/emitting-events/#Basic-emit), the Socket instance has a few attributes that may be of use in your application:
+Besides [emitting](/docs/v3/emitting-events/#Basic-emit) and [listening to](/docs/v3/listening-to-events/) events, the Socket instance has a few attributes that may be of use in your application:
 
 ## Socket#id
 

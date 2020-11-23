@@ -2,7 +2,7 @@ title: Emitting events
 permalink: /docs/v3/emitting-events/
 release: v3
 type: docs
-order: 203
+order: 351
 ---
 
 There are several ways to send events between the server and the client.

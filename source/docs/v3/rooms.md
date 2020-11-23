@@ -5,7 +5,7 @@ alias:
   - /docs/rooms-and-namespaces/ # kept for compatibility
 release: v3
 type: docs
-order: 205
+order: 354
 ---
 
 Within each [Namespace](/docs/v3/namespaces/), you can define arbitrary channels called "Rooms" that sockets can `join` and `leave`.
