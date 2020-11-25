@@ -8,7 +8,15 @@
   apiKey: '58123f8fe0926bd32287730dbc483f6d',
   indexName: 'socket_io',
   inputSelector: '#docsearch-input',
-  debug: true  // Set debug to true if you want to inspect the dropdown
+  <% if ((page.type === 'docs' || page.type === 'api') && page.release === 'v2') { %>
+  algoliaOptions: {
+    'facetFilters': ["version:v2"]
+  },
+  <% } else { %>
+  algoliaOptions: {
+    'facetFilters': ["version:v3"]
+  },
+  <% } %>
 });
 </script>
 

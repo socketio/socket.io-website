@@ -5,6 +5,15 @@
 <head>
   <meta charset="utf-8">
   <%- partial('google-analytics') %>
+
+  <% if (page.type === 'docs' || page.type === 'api') { %>
+    <% if (page.release === 'v3') { %>
+      <meta name="docsearch:version" content="3.0.0,latest" />
+    <% } else if (page.release === 'v2') { %>
+      <meta name="docsearch:version" content="2.0.0" />
+    <% } %>
+  <% } %>
+
   <%
   var title = page.title;
 
