@@ -294,7 +294,7 @@ Please see [socket.io-msgpack-parser](https://github.com/darrachequesne/socket.i
 
 The asynchronicity was needed for the first versions of the Redis adapter, but this is not the case anymore.
 
-For reference, an Adapter is an object that stores the relationships between Sockets and [Rooms](/docs/v3/rooms). There are two official adapters: the in-memory adapter (built-in) and the [Redis adapter](https://github.com/socketio/socket.io-redis) based on Redis [pub-sub mechanism](https://redis.io/topics/pubsub).
+For reference, an Adapter is an object that stores the relationships between Sockets and [Rooms](/docs/v3/rooms/). There are two official adapters: the in-memory adapter (built-in) and the [Redis adapter](https://github.com/socketio/socket.io-redis) based on Redis [pub-sub mechanism](https://redis.io/topics/pubsub).
 
 Before:
     

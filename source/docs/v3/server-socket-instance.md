@@ -91,7 +91,7 @@ Example:
 
 ## Socket#rooms
 
-This is a reference to the [rooms](/docs/v3/rooms) the Socket is currently in.
+This is a reference to the [rooms](/docs/v3/rooms/) the Socket is currently in.
 
 ```js
 io.on("connection", (socket) => {

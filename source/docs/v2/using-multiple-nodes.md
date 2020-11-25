@@ -146,7 +146,7 @@ You could also assign a different port to each worker of the cluster, based on t
 
 ## Passing events between nodes
 
-Now that you have multiple Socket.IO nodes accepting connections, if you want to broadcast events to everyone (or even everyone in a certain [room](/docs/v2/rooms)) you&#8217;ll need some way of passing messages between processes or computers.
+Now that you have multiple Socket.IO nodes accepting connections, if you want to broadcast events to everyone (or even everyone in a certain [room](/docs/v2/rooms/)) you&#8217;ll need some way of passing messages between processes or computers.
 
 The interface in charge of routing messages is what we call the `Adapter`. You can implement your own on top of the [socket.io-adapter](https://github.com/socketio/socket.io-adapter) (by inheriting from it) or you can use the one we provide on top of [Redis](https://redis.io/): [socket.io-redis](https://github.com/socketio/socket.io-redis):
 

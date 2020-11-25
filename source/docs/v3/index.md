@@ -296,4 +296,4 @@ Any serializable data structures can be emitted, including:
 
 ### Multiplexing support
 
-In order to create separation of concerns within your application (for example per module, or based on permissions), Socket.IO allows you to create several [Namespaces](/docs/v3/namespaces), which will act as separate communication channels but will share the same underlying connection.
+In order to create separation of concerns within your application (for example per module, or based on permissions), Socket.IO allows you to create several [Namespaces](/docs/v3/namespaces/), which will act as separate communication channels but will share the same underlying connection.

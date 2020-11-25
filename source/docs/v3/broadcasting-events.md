@@ -31,4 +31,4 @@ io.on("connection", (socket) => {
 ```
 
 
-In order to target specific clients when broadcasting, please see the documentation about [Rooms](/docs/v3/rooms).
+In order to target specific clients when broadcasting, please see the documentation about [Rooms](/docs/v3/rooms/).
