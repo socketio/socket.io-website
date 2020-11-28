@@ -6,6 +6,11 @@ type: docs
 order: 209
 ---
 
+When deploying multiple Socket.IO servers, there are two things to take care of:
+
+- enabling sticky session, if HTTP long-polling is enabled (which is the default): see [below](#Sticky-load-balancing)
+- using the Redis adapter (or another compatible [Adapter](/docs/v3/glossary/#Adapter)): see [below](##Passing-events-between-nodes)
+
 ## Sticky load balancing
 
 If you plan to distribute the load of connections among different processes or machines, you have to make sure that requests associated with a particular session id connect to the process that originated them.
@@ -41,12 +46,11 @@ Both means that there is **NO FALLBACK** to long-polling when the websocket conn
 
 To achieve sticky-session, there are two main solutions:
 
+- routing clients based on a cookie (recommended solution)
 - routing clients based on their originating address
 
-- routing clients based on a cookie
 
-
-## NginX configuration
+### NginX configuration
 
 Within the `http { }` section of your `nginx.conf` file, you can declare a `upstream` section with a list of Socket.IO process you want to balance load between:
 
@@ -86,7 +90,7 @@ Make sure you also configure `worker_processes` in the topmost level to indicate
 
 [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-nginx)
 
-## Apache HTTPD configuration
+### Apache HTTPD configuration
 
 ```apache
 Header add Set-Cookie "SERVERID=sticky.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
@@ -116,7 +120,7 @@ ProxyTimeout 3
 
 [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-httpd)
 
-## HAProxy configuration
+### HAProxy configuration
 
 ```
 # Reference: http://blog.haproxy.com/2012/11/07/websockets-load-balancing-with-haproxy/
@@ -136,7 +140,7 @@ backend nodes
 
 [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-haproxy)
 
-## Using Node.JS Cluster
+### Using Node.JS Cluster
 
 Just like NginX, Node.JS comes with built-in clustering support through the `cluster` module.
 
@@ -147,9 +151,11 @@ You could also assign a different port to each worker of the cluster, based on t
 
 ## Passing events between nodes
 
-Now that you have multiple Socket.IO nodes accepting connections, if you want to broadcast events to everyone (or even everyone in a certain [room](/docs/v3/rooms/)) you&#8217;ll need some way of passing messages between processes or computers.
+### The Redis adapter
 
-The interface in charge of routing messages is what we call the `Adapter`. You can implement your own on top of the [socket.io-adapter](https://github.com/socketio/socket.io-adapter) (by inheriting from it) or you can use the one we provide on top of [Redis](https://redis.io/): [socket.io-redis](https://github.com/socketio/socket.io-redis):
+Now that you have multiple Socket.IO nodes accepting connections, if you want to broadcast events to all clients (or to the clients in a certain [room](/docs/v3/rooms/)) you&#8217;ll need some way of passing messages between processes or computers.
+
+The interface in charge of routing messages is what we call the [Adapter](/docs/v3/glossary/#Adapter). You can implement your own on top of the [socket.io-adapter](https://github.com/socketio/socket.io-adapter) (by inheriting from it) or you can use the one we provide on top of [Redis](https://redis.io/): [socket.io-redis](https://github.com/socketio/socket.io-redis):
 
 ```js
 const io = require('socket.io')(3000);
@@ -163,8 +169,22 @@ Then the following call:
 io.emit('hi', 'all sockets');
 ```
 
-will be broadcast to every node through the [Pub/Sub mechanism](https://redis.io/topics/pubsub) of Redis.
+will be broadcast to every clients through the [Pub/Sub mechanism](https://redis.io/topics/pubsub) of Redis:
 
-**Note:** sticky-session is still needed when using the Redis adapter.
+![Broadcasting with Redis](/images/broadcasting-redis.png)
 
-If you want to pass messages to it from non-socket.io processes, you should look into [&#8220;Sending messages from the outside-world&#8221;](/docs/v3/rooms/#Sending-messages-from-the-outside-world).
+### Sending messages from the outside world
+
+Using the Redis adapter has another benefit: you can now emit events from outside the context of your Socket.IO processes.
+
+![Diagram with Redis adapter and external emitter](/images/emitter.png)
+
+This emitter is available in several languages:
+
+- Javascript: https://github.com/socketio/socket.io-emitter
+- Java: https://github.com/sunsus/socket.io-java-emitter
+- Python: https://pypi.org/project/socket.io-emitter/
+- PHP: https://github.com/rase-/socket.io-php-emitter
+- Golang: https://github.com/yosuke-furukawa/socket.io-go-emitter
+- Perl: https://metacpan.org/pod/SocketIO::Emitter
+- Rust: https://github.com/epli2/socketio-rust-emitter

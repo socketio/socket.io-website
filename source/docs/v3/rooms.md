@@ -8,11 +8,11 @@ type: docs
 order: 354
 ---
 
-Within each [Namespace](/docs/v3/namespaces/), you can define arbitrary channels called "Rooms" that sockets can `join` and `leave`.
-
-This is useful to broadcast data to a subset of sockets:
+A *room* is an arbitrary channel that sockets can `join` and `leave`. It can be used to broadcast events to a subset of clients:
 
 ![Room diagram](/images/rooms.png)
+
+Please note that rooms are a **server-only** concept (i.e. the client does not have access to the list of rooms it has joined).
 
 ## Joining and leaving
 
@@ -48,18 +48,20 @@ io.on('connection', function(socket){
 
 In that case, every socket in the room **excluding** the sender will get the event.
 
-To leave a channel you call `leave` in the same fashion as `join`. Both methods are asynchronous and accept a `callback` argument.
+![Broadcasting to room excepting the sender](/images/rooms2.png)
+
+To leave a channel you call `leave` in the same fashion as `join`.
 
 ## Default room
 
-Each `Socket` in Socket.IO is identified by a random, unguessable, unique identifier `Socket#id`. For your convenience, each socket automatically joins a room identified by its own id.
+Each `Socket` in Socket.IO is identified by a random, unguessable, unique identifier [Socket#id](/docs/v3/server-socket-instance/#Socket-id). For your convenience, each socket automatically joins a room identified by its own id.
 
-This makes it easy to broadcast messages to other sockets:
+This makes it easy to implement private messages:
 
 ```js
-io.on('connection', socket => {
-  socket.on('say to someone', (id, msg) => {
-    socket.to(id).emit('my message', msg);
+io.on("connection", socket => {
+  socket.on("private message", (anotherSocketId, msg) => {
+    socket.to(anotherSocketId).emit("private message", socket.id, msg);
   });
 });
 ```
@@ -87,10 +89,8 @@ io.on('connection', async (socket) => {
 
   projects.forEach(project => socket.join('project:' + project.id));
 
-  socket.on('update project', async (payload) => {
-    const project = await updateProject(payload);
-    io.to('project:' + project.id).emit('project updated', project);
-  });
+  // and then later
+  io.to('project:4321').emit('project updated');
 });
 ```
 
@@ -112,30 +112,10 @@ io.on('connection', socket => {
 });
 ```
 
-## Sending messages from the outside-world
+## With multiple Socket.IO servers
 
-In some cases, you might want to emit events to sockets in Socket.IO namespaces / rooms from outside the context of your Socket.IO processes.
+Like [global broadcasting](/docs/v3/broadcasting-events/#With-multiple-Socket-IO-servers), broadcasting to rooms also works with multiple Socket.IO servers.
 
-There are several ways to tackle this problem, like implementing your own channel to send messages into the process.
+You just need to replace the default [Adapter](/docs/v3/glossary/#Adapter) by the Redis Adapter. More information about it [here](/docs/v3/using-multiple-nodes/#Passing-events-between-nodes).
 
-To facilitate this use case, we created two modules:
-
-- [socket.io-redis](https://github.com/socketio/socket.io-redis)
-- [socket.io-emitter](https://github.com/socketio/socket.io-emitter)
-
-By implementing the Redis `Adapter`:
-
-```js
-const io = require('socket.io')(3000);
-const redis = require('socket.io-redis');
-io.adapter(redis({ host: 'localhost', port: 6379 }));
-```
-
-you can then `emit` messages from any other process to any channel
-
-```js
-const io = require('socket.io-emitter')({ host: '127.0.0.1', port: 6379 });
-setInterval(function(){
-  io.emit('time', new Date);
-}, 5000);
-```
+![Broadcasting to room with Redis](/images/rooms-redis.png)
