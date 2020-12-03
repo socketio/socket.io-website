@@ -84,6 +84,11 @@ const customLinks = {
     "img": "https://images.opencollective.com/vpsservercom/logo.png",
     "alt": "VPS Hosting"
   },
+  topvpnservice: {
+    "url": "https://www.topvpnservice.com/",
+    "img": "/images/sponsors/topvpnservice.png",
+    "alt": "TopVPNService"
+  }
 }
 
 const nodeToSponsor = node => (customLinks[node.account.slug] || {
