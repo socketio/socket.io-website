@@ -734,12 +734,14 @@
       </div>
       <div class="body">
         <ol class="code">
-          <li><span class="code"><span class="v">var</span> io = <span class="io">require('socket.io')(80)</span>;</span></li>
-          <li><span class="code"><span class="v">var</span> cfg = require('./config.json');</span></li>
-          <li><span class="code"><span class="v">var</span> tw = require('node-tweet-stream')(cfg);</span></li>
+          <li><span class="code"><span class="v">const</span> io = <span class="io">require('socket.io')(80)</span>;</span></li>
+          <li><span class="code"><span class="v">const</span> cfg = require('./config.json');</span></li>
+          <li><span class="code"><span class="v">const</span> tw = require('node-tweet-stream')(cfg);</span></li>
+          <li><span class="code"></span></li>
           <li><span class="code">tw.track('socket.io');</span></li>
           <li><span class="code">tw.track('javascript');</span></li>
-          <li><span class="code">tw.on('tweet', <span class="fn">function</span>(tweet){</span></li>
+          <li><span class="code"></span></li>
+          <li><span class="code">tw.on('tweet', (tweet) => {</span></li>
           <li><span class="code">&nbsp;&nbsp;<span class="io">io.emit('tweet', tweet)</span>;</span></li>
           <li><span class="code">});</span></li>
         </ol>
