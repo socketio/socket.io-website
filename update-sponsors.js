@@ -92,18 +92,6 @@ const nodeToSponsor = node => (customLinks[node.account.slug] || {
   alt: node.account.name
 });
 
-const getAllSponsors = async () => {
-  const requestOptions = {
-    method: 'POST',
-    uri: graphqlEndpoint,
-    body: { query: graphqlQuery },
-    json: true
-  };
-
-  const result = await request(requestOptions);
-  return result.data.account.members.nodes;
-};
-
 const main = async () => {
   console.log(`fetching sponsors from the graphql API`);
 
@@ -130,13 +118,15 @@ const main = async () => {
   });
   console.log(`${activeMembers.size} active members out of ${members.length}`);
 
+  const unique = new Set(activeMembers);
+
   const activeSponsors = sponsors
     .filter(n => {
       const isSponsor = (!n.tier || n.tier.name === 'sponsors') && n.totalDonations.value >= 100;
-      const isActive = activeMembers.delete(n.account.slug);
+      const isActive = activeMembers.has(n.account.slug);
       const hasWebsite = n.account.website;
 
-      return isSponsor && isActive && hasWebsite;
+      return isSponsor && isActive && hasWebsite && unique.delete(n.account.slug);
     })
     .sort((a, b) => {
       const sortByDonation = b.totalDonations.value - a.totalDonations.value;
