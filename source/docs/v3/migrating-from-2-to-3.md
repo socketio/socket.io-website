@@ -36,6 +36,7 @@ Here is the complete list of changes:
   - [Namespace.clients() is renamed to Namespace.allSockets() and now returns a Promise](#Namespace-clients-is-renamed-to-Namespace-allSockets-and-now-returns-a-Promise)
   - [Client bundles](#Client-bundles)
   - [No more "pong" event for retrieving latency](#No-more-“pong”-event-for-retrieving-latency)
+  - [ES modules syntax](#ES-modules-syntax)
 - [New features](#New-features)
   - [Catch-all listeners](#Catch-all-listeners)
   - [Volatile events (client)](#Volatile-events-client)
@@ -646,6 +647,37 @@ setInterval(() => {
 }, 5000);
 ```
 
+### ES modules syntax
+
+The ECMAScript modules syntax is now similar to the Typescript one (see [below](#The-Socket-IO-codebase-has-been-rewritten-to-TypeScript)).
+
+Before (using default import):
+
+```js
+// server-side
+import Server from "socket.io";
+
+const io = new Server(8080);
+
+// client-side
+import io from 'socket.io-client';
+
+const socket = io();
+```
+
+After (with named import):
+
+```js
+// server-side
+import { Server } from "socket.io";
+
+const io = new Server(8080);
+
+// client-side
+import { io } from 'socket.io-client';
+
+const socket = io();
+```
 
 ## New features
 
@@ -738,10 +770,9 @@ io.on("connection", (socket: Socket) => {
 Client:
 
 ```ts
-import { Manager } from "socket.io-client";
+import { io } from "socket.io-client";
 
-const manager = new Manager("ws://localhost:8080");
-const socket = manager.socket("/");
+const socket = io("/");
 
 socket.on("connect", () => {
     console.log(`connect ${socket.id}`);
