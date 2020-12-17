@@ -156,7 +156,7 @@ The complete list of options can be found [here](/docs/v3/server-api/#new-Server
 
 Default value: `1e6`
 
-This defines how many bytes a message can be, before closing the socket. It defaults to `1e6` (1MB). You may increase or decrement this value depending on your needs.
+This defines how many bytes a message can be, before closing the socket. It defaults to `1e6` (1MB). You may increase or decrease this value depending on your needs.
 
 ```js
 const io = require('socket.io')({
