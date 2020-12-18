@@ -36,7 +36,7 @@ const graphqlQuery = `query account {
 const customLinks = {
   airtract: {
     url: "https://www.airtract.com",
-    img: "/images/airtract.jpg",
+    img: "/images/sponsors/airtract.jpg",
     alt: "AirTract"
   },
   truevendor: {
@@ -46,12 +46,12 @@ const customLinks = {
   },
   pinkelephant: {
     url: "https://akasse-fagforening.dk/",
-    img: "/images/a-kasse.png",
+    img: "/images/sponsors/a-kasse.png",
     alt: "a-kasse"
   },
   "veselin-lalev": {
     url: "https://casinodaddy.com",
-    img: "/images/casinodaddy.png",
+    img: "/images/sponsors/casinodaddy.png",
     alt: "Casino Daddy"
   },
   papersowl2: {
@@ -61,22 +61,22 @@ const customLinks = {
   },
   "buy-fineproxy-org": {
     url: "https://buy.fineproxy.org/eng/",
-    img: "/images/fineproxy.png",
+    img: "/images/sponsors/fineproxy.png",
     alt: "Buy.Fineproxy.Org"
   },
   "nettikasinot-suomalaisille": {
     url: "https://www.nettikasinotsuomalaisille.com/nettikasinot-ilman-rekisteroitymista/",
-    img: "/images/netti.png",
+    img: "/images/sponsors/netti.png",
     alt: "Nettikasinot Suomalaisille"
   },
   "neue-online-casinos1": {
     url: "https://www.neueonline-casinos.com/",
-    img: "/images/neue.png",
+    img: "/images/sponsors/neue.png",
     alt: "Neue Online Casinos"
   },
   "aandelen-kopen1": {
     url: "https://www.aandelenkopen.com",
-    img: "/images/aandelenkopen.png",
+    img: "/images/sponsors/aandelenkopen.png",
     alt: "Aandelen Kopen"
   },
   vpsservercom: {
