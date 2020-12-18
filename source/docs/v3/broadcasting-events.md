@@ -19,7 +19,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-## To all connected clients excepting the sender
+## To all connected clients except the sender
 
 ![Broadcasting to all connected clients excepting the sender](/images/broadcasting2.png)
 
