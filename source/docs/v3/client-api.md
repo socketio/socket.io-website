@@ -168,7 +168,7 @@ const socket = io({
 The query content can also be updated on reconnection:
 
 ```js
-socket.on('reconnect_attempt', () => {
+socket.io.on('reconnect_attempt', () => {
   socket.io.opts.query = {
     token: 'fgh'
   }
@@ -214,7 +214,7 @@ const socket = io({
 
 // on reconnection, reset the transports option, as the Websocket
 // connection may have failed (caused by proxy, firewall, browser, ...)
-socket.on('reconnect_attempt', () => {
+socket.io.on('reconnect_attempt', () => {
   socket.io.opts.transports = ['polling', 'websocket'];
 });
 ```
