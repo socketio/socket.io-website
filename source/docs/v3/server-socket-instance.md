@@ -154,7 +154,7 @@ Reason | Description
 
 - `disconnecting`
 
-This event is similar to ̀`disconnect` but is fired a bit earlier, when the [Socket#rooms](/docs/v3/server-socket-instance/#Socket-rooms) set is not empty yet
+This event is similar to `disconnect` but is fired a bit earlier, when the [Socket#rooms](/docs/v3/server-socket-instance/#Socket-rooms) set is not empty yet
 
 ```js
 io.on("connection", (socket) => {
