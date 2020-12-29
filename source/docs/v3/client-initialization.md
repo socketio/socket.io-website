@@ -21,7 +21,7 @@ In the examples below, the `io` object comes either from:
 
 ```js
 // ES6 import
-import { io } from 'socket.io-client';
+import { connect as io } from 'socket.io-client';
 // CommonJS
 const io = require('socket.io-client');
 ```
