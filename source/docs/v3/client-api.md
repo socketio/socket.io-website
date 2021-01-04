@@ -54,8 +54,11 @@ const io = require("socket.io-client");
 
 const socket = io("ws://example.com/my-namespace", {
   reconnectionDelayMax: 10000,
+  auth: {
+    token: "123"
+  },
   query: {
-    auth: "123"
+    "my-key": "my-value"
   }
 });
 ```
@@ -66,17 +69,25 @@ is the short version of:
 const { Manager } = require("socket.io-client");
 
 const manager = new Manager("ws://example.com", {
-  reconnectionDelayMax: 10000
+  reconnectionDelayMax: 10000,
+  query: {
+    "my-key": "my-value"
+  }
 });
 
 const socket = manager.socket("/my-namespace", {
-  query: {
-    auth: "123"
+  auth: {
+    token: "123"
   }
 });
 ```
 
 See [new Manager(url[, options])](#new-Manager-url-options) for the list of available `options`.
+
+Please note: `manager.socket("/my-namespace", options )` will only read the `auth` key in the `options` object.
+`query: {…}` and other optional values are only used when passed via a `new Manager(uri, options)` instance.
+
+See [Migrating from 2.x to 3.0](/docs/v3/migrating-from-2-x-to-3-0/#Add-a-clear-distinction-between-the-Manager-query-option-and-the-Socket-query-option) for more on the difference between the `auth` and `query` options.
 
 ### Initialization examples
 
@@ -380,7 +391,7 @@ Synonym of [manager.open([callback])](#manageropencallback).
   - `options` _(Object)_
   - **Returns** `Socket`
 
-Creates a new `Socket` for the given namespace.
+Creates a new `Socket` for the given namespace. Only `auth` (`{ auth: {key: "value"} }`) is read from the `options` object. Other keys will be ignored and should be passed when instancing a `new Manager(nsp, options)`.
 
 ### Event: 'error'
 
