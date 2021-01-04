@@ -866,3 +866,7 @@ Since Socket.IO v3, you need to explicitly enable [Cross-Origin Resource Sharing
 - `Uncaught TypeError: packet.data is undefined`
 
 It seems that you are using a v3 client to connect to a v2 server, which is not possible. Please see the [following section](#How-to-upgrade-an-existing-production-deployment).
+
+- `Object literal may only specify known properties, and 'extraHeaders' does not exist in type 'ConnectOpts'`
+
+Since the codebase has been rewritten to TypeScript (more information [here](#the-socketio-codebase-has-been-rewritten-to-typescript)), `@types/socket.io-client` is no longer needed and will actually conflict with the typings coming from the `socket.io-client` package.
