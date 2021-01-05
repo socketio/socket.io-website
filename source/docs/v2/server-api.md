@@ -47,7 +47,7 @@ Option | Default value | Description
 `allowRequest` | | A function that receives a given handshake or upgrade request as its first parameter, and can decide whether to continue or not. The second argument is a function that needs to be called with the decided information: `fn(err, success)`, where `success` is a boolean value where false means that the request is rejected, and err is an error code.
 `transports` | `['polling', 'websocket']` | transports to allow connections to
 `allowUpgrades` | `true` | whether to allow transport upgrades
-`perMessageDeflate` | `true` | parameters of the WebSocket permessage-deflate extension (see [ws module](https://github.com/einaros/ws) api docs). Set to `false` to disable.
+`perMessageDeflate` | `false` | parameters of the WebSocket permessage-deflate extension (see [ws module](https://github.com/einaros/ws) api docs). Set to `true` to disable.
 `httpCompression` | `true` | parameters of the http compression for the polling transports (see [zlib](http://nodejs.org/api/zlib.html#zlib_options) api docs). Set to `false` to disable.
 `cookie` | `io` | name of the HTTP cookie that contains the client sid to send as part of handshake response headers. Set to `false` to not send one.
 `cookiePath` | `/` | path of the above `cookie` option. If false, no path will be sent, which means browsers will only send the cookie on the engine.io attached path (`/engine.io`). Set false to not save io cookie on all requests.
