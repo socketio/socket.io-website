@@ -31,14 +31,14 @@ First let’s create a `package.json` manifest file that describes our project. 
 Now, in order to easily populate the `dependencies` property with the things we need, we’ll use `npm install`:
 
 ```
-npm install express@4.15.2
+npm install express@4
 ```
 
 Once it's installed we can create an `index.js` file that will set up our application.
 
 ```js
-var app = require('express')();
-var http = require('http').createServer(app);
+const app = require('express')();
+const http = require('http').createServer(app);
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello world</h1>');
@@ -78,25 +78,27 @@ app.get('/', (req, res) => {
 Put the following in your `index.html` file:
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Socket.IO chat</title>
     <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: 0.5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
+      #input:focus { outline: none; }
+      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
+
       #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
+      #messages > li { padding: 0.5rem 1rem; }
+      #messages > li:nth-child(odd) { background: #efefef; }
     </style>
   </head>
   <body>
     <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
     </form>
   </body>
 </html>
@@ -122,9 +124,9 @@ npm install socket.io
 That will install the module and add the dependency to `package.json`. Now let’s edit `index.js` to add it:
 
 ```js
-var app = require('express')();
-var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
@@ -186,16 +188,18 @@ Let’s make it so that when the user types in a message, the server gets it as 
 
 ```html
 <script src="/socket.io/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-  $(function () {
-    var socket = io();
-    $('form').submit(function(e) {
-      e.preventDefault(); // prevents page reloading
-      socket.emit('chat message', $('#m').val());
-      $('#m').val('');
-      return false;
-    });
+  var socket = io();
+
+  var form = document.getElementById('form');
+  var input = document.getElementById('input');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (input.value) {
+      socket.emit('chat message', input.value);
+      input.value = '';
+    }
   });
 </script>
 ```
@@ -246,17 +250,23 @@ And on the client side when we capture a `chat message` event we’ll include it
 
 ```html
 <script>
-  $(function () {
-    var socket = io();
-    $('form').submit(function(e){
-      e.preventDefault(); // prevents page reloading
-      socket.emit('chat message', $('#m').val());
-      $('#m').val('');
-      return false;
-    });
-    socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
-    });
+  var messages = document.getElementById('messages');
+  var form = document.getElementById('form');
+  var input = document.getElementById('input');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (input.value) {
+      socket.emit('chat message', input.value);
+      input.value = '';
+    }
+  });
+
+  socket.on('chat message', function(msg) {
+    var item = document.createElement('li');
+    item.textContent = msg;
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
   });
 </script>
 ```
