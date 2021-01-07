@@ -88,6 +88,16 @@ const customLinks = {
     "url": "https://www.topvpnservice.com/",
     "img": "/images/sponsors/topvpnservice.png",
     "alt": "TopVPNService"
+  },
+  "followerspromotion-com": {
+    url: "https://followerspromotion.com/buy-instagram-likes/",
+    img: "/images/sponsors/followerspromotion.svg",
+    alt: "followers promotions"
+  },
+  "online-value-group1": {
+    url: "https://deutschercasinobonus.com/casino-ohne-deutsche-lizenz/",
+    img: "/images/sponsors/deutschercasinobonus.jpg",
+    alt: "Deutschercasinobonus.com"
   }
 }
 
