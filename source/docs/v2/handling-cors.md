@@ -9,14 +9,29 @@ order: 206
 
 As of Socket.IO v2, the server will automatically add the necessary headers in order to support [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS)
 
-**Update**: starting from Socket.IO [2.4.0](/blog/socket-io-2-4-0/), CORS is now disabled by default and you have to explicitly enable it.
-
 The `origins` option should be used to provide a list of authorized domains:
 
 ```js
 const io = require("socket.io")(httpServer, {
   origins: ["https://example.com"]
 });
+```
+
+Please note that by default, **ALL** domains are authorized. You should explicitly allow/disallow cross-origin requests in order to keep your application secure:
+
+- without CORS (server and client are served from the same domain):
+
+```js
+io.origins((req, callback) => {
+  callback(null, req.headers.origin === undefined); // cross-origin requests will not be allowed
+});
+```
+
+- with CORS (server and client are served from distinct domains):
+
+```js
+io.origins(["http://localhost:3000"]); // for local development
+io.origins(["https://example.com"]);
 ```
 
 The `handlePreflightRequest` option can be used to customize the `Access-Control-Allow-xxx` headers sent in response to the preflight request.
