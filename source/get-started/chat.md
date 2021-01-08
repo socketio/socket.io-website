@@ -250,6 +250,8 @@ And on the client side when we capture a `chat message` event we’ll include it
 
 ```html
 <script>
+  var socket = io();
+
   var messages = document.getElementById('messages');
   var form = document.getElementById('form');
   var input = document.getElementById('input');
