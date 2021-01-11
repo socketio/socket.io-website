@@ -94,6 +94,44 @@ io.on('connection', async (socket) => {
 });
 ```
 
+## Usage with asynchronous code
+
+Please make sure to use `io.to(...).emit(...)` (or ̀`socket.to(...).emit(...)`) in a synchronous manner.
+
+Example with callback:
+
+```js
+// BAD
+const room = socket.to('room1');
+saveProduct(() => {
+  room.emit('product-updated');
+});
+
+// GOOD
+saveProduct(() => {
+  socket.to('room1').emit('product-updated');
+});
+```
+
+Example with `async/await`:
+
+```js
+// BAD
+io.to('room2').emit('details', await fetchDetails());
+
+// GOOD
+const details = await fetchDetails();
+io.to('room2').emit('details', details);
+```
+
+Explanation: the `to()` method does not return a new object, it mutates an attribute on the `io` (respectively, the `socket`) object.
+
+This also applies to other broadcast modifiers:
+
+- [local](/docs/v3/server-api/#Flag-‘local’)
+- [broadcast](/docs/v3/server-api/#Flag-‘broadcast’)
+- [volatile](/docs/v3/server-api/#Flag-‘volatile’)
+
 ## Disconnection
 
 Upon disconnection, sockets `leave` all the channels they were part of automatically, and no special teardown is needed on your part.
