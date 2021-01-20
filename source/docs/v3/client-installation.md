@@ -81,3 +81,9 @@ $ npm install socket.io-client
 The client can also be run from Node.js.
 
 Note: for the reasons cited above, you may want to exclude debug from your browser bundle. With webpack, you can use [webpack-remove-debug](https://github.com/johngodley/webpack-remove-debug).
+
+Note for TypeScript users: the types are now included in the `socket.io-client` package and thus the types from `@types/socket.io-client` are not needed anymore and may in fact cause errors:
+
+```
+Object literal may only specify known properties, and 'extraHeaders' does not exist in type 'ConnectOpts'
+```
