@@ -9,7 +9,9 @@ order: 501
 This release should fix most of the inconsistencies of the Socket.IO library and provide a more intuitive behavior for
 the end users. It is the result of the feedback of the community over the years. A big thanks to everyone involved!
 
-**TL;DR:** due to several breaking changes, a v2 client will not be able to connect to a v3 server (and vice versa)
+**TL;DR:** ~~due to several breaking changes, a v2 client will not be able to connect to a v3 server (and vice versa)~~
+
+Update: As of [Socket.IO 3.1.0](/blog/socket-io-3-1-0/), the v3 server is now able to communicate with v2 clients. More information [below](#How-to-upgrade-an-existing-production-deployment). A v3 client is still not be able to connect to a v2 server though.
 
 For the low-level details, please see:
 
@@ -791,28 +793,40 @@ Besides, Node.js 8 is now [EOL](https://github.com/nodejs/Release). Please upgra
 
 ## How to upgrade an existing production deployment
 
-As detailed above, this release contains several non backward compatible changes, and as such a v2 client will not be able to connect to a v3 server (and vice versa).
-
-In order to upgrade a live production environment, you will need to have both a group of v2 servers and v3 servers in parallel, and route the traffic based on either:
-
-- the `EIO` query parameter (`EIO=3` for Socket.IO v2, `EIO=4` for Socket.IO v3)
-- the path (by using a different `path` for the v3 servers)
-- or the domain if you use a different domain for the v3 servers
-
-And then you upgrade the version used by the clients.
-
-You could also take advantage of the [package aliases](https://github.com/npm/rfcs/blob/latest/implemented/0001-package-aliases.md) feature of your favorite package manager in order to have both versions running in parallel:
+- first, update the servers with `allowEIO3` set to `true` (added in `socket.io@3.1.0`)
 
 ```js
-// npm i socket.io@2 socket.io-next@npm:socket.io@3
-// or yarn add socket.io@2 socket.io-next@npm:socket.io@3
-const httpServer = require("http").createServer();
-
-const io = require("socket.io")(httpServer);
-const ioNext = require("socket.io-next")(httpServer, {
-  path: "/socket.io-next/"
+const io = require("socket.io")({
+  allowEIO3: true // false by default
 });
 ```
+
+Note: If you are using the Redis adapter to [broadcast packets between nodes](/docs/v3/broadcasting-events/#With-multiple-Socket-IO-servers), you must use `socket.io-redis@5` with `socket.io@2` and `socket.io-redis@6` with `socket.io@3`. Please note that both versions are compatible, so you can update each server one by one (no big bang is needed).
+
+- then, update the clients
+
+This step may actually take some time, as some clients may still have a v2 client in cache.
+
+You can check the version of the connection with:
+
+```js
+io.on("connection", (socket) => {
+  const version = socket.conn.protocol; // either 3 or 4
+});
+```
+
+This matches the value of the `EIO` query parameter in the HTTP requests.
+
+- and finally, once every client was updated, set `allowEIO3` to `false` (which is the default value)
+
+```js
+const io = require("socket.io")({
+  allowEIO3: false
+});
+```
+
+With `allowEIO3` set to `false`, v2 clients will now receive an HTTP 400 error (`Unsupported protocol version`) when connecting.
+
 
 ## Known migration issues
 
