@@ -15,7 +15,7 @@ io.on("connection", (socket) => {
   // sending to all clients except sender
   socket.broadcast.emit("broadcast", "hello friends!");
 
-  // sending to all clients in "game" room except sender
+  // sending to all clients in room "game" except sender
   socket.to("game").emit("nice game", "let's play a game");
 
   // sending to all clients in "game1" and/or in "game2" room, except sender
