@@ -67,7 +67,7 @@ If you have properly configured your server (see [above](#Configuration)), this 
 The following command:
 
 ```
-curl https://api.example.com/socket.io/?transport=polling
+curl "https://api.example.com/socket.io/?EIO=4&transport=polling"
 ```
 
 should return something like:
