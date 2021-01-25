@@ -144,10 +144,54 @@ backend nodes
 
 Just like NginX, Node.JS comes with built-in clustering support through the `cluster` module.
 
-Fedor Indutny has created a module called [sticky session](https://github.com/indutny/sticky-session) that ensures file descriptors (ie: connections) are routed based on the originating `remoteAddress` (ie: IP). Please note that this might lead to unbalanced routing, depending on the hashing method.
+There are several solutions, depending on your use case:
 
-You could also assign a different port to each worker of the cluster, based on the cluster worker ID, and balance the load with the configuration that you can find above.
+| NPM package | How it works |
+|:------:| ------------ |
+| [`@socket.io/sticky`](https://github.com/darrachequesne/socket.io-sticky) | the routing is based on the `sid` query parameter |
+| [`sticky-session`](https://github.com/indutny/sticky-session) | the routing is based on `connection.remoteAddress` |
+| [`socketio-sticky-session`](https://github.com/wzrdtales/socket-io-sticky-session) | the routing based on the `x-forwarded-for` header) |
 
+Example with `@socket.io/sticky`:
+
+```js
+const cluster = require("cluster");
+const http = require("http");
+const { Server } = require("socket.io");
+const redisAdapter = require("socket.io-redis");
+const numCPUs = require("os").cpus().length;
+const { setupMaster, setupWorker } = require("@socket.io/sticky");
+
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
+
+  const httpServer = http.createServer();
+  setupMaster(httpServer, {
+    loadBalancingMethod: "least-connection", // either "random", "round-robin" or "least-connection"
+  });
+  httpServer.listen(3000);
+
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on("exit", (worker) => {
+    console.log(`Worker ${worker.process.pid} died`);
+    cluster.fork();
+  });
+} else {
+  console.log(`Worker ${process.pid} started`);
+
+  const httpServer = http.createServer();
+  const io = new Server(httpServer);
+  io.adapter(redisAdapter({ host: "localhost", port: 6379 }));
+  setupWorker(io);
+
+  io.on("connection", (socket) => {
+    /* ... */
+  });
+}
+```
 
 ## Passing events between nodes
 
