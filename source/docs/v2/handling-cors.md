@@ -22,8 +22,10 @@ Please note that by default, **ALL** domains are authorized. You should explicit
 - without CORS (server and client are served from the same domain):
 
 ```js
-io.origins((req, callback) => {
-  callback(null, req.headers.origin === undefined); // cross-origin requests will not be allowed
+const io = require("socket.io")(httpServer, {
+  allowRequest: (req, callback) => {
+    callback(null, req.headers.origin === undefined); // cross-origin requests will not be allowed
+  }
 });
 ```
 
