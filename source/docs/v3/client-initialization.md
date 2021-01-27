@@ -80,6 +80,7 @@ You can find more details about namespaces [here](/docs/v3/namespaces/).
   - [path](#path)
   - [query](#query)
   - [extraHeaders](#extraHeaders)
+  - [Node.js-specific options](#Node-js-specific-options)
 - [Manager options](#Manager-options)
   - [reconnection](#reconnection)
   - [reconnectionAttempts](#reconnectionAttempts)
@@ -313,6 +314,78 @@ setInterval(() => {
   socket.io.opts.extraHeaders.count++;
 }, 1000);
 ```
+
+#### Node.js-specific options
+
+The following options are supported:
+
+- `agent`
+- `pfx`
+- `key`
+- `passphrase`
+- `cert`
+- `ca`
+- `ciphers`
+- `rejectUnauthorized`
+
+Please refer to the Node.js documentation:
+
+- [tls.connect(options[, callback])](https://nodejs.org/dist/latest/docs/api/tls.html#tls_tls_connect_options_callback)
+- [tls.createSecureContext([options])](https://nodejs.org/dist/latest/docs/api/tls.html#tls_tls_createsecurecontext_options)
+
+Example with a self-signed certificate:
+
+* Client
+
+```js
+const fs = require("fs");
+const socket = require("socket.io-client")("https://example.com", {
+  ca: fs.readFileSync("./cert.pem")
+});
+```
+
+* Server
+
+```js
+const fs = require("fs");
+const server = require("https").createServer({
+  cert: fs.readFileSync("./cert.pem"),
+  key: fs.readFileSync("./key.pem")
+});
+const io = require("socket.io")(server);
+```
+
+Example with client-certificate authentication:
+
+* Client
+
+```js
+const fs = require("fs");
+const socket = require("socket.io-client")("https://example.com", {
+  ca: fs.readFileSync("./server-cert.pem"),
+  cert: fs.readFileSync("./client-cert.pem"),
+  key: fs.readFileSync("./client-key.pem"),
+});
+```
+
+* Server
+
+```js
+const fs = require("fs");
+const server = require("https").createServer({
+  cert: fs.readFileSync("./server-cert.pem"),
+  key: fs.readFileSync("./server-key.pem"),
+  requestCert: true,
+  ca: [
+    fs.readFileSync('client-cert.pem')
+  ]
+});
+const io = require("socket.io")(server);
+```
+
+**Import note:** `rejectUnauthorized` is a Node.js-only option, it will not bypass the security check in the browser:
+
+![Security warning in the browser](/images/self-signed-certificate.png)
 
 ### Manager options
 
