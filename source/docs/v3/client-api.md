@@ -89,186 +89,6 @@ Please note: `manager.socket("/my-namespace", options )` will only read the `aut
 
 See [Migrating from 2.x to 3.0](/docs/v3/migrating-from-2-x-to-3-0/#Add-a-clear-distinction-between-the-Manager-query-option-and-the-Socket-query-option) for more on the difference between the `auth` and `query` options.
 
-### Initialization examples
-
-#### With multiplexing
-
-By default, a single connection is used when connecting to different namespaces (to minimize resources):
-
-```js
-const socket = io();
-const adminSocket = io('/admin');
-// a single connection will be established
-```
-
-That behaviour can be disabled with the `forceNew` option:
-
-```js
-const socket = io();
-const adminSocket = io('/admin', { forceNew: true });
-// will create two distinct connections
-```
-
-Note: reusing the same namespace will also create two connections
-
-```js
-const socket = io();
-const socket2 = io();
-// will also create two distinct connections
-```
-
-#### With custom `path`
-
-```js
-const socket = io('http://localhost', {
-  path: '/myownpath'
-});
-
-// server-side
-const io = require('socket.io')({
-  path: '/myownpath'
-});
-```
-
-The request URLs will look like: `localhost/myownpath/?EIO=3&transport=polling&sid=<id>`
-
-```js
-const socket = io('http://localhost/admin', {
-  path: '/mypath'
-});
-```
-
-Here, the socket connects to the `admin` namespace, with the custom path `mypath`.
-
-The request URLs will look like: `localhost/mypath/?EIO=3&transport=polling&sid=<id>` (the namespace is sent as part of the payload).
-
-#### With query parameters
-
-```js
-const socket = io('http://localhost?token=abc');
-
-// server-side
-const io = require('socket.io')();
-
-// middleware
-io.use((socket, next) => {
-  let token = socket.handshake.query.token;
-  if (isValid(token)) {
-    return next();
-  }
-  return next(new Error('authentication error'));
-});
-
-// then
-io.on('connection', (socket) => {
-  let token = socket.handshake.query.token;
-  // ...
-});
-```
-
-#### With query option
-
-```js
-const socket = io({
-  query: {
-    token: 'cde'
-  }
-});
-```
-
-The query content can also be updated on reconnection:
-
-```js
-socket.io.on('reconnect_attempt', () => {
-  socket.io.opts.query = {
-    token: 'fgh'
-  }
-});
-```
-
-#### With `extraHeaders`
-
-This only works if `polling` transport is enabled (which is the default). Custom headers will not be appended when using `websocket` as the transport. This happens because the WebSocket handshake does not honor custom headers. (For background see the [WebSocket protocol RFC](https://tools.ietf.org/html/rfc6455#section-4))
-
-```js
-const socket = io({
-  transportOptions: {
-    polling: {
-      extraHeaders: {
-        'x-clientid': 'abc'
-      }
-    }
-  }
-});
-
-// server-side
-const io = require('socket.io')();
-
-// middleware
-io.use((socket, next) => {
-  let clientId = socket.handshake.headers['x-clientid'];
-  if (isValid(clientId)) {
-    return next();
-  }
-  return next(new Error('authentication error'));
-});
-```
-
-#### With `websocket` transport only
-
-By default, a long-polling connection is established first, then upgraded to "better" transports (like WebSocket). If you like to live dangerously, this part can be skipped:
-
-```js
-const socket = io({
-  transports: ['websocket']
-});
-
-// on reconnection, reset the transports option, as the Websocket
-// connection may have failed (caused by proxy, firewall, browser, ...)
-socket.io.on('reconnect_attempt', () => {
-  socket.io.opts.transports = ['polling', 'websocket'];
-});
-```
-
-#### With a custom parser
-
-The default [parser](https://github.com/socketio/socket.io-parser) promotes compatibility (support for `Blob`, `File`, binary check) at the expense of performance. A custom parser can be provided to match the needs of your application. Please see the example [here](https://github.com/socketio/socket.io/tree/master/examples/custom-parsers).
-
-```js
-const parser = require('socket.io-msgpack-parser'); // or require('socket.io-json-parser')
-const socket = io({
-  parser: parser
-});
-
-// the server-side must have the same parser, to be able to communicate
-const io = require('socket.io')({
-  parser: parser
-});
-```
-
-#### With a self-signed certificate
-
-```js
-// server-side
-const fs = require('fs');
-const server = require('https').createServer({
-  key: fs.readFileSync('server-key.pem'),
-  cert: fs.readFileSync('server-cert.pem')
-});
-const io = require('socket.io')(server);
-server.listen(3000);
-
-// client-side
-const socket = io({
-  // option 1
-  ca: fs.readFileSync('server-cert.pem'),
-
-  // option 2. WARNING: it leaves you vulnerable to MITM attacks!
-  rejectUnauthorized: false
-});
-
-```
-
 ## Manager
 
 The `Manager` *manages* the Engine.IO [client](https://github.com/socketio/engine.io-client/) instance, which is the low-level engine that establishes the connection to the server (by using transports like WebSocket or HTTP long-polling).
@@ -311,7 +131,6 @@ Option | Default value | Description
 `enablesXDR` | `false` | enables XDomainRequest for IE8 to avoid loading bar flashing with click sound. default to `false` because XDomainRequest has a flaw of not sending cookie. |
 `timestampRequests` | - | whether to add the timestamp with each transport request. Note: polling requests are always stamped unless this option is explicitly set to `false`
 `timestampParam` | `t` | the timestamp parameter
-`policyPort` | `843` | port the policy server listens on
 `transports` | `['polling', 'websocket']` | a list of transports to try (in order). `Engine` always attempts to connect directly with the first one, provided the feature detection test for it passes.
 `transportOptions` | `{}` | hash of options, indexed by transport name, overriding the common options for the given transport
 `rememberUpgrade` | `false` | If true and if the previous websocket connection to the server succeeded, the connection attempt will bypass the normal upgrade process and will initially try websocket. A connection attempt following a transport error will use the normal upgrade process. It is recommended you turn this on only when using SSL/TLS connections, or if you know that your network does not block websockets.
@@ -330,7 +149,7 @@ Option | Default value | Description
 `cert` | - | Public x509 certificate to use.
 `ca` | - | An authority certificate or array of authority certificates to check the remote host against.
 `ciphers` | - | A string describing the ciphers to use or exclude. Consult the [cipher format list](http://www.openssl.org/docs/apps/ciphers.html#CIPHER_LIST_FORMAT) for details on the format.
-`rejectUnauthorized` | `false` | If true, the server certificate is verified against the list of supplied CAs. An 'error' event is emitted if verification fails. Verification happens at the connection level, before the HTTP request is sent.
+`rejectUnauthorized` | `true` | If true, the server certificate is verified against the list of supplied CAs. An 'error' event is emitted if verification fails. Verification happens at the connection level, before the HTTP request is sent.
 `perMessageDeflate` | `true` | parameters of the WebSocket permessage-deflate extension (see [ws module](https://github.com/einaros/ws) api docs). Set to `false` to disable.
 `extraHeaders` | `{}` | Headers that will be passed for each request to the server (via xhr-polling and via websockets). These values then can be used during handshake or for special proxies.
 `forceNode` | `false` | Uses NodeJS implementation for websockets - even if there is a native Browser-Websocket available, which is preferred by default over the NodeJS implementation. (This is useful when using hybrid platforms like nw.js or electron)
