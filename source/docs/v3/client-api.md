@@ -30,7 +30,7 @@ import { io } from 'socket.io-client';
 
   * _(Number)_
 
-The protocol revision number (currently: 4).
+The protocol revision number (currently: 5).
 
 The protocol defines the format of the packets exchanged between the client and the server. Both the client and the server must use the same revision in order to understand each other.
 
