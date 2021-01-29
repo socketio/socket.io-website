@@ -9,7 +9,7 @@ order: 209
 When deploying multiple Socket.IO servers, there are two things to take care of:
 
 - enabling sticky session, if HTTP long-polling is enabled (which is the default): see [below](#Sticky-load-balancing)
-- using the Redis adapter (or another compatible [Adapter](/docs/v3/glossary/#Adapter)): see [below](##Passing-events-between-nodes)
+- using the Redis adapter (or another compatible [Adapter](/docs/v3/glossary/#Adapter)): see [below](#Passing-events-between-nodes)
 
 ## Sticky load balancing
 
