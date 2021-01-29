@@ -3,27 +3,80 @@ permalink: /docs/v3/namespaces/
 alias: /docs/namespaces/
 release: v3
 type: docs
-order: 208
+order: 401
 ---
 
-A Namespace is a communication channel that allows you to split the logic of your application over a single shared connection.
+A Namespace is a communication channel that allows you to split the logic of your application over a single shared connection (also called "multiplexing").
 
 ![Namespace diagram](/images/namespaces.png)
 
-Possible use cases:
+## Introduction
 
-- you want to create an admin namespace that only authorized users have access to, so the logic related to those users is separated from the rest of the application
+Each namespace has its own:
+
+- [event handlers](/docs/v3/listening-to-events/)
 
 ```js
-const adminNamespace = io.of('/admin');
+io.of("/orders").on("connection", (socket) => {
+  socket.on("order:list", () => {});
+  socket.on("order:create", () => {});
+});
+
+io.of("/users").on("connection", (socket) => {
+  socket.on("user:list", () => {});
+});
+```
+
+- [rooms](/docs/v3/rooms/)
+
+```js
+const orderNamespace = io.of("/orders");
+
+orderNamespace.on("connection", (socket) => {
+  socket.join("room1");
+  orderNamespace.to("room1").emit("hello");
+});
+
+const userNamespace = io.of("/users");
+
+userNamespace.on("connection", (socket) => {
+  socket.join("room1"); // distinct from the room in the "orders" namespace
+  userNamespace.to("room1").emit("holà");
+});
+```
+
+- [middlewares](/docs/v3/middlewares/)
+
+```js
+const orderNamespace = io.of("/orders");
+
+orderNamespace.use((socket, next) => {
+  // ensure the socket has access to the "orders" namespace, and then
+  next();
+});
+
+const userNamespace = io.of("/users");
+
+userNamespace.use((socket, next) => {
+  // ensure the socket has access to the "users" namespace, and then
+  next();
+});
+```
+
+Possible use cases:
+
+- you want to create a special namespace that only authorized users have access to, so the logic related to those users is separated from the rest of the application
+
+```js
+const adminNamespace = io.of("/admin");
 
 adminNamespace.use((socket, next) => {
   // ensure the user has sufficient rights
   next();
 });
 
-adminNamespace.on('connection', socket => {
-  socket.on('delete user', () => {
+adminNamespace.on("connection", socket => {
+  socket.on("delete user", () => {
     // ...
   });
 });
@@ -34,37 +87,31 @@ adminNamespace.on('connection', socket => {
 ```js
 const workspaces = io.of(/^\/\w+$/);
 
-workspaces.on('connection', socket => {
+workspaces.on("connection", socket => {
   const workspace = socket.nsp;
 
-  workspace.emit('hello');
-});
-
-// this middleware will be assigned to each namespace
-workspaces.use((socket, next) => {
-  // ensure the user has access to the workspace
-  next();
+  workspace.emit("hello");
 });
 ```
 
-## Default namespace
+## Main namespace
 
-We call the default namespace `/` and it’s the one Socket.IO clients connect to by default, and the one the server listens to by default.
-
-This namespace is identified by `io.sockets` or simply `io`:
+Until now, you interacted with the main namespace, called `/`. The `io` instance inherits all of its methods:
 
 ```js
-// the following two will emit to all the sockets connected to `/`
-io.sockets.emit('hi', 'everyone');
-io.emit('hi', 'everyone'); // short form
+io.on("connection", (socket) => {});
+io.use((socket, next) => { next() });
+io.emit("hello");
+// are actually equivalent to
+io.of("/").on("connection", (socket) => {});
+io.of("/").use((socket, next) => { next() });
+io.of("/").emit("hello");
 ```
 
-Each namespace emits a `connection` event that receives each `Socket` instance as a parameter
+Some tutorials may also mention `io.sockets`, it's simply an alias for `io.of("/")`.
 
 ```js
-io.on('connection', socket => {
-  socket.on('disconnect', () => {});
-});
+io.sockets === io.of("/")
 ```
 
 ## Custom namespaces
@@ -72,119 +119,98 @@ io.on('connection', socket => {
 To set up a custom namespace, you can call the `of` function on the server-side:
 
 ```js
-const nsp = io.of('/my-namespace');
+const nsp = io.of("/my-namespace");
 
-nsp.on('connection', socket => {
-  console.log('someone connected');
+nsp.on("connection", socket => {
+  console.log("someone connected");
 });
 
-nsp.emit('hi', 'everyone!');
+nsp.emit("hi", "everyone!");
 ```
 
-On the client side, you tell Socket.IO client to connect to that namespace:
+## Client initialization
+
+Same-origin version:
 
 ```js
-const socket = io('/my-namespace');
+const socket = io(); // or io("/"), the main namespace
+const orderSocket = io("/orders"); // the "orders" namespace
+const userSocket = io("/users"); // the "users" namespace
 ```
 
-**Important note:** The namespace is an implementation detail of the Socket.IO protocol, and is not related to the actual URL of the underlying transport, which defaults to `/socket.io/…`.
-
-## Namespace middleware
-
-A middleware is a function that gets executed for every incoming Socket, and receives as parameters the socket and a function to optionally defer execution to the next registered middleware. A Socket.IO middleware is very similar to what you can find in [Express](http://expressjs.com/en/guide/using-middleware.html).
+Cross-origin/Node.js version:
 
 ```js
-// registers a middleware for the default namespace
-io.use((socket, next) => {
-  if (isValid(socket.request)) {
-    next();
-  } else {
-    next(new Error('invalid'));
-  }
-});
-
-// registers a middleware for a custom namespace
-io.of('/admin').use(async (socket, next) => {
-  const user = await fetchUser(socket.handshake.query);
-  if (user.isAdmin) {
-    socket.user = user;
-    next();
-  } else {
-    next(new Error('forbidden'));
-  }
-});
+const socket = io("https://example.com"); // or io("https://example.com/"), the main namespace
+const orderSocket = io("https://example.com/orders"); // the "orders" namespace
+const userSocket = io("https://example.com/users"); // the "users" namespace
 ```
 
-You can register several middleware functions for the same namespace. They will be executed sequentially:
+In the example above, only one WebSocket connection will be established, and the packets will automatically be routed to the right namespace.
+
+Please note that multiplexing will be disabled in the following cases:
+
+- multiple creation for the same namespace
 
 ```js
-io.use((socket, next) => {
-  next();
-});
-
-io.use((socket, next) => {
-  next(new Error('thou shall not pass'));
-});
-
-io.use((socket, next) => {
-  // not executed, since the previous middleware has returned an error
-  next();
-});
+const socket1 = io();
+const socket2 = io(); // no multiplexing, two distinct WebSocket connections
 ```
 
-## Handling middleware error
-
-If the `next` method is called with an Error object, the client will receive an `connect_error` event.
+- different domains
 
 ```js
-import { io } from 'socket.io-client';
+const socket1 = io("https://first.example.com");
+const socket2 = io("https://second.example.com"); // no multiplexing, two distinct WebSocket connections
+```
 
-const socket = io();
+- usage of the [forceNew](/docs/v3/client-initialization/#forceNew) option
 
-socket.on('connect_error', (err) => {
-  console.log(err.message); // prints the message associated with the error, e.g. "thou shall not pass" in the example above
+```js
+const socket1 = io();
+const socket2 = io("/admin", { forceNew: true }); // no multiplexing, two distinct WebSocket connections
+```
+
+## Dynamic namespaces
+
+It is also possible to dynamically create namespaces, either with a regular expression:
+
+```js
+io.of(/^\/dynamic-\d+$/);
+```
+
+or with a function:
+
+```js
+io.of((name, auth, next) => {
+  next(null, true); // or false, when the creation is denied
 });
 ```
 
-## Compatibility with Express middleware
-
-Most existing [Express middleware](http://expressjs.com/en/resources/middleware.html) modules should be compatible with Socket.IO, you just need a little wrapper function to make the method signatures match:
+You can have access to the new namespace in the `connection` event:
 
 ```js
-const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
-```
-
-The middleware functions that end the request-response cycle and do not call `next()` will not work though.
-
-Example with [express-session](https://www.npmjs.com/package/express-session):
-
-```js
-const session = require('express-session');
-
-io.use(wrap(session({ secret: 'cats' })));
-
-io.on('connection', (socket) => {
-  const session = socket.request.session;
+io.of(/^\/dynamic-\d+$/).on("connection", (socket) => {
+  const namespace = socket.nsp;
 });
 ```
 
-Example with [Passport](http://www.passportjs.org/):
+The return value of the `of()` method is what we call the parent namespace, from which you can:
+
+- register [middlewares](/docs/v3/middlewares/)
 
 ```js
-const session = require('express-session');
-const passport = require('passport');
+const parentNamespace = io.of(/^\/dynamic-\d+$/);
 
-io.use(wrap(session({ secret: 'cats' })));
-io.use(wrap(passport.initialize()));
-io.use(wrap(passport.session()));
-
-io.use((socket, next) => {
-  if (socket.request.user) {
-    next();
-  } else {
-    next(new Error('unauthorized'))
-  }
-});
+parentNamespace.use((socket, next) => { next() });
 ```
 
-A complete example with Passport can be found [here](https://github.com/socketio/socket.io/tree/master/examples/passport-example).
+The middleware will automatically be registered on each child namespace.
+
+- [broadcast](/docs/v3/broadcasting-events/) events
+
+```js
+const parentNamespace = io.of(/^\/dynamic-\d+$/);
+
+parentNamespace.emit("hello"); // will be sent to users in /dynamic-1, /dynamic-2, ...
+```
