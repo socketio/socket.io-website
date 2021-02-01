@@ -30,7 +30,7 @@ If they&#8217;re using long polling, they might or might not have sent a request
 As noted above, `WebSocket` transport do not have this limitation, since the underlying TCP connection is kept open between the client and the given server. That's why you might find some suggestions to only use the `WebSocket` transport:
 
 ```js
-const client = io('https://io.yourhost.com', {
+const socket = io('https://io.yourhost.com', {
   // WARNING: in that case, there is no fallback to long-polling
   transports: [ 'websocket' ] // or [ 'websocket', 'polling' ], which is the same thing
 })

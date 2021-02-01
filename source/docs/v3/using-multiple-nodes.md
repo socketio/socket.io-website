@@ -26,7 +26,7 @@ Which means that the upgrade request was sent to a node which did not know the g
 To illustrate why this is needed, consider the example of emitting an event to all connected clients:
 
 ```js
-io.emit('hi', 'all sockets');
+io.emit("hi", "all sockets");
 ```
 
 Chances are that some of those clients might have an active bi-directional communication channel like `WebSocket` that we can write to immediately, but some of them might be using long-polling.
@@ -36,10 +36,10 @@ If they&#8217;re using long polling, they might or might not have sent a request
 As noted above, `WebSocket` transport do not have this limitation, since the underlying TCP connection is kept open between the client and the given server. That's why you might find some suggestions to only use the `WebSocket` transport:
 
 ```js
-const client = io('https://io.yourhost.com', {
+const socket = io("https://io.yourhost.com", {
   // WARNING: in that case, there is no fallback to long-polling
-  transports: [ 'websocket' ] // or [ 'websocket', 'polling' ], which is the same thing
-})
+  transports: [ "websocket" ] // or [ "websocket", "polling" ] (the order matters)
+});
 ```
 
 Both means that there is **NO FALLBACK** to long-polling when the websocket connection cannot be established, which is in fact one of the key feature of Socket.IO. In that case, you should maybe consider using raw [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket), or a thin wrapper like [robust-websocket](https://github.com/appuri/robust-websocket).
@@ -49,6 +49,44 @@ To achieve sticky-session, there are two main solutions:
 - routing clients based on a cookie (recommended solution)
 - routing clients based on their originating address
 
+You will find below some examples with common load-balancing solutions:
+
+- [NginX](#NginX-configuration) (IP-based)
+- [Apache HTTPD](#Apache-HTTPD-configuration) (cookie-based)
+- [HAProxy](#HAProxy-configuration) (cookie-based)
+- [Traefik](#Traefik) (cookie-based)
+- [Node.js `cluster` module](#Using-Node-js-Cluster)
+
+For other platforms, please refer to the relevant documentation:
+
+- Kubernetes: https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/
+- AWS (Application Load Balancers): https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#sticky-sessions
+- GCP: https://cloud.google.com/load-balancing/docs/backend-service#session_affinity
+
+**Important note**: if you are in a CORS situation (the front domain is different from the server domain) and session affinity is achieved with a cookie, you need to allow credentials:
+
+*Server*
+
+```js
+const io = require("socket.io")(httpServer, {
+  cors: {
+    origin: "https://front-domain.com",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
+```
+
+*Client*
+
+```js
+const io = require("socket.io-client");
+const socket = io("https://server-domain.com", {
+  withCredentials: true
+});
+```
+
+Without it, the cookie will not be sent by the browser and you will experience HTTP 400 "Session ID unknown" responses. More information [here](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials).
 
 ### NginX configuration
 
@@ -74,8 +112,12 @@ http {
   }
 
   upstream nodes {
-    # enable sticky session based on IP
-    ip_hash;
+    # enable sticky session with either "hash" (uses the complete IP address)
+    hash $remote_addr consistent;
+    # or "ip_hash" (uses the first three octets of the client IPv4 address, or the entire IPv6 address)
+    # ip_hash;
+    # or "sticky" (needs commercial subscription)
+    # sticky cookie srv_id expires=1h domain=.example.com path=/;
 
     server app01:3000;
     server app02:3000;
@@ -84,11 +126,14 @@ http {
 }
 ```
 
-Notice the `ip_hash` instruction that indicates the connections will be sticky.
+Notice the `hash` instruction that indicates the connections will be sticky.
 
 Make sure you also configure `worker_processes` in the topmost level to indicate how many workers NginX should use. You might also want to look into tweaking the `worker_connections` setting within the `events { }` block.
 
-[Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-nginx)
+Links:
+
+- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-nginx)
+- [NginX Documentation](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
 
 ### Apache HTTPD configuration
 
@@ -118,7 +163,10 @@ RewriteRule /(.*) balancer://nodes_polling/$1 [P,L]
 ProxyTimeout 3
 ```
 
-[Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-httpd)
+Links:
+
+- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-httpd)
+- [Documentation](https://httpd.apache.org/docs/2.4/en/mod/mod_proxy.html#proxypass)
 
 ### HAProxy configuration
 
@@ -138,11 +186,56 @@ backend nodes
   server app03 app03:3000 check cookie app03
 ```
 
-[Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-haproxy)
+Links:
 
-### Using Node.JS Cluster
+- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-haproxy)
+- [Documentation](http://cbonte.github.io/haproxy-dconv/2.4/configuration.html#cookie)
 
-Just like NginX, Node.JS comes with built-in clustering support through the `cluster` module.
+### Traefik
+
+Using container labels:
+
+```yaml
+# docker-compose.yml
+services:
+  traefik:
+    image: traefik:2.4
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    links:
+      - server
+
+  server:
+    image: my-image:latest
+    labels:
+      - "traefik.http.routers.my-service.rule=PathPrefix(`/`)"
+      - traefik.http.services.my-service.loadBalancer.sticky.cookie.name=server_id
+      - traefik.http.services.my-service.loadBalancer.sticky.cookie.httpOnly=true
+```
+
+With the [File provider](https://doc.traefik.io/traefik/v2.0/providers/file/):
+
+```yaml
+## Dynamic configuration
+http:
+  services:
+    my-service:
+      rule: "PathPrefix(`/`)"
+      loadBalancer:
+        sticky:
+          cookie:
+            name: server_id
+            httpOnly: true
+```
+
+Links:
+
+- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-traefik)
+- [Documentation](https://doc.traefik.io/traefik/v2.0/routing/services/#sticky-sessions)
+
+### Using Node.js Cluster
+
+Just like NginX, Node.js comes with built-in clustering support through the `cluster` module.
 
 There are several solutions, depending on your use case:
 
@@ -202,15 +295,15 @@ Now that you have multiple Socket.IO nodes accepting connections, if you want to
 The interface in charge of routing messages is what we call the [Adapter](/docs/v3/glossary/#Adapter). You can implement your own on top of the [socket.io-adapter](https://github.com/socketio/socket.io-adapter) (by inheriting from it) or you can use the one we provide on top of [Redis](https://redis.io/): [socket.io-redis](https://github.com/socketio/socket.io-redis):
 
 ```js
-const io = require('socket.io')(3000);
-const redis = require('socket.io-redis');
-io.adapter(redis({ host: 'localhost', port: 6379 }));
+const io = require("socket.io")(3000);
+const redis = require("socket.io-redis");
+io.adapter(redis({ host: "localhost", port: 6379 }));
 ```
 
 Then the following call:
 
 ```js
-io.emit('hi', 'all sockets');
+io.emit("hi", "all sockets");
 ```
 
 will be broadcast to every clients through the [Pub/Sub mechanism](https://redis.io/topics/pubsub) of Redis:
