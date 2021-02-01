@@ -98,6 +98,11 @@ const customLinks = {
     url: "https://deutschercasinobonus.com/casino-ohne-deutsche-lizenz/",
     img: "/images/sponsors/deutschercasinobonus.jpg",
     alt: "Deutschercasinobonus.com"
+  },
+  "quickbooks-tool-hub": {
+    url: "https://quickbookstoolhub.com/",
+    img: "/images/sponsors/quickbookstoolhub.png",
+    alt: "Quickbooks Tool Hub"
   }
 }
 
