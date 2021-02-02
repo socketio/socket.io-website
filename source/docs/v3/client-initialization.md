@@ -89,6 +89,7 @@ You can find more details about namespaces [here](/docs/v3/namespaces/).
   - [randomizationFactor](#randomizationFactor)
   - [timeout](#timeout)
   - [autoConnect](#autoConnect)
+  - [parser](#parser)
 - [Socket options](#Socket-options)
   - [auth](#auth)
 
@@ -471,6 +472,12 @@ socket.connect();
 // or
 socket.io.open();
 ```
+
+#### `parser`
+
+Default value: `require("socket.io-parser")`
+
+The parser used to marshall/unmarshall packets. Please see [here](/docs/v3/custom-parser) for more information.
 
 ### Socket options
 

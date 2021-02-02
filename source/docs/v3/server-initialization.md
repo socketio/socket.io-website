@@ -165,3 +165,9 @@ const io = require('socket.io')({
 ```
 
 It matches the [maxPayload](https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback) option of the ws package.
+
+### `parser`
+
+Default value: `require("socket.io-parser")`
+
+The parser used to marshall/unmarshall packets. Please see [here](/docs/v3/custom-parser) for more information.
