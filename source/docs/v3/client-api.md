@@ -342,7 +342,7 @@ Sends a `message` event. See [socket.emit(eventName[, ...args][, ack])](#sockete
   - `eventName` _(String)_
   - `args`
   - `ack` _(Function)_
-  - **Returns** `Socket`
+  - **Returns** `true`
 
 Emits an event to the socket identified by the string name. Any other parameters can be included. All serializable datastructures are supported, including `Buffer`.
 

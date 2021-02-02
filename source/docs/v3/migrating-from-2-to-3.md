@@ -39,6 +39,8 @@ Here is the complete list of changes:
   - [Client bundles](#Client-bundles)
   - [No more "pong" event for retrieving latency](#No-more-“pong”-event-for-retrieving-latency)
   - [ES modules syntax](#ES-modules-syntax)
+  - [`emit()` chains are not possible anymore](#emit-chains-are-not-possible-anymore)
+  - [Room names are not coerced to string anymore](#Room-names-are-not-coerced-to-string-anymore)
 - [New features](#New-features)
   - [Catch-all listeners](#Catch-all-listeners)
   - [Volatile events (client)](#Volatile-events-client)
@@ -329,9 +331,11 @@ io.to("room1").emit("hello");
 ```
 
 
-### Socket.use() is removed
+### ~~Socket.use() is removed~~
 
 `socket.use()` could be used as a catch-all listener. But its API was not really intuitive. It is replaced by [socket.onAny()](#Catch-all-listeners).
+
+**UPDATE**: the `Socket.use()` method was restored in [`socket.io@3.0.5`](https://github.com/socketio/socket.io/releases/3.0.5).
 
 Before:
 
@@ -679,6 +683,49 @@ const io = new Server(8080);
 import { io } from 'socket.io-client';
 
 const socket = io();
+```
+
+### `emit()` chains are not possible anymore
+
+The `emit()` method now matches the [`EventEmitter.emit()`](https://nodejs.org/dist/latest/docs/api/events.html#events_emitter_emit_eventname_args) method signature, and returns `true` instead of the current object.
+
+Before:
+
+```js
+socket.emit("event1").emit("event2");
+```
+
+After:
+
+```js
+socket.emit("event1");
+socket.emit("event2");
+```
+
+### Room names are not coerced to string anymore
+
+We are now using Maps and Sets internally instead of plain objects, so the room names are not implicitly coerced to string anymore.
+
+Before:
+
+```js
+// mixed types were possible
+socket.join(42);
+io.to("42").emit("hello");
+// also worked
+socket.join("42");
+io.to(42).emit("hello");
+```
+
+After:
+
+```js
+// one way
+socket.join("42");
+io.to("42").emit("hello");
+// or another
+socket.join(42);
+io.to(42).emit("hello");
 ```
 
 ## New features
