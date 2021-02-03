@@ -47,14 +47,14 @@ const io = require('socket.io')({
 You can also include the client bundle from a CDN:
 
 ```html
-<script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+<script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
 ```
 
 Socket.IO is also available from other CDN:
 
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@3.0.1/dist/socket.io.min.js
-- unpkg: https://unpkg.com/socket.io-client@3.0.1/dist/socket.io.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@3.1.1/dist/socket.io.min.js
+- unpkg: https://unpkg.com/socket.io-client@3.1.1/dist/socket.io.min.js
 
 There are several bundles available:
 
