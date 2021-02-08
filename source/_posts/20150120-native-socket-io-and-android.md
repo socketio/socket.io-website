@@ -7,7 +7,7 @@ author_link: https://twitter.com/nkzawa
 
 <img class="aligncenter size-full wp-image-626" src="/images/androidchat.gif" alt="android chat demo" width="338" height="600"/>
 
-In this tutorial well learn how to create a chat client that communicates with a Socket.IO <a href="https://github.com/Automattic/socket.io/blob/master/examples/chat/index.js">Node.JS chat server</a>, with our <a href="https://github.com/nkzawa/socket.io-client.java">native Android Client</a>! If you want to jump straight to the code, its on <a href="https://github.com/nkzawa/socket.io-android-chat">GitHub</a>. Otherwise, read on!
+In this tutorial well learn how to create a chat client that communicates with a Socket.IO <a href="https://github.com/socketio/socket.io/blob/master/examples/chat/index.js">Node.JS chat server</a>, with our <a href="https://github.com/socketio/socket.io-client-java">native Android Client</a>! If you want to jump straight to the code, it's on <a href="https://github.com/nkzawa/socket.io-android-chat">GitHub</a>. Otherwise, read on!
 
 ## Introduction
 
@@ -19,7 +19,7 @@ The app has the following features:
 - Notifies when each user joins or leaves.
 - Notifies when an user start typing a message.
 
-Socket.IO provides an event-oriented API that works across all networks, devices and browsers. Its incredibly robust (works even behind corporate proxies!) and highly performant, which is very suitable for multiplayer games or realtime communication.
+Socket.IO provides an event-oriented API that works across all networks, devices and browsers. It's incredibly robust (works even behind corporate proxies!) and highly performant, which is very suitable for multiplayer games or realtime communication.
 
 ## Installing the Dependencies
 
@@ -28,10 +28,10 @@ The first step is to install the Java Socket.IO client with <a href="https://dev
 For this app, we just add the dependency to `build.gradle`:
 
 ```gradle
-// app/build.gradle
 dependencies {
-    ...
-    implementation 'com.github.nkzawa:socket.io-client:0.6.0'
+    implementation ('io.socket:socket.io-client:2.0.0') {
+        exclude group: 'org.json', module: 'json'
+    }
 }
 ```
 
@@ -52,8 +52,8 @@ Now we can use Socket.IO on Android!
 First, we have to initialize a new instance of Socket.IO as follows:
 
 ```java
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
+import io.socket.client.IO;
+import io.socket.client.Socket;
 
 private Socket mSocket;
 {
@@ -109,7 +109,7 @@ public void onCreate(Bundle savedInstanceState) {
 With this we listen on the `new message` event to receive messages from other users.
 
 ```java
-import com.github.nkzawa.emitter.Emitter;
+import io.socket.emitter.Emitter;
 
 private Emitter.Listener onNewMessage = new Emitter.Listener() {
     @Override
@@ -159,6 +159,6 @@ If you want to explore more, I recommend you look into:
 
 - Other features of this app. They are just implemented with `emit()`, `on()` and `off()`.
 
-- The details of Socket.IO Java Client. It supports all the features JS client does.
+- The [documentation](https://socketio.github.io/socket.io-client-java/installation.html) of the Java Socket.IO client
 
 - Many other great Socket.IO implementations created by the community!
