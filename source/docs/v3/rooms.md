@@ -96,7 +96,7 @@ io.on('connection', async (socket) => {
 
 ## Usage with asynchronous code
 
-Please make sure to use `io.to(...).emit(...)` (or ̀`socket.to(...).emit(...)`) in a synchronous manner.
+Please make sure to use `io.to(...).emit(...)` (or `socket.to(...).emit(...)`) in a synchronous manner.
 
 Example with callback:
 
