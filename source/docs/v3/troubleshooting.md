@@ -99,11 +99,11 @@ In most cases, you should see something like this:
 
 ![Network monitor upon success](/images/network-monitor.png)
 
-1. the Engine.IO handshake (contains the session ID that is used in subsequent requests)
+1. the Engine.IO handshake (contains the session ID — here, `zBjrh...AAAK` — that is used in subsequent requests)
 2. the Socket.IO handshake request (contains the value of the `auth` option)
 3. the Socket.IO handshake response (contains the [Socket#id](/docs/v3/server-socket-instance/#Socket-id))
 4. the WebSocket connection
-5. the HTTP long-polling request, which is closed on the WebSocket connection is established
+5. the first HTTP long-polling request, which is closed once the WebSocket connection is established
 
 Common errors:
 
