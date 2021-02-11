@@ -51,9 +51,29 @@ socket.on("disconnect", () => {
 
 ## Events
 
-- `connect`
+The Socket instance emits three special events:
 
-This event is fired by the Socket instance upon connection / reconnection.
+- [`connect`](#connect)
+- [`connect_error`](#connect-error)
+- [`disconnect`](#disconnect)
+
+Please note that since Socket.IO v3, the Socket instance does not emit any event related to the reconnection logic anymore. You can listen to the events on the Manager instance directly:
+
+```js
+socket.io.on("reconnection_attempt", () => {
+  // ...
+});
+
+socket.io.on("reconnect", () => {
+  // ...
+});
+```
+
+More information can be found in the [migration guide](/docs/v3/migrating-from-2-x-to-3-0/#The-Socket-instance-will-no-longer-forward-the-events-emitted-by-its-Manager).
+
+### `connect`
+
+This event is fired by the Socket instance upon connection **and** reconnection.
 
 ```js
 socket.on("connect", () => {
@@ -77,11 +97,16 @@ socket.on("connect", () => {
 socket.on("data", () => { /* ... */ });
 ```
 
-- `connect_error`
+### `connect_error`
 
-This event is fired when the server does not accept the connection (in a [middleware function](/docs/v3/middlewares)).
+This event is fired when:
 
-You need to manually reconnect. You might need to update the credentials:
+- the low-level connection cannot be established
+- the connection is denied by the server in a [middleware function](/docs/v3/middlewares)
+
+In the first case, the Socket will automatically try to reconnect, after a [given delay](/docs/v3/client-initialization/#reconnectionDelay).
+
+In the latter case, you need to manually reconnect. You might need to update the credentials:
 
 ```js
 // either by directly modifying the `auth` attribute
@@ -104,7 +129,7 @@ socket.on("connect_error", () => {
 });
 ```
 
-- `disconnect`
+### `disconnect`
 
 This event is fired upon disconnection.
 
