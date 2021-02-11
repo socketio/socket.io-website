@@ -246,7 +246,7 @@ Fired when a ping packet is received from the server.
 
 ## Socket
 
-A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](/docs/v3/namespaces) (by default `/`) and uses an underlying [Manager](#Manager) to communicate.
+A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](/docs/v3/namespaces/) (by default `/`) and uses an underlying [Manager](#Manager) to communicate.
 
 A `Socket` is basically an [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter) which sends events to — and receive events from — the server over the network.
 

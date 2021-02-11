@@ -102,7 +102,7 @@ socket.on("data", () => { /* ... */ });
 This event is fired when:
 
 - the low-level connection cannot be established
-- the connection is denied by the server in a [middleware function](/docs/v3/middlewares)
+- the connection is denied by the server in a [middleware function](/docs/v3/middlewares/)
 
 In the first case, the Socket will automatically try to reconnect, after a [given delay](/docs/v3/client-initialization/#reconnectionDelay).
 
