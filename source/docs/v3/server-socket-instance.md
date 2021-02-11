@@ -129,7 +129,12 @@ io.on("connection", (socket) => {
 
 ## Events
 
-- `disconnect`
+On the server-side, the Socket instance emits two special events:
+
+- [`disconnect`](#disconnect)
+- [`disconnecting`](#disconnecting)
+
+### `disconnect`
 
 This event is fired by the Socket instance upon disconnection.
 
@@ -145,14 +150,15 @@ Here is the list of possible reasons:
 
 Reason | Description
 ------ | -----------
-`io server disconnect` | The socket was forcefully disconnected with [socket.disconnect()](/docs/v3/server-api/#socket-disconnect-close)
-`io client disconnect` | The client has manually disconnected the socket using [socket.disconnect()](/docs/v3/client-api/#socket-disconnect)
+`server namespace disconnect` | The socket was forcefully disconnected with [socket.disconnect()](/docs/v3/server-api/#socket-disconnect-close)
+`client namespace disconnect` | The client has manually disconnected the socket using [socket.disconnect()](/docs/v3/client-api/#socket-disconnect)
+`server shutting down` | The server is, well, shutting down
 `ping timeout` | The client did not respond in the `pingTimeout` range
 `transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
 `transport error` | The connection has encountered an error
 
 
-- `disconnecting`
+### `disconnecting`
 
 This event is similar to `disconnect` but is fired a bit earlier, when the [Socket#rooms](/docs/v3/server-socket-instance/#Socket-rooms) set is not empty yet
 
