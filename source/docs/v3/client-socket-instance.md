@@ -149,6 +149,20 @@ Reason | Description
 `transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
 `transport error` | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)
 
+In the first two cases (explicit disconnection), the client will not try to reconnect and you need to manually call `socket.connect()`.
+
+In all other cases, the client will wait for a small [random delay](/docs/v3/client-initialization/#reconnectionDelay) and then try to reconnect:
+
+```js
+socket.on("disconnect", (reason) => {
+  if (reason === "io server disconnect") {
+    // the disconnection was initiated by the server, you need to reconnect manually
+    socket.connect();
+  }
+  // else the socket will automatically try to reconnect
+});
+```
+
 Note: those events, along with `disconnecting`, `newListener` and `removeListener`, are special events that shouldn't be used in your application:
 
 ```js

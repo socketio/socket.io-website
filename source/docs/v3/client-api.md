@@ -493,7 +493,9 @@ Reason | Description
 `transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
 `transport error` | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)
 
-In all cases but the first (disconnection by the server), the client will wait for a small random delay and then reconnect.
+In the first two cases (explicit disconnection), the client will not try to reconnect and you need to manually call `socket.connect()`.
+
+In all other cases, the client will wait for a small [random delay](/docs/v3/client-initialization/#reconnectionDelay) and then try to reconnect:
 
 ```js
 socket.on('disconnect', (reason) => {
