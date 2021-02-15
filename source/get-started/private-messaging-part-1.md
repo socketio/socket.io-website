@@ -23,7 +23,7 @@ Prerequisites:
 This guide has four distinct parts:
 
 - Part I **(current)**: initial implementation
-- Part II (WIP): persistent user ID
+- [Part II](/get-started/private-messaging-part-2/): persistent user ID
 - Part III (WIP): persistent messages
 - Part IV (WIP): scaling up
 
@@ -351,13 +351,13 @@ socket.on("private message", ({ content, to }) => {
 });
 ```
 
-Here, we are using the concept of [Rooms](/v3/rooms/). These are channels that Socket instances can join and leave, and you can broadcast to all clients in a room.
+Here, we are using the concept of [Rooms](/docs/v3/rooms/). These are channels that Socket instances can join and leave, and you can broadcast to all clients in a room.
 
 We are relying on the fact that the Socket instance automatically joins the room identified by its id (`socket.join(socket.id)` is called for you).
 
 So `socket.to(to).emit("private message", ...)` emits to the given user ID.
 
-*Client (receiver)*
+*Client (recipient)*
 
 ```js
 socket.on("private message", ({ content, from }) => {
@@ -416,6 +416,6 @@ OK, so... what we have for now is great, but there is an obvious issue:
 
 Explanation: a new Socket ID is generated upon reconnection, so every time a user gets disconnected and reconnects, it will get a new user ID.
 
-That's why we need a persistent user ID, which is the subject of the 2nd part of this guide (WIP).
+That's why we need a persistent user ID, which is the subject of the [2nd part](/get-started/private-messaging-part-2/) of this guide.
 
 Thanks for reading!
