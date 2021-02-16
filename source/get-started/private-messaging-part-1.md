@@ -19,13 +19,14 @@ Prerequisites:
 
 - basic knowledge of Socket.IO
 - basic knowledge of [Vue.js](https://vuejs.org/v2/guide/) (though knowledge of another popular frontend framework should work too)
+- basic knowledge of [Redis](https://redis.io/) (for the final part)
 
 This guide has four distinct parts:
 
 - Part I **(current)**: initial implementation
 - [Part II](/get-started/private-messaging-part-2/): persistent user ID
-- Part III (WIP): persistent messages
-- Part IV (WIP): scaling up
+- [Part III](/get-started/private-messaging-part-3/): persistent messages
+- [Part IV](/get-started/private-messaging-part-4/): scaling up
 
 Let's start!
 

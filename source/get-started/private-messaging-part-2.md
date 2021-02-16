@@ -7,8 +7,8 @@ This guide has four distinct parts:
 
 - [Part I](/get-started/private-messaging-part-1/): initial implementation
 - Part II **(current)**: persistent user ID
-- Part III (WIP): persistent messages
-- Part IV (WIP): scaling up
+- [Part III](/get-started/private-messaging-part-3/): persistent messages
+- [Part IV](/get-started/private-messaging-part-4/): scaling up
 
 Here's where we were at the end of the [1st part](/get-started/private-messaging-part-1/):
 
@@ -134,7 +134,7 @@ created() {
 }
 ```
 
-You should now be able to refresh your tab without loosing your session:
+You should now be able to refresh your tab without losing your session:
 
 <img src="/images/private-messaging-part-2-persistent-session.gif" alt="Persistent sessions" />
 
@@ -237,7 +237,7 @@ Documentation: [allSockets() method](/docs/v3/server-api/#namespace-allSockets)
 
 ## Review
 
-OK, so… what we have now is better, but there is yet another issue: the messages are not actually persisted on the server. As a consequence, when the user reloads the page, it looses all its existing conversations.
+OK, so… what we have now is better, but there is yet another issue: the messages are not actually persisted on the server. As a consequence, when the user reloads the page, it loses all its existing conversations.
 
 This could be fixed for example by saving the messages in the localStorage of the browser, but there is another more annoying repercussion:
 
