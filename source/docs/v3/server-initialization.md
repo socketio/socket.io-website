@@ -129,6 +129,7 @@ const io = require("socket.io")(httpServer, options);
 io.on("connection", socket => { /* ... */ });
 
 httpServer.listen(3000);
+// WARNING !!! app.listen(3000); will not work here, as it creates a new HTTP server
 ```
 
 More information [here](http://expressjs.com/).
