@@ -6,7 +6,7 @@ permalink: /get-started/
 
 - [Write a chat application](/get-started/chat)
 
-Recommended for beginners to Socket.IO or Node.js. The “Hello world!” of the framework is here.
+Recommended for beginners to Socket.IO or Node.js. The “Hello world!” of the framework is [here](/get-started/chat).
 
 - Private messaging
   - [Part I](/get-started/private-messaging-part-1/): initial implementation
