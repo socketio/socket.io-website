@@ -43,7 +43,7 @@ DEBUG=engine,socket.io* node yourfile.js
 ```
 
 
-## Removing debug from your browser bundle
+### Removing debug from your browser bundle
 
 While useful during development, the debug package adds an extra weight to the final bundle (about 4KB minified and gzipped), that's why it is excluded from the slim bundle (more details about the various browser bundles can be found [here](/docs/v3/client-installation/#From-a-CDN)).
 
@@ -61,3 +61,15 @@ If you are using webpack, you can remove it with [webpack-remove-debug](https://
   }
 }
 ```
+
+## Error logs in the browser console
+
+Please note that error logs such as:
+
+- `net::ERR_INTERNET_DISCONNECTED`
+- `net::ERR_CONNECTION_REFUSED`
+- `WebSocket is already in CLOSING or CLOSED state`
+- `Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at xxx. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).`
+- `The connection to xxx was interrupted while the page was loading`
+
+are not emitted by the Socket.IO library but by the browser itself, and are therefore out of our control.
