@@ -72,9 +72,9 @@ httpServer.listen(3000);
 
 ```js
 const options = { /* ... */ };
-const io = require('socket.io')(options);
+const io = require("socket.io")(options);
 
-io.on('connection', socket => { /* ... */ });
+io.on("connection", socket => { /* ... */ });
 
 io.listen(3000);
 ```
@@ -83,9 +83,9 @@ You can also pass the port as the first argument:
 
 ```js
 const options = { /* ... */ };
-const io = require('socket.io')(3000, options);
+const io = require("socket.io")(3000, options);
 
-io.on('connection', socket => { /* ... */ });
+io.on("connection", socket => { /* ... */ });
 ```
 
 This implicitly starts a Node.js [HTTP server](https://nodejs.org/docs/latest/api/http.html#http_class_http_server), which can be accessed through `io.httpServer`.
@@ -93,42 +93,42 @@ This implicitly starts a Node.js [HTTP server](https://nodejs.org/docs/latest/ap
 ### Attached to an existing HTTP server
 
 ```js
-const server = require('http').createServer();
+const httpServer = require("http").createServer();
 const options = { /* ... */ };
-const io = require('socket.io')(server, options);
+const io = require("socket.io")(httpServer, options);
 
-io.on('connection', socket => { /* ... */ });
+io.on("connection", socket => { /* ... */ });
 
-server.listen(3000);
+httpServer.listen(3000);
 ```
 
 With HTTPS:
 
 ```js
-const fs = require('fs');
-const server = require('https').createServer({
-  key: fs.readFileSync('/tmp/key.pem'),
-  cert: fs.readFileSync('/tmp/cert.pem')
+const fs = require("fs");
+const httpServer = require("https").createServer({
+  key: fs.readFileSync("/tmp/key.pem"),
+  cert: fs.readFileSync("/tmp/cert.pem")
 });
 const options = { /* ... */ };
-const io = require('socket.io')(server, options);
+const io = require("socket.io")(httpServer, options);
 
-io.on('connection', socket => { /* ... */ });
+io.on("connection", socket => { /* ... */ });
 
-server.listen(3000);
+httpServer.listen(3000);
 ```
 
 ### With Express
 
 ```js
-const app = require('express')();
-const server = require('http').createServer(app);
+const app = require("express")();
+const httpServer = require("http").createServer(app);
 const options = { /* ... */ };
-const io = require('socket.io')(server, options);
+const io = require("socket.io")(httpServer, options);
 
-io.on('connection', socket => { /* ... */ });
+io.on("connection", socket => { /* ... */ });
 
-server.listen(3000);
+httpServer.listen(3000);
 ```
 
 More information [here](http://expressjs.com/).
@@ -136,14 +136,14 @@ More information [here](http://expressjs.com/).
 ### With Koa
 
 ```js
-const app = require('koa')();
-const server = require('http').createServer(app.callback());
+const app = require("koa")();
+const httpServer = require("http").createServer(app.callback());
 const options = { /* ... */ };
-const io = require('socket.io')(server, options);
+const io = require("socket.io")(httpServer, options);
 
-io.on('connection', socket => { /* ... */ });
+io.on("connection", socket => { /* ... */ });
 
-server.listen(3000);
+httpServer.listen(3000);
 ```
 
 More information [here](https://koajs.com/).
@@ -159,7 +159,7 @@ Default value: `1e6`
 This defines how many bytes a message can be, before closing the socket. It defaults to `1e6` (1MB). You may increase or decrease this value depending on your needs.
 
 ```js
-const io = require('socket.io')({
+const io = require("socket.io")({
   maxHttpBufferSize: 1e8
 });
 ```
