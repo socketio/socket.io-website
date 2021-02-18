@@ -102,11 +102,28 @@ io.on("connection", socket => { /* ... */ });
 httpServer.listen(3000);
 ```
 
-With HTTPS:
+With an [HTTPS](https://nodejs.org/api/https.html) server:
 
 ```js
 const fs = require("fs");
 const httpServer = require("https").createServer({
+  key: fs.readFileSync("/tmp/key.pem"),
+  cert: fs.readFileSync("/tmp/cert.pem")
+});
+const options = { /* ... */ };
+const io = require("socket.io")(httpServer, options);
+
+io.on("connection", socket => { /* ... */ });
+
+httpServer.listen(3000);
+```
+
+With an [HTTP/2](https://nodejs.org/api/http2.html) server:
+
+```js
+const fs = require("fs");
+const httpServer = require("http2").createSecureServer({
+  allowHTTP1: true,
   key: fs.readFileSync("/tmp/key.pem"),
   cert: fs.readFileSync("/tmp/cert.pem")
 });
