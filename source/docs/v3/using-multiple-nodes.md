@@ -8,32 +8,27 @@ order: 209
 
 When deploying multiple Socket.IO servers, there are two things to take care of:
 
-- enabling sticky session, if HTTP long-polling is enabled (which is the default): see [below](#Sticky-load-balancing)
+- enabling sticky session, if HTTP long-polling is enabled (which is the default): see [below](#Enabling-sticky-session)
 - using the Redis adapter (or another compatible [Adapter](/docs/v3/glossary/#Adapter)): see [below](#Passing-events-between-nodes)
 
 ## Sticky load balancing
 
-If you plan to distribute the load of connections among different processes or machines, you have to make sure that requests associated with a particular session id connect to the process that originated them.
+If you plan to distribute the load of connections among different processes or machines, you have to make sure that all requests associated with a particular session ID reach the process that originated them.
 
-This is due to certain transports like XHR Polling or JSONP Polling relying on firing several requests during the lifetime of the &#8220;socket&#8221;. Failing to enable sticky balancing will result in the dreaded:
+### Why is sticky-session required
 
-```
-Error during WebSocket handshake: Unexpected response code: 400
-```
+This is because the HTTP long-polling transport sends multiple HTTP requests during the lifetime of the Socket.IO session.
 
-Which means that the upgrade request was sent to a node which did not know the given socket id, hence the HTTP 400 response.
+In fact, Socket.IO could technically work without sticky sessions, with the following synchronization (in dashed lines):
 
-To illustrate why this is needed, consider the example of emitting an event to all connected clients:
+![Using multiple nodes without sticky sessions](/images/mutiple-nodes-no-sticky.png)
 
-```js
-io.emit("hi", "all sockets");
-```
+While obviously possible to implement, we think that this synchronization process between the Socket.IO servers would result in a big performance hit for your application.
 
-Chances are that some of those clients might have an active bi-directional communication channel like `WebSocket` that we can write to immediately, but some of them might be using long-polling.
+Remarks:
 
-If they&#8217;re using long polling, they might or might not have sent a request that we can write to. They could be &#8220;in between&#8221; those requests. In those situations, it means we have to buffer messages in the process. In order for the client to successfully claim those messages when he sends his request, the easiest way is for him to connect to be routed to that same process.
-
-As noted above, `WebSocket` transport do not have this limitation, since the underlying TCP connection is kept open between the client and the given server. That's why you might find some suggestions to only use the `WebSocket` transport:
+- without enabling sticky-session, you will experience HTTP 400 errors due to "Session ID unknown"
+- the WebSocket transport does not have this limitation, since it relies on a single TCP connection for the whole session. Which means that if you disable the HTTP long-polling transport (which is a perfectly valid choice in 2021), you won't need sticky sessions:
 
 ```js
 const socket = io("https://io.yourhost.com", {
@@ -42,7 +37,9 @@ const socket = io("https://io.yourhost.com", {
 });
 ```
 
-Both means that there is **NO FALLBACK** to long-polling when the websocket connection cannot be established, which is in fact one of the key feature of Socket.IO. In that case, you should maybe consider using raw [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket), or a thin wrapper like [robust-websocket](https://github.com/appuri/robust-websocket).
+Documentation: [`transports`](/docs/v3/client-initialization/#transports)
+
+### Enabling sticky-session
 
 To achieve sticky-session, there are two main solutions:
 
@@ -62,6 +59,7 @@ For other platforms, please refer to the relevant documentation:
 - Kubernetes: https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/
 - AWS (Application Load Balancers): https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#sticky-sessions
 - GCP: https://cloud.google.com/load-balancing/docs/backend-service#session_affinity
+- Heroku: https://devcenter.heroku.com/articles/session-affinity
 
 **Important note**: if you are in a CORS situation (the front domain is different from the server domain) and session affinity is achieved with a cookie, you need to allow credentials:
 
