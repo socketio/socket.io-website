@@ -47,7 +47,7 @@ const io = require('socket.io')({
 You can also include the client bundle from a CDN:
 
 ```html
-<script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
+<script src="https://cdn.socket.io/3.1.1/socket.io.min.js" integrity="sha384-gDaozqUvc4HTgo8iZjwth73C6dDDeOJsAgpxBcMpZYztUfjHXpzrpdrHRdVp8ySO" crossorigin="anonymous"></script>
 ```
 
 Socket.IO is also available from other CDN:
