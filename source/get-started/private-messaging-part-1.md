@@ -211,7 +211,7 @@ Documentation:
 - [middlewares](/docs/v3/middlewares/)
 - [the Socket instance](/docs/v3/server-socket-instance/)
 
-On the client-side (`src/App.js`), we add a handler for the `connect_error` event:
+On the client-side (`src/App.vue`), we add a handler for the `connect_error` event:
 
 ```js
 socket.on("connect_error", (err) => {
