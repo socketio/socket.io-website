@@ -92,6 +92,8 @@ This implicitly starts a Node.js [HTTP server](https://nodejs.org/docs/latest/ap
 
 ### Attached to an existing HTTP server
 
+#### With an HTTP server
+
 ```js
 const httpServer = require("http").createServer();
 const options = { /* ... */ };
@@ -102,7 +104,7 @@ io.on("connection", socket => { /* ... */ });
 httpServer.listen(3000);
 ```
 
-With an [HTTPS](https://nodejs.org/api/https.html) server:
+#### With an HTTPS server
 
 ```js
 const fs = require("fs");
@@ -118,7 +120,9 @@ io.on("connection", socket => { /* ... */ });
 httpServer.listen(3000);
 ```
 
-With an [HTTP/2](https://nodejs.org/api/http2.html) server:
+[Node.js documentation](https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener)
+
+#### With an HTTP/2 server
 
 ```js
 const fs = require("fs");
@@ -134,6 +138,8 @@ io.on("connection", socket => { /* ... */ });
 
 httpServer.listen(3000);
 ```
+
+[Node.js documentation](https://nodejs.org/api/http2.html#http2_http2_createsecureserver_options_onrequesthandler)
 
 ### With Express
 
