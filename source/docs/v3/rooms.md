@@ -157,3 +157,65 @@ Like [global broadcasting](/docs/v3/broadcasting-events/#With-multiple-Socket-IO
 You just need to replace the default [Adapter](/docs/v3/glossary/#Adapter) by the Redis Adapter. More information about it [here](/docs/v3/using-multiple-nodes/#Passing-events-between-nodes).
 
 ![Broadcasting to room with Redis](/images/rooms-redis.png)
+
+## Implementation details
+
+The "room" feature is implemented by what we call an Adapter. This Adapter is a server-side component which is responsible for:
+
+- storing the relationships between the Socket instances and the rooms
+- broadcasting events to all (or a subset of) clients
+
+You can find the code of the default in-memory adapter [here](https://github.com/socketio/socket.io-adapter).
+
+Basically, it consists in two [ES6 Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
+
+- `sids`: `Map<SocketId, Set<Room>>`
+- `rooms`: `Map<Room, Set<SocketId>>`
+
+Calling `socket.join("the-room")` will result in:
+
+- in the ̀`sids` Map, adding "the-room" to the Set identified by the socket ID
+- in the `rooms` Map, adding the socket ID in the Set identified by the string "the-room"
+
+Those two maps are then used when broadcasting:
+
+- a broadcast to all sockets (`io.emit()`) loops through the `sids` Map, and send the packet to all sockets
+- a broadcast to a given room (`io.to("room21").emit()`) loops through the Set in the `rooms` Map, and sends the packet to all matching sockets
+
+You can access those objects with:
+
+```js
+// main namespace
+const rooms = io.of("/").adapter.rooms;
+const sids = io.of("/").adapter.sids;
+
+// custom namespace
+const rooms = io.of("/my-namespace").adapter.rooms;
+const sids = io.of("/my-namespace").adapter.sids;
+```
+
+Notes:
+
+- those objects are not meant to be directly modified, you should always use [`socket.join(...)`](/docs/v3/server-api/#socket-join-room) and [`socket.leave(...)`](/docs/v3/server-api/#socket-leave-room) instead.
+- in a [multi-server](/docs/v3/using-multiple-nodes/) setup, the `rooms` and `sids` objects are not shared between the Socket.IO servers (a room may only "exist" on one server and not on another).
+
+## Room events
+
+Starting with `socket.io@3.1.0`, the underlying Adapter will emit the following events:
+
+- `create-room` (argument: room)
+- `delete-room` (argument: room)
+- `join-room` (argument: room, id)
+- `leave-room` (argument: room, id)
+
+Example:
+
+```js
+io.of("/").adapter.on("create-room", (room) => {
+  console.log(`room ${room} was created`);
+});
+
+io.of("/").adapter.on("join-room", (room, id) => {
+  console.log(`socket ${id} has joined room ${room}`);
+});
+```

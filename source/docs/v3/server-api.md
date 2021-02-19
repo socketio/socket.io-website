@@ -319,9 +319,11 @@ const socketCount = io.of("/admin").sockets.size;
 
   * _(Adapter)_
 
-The `Adapter` used for the namespace. Useful when using the `Adapter` based on [Redis](https://github.com/socketio/socket.io-redis), as it exposes methods to manage sockets and rooms across your cluster.
+The ["Adapter"](/docs/v3/glossary/#Adapter) used for the namespace. Useful when using the `Adapter` based on [Redis](https://github.com/socketio/socket.io-redis), as it exposes methods to manage sockets and rooms across your cluster.
 
 **Note:** the adapter of the main namespace can be accessed with `io.of('/').adapter`.
+
+Please see the explanation [here](/docs/v3/rooms/#Implementation-details).
 
 ### namespace.to(room)
 
