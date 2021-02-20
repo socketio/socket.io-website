@@ -35,6 +35,7 @@ Option | Default value | Description
 `serveClient` | `true` | whether to serve the client files
 `adapter` | - | the adapter to use. Defaults to an instance of the `Adapter` that ships with socket.io which is memory based. See [socket.io-adapter](https://github.com/socketio/socket.io-adapter)
 `parser` | - | the parser to use. Defaults to an instance of the `Parser` that ships with socket.io. See [socket.io-parser](https://github.com/socketio/socket.io-parser).
+`connectTimeout` | `45000` | the number of ms before closing a client that has not successfully joined a namespace.
 
 Available options for the underlying Engine.IO server:
 
@@ -52,27 +53,9 @@ Option | Default value | Description
 `wsEngine` | `ws` | what WebSocket server implementation to use. Specified module must conform to the `ws` interface (see [ws module api docs](https://github.com/websockets/ws/blob/master/doc/ws.md)). Default value is `ws`. An alternative c++ addon is also available by installing the [eiows](https://www.npmjs.com/package/eiows) module.
 `cors` | | the list of options that will be forwarded to the [cors](https://www.npmjs.com/package/cors) module
 `cookie` | | the list of options that will be forwarded to the [cookie](https://github.com/jshttp/cookie/) module
+`allowEIO3` | `false` | whether to enable compatibility with Socket.IO v2 clients
 
-Among those options:
-
-- The `pingTimeout` and `pingInterval` parameters will impact the delay before a client knows the server is not available anymore. For example, if the underlying TCP connection is not closed properly due to a network issue, a client may have to wait up to `pingTimeout + pingInterval` ms before getting a `disconnect` event.
-
-- The order of the `transports` array is important. By default, a long-polling connection is established first, and then upgraded to WebSocket if possible. Using `['websocket']` means there will be no fallback if a WebSocket connection cannot be opened.
-
-```js
-const server = require('http').createServer();
-
-const io = require('socket.io')(server, {
-  path: '/test',
-  serveClient: false,
-  // below are engine.IO options
-  pingInterval: 10000,
-  pingTimeout: 5000,
-  cookie: false
-});
-
-server.listen(3000);
-```
+More information [here](/docs/v3/server-initialization/).
 
 ### new Server(port[, options])
 
