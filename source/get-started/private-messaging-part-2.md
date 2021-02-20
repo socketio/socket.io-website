@@ -119,7 +119,18 @@ socket.on("session", ({ sessionID, userID }) => {
 });
 ```
 
-So it can be reused later:
+Actually, there were several possible implementations:
+
+- no storage at all: reconnection will preserve the session, but refreshing the page will lose it
+- [sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage): reconnection & refreshing the page will preserve the session
+- [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage): reconnection & refreshing the page will preserve the session + this session will be shared across the browser tabs
+
+Here, we chose the `localStorage` option, so all your tabs will be linked to the same session ID, which means that:
+
+- you can chat with yourself (yay!)
+- you now need to use another browser (or the private mode of your browser) to create another peer
+
+And finally, we fetch the session ID on application startup:
 
 ```js
 created() {
