@@ -105,26 +105,68 @@ In most cases, you should see something like this:
 4. the WebSocket connection
 5. the first HTTP long-polling request, which is closed once the WebSocket connection is established
 
-Common errors:
+The Socket.IO server may return the following HTTP status:
 
-- `Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at ...`
+- [`101 Switching Protocols`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/101): when the WebSocket connection is established
+- [`200 OK`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200): when in HTTP long-polling mode (`GET` for reading, `POST` for writing)
+- [`400 Bad Request`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400): when something went wrong
 
-This probably means that you have to enable [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS) on the server-side. Please see the documentation [here](/docs/v3/handling-cors/).
+In case of an HTTP 400 response, the response payload will be one of the following:
 
-- HTTP 400 Bad Request: "Session ID unknown"
+- `{"code":0,"message":"Transport unknown"}`
 
-This probably means that you have to enable sticky session. Please see the documentation [here](/docs/v3/using-multiple-nodes/).
+The `transport` query parameter is missing or invalid.
 
-- HTTP 400 Bad Request: "Unsupported protocol version"
+To reproduce: `curl "<url>/socket.io/"` or `curl "<url>/socket.io/?transport=udp"`
 
-In that case, it seems you are trying to reach a Socket.IO v3 server with a v2 client.
+- `{"code":1,"message":"Session ID unknown"}`
 
-You can either upgrade your client, or use the compatibility mode of the server:
+The session ID (included in the `sid` query parameter) is unknown from the server. That may happen in a [multi-server setup](/docs/v3/using-multiple-nodes/).
+
+To reproduce: `curl "<url>/socket.io/?transport=polling&sid=1234"`
+
+- `{"code":2,"message":"Bad handshake method"}`
+
+The initial request must be a `GET` request.
+
+To reproduce: `curl -X PUT "<url>/socket.io/?transport=polling"`
+
+- `{"code":3,"message":"Bad request"}`
+
+An error has occurred during the handshake process.
+
+This error cannot be easily reproduced with a single `curl` command.
+
+- `{"code":4,"message":"Forbidden"}`
+
+The request was denied in the [`allowRequest`](/docs/v3/server-initialization/#allowRequest) handler.
+
+To reproduce:
 
 ```js
-const io = require("socket.io")({
+const io = require("socket.io")(httpServer, {
+  allowRequest: (req, callback) => {
+    callback(null, false);
+  }
+});
+```
+
+- `{"code":5,"message":"Unsupported protocol version"}`
+
+The protocol version is not supported by the server. Support for Socket.IO v2 clients must be explicitly enabled with the [`allowEIO3`](/docs/v3/server-initialization/#allowEIO3) option:
+
+```js
+const io = require("socket.io")(httpServer, {
   allowEIO3: true // false by default
 });
 ```
 
-More information [here](/docs/v3/migrating-from-2-x-to-3-0/).
+To reproduce: `curl "<url>/socket.io/?transport=polling&EIO=3"`
+
+Another quite common error is:
+
+```
+Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at ...
+```
+
+Which probably means that you have to enable [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS) on the server-side. Please see the documentation [here](/docs/v3/handling-cors/).
