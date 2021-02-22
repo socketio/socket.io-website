@@ -2,7 +2,7 @@ title: Middlewares
 permalink: /docs/v3/middlewares/
 release: v3
 type: docs
-order: 207
+order: 208
 ---
 
 A middleware function is a function that gets executed for every incoming connection.

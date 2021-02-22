@@ -13,6 +13,12 @@ type: api
 
 Exposed by `require("socket.io")`.
 
+Related documentation pages:
+
+- [installation](/docs/v3/server-installation/)
+- [initialization](/docs/v3/server-initialization/)
+- [details of the server instance](/docs/v3/server-instance/)
+
 ### new Server(httpServer[, options])
 
   - `httpServer` _(http.Server)_ the server to bind to.
@@ -245,7 +251,9 @@ io.of((name, query, next) => {
 
   - `callback` _(Function)_
 
-Closes the socket.io server. The `callback` argument is optional and will be called when all connections are closed.
+Closes the Socket.IO server. The `callback` argument is optional and will be called when all connections are closed.
+
+Note: this also closes the underlying HTTP server.
 
 ```js
 const Server = require("socket.io");
@@ -268,8 +276,10 @@ Overwrites the default method to generate your custom socket id.
 The function is called with a node request object (`http.IncomingMessage`) as first parameter.
 
 ```js
+const uuid = require("uuid");
+
 io.engine.generateId = (req) => {
-  return "custom:id:" + custom_id++; // custom id must be unique
+  return uuid.v4(); // must be unique across all Socket.IO servers
 }
 ```
 
@@ -354,6 +364,9 @@ Gets a list of socket IDs connected to this namespace (across all nodes if appli
 // all sockets in the main namespace
 const ids = await io.allSockets();
 
+// all sockets in the main namespace and in the "user:1234" room
+const ids = await io.in("user:1234").allSockets();
+
 // all sockets in the "chat" namespace
 const ids = await io.of("/chat").allSockets();
 
@@ -385,7 +398,7 @@ socket.on("connect_error", err => {
 });
 ```
 
-### Event: 'connect'
+### Event: 'connection'
 
   - `socket` _(Socket)_ socket connection with client
 
@@ -401,9 +414,9 @@ io.of("/admin").on("connection", (socket) => {
 });
 ```
 
-### Event: 'connection'
+### Event: 'connect'
 
-Synonym of [Event: "connect"](#Event-‘connect’).
+Synonym of [Event: "connection"](#Event-‘connection’).
 
 ### Flag: 'volatile'
 

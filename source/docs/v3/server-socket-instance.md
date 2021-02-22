@@ -3,7 +3,7 @@ short_title: The Socket instance
 permalink: /docs/v3/server-socket-instance/
 release: v3
 type: docs
-order: 206
+order: 207
 ---
 
 Besides:
