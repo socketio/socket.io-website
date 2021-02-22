@@ -3,7 +3,7 @@ short_title: Troubleshooting
 permalink: /docs/v3/troubleshooting-connection-issues/
 release: v3
 type: docs
-order: 4
+order: 5
 ---
 
 First and foremost, please note that disconnections are common and expected, even on a stable Internet connection:
