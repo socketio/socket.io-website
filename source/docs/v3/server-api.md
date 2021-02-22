@@ -277,9 +277,7 @@ io.engine.generateId = (req) => {
 
 Represents a pool of sockets connected under a given scope identified by a pathname (eg: `/chat`).
 
-A client always connects to `/` (the main namespace), then potentially connect to other namespaces (while using the same underlying connection).
-
-For the how and why, please take a look at: [Rooms and Namespaces](/docs/v3/namespaces/).
+More information can be found [here](/docs/v3/namespaces/).
 
 ### namespace.name
 
@@ -432,6 +430,8 @@ It should be noted the `Socket` doesn't relate directly to the actual underlying
 Within each `Namespace`, you can also define arbitrary channels (called `room`) that the `Socket` can join and leave. That provides a convenient way to broadcast to a group of `Socket`s (see `Socket#to` below).
 
 The `Socket` class inherits from [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter). The `Socket` class overrides the `emit` method, and does not modify any other `EventEmitter` method. All methods documented here which also appear as `EventEmitter` methods (apart from `emit`) are implemented by `EventEmitter`, and documentation for `EventEmitter` applies.
+
+More information can be found [here](/docs/v3/server-socket-instance/).
 
 ### socket.id
 

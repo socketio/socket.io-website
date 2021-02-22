@@ -180,3 +180,7 @@ Note: those events, along with `connect`, `connect_error`, `newListener` and `re
 // BAD, will throw an error
 socket.emit("disconnect");
 ```
+
+## Complete API
+
+The complete API exposed by the Socket instance can be found [here](/docs/v3/server-api/#Socket).

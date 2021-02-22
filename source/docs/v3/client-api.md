@@ -258,6 +258,8 @@ socket.on("hey", (...args) => {
 });
 ```
 
+More information can be found [here](/docs/v3/client-socket-instance/).
+
 ### socket.id
 
   - _(String)_

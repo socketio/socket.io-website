@@ -169,3 +169,7 @@ Note: those events, along with `disconnecting`, `newListener` and `removeListene
 // BAD, will throw an error
 socket.emit("disconnect");
 ```
+
+## Complete API
+
+The complete API exposed by the Socket instance can be found [here](/docs/v3/client-api/#Socket).

@@ -214,3 +214,7 @@ const parentNamespace = io.of(/^\/dynamic-\d+$/);
 
 parentNamespace.emit("hello"); // will be sent to users in /dynamic-1, /dynamic-2, ...
 ```
+
+## Complete API
+
+The complete API exposed by the Namespace instance can be found [here](/docs/v3/server-api/#Namespace).
