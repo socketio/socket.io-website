@@ -37,7 +37,7 @@ By default, the Socket.IO server exposes a client bundle at `/socket.io/socket.i
 If you don't need this (see other options below), you can disable the functionality on the server side:
 
 ```js
-const io = require('socket.io')({
+const io = require("socket.io")({
   serveClient: false
 });
 ```

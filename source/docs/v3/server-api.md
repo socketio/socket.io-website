@@ -11,7 +11,7 @@ type: api
 
 ## Server
 
-Exposed by `require('socket.io')`.
+Exposed by `require("socket.io")`.
 
 ### new Server(httpServer[, options])
 
@@ -21,9 +21,9 @@ Exposed by `require('socket.io')`.
 Works with and without `new`:
 
 ```js
-const io = require('socket.io')();
+const io = require("socket.io")();
 // or
-const { Server } = require('socket.io');
+const { Server } = require("socket.io");
 const io = new Server();
 ```
 
@@ -46,7 +46,7 @@ Option | Default value | Description
 `upgradeTimeout` | `10000` | how many ms before an uncompleted transport upgrade is cancelled
 `maxHttpBufferSize` | `1e6` | how many bytes or characters a message can be, before closing the session (to avoid DoS).
 `allowRequest` | | A function that receives a given handshake or upgrade request as its first parameter, and can decide whether to continue or not. The second argument is a function that needs to be called with the decided information: `fn(err, success)`, where `success` is a boolean value where false means that the request is rejected, and err is an error code.
-`transports` | `['polling', 'websocket']` | transports to allow connections to
+`transports` | `["polling", "websocket"]` | transports to allow connections to
 `allowUpgrades` | `true` | whether to allow transport upgrades
 `perMessageDeflate` | `false` | parameters of the WebSocket permessage-deflate extension (see [ws module](https://github.com/einaros/ws) api docs). Set to `true` to enable.
 `httpCompression` | `true` | parameters of the http compression for the polling transports (see [zlib](http://nodejs.org/api/zlib.html#zlib_options) api docs). Set to `false` to disable.
@@ -65,8 +65,8 @@ More information [here](/docs/v3/server-initialization/).
 See [above](#new-Server-httpServer-options) for the list of available `options`.
 
 ```js
-const io = require('socket.io')(3000, {
-  path: '/test',
+const io = require("socket.io")(3000, {
+  path: "/test",
   serveClient: false,
   // below are engine.IO options
   pingInterval: 10000,
@@ -82,13 +82,13 @@ const io = require('socket.io')(3000, {
 See [above](#new-Server-httpServer-options) for the list of available `options`.
 
 ```js
-const io = require('socket.io')({
-  path: '/test',
+const io = require("socket.io")({
+  path: "/test",
   serveClient: false,
 });
 
 // either
-const server = require('http').createServer();
+const server = require("http").createServer();
 
 io.attach(server, {
   pingInterval: 10000,
@@ -113,9 +113,9 @@ io.attach(3000, {
 An alias for the default (`/`) namespace.
 
 ```js
-io.sockets.emit('hi', 'everyone');
+io.sockets.emit("hi", "everyone");
 // is equivalent to
-io.of('/').emit('hi', 'everyone');
+io.of("/").emit("hi", "everyone");
 ```
 
 ### server.serveClient([value])
@@ -127,10 +127,10 @@ If `value` is `true` the attached server (see `Server#attach`) will serve the cl
 
 ```js
 // pass a server and the `serveClient` option
-const io = require('socket.io')(http, { serveClient: false });
+const io = require("socket.io")(http, { serveClient: false });
 
 // or pass no server and then you can call the method
-const io = require('socket.io')();
+const io = require("socket.io")();
 io.serveClient(false);
 io.attach(http);
 ```
@@ -143,12 +143,12 @@ io.attach(http);
 Sets the path `value` under which `engine.io` and the static files will be served. Defaults to `/socket.io`. If no arguments are supplied this method returns the current value.
 
 ```js
-const io = require('socket.io')();
-io.path('/myownpath');
+const io = require("socket.io")();
+io.path("/myownpath");
 
 // client-side
 const socket = io({
-  path: '/myownpath'
+  path: "/myownpath"
 });
 ```
 
@@ -160,9 +160,9 @@ const socket = io({
 Sets the adapter `value`. Defaults to an instance of the `Adapter` that ships with socket.io which is memory based. See [socket.io-adapter](https://github.com/socketio/socket.io-adapter). If no arguments are supplied this method returns the current value.
 
 ```js
-const io = require('socket.io')(3000);
-const redis = require('socket.io-redis');
-io.adapter(redis({ host: 'localhost', port: 6379 }));
+const io = require("socket.io")(3000);
+const redis = require("socket.io-redis");
+io.adapter(redis({ host: "localhost", port: 6379 }));
 ```
 
 ### server.attach(httpServer[, options])
@@ -209,24 +209,24 @@ Advanced use only. Creates a new `socket.io` client from the incoming engine.io 
 Initializes and retrieves the given `Namespace` by its pathname identifier `nsp`. If the namespace was already initialized it returns it immediately.
 
 ```js
-const adminNamespace = io.of('/admin');
+const adminNamespace = io.of("/admin");
 ```
 
 A regex or a function can also be provided, in order to create namespace in a dynamic way:
 
 ```js
-const dynamicNsp = io.of(/^\/dynamic-\d+$/).on('connection', (socket) => {
-  const newNamespace = socket.nsp; // newNamespace.name === '/dynamic-101'
+const dynamicNsp = io.of(/^\/dynamic-\d+$/).on("connection", (socket) => {
+  const newNamespace = socket.nsp; // newNamespace.name === "/dynamic-101"
 
   // broadcast to all clients in the given sub-namespace
-  newNamespace.emit('hello');
+  newNamespace.emit("hello");
 });
 
 // client-side
-const socket = io('/dynamic-101');
+const socket = io("/dynamic-101");
 
 // broadcast to all clients in each sub-namespace
-dynamicNsp.emit('hello');
+dynamicNsp.emit("hello");
 
 // use a middleware for each sub-namespace
 dynamicNsp.use((socket, next) => { /* ... */ });
@@ -238,7 +238,7 @@ With a function:
 io.of((name, query, next) => {
   // the checkToken method must return a boolean, indicating whether the client is able to connect or not.
   next(null, checkToken(query.token));
-}).on('connection', (socket) => { /* ... */ });
+}).on("connection", (socket) => { /* ... */ });
 ```
 
 ### server.close([callback])
@@ -248,9 +248,9 @@ io.of((name, query, next) => {
 Closes the socket.io server. The `callback` argument is optional and will be called when all connections are closed.
 
 ```js
-const Server = require('socket.io');
+const Server = require("socket.io");
 const PORT   = 3030;
-const server = require('http').Server();
+const server = require("http").Server();
 
 const io = Server(PORT);
 
@@ -304,7 +304,7 @@ const socketCount = io.of("/admin").sockets.size;
 
 The ["Adapter"](/docs/v3/glossary/#Adapter) used for the namespace. Useful when using the `Adapter` based on [Redis](https://github.com/socketio/socket.io-redis), as it exposes methods to manage sockets and rooms across your cluster.
 
-**Note:** the adapter of the main namespace can be accessed with `io.of('/').adapter`.
+**Note:** the adapter of the main namespace can be accessed with `io.of("/").adapter`.
 
 Please see the explanation [here](/docs/v3/rooms/#Implementation-details).
 
@@ -318,10 +318,10 @@ Sets a modifier for a subsequent event emission that the event will only be _bro
 To emit to multiple rooms, you can call `to` several times.
 
 ```js
-const io = require('socket.io')();
-const adminNamespace = io.of('/admin');
+const io = require("socket.io")();
+const adminNamespace = io.of("/admin");
 
-adminNamespace.to('level1').emit('an event', { some: 'data' });
+adminNamespace.to("level1").emit("an event", { some: "data" });
 ```
 
 ### namespace.in(room)
@@ -337,11 +337,11 @@ Synonym of [namespace.to(room)](#namespace-to-room).
 Emits an event to all connected clients. The following two are equivalent:
 
 ```js
-const io = require('socket.io')();
-io.emit('an event sent to all connected clients'); // main namespace
+const io = require("socket.io")();
+io.emit("an event sent to all connected clients"); // main namespace
 
-const chat = io.of('/chat');
-chat.emit('an event sent to all connected clients in chat namespace');
+const chat = io.of("/chat");
+chat.emit("an event sent to all connected clients in chat namespace");
 ```
 
 **Note:** acknowledgements are not supported when emitting from namespace.
@@ -394,25 +394,25 @@ socket.on("connect_error", err => {
 Fired upon a connection from client.
 
 ```js
-io.on('connection', (socket) => {
+io.on("connection", (socket) => {
   // ...
 });
 
-io.of('/admin').on('connection', (socket) => {
+io.of("/admin").on("connection", (socket) => {
   // ...
 });
 ```
 
 ### Event: 'connection'
 
-Synonym of [Event: 'connect'](#Event-‘connect’).
+Synonym of [Event: "connect"](#Event-‘connect’).
 
 ### Flag: 'volatile'
 
 Sets a modifier for a subsequent event emission that the event data may be lost if the clients are not ready to receive messages (because of network slowness or other issues, or because they’re connected through long polling and is in the middle of a request-response cycle).
 
 ```js
-io.volatile.emit('an event', { some: 'data' }); // the clients may or may not receive it
+io.volatile.emit("an event", { some: "data" }); // the clients may or may not receive it
 ```
 
 ### Flag: 'local'
@@ -420,7 +420,7 @@ io.volatile.emit('an event', { some: 'data' }); // the clients may or may not re
 Sets a modifier for a subsequent event emission that the event data will only be _broadcast_ to the current node (when the [Redis adapter](https://github.com/socketio/socket.io-redis) is used).
 
 ```js
-io.local.emit('an event', { some: 'data' });
+io.local.emit("an event", { some: "data" });
 ```
 
 ## Socket
@@ -476,10 +476,10 @@ A reference to the underlying `Client` transport connection (engine.io `Socket` 
 A getter proxy that returns the reference to the `request` that originated the underlying engine.io `Client`. Useful for accessing request headers such as `Cookie` or `User-Agent`.
 
 ```js
-const cookie = require('cookie');
+const cookie = require("cookie");
 
-io.on('connection', (socket) => {
-  const cookies = cookie.parse(socket.request.headers.cookie || '');
+io.on("connection", (socket) => {
+  const cookies = cookie.parse(socket.request.headers.cookie || "");
 });
 ```
 
@@ -511,7 +511,7 @@ io.use((socket, next) => {
   // ...
 });
 
-io.on('connection', (socket) => {
+io.on("connection", (socket) => {
   let handshake = socket.handshake;
   // ...
 });
@@ -536,23 +536,23 @@ Sends a `message` event. See [socket.emit(eventName[, ...args][, ack])](#sockete
 Emits an event to the socket identified by the string name. Any other parameters can be included. All serializable datastructures are supported, including `Buffer`.
 
 ```js
-socket.emit('hello', 'world');
-socket.emit('with-binary', 1, '2', { 3: '4', 5: Buffer.from([6]) });
+socket.emit("hello", "world");
+socket.emit("with-binary", 1, "2", { 3: "4", 5: Buffer.from([6]) });
 ```
 
 The `ack` argument is optional and will be called with the client's answer.
 
 ```js
-io.on('connection', (socket) => {
-  socket.emit('an event', { some: 'data' });
+io.on("connection", (socket) => {
+  socket.emit("an event", { some: "data" });
 
-  socket.emit('ferret', 'tobi', (data) => {
-    console.log(data); // data will be 'woot'
+  socket.emit("ferret", "tobi", (data) => {
+    console.log(data); // data will be "woot"
   });
 
   // the client code
-  // client.on('ferret', (name, fn) => {
-  //   fn('woot');
+  // client.on("ferret", (name, fn) => {
+  //   fn("woot");
   // });
 
 });
@@ -568,15 +568,15 @@ io.on('connection', (socket) => {
 Register a new handler for the given event.
 
 ```js
-socket.on('news', (data) => {
+socket.on("news", (data) => {
   console.log(data);
 });
 // with several arguments
-socket.on('news', (arg1, arg2, arg3) => {
+socket.on("news", (arg1, arg2, arg3) => {
   // ...
 });
 // or with acknowledgement
-socket.on('news', (data, callback) => {
+socket.on("news", (data, callback) => {
   callback(0);
 });
 ```
@@ -647,14 +647,14 @@ const listeners = socket.listenersAny();
 Adds the socket to the given `room` or to the list of rooms.
 
 ```js
-io.on('connection', (socket) => {
-  socket.join('room 237');
+io.on("connection", (socket) => {
+  socket.join("room 237");
   
-  console.log(socket.rooms); // Set { <socket.id>, 'room 237' }
+  console.log(socket.rooms); // Set { <socket.id>, "room 237" }
 
-  socket.join(['room 237', 'room 238']);
+  socket.join(["room 237", "room 238"]);
 
-  io.to('room 237').emit('a new user has joined the room'); // broadcast to everyone in the room
+  io.to("room 237").emit("a new user has joined the room"); // broadcast to everyone in the room
 });
 ```
 
@@ -663,10 +663,10 @@ The mechanics of joining rooms are handled by the `Adapter` that has been config
 For your convenience, each socket automatically joins a room identified by its id (see `Socket#id`). This makes it easy to broadcast messages to other sockets:
 
 ```js
-io.on('connection', (socket) => {
-  socket.on('say to someone', (id, msg) => {
+io.on("connection", (socket) => {
+  socket.on("say to someone", (id, msg) => {
     // send a private message to the socket with the given id
-    socket.to(id).emit('my message', msg);
+    socket.to(id).emit("my message", msg);
   });
 });
 ```
@@ -679,10 +679,10 @@ io.on('connection', (socket) => {
 Removes the socket from the given `room`.
 
 ```js
-io.on('connection', (socket) => {
-  socket.leave('room 237');
+io.on("connection", (socket) => {
+  socket.leave("room 237");
 
-  io.to('room 237').emit(`user ${socket.id} has left the room`);
+  io.to("room 237").emit(`user ${socket.id} has left the room`);
 });
 ```
 
@@ -698,16 +698,16 @@ Sets a modifier for a subsequent event emission that the event will only be _bro
 To emit to multiple rooms, you can call `to` several times.
 
 ```js
-io.on('connection', (socket) => {
+io.on("connection", (socket) => {
 
   // to one room
-  socket.to('others').emit('an event', { some: 'data' });
+  socket.to("others").emit("an event", { some: "data" });
 
   // to multiple rooms
-  socket.to('room1').to('room2').emit('hello');
+  socket.to("room1").to("room2").emit("hello");
 
   // a private message to another socket
-  socket.to(/* another socket id */).emit('hey');
+  socket.to(/* another socket id */).emit("hey");
 
   // WARNING: `socket.to(socket.id).emit()` will NOT work, as it will send to everyone in the room
   // named `socket.id` but the sender. Please use the classic `socket.emit()` instead.
@@ -728,8 +728,8 @@ Synonym of [socket.to(room)](#socket-to-room).
 Sets a modifier for a subsequent event emission that the event data will only be _compressed_ if the value is `true`. Defaults to `true` when you don't call the method.
 
 ```js
-io.on('connection', (socket) => {
-  socket.compress(false).emit('uncompressed', "that's rough");
+io.on("connection", (socket) => {
+  socket.compress(false).emit("uncompressed", "that's rough");
 });
 ```
 
@@ -741,7 +741,7 @@ io.on('connection', (socket) => {
 Disconnects this socket. If value of close is `true`, closes the underlying connection. Otherwise, it just disconnects the namespace.
 
 ```js
-io.on('connection', (socket) => {
+io.on("connection", (socket) => {
   setTimeout(() => socket.disconnect(true), 5000);
 });
 ```
@@ -751,8 +751,8 @@ io.on('connection', (socket) => {
 Sets a modifier for a subsequent event emission that the event data will only be _broadcast_ to every sockets but the sender.
 
 ```js
-io.on('connection', (socket) => {
-  socket.broadcast.emit('an event', { some: 'data' }); // everyone gets it but the sender
+io.on("connection", (socket) => {
+  socket.broadcast.emit("an event", { some: "data" }); // everyone gets it but the sender
 });
 ```
 
@@ -761,8 +761,8 @@ io.on('connection', (socket) => {
 Sets a modifier for a subsequent event emission that the event data may be lost if the client is not ready to receive messages (because of network slowness or other issues, or because they’re connected through long polling and is in the middle of a request-response cycle).
 
 ```js
-io.on('connection', (socket) => {
-  socket.volatile.emit('an event', { some: 'data' }); // the client may or may not receive it
+io.on("connection", (socket) => {
+  socket.volatile.emit("an event", { some: "data" }); // the client may or may not receive it
 });
 ```
 
@@ -773,8 +773,8 @@ io.on('connection', (socket) => {
 Fired upon disconnection.
 
 ```js
-io.on('connection', (socket) => {
-  socket.on('disconnect', (reason) => {
+io.on("connection", (socket) => {
+  socket.on("disconnect", (reason) => {
     // ...
   });
 });
@@ -798,8 +798,8 @@ Reason | Description
 Fired when the client is going to be disconnected (but hasn't left its `rooms` yet).
 
 ```js
-io.on('connection', (socket) => {
-  socket.on('disconnecting', (reason) => {
+io.on("connection", (socket) => {
+  socket.on("disconnecting", (reason) => {
     console.log(socket.rooms); // Set { ... }
   });
 });

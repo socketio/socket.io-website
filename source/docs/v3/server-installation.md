@@ -61,8 +61,8 @@ $ npm install eiows
 And then use the `wsEngine` option:
 
 ```js
-const io = require('socket.io')(3000, {
-  wsEngine: 'eiows'
+const io = require("socket.io")(3000, {
+  wsEngine: "eiows"
 });
 ```
 
