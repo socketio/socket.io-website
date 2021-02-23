@@ -260,6 +260,6 @@ This could be fixed for example by saving the messages in the localStorage of th
 
 <img src="/images/private-messaging-part-2-recipient-offline.gif" alt="Chat with recipient that gets disconnected" />
 
-We will try to fix this in the 3rd part of this guide (WIP).
+We will try to fix this in the <a href="/get-started/private-messaging-part-3/">3rd part</a> of this guide.
 
 Thanks for reading!
