@@ -80,7 +80,11 @@ You can find more details about namespaces [here](/docs/v3/namespaces/).
   - [path](#path)
   - [query](#query)
   - [extraHeaders](#extraHeaders)
-  - [Node.js-specific options](#Node-js-specific-options)
+  - [withCredentials](#withCredentials)
+  - [forceBase64](#forceBase64)
+  - [timestampRequests](#timestampRequests)
+  - [timestampParam](#timestampParam)
+  - [Node.js-specific options](#Node-js-specific-options) (like `agent`, `cert` or `rejectUnauthorized`)
 - [Manager options](#Manager-options)
   - [reconnection](#reconnection)
   - [reconnectionAttempts](#reconnectionAttempts)
@@ -315,6 +319,43 @@ setInterval(() => {
   socket.io.opts.extraHeaders.count++;
 }, 1000);
 ```
+
+#### `withCredentials`
+
+Default value: `false`
+
+Whether or not cross-site requests should made using credentials such as cookies, authorization headers or TLS client certificates. Setting `withCredentials` has no effect on same-site requests.
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  withCredentials: true
+});
+```
+
+Documentation:
+
+- [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
+- [Handling CORS](/docs/v3/handling-cors/)
+
+#### `forceBase64`
+
+Default value: `false`
+
+Whether to force base64 encoding for binary content sent over WebSocket (always enabled for HTTP long-polling).
+
+#### `timestampRequests`
+
+Default value: `true`
+
+Whether to add the timestamp query param to each request (for cache busting).
+
+#### `timestampParam`
+
+Default value: `"t"`
+
+The name of the query parameter to use as our timestamp key.
 
 #### Node.js-specific options
 
