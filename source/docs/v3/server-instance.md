@@ -2,7 +2,7 @@ title: The Server instance
 permalink: /docs/v3/server-instance/
 release: v3
 type: docs
-order: 206
+order: 203
 ---
 
 The Server instance (often called `io` in the code examples) has a few attributes that may be of use in your application.
