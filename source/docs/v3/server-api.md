@@ -800,7 +800,7 @@ Reason | Description
 `server namespace disconnect` | The socket was forcefully disconnected with [socket.disconnect()](/docs/v3/server-api/#socket-disconnect-close)
 `client namespace disconnect` | The client has manually disconnected the socket using [socket.disconnect()](/docs/v3/client-api/#socket-disconnect)
 `server shutting down` | The server is, well, shutting down
-`ping timeout` | The client did not respond in the `pingTimeout` range
+`ping timeout` | The client did not send a PONG packet in the `pingTimeout` delay
 `transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
 `transport error` | The connection has encountered an error
 

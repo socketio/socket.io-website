@@ -145,7 +145,7 @@ Reason | Description
 ------ | -----------
 `io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](/docs/v3/server-api/#socket-disconnect-close)
 `io client disconnect` | The socket was manually disconnected using [socket.disconnect()](/docs/v3/client-api/#socket-disconnect)
-`ping timeout` | The server did not respond in the `pingTimeout` range
+`ping timeout` | The server did not send a PING within the `pingInterval + pingTimeout` range
 `transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
 `transport error` | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)
 
