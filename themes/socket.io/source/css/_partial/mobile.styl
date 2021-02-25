@@ -1,19 +1,31 @@
-@media mq-mobile
-  #mobile-nav
-    position: absolute
-    top: 0
-    left: 0
-    width: mobile-nav-width
-    height: 100%
-    background: color-mobile-nav-background
-    border-right: 1px solid #fff
-
-@media mq-mobile
-  .mobile-nav-link
-    display: block
-    color: color-grey
-    text-decoration: none
+#mobile-nav
+  position: fixed
+  top: 0
+  left: 0
+  width: mobile-nav-width
+  height: 100%
+  background: color-mobile-nav-background
+  z-index: 20
+  overflow-x: auto
+  transform: translate(- mobile-nav-width)
+  transition: 0.2s
+  @media mq-medium
+    display: none
+  .items
+    margin: 0
+    list-style: none
     padding: 15px 20px
-    font-weight: bold
-    &:hover
-      color: #fff
+
+.mobile-nav-hidden
+  display: none
+
+.mobile-nav-link
+  display: block
+  color: color-grey
+  text-decoration: none
+  padding: 15px 20px
+  font-weight: bold
+  &:hover
+    color: #fff
+  @media mq-medium
+    display: none
