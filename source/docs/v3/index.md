@@ -39,13 +39,13 @@ you can consider the Socket.IO client as a "slight" wrapper around the WebSocket
 ```js
 const socket = new WebSocket("ws://localhost:3000");
 
-socket.onopen(() => {
+socket.onopen = () => {
   socket.send("Hello!");
-});
+};
 
-socket.onmessage(data => {
+socket.onmessage = (data) => {
   console.log(data);
-});
+};
 ```
 
 You will have, on the client-side:
