@@ -1,9 +1,7 @@
 (function () {
     var mobileNav = document.querySelector("#mobile-nav");
 
-    function mobileToggle(e) {
-        e.preventDefault();
-
+    function mobileToggle() {
         var style = getComputedStyle(mobileNav);
 
         mobileNav.classList.remove("mobile-nav-hidden");
@@ -15,5 +13,11 @@
         }
     }
 
-    document.querySelector("#mobile-nav-button").addEventListener('click', mobileToggle);
+    document.querySelector("#mobile-nav-button").addEventListener('click', (e) => { e.preventDefault(); mobileToggle(); });
+
+    document.querySelector('.mobile-close').addEventListener('click', (e) => { e.preventDefault(); mobileToggle(); })
+
+    document.querySelectorAll("#mobile-nav a").forEach((element) => {
+        element.addEventListener('click', mobileToggle);
+    });
 })();

@@ -1,7 +1,82 @@
 <nav id="mobile-nav" class="mobile-nav-hidden">
-  <% for (var i in theme.menu){ %>
-    <a href="<%- url_for(theme.menu[i]) %>" class="mobile-nav-link"><%= url_for(theme.menu[i]) %></a>
-  <% } %>
+    <ul class="nav-items">
+        <li>
+            <a href="#" class="mobile-close">
+                <img src="<%- url_for('/images/close.svg') %>" alt="Close">
+            </a>
+        </li>
+        <li>
+          <div>
+            <span>Learn</span>
+            <ul>
+              <li>
+                <a href="<%- url_for('/get-started/') %>" class="nav-link">Get started</a>
+              </li>
+              <li>
+                <a href="<%- url_for('/docs/' + (page.release || 'v3')) %>" class="nav-link">Documentation</a>
+              </li>
+              <li>
+                <a href="<%- url_for('/demos/chat/') %>" class="nav-link">Demos</a>
+              </li>
+              <li class="anchor"></li>
+              <li>
+                <a href="<%- url_for('/docs/' + (page.release || 'v3') + '/server-api/') %>" class="nav-link">Server
+                  API</a>
+              </li>
+              <li>
+                <a href="<%- url_for('/docs/' + (page.release || 'v3') + '/client-api/') %>" class="nav-link">Client
+                  API</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span>Resources</span>
+            <ul>
+              <li>
+                <span class="nav-links-header">Getting help</span>
+                <ul>
+                  <li>
+                    <a href="https://socketio-slackin.herokuapp.com/" target="_blank" class="nav-link">Slack</a>
+                  </li>
+                  <li>
+                    <a href="https://stackoverflow.com/questions/tagged/socket.io" target="_blank" class="nav-link">Stack
+                      Overflow</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="anchor"></li>
+              <li>
+                <span class="nav-links-header">News</span>
+                <ul>
+                  <li>
+                    <a href="<%- url_for('/blog/') %>" class="nav-link">Blog</a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/SocketIO" target="_blank" class="nav-link">Twitter</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="anchor"></li>
+              <li>
+                <span class="nav-links-header">Links</span>
+                <ul>
+                  <li>
+                    <a href="https://github.com/socketio/socket.io" target="_blank" class="nav-link">GitHub</a>
+                  </li>
+                  <li>
+                    <a href="https://cdnjs.com/libraries/socket.io" target="_blank" class="nav-link">CDN</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a href="https://opencollective.com/socketio" target="_blank" class="nav-item">Support Socket.IO</a>
+        </li>
+    </ul>
   <% if (page.type === 'api' || page.type === 'misc') { %>
     <h3><%- page.title %></h3>
     <%- toc(page.content, { list_number: false }) %>

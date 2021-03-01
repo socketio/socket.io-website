@@ -3,7 +3,7 @@
   <nav class="main-nav">
     <ul class="nav-items">
       <li>
-        <input id="docsearch-input" type="text" placeholder="Search..." />
+        <input class="docsearch-input" type="text" placeholder="Search..." />
       </li>
       <li>
         <div class="dropdown">
@@ -79,8 +79,9 @@
     </ul>
   </nav>
   <nav class="mobile-nav">
+    <input class="docsearch-input" type="text" placeholder="Search..." />
     <a href="#" id="mobile-nav-button">
-      <img src="<%- url_for('/images/ham-nav.svg') %>">
+      <img src="<%- url_for('/images/ham-nav.svg') %>" alt="Hambburger Nav">
     </a>  
   </nav>
 </header>

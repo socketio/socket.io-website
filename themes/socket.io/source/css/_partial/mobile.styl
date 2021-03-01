@@ -7,14 +7,19 @@
   background: color-mobile-nav-background
   z-index: 20
   overflow-x: auto
+  overflow-y: visible
   transform: translate(- mobile-nav-width)
   transition: 0.2s
   @media mq-medium
     display: none
-  .items
-    margin: 0
+  h3
+    padding-left: 40px
+  .nav-items
     list-style: none
-    padding: 15px 20px
+    li
+      margin-top: 5px
+    ul
+      list-style: none
 
 .mobile-nav-hidden
   display: none
