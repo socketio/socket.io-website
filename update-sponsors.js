@@ -103,6 +103,11 @@ const customLinks = {
     url: "https://quickbookstoolhub.com/",
     img: "/images/sponsors/quickbookstoolhub.png",
     alt: "Quickbooks Tool Hub"
+  },
+  "friendlylikes": {
+    url: "https://friendlylikes.com/buy-instagram-likes/",
+    img: "https://images.opencollective.com/friendlylikes/fdf1b44/avatar.png",
+    alt: "Friendlylikes"
   }
 }
 
