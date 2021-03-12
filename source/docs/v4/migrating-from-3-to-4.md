@@ -180,6 +180,9 @@ io.disconnectSockets();
 
 // make all Socket instances of the "admin" namespace in the "room1" room disconnect
 io.of("/admin").in("room1").disconnectSockets();
+
+// this also works with a single socket ID
+io.of("/admin").in(theSocketId).disconnectSockets();
 ```
 
 - `fetchSockets`: returns the matching socket instances
@@ -190,6 +193,9 @@ const sockets = await io.fetchSockets();
 
 // return all Socket instances of the "admin" namespace in the "room1" room
 const sockets = await io.of("/admin").in("room1").fetchSockets();
+
+// this also works with a single socket ID
+const sockets = await io.in(theSocketId).fetchSockets();
 ```
 
 The `sockets` variable in the example above is an array of objects exposing a subset of the usual Socket class:
