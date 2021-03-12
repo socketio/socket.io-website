@@ -20,7 +20,7 @@ Here is the complete list of changes:
   - [The default value of `pingTimeout` was increased](#The-default-value-of-pingTimeout-was-increased)
 - [New features](#New-features)
   - [Allow excluding specific rooms when broadcasting](#Allow-excluding-specific-rooms-when-broadcasting)
-  - [Allow to pass an arrow to `io.to()`](#Allow-to-pass-an-arrow-to-io-to)
+  - [Allow to pass an array to `io.to()`](#Allow-to-pass-an-array-to-io-to)
   - [Additional utility methods](#Additional-utility-methods)
   - [Typed events](#Typed-events)
   - [`autoUnref` option](#autoUnref-option)
@@ -125,7 +125,7 @@ socket.except("room1").emit(/* ... */); // same as above
 socket.to("room4").except("room5").emit(/* ... */); // to all clients in "room4" except the ones in "room5" and the sender
 ```
 
-#### Allow to pass an arrow to `io.to()`
+#### Allow to pass an array to `io.to()`
 
 The `to()` method now accepts an array of rooms.
 
