@@ -125,7 +125,7 @@ socket.except("room1").emit(/* ... */); // same as above
 socket.to("room4").except("room5").emit(/* ... */); // to all clients in "room4" except the ones in "room5" and the sender
 ```
 
-#### Allow to pass an arrow to `io.to()`
+#### Allow to pass an array to `io.to()`
 
 The `to()` method now accepts an array of rooms.
 
