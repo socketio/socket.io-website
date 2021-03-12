@@ -10,6 +10,7 @@ You will find below the configuration needed for deploying a Socket.IO server be
 - [NginX](#NginX)
 - [Apache HTTPD](#Apache-HTTPD)
 - [Node.js `http-proxy`](#Node-js-http-proxy)
+- [Caddy 2](#Caddy-2)
 
 In a multi-server setup, please check the documentation [here](/docs/v3/using-multiple-nodes/).
 
@@ -103,3 +104,26 @@ httpProxy
 ```
 
 [Documentation](https://github.com/http-party/node-http-proxy#readme)
+
+## Caddy 2
+
+Content of `Caddyfile` for [Caddy 2](https://caddyserver.com/v2)
+
+```
+example.com {
+  rewrite /path /path/
+  handle /path/* {
+    uri strip_prefix /path
+    rewrite * /socket.io{path}
+    reverse_proxy localhost:3000 {
+      header_up Host {host}
+      header_up X-Real-IP {remote}
+    }
+  }
+}
+```
+
+Related
+
+- [Solution forum post](https://caddy.community/t/i-cant-get-socket-io-proxy-to-work-on-v2/8703/2)
+- [Caddyfile directives](https://caddyserver.com/docs/caddyfile/directives)
