@@ -51,7 +51,7 @@ First, you need to install the types: `npm i --save-dev @types/socket.io`
 
 ```ts
 import { createServer } from "http";
-import Server = require("socket.io");
+const Server = require("socket.io");
 import { Socket } from "socket.io";
 
 const httpServer = createServer();
