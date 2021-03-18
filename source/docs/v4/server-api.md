@@ -4,10 +4,6 @@ release: v4
 type: api
 ---
 
-<div class="tip warning">
-  You're browsing the documentation for v4.x. For v2.x, click <a href="/docs/v2/server-api/">here</a>.
-</div>
-
 ## Server
 
 Exposed by `require("socket.io")`.

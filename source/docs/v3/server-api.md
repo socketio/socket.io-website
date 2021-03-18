@@ -6,7 +6,7 @@ type: api
 ---
 
 <div class="tip warning">
-  You're browsing the documentation for v3.x. For v2.x, click <a href="/docs/v2/server-api/">here</a>.
+  You're browsing the documentation for v3.x. For v4.x, click <a href="/docs/v4/server-api/">here</a>.
 </div>
 
 ## Server

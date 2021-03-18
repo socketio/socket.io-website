@@ -1,4 +1,12 @@
 <aside id="sidebar">
+  <% if (page.type === 'api' || page.type === 'docs') { %>
+    <select id="version-selector">
+      <option value="v4">v4.x</option>
+      <option value="v3">v3.x</option>
+      <option value="v2">v2.x</option>
+    </select>
+  <% } %>
+
   <% if (page.type === 'api' || page.type === 'misc') { %>
     <h3><%- page.title %></h3>
     <%- toc(page.content, { list_number: false }) %>
