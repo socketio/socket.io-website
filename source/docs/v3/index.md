@@ -1,5 +1,4 @@
 title: Introduction
-alias: /docs/
 release: v3
 type: docs
 order: 1
