@@ -149,7 +149,7 @@ You should now be able to refresh your tab without losing your session:
 
 <img src="/images/private-messaging-part-2-persistent-session.gif" alt="Persistent sessions" />
 
-On the server-side, the session is saved in an in-memory store (`server/sessionStore.js`):
+On the server-side, the session is saved in an in-memory store (`src/sessionStore.js`):
 
 ```js
 class InMemorySessionStore extends SessionStore {
