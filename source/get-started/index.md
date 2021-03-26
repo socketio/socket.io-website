@@ -14,4 +14,4 @@ Recommended for beginners to Socket.IO or Node.js. The “Hello world!” of the
   - [Part III](/get-started/private-messaging-part-3/): persistent messages
   - [Part IV](/get-started/private-messaging-part-4/): scaling up
 
-A slightly more complex chat application, introducing [middlewares](/docs/v3/middlewares/) and [rooms](/docs/v3/rooms/) features.
+A slightly more complex chat application, introducing [middlewares](/docs/v4/middlewares/) and [rooms](/docs/v4/rooms/) features.
