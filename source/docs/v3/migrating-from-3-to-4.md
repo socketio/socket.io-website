@@ -48,7 +48,7 @@ Examples:
 const operator1 = io.to("room1");
 const operator2 = operator1.to("room2");
 const operator3 = socket.broadcast;
-const operator4 = socket.to("room3").to("room4");
+const operator4 = operator3.to("room3").to("room4");
 
 operator1.emit(/* ... */); // only to clients in "room1"
 operator2.emit(/* ... */); // to clients in "room1" or in "room2"
