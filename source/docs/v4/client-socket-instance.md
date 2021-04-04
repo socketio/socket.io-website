@@ -59,7 +59,7 @@ The Socket instance emits three special events:
 Please note that since Socket.IO v3, the Socket instance does not emit any event related to the reconnection logic anymore. You can listen to the events on the Manager instance directly:
 
 ```js
-socket.io.on("reconnection_attempt", () => {
+socket.io.on("reconnect_attempt", () => {
   // ...
 });
 
