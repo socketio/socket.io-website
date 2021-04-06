@@ -304,11 +304,13 @@ socket.on("connect", () => {
 });
 ```
 
-### socket.open()
+### socket.connect()
+
+<span class="changelog">Added in v1.0.0</span>
 
   - **Returns** `Socket`
 
-Manually opens the socket.
+Manually connects the socket.
 
 ```js
 const socket = io({
@@ -316,20 +318,22 @@ const socket = io({
 });
 
 // ...
-socket.open();
+socket.connect();
 ```
 
 It can also be used to manually reconnect:
 
 ```js
 socket.on("disconnect", () => {
-  socket.open();
+  socket.connect();
 });
 ```
 
-### socket.connect()
+### socket.open()
 
-Synonym of [socket.open()](#socketopen).
+<span class="changelog">Added in v1.0.0</span>
+
+Synonym of [socket.connect()](#socket-connect).
 
 ### socket.send([...args][, ack])
 
@@ -455,15 +459,26 @@ Sets a modifier for a subsequent event emission that the event data will only be
 socket.compress(false).emit("an event", { some: "data" });
 ```
 
-### socket.close()
+### socket.disconnect()
+
+<span class="changelog">Added in v1.0.0</span>
 
   - **Returns** `Socket`
 
-Disconnects the socket manually.
+Manually disconnects the socket. In that case, the socket will not try to reconnect.
 
-### socket.disconnect()
+Associated disconnection reason:
 
-Synonym of [socket.close()](#socketclose).
+- client-side: `"io client disconnect"`
+- server-side: `"client namespace disconnect"`
+
+If this is the last active Socket instance of the Manager, the low-level connection will be closed.
+
+### socket.close()
+
+<span class="changelog">Added in v1.0.0</span>
+
+Synonym of [socket.disconnect()](#socket-disconnect).
 
 ### Flag: 'volatile'
 
