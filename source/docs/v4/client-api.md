@@ -460,6 +460,19 @@ Disconnects the socket manually.
 
 Synonym of [socket.close()](#socketclose).
 
+### Flag: 'volatile'
+
+<span class="changelog">Added in v3.0.0</span>
+
+Sets a modifier for the subsequent event emission indicating that the packet may be dropped if:
+
+- the socket is not connected
+- the low-level transport is not writable (for example, when a `POST` request is already running in HTTP long-polling mode)
+
+```js
+socket.volatile.emit(/* ... */); // the server may or may not receive it
+```
+
 ### Event: 'connect'
 
 Fired upon connection to the Namespace (including a successful reconnection).
