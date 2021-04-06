@@ -5,56 +5,82 @@ type: docs
 order: 355
 ---
 
+## Server-side
+
 ```js
 io.on("connection", (socket) => {
 
-  // sending to the client
-  socket.emit("hello", "can you hear me?", 1, 2, "abc");
+  // basic emit
+  socket.emit(/* ... */);
 
-  // sending to all clients except sender
-  socket.broadcast.emit("broadcast", "hello friends!");
+  // to all clients in the current namespace except the sender
+  socket.broadcast.emit(/* ... */);
 
-  // sending to all clients in "game" room except sender
-  socket.to("game").emit("nice game", "let's play a game");
+  // to all clients in room1 except the sender
+  socket.to("room1").emit(/* ... */);
 
-  // sending to all clients in "game1" and/or in "game2" room, except sender
-  socket.to("game1").to("game2").emit("nice game", "let's play a game (too)");
+  // to all clients in room1 and/or room2 except the sender
+  socket.to(["room1", "room2"]).emit(/* ... */);
 
-  // sending to all clients in "game" room, including sender
-  io.in("game").emit("big-announcement", "the game will start soon");
+  // to all clients in room1
+  io.in("room1").emit(/* ... */);
 
-  // sending to all clients in namespace "myNamespace", including sender
-  io.of("myNamespace").emit("bigger-announcement", "the tournament will start soon");
+  // to all clients in room1 and/or room2 except those in room3
+  io.to(["room1", "room2"]).except("room3").emit(/* ... */);
 
-  // sending to a specific room in a specific namespace, including sender
-  io.of("myNamespace").to("room").emit("event", "message");
+  // to all clients in namespace "myNamespace"
+  io.of("myNamespace").emit(/* ... */);
 
-  // sending to individual socketid (private message)
-  io.to(socketId).emit("hey", "I just met you");
+  // to all clients in room1 in namespace "myNamespace"
+  io.of("myNamespace").to("room1").emit(/* ... */);
+
+  // to individual socketid (private message)
+  io.to(socketId).emit(/* ... */);
+
+  // to all clients on this node (when using multiple nodes)
+  io.local.emit(/* ... */);
+
+  // to all connected clients
+  io.emit(/* ... */);
 
   // WARNING: `socket.to(socket.id).emit()` will NOT work, as it will send to everyone in the room
   // named `socket.id` but the sender. Please use the classic `socket.emit()` instead.
 
-  // sending with acknowledgement
-  socket.emit("question", "do you think so?", (answer) => {});
+  // with acknowledgement
+  socket.emit("question", (answer) => {
+    // ...
+  });
 
-  // sending without compression
-  socket.compress(false).emit("uncompressed", "that's rough");
+  // without compression
+  socket.compress(false).emit(/* ... */);
 
-  // sending a message that might be dropped if the client is not ready to receive messages
-  socket.volatile.emit("maybe", "do you really need it?");
-
-  // sending to all clients on this node (when using multiple nodes)
-  io.local.emit("hi", "my lovely babies");
-
-  // sending to all connected clients
-  io.emit("an event sent to all connected clients");
+  // a message that might be dropped if the low-level transport is not writable
+  socket.volatile.emit(/* ... */);
 
 });
-
 ```
 
-**Note:** The following events are reserved and should not be used as event names by your application:
+## Client-side
+
+```js
+// basic emit
+socket.emit(/* ... */);
+
+// with acknowledgement
+socket.emit("question", (answer) => {
+  // ...
+});
+
+// without compression
+socket.compress(false).emit(/* ... */);
+
+// a message that might be dropped if the low-level transport is not writable
+socket.volatile.emit(/* ... */);
+```
+
+## Reserved events
+
+On each side, the following events are reserved and should not be used as event names by your application:
 
 - `connect`
 - `connect_error`
