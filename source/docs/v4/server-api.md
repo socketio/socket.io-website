@@ -525,6 +525,44 @@ io.on("connection", (socket) => {
 });
 ```
 
+### socket.use(fn)
+
+<details class="changelog">
+    <summary>History</summary>
+
+| Version | Changes |
+| ------- | ------- |
+| v3.0.5 | Restoration of the first implementation.
+| v3.0.0 | Removal in favor of `socket.onAny()`.
+| v1.7.2 | The `error` event is sent directly to the client.
+| v1.6.0 | First implementation.
+
+</details>
+
+  - `fn` _(Function)_
+
+Registers a middleware, which is a function that gets executed for every incoming `Packet` and receives as parameter the packet and a function to optionally defer execution to the next registered middleware.
+
+Errors passed to the middleware callback are then emitted as `error` events on the server-side:
+
+```js
+io.on("connection", (socket) => {
+  socket.use(([event, ...args], next) => {
+    if (isUnauthorized(event)) {
+      return next(new Error("unauthorized event"));
+    }
+    // do not forget to call next
+    next();
+  });
+
+  socket.on("error", (err) => {
+    if (err.message === "unauthorized event") {
+      socket.disconnect();
+    }
+  });
+});
+```
+
 ### socket.send([...args][, ack])
 
   - `args`
