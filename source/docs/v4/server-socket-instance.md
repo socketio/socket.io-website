@@ -127,6 +127,39 @@ io.on("connection", (socket) => {
 
 ```
 
+## Socket middlewares
+
+Those middlewares looks a lot like the usual [middlewares](/docs/v4/middlewares/), except that they are called for each incoming packet:
+
+```js
+socket.use(([event, ...args], next) => {
+  // do something with the packet (logging, authorization, rate limiting...)
+  // do not forget to call next() at the end
+  next();
+});
+```
+
+The `next` method can also be called with an error object. In that case, the event will not reach the registered event handlers and an `error` event will be emitted instead:
+
+```js
+io.on("connection", (socket) => {
+  socket.use(([event, ...args], next) => {
+    if (isUnauthorized(event)) {
+      return next(new Error("unauthorized event"));
+    }
+    next();
+  });
+
+  socket.on("error", (err) => {
+    if (err && err.message === "unauthorized event") {
+      socket.disconnect();
+    }
+  });
+});
+```
+
+Note: this feature only exists on the server-side. For the client-side, you might be interested in [catch-all listeners](/docs/v4/listening-to-events/#Catch-all-listeners).
+
 ## Events
 
 On the server-side, the Socket instance emits two special events:

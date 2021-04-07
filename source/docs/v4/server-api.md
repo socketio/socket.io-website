@@ -556,7 +556,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("error", (err) => {
-    if (err.message === "unauthorized event") {
+    if (err && err.message === "unauthorized event") {
       socket.disconnect();
     }
   });
