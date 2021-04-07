@@ -101,6 +101,23 @@ io.on("connection", (socket) => {
 });
 ```
 
+## Socket#data
+
+An arbitrary object that can be used in conjunction with the `fetchSockets()` utility method:
+
+```js
+// server A
+io.on("connection", (socket) => {
+  socket.data.username = "alice";
+});
+
+// server B
+const sockets = await io.fetchSockets();
+console.log(sockets[0].data.username); // "alice"
+```
+
+More information [here](/docs/v4/server-instance/#Utility-methods).
+
 ## Additional attributes
 
 As long as you do not overwrite any existing attribute, you can attach any attribute to the Socket instance and use it later:

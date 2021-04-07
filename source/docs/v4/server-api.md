@@ -278,6 +278,68 @@ io.engine.generateId = (req) => {
 }
 ```
 
+### server.socketsJoin(rooms)
+
+<span class="changelog">Added in v4.0.0</span>
+
+Alias for [`io.of("/").socketsJoin(rooms)`](#namespace-socketsJoin-rooms).
+
+```js
+// make all Socket instances join the "room1" room
+io.socketsJoin("room1");
+
+// make all Socket instances in the "room1" room join the "room2" and "room3" rooms
+io.in("room1").socketsJoin(["room2", "room3"]);
+```
+
+See [here](/docs/v4/server-instance/#Utility-methods).
+
+### server.socketsLeave(rooms)
+
+<span class="changelog">Added in v4.0.0</span>
+
+Alias for [`io.of("/").socketsLeave(rooms)`](#namespace-socketsLeave-rooms).
+
+```js
+// make all Socket instances leave the "room1" room
+io.socketsLeave("room1");
+
+// make all Socket instances in the "room1" room leave the "room2" and "room3" rooms
+io.in("room1").socketsLeave(["room2", "room3"]);
+```
+
+See [here](/docs/v4/server-instance/#Utility-methods).
+
+### server.disconnectSockets([close])
+
+<span class="changelog">Added in v4.0.0</span>
+
+Alias for [`io.of("/").disconnectSockets(close)`](#namespace-disconnectSockets-close).
+
+```js
+// make all Socket instances disconnect
+io.disconnectSockets();
+
+// make all Socket instances in the "room1" room disconnect (and close the low-level connection)
+io.in("room1").disconnectSockets(true);
+```
+
+See [here](/docs/v4/server-instance/#Utility-methods).
+
+### server.fetchSockets()
+
+<span class="changelog">Added in v4.0.0</span>
+
+```js
+// return all Socket instances
+const sockets = await io.fetchSockets();
+
+// return all Socket instances in the "room1" room of the main namespace
+const sockets = await io.in("room1").fetchSockets();
+```
+
+See [here](/docs/v4/server-instance/#Utility-methods).
+
 ## Namespace
 
 Represents a pool of sockets connected under a given scope identified by a pathname (eg: `/chat`).
@@ -313,10 +375,20 @@ Please see the explanation [here](/docs/v4/rooms/#Implementation-details).
 
 ### namespace.to(room)
 
-  - `room` _(String)_
-  - **Returns** `Namespace` for chaining
+<details class="changelog">
+    <summary>History</summary>
 
-Sets a modifier for a subsequent event emission that the event will only be _broadcasted_ to clients that have joined the given `room`.
+| Version | Changes |
+| ------- | ------- |
+| v4.0.0 | Allow to pass an array of rooms.
+| v1.0.0 | Initial implementation.
+
+</details>
+
+  - `room` _(string)_ | _(string[])_
+  - **Returns** `BroadcastOperator` for chaining
+
+Sets a modifier for a subsequent event emission that the event will only be _broadcast_ to clients that have joined the given `room`.
 
 To emit to multiple rooms, you can call `to` several times.
 
@@ -325,11 +397,36 @@ const io = require("socket.io")();
 const adminNamespace = io.of("/admin");
 
 adminNamespace.to("level1").emit("an event", { some: "data" });
+
+// multiple rooms
+io.to("room1").to("room2").emit(/* ... */);
+
+// or with an array
+io.to(["room1", "room2"]).emit(/* ... */);
 ```
 
 ### namespace.in(room)
 
+<span class="changelog">Added in v1.0.0</span>
+
 Synonym of [namespace.to(room)](#namespace-to-room).
+
+### namespace.except(rooms)
+
+<span class="changelog">Added in v4.0.0</span>
+
+  - `rooms` _(string)_ | _(string[])_
+  - **Returns** `BroadcastOperator`
+
+Sets a modifier for a subsequent event emission that the event will only be _broadcast_ to clients that have not joined the given `rooms`.
+
+```js
+// to all clients except the ones in "room1"
+io.except("room1").emit(/* ... */);
+
+// to all clients in "room2" except the ones in "room3"
+io.to("room2").except("room3").emit(/* ... */);
+```
 
 ### namespace.emit(eventName[, ...args])
 
@@ -392,6 +489,125 @@ socket.on("connect_error", err => {
   console.log(err.data); // { content: "Please retry later" }
 });
 ```
+
+More information can be found [here](/docs/v4/middlewares/).
+
+### namespace.socketsJoin(rooms)
+
+<span class="changelog">Added in v4.0.0</span>
+
+  - `rooms` _(string)_ | _(string[])_
+  - **Returns** `void`
+
+Makes the matching Socket instances join the specified rooms:
+
+```js
+// make all Socket instances join the "room1" room
+io.socketsJoin("room1");
+
+// make all Socket instances in the "room1" room join the "room2" and "room3" rooms
+io.in("room1").socketsJoin(["room2", "room3"]);
+
+// make all Socket instances in the "room1" room of the "admin" namespace join the "room2" room
+io.of("/admin").in("room1").socketsJoin("room2");
+```
+
+More information can be found [here](/docs/v4/server-instance/#Utility-methods).
+
+### namespace.socketsLeave(rooms)
+
+<span class="changelog">Added in v4.0.0</span>
+
+  - `rooms` _(string)_ | _(string[])_
+  - **Returns** `void`
+
+Makes the matching Socket instances leave the specified rooms:
+
+```js
+// make all Socket instances leave the "room1" room
+io.socketsLeave("room1");
+
+// make all Socket instances in the "room1" room leave the "room2" and "room3" rooms
+io.in("room1").socketsLeave(["room2", "room3"]);
+
+// make all Socket instances in the "room1" room of the "admin" namespace leave the "room2" room
+io.of("/admin").in("room1").socketsLeave("room2");
+```
+
+### namespace.disconnectSockets([close])
+
+<span class="changelog">Added in v4.0.0</span>
+
+  - `close` _(Boolean)_ whether to close the underlying connection
+  - **Returns** `void`
+
+Makes the matching Socket instances disconnect.
+
+```js
+// make all Socket instances disconnect
+io.disconnectSockets();
+
+// make all Socket instances in the "room1" room disconnect (and discard the low-level connection)
+io.in("room1").disconnectSockets(true);
+
+// make all Socket instances in the "room1" room of the "admin" namespace disconnect
+io.of("/admin").in("room1").disconnectSockets();
+
+// this also works with a single socket ID
+io.of("/admin").in(theSocketId).disconnectSockets();
+```
+
+### namespace.fetchSockets()
+
+<span class="changelog">Added in v4.0.0</span>
+
+- **Returns** `(Socket | RemoteSocket)[]`
+
+Returns the matching Socket instances:
+
+```js
+// return all Socket instances
+const sockets = await io.fetchSockets();
+
+// return all Socket instances in the "room1" room of the main namespace
+const sockets = await io.in("room1").fetchSockets();
+
+// return all Socket instances in the "room1" room of the "admin" namespace
+const sockets = await io.of("/admin").in("room1").fetchSockets();
+
+// this also works with a single socket ID
+const sockets = await io.in(theSocketId).fetchSockets();
+```
+
+The `sockets` variable in the example above is an array of objects exposing a subset of the usual Socket class:
+
+```js
+for (const socket of sockets) {
+  console.log(socket.id);
+  console.log(socket.handshake);
+  console.log(socket.rooms);
+  console.log(socket.data);
+  socket.emit(/* ... */);
+  socket.join(/* ... */);
+  socket.leave(/* ... */);
+  socket.disconnect(/* ... */);
+}
+```
+
+The `data` attribute is an arbitrary object that can be used to share information between Socket.IO servers:
+
+```js
+// server A
+io.on("connection", (socket) => {
+  socket.data.username = "alice";
+});
+
+// server B
+const sockets = await io.fetchSockets();
+console.log(sockets[0].data.username); // "alice"
+```
+
+**Important note**: this method (and `socketsJoin`, `socketsLeave` and `disconnectSockets` too) is compatible with the Redis adapter (starting with `socket.io-redis@6.1.0`), which means that they will work across Socket.IO servers.
 
 ### Event: 'connection'
 
@@ -736,10 +952,20 @@ io.on("connection", (socket) => {
 
 ### socket.to(room)
 
-  - `room` _(String)_
+<details class="changelog">
+    <summary>History</summary>
+
+| Version | Changes |
+| ------- | ------- |
+| v4.0.0 | Allow to pass an array of rooms.
+| v1.0.0 | Initial implementation.
+
+</details>
+
+  - `room` _(string)_ | _(string[])_
   - **Returns** `Socket` for chaining
 
-Sets a modifier for a subsequent event emission that the event will only be _broadcasted_ to clients that have joined the given `room` (the socket itself being excluded).
+Sets a modifier for a subsequent event emission that the event will only be _broadcast_ to clients that have joined the given `room` (the socket itself being excluded).
 
 To emit to multiple rooms, you can call `to` several times.
 
@@ -751,6 +977,9 @@ io.on("connection", (socket) => {
 
   // to multiple rooms
   socket.to("room1").to("room2").emit("hello");
+
+  // or with an array
+  socket.to(["room1", "room2"]).emit("hello");
 
   // a private message to another socket
   socket.to(/* another socket id */).emit("hey");
@@ -764,7 +993,29 @@ io.on("connection", (socket) => {
 
 ### socket.in(room)
 
+<span class="changelog">Added in v1.0.0</span>
+
 Synonym of [socket.to(room)](#socket-to-room).
+
+### socket.except(rooms)
+
+<span class="changelog">Added in v4.0.0</span>
+
+  - `rooms` _(string)_ | _(string[])_
+  - **Returns** `BroadcastOperator`
+
+Sets a modifier for a subsequent event emission that the event will only be _broadcast_ to clients that have not joined the given `rooms` (the socket itself being excluded).
+
+```js
+// to all clients except the ones in "room1" and the sender
+socket.broadcast.except("room1").emit(/* ... */);
+
+// same as above
+socket.except("room1").emit(/* ... */);
+
+// to all clients in "room4" except the ones in "room5" and the sender
+socket.to("room4").except("room5").emit(/* ... */);
+```
 
 ### socket.compress(value)
 
