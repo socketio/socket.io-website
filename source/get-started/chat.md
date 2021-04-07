@@ -37,21 +37,23 @@ npm install express@4
 Once it's installed we can create an `index.js` file that will set up our application.
 
 ```js
-const app = require('express')();
-const http = require('http').createServer(app);
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello world</h1>');
 });
 
-http.listen(3000, () => {
+server.listen(3000, () => {
   console.log('listening on *:3000');
 });
 ```
 
 This means that it:
 
-- Express initializes `app` to be a function handler that you can supply to an HTTP server (as seen in line 2). </li>
+- Express initializes `app` to be a function handler that you can supply to an HTTP server (as seen in line 4). </li>
 - We define a route handler `/` that gets called when we hit our website home.</li>
 - We make the http server listen on port 3000.</li>
 
@@ -124,9 +126,11 @@ npm install socket.io
 That will install the module and add the dependency to `package.json`. Now let’s edit `index.js` to add it:
 
 ```js
-const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const io = require('socket.io')(server);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
@@ -141,7 +145,7 @@ http.listen(3000, () => {
 });
 ```
 
-Notice that I initialize a new instance of `socket.io` by passing the `http` (the HTTP server) object. Then I listen on the `connection` event for incoming sockets and log it to the console.
+Notice that I initialize a new instance of `socket.io` by passing the `server` (the HTTP server) object. Then I listen on the `connection` event for incoming sockets and log it to the console.
 
 
 Now in index.html add the following snippet before the `</body>` (end body tag):
