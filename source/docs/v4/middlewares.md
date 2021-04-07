@@ -17,7 +17,7 @@ Note: this function will be executed only once per connection (even if the conne
 
 ## Registering a middleware
 
-A middleware function has access to the [Socket instance](/docs/v4/server-socket-instance) and to the next registered middleware function.
+A middleware function has access to the [Socket instance](/docs/v4/server-socket-instance/) and to the next registered middleware function.
 
 ```js
 io.use((socket, next) => {
