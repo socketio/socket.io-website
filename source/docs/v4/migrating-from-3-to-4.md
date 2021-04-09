@@ -19,7 +19,7 @@ Here is the complete list of changes:
   - [The default value of `pingTimeout` was increased](#The-default-value-of-pingTimeout-was-increased)
 - [New features](#New-features)
   - [Allow excluding specific rooms when broadcasting](#Allow-excluding-specific-rooms-when-broadcasting)
-  - [Allow to pass an arrow to `io.to()`](#Allow-to-pass-an-arrow-to-io-to)
+  - [Allow to pass an array to `io.to()`](#Allow-to-pass-an-array-to-io-to)
   - [Additional utility methods](#Additional-utility-methods)
   - [Typed events](#Typed-events)
   - [`autoUnref` option](#autoUnref-option)
@@ -107,7 +107,7 @@ Some users experienced long delays between disconnection on the server-side and 
 
 That being said, the current value (5s) caused unexpected disconnections when a big payload was sent over a slow network, because it prevents the ping-pong packets from being exchanged between the client and the server. This can also happen when a synchronous task blocks the server for more than 5 seconds.
 
-The new value (20s) thus seems like a good balance between quick disconnection detection and tolerance to various delays.
+The new value (20s) thus seems like a good balance between quick disconnection detection and tolerance to various/ delays.
 
 ### New features
 
@@ -124,7 +124,7 @@ socket.except("room1").emit(/* ... */); // same as above
 socket.to("room4").except("room5").emit(/* ... */); // to all clients in "room4" except the ones in "room5" and the sender
 ```
 
-#### Allow to pass an arrow to `io.to()`
+#### Allow to pass an array to `io.to()`
 
 The `to()` method now accepts an array of rooms.
 
