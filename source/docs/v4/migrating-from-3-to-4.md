@@ -107,7 +107,7 @@ Some users experienced long delays between disconnection on the server-side and 
 
 That being said, the current value (5s) caused unexpected disconnections when a big payload was sent over a slow network, because it prevents the ping-pong packets from being exchanged between the client and the server. This can also happen when a synchronous task blocks the server for more than 5 seconds.
 
-The new value (20s) thus seems like a good balance between quick disconnection detection and tolerance to various/ delays.
+The new value (20s) thus seems like a good balance between quick disconnection detection and tolerance to various delays.
 
 ### New features
 
