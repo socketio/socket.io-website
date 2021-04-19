@@ -356,23 +356,50 @@ Whether to allow transport upgrades.
 
 #### `perMessageDeflate`
 
+<details class="changelog">
+    <summary>History</summary>
+
+| Version | Changes |
+| ------- | ------- |
+| v3.0.0 | The permessage-deflate extension is now disabled by default.
+| v1.4.0 | First implementation.
+
+</details>
+
 Default value: `false`
 
 Whether to enable the [permessage-deflate extension](https://tools.ietf.org/html/draft-ietf-hybi-permessage-compression-19) for the WebSocket transport. This extension is known to add a significant overhead in terms of performance and memory consumption, so we suggest to only enable it if it is really needed.
 
 Please note that if `perMessageDeflate` is set to `false` (which is the default), the compress flag used when emitting (`socket.compress(true).emit(...)`) will be ignored when the connection is established with WebSockets, as the permessage-deflate extension cannot be enabled on a per-message basis.
 
-Example:
+All options from the [`ws` module](https://github.com/websockets/ws/blob/master/README.md#websocket-compression) are supported:
 
 ```js
 const io = require("socket.io")(httpServer, {
   perMessageDeflate: {
-    threshold: 1024
+    threshold: 2048, // defaults to 1024
+
+    zlibDeflateOptions: {
+      chunkSize: 8 * 1024, // defaults to 16 * 1024
+    },
+
+    zlibInflateOptions: {
+      windowBits: 14, // defaults to 15
+      memLevel: 7, // defaults to 8
+    },
+
+    clientNoContextTakeover: true, // defaults to negotiated value.
+    serverNoContextTakeover: true, // defaults to negotiated value.
+    serverMaxWindowBits: 10, // defaults to negotiated value.
+
+    concurrencyLimit: 20, // defaults to 10
   }
 });
 ```
 
 #### `httpCompression`
+
+<span class="changelog">Added in v1.4.0</span>
 
 Default value: `true`
 
@@ -385,7 +412,11 @@ Example:
 ```js
 const io = require("socket.io")(httpServer, {
   httpCompression: {
-    threshold: 1024
+    threshold: 2048, // defaults to 1024
+
+    chunkSize: 8 * 1024, // defaults to 16 * 1024
+    windowBits: 14, // defaults to 15
+    memLevel: 7, // defaults to 8
   }
 });
 ```
