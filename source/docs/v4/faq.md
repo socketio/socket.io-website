@@ -47,6 +47,22 @@ io.use((socket, next) => {
 });
 
 io.on('connection', (socket) => {
+  // Middleware to reload session between emits. Without this the session will be constant
+  // even if it is changed else where (ie. User logs out).
+  socket.use((packet, next) => {
+    socket.request.session.reload((error) => 
+    {
+      if (error) {
+        return next(new Error("There has been an error reloading the session."));
+      }
+      next();
+    })
+  });
+  
+  socket.on("message", () => {
+    console.log(socket.request.session.name + " has sent a message!")
+  })
+
   const session = socket.request.session;
   session.connections++;
   session.save();
@@ -55,3 +71,6 @@ io.on('connection', (socket) => {
 const port = process.env.PORT || 3000;
 server.listen(port, () => console.log('server listening on port ' + port));
 ```
+
+
+
