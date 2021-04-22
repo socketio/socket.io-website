@@ -4,9 +4,13 @@ permalink: /get-started/
 
 ## CHOOSE YOUR OWN ADVENTURE!
 
-- [Write a chat application](/get-started/chat)
+- Write a simple [chat application](/get-started/chat)
 
 Recommended for beginners to Socket.IO or Node.js. The “Hello world!” of the framework is [here](/get-started/chat).
+
+- A basic [CRUD project](/get-started/basic-crud-application/)
+
+Let's create a classic CRUD (**C**reate-**R**ead-**U**pdate-**D**elete) application with Socket.IO. We'll introduce [acknowledgements](/docs/v4/emitting-events/#Acknowledgements) and the ability to [broadcast](/docs/v4/broadcasting-events/) events.
 
 - Private messaging
   - [Part I](/get-started/private-messaging-part-1/): initial implementation
