@@ -14,7 +14,7 @@ Here's where we were at the end of the [1st part](/get-started/private-messaging
 
 <img src="/images/private-messaging-part-1-chat.gif" alt="Chat" />
 
-Exchanging private messages is currently based on the [`socket.id`](/docs/v3/server-socket-instance/#Socket-id) attribute, which works well but is problematic here because this ID is only valid for the current Socket.IO session and will change every time the low-level connection between the client and the server is severed.
+Exchanging private messages is currently based on the [`socket.id`](/docs/v4/server-socket-instance/#Socket-id) attribute, which works well but is problematic here because this ID is only valid for the current Socket.IO session and will change every time the low-level connection between the client and the server is severed.
 
 So, every time the user reconnects, a new user will be created:
 
@@ -208,7 +208,7 @@ Here's what happens:
 
 <img src="/images/private-messaging-part-2-private-messaging.png" alt="Private messaging" />
 
-With `socket.to(to).to(socket.userID).emit(...)`, we broadcast in both the recipient and the sender (excluding the given Socket instance) [rooms](/docs/v3/rooms/).
+With `socket.to(to).to(socket.userID).emit(...)`, we broadcast in both the recipient and the sender (excluding the given Socket instance) [rooms](/docs/v4/rooms/).
 
 So now we have:
 
@@ -216,7 +216,7 @@ So now we have:
 
 ### Disconnection handler
 
-On the server-side, the Socket instance emits two special events: [disconnecting](/docs/v3/server-socket-instance/#disconnecting) and [disconnect](/docs/v3/server-socket-instance/#disconnect)
+On the server-side, the Socket instance emits two special events: [disconnecting](/docs/v4/server-socket-instance/#disconnecting) and [disconnect](/docs/v4/server-socket-instance/#disconnect)
 
 We need to update our "disconnect" handler, because the session can now be shared across tabs:
 
@@ -244,7 +244,7 @@ The `allSockets()` method returns a Set containing the ID of all Socket instance
 
 Note: we could also have used the `io.of("/").sockets` object, like in part I, but the `allSockets()` method also works with multiple Socket.IO servers, which will be useful when scaling up.
 
-Documentation: [allSockets() method](/docs/v3/server-api/#namespace-allSockets)
+Documentation: [allSockets() method](/docs/v4/server-api/#namespace-allSockets)
 
 ## Review
 
@@ -252,7 +252,7 @@ OK, so… what we have now is better, but there is yet another issue: the messag
 
 This could be fixed for example by saving the messages in the localStorage of the browser, but there is another more annoying repercussion:
 
-- when the sender gets disconnected, all the packets it sends are [buffered](/docs/v3/client-offline-behavior/#Buffered-events) until reconnection (which is great, in most cases)
+- when the sender gets disconnected, all the packets it sends are [buffered](/docs/v4/client-offline-behavior/#Buffered-events) until reconnection (which is great, in most cases)
 
 <img src="/images/private-messaging-part-2-sender-offline.gif" alt="Chat with sender that gets disconnected" />
 

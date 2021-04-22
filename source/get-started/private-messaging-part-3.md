@@ -16,7 +16,7 @@ Here's where we were at the end of the [2nd part](/get-started/private-messaging
 
 All is working pretty well, but there is a last issue which is quite annoying:
 
-- when the sender gets disconnected, all the packets it sends are [buffered](/docs/v3/client-offline-behavior/#Buffered-events) until reconnection (which is great in this case)
+- when the sender gets disconnected, all the packets it sends are [buffered](/docs/v4/client-offline-behavior/#Buffered-events) until reconnection (which is great in this case)
 
 <img src="/images/private-messaging-part-2-sender-offline.gif" alt="Chat with sender that gets disconnected" />
 

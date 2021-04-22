@@ -84,14 +84,14 @@ On the client-side, no change is needed, we will focus on the server-side here.
 
 When creating multiple Socket.IO servers, there are two things to do:
 
-- you need to enable sticky-session (please see [here](/docs/v3/using-multiple-nodes/#Sticky-load-balancing) for the complete explanation)
+- you need to enable sticky-session (please see [here](/docs/v4/using-multiple-nodes/#Sticky-load-balancing) for the complete explanation)
 - you need to replace the default in-memory adapter with the Redis adapter (or another compatible adapter)
 
 In our example, the `@socket.io/sticky` module is used to ensure that requests from a given client are always routed to the same Socket.IO server. This is what is called "sticky-session":
 
 <img src="/images/private-messaging-part-4-sticky-session.png" alt="Sticky session" />
 
-Note: we could also have created several processes listening to different ports (or used multiple hosts), and add a reverse-proxy in front of them. Enabling sticky-session for common reverse-proxy solutions like NginX or HAProxy is covered in the [documentation](/docs/v3/using-multiple-nodes/#Sticky-load-balancing).
+Note: we could also have created several processes listening to different ports (or used multiple hosts), and add a reverse-proxy in front of them. Enabling sticky-session for common reverse-proxy solutions like NginX or HAProxy is covered in the [documentation](/docs/v4/using-multiple-nodes/#Sticky-load-balancing).
 
 The cluster is created in the `server/cluster.js` file:
 
@@ -299,7 +299,7 @@ Reading messages... (press Ctrl-C to quit)
 Documentation:
 
 - [Redis pub/sub mechanism](https://redis.io/topics/pubsub)
-- [the Redis adapter](/docs/v3/using-multiple-nodes/#Passing-events-between-nodes)
+- [the Redis adapter](/docs/v4/using-multiple-nodes/#Passing-events-between-nodes)
 
 Note: with the Redis adapter, the `allSockets()` method which is used in the "disconnect" handler automatically returns the Socket IDs across all Socket.IO servers, so there is nothing to update.
 
@@ -307,8 +307,8 @@ Note: with the Redis adapter, the `allSockets()` method which is used in the "di
 
 OK, so let's sum it up: we have created a fully functional chat (yes, once again!), robust, ready to scale horizontally, which allowed us to introduce some useful Socket.IO features:
 
-- [middlewares](/docs/v3/middlewares/)
-- [rooms](/docs/v3/rooms/)
-- scaling to [multiple Socket.IO servers](/docs/v3/using-multiple-nodes/)
+- [middlewares](/docs/v4/middlewares/)
+- [rooms](/docs/v4/rooms/)
+- scaling to [multiple Socket.IO servers](/docs/v4/using-multiple-nodes/)
 
 Thanks for reading!

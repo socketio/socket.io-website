@@ -11,9 +11,9 @@ Note: any resemblance to an existing product is purely intentional.
 
 We will cover the following topics:
 
-- [middlewares](/docs/v3/middlewares/)
-- [rooms](/docs/v3/rooms/)
-- scaling to [multiple Socket.IO servers](/docs/v3/using-multiple-nodes/)
+- [middlewares](/docs/v4/middlewares/)
+- [rooms](/docs/v4/rooms/)
+- scaling to [multiple Socket.IO servers](/docs/v4/using-multiple-nodes/)
 
 Prerequisites:
 
@@ -123,14 +123,14 @@ Here, we create a Socket.IO server and attach it to a Node.js HTTP server.
 Documentation:
 
 - [Node.js documentation](https://nodejs.org/docs/latest/api/http.html)
-- [Socket.IO server initialization](/docs/v3/server-initialization/)
+- [Socket.IO server initialization](/docs/v4/server-initialization/)
 
 The `cors` configuration is needed so that HTTP requests sent by the frontend (running at `http://localhost:8080`) are allowed to reach the server (running at `http://localhost:3000`, so we are in a cross-origin situation).
 
 Documentation:
 
 - [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS)
-- [Socket.IO CORS configuration](/docs/v3/handling-cors/)
+- [Socket.IO CORS configuration](/docs/v4/handling-cors/)
 
 ### Client initialization
 
@@ -145,11 +145,11 @@ const socket = io(URL, { autoConnect: false });
 export default socket;
 ```
 
-`autoConnect` is set to `false` so the connection is not established right away. We will manually call [`socket.connect()`](/docs/v3/client-api/#socket-connect) later, once the user has selected a username.
+`autoConnect` is set to `false` so the connection is not established right away. We will manually call [`socket.connect()`](/docs/v4/client-api/#socket-connect) later, once the user has selected a username.
 
-Documentation: [Socket.IO client initialization](/docs/v3/client-initialization/)
+Documentation: [Socket.IO client initialization](/docs/v4/client-initialization/)
 
-We also register a [catch-all listener](/docs/v3/listening-to-events/#Catch-all-listeners), which is very useful during development:
+We also register a [catch-all listener](/docs/v4/listening-to-events/#Catch-all-listeners), which is very useful during development:
 
 ```js
 socket.onAny((event, ...args) => {
@@ -185,7 +185,7 @@ If you open your network tab in your developer tools, you should see a few HTTP 
 
 1. the Engine.IO handshake (contains the session ID — here, `zBjrh...AAAK` — that is used in subsequent requests)
 2. the Socket.IO handshake request (contains the value of the `auth` option)
-3. the Socket.IO handshake response (contains the [Socket#id](/docs/v3/server-socket-instance/#Socket-id))
+3. the Socket.IO handshake response (contains the [Socket#id](/docs/v4/server-socket-instance/#Socket-id))
 4. the WebSocket connection
 5. the first HTTP long-polling request, which is closed once the WebSocket connection is established
 
@@ -204,12 +204,12 @@ io.use((socket, next) => {
 });
 ```
 
-The `username` is added as an attribute of the `socket` object, in order to be reused later. You can attach any attribute, as long as you don't overwrite an existing one like [`socket.id`](/docs/v3/server-socket-instance/#Socket-id) or [`socket.handshake`](/docs/v3/server-socket-instance/#Socket-handshake).
+The `username` is added as an attribute of the `socket` object, in order to be reused later. You can attach any attribute, as long as you don't overwrite an existing one like [`socket.id`](/docs/v4/server-socket-instance/#Socket-id) or [`socket.handshake`](/docs/v4/server-socket-instance/#Socket-handshake).
 
 Documentation:
 
-- [middlewares](/docs/v3/middlewares/)
-- [the Socket instance](/docs/v3/server-socket-instance/)
+- [middlewares](/docs/v4/middlewares/)
+- [the Socket instance](/docs/v4/server-socket-instance/)
 
 On the client-side (`src/App.vue`), we add a handler for the `connect_error` event:
 
@@ -256,7 +256,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-We are looping over the `io.of("/").sockets` object, which is a Map of all currently connected Socket instances, indexed by [ID](/docs/v3/server-socket-instance/#Socket-id).
+We are looping over the `io.of("/").sockets` object, which is a Map of all currently connected Socket instances, indexed by [ID](/docs/v4/server-socket-instance/#Socket-id).
 
 Two remarks here:
 
@@ -301,7 +301,7 @@ io.on("connection", (socket) => {
 
 The other form of broadcasting, `io.emit("user connected", ...)`, would have sent the "user connected" event to all connected clients, including the new user.
 
-Documentation: [broadcasting events](/docs/v3/broadcasting-events/)
+Documentation: [broadcasting events](/docs/v4/broadcasting-events/)
 
 *Client*
 
@@ -352,7 +352,7 @@ socket.on("private message", ({ content, to }) => {
 });
 ```
 
-Here, we are using the concept of [Rooms](/docs/v3/rooms/). These are channels that Socket instances can join and leave, and you can broadcast to all clients in a room.
+Here, we are using the concept of [Rooms](/docs/v4/rooms/). These are channels that Socket instances can join and leave, and you can broadcast to all clients in a room.
 
 We are relying on the fact that the Socket instance automatically joins the room identified by its id (`socket.join(socket.id)` is called for you).
 
