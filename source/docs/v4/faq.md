@@ -48,7 +48,7 @@ io.use((socket, next) => {
 
 io.on('connection', (socket) => {
   // Middleware to reload session between emits. Without this the session will be constant
-  // even if it is changed else where (ie. User logs out).
+  // even if it is changed elsewhere (ie. User logs out).
   socket.use((packet, next) => {
     socket.request.session.reload((error) => 
     {
