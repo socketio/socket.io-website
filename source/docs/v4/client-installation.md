@@ -6,7 +6,59 @@ type: docs
 order: 301
 ---
 
-## Compatibility
+## Version compatibility
+
+Here is the compatibility table between the server and the JS client:
+
+<table>
+    <tr>
+        <th rowspan="2">JS Client version</th>
+        <th colspan="4">Socket.IO server version</th>
+    </tr>
+    <tr>
+        <td align="center">1.x</td>
+        <td align="center">2.x</td>
+        <td align="center">3.x</td>
+        <td align="center">4.x</td>
+    </tr>
+    <tr>
+        <td align="center">1.x</td>
+        <td align="center"><b>YES</b></td>
+        <td align="center">NO</td>
+        <td align="center">NO</td>
+        <td align="center">NO</td>
+    </tr>
+    <tr>
+        <td align="center">2.x</td>
+        <td align="center">NO</td>
+        <td align="center"><b>YES</b></td>
+        <td align="center"><b>YES</b><sup>1</sup></td>
+        <td align="center"><b>YES</b><sup>1</sup></td>
+    </tr>
+    <tr>
+        <td align="center">3.x</td>
+        <td align="center">NO</td>
+        <td align="center">NO</td>
+        <td align="center"><b>YES</b></td>
+        <td align="center"><b>YES</b></td>
+    </tr>
+    <tr>
+        <td align="center">4.x</td>
+        <td align="center">NO</td>
+        <td align="center">NO</td>
+        <td align="center"><b>YES</b></td>
+        <td align="center"><b>YES</b></td>
+    </tr>
+</table>
+
+[1] Yes, with <code><a href="https://socket.io/docs/v4/server-initialization/#allowEIO3">allowEIO3: true</a></code>
+
+Please check the associated migration guides:
+
+- [v2 to v3](/docs/v4/migrating-from-2-x-to-3-0/)
+- [v3 to v4](/docs/v4/migrating-from-3-x-to-4-0/)
+
+## Browser support
 
 Socket.IO does support IE9 and above. IE 6/7/8 are not supported anymore.
 
