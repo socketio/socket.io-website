@@ -35,7 +35,7 @@ Let's start!
 First, let's retrieve the initial implementation of our chat application:
 
 ```
-git clone git@github.com:socketio/socket.io.git
+git clone https://github.com/socketio/socket.io.git
 cd socket.io/examples/private-messaging
 git checkout examples/private-messaging-part-1
 ```
