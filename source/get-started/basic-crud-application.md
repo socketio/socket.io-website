@@ -23,7 +23,7 @@ The code can be found in the `examples` directory of the main repository:
 
 ```
 git clone https://github.com/socketio/socket.io.git
-cd socket.io/examples/basic-crud/
+cd socket.io/examples/basic-crud-application/
 ```
 
 You should see two directories:
