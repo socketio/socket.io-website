@@ -9,7 +9,6 @@
       <% if (!isIndex) { %>
       <%- partial(is_post() ? '_partial/sidebar-post' : '_partial/sidebar') %>
       <% } %>
-      <%- partial('_partial/ad') %>
       <%- body %>
     </div>
     <%- partial('_partial/mobile-nav', null, {cache: false}) %>
