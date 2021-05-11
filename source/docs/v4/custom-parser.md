@@ -136,6 +136,8 @@ Cons:
 
 ## The msgpack parser
 
+This parser uses the [MessagePack](https://msgpack.org/) serialization format.
+
 The source code of this parser can be found here: https://github.com/darrachequesne/socket.io-msgpack-parser
 
 Sample usage:
@@ -175,3 +177,5 @@ Cons:
 
 - incompatible with browsers that [do not support Arraybuffers](https://caniuse.com/mdn-javascript_builtins_arraybuffer), like IE9
 - harder to debug in the Network tab of the browser
+
+Please note that `socket.io-msgpack-parser` relies on the [`notepack.io`](https://github.com/darrachequesne/notepack) MessagePack implementation. This implementation mainly focuses on performance and minimal bundle size, and thus does not support features like extension types. For a parser based on the [official JavaScript implementation](https://github.com/msgpack/msgpack-javascript), please check [this package](https://www.npmjs.com/package/@skgdev/socket.io-msgpack-javascript).
