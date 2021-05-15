@@ -264,19 +264,56 @@ server.listen(PORT); // PORT is free to use
 io = Server(server);
 ```
 
-### server.engine.generateId
+### server.engine
 
-Overwrites the default method to generate your custom socket id.
+A reference to the underlying Engine.IO server (more information [here](/docs/v4/how-it-works/)).
 
-The function is called with a node request object (`http.IncomingMessage`) as first parameter.
+It can be used to fetch the number of currently connected clients:
 
 ```js
-const uuid = require("uuid");
-
-io.engine.generateId = (req) => {
-  return uuid.v4(); // must be unique across all Socket.IO servers
-}
+const count = io.engine.clientsCount;
 ```
+
+As of `socket.io@4.1.0`, the Engine.IO server emits three special events:
+
+- `initial_headers`: will be emitted just before writing the response headers of the first HTTP request of the session (the handshake), allowing you to customize them.
+
+```js
+io.engine.on("initial_headers", (headers, req) => {
+  headers["test"] = "123";
+  headers["set-cookie"] = "mycookie=456";
+});
+```
+
+- `headers`: : will be emitted just before writing the response headers of each HTTP request of the session (including the WebSocket upgrade), allowing you to customize them.
+
+```js
+io.engine.on("headers", (headers, req) => {
+  headers["test"] = "789";
+});
+```
+
+- `connection_error`: will be emitted when a connection is abnormally closed
+
+```js
+io.engine.on("connection_error", (err) => {
+  console.log(err.req);	     // the request object
+  console.log(err.code);     // the error code, for example 1
+  console.log(err.message);  // the error message, for example "Session ID unknown"
+  console.log(err.context);  // some additional error context
+});
+```
+
+Here is the list of possible error codes:
+
+| Code | Message |
+|:----:|:-------:|
+| 0 | "Transport unknown"
+| 1 | "Session ID unknown"
+| 2 | "Bad handshake method"
+| 3 | "Bad request"
+| 4 | "Forbidden"
+| 5 | "Unsupported protocol version"
 
 ### server.socketsJoin(rooms)
 
@@ -339,6 +376,62 @@ const sockets = await io.in("room1").fetchSockets();
 ```
 
 See [here](/docs/v4/server-instance/#Utility-methods).
+
+### server.serverSideEmit(eventName[, ...args][, ack])
+
+<span class="changelog">Added in v4.1.0</span>
+
+Synonym of: `io.of("/").serverSideEmit(/* ... */);`
+
+See [here](#namespace-serverSideEmit-eventName-…args-ack).
+
+### Event: `connection`
+
+  - `socket` _(Socket)_ socket connection with client
+
+Fired upon a connection from client.
+
+```js
+io.on("connection", (socket) => {
+  // ...
+});
+```
+
+### Event: `connect`
+
+Synonym of [Event: "connection"](#Event-connection).
+
+### Event: `new_namespace`
+
+  - `namespace` _(Namespace)_ the new namespace
+
+Fired when a new namespace is created:
+
+```js
+io.on("new_namespace", (namespace) => {
+  // ...
+});
+```
+
+This can be useful for example:
+
+- to attach a shared middleware to each namespace
+
+```js
+io.on("new_namespace", (namespace) => {
+  namespace.use(myMiddleware);
+});
+```
+
+- to track the [dynamically created](/docs/v4/namespaces/#Dynamic-namespaces) namespaces
+
+```js
+io.of(/\/nsp-\w+/);
+
+io.on("new_namespace", (namespace) => {
+  console.log(namespace.name);
+});
+```
 
 ## Namespace
 
@@ -608,6 +701,71 @@ console.log(sockets[0].data.username); // "alice"
 ```
 
 **Important note**: this method (and `socketsJoin`, `socketsLeave` and `disconnectSockets` too) is compatible with the Redis adapter (starting with `socket.io-redis@6.1.0`), which means that they will work across Socket.IO servers.
+
+
+### namespace.serverSideEmit(eventName[, ...args][, ack])
+
+<span class="changelog">Added in v4.1.0</span>
+
+  - `eventName` _(String)_
+  - `args`
+  - `ack` _(Function)_
+  - **Returns** `true`
+
+Sends a message to the other Socket.IO servers of the [cluster](/docs/v4/using-multiple-nodes/).
+
+Syntax:
+
+```js
+io.serverSideEmit("hello", "world");
+```
+
+And on the receiving side:
+
+```js
+io.on("hello", (arg1) => {
+  console.log(arg1); // prints "world"
+});
+```
+
+Acknowledgements are supported too:
+
+```js
+// server A
+io.serverSideEmit("ping", (err, responses) => {
+  console.log(responses[0]); // prints "pong"
+});
+
+// server B
+io.on("ping", (cb) => {
+  cb("pong");
+});
+```
+
+Notes:
+
+- the `connection`, `connect` and `new_namespace` strings are reserved and cannot be used in your application.
+
+- you can send any number of arguments, but binary structures are currently not supported (the array of arguments will be `JSON.stringify`-ed)
+
+Example:
+
+```js
+io.serverSideEmit("hello", "world", 1, "2", { 3: "4" });
+```
+
+- the acknowledgement callback might be called with an error, if the other Socket.IO servers do not respond after a given delay
+
+```js
+io.serverSideEmit("ping", (err, responses) => {
+  if (err) {
+    // at least one Socket.IO server has not responded
+    // the 'responses' array contains all the responses already received though
+  } else {
+    // success! the 'responses' array contains one object per other Socket.IO server in the cluster
+  }
+});
+```
 
 ### Event: 'connection'
 

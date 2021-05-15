@@ -31,6 +31,47 @@ io.engine.generateId = (req) => {
 }
 ```
 
+As of `socket.io@4.1.0`, the Engine.IO server emits three special events:
+
+- `initial_headers`: will be emitted just before writing the response headers of the first HTTP request of the session (the handshake), allowing you to customize them.
+
+```js
+io.engine.on("initial_headers", (headers, req) => {
+  headers["test"] = "123";
+  headers["set-cookie"] = "mycookie=456";
+});
+```
+
+- `headers`: : will be emitted just before writing the response headers of each HTTP request of the session (including the WebSocket upgrade), allowing you to customize them.
+
+```js
+io.engine.on("headers", (headers, req) => {
+  headers["test"] = "789";
+});
+```
+
+- `connection_error`: will be emitted when a connection is abnormally closed
+
+```js
+io.engine.on("connection_error", (err) => {
+  console.log(err.req);	     // the request object
+  console.log(err.code);     // the error code, for example 1
+  console.log(err.message);  // the error message, for example "Session ID unknown"
+  console.log(err.context);  // some additional error context
+});
+```
+
+Here is the list of possible error codes:
+
+| Code | Message |
+|:----:|:-------:|
+| 0 | "Transport unknown"
+| 1 | "Session ID unknown"
+| 2 | "Bad handshake method"
+| 3 | "Bad request"
+| 4 | "Forbidden"
+| 5 | "Unsupported protocol version"
+
 ## Utility methods
 
 Some utility methods were added in Socket.IO v4.0.0 to manage the Socket instances and their rooms:
@@ -39,6 +80,8 @@ Some utility methods were added in Socket.IO v4.0.0 to manage the Socket instanc
 - [̀`socketsLeave`](#socketsLeave): makes the matching socket instances leave the specified rooms
 - [`disconnectSockets`](#disconnectSockets): makes the matching socket instances disconnect
 - [`fetchSockets`](#fetchSockets): returns the matching socket instances
+
+The [`serverSideEmit`](#serverSideEmit) method was added in Socket.IO v4.1.0.
 
 Those methods share the same semantics as broadcasting, and the same filters apply:
 
@@ -149,6 +192,64 @@ io.on("connection", (socket) => {
 const sockets = await io.fetchSockets();
 console.log(sockets[0].data.username); // "alice"
 ```
+
+### `serverSideEmit`
+
+This method allows to emit events to the other Socket.IO servers of the cluster, in a [multi-server setup](/docs/v4/using-multiple-nodes/).
+
+Syntax:
+
+```js
+io.serverSideEmit("hello", "world");
+```
+
+And on the receiving side:
+
+```js
+io.on("hello", (arg1) => {
+  console.log(arg1); // prints "world"
+});
+```
+
+Acknowledgements are supported too:
+
+```js
+// server A
+io.serverSideEmit("ping", (err, responses) => {
+  console.log(responses[0]); // prints "pong"
+});
+
+// server B
+io.on("ping", (cb) => {
+  cb("pong");
+});
+```
+
+Notes:
+
+- the `connection`, `connect` and `new_namespace` strings are reserved and cannot be used in your application.
+
+- you can send any number of arguments, but binary structures are currently not supported (the array of arguments will be `JSON.stringify`-ed)
+
+Example:
+
+```js
+io.serverSideEmit("hello", "world", 1, "2", { 3: "4" });
+```
+
+- the acknowledgement callback might be called with an error, if the other Socket.IO servers do not respond after a given delay
+
+```js
+io.serverSideEmit("ping", (err, responses) => {
+  if (err) {
+    // at least one Socket.IO server has not responded
+    // the 'responses' array contains all the responses already received though
+  } else {
+    // success! the 'responses' array contains one object per other Socket.IO server in the cluster
+  }
+});
+```
+
 
 ## Events
 

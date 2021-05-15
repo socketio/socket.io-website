@@ -356,6 +356,18 @@ Default value: `"t"`
 
 The name of the query parameter to use as our timestamp key.
 
+#### `closeOnBeforeunload`
+
+<span class="changelog">Added in v4.1.0</span>
+
+Default value: `true`
+
+Whether to (silently) close the connection when the [`beforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event) event is emitted in the browser.
+
+With `closeOnBeforeunload` set to `false`, a `disconnect` event will be emitted by the Socket instance when the user reloads the page on Firefox (but not on Chrome or Safari).
+
+With `closeOnBeforeunload` set to `true`, all browsers will have the same behavior (no `disconnect` event when reloading the page). But this might cause issues if you use the `beforeunload` event in your application.
+
 #### Node.js-specific options
 
 The following options are supported:
