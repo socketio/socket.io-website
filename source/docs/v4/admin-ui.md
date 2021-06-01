@@ -2,7 +2,7 @@ title: Admin UI
 permalink: /docs/v4/admin-ui/
 release: v4
 type: docs
-order: 403
+order: 453
 ---
 
 The Socket.IO admin UI can be used to have an overview of the state of your Socket.IO deployment.

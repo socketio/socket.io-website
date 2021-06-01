@@ -311,7 +311,7 @@ will be broadcast to every clients through the [Pub/Sub mechanism](https://redis
 
 Using the Redis adapter has another benefit: you can now emit events from outside the context of your Socket.IO processes.
 
-![Diagram with Redis adapter and external emitter](/images/emitter.png)
+![Diagram with Redis adapter and external emitter](/images/redis-emitter.png)
 
 This emitter is available in several languages:
 

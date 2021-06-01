@@ -23,7 +23,8 @@ An Adapter is a server-side component which is responsible for:
 There are currently two official adapters:
 
 - the [in-memory adapter](https://github.com/socketio/socket.io-adapter/), which is included by default with the Socket.IO server
-- the [Redis adapter](https://github.com/socketio/socket.io-redis/), which is useful when scaling horizontally (see [here](/docs/v4/using-multiple-nodes/))
+- the [Redis adapter](https://github.com/socketio/socket.io-redis-adapter), which is useful when scaling horizontally (see [here](/docs/v4/using-multiple-nodes/))
+- the [MongoDB adapter](https://github.com/socketio/socket.io-mongo-adapter)
 
 The in-memory adapter can be extended to add support for other messaging systems, like RabbitMQ or Google Pub/Sub for example.
 

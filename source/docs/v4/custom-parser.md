@@ -2,7 +2,7 @@ title: Custom parser
 permalink: /docs/v4/custom-parser/
 release: v4
 type: docs
-order: 402
+order: 452
 ---
 
 Since Socket.IO v2.0.0, it is now possible to provide your own parser, in order to control the marshalling / unmarshalling of packets.
