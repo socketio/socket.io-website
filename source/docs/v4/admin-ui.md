@@ -50,7 +50,8 @@ const httpServer = createServer();
 
 const io = new Server(httpServer, {
   cors: {
-    origin: ["https://admin.socket.io"]
+    origin: ["https://admin.socket.io"],
+    credentials: true
   }
 });
 
@@ -103,6 +104,27 @@ instrument(io, {
   },
 });
 ```
+
+WARNING! Please note that the `bcrypt` package does not currently support hashes starting with the `$2y$` prefix, which is used by some BCrypt implementations (for example https://bcrypt-generator.com/ or https://www.bcrypt.fr/). You can check the validity of the hash with:
+
+```
+$ node
+> require("bcrypt").compareSync("<the password>", "<the hash>")
+true
+```
+
+You can generate a valid hash with:
+
+```
+$ node
+> require("bcrypt").hashSync("changeit", 10)
+'$2b$10$LQUE...'
+```
+
+See also:
+
+- https://github.com/kelektiv/node.bcrypt.js/issues/849
+- https://stackoverflow.com/a/36225192/5138796
 
 #### `namespaceName`
 
