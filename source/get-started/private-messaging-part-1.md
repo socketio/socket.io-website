@@ -7,7 +7,7 @@ In this guide we will create the following application:
 
 ![Chat](/images/private-messaging-part-1-chat.png)
 
-Note: any resemblance to an existing product is purely intentional.
+Note: any resemblance to an existing product is purely unintentional.
 
 We will cover the following topics:
 
