@@ -29,7 +29,6 @@ Other server implementations:
 
 - Java: https://github.com/mrniko/netty-socketio
 - Java: https://github.com/trinopoty/socket.io-server-java
-- Python: https://github.com/miguelgrinberg/python-socketio
 
 ### How does that work?
 
