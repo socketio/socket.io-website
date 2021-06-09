@@ -7,8 +7,6 @@ In this guide we will create the following application:
 
 ![Chat](/images/private-messaging-part-1-chat.png)
 
-Note: any resemblance to an existing product is purely intentional.
-
 We will cover the following topics:
 
 - [middlewares](/docs/v4/middlewares/)
