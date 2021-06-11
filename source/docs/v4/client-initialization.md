@@ -83,6 +83,7 @@ You can find more details about namespaces [here](/docs/v4/namespaces/).
   - [forceBase64](#forceBase64)
   - [timestampRequests](#timestampRequests)
   - [timestampParam](#timestampParam)
+  - [closeOnBeforeunload](#closeOnBeforeunload)
   - [Node.js-specific options](#Node-js-specific-options) (like `agent`, `cert` or `rejectUnauthorized`)
 - [Manager options](#Manager-options)
   - [reconnection](#reconnection)
@@ -527,6 +528,8 @@ socket.io.open();
 
 #### `parser`
 
+<span class="changelog">Added in v2.2.0</span>
+
 Default value: `require("socket.io-parser")`
 
 The parser used to marshall/unmarshall packets. Please see [here](/docs/v4/custom-parser) for more information.
@@ -536,6 +539,8 @@ The parser used to marshall/unmarshall packets. Please see [here](/docs/v4/custo
 Note: These settings are specific to the given Socket instance.
 
 #### `auth`
+
+<span class="changelog">Added in v3.0.0</span>
 
 Default value: -
 

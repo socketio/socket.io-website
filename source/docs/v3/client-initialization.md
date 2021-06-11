@@ -516,6 +516,8 @@ socket.io.open();
 
 #### `parser`
 
+<span class="changelog">Added in v2.2.0</span>
+
 Default value: `require("socket.io-parser")`
 
 The parser used to marshall/unmarshall packets. Please see [here](/docs/v3/custom-parser) for more information.
@@ -525,6 +527,8 @@ The parser used to marshall/unmarshall packets. Please see [here](/docs/v3/custo
 Note: These settings are specific to the given Socket instance.
 
 #### `auth`
+
+<span class="changelog">Added in v3.0.0</span>
 
 Default value: -
 
