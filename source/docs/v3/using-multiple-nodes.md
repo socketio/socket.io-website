@@ -316,7 +316,7 @@ Using the Redis adapter has another benefit: you can now emit events from outsid
 
 This emitter is available in several languages:
 
-- Javascript: https://github.com/socketio/socket.io-emitter
+- TypeScript: https://github.com/socketio/socket.io-emitter
 - Java: https://github.com/sunsus/socket.io-java-emitter
 - Python: https://pypi.org/project/socket.io-emitter/
 - PHP: https://github.com/rase-/socket.io-php-emitter
