@@ -108,6 +108,11 @@ const customLinks = {
     url: "https://friendlylikes.com/buy-instagram-likes/",
     img: "https://images.opencollective.com/friendlylikes/fdf1b44/avatar.png",
     alt: "Friendlylikes"
+  },
+  "writepaperforme": {
+    url: "https://writepaperfor.me/",
+    img: "/images/sponsors/writepaperforme.png",
+    alt: "Write my paper for me"
   }
 }
 
