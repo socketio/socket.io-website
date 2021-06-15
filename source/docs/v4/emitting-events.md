@@ -94,7 +94,7 @@ socket.emit("update item", "1", { name: "updated" }, (response) => {
 });
 ```
 
-Timeout are not supported by default, but it is quite straightforward to implement:
+Timeouts are not supported by default, but it is quite straightforward to implement:
 
 ```js
 const withTimeout = (onSuccess, onTimeout, timeout) => {
