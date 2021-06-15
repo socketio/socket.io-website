@@ -8,7 +8,7 @@ order: 209
 When deploying multiple Socket.IO servers, there are two things to take care of:
 
 - enabling sticky session, if HTTP long-polling is enabled (which is the default): see [below](#Enabling-sticky-session)
-- using the Redis adapter (or another compatible [Adapter](/docs/v4/glossary/#Adapter)): see [below](#Passing-events-between-nodes)
+- using a compatible adapter, see [here](/docs/v4/adapter/)
 
 ## Sticky load balancing
 
@@ -285,40 +285,7 @@ if (cluster.isMaster) {
 
 ## Passing events between nodes
 
-### The Redis adapter
-
 Now that you have multiple Socket.IO nodes accepting connections, if you want to broadcast events to all clients (or to the clients in a certain [room](/docs/v4/rooms/)) you&#8217;ll need some way of passing messages between processes or computers.
 
-The interface in charge of routing messages is what we call the [Adapter](/docs/v4/glossary/#Adapter). You can implement your own on top of the [socket.io-adapter](https://github.com/socketio/socket.io-adapter) (by inheriting from it) or you can use the one we provide on top of [Redis](https://redis.io/): [socket.io-redis](https://github.com/socketio/socket.io-redis):
+The interface in charge of routing messages is what we call the [Adapter](/docs/v4/adapter).
 
-```js
-const io = require("socket.io")(3000);
-const redis = require("socket.io-redis");
-io.adapter(redis({ host: "localhost", port: 6379 }));
-```
-
-Then the following call:
-
-```js
-io.emit("hi", "all sockets");
-```
-
-will be broadcast to every clients through the [Pub/Sub mechanism](https://redis.io/topics/pubsub) of Redis:
-
-![Broadcasting with Redis](/images/broadcasting-redis.png)
-
-### Sending messages from the outside world
-
-Using the Redis adapter has another benefit: you can now emit events from outside the context of your Socket.IO processes.
-
-![Diagram with Redis adapter and external emitter](/images/redis-emitter.png)
-
-This emitter is available in several languages:
-
-- Javascript: https://github.com/socketio/socket.io-emitter
-- Java: https://github.com/sunsus/socket.io-java-emitter
-- Python: https://pypi.org/project/socket.io-emitter/
-- PHP: https://github.com/rase-/socket.io-php-emitter
-- Golang: https://github.com/yosuke-furukawa/socket.io-go-emitter
-- Perl: https://metacpan.org/pod/SocketIO::Emitter
-- Rust: https://github.com/epli2/socketio-rust-emitter

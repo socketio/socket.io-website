@@ -10,10 +10,11 @@ An Adapter is a server-side component which is responsible for broadcasting even
 
 When scaling to multiple Socket.IO servers, you will need to replace the default in-memory adapter by another implementation, so the events are properly routed to all clients.
 
-Besides the in-memory adapter, there are two official implementations:
+Besides the in-memory adapter, there are three official implementations:
 
-- the [Redis adapter](https://github.com/socketio/socket.io-redis-adapter)
-- the [MongoDB adapter](https://github.com/socketio/socket.io-mongo-adapter)
+- the [Redis adapter](/docs/v4/redis-adapter/)
+- the [MongoDB adapter](/docs/v4/mongo-adapter/)
+- the [Postgres adapter](/docs/v4/postgres-adapter)
 
 There are also several other options which are maintained by the (awesome!) community:
 
@@ -21,14 +22,6 @@ There are also several other options which are maintained by the (awesome!) comm
 - [NATS](https://github.com/MickL/socket.io-nats-adapter)
 
 Please note that enabling sticky sessions is still needed when using multiple Socket.IO servers and HTTP long-polling. More information [here](/docs/v4/using-multiple-nodes/#Why-is-sticky-session-required).
-
-## Emitter
-
-Most adapter implementations come with their associated emitter package, which allows communicating to the group of Socket.IO servers from another Node.js process.
-
-![Emitter diagram](/images/emitter.png)
-
-This may be useful for example in a microservice setup, where all clients connect to the microservice M1, while the microservice M2 uses the emitter to broadcast packets (uni-directional communication).
 
 ## API
 
@@ -57,5 +50,87 @@ io.of("/").adapter.on("create-room", (room) => {
 
 io.of("/").adapter.on("join-room", (room, id) => {
   console.log(`socket ${id} has joined room ${room}`);
+});
+```
+
+## Emitter
+
+Most adapter implementations come with their associated emitter package, which allows communicating to the group of Socket.IO servers from another Node.js process.
+
+![Emitter diagram](/images/emitter.png)
+
+This may be useful for example in a microservice setup, where all clients connect to the microservice M1, while the microservice M2 uses the emitter to broadcast packets (uni-directional communication).
+
+## Emitter cheatsheet
+
+```js
+// to all clients
+emitter.emit(/* ... */);
+
+// to all clients in "room1"
+emitter.to("room1").emit(/* ... */);
+
+// to all clients in "room1" except those in "room2"
+emitter.to("room1").except("room2").emit(/* ... */);
+
+const adminEmitter = emitter.of("/admin");
+
+// to all clients in the "admin" namespace
+adminEmitter.emit(/* ... */);
+
+// to all clients in the "admin" namespace and in the "room1" room
+adminEmitter.to("room1").emit(/* ... */);
+```
+
+The emitter also supports the utility methods that were added in `socket.io@4.0.0`:
+
+- `socketsJoin()`
+
+```js
+// make all Socket instances join the "room1" room
+emitter.socketsJoin("room1");
+
+// make all Socket instances of the "admin" namespace in the "room1" room join the "room2" room
+emitter.of("/admin").in("room1").socketsJoin("room2");
+```
+
+- `socketsLeave()`
+
+```js
+// make all Socket instances leave the "room1" room
+emitter.socketsLeave("room1");
+
+// make all Socket instances in the "room1" room leave the "room2" and "room3" rooms
+emitter.in("room1").socketsLeave(["room2", "room3"]);
+
+// make all Socket instances in the "room1" room of the "admin" namespace leave the "room2" room
+emitter.of("/admin").in("room1").socketsLeave("room2");
+```
+
+- `disconnectSockets()`
+
+```js
+// make all Socket instances disconnect
+emitter.disconnectSockets();
+
+// make all Socket instances in the "room1" room disconnect (and discard the low-level connection)
+emitter.in("room1").disconnectSockets(true);
+
+// make all Socket instances in the "room1" room of the "admin" namespace disconnect
+emitter.of("/admin").in("room1").disconnectSockets();
+
+// this also works with a single socket ID
+emitter.of("/admin").in(theSocketId).disconnectSockets();
+```
+
+- `serverSideEmit()`
+
+```js
+// emit an event to all the Socket.IO servers of the cluster
+emitter.serverSideEmit("hello", "world");
+
+// Socket.IO server (server-side)
+io.on("hello", (arg) => {
+  console.log(arg); // prints "world"
 });
 ```
