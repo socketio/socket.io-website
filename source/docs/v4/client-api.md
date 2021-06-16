@@ -213,11 +213,23 @@ Creates a new `Socket` for the given namespace. Only `auth` (`{ auth: {key: "val
 
 Fired upon a connection error.
 
+```js
+socket.io.on("error", (error) => {
+  // ...
+});
+```
+
 ### Event: 'reconnect'
 
   - `attempt` _(Number)_ reconnection attempt number
 
 Fired upon a successful reconnection.
+
+```js
+socket.io.on("reconnect", (attempt) => {
+  // ...
+});
+```
 
 ### Event: 'reconnect_attempt'
 
@@ -225,19 +237,43 @@ Fired upon a successful reconnection.
 
 Fired upon an attempt to reconnect.
 
+```js
+socket.io.on("reconnect_attempt", (attempt) => {
+  // ...
+});
+```
+
 ### Event: 'reconnect_error'
 
   - `error` _(Object)_ error object
 
 Fired upon a reconnection attempt error.
 
+```js
+socket.io.on("reconnect_error", (error) => {
+  // ...
+});
+```
+
 ### Event: 'reconnect_failed'
 
 Fired when couldn't reconnect within `reconnectionAttempts`.
 
+```js
+socket.io.on("reconnect_failed", () => {
+  // ...
+});
+```
+
 ### Event: 'ping'
 
 Fired when a ping packet is received from the server.
+
+```js
+socket.io.on("ping", () => {
+  // ...
+});
+```
 
 ## Socket
 
