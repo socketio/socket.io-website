@@ -259,7 +259,6 @@ if (cluster.isMaster) {
   setupMaster(httpServer, {
     loadBalancingMethod: "least-connection", // either "random", "round-robin" or "least-connection"
   });
-  httpServer.listen(3000);
 
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
@@ -276,7 +275,7 @@ if (cluster.isMaster) {
   const io = new Server(httpServer);
   io.adapter(redisAdapter({ host: "localhost", port: 6379 }));
   setupWorker(io);
-
+  httpServer.listen(3000);
   io.on("connection", (socket) => {
     /* ... */
   });
