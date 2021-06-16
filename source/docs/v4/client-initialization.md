@@ -19,10 +19,15 @@ In the examples below, the `io` object comes either from:
 - NPM
 
 ```js
-// ES6 import or TypeScript
+// CommonJS strict
+const { io } = require("socket.io-client");
+// or
 import { io } from "socket.io-client";
-// CommonJS
+
+// NodeJS
 const io = require("socket.io-client");
+// or
+import io from "socket.io-client";
 ```
 
 ## From the same domain
