@@ -48,6 +48,34 @@ io.use((socket, next) => {
 
 Please make sure to call `next()` in any case. Otherwise, the connection will be left hanging until it is closed after a given timeout.
 
+**Important note**: the Socket instance is not actually connected when the middleware gets executed, which means that no `disconnect` event will be emitted if the connection eventually fails.
+
+For example, if the client manually closes the connection:
+
+```js
+// server-side
+io.use((socket, next) => {
+  setTimeout(() => {
+    // next is called after the client disconnection
+    next();
+  }, 1000);
+
+  socket.on("disconnect", () => {
+    // not triggered
+  });
+});
+
+io.on("connection", (socket) => {
+  // not triggered
+});
+
+// client-side
+const socket = io();
+setTimeout(() => {
+  socket.disconnect();
+}, 500);
+```
+
 ## Sending credentials
 
 The client can send credentials with the `auth` option:
