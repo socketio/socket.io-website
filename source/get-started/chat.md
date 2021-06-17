@@ -199,7 +199,7 @@ Let’s make it so that when the user types in a message, the server gets it as 
   var form = document.getElementById('form');
   var input = document.getElementById('input');
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (input.value) {
       socket.emit('chat message', input.value);
@@ -261,7 +261,7 @@ And on the client side when we capture a `chat message` event we’ll include it
   var form = document.getElementById('form');
   var input = document.getElementById('input');
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (input.value) {
       socket.emit('chat message', input.value);
@@ -269,7 +269,7 @@ And on the client side when we capture a `chat message` event we’ll include it
     }
   });
 
-  socket.on('chat message', function(msg) {
+  socket.on('chat message', (msg) => {
     var item = document.createElement('li');
     item.textContent = msg;
     messages.appendChild(item);
