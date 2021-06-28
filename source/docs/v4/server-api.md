@@ -327,6 +327,9 @@ io.socketsJoin("room1");
 
 // make all Socket instances in the "room1" room join the "room2" and "room3" rooms
 io.in("room1").socketsJoin(["room2", "room3"]);
+
+// this also works with a single socket ID
+io.in(theSocketId).socketsJoin("room1");
 ```
 
 See [here](/docs/v4/server-instance/#Utility-methods).
@@ -343,6 +346,9 @@ io.socketsLeave("room1");
 
 // make all Socket instances in the "room1" room leave the "room2" and "room3" rooms
 io.in("room1").socketsLeave(["room2", "room3"]);
+
+// this also works with a single socket ID
+io.in(theSocketId).socketsLeave("room1");
 ```
 
 See [here](/docs/v4/server-instance/#Utility-methods).
@@ -603,6 +609,9 @@ io.in("room1").socketsJoin(["room2", "room3"]);
 
 // make all Socket instances in the "room1" room of the "admin" namespace join the "room2" room
 io.of("/admin").in("room1").socketsJoin("room2");
+
+// this also works with a single socket ID
+io.in(theSocketId).socketsJoin("room1");
 ```
 
 More information can be found [here](/docs/v4/server-instance/#Utility-methods).
@@ -625,6 +634,9 @@ io.in("room1").socketsLeave(["room2", "room3"]);
 
 // make all Socket instances in the "room1" room of the "admin" namespace leave the "room2" room
 io.of("/admin").in("room1").socketsLeave("room2");
+
+// this also works with a single socket ID
+io.in(theSocketId).socketsLeave("room1");
 ```
 
 ### namespace.disconnectSockets([close])

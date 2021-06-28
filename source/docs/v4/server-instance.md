@@ -112,6 +112,9 @@ io.in("room1").socketsJoin(["room2", "room3"]);
 
 // make all Socket instances in the "room1" room of the "admin" namespace join the "room2" room
 io.of("/admin").in("room1").socketsJoin("room2");
+
+// this also works with a single socket ID
+io.in(theSocketId).socketsJoin("room1");
 ```
 
 ### `socketsLeave`
@@ -127,6 +130,9 @@ io.in("room1").socketsLeave(["room2", "room3"]);
 
 // make all Socket instances in the "room1" room of the "admin" namespace leave the "room2" room
 io.of("/admin").in("room1").socketsLeave("room2");
+
+// this also works with a single socket ID
+io.in(theSocketId).socketsLeave("room1");
 ```
 
 ### `disconnectSockets`
