@@ -17,7 +17,7 @@ This means that the server can *push* messages to clients. Whenever you write a 
 
 The first goal is to set up a simple HTML webpage that serves out a form and a list of messages. We’re going to use the Node.JS web framework `express` to this end. Make sure [Node.JS](https://nodejs.org) is installed.
 
-First let’s create a `package.json` manifest file that describes our project. I recommend you place it in a dedicated empty directory (I’ll call mine `chat-example`).
+First let’s create a `package.json` manifest file that describes our project. I recommend you place it in a dedicated empty directory (I’ll call mine `chat-example`) Note: Don't create directory with name `socket.io` otherwise there will be problem while installing `socket.io` package via `npm`. Please refer [this](https://github.com/npm/npm/issues/18327) error. In simple terms ensure that the "name" property in your package.json is not set to "socket.io". Make it more unique.
 
 ```json
 {
