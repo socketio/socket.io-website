@@ -36,10 +36,10 @@ describe("my awesome project", () => {
     io = new Server(httpServer);
     httpServer.listen(() => {
       const port = httpServer.address().port;
-      clientSocket = new Client(`http://localhost:${port}`);
       io.on("connection", (socket) => {
         serverSocket = socket;
       });
+      clientSocket = new Client(`http://localhost:${port}`);
       clientSocket.on("connect", done);
     });
   });
@@ -86,10 +86,10 @@ describe("my awesome project", () => {
     io = new Server(httpServer);
     httpServer.listen(() => {
       const port = httpServer.address().port;
-      clientSocket = new Client(`http://localhost:${port}`);
       io.on("connection", (socket) => {
         serverSocket = socket;
       });
+      clientSocket = new Client(`http://localhost:${port}`);
       clientSocket.on("connect", done);
     });
   });
@@ -136,10 +136,10 @@ test("setup", (t) => {
   io = new Server(httpServer);
   httpServer.listen(() => {
     const port = httpServer.address().port;
-    clientSocket = new Client(`http://localhost:${port}`);
     io.on("connection", (socket) => {
       serverSocket = socket;
     });
+    clientSocket = new Client(`http://localhost:${port}`);
     clientSocket.on("connect", t.end);
   });
 });
