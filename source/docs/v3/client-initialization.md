@@ -163,6 +163,21 @@ const socket = io("https://example.com", { transports: ["websocket"] });
 
 Note: in that case, sticky sessions are not required on the server side (more information [here](/docs/v3/using-multiple-nodes/)).
 
+By default, the HTTP long-polling connection is established first, and then an upgrade to WebSocket is attempted (explanation [here](/docs/v3/how-it-works/#Upgrade-mechanism)). You can use WebSocket first with:
+
+```js
+const socket = io("https://example.com", {
+  transports: ["websocket", "polling"] // use WebSocket first, if available
+});
+
+socket.on("connect_error", () => {
+  // revert to classic upgrade
+  socket.io.opts.transports = ["polling", "websocket"];
+});
+```
+
+One possible downside is that the validity of your [CORS configuration](/docs/v3/handling-cors/) will only be checked if the WebSocket connection fails to be established.
+
 #### `upgrade`
 
 Default value: `true`
