@@ -67,6 +67,15 @@ httpServer.listen(3000);
 
 ## Initialization
 
+- [Standalone](#Standalone)
+- [Attached to an existing HTTP server](#Attached-to-an-existing-HTTP-server)
+  - [With an HTTP server](#With-an-HTTP-server)
+  - [With an HTTPS server](#With-an-HTTPS-server)
+  - [With an HTTP/2 server](#With-an-HTTP-2-server)
+- [With Express](#With-Express)
+- [With Koa](#With-Koa)
+- [With Nest](#With-Nest)
+
 ### Standalone
 
 ```js
@@ -170,6 +179,12 @@ httpServer.listen(3000);
 ```
 
 More information [here](https://koajs.com/).
+
+### With Nest
+
+See the documentation [here](https://docs.nestjs.com/websockets/gateways).
+
+Note: NestJS v7 and below relies on Socket.IO v2, while NestJS v8 relies on Socket.IO v4. Please use a [compatible client](/docs/v4/client-installation/#Version-compatibility).
 
 ## Options
 
