@@ -266,54 +266,7 @@ io = Server(server);
 
 ### server.engine
 
-A reference to the underlying Engine.IO server (more information [here](/docs/v4/how-it-works/)).
-
-It can be used to fetch the number of currently connected clients:
-
-```js
-const count = io.engine.clientsCount;
-```
-
-As of `socket.io@4.1.0`, the Engine.IO server emits three special events:
-
-- `initial_headers`: will be emitted just before writing the response headers of the first HTTP request of the session (the handshake), allowing you to customize them.
-
-```js
-io.engine.on("initial_headers", (headers, req) => {
-  headers["test"] = "123";
-  headers["set-cookie"] = "mycookie=456";
-});
-```
-
-- `headers`: : will be emitted just before writing the response headers of each HTTP request of the session (including the WebSocket upgrade), allowing you to customize them.
-
-```js
-io.engine.on("headers", (headers, req) => {
-  headers["test"] = "789";
-});
-```
-
-- `connection_error`: will be emitted when a connection is abnormally closed
-
-```js
-io.engine.on("connection_error", (err) => {
-  console.log(err.req);	     // the request object
-  console.log(err.code);     // the error code, for example 1
-  console.log(err.message);  // the error message, for example "Session ID unknown"
-  console.log(err.context);  // some additional error context
-});
-```
-
-Here is the list of possible error codes:
-
-| Code | Message |
-|:----:|:-------:|
-| 0 | "Transport unknown"
-| 1 | "Session ID unknown"
-| 2 | "Bad handshake method"
-| 3 | "Bad request"
-| 4 | "Forbidden"
-| 5 | "Unsupported protocol version"
+A reference to the underlying Engine.IO server. See [here](#Engine).
 
 ### server.socketsJoin(rooms)
 
@@ -863,6 +816,18 @@ A reference to the underlying `Client` object.
 
 A reference to the underlying `Client` transport connection (engine.io `Socket` object). This allows access to the IO transport layer, which still (mostly) abstracts the actual TCP/IP socket.
 
+```js
+io.on("connection", (socket) => {
+  const transport = socket.conn.transport.name; // for example, "polling"
+  console.log("current transport", transport);
+
+  socket.conn.on("upgrade", () => {
+    const newTransport = socket.conn.transport.name; // for example, "websocket"
+    console.log("new transport", newTransport);
+  });
+});
+```
+
 ### socket.request
 
   * _(Request)_
@@ -1294,3 +1259,132 @@ A reference to the underlying `engine.io` `Socket` connection.
   * _(Request)_
 
 A getter proxy that returns the reference to the `request` that originated the engine.io connection. Useful for accessing request headers such as `Cookie` or `User-Agent`.
+
+## Engine
+
+The Engine.IO server, which manages the WebSocket / HTTP long-polling connections. More information [here](/docs/v4/how-it-works/).
+
+Its source code can be found here: https://github.com/socketio/engine.io
+
+### engine.clientsCount
+
+<span class="changelog">Added in v1.0.0</span>
+
+  - [_(Number)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
+
+The number of currently connected clients.
+
+```js
+const count = io.engine.clientsCount;
+// may or may not be similar to the count of Socket instances in the main namespace, depending on your usage
+const count2 = io.of("/").sockets.size;
+```
+
+### engine.generateId
+
+  - [_(Function)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+The function used to generate a new session ID. Defaults to [base64id](https://github.com/faeldt/base64id).
+
+```js
+const uuid = require("uuid");
+
+io.engine.generateId = () => {
+  return uuid.v4(); // must be unique across all Socket.IO servers
+}
+```
+
+### engine.handleUpgrade(request, socket, head)
+
+<span class="changelog">Added in v1.0.0</span>
+
+  - `request` [_(http.IncomingMessage)_](https://nodejs.org/docs/latest/api/http.html#http_class_http_incomingmessage) the incoming request
+  - `socket` [_(stream.Duplex)_](https://nodejs.org/docs/latest/api/stream.html#stream_class_stream_duplex) the network socket between the server and client
+  - `head` [_(Buffer)_](https://nodejs.org/docs/latest/api/buffer.html#buffer_class_buffer) the first packet of the upgraded stream (may be empty)
+
+This method can be used to inject an HTTP upgrade:
+
+Example with both a Socket.IO server and a plain WebSocket server:
+
+```js
+const { createServer } = require("http");
+const ws = require("ws");
+const { Server } = require("socket.io");
+
+const httpServer = createServer();
+const wss = new ws.Server({ noServer: true });
+const io = new Server(httpServer);
+
+httpServer.removeAllListeners("upgrade");
+
+httpServer.on("upgrade", (req, socket, head) => {
+  if (req.url === "/") {
+    wss.handleUpgrade(req, socket, head, (ws) => {
+      wss.emit("connection", ws, req);
+    });
+  } else if (req.url.startsWith("/socket.io/")) {
+    io.engine.handleUpgrade(req, socket, head);
+  } else {
+    socket.destroy();
+  }
+});
+
+httpServer.listen(3000);
+```
+
+### Event: 'initial_headers'
+
+<span class="changelog">Added in v4.1.0</span>
+
+  - `headers` [_(Object)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) a hash of headers, indexed by header name
+  - `request` [_(http.IncomingMessage)_](https://nodejs.org/docs/latest/api/http.html#http_class_http_incomingmessage) the incoming request
+
+This event will be emitted just before writing the response headers of **the first** HTTP request of the session (the handshake), allowing you to customize them.
+
+```js
+io.engine.on("initial_headers", (headers, request) => {
+  headers["test"] = "123";
+  headers["set-cookie"] = "mycookie=456";
+});
+```
+
+### Event: 'headers'
+
+<span class="changelog">Added in v4.1.0</span>
+
+  - `headers` [_(Object)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) a hash of headers, indexed by header name
+  - `request` [_(http.IncomingMessage)_](https://nodejs.org/docs/latest/api/http.html#http_class_http_incomingmessage) the incoming request
+
+This event will be emitted just before writing the response headers of **each** HTTP request of the session (including the WebSocket upgrade), allowing you to customize them.
+
+```js
+io.engine.on("headers", (headers, request) => {
+  headers["test"] = "789";
+});
+```
+
+### Event: 'connection_error'
+
+<span class="changelog">Added in v4.1.0</span>
+
+  - `error` [_(Error)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+```js
+io.engine.on("connection_error", (err) => {
+  console.log(err.req);	     // the request object
+  console.log(err.code);     // the error code, for example 1
+  console.log(err.message);  // the error message, for example "Session ID unknown"
+  console.log(err.context);  // some additional error context
+});
+```
+
+This event will be emitted when a connection is abnormally closed. Here is the list of possible error codes:
+
+| Code | Message |
+|:----:|:-------:|
+| 0 | "Transport unknown"
+| 1 | "Session ID unknown"
+| 2 | "Bad handshake method"
+| 3 | "Bad request"
+| 4 | "Forbidden"
+| 5 | "Unsupported protocol version"

@@ -42,7 +42,7 @@ io.engine.on("initial_headers", (headers, req) => {
 });
 ```
 
-- `headers`: : will be emitted just before writing the response headers of each HTTP request of the session (including the WebSocket upgrade), allowing you to customize them.
+- `headers`: will be emitted just before writing the response headers of each HTTP request of the session (including the WebSocket upgrade), allowing you to customize them.
 
 ```js
 io.engine.on("headers", (headers, req) => {
