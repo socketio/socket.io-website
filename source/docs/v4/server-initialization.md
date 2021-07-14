@@ -186,6 +186,22 @@ See the documentation [here](https://docs.nestjs.com/websockets/gateways).
 
 Note: NestJS v7 and below relies on Socket.IO v2, while NestJS v8 relies on Socket.IO v4. Please use a [compatible client](/docs/v4/client-installation/#Version-compatibility).
 
+### With Fastify
+
+You need to register the [`fastify-socket.io`](https://github.com/alemagio/fastify-socket.io) plugin:
+
+```js
+const app = require("fastify")();
+
+app.register(require("fastify-socket.io"));
+
+app.io.on("connection", (socket) => {
+  // ...
+});
+
+app.listen(3000);
+```
+
 ## Options
 
 - [Socket.IO server options](#Socket-IO-server-options)
