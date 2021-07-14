@@ -198,9 +198,16 @@ First and foremost, please note that disconnections are common and expected, eve
 
 That being said, the Socket.IO client will always try to reconnect, unless specifically told [otherwise](/docs/v4/client-initialization/#reconnection).
 
-Possible explanations:
+Possible explanations for a disconnection:
 
+- [The client is not compatible with the version of the server](The-client-is-not-compatible-with-the-version-of-the-server-1)
 - [you are trying to send a huge payload](#You-are-trying-to-send-a-huge-payload)
+
+#### The client is not compatible with the version of the server
+
+Since the format of the packets sent over the WebSocket transport is similar in v2 and v3/v4, you might be able to connect with an incompatible client (see [above](#The-client-is-not-compatible-with-the-version-of-the-server)), but the connection will eventually be closed after a given delay.
+
+So if you are experiencing a regular disconnection after 30 seconds (which was the sum of the values of [pingTimeout](/docs/v4/server-initialization/#pingTimeout) and [pingInterval](/docs/v4/server-initialization/#pingInterval) in Socket.IO v2), this is certainly due to a version incompatibility.
 
 #### You are trying to send a huge payload
 
