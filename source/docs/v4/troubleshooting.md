@@ -200,7 +200,7 @@ That being said, the Socket.IO client will always try to reconnect, unless speci
 
 Possible explanations for a disconnection:
 
-- [The client is not compatible with the version of the server](The-client-is-not-compatible-with-the-version-of-the-server-1)
+- [The client is not compatible with the version of the server](#The-client-is-not-compatible-with-the-version-of-the-server-1)
 - [you are trying to send a huge payload](#You-are-trying-to-send-a-huge-payload)
 
 #### The client is not compatible with the version of the server
