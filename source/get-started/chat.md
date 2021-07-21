@@ -13,7 +13,7 @@ Sockets have traditionally been the solution around which most real-time chat sy
 
 This means that the server can *push* messages to clients. Whenever you write a chat message, the idea is that the server will get it and push it to all other connected clients.
 
-## The web framework
+## The web frameworks
 
 The first goal is to set up a simple HTML webpage that serves out a form and a list of messages. We’re going to use the Node.JS web framework `express` to this end. Make sure [Node.JS](https://nodejs.org) is installed.
 
