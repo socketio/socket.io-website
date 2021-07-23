@@ -162,7 +162,13 @@ That’s all it takes to load the `socket.io-client`, which exposes an `io` glob
 
 If you would like to use the local version of the client-side JS file, you can find it at `node_modules/socket.io/client-dist/socket.io.js`.
 
+You can also use a CDN instead of local files (e.g. `<script src="https://cdn.socket.io/4.1.3/socket.io.js"></script>`).
+
 Notice that I’m not specifying any URL when I call `io()`, since it defaults to trying to connect to the host that serves the page.
+
+If you're behind a reverse proxy such as apache or ngnix please take a look at <a href="https://socket.io/docs/v4/reverse-proxy/">the documentation for it.</a>
+
+If you're hosting your app in a folder that is *not* the root of your website (e.g., example.com/chatapp) then you also need to <a href="https://socket.io/docs/v4/server-initialization/#path">specify the path in both the server and the client.</a>
 
 If you now restart the process (by hitting Control+C and running `node index.js` again) and then refresh the webpage you should see the console print “a user connected”.
 
