@@ -95,7 +95,7 @@ Let's detail the duty of each file:
 
 ### Initialization
 
-First, let's focus on the ̀`createApplication` method in the `lib/app.ts` file:
+First, let's focus on the `createApplication` method in the `lib/app.ts` file:
 
 ```ts
 const io = new Server<ClientEvents, ServerEvents>(httpServer, serverOptions);
@@ -158,7 +158,7 @@ Note: the event suffixes (`:create`, `:read`, ...) replace the usual HTTP verbs 
 
 ### Event handler
 
-Let's focus on the ̀`createTodo` handler now, in the `lib/todo-management/todo.handlers.ts` file:
+Let's focus on the `createTodo` handler now, in the `lib/todo-management/todo.handlers.ts` file:
 
 First, we retrieve the Socket instance:
 
