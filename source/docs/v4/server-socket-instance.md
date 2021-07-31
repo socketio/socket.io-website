@@ -128,6 +128,7 @@ io.use(async (socket, next) => {
   try {
     const user = await fetchUser(socket);
     socket.user = user;
+    next();
   } catch (e) {
     next(new Error("unknown user"));
   }
