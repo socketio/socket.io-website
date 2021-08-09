@@ -60,6 +60,8 @@ socket.onmessage = (data) => {
 You will have, on the client-side:
 
 ```js
+import io from "socket.io";
+
 const socket = io("ws://localhost:3000");
 
 socket.on("connect", () => {
