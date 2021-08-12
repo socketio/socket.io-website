@@ -11,9 +11,6 @@ Socket.IO is a library that enables real-time, bidirectional and event-based com
 
 - a Node.js server: [Source](https://github.com/socketio/socket.io) | [API](/docs/v4/server-api/)
 - a Javascript client library for the browser (which can be also run from Node.js): [Source](https://github.com/socketio/socket.io-client) | [API](/docs/v4/client-api/)
-
-<img src="/images/bidirectional-communication.png" alt="Diagram for bidirectional communication" />
-
 There are also several client implementation in other languages, which are maintained by the community:
 
 - Java: https://github.com/socketio/socket.io-client-java
@@ -23,6 +20,8 @@ There are also several client implementation in other languages, which are maint
 - Python: https://github.com/miguelgrinberg/python-socketio
 - .Net: https://github.com/doghappy/socket.io-client-csharp
 - Rust: https://github.com/1c3t3a/rust-socketio
+
+<img src="/images/bidirectional-communication.png" alt="Diagram for bidirectional communication" />
 
 Other server implementations:
 
