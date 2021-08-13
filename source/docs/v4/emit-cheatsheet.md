@@ -44,7 +44,7 @@ io.on("connection", (socket) => {
   io.emit(/* ... */);
 
   // WARNING: `socket.to(socket.id).emit()` will NOT work, as it will send to everyone in the room
-  // named `socket.id` but the sender. Please use the classic `socket.emit()` instead.
+  // named `socket.id` but not to the sender. Please use the classic `socket.emit()` instead.
 
   // with acknowledgement
   socket.emit("question", (answer) => {
