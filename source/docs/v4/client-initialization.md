@@ -107,7 +107,7 @@ Whether to create a new Manager instance.
 
 A Manager instance is in charge of the low-level connection to the server (established with HTTP long-polling or WebSocket). It handles the reconnection logic.
 
-A Socket instance is the interface which is used to sends events to — and receive events from — the server. It belongs to a given [namespace](/docs/v4/namespaces/).
+A Socket instance is the interface which is used to send events to — and receive events from — the server. It belongs to a given [namespace](/docs/v4/namespaces/).
 
 A single Manager can be attached to several Socket instances.
 
