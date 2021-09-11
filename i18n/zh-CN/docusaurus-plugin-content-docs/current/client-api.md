@@ -322,7 +322,7 @@ More information can be found [here](categories/03-Client/client-socket-instance
 
   - [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
 
-An unique identifier for the socket session. Set after the `connect` event is triggered, and updated after the `reconnect` event.
+A unique identifier for the socket session. Set after the `connect` event is triggered, and updated after the `reconnect` event.
 
 ```js
 const socket = io("http://localhost");
