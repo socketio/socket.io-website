@@ -300,7 +300,7 @@ More information can be found [here](/docs/v3/client-socket-instance/).
 
   - _(String)_
 
-An unique identifier for the socket session. Set after the `connect` event is triggered, and updated after the `reconnect` event.
+A unique identifier for the socket session. Set after the `connect` event is triggered, and updated after the `reconnect` event.
 
 ```js
 const socket = io("http://localhost");
