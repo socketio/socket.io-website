@@ -9,7 +9,7 @@ Socket.IO makes it easy to send events to all the connected clients.
 
 Please note that broadcasting is a **server-only** feature.
 
-## To all connected clients
+## To each client, when they first connect
 
 ![Broadcasting to all connected clients](/images/broadcasting.png)
 
@@ -17,6 +17,16 @@ Please note that broadcasting is a **server-only** feature.
 io.on("connection", (socket) => {
   io.emit("hello", "world");
 });
+```
+
+## To all connected clients
+
+![Broadcasting to all connected clients](/images/broadcasting.png)
+
+```js
+io.sockets.emit("hi", "everyone");
+// is equivalent to
+io.of("/").emit("hi", "everyone");
 ```
 
 ## To all connected clients except the sender
