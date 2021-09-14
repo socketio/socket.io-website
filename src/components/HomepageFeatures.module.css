@@ -1,0 +1,14 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  .feature {
+    width: 300px;
+    margin: 0 auto 60px;
+  }
+}
+

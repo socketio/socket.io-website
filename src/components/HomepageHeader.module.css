@@ -1,0 +1,50 @@
+.hero {
+  padding: 80px 40px;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.left {
+  width: 100%;
+}
+
+.logo {
+  float: none;
+  width: 140px;
+  margin-bottom: 20px;
+}
+
+.right {
+  width: 100%;
+}
+
+.buttons > a:first-child {
+  margin-right: 10px;
+}
+
+@media screen and (min-width: 1000px) {
+  .inner {
+    text-align: initial;
+  }
+
+  .left {
+    display: inline-block;
+    width: 40%;
+    vertical-align: top;
+  }
+
+  .logo {
+    float: right;
+    margin-right: 60px;
+    width: 200px;
+  }
+
+  .right {
+    display: inline-block;
+    width: 60%;
+  }
+}

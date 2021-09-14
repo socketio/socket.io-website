@@ -1,0 +1,12 @@
+.list {
+  text-align: center;
+  padding: 2rem;
+  width: 100%;
+}
+
+.sponsor {
+  display: inline-block;
+  max-width: 80px;
+  max-height: 80px;
+  margin: 1rem;
+}
