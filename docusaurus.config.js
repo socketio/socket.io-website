@@ -104,7 +104,7 @@ module.exports = {
           items: [
             {
               label: "Get started",
-              to: "/get-started/chat",
+              to: "/get-started/",
             },
             {
               label: "Documentation",
