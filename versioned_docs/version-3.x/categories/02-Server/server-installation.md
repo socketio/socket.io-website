@@ -3,7 +3,6 @@ title: Server Installation
 sidebar_label: Installation
 sidebar_position: 2
 slug: /server-installation/
-alias: /docs/server-installation/
 ---
 
 ## Prerequisites

@@ -2,7 +2,6 @@
 title: Client API
 sidebar_label: API
 slug: /client-api/
-alias: /docs/client-api/
 ---
 
 ## IO

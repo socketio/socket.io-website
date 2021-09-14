@@ -1,0 +1,21 @@
+{
+  "redirects": [
+    { "source": "/docs/rooms-and-namespaces", "destination": "/docs/v4/rooms" },
+    { "source": "/docs/internals", "destination": "/docs/v2/internals" },
+    { "source": "/docs/migrating-from-0-9", "destination": "/docs/v2/migrating-from-0-9" },
+    { "source": "/docs/client-api", "destination": "/docs/v4/client-api" },
+    { "source": "/docs/server-api", "destination": "/docs/v4/server-api" },
+    { "source": "/docs/logging-and-debugging", "destination": "/docs/v4/logging-and-debugging" },
+    { "source": "/docs/server-initialization", "destination": "/docs/v4/server-initialization" },
+    { "source": "/docs/server-initialization", "destination": "/docs/v4/server-initialization" },
+    { "source": "/docs/using-multiple-nodes", "destination": "/docs/v4/using-multiple-nodes" },
+    { "source": "/docs/client-initialization", "destination": "/docs/v4/client-initialization" },
+    { "source": "/docs/client-installation", "destination": "/docs/v4/client-installation" },
+    { "source": "/docs/client-connection-lifecycle", "destination": "/docs/v4/client-connection-lifecycle" },
+    { "source": "/docs/emit-cheatsheet", "destination": "/docs/v4/emit-cheatsheet" },
+    { "source": "/docs/namespaces", "destination": "/docs/v4/namespaces" },
+    { "source": "/docs/migrating-from-2-x-to-3-0", "destination": "/docs/v4/migrating-from-2-x-to-3-0" },
+    { "source": "/docs/migrating-from-3-x-to-4-0", "destination": "/docs/v4/migrating-from-3-x-to-4-0" },
+    { "source": "/docs/faq", "destination": "/docs/v4/faq" }
+  ]
+}

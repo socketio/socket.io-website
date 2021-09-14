@@ -3,7 +3,6 @@ title: The Socket instance (client-side)
 sidebar_label: The Socket instance
 sidebar_position: 3
 slug: /client-socket-instance/
-alias: /docs/client-connection-lifecycle/
 ---
 
 Besides [emitting](/docs/v3/emitting-events/#Basic-emit) and [listening to](/docs/v3/listening-to-events/) events, the Socket instance has a few attributes that may be of use in your application:

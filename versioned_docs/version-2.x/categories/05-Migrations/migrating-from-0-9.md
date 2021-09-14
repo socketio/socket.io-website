@@ -2,7 +2,6 @@
 title: Migrating from 0.9
 sidebar_position: 1
 slug: /migrating-from-0-9/
-alias: /docs/migrating-from-0-9/
 ---
 
 For most applications, the transition to 1.0 should be completely seamless and devoid of any hiccups. That said, we’ve done some work to streamline some APIs, and we have changed some internals, so this is a recommended read for most existing users.

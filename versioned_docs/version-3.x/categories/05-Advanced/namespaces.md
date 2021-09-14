@@ -2,7 +2,6 @@
 title: Namespaces
 sidebar_position: 1
 slug: /namespaces/
-alias: /docs/namespaces/
 ---
 
 A Namespace is a communication channel that allows you to split the logic of your application over a single shared connection (also called "multiplexing").

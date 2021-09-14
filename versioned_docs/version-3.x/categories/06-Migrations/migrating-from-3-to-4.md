@@ -2,7 +2,6 @@
 title: Migrating from 3.x to 4.0
 sidebar_position: 2
 slug: /migrating-from-3-x-to-4-0/
-alias: /docs/migrating-from-3-x-to-4-0/
 ---
 
 The 4.0.0 release adds quite a lot of new features, which are detailed [below](#New-features), but it also contains a few API breaking changes (hence the major bump).

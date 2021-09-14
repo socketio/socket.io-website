@@ -2,7 +2,6 @@
 title: Server API
 sidebar_label: API
 slug: /server-api/
-alias: /docs/server-api/
 ---
 
 ## Server

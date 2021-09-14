@@ -2,7 +2,6 @@
 title: Internals overview
 sidebar_position: 1
 slug: /internals/
-alias: /docs/internals/
 ---
 
 ## Dependency graph

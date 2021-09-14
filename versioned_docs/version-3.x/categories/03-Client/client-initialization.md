@@ -3,7 +3,6 @@ title: Client Initialization
 sidebar_label: Initialization
 sidebar_position: 2
 slug: /client-initialization/
-alias: /docs/client-initialization/
 ---
 
 Once you have [installed](/docs/v3/client-installation/) the Socket.IO client library, you can now init the client. The complete list of options can be found [below](#Options).

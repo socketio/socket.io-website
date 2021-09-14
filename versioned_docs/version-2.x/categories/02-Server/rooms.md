@@ -2,7 +2,6 @@
 title: Rooms
 sidebar_position: 3
 slug: /rooms/
-alias: /docs/rooms-and-namespaces/ # kept for compatibility
 ---
 
 Within each [Namespace](/docs/v2/namespaces/), you can define arbitrary channels called "Rooms" that sockets can `join` and `leave`.

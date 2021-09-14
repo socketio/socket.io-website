@@ -2,7 +2,6 @@
 title: Emit cheatsheet
 sidebar_position: 5
 slug: /emit-cheatsheet/
-alias: /docs/emit-cheatsheet/
 ---
 
 ## Server-side

@@ -3,7 +3,6 @@ title: Client Installation
 sidebar_label: Installation
 sidebar_position: 1
 slug: /client-installation/
-alias: /docs/client-installation/
 ---
 
 ## Version compatibility

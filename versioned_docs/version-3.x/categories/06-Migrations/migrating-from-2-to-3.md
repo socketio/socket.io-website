@@ -2,7 +2,6 @@
 title: Migrating from 2.x to 3.0
 sidebar_position: 1
 slug: /migrating-from-2-x-to-3-0/
-alias: /docs/migrating-from-2-x-to-3-0/
 ---
 
 This release should fix most of the inconsistencies of the Socket.IO library and provide a more intuitive behavior for

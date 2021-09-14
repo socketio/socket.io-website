@@ -3,7 +3,6 @@ title: Server Initialization
 sidebar_label: Initialization
 sidebar_position: 2
 slug: /server-initialization/
-alias: /docs/server-initialization/
 ---
 
 Once you have [installed](/docs/v3/server-installation/) the Socket.IO server library, you can now init the server. The complete list of options can be found [below](#Options).

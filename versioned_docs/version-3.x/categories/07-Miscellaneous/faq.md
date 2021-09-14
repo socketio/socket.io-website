@@ -2,7 +2,6 @@
 title: FAQ
 sidebar_position: 1
 slug: /faq/
-alias: /docs/faq/
 ---
 
 ## Can I use wildcards in events?

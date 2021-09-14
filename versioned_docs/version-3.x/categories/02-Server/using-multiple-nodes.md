@@ -2,7 +2,6 @@
 title: Using multiple nodes
 sidebar_position: 7
 slug: /using-multiple-nodes/
-alias: /docs/using-multiple-nodes/
 ---
 
 When deploying multiple Socket.IO servers, there are two things to take care of:
