@@ -533,7 +533,7 @@ Added in v2.2.0
 
 Default value: `require("socket.io-parser")`
 
-The parser used to marshall/unmarshall packets. Please see [here](/docs/v3/custom-parser) for more information.
+The parser used to marshall/unmarshall packets. Please see [here](/docs/v3/custom-parser/) for more information.
 
 ### Socket options
 

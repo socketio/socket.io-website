@@ -306,5 +306,5 @@ if (cluster.isMaster) {
 
 Now that you have multiple Socket.IO nodes accepting connections, if you want to broadcast events to all clients (or to the clients in a certain [room](/docs/v4/rooms/)) you&#8217;ll need some way of passing messages between processes or computers.
 
-The interface in charge of routing messages is what we call the [Adapter](/docs/v4/adapter).
+The interface in charge of routing messages is what we call the [Adapter](/docs/v4/adapter/).
 

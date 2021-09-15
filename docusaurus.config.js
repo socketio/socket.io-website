@@ -112,11 +112,11 @@ module.exports = {
             },
             {
               label: "Server API",
-              to: "/docs/v4/server-api"
+              to: "/docs/v4/server-api/"
             },
             {
               label: "Client API",
-              to: "/docs/v4/client-api"
+              to: "/docs/v4/client-api/"
             },
           ],
         },
@@ -138,7 +138,10 @@ module.exports = {
     algolia: {
       apiKey: '58123f8fe0926bd32287730dbc483f6d',
       indexName: 'socket_io',
-      contextualSearch: true,
+      contextualSearch: false, // temporary fix until the "docusaurus_tag" facet is taken in account
+      searchParameters: {
+        facetFilters: ["language:en", "version:v4"]
+      }
     },
   },
   presets: [

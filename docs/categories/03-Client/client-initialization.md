@@ -546,7 +546,7 @@ socket.io.open();
 
 Default value: `require("socket.io-parser")`
 
-The parser used to marshall/unmarshall packets. Please see [here](/docs/v4/custom-parser) for more information.
+The parser used to marshall/unmarshall packets. Please see [here](/docs/v4/custom-parser/) for more information.
 
 ### Socket options
 
