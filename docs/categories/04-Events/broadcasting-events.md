@@ -26,9 +26,7 @@ Please note that broadcasting is a **server-only** feature.
 />
 
 ```js
-io.on("connection", (socket) => {
-  io.emit("hello", "world");
-});
+io.emit("hello", "world");
 ```
 
 :::caution
@@ -76,9 +74,7 @@ You just need to replace the default adapter by the [Redis Adapter](/docs/v4/red
 In certain cases, you may want to only broadcast to clients that are connected to the current server. You can achieve this with the `local` flag:
 
 ```js
-io.on("connection", (socket) => {
-  io.local.emit("hello", "world");
-});
+io.local.emit("hello", "world");
 ```
 
 <ThemedImage
