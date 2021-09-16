@@ -7,32 +7,45 @@ alias:
   - /docs/rooms-and-namespaces/ # kept for compatibility
 ---
 
+import ThemedImage from "@theme/ThemedImage";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
 A *room* is an arbitrary channel that sockets can `join` and `leave`. It can be used to broadcast events to a subset of clients:
 
-![Room diagram](/images/rooms.png)
+<ThemedImage
+  alt="Broadcasting to all clients in a room"
+  sources={{
+    light: useBaseUrl("/images/rooms.png"),
+    dark: useBaseUrl("/images/rooms-dark.png"),
+  }}
+/>
+
+:::info
 
 Please note that rooms are a **server-only** concept (i.e. the client does not have access to the list of rooms it has joined).
+
+:::
 
 ## Joining and leaving
 
 You can call `join` to subscribe the socket to a given channel:
 
 ```js
-io.on('connection', socket => {
-  socket.join('some room');
+io.on("connection", socket => {
+  socket.join("some room");
 });
 ```
 
 And then simply use `to` or `in` (they are the same) when broadcasting or emitting:
 
 ```js
-io.to('some room').emit('some event');
+io.to("some room").emit("some event");
 ```
 
 You can emit to several rooms at the same time:
 
 ```js
-io.to('room1').to('room2').to('room3').emit('some event');
+io.to("room1").to("room2").to("room3").emit("some event");
 ```
 
 In that case, a <a href="https://en.wikipedia.org/wiki/Union_(set_theory)">union</a> is performed: every socket that is at least in one of the rooms will get the event **once** (even if the socket is in two or more rooms).
@@ -40,14 +53,20 @@ In that case, a <a href="https://en.wikipedia.org/wiki/Union_(set_theory)">union
 You can also broadcast to a room from a given socket:
 
 ```js
-io.on('connection', function(socket){
-  socket.to('some room').emit('some event');
+io.on("connection", function(socket){
+  socket.to("some room").emit("some event");
 });
 ```
 
 In that case, every socket in the room **excluding** the sender will get the event.
 
-![Broadcasting to room excepting the sender](/images/rooms2.png)
+<ThemedImage
+  alt="Broadcasting to all clients in a room excepting the sender"
+  sources={{
+    light: useBaseUrl('/images/rooms2.png'),
+    dark: useBaseUrl('/images/rooms2-dark.png'),
+  }}
+/>
 
 To leave a channel you call `leave` in the same fashion as `join`.
 
@@ -70,26 +89,26 @@ io.on("connection", socket => {
 - broadcast data to each device / tab of a given user
 
 ```js
-io.on('connection', async (socket) => {
+io.on("connection", async (socket) => {
   const userId = await fetchUserId(socket);
 
   socket.join(userId);
 
   // and then later
-  io.to(userId).emit('hi');
+  io.to(userId).emit("hi");
 });
 ```
 
 - send notifications about a given entity
 
 ```js
-io.on('connection', async (socket) => {
+io.on("connection", async (socket) => {
   const projects = await fetchProjects(socket);
 
-  projects.forEach(project => socket.join('project:' + project.id));
+  projects.forEach(project => socket.join("project:" + project.id));
 
   // and then later
-  io.to('project:4321').emit('project updated');
+  io.to("project:4321").emit("project updated");
 });
 ```
 
@@ -101,14 +120,14 @@ Example with callback:
 
 ```js
 // BAD
-const room = socket.to('room1');
+const room = socket.to("room1");
 saveProduct(() => {
-  room.emit('product-updated');
+  room.emit("product-updated");
 });
 
 // GOOD
 saveProduct(() => {
-  socket.to('room1').emit('product-updated');
+  socket.to("room1").emit("product-updated");
 });
 ```
 
@@ -116,11 +135,11 @@ Example with `async/await`:
 
 ```js
 // BAD
-io.to('room2').emit('details', await fetchDetails());
+io.to("room2").emit("details", await fetchDetails());
 
 // GOOD
 const details = await fetchDetails();
-io.to('room2').emit('details', details);
+io.to("room2").emit("details", details);
 ```
 
 Explanation: the `to()` method does not return a new object, it mutates an attribute on the `io` (respectively, the `socket`) object.
@@ -138,12 +157,12 @@ Upon disconnection, sockets `leave` all the channels they were part of automatic
 You can fetch the rooms the Socket was in by listening to the `disconnecting` event:
 
 ```js
-io.on('connection', socket => {
-  socket.on('disconnecting', () => {
+io.on("connection", socket => {
+  socket.on("disconnecting", () => {
     console.log(socket.rooms); // the Set contains at least the socket ID
   });
 
-  socket.on('disconnect', () => {
+  socket.on("disconnect", () => {
     // socket.rooms.size === 0
   });
 });
@@ -155,7 +174,13 @@ Like [global broadcasting](/docs/v3/broadcasting-events/#With-multiple-Socket-IO
 
 You just need to replace the default [Adapter](/docs/v3/glossary/#Adapter) by the Redis Adapter. More information about it [here](/docs/v3/using-multiple-nodes/#Passing-events-between-nodes).
 
-![Broadcasting to room with Redis](/images/rooms-redis.png)
+<ThemedImage
+  alt="Broadcasting to all clients in a room with Redis"
+  sources={{
+    light: useBaseUrl('/images/rooms-redis.png'),
+    dark: useBaseUrl('/images/rooms-redis-dark.png'),
+  }}
+/>
 
 ## Implementation details
 
