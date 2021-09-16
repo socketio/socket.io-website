@@ -1,6 +1,8 @@
 ---
 title: Server API
 sidebar_label: API
+sidebar_position: 1
+slug: /server-api/
 ---
 
 ## Server
@@ -27,35 +29,7 @@ const { Server } = require("socket.io");
 const io = new Server();
 ```
 
-Available options:
-
-Option | Default value | Description
------- | ------------- | -----------
-`path` | `/socket.io` | name of the path to capture
-`serveClient` | `true` | whether to serve the client files
-`adapter` | - | the adapter to use. Defaults to an instance of the `Adapter` that ships with socket.io which is memory based. See [socket.io-adapter](https://github.com/socketio/socket.io-adapter)
-`parser` | - | the parser to use. Defaults to an instance of the `Parser` that ships with socket.io. See [socket.io-parser](https://github.com/socketio/socket.io-parser).
-`connectTimeout` | `45000` | the number of ms before closing a client that has not successfully joined a namespace.
-
-Available options for the underlying Engine.IO server:
-
-Option | Default value | Description
------- | ------------- | -----------
-`pingTimeout` | `20000` | how many ms without a pong packet to consider the connection closed
-`pingInterval` | `25000` | how many ms before sending a new ping packet
-`upgradeTimeout` | `10000` | how many ms before an uncompleted transport upgrade is cancelled
-`maxHttpBufferSize` | `1e6` | how many bytes or characters a message can be, before closing the session (to avoid DoS).
-`allowRequest` | | A function that receives a given handshake or upgrade request as its first parameter, and can decide whether to continue or not. The second argument is a function that needs to be called with the decided information: `fn(err, success)`, where `success` is a boolean value where false means that the request is rejected, and err is an error code.
-`transports` | `["polling", "websocket"]` | transports to allow connections to
-`allowUpgrades` | `true` | whether to allow transport upgrades
-`perMessageDeflate` | `false` | parameters of the WebSocket permessage-deflate extension (see [ws module](https://github.com/einaros/ws) api docs). Set to `true` to enable.
-`httpCompression` | `true` | parameters of the http compression for the polling transports (see [zlib](http://nodejs.org/api/zlib.html#zlib_options) api docs). Set to `false` to disable.
-`wsEngine` | `ws` | what WebSocket server implementation to use. Specified module must conform to the `ws` interface (see [ws module api docs](https://github.com/websockets/ws/blob/master/doc/ws.md)). Default value is `ws`. An alternative c++ addon is also available by installing the [eiows](https://www.npmjs.com/package/eiows) module.
-`cors` | | the list of options that will be forwarded to the [cors](https://www.npmjs.com/package/cors) module
-`cookie` | | the list of options that will be forwarded to the [cookie](https://github.com/jshttp/cookie/) module
-`allowEIO3` | `false` | whether to enable compatibility with Socket.IO v2 clients
-
-More information [here](/docs/v4/server-initialization/).
+The complete list of available options can be found [here](/docs/v4/server-options/).
 
 ### new Server(port[, options])
 
@@ -269,7 +243,7 @@ A reference to the underlying Engine.IO server. See [here](#engine).
 
 ### server.socketsJoin(rooms)
 
-<span class="changelog">Added in v4.0.0</span>
+<span className="changelog">Added in v4.0.0</span>
 
 Alias for [`io.of("/").socketsJoin(rooms)`](#namespace-socketsJoin-rooms).
 
@@ -288,7 +262,7 @@ See [here](/docs/v4/server-instance/#Utility-methods).
 
 ### server.socketsLeave(rooms)
 
-<span class="changelog">Added in v4.0.0</span>
+<span className="changelog">Added in v4.0.0</span>
 
 Alias for [`io.of("/").socketsLeave(rooms)`](#namespace-socketsLeave-rooms).
 
@@ -307,7 +281,7 @@ See [here](/docs/v4/server-instance/#Utility-methods).
 
 ### server.disconnectSockets([close])
 
-<span class="changelog">Added in v4.0.0</span>
+<span className="changelog">Added in v4.0.0</span>
 
 Alias for [`io.of("/").disconnectSockets(close)`](#namespace-disconnectSockets-close).
 
@@ -323,7 +297,7 @@ See [here](/docs/v4/server-instance/#Utility-methods).
 
 ### server.fetchSockets()
 
-<span class="changelog">Added in v4.0.0</span>
+<span className="changelog">Added in v4.0.0</span>
 
 ```js
 // return all Socket instances
@@ -337,7 +311,7 @@ See [here](/docs/v4/server-instance/#Utility-methods).
 
 ### server.serverSideEmit(eventName[, ...args][, ack])
 
-<span class="changelog">Added in v4.1.0</span>
+<span className="changelog">Added in v4.1.0</span>
 
 Synonym of: `io.of("/").serverSideEmit(/* ... */);`
 
@@ -426,7 +400,7 @@ Please see the explanation [here](/docs/v4/rooms/#Implementation-details).
 
 ### namespace.to(room)
 
-<details class="changelog">
+<details className="changelog">
     <summary>History</summary>
 
 | Version | Changes |
@@ -458,13 +432,13 @@ io.to(["room1", "room2"]).emit(/* ... */);
 
 ### namespace.in(room)
 
-<span class="changelog">Added in v1.0.0</span>
+<span className="changelog">Added in v1.0.0</span>
 
 Synonym of [namespace.to(room)](#namespace-to-room).
 
 ### namespace.except(rooms)
 
-<span class="changelog">Added in v4.0.0</span>
+<span className="changelog">Added in v4.0.0</span>
 
   - `rooms` _(string)_ | _(string[])_
   - **Returns** `BroadcastOperator`
@@ -545,7 +519,7 @@ More information can be found [here](/docs/v4/middlewares/).
 
 ### namespace.socketsJoin(rooms)
 
-<span class="changelog">Added in v4.0.0</span>
+<span className="changelog">Added in v4.0.0</span>
 
   - `rooms` _(string)_ | _(string[])_
   - **Returns** `void`
@@ -570,7 +544,7 @@ More information can be found [here](/docs/v4/server-instance/#Utility-methods).
 
 ### namespace.socketsLeave(rooms)
 
-<span class="changelog">Added in v4.0.0</span>
+<span className="changelog">Added in v4.0.0</span>
 
   - `rooms` _(string)_ | _(string[])_
   - **Returns** `void`
@@ -593,7 +567,7 @@ io.in(theSocketId).socketsLeave("room1");
 
 ### namespace.disconnectSockets([close])
 
-<span class="changelog">Added in v4.0.0</span>
+<span className="changelog">Added in v4.0.0</span>
 
   - `close` _(Boolean)_ whether to close the underlying connection
   - **Returns** `void`
@@ -616,7 +590,7 @@ io.of("/admin").in(theSocketId).disconnectSockets();
 
 ### namespace.fetchSockets()
 
-<span class="changelog">Added in v4.0.0</span>
+<span className="changelog">Added in v4.0.0</span>
 
 - **Returns** `(Socket | RemoteSocket)[]`
 
@@ -669,7 +643,7 @@ console.log(sockets[0].data.username); // "alice"
 
 ### namespace.serverSideEmit(eventName[, ...args][, ack])
 
-<span class="changelog">Added in v4.1.0</span>
+<span className="changelog">Added in v4.1.0</span>
 
   - `eventName` _(String)_
   - `args`
@@ -877,7 +851,7 @@ io.on("connection", (socket) => {
 
 ### socket.use(fn)
 
-<details class="changelog">
+<details className="changelog">
     <summary>History</summary>
 
 | Version | Changes |
@@ -1086,7 +1060,7 @@ io.on("connection", (socket) => {
 
 ### socket.to(room)
 
-<details class="changelog">
+<details className="changelog">
     <summary>History</summary>
 
 | Version | Changes |
@@ -1127,13 +1101,13 @@ io.on("connection", (socket) => {
 
 ### socket.in(room)
 
-<span class="changelog">Added in v1.0.0</span>
+<span className="changelog">Added in v1.0.0</span>
 
 Synonym of [socket.to(room)](#socket-to-room).
 
 ### socket.except(rooms)
 
-<span class="changelog">Added in v4.0.0</span>
+<span className="changelog">Added in v4.0.0</span>
 
   - `rooms` _(string)_ | _(string[])_
   - **Returns** `BroadcastOperator`
@@ -1267,7 +1241,7 @@ Its source code can be found here: https://github.com/socketio/engine.io
 
 ### engine.clientsCount
 
-<span class="changelog">Added in v1.0.0</span>
+<span className="changelog">Added in v1.0.0</span>
 
   - [_(Number)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 
@@ -1295,7 +1269,7 @@ io.engine.generateId = () => {
 
 ### engine.handleUpgrade(request, socket, head)
 
-<span class="changelog">Added in v1.0.0</span>
+<span className="changelog">Added in v1.0.0</span>
 
   - `request` [_(http.IncomingMessage)_](https://nodejs.org/docs/latest/api/http.html#http_class_http_incomingmessage) the incoming request
   - `socket` [_(stream.Duplex)_](https://nodejs.org/docs/latest/api/stream.html#stream_class_stream_duplex) the network socket between the server and client
@@ -1333,7 +1307,7 @@ httpServer.listen(3000);
 
 ### Event: 'initial_headers'
 
-<span class="changelog">Added in v4.1.0</span>
+<span className="changelog">Added in v4.1.0</span>
 
   - `headers` [_(Object)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) a hash of headers, indexed by header name
   - `request` [_(http.IncomingMessage)_](https://nodejs.org/docs/latest/api/http.html#http_class_http_incomingmessage) the incoming request
@@ -1349,7 +1323,7 @@ io.engine.on("initial_headers", (headers, request) => {
 
 ### Event: 'headers'
 
-<span class="changelog">Added in v4.1.0</span>
+<span className="changelog">Added in v4.1.0</span>
 
   - `headers` [_(Object)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) a hash of headers, indexed by header name
   - `request` [_(http.IncomingMessage)_](https://nodejs.org/docs/latest/api/http.html#http_class_http_incomingmessage) the incoming request
@@ -1364,7 +1338,7 @@ io.engine.on("headers", (headers, request) => {
 
 ### Event: 'connection_error'
 
-<span class="changelog">Added in v4.1.0</span>
+<span className="changelog">Added in v4.1.0</span>
 
   - `error` [_(Error)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
