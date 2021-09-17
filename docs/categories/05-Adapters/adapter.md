@@ -11,17 +11,17 @@ When scaling to multiple Socket.IO servers, you will need to replace the default
 
 Besides the in-memory adapter, there are four official implementations:
 
-- the [Redis adapter](/docs/v4/redis-adapter/)
-- the [MongoDB adapter](/docs/v4/mongo-adapter/)
-- the [Postgres adapter](/docs/v4/postgres-adapter/)
-- the [Cluster adapter](/docs/v4/cluster-adapter/)
+- the [Redis adapter](adapter-redis.md)
+- the [MongoDB adapter](adapter-mongo.md)
+- the [Postgres adapter](adapter-postgres.md)
+- the [Cluster adapter](adapter-cluster.md)
 
 There are also several other options which are maintained by the (awesome!) community:
 
 - [AMQP](https://github.com/sensibill/socket.io-amqp) (e.g. RabbitMQ)
 - [NATS](https://github.com/MickL/socket.io-nats-adapter)
 
-Please note that enabling sticky sessions is still needed when using multiple Socket.IO servers and HTTP long-polling. More information [here](/docs/v4/using-multiple-nodes/#Why-is-sticky-session-required).
+Please note that enabling sticky sessions is still needed when using multiple Socket.IO servers and HTTP long-polling. More information [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
 
 ## API
 

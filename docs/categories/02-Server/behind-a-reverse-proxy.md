@@ -6,11 +6,11 @@ slug: /reverse-proxy/
 
 You will find below the configuration needed for deploying a Socket.IO server behind a reverse-proxy solution, such as:
 
-- [NginX](#nginX)
-- [Apache HTTPD](#apache-HTTPD)
-- [Node.js `http-proxy`](#node-js-http-proxy)
+- [NginX](#nginx)
+- [Apache HTTPD](#apache-httpd)
+- [Node.js `http-proxy`](#nodejs-http-proxy)
 
-In a multi-server setup, please check the documentation [here](/docs/v4/using-multiple-nodes/).
+In a multi-server setup, please check the documentation [here](using-multiple-nodes.md).
 
 ## NginX
 
@@ -39,7 +39,7 @@ http {
 Related:
 
 - [proxy_pass documentation](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
-- [configuration in a multi-server setup](/docs/v4/using-multiple-nodes/#NginX-configuration)
+- [configuration in a multi-server setup](using-multiple-nodes.md#nginx-configuration)
 
 ## Apache HTTPD
 
@@ -84,7 +84,7 @@ ProxyTimeout 3
 Related:
 
 - [mod_proxy_wstunnel documentation](https://httpd.apache.org/docs/2.4/en/mod/mod_proxy_wstunnel.html)
-- [configuration in a multi-server setup](/docs/v4/using-multiple-nodes/#Apache-HTTPD-configuration)
+- [configuration in a multi-server setup](using-multiple-nodes.md#apache-httpd-configuration)
 
 ## Node.js `http-proxy`
 

@@ -1,6 +1,8 @@
 ---
 title: Client API
 sidebar_label: API
+sidebar_position: 1
+slug: /client-api/
 ---
 
 ## IO
@@ -76,12 +78,12 @@ const socket = manager.socket("/my-namespace", {
 });
 ```
 
-See [new Manager(url[, options])](#new-Manager-url-options) for the list of available `options`.
+See [new Manager(url[, options])](#new-managerurl-options) for the list of available `options`.
 
 Please note: `manager.socket("/my-namespace", options )` will only read the `auth` key in the `options` object.
 `query: {…}` and other optional values are only used when passed via a `new Manager(uri, options)` instance.
 
-See [Migrating from 2.x to 3.0](/docs/v4/migrating-from-2-x-to-3-0/#Add-a-clear-distinction-between-the-Manager-query-option-and-the-Socket-query-option) for more on the difference between the `auth` and `query` options.
+See [Migrating from 2.x to 3.0](categories/07-Migrations/migrating-from-2-to-3.md#add-a-clear-distinction-between-the-manager-query-option-and-the-socket-query-option) for more on the difference between the `auth` and `query` options.
 
 ## Manager
 
@@ -89,7 +91,7 @@ The `Manager` *manages* the Engine.IO [client](https://github.com/socketio/engin
 
 The `Manager` handles the reconnection logic.
 
-A single `Manager` can be used by several [Sockets](#socket). You can find more information about this multiplexing feature [here](/docs/v4/namespaces/).
+A single `Manager` can be used by several [Sockets](#socket). You can find more information about this multiplexing feature [here](categories/06-Advanced/namespaces.md).
 
 Please note that, in most cases, you won't use the Manager directly but use the [Socket](#socket) instance instead.
 
@@ -276,7 +278,7 @@ socket.io.on("ping", () => {
 
 ## Socket
 
-A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](/docs/v4/namespaces/) (by default `/`) and uses an underlying [Manager](#manager) to communicate.
+A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](categories/06-Advanced/namespaces.md) (by default `/`) and uses an underlying [Manager](#manager) to communicate.
 
 A `Socket` is basically an [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter) which sends events to — and receive events from — the server over the network.
 
@@ -288,7 +290,7 @@ socket.on("hey", (...args) => {
 });
 ```
 
-More information can be found [here](/docs/v4/client-socket-instance/).
+More information can be found [here](categories/03-Client/client-socket-instance.md).
 
 ### socket.id
 
@@ -363,7 +365,7 @@ socket.on("disconnect", () => {
 
 <span class="changelog">Added in v1.0.0</span>
 
-Synonym of [socket.connect()](#socket-connect).
+Synonym of [socket.connect()](#socketconnect).
 
 ### socket.send([...args][, ack])
 
@@ -508,7 +510,7 @@ If this is the last active Socket instance of the Manager, the low-level connect
 
 <span class="changelog">Added in v1.0.0</span>
 
-Synonym of [socket.disconnect()](#socket-disconnect).
+Synonym of [socket.disconnect()](#socketdisconnect).
 
 ### Flag: 'volatile'
 
@@ -547,15 +549,15 @@ Fired upon disconnection. The list of possible disconnection reasons:
 
 Reason | Description
 ------ | -----------
-`io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](/docs/v4/server-api/#socket-disconnect-close)
-`io client disconnect` | The socket was manually disconnected using [socket.disconnect()](/docs/v4/client-api/#socket-disconnect)
+`io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](server-api.md#socketdisconnectclose)
+`io client disconnect` | The socket was manually disconnected using [socket.disconnect()](client-api.md#socketdisconnect)
 `ping timeout` | The server did not send a PING within the `pingInterval + pingTimeout` range
 `transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
 `transport error` | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)
 
 In the first two cases (explicit disconnection), the client will not try to reconnect and you need to manually call `socket.connect()`.
 
-In all other cases, the client will wait for a small [random delay](/docs/v4/client-initialization/#reconnectionDelay) and then try to reconnect:
+In all other cases, the client will wait for a small [random delay](categories/03-Client/client-initialization.md#reconnectiondelay) and then try to reconnect:
 
 ```js
 socket.on("disconnect", (reason) => {

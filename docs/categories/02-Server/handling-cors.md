@@ -55,7 +55,7 @@ const io = require("socket.io")(httpServer, {
 httpServer.listen(3000);
 ```
 
-You can disallow all cross-origin requests with the [`allowRequest`](/docs/v4/server-initialization/#allowRequest) option:
+You can disallow all cross-origin requests with the [`allowRequest`](../../server-options.md#allowrequest) option:
 
 ```js
 const io = require("socket.io")(httpServer, {

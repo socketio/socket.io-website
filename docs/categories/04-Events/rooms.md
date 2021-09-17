@@ -69,7 +69,7 @@ To leave a channel you call `leave` in the same fashion as `join`.
 
 ## Default room
 
-Each `Socket` in Socket.IO is identified by a random, unguessable, unique identifier [Socket#id](/docs/v4/server-socket-instance/#Socket-id). For your convenience, each socket automatically joins a room identified by its own id.
+Each `Socket` in Socket.IO is identified by a random, unguessable, unique identifier [Socket#id](../02-Server/server-socket-instance.md#socketid). For your convenience, each socket automatically joins a room identified by its own id.
 
 This makes it easy to implement private messages:
 
@@ -129,9 +129,9 @@ io.on("connection", socket => {
 
 ## With multiple Socket.IO servers
 
-Like [global broadcasting](/docs/v4/broadcasting-events/#With-multiple-Socket-IO-servers), broadcasting to rooms also works with multiple Socket.IO servers.
+Like [global broadcasting](broadcasting-events.md#with-multiple-socketio-servers), broadcasting to rooms also works with multiple Socket.IO servers.
 
-You just need to replace the default [Adapter](/docs/v4/glossary/#Adapter) by the Redis Adapter. More information about it [here](/docs/v4/using-multiple-nodes/#Passing-events-between-nodes).
+You just need to replace the default [Adapter](../08-Miscellaneous/glossary.md#adapter) by the Redis Adapter. More information about it [here](../05-Adapters/adapter-redis.md).
 
 <ThemedImage
   alt="Broadcasting to all clients in a room with Redis"
@@ -179,8 +179,8 @@ const sids = io.of("/my-namespace").adapter.sids;
 
 Notes:
 
-- those objects are not meant to be directly modified, you should always use [`socket.join(...)`](/docs/v4/server-api/#socket-join-room) and [`socket.leave(...)`](/docs/v4/server-api/#socket-leave-room) instead.
-- in a [multi-server](/docs/v4/using-multiple-nodes/) setup, the `rooms` and `sids` objects are not shared between the Socket.IO servers (a room may only "exist" on one server and not on another).
+- those objects are not meant to be directly modified, you should always use [`socket.join(...)`](../../server-api.md#socketjoinroom) and [`socket.leave(...)`](../../server-api.md#socketleaveroom) instead.
+- in a [multi-server](../02-Server/using-multiple-nodes.md) setup, the `rooms` and `sids` objects are not shared between the Socket.IO servers (a room may only "exist" on one server and not on another).
 
 ## Room events
 

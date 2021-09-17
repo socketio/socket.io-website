@@ -78,7 +78,7 @@ Note: the [capped collection](https://docs.mongodb.com/manual/core/capped-collec
 
 Yes. Failing to do so will result in HTTP 400 responses (you are reaching a server that is not aware of the Socket.IO session).
 
-More information can be found [here](/docs/v4/using-multiple-nodes/#Why-is-sticky-session-required).
+More information can be found [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
 
 - What happens when the MongoDB cluster is down?
 
@@ -125,4 +125,4 @@ const main = async () => {
 main();
 ```
 
-Please refer to the cheatsheet [here](/docs/v4/adapter/#Emitter-cheatsheet).
+Please refer to the cheatsheet [here](adapter.md#emitter-cheatsheet).

@@ -8,8 +8,8 @@ slug: /
 
 Socket.IO is a library that enables real-time, bidirectional and event-based communication between the browser and the server. It consists of:
 
-- a Node.js server: [Source](https://github.com/socketio/socket.io) | [API](/docs/v4/server-api/)
-- a Javascript client library for the browser (which can be also run from Node.js): [Source](https://github.com/socketio/socket.io-client) | [API](/docs/v4/client-api/)
+- a Node.js server: [Source](https://github.com/socketio/socket.io) | [API](../../server-api.md)
+- a Javascript client library for the browser (which can be also run from Node.js): [Source](https://github.com/socketio/socket.io-client) | [API](../../client-api.md)
 
 <img src="/images/bidirectional-communication.png" alt="Diagram for bidirectional communication" />
 
@@ -128,9 +128,9 @@ Here are the features provided by Socket.IO over plain WebSockets:
 
 - reliability (fallback to HTTP long-polling in case the WebSocket connection cannot be established)
 - automatic reconnection
-- [packet buffering](/docs/v4/client-offline-behavior/#Buffered-events)
-- [acknowledgments](/docs/v4/emitting-events/#Acknowledgements)
-- broadcasting [to all clients](/docs/v4/broadcasting-events/) or [to a subset of clients](/docs/v4/rooms/) (what we call "Room")
-- [multiplexing](/docs/v4/namespaces/) (what we call "Namespace")
+- [packet buffering](../03-Client/client-offline-behavior.md#buffered-events)
+- [acknowledgments](../04-Events/emitting-events.md#acknowledgements)
+- broadcasting [to all clients](../04-Events/broadcasting-events.md) or [to a subset of clients](../04-Events/rooms.md) (what we call "Room")
+- [multiplexing](../06-Advanced/namespaces.md) (what we call "Namespace")
 
-Please find more details about how it works [here](/docs/v4/how-it-works/).
+Please find more details about how it works [here](../01-Documentation/how-it-works.md).

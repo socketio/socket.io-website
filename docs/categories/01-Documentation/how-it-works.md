@@ -4,7 +4,7 @@ sidebar_position: 2
 slug: /how-it-works/
 ---
 
-The bidirectional channel between the Socket.IO server (Node.js) and the Socket.IO client (browser, Node.js, or [another programming language](/docs/v4/#What-Socket-IO-is)) is established with a [WebSocket connection](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) whenever possible, and will use HTTP long-polling as fallback. 
+The bidirectional channel between the Socket.IO server (Node.js) and the Socket.IO client (browser, Node.js, or [another programming language](index.md#what-socketio-is)) is established with a [WebSocket connection](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) whenever possible, and will use HTTP long-polling as fallback.
 
 The Socket.IO codebase is split into two distinct layers:
 
@@ -29,8 +29,8 @@ The source code can be found here:
 
 There are currently two implemented transports:
 
-- [HTTP long-polling](#hTTP-long-polling)
-- [WebSocket](#webSocket)
+- [HTTP long-polling](#http-long-polling)
+- [WebSocket](#websocket)
 
 #### HTTP long-polling
 
@@ -45,7 +45,7 @@ Due to the nature of the transport, successive emits may be concatenated and sen
 
 The WebSocket transport consists, well, in a [WebSocket connection](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), which provides a bidirectional and low-latency communication channel between the server and the client.
 
-Due to the nature of the transport, each emit is sent in its own WebSocket frame (some emits may even result in two distinct WebSocket frames, more information [here](/docs/v4/custom-parser/#The-default-parser)).
+Due to the nature of the transport, each emit is sent in its own WebSocket frame (some emits may even result in two distinct WebSocket frames, more information [here](../06-Advanced/custom-parser.md#the-default-parser)).
 
 ### Handshake
 
@@ -105,7 +105,7 @@ There is also a heartbeat mechanism which checks that the connection between the
 
 At a given interval (the `pingInterval` value sent in the handshake) the server sends a PING packet and the client has a few seconds (the `pingTimeout` value) to send a PONG packet back. If the server does not receive a PONG packet back, it will consider that the connection is closed. Conversely, if the client does not receive a PING packet within `pingInterval + pingTimeout`, it will consider that the connection is closed.
 
-The disconnection reasons are listed [here](/docs/v4/server-socket-instance/#disconnect) (server-side) and [here](/docs/v4/client-socket-instance/#disconnect) (client-side).
+The disconnection reasons are listed [here](../02-Server/server-socket-instance.md#disconnect) (server-side) and [here](../03-Client/client-socket-instance.md#disconnect) (client-side).
 
 
 ## Socket.IO
@@ -113,10 +113,10 @@ The disconnection reasons are listed [here](/docs/v4/server-socket-instance/#dis
 Socket.IO provides some additional features over the Engine.IO connection:
 
 - automatic reconnection
-- [packet buffering](/docs/v4/client-offline-behavior/#Buffered-events)
-- [acknowledgments](/docs/v4/emitting-events/#Acknowledgements)
-- broadcasting [to all clients](/docs/v4/broadcasting-events/) or [to a subset of clients](/docs/v4/rooms/) (what we call "Room")
-- [multiplexing](/docs/v4/namespaces/) (what we call "Namespace")
+- [packet buffering](../03-Client/client-offline-behavior.md#buffered-events)
+- [acknowledgments](../04-Events/emitting-events.md#acknowledgements)
+- broadcasting [to all clients](../04-Events/broadcasting-events.md) or [to a subset of clients](../04-Events/rooms.md) (what we call "Room")
+- [multiplexing](../06-Advanced/namespaces.md) (what we call "Namespace")
 
 The source code can be found here:
 

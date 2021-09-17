@@ -5,7 +5,7 @@ sidebar_position: 2
 slug: /client-initialization/
 ---
 
-Once you have [installed](/docs/v4/client-installation/) the Socket.IO client library, you can now init the client. The complete list of options can be found [below](#options).
+Once you have [installed](client-installation.md) the Socket.IO client library, you can now init the client. The complete list of options can be found [below](#options).
 
 In the examples below, the `io` object comes either from:
 
@@ -42,7 +42,7 @@ In case your front is not served from the same domain as your server, you have t
 const socket = io("https://server-domain.com");
 ```
 
-In that case, please make sure to enable [Cross-Origin Resource Sharing (CORS)](/docs/v4/handling-cors/) on the server.
+In that case, please make sure to enable [Cross-Origin Resource Sharing (CORS)](../02-Server/handling-cors.md) on the server.
 
 Note: You can use either `https` or `wss` (respectively, `http` or `ws`).
 
@@ -64,34 +64,34 @@ const socket = io("/admin");
 const socket = io("https://server-domain.com/admin");
 ```
 
-You can find more details about namespaces [here](/docs/v4/namespaces/).
+You can find more details about namespaces [here](../06-Advanced/namespaces.md).
 
 ## Options
 
-- [IO factory options](#iO-factory-options)
-  - [forceNew](#forceNew)
+- [IO factory options](#io-factory-options)
+  - [forceNew](#forcenew)
   - [multiplex](#multiplex)
 - [Low-level engine options](#low-level-engine-options)
   - [transports](#transports)
   - [upgrade](#upgrade)
-  - [rememberUpgrade](#rememberUpgrade)
+  - [rememberUpgrade](#rememberupgrade)
   - [path](#path)
   - [query](#query)
-  - [extraHeaders](#extraHeaders)
-  - [withCredentials](#withCredentials)
-  - [forceBase64](#forceBase64)
-  - [timestampRequests](#timestampRequests)
-  - [timestampParam](#timestampParam)
-  - [closeOnBeforeunload](#closeOnBeforeunload)
-  - [Node.js-specific options](#node-js-specific-options) (like `agent`, `cert` or `rejectUnauthorized`)
+  - [extraHeaders](#extraheaders)
+  - [withCredentials](#withcredentials)
+  - [forceBase64](#forcebase64)
+  - [timestampRequests](#timestamprequests)
+  - [timestampParam](#timestampparam)
+  - [closeOnBeforeunload](#closeonbeforeunload)
+  - [Node.js-specific options](#nodejs-specific-options) (like `agent`, `cert` or `rejectUnauthorized`)
 - [Manager options](#manager-options)
   - [reconnection](#reconnection)
-  - [reconnectionAttempts](#reconnectionAttempts)
-  - [reconnectionDelay](#reconnectionDelay)
-  - [reconnectionDelayMax](#reconnectionDelayMax)
-  - [randomizationFactor](#randomizationFactor)
+  - [reconnectionAttempts](#reconnectionattempts)
+  - [reconnectionDelay](#reconnectiondelay)
+  - [reconnectionDelayMax](#reconnectiondelaymax)
+  - [randomizationFactor](#randomizationfactor)
   - [timeout](#timeout)
-  - [autoConnect](#autoConnect)
+  - [autoConnect](#autoconnect)
   - [parser](#parser)
 - [Socket options](#socket-options)
   - [auth](#auth)
@@ -106,7 +106,7 @@ Whether to create a new Manager instance.
 
 A Manager instance is in charge of the low-level connection to the server (established with HTTP long-polling or WebSocket). It handles the reconnection logic.
 
-A Socket instance is the interface which is used to sends events to — and receive events from — the server. It belongs to a given [namespace](/docs/v4/namespaces/).
+A Socket instance is the interface which is used to sends events to — and receive events from — the server. It belongs to a given [namespace](../06-Advanced/namespaces.md).
 
 A single Manager can be attached to several Socket instances.
 
@@ -160,9 +160,9 @@ The following example disables the HTTP long-polling transport:
 const socket = io("https://example.com", { transports: ["websocket"] });
 ```
 
-Note: in that case, sticky sessions are not required on the server side (more information [here](/docs/v4/using-multiple-nodes/)).
+Note: in that case, sticky sessions are not required on the server side (more information [here](../02-Server/using-multiple-nodes.md)).
 
-By default, the HTTP long-polling connection is established first, and then an upgrade to WebSocket is attempted (explanation [here](/docs/v4/how-it-works/#Upgrade-mechanism)). You can use WebSocket first with:
+By default, the HTTP long-polling connection is established first, and then an upgrade to WebSocket is attempted (explanation [here](../01-Documentation/how-it-works.md#upgrade-mechanism)). You can use WebSocket first with:
 
 ```js
 const socket = io("https://example.com", {
@@ -175,7 +175,7 @@ socket.on("connect_error", () => {
 });
 ```
 
-One possible downside is that the validity of your [CORS configuration](/docs/v4/handling-cors/) will only be checked if the WebSocket connection fails to be established.
+One possible downside is that the validity of your [CORS configuration](../02-Server/handling-cors.md) will only be checked if the WebSocket connection fails to be established.
 
 #### `upgrade`
 
@@ -351,7 +351,7 @@ const socket = io({
 Documentation:
 
 - [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
-- [Handling CORS](/docs/v4/handling-cors/)
+- [Handling CORS](../02-Server/handling-cors.md)
 
 #### `forceBase64`
 
@@ -495,7 +495,7 @@ The number of reconnection attempts before giving up.
 
 Default value: `1000`
 
-The initial delay before reconnection in milliseconds (affected by the [randomizationFactor](#randomizationFactor) value).
+The initial delay before reconnection in milliseconds (affected by the [randomizationFactor](#randomizationfactor) value).
 
 #### reconnectionDelayMax
 
@@ -546,7 +546,7 @@ socket.io.open();
 
 Default value: `require("socket.io-parser")`
 
-The parser used to marshall/unmarshall packets. Please see [here](/docs/v4/custom-parser/) for more information.
+The parser used to marshall/unmarshall packets. Please see [here](../06-Advanced/custom-parser.md) for more information.
 
 ### Socket options
 
@@ -558,7 +558,7 @@ Note: These settings are specific to the given Socket instance.
 
 Default value: -
 
-Credentials that are sent when accessing a namespace (see also [here](/docs/v4/middlewares/#Sending-credentials)).
+Credentials that are sent when accessing a namespace (see also [here](../02-Server/middlewares.md#sending-credentials)).
 
 Example:
 

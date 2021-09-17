@@ -77,7 +77,7 @@ io.listen(3000);
 
 Yes. Failing to do so will result in HTTP 400 responses (you are reaching a server that is not aware of the Socket.IO session).
 
-More information can be found [here](/docs/v4/using-multiple-nodes/#Why-is-sticky-session-required).
+More information can be found [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
 
 - What happens when the Postgres server is down?
 
@@ -116,4 +116,4 @@ setInterval(() => {
 }, 1000);
 ```
 
-Please refer to the cheatsheet [here](/docs/v4/adapter/#Emitter-cheatsheet).
+Please refer to the cheatsheet [here](adapter.md#emitter-cheatsheet).

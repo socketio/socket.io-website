@@ -112,7 +112,7 @@ There are many packages in the JS ecosystem which cover this use case, among the
 - [ajv](https://www.npmjs.com/package/ajv)
 - [validatorjs](https://www.npmjs.com/package/validatorjs)
 
-Example with [joi](https://joi.dev/api/) and [acknowledgements](/docs/v4/emitting-events/#Acknowledgements):
+Example with [joi](https://joi.dev/api/) and [acknowledgements](emitting-events.md#acknowledgements):
 
 ```js
 const Joi = require("joi");

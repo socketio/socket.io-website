@@ -17,7 +17,7 @@ Artillery is a great tool for load testing your application. It allows creating 
 
 The documentation can be found [here](https://artillery.io/docs/guides/guides/socketio-reference.html).
 
-**Important note**: the default installation comes with a v2 client, which is [not compatible](/docs/v4/client-installation/#Version-compatibility) with a v3/v4 server. You need to install a custom engine for this: https://github.com/ptejada/artillery-engine-socketio-v3
+**Important note**: the default installation comes with a v2 client, which is [not compatible](../03-Client/client-installation.md#version-compatibility) with a v3/v4 server. You need to install a custom engine for this: https://github.com/ptejada/artillery-engine-socketio-v3
 
 Installation:
 

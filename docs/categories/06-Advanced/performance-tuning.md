@@ -6,10 +6,10 @@ slug: /performance-tuning/
 
 Here are some tips to improve the performance of your Socket.IO server:
 
-- [at the Socket.IO level](#at-the-Socket-IO-level)
-- [at the OS level](#at-the-OS-level)
+- [at the Socket.IO level](#at-the-socketio-level)
+- [at the OS level](#at-the-os-level)
 
-You might also be interested in [scaling to multiple nodes](/docs/v4/using-multiple-nodes/).
+You might also be interested in [scaling to multiple nodes](../02-Server/using-multiple-nodes.md).
 
 ## At the Socket.IO level
 
@@ -38,7 +38,7 @@ For example, you can use the [eiows](https://www.npmjs.com/package/eiows) packag
 $ npm install eiows
 ```
 
-And then use the [`wsEngine`](/docs/v4/server-initialization/#wsEngine) option:
+And then use the [`wsEngine`](../../server-options.md#wsengine) option:
 
 ```js
 const { createServer } = require("http");
@@ -52,7 +52,7 @@ const io = new Server(httpServer, {
 
 ### Use a custom parser
 
-If you send binary data over the Socket.IO connection, using a [custom parser](/docs/v4/custom-parser/) like the one based on [msgpack](/docs/v4/custom-parser/#The-msgpack-parser) might be interesting, as by default each buffer will be sent in its own WebSocket frame.
+If you send binary data over the Socket.IO connection, using a [custom parser](custom-parser.md) like the one based on [msgpack](custom-parser.md#the-msgpack-parser) might be interesting, as by default each buffer will be sent in its own WebSocket frame.
 
 Usage:
 
@@ -84,7 +84,7 @@ const socket = io("https://example.com", {
 
 There are lots of good articles on how to tune your OS to accept a large number of connections. Please see [this one](https://blog.jayway.com/2015/04/13/600k-concurrent-websocket-connections-on-aws-using-node-js/) or [this one](https://medium.com/@elliekang/scaling-to-a-millions-websocket-concurrent-connections-at-spoon-radio-bbadd6ec1901) for example.
 
-While [load testing](/docs/v4/load-testing/) your Socket.IO server, you will likely reach the two following limits:
+While [load testing](load-testing.md) your Socket.IO server, you will likely reach the two following limits:
 
 - maximum number of open files
 

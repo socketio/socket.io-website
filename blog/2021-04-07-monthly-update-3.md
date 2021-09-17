@@ -12,11 +12,11 @@ Here's the #3 edition of our Monthly update.
 
 So, what's new in the Socket.IO ecosystem?
 
-- [Socket.IO v4](#Socket-IO-v4)
-- [Redis Adapter v6.1.0 and Redis Emitter v4.0.0](#Redis-Adapter-v6-1-0-and-Redis-Emitter-v4-0-0)
-- [Documentation](#Documentation)
-- [New versions](#New-versions)
-- [What's next](#What’s-next)
+- [Socket.IO v4](#socketio-v4)
+- [Redis Adapter v6.1.0 and Redis Emitter v4.0.0](#redis-adapter-v610-and-redis-emitter-v400)
+- [Documentation](#documentation)
+- [New versions](#new-versions)
+- [What's next](#whats-next)
 
 ## Socket.IO v4
 
@@ -64,7 +64,7 @@ Please check the migration guide [here](/docs/v4/migrating-from-3-x-to-4-0/).
 
 ## Redis Adapter v6.1.0 and Redis Emitter v4.0.0
 
-The Redis adapter (for broadcasting packets with multiple Socket.IO servers) and the Redis emitter (for broadcasting packets from another Node.js process) have been updated in order to support the [new features](/docs/v4/migrating-from-3-x-to-4-0/#New-features) of the v4 release.
+The Redis adapter (for broadcasting packets with multiple Socket.IO servers) and the Redis emitter (for broadcasting packets from another Node.js process) have been updated in order to support the [new features](/docs/v4/migrating-from-3-x-to-4-0/#new-features) of the v4 release.
 
 For example, the `socketsJoin` method will work across Socket.IO servers:
 
@@ -79,7 +79,7 @@ io.in("room1").socketsJoin(["room2", "room3"]);
 io.of("/admin").in("room1").socketsJoin("room2");
 ```
 
-More information can be found [here](/docs/v4/server-instance/#Utility-methods).
+More information can be found [here](/docs/v4/server-instance/#utility-methods).
 
 ## Documentation
 

@@ -143,7 +143,7 @@ This namespace is a classic Socket.IO namespace, you can access it with:
 const adminNamespace = io.of("/admin");
 ```
 
-More information [here](/docs/v4/namespaces/).
+More information [here](namespaces.md).
 
 #### `readonly`
 
@@ -191,7 +191,7 @@ The source code can be found here: https://github.com/socketio/socket.io-admin-u
 
 The `instrument` method simply:
 
-- creates a [namespace](/docs/v4/namespaces/) and adds an authentication [middleware](/docs/v4/middlewares/) if applicable
+- creates a [namespace](namespaces.md) and adds an authentication [middleware](../02-Server/middlewares.md) if applicable
 - register listeners for the `connection` and `disconnect` events for each existing namespaces to track the socket instances
 - register a timer which will periodically send stats from the server to the UI
 - register handlers for the `join`, `leave` and `_disconnect` commands sent from the UI

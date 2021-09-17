@@ -7,7 +7,7 @@ slug: /using-multiple-nodes/
 When deploying multiple Socket.IO servers, there are two things to take care of:
 
 - enabling sticky session, if HTTP long-polling is enabled (which is the default): see [below](#enabling-sticky-session)
-- using a compatible adapter, see [here](/docs/v4/adapter/)
+- using a compatible adapter, see [here](../05-Adapters/adapter.md)
 
 ## Sticky load balancing
 
@@ -35,7 +35,7 @@ const socket = io("https://io.yourhost.com", {
 });
 ```
 
-Documentation: [`transports`](/docs/v4/client-initialization/#transports)
+Documentation: [`transports`](../03-Client/client-initialization.md#transports)
 
 ### Enabling sticky-session
 
@@ -46,11 +46,11 @@ To achieve sticky-session, there are two main solutions:
 
 You will find below some examples with common load-balancing solutions:
 
-- [NginX](#nginX-configuration) (IP-based)
-- [Apache HTTPD](#apache-HTTPD-configuration) (cookie-based)
-- [HAProxy](#hAProxy-configuration) (cookie-based)
+- [NginX](#nginx-configuration) (IP-based)
+- [Apache HTTPD](#apache-httpd-configuration) (cookie-based)
+- [HAProxy](#haproxy-configuration) (cookie-based)
 - [Traefik](#traefik) (cookie-based)
-- [Node.js `cluster` module](#using-Node-js-Cluster)
+- [Node.js `cluster` module](#using-nodejs-cluster)
 
 For other platforms, please refer to the relevant documentation:
 
@@ -304,7 +304,7 @@ if (cluster.isMaster) {
 
 ## Passing events between nodes
 
-Now that you have multiple Socket.IO nodes accepting connections, if you want to broadcast events to all clients (or to the clients in a certain [room](/docs/v4/rooms/)) you&#8217;ll need some way of passing messages between processes or computers.
+Now that you have multiple Socket.IO nodes accepting connections, if you want to broadcast events to all clients (or to the clients in a certain [room](../04-Events/rooms.md)) you&#8217;ll need some way of passing messages between processes or computers.
 
-The interface in charge of routing messages is what we call the [Adapter](/docs/v4/adapter/).
+The interface in charge of routing messages is what we call the [Adapter](../05-Adapters/adapter.md).
 

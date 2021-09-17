@@ -12,11 +12,11 @@ Here's the #5 edition of our Monthly update.
 
 So, what's new in the Socket.IO ecosystem?
 
-- [A new API for inter-server communication](#A-new-API-for-inter-server-communication)
-- [New official adapters](#New-official-adapters)
-- [Additional documentation](#Additional-documentation)
-- [Version updates](#Version-updates)
-- [What's next](#What’s-next)
+- [A new API for inter-server communication](#a-new-api-for-inter-server-communication)
+- [New official adapters](#new-official-adapters)
+- [Additional documentation](#additional-documentation)
+- [Version updates](#version-updates)
+- [What's next](#whats-next)
 
 ## A new API for inter-server communication
 
@@ -64,7 +64,7 @@ There are now three additional official adapters:
 
 Note: the first two were inspired from existing adapters maintained by the community and were updated to support Socket.IO v3.
 
-All of them supports the [utility methods](/docs/v4/server-instance/#Utility-methods) that were added in v4, including the `serverSideEmit()` method described above.
+All of them supports the [utility methods](/docs/v4/server-instance/#utility-methods) that were added in v4, including the `serverSideEmit()` method described above.
 
 ## Additional documentation
 

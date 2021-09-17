@@ -8,7 +8,7 @@ slug: /server-initialization/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Once you have [installed](/docs/v4/server-installation/) the Socket.IO server library, you can now init the server. The complete list of options can be found [here](/docs/v4/server-options/).
+Once you have [installed](server-installation.md) the Socket.IO server library, you can now init the server. The complete list of options can be found [here](../../server-options.md).
 
 ## Initialization
 
@@ -453,7 +453,7 @@ See the documentation [here](https://docs.nestjs.com/websockets/gateways).
 
 :::caution
 
-NestJS v7 and below relies on Socket.IO v2, while NestJS v8 relies on Socket.IO v4. Please use a [compatible client](/docs/v4/client-installation/#version-compatibility).
+NestJS v7 and below relies on Socket.IO v2, while NestJS v8 relies on Socket.IO v4. Please use a [compatible client](../03-Client/client-installation.md#version-compatibility).
 
 :::
 
@@ -538,4 +538,4 @@ server.listen(3000);
 
 ## Options
 
-The complete list of available options can be found [here](/docs/v4/server-options/).
+The complete list of available options can be found [here](../../server-options.md).

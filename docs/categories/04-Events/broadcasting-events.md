@@ -53,7 +53,7 @@ io.on("connection", (socket) => {
 
 :::note
 
-In the example above, using `socket.emit("hello", "world")` (without `broadcast` flag) would send the event to "client A". You can find the list of all the ways to send an event in the [cheatsheet](/docs/v4/emit-cheatsheet/).
+In the example above, using `socket.emit("hello", "world")` (without `broadcast` flag) would send the event to "client A". You can find the list of all the ways to send an event in the [cheatsheet](emit-cheatsheet.md).
 
 :::
 
@@ -61,7 +61,7 @@ In the example above, using `socket.emit("hello", "world")` (without `broadcast`
 
 Broadcasting also works with multiple Socket.IO servers.
 
-You just need to replace the default adapter by the [Redis Adapter](/docs/v4/redis-adapter/) or another [compatible adapter](/docs/v4/adapter/).
+You just need to replace the default adapter by the [Redis Adapter](../05-Adapters/adapter.md) or another [compatible adapter](../05-Adapters/adapter-redis.md).
 
 <ThemedImage
   alt="Broadcasting with Redis"
@@ -85,4 +85,4 @@ io.local.emit("hello", "world");
   }}
 />
 
-In order to target specific clients when broadcasting, please see the documentation about [Rooms](/docs/v4/rooms/).
+In order to target specific clients when broadcasting, please see the documentation about [Rooms](rooms.md).

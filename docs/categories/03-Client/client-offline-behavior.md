@@ -12,7 +12,7 @@ While useful in most cases (when the reconnection delay is short), it could resu
 
 There are several solutions to prevent this behavior, depending on your use case:
 
-- use the [connected](/docs/v4/client-socket-instance/#Socket-connected) attribute of the Socket instance
+- use the [connected](client-socket-instance.md#socketconnected) attribute of the Socket instance
 
 ```js
 if (socket.connected) {
@@ -22,7 +22,7 @@ if (socket.connected) {
 }
 ```
 
-- use [volatile events](/docs/v4/emitting-events/#Volatile-events)
+- use [volatile events](../04-Events/emitting-events.md#volatile-events)
 
 ```js
 socket.volatile.emit( /* ... */ );

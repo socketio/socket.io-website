@@ -7,9 +7,9 @@ slug: /server-socket-instance/
 
 Besides:
 
-- [emitting](/docs/v4/emitting-events/#Basic-emit) and [listening to](/docs/v4/listening-to-events/) events
-- [broadcasting events](/docs/v4/broadcasting-events/#To-all-connected-clients-excepting-the-sender)
-- [joining and leaving rooms](/docs/v4/rooms/#Joining-and-leaving)
+- [emitting](../04-Events/emitting-events.md#basic-emit) and [listening to](../04-Events/listening-to-events.md) events
+- [broadcasting events](../04-Events/broadcasting-events.md#to-all-connected-clients-except-the-sender)
+- [joining and leaving rooms](../04-Events/rooms.md#joining-and-leaving)
 
 The Socket instance has a few attributes that may be of use in your application:
 
@@ -90,7 +90,7 @@ Example:
 
 ## Socket#rooms
 
-This is a reference to the [rooms](/docs/v4/rooms/) the Socket is currently in.
+This is a reference to the [rooms](../04-Events/rooms.md) the Socket is currently in.
 
 ```js
 io.on("connection", (socket) => {
@@ -115,7 +115,7 @@ const sockets = await io.fetchSockets();
 console.log(sockets[0].data.username); // "alice"
 ```
 
-More information [here](/docs/v4/server-instance/#Utility-methods).
+More information [here](server-instance.md#utility-methods).
 
 ## Additional attributes
 
@@ -145,7 +145,7 @@ io.on("connection", (socket) => {
 
 ## Socket middlewares
 
-Those middlewares looks a lot like the usual [middlewares](/docs/v4/middlewares/), except that they are called for each incoming packet:
+Those middlewares looks a lot like the usual [middlewares](middlewares.md), except that they are called for each incoming packet:
 
 ```js
 socket.use(([event, ...args], next) => {
@@ -174,7 +174,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-Note: this feature only exists on the server-side. For the client-side, you might be interested in [catch-all listeners](/docs/v4/listening-to-events/#Catch-all-listeners).
+Note: this feature only exists on the server-side. For the client-side, you might be interested in [catch-all listeners](../04-Events/listening-to-events.md#catch-all-listeners).
 
 ## Events
 
@@ -199,17 +199,16 @@ Here is the list of possible reasons:
 
 Reason | Description
 ------ | -----------
-`server namespace disconnect` | The socket was forcefully disconnected with [socket.disconnect()](/docs/v4/server-api/#socket-disconnect-close)
-`client namespace disconnect` | The client has manually disconnected the socket using [socket.disconnect()](/docs/v4/client-api/#socket-disconnect)
+`server namespace disconnect` | The socket was forcefully disconnected with [socket.disconnect](../../server-api.md#socketdisconnectclose)
+`client namespace disconnect` | The client has manually disconnected the socket using [socket.disconnect()](../../client-api.md#socketdisconnect)
 `server shutting down` | The server is, well, shutting down
 `ping timeout` | The client did not send a PONG packet in the `pingTimeout` delay
 `transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
 `transport error` | The connection has encountered an error
 
-
 ### `disconnecting`
 
-This event is similar to `disconnect` but is fired a bit earlier, when the [Socket#rooms](/docs/v4/server-socket-instance/#Socket-rooms) set is not empty yet
+This event is similar to `disconnect` but is fired a bit earlier, when the [Socket#rooms](server-socket-instance.md#socketrooms) set is not empty yet
 
 ```js
 io.on("connection", (socket) => {
@@ -232,4 +231,4 @@ socket.emit("disconnect");
 
 ## Complete API
 
-The complete API exposed by the Socket instance can be found [here](/docs/v4/server-api/#Socket).
+The complete API exposed by the Socket instance can be found [here](../../server-api.md#socket).

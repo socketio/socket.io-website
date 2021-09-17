@@ -9,21 +9,21 @@ Common/known issues:
 
 - [the socket is not able to connect](#problem-the-socket-is-not-able-to-connect)
 - [the socket gets disconnected](#problem-the-socket-gets-disconnected)
-- [the socket is stuck in HTTP long-polling](#problem-the-socket-is-stuck-in-HTTP-long-polling)
+- [the socket is stuck in HTTP long-polling](#problem-the-socket-is-stuck-in-http-long-polling)
 
 ### Problem: the socket is not able to connect
 
 Possible explanations:
 
-- [You are trying to reach a plain WebSocket server](#you-are-trying-to-reach-a-plain-WebSocket-server)
+- [You are trying to reach a plain WebSocket server](#you-are-trying-to-reach-a-plain-websocket-server)
 - [The server is not reachable](#the-server-is-not-reachable)
 - [The client is not compatible with the version of the server](#the-client-is-not-compatible-with-the-version-of-the-server)
-- [The server does not send the necessary CORS headers](#the-server-does-not-send-the-necessary-CORS-headers)
+- [The server does not send the necessary CORS headers](#the-server-does-not-send-the-necessary-cors-headers)
 - [You didn’t enable sticky sessions (in a multi server setup)](#you-didn’t-enable-sticky-sessions-in-a-multi-server-setup)
 
 #### You are trying to reach a plain WebSocket server
 
-As explained in the ["What Socket.IO is not"](/docs/v4/#What-Socket-IO-is-not) section, the Socket.IO client is not a WebSocket implementation and thus will not be able to establish a connection with a WebSocket server, even with `transports: ["websocket"]`:
+As explained in the ["What Socket.IO is not"](index.md#what-socketio-is-not) section, the Socket.IO client is not a WebSocket implementation and thus will not be able to establish a connection with a WebSocket server, even with `transports: ["websocket"]`:
 
 ```js
 const socket = io("ws://echo.websocket.org", {
@@ -92,7 +92,7 @@ Here is the compatibility table for the [JS client](https://github.com/socketio/
     </tr>
 </table>
 
-[1] Yes, with <code><a href="https://socket.io/docs/v4/server-initialization/#allowEIO3">allowEIO3: true</a></code>
+[1] Yes, with [allowEIO3: true](../../server-options.md#alloweio3)
 
 Here is the compatibility table for the [Java client](https://github.com/socketio/socket.io-client-java/):
 
@@ -120,7 +120,7 @@ Here is the compatibility table for the [Java client](https://github.com/socketi
     </tr>
 </table>
 
-[1] Yes, with <code><a href="https://socket.io/docs/v4/server-initialization/#allowEIO3">allowEIO3: true</a></code>
+[1] Yes, with [allowEIO3: true](../../server-options.md#alloweio3)
 
 Here is the compatibility table for the [Swift client](https://github.com/socketio/socket.io-client-swift/):
 
@@ -148,13 +148,13 @@ Here is the compatibility table for the [Swift client](https://github.com/socket
     </tr>
 </table>
 
-[1] Yes, with <code><a href="https://socket.io/docs/v4/server-initialization/#allowEIO3">allowEIO3: true</a></code> (server) and `.connectParams(["EIO": "3"])` (client):
+[1] Yes, with [allowEIO3: true](../../server-options.md#alloweio3) (server) and `.connectParams(["EIO": "3"])` (client):
 
 ```swift
 SocketManager(socketURL: URL(string:"http://localhost:8087/")!, config: [.connectParams(["EIO": "3"])])
 ```
 
-[2] Yes, <code><a href="https://socket.io/docs/v4/server-initialization/#allowEIO3">allowEIO3: true</a></code> (server)
+[2] Yes, [allowEIO3: true](../../server-options.md#alloweio3) (server)
 
 [3] Yes, with `.version(.two)` (client):
 
@@ -175,15 +175,15 @@ It probably means that:
 - either you are not actually reaching the Socket.IO server (see [above](#the-server-is-not-reachable))
 - or you didn't enable [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS) on the server-side.
 
-Please see the documentation [here](/docs/v4/handling-cors/).
+Please see the documentation [here](../02-Server/handling-cors.md).
 
 #### You didn't enable sticky sessions (in a multi server setup)
 
-When scaling to multiple Socket.IO servers, you need to make sure that all the requests of a given Socket.IO session reach the same Socket.IO server. The explanation can be found [here](/docs/v4/using-multiple-nodes/#Why-is-sticky-session-required).
+When scaling to multiple Socket.IO servers, you need to make sure that all the requests of a given Socket.IO session reach the same Socket.IO server. The explanation can be found [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
 
 Failure to do so will result in HTTP 400 responses with the code: `{"code":1,"message":"Session ID unknown"}`
 
-Please see the documentation [here](/docs/v4/using-multiple-nodes/).
+Please see the documentation [here](../02-Server/using-multiple-nodes.md).
 
 ### Problem: the socket gets disconnected
 
@@ -195,7 +195,7 @@ First and foremost, please note that disconnections are common and expected, eve
 - the browser itself may freeze an inactive tab
 - ...
 
-That being said, the Socket.IO client will always try to reconnect, unless specifically told [otherwise](/docs/v4/client-initialization/#reconnection).
+That being said, the Socket.IO client will always try to reconnect, unless specifically told [otherwise](../03-Client/client-initialization.md#reconnection).
 
 Possible explanations for a disconnection:
 
@@ -206,11 +206,11 @@ Possible explanations for a disconnection:
 
 Since the format of the packets sent over the WebSocket transport is similar in v2 and v3/v4, you might be able to connect with an incompatible client (see [above](#the-client-is-not-compatible-with-the-version-of-the-server)), but the connection will eventually be closed after a given delay.
 
-So if you are experiencing a regular disconnection after 30 seconds (which was the sum of the values of [pingTimeout](/docs/v4/server-initialization/#pingTimeout) and [pingInterval](/docs/v4/server-initialization/#pingInterval) in Socket.IO v2), this is certainly due to a version incompatibility.
+So if you are experiencing a regular disconnection after 30 seconds (which was the sum of the values of [pingTimeout](../../server-options.md#pingtimeout) and [pingInterval](../../server-options.md#pinginterval) in Socket.IO v2), this is certainly due to a version incompatibility.
 
 #### You are trying to send a huge payload
 
-If you get disconnected while sending a huge payload, this may mean that you have reached the [`maxHttpBufferSize`](/docs/v4/server-initialization/#maxHttpBufferSize) value, which defaults to 1 MB. Please adjust it according to your needs:
+If you get disconnected while sending a huge payload, this may mean that you have reached the [`maxHttpBufferSize`](../../server-options.md#maxhttpbuffersize) value, which defaults to 1 MB. Please adjust it according to your needs:
 
 ```js
 const io = require("socket.io")(httpServer, {
@@ -218,7 +218,7 @@ const io = require("socket.io")(httpServer, {
 });
 ```
 
-A huge payload taking more time to upload than the value of the [`pingTimeout`](/docs/v4/server-initialization/#pingTimeout) option can also trigger a disconnection (since the [heartbeat mechanism](/docs/v4/how-it-works/#Disconnection-detection) fails during the upload). Please adjust it according to your needs:
+A huge payload taking more time to upload than the value of the [`pingTimeout`](../../server-options.md#pingtimeout) option can also trigger a disconnection (since the [heartbeat mechanism](../01-Documentation/how-it-works.md#disconnection-detection) fails during the upload). Please adjust it according to your needs:
 
 ```js
 const io = require("socket.io")(httpServer, {
@@ -234,7 +234,7 @@ In most cases, you should see something like this:
 
 1. the Engine.IO handshake (contains the session ID — here, `zBjrh...AAAK` — that is used in subsequent requests)
 2. the Socket.IO handshake request (contains the value of the `auth` option)
-3. the Socket.IO handshake response (contains the [Socket#id](/docs/v4/server-socket-instance/#Socket-id))
+3. the Socket.IO handshake response (contains the [Socket#id](../02-Server/server-socket-instance.md#socketid))
 4. the WebSocket connection
 5. the first HTTP long-polling request, which is closed once the WebSocket connection is established
 
@@ -274,4 +274,4 @@ Possible explanations:
 
 #### A proxy in front of your servers does not accept the WebSocket connection
 
-Please see the documentation [here](/docs/v4/reverse-proxy/).
+Please see the documentation [here](../02-Server/behind-a-reverse-proxy.md).

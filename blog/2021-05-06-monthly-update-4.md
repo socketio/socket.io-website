@@ -12,10 +12,10 @@ Here's the #4 edition of our Monthly update.
 
 So, what's new in the Socket.IO ecosystem?
 
-- [A new Admin UI](#A-new-Admin-UI)
-- [A new guide](#A-new-guide)
-- [Version updates](#Version-updates)
-- [What's next](#What’s-next)
+- [A new Admin UI](#a-new-admin-ui)
+- [A new guide](#a-new-guide)
+- [Version updates](#version-updates)
+- [What's next](#whats-next)
 
 ## A new Admin UI
 

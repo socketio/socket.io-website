@@ -6,7 +6,7 @@ slug: /server-instance/
 
 The Server instance (often called `io` in the code examples) has a few attributes that may be of use in your application.
 
-It also inherits all the methods of the [main namespace](/docs/v4/namespaces/#Main-namespace), like [`namespace.use()`](/docs/v4/server-api/#namespace-use-fn) (see [here](/docs/v4/middlewares/)) or [`namespace.allSockets()`](/docs/v4/server-api/#namespace-allSockets).
+It also inherits all the methods of the [main namespace](../06-Advanced/namespaces.md#main-namespace), like [`namespace.use()`](../../server-api.md#namespaceusefn) (see [here](middlewares.md)) or [`namespace.allSockets()`](../../server-api.md#namespaceallsockets).
 
 ## Server#engine
 
@@ -200,7 +200,7 @@ console.log(sockets[0].data.username); // "alice"
 
 ### `serverSideEmit`
 
-This method allows to emit events to the other Socket.IO servers of the cluster, in a [multi-server setup](/docs/v4/using-multiple-nodes/).
+This method allows to emit events to the other Socket.IO servers of the cluster, in a [multi-server setup](using-multiple-nodes.md).
 
 Syntax:
 
@@ -264,7 +264,7 @@ The Server instance emits one single event (well, technically two, but `connect`
 
 ### `connection`
 
-This event is fired upon a new connection. The first argument is a [Socket instance](/docs/v4/server-socket-instance/).
+This event is fired upon a new connection. The first argument is a [Socket instance](server-socket-instance.md).
 
 ```js
 io.on("connection", (socket) => {
@@ -274,4 +274,4 @@ io.on("connection", (socket) => {
 
 ## Complete API
 
-The complete API exposed by the Server instance can be found [here](/docs/v4/server-api/#Server).
+The complete API exposed by the Server instance can be found [here](../../server-api.md#server).

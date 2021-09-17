@@ -11,9 +11,9 @@ Exposed by `require("socket.io")`.
 
 Related documentation pages:
 
-- [installation](/docs/v4/server-installation/)
-- [initialization](/docs/v4/server-initialization/)
-- [details of the server instance](/docs/v4/server-instance/)
+- [installation](categories/02-Server/server-installation.md)
+- [initialization](categories/02-Server/server-initialization.md)
+- [details of the server instance](categories/02-Server/server-instance.md)
 
 ### new Server(httpServer[, options])
 
@@ -29,14 +29,14 @@ const { Server } = require("socket.io");
 const io = new Server();
 ```
 
-The complete list of available options can be found [here](/docs/v4/server-options/).
+The complete list of available options can be found [here](server-options.md).
 
 ### new Server(port[, options])
 
   - `port` _(Number)_ a port to listen to (a new `http.Server` will be created)
   - `options` _(Object)_
 
-See [above](#new-Server-httpServer-options) for the list of available `options`.
+See [above](#new-serverhttpserver-options) for the list of available `options`.
 
 ```js
 const io = require("socket.io")(3000, {
@@ -53,7 +53,7 @@ const io = require("socket.io")(3000, {
 
   - `options` _(Object)_
 
-See [above](#new-Server-httpServer-options) for the list of available `options`.
+See [above](#new-serverhttpserver-options) for the list of available `options`.
 
 ```js
 const io = require("socket.io")({
@@ -155,11 +155,11 @@ Attaches the `Server` to an engine.io instance on a new http.Server with the sup
 
 ### server.listen(httpServer[, options])
 
-Synonym of [server.attach(httpServer[, options])](#server-attach-httpServer-options).
+Synonym of [server.attach(httpServer[, options])](#serverattachhttpserver-options).
 
 ### server.listen(port[, options])
 
-Synonym of [server.attach(port[, options])](#server-attach-port-options).
+Synonym of [server.attach(port[, options])](#serverattachport-options).
 
 ### server.bind(engine)
 
@@ -245,7 +245,7 @@ A reference to the underlying Engine.IO server. See [here](#engine).
 
 <span className="changelog">Added in v4.0.0</span>
 
-Alias for [`io.of("/").socketsJoin(rooms)`](#namespace-socketsJoin-rooms).
+Alias for [`io.of("/").socketsJoin(rooms)`](#namespacesocketsjoinrooms).
 
 ```js
 // make all Socket instances join the "room1" room
@@ -258,13 +258,13 @@ io.in("room1").socketsJoin(["room2", "room3"]);
 io.in(theSocketId).socketsJoin("room1");
 ```
 
-See [here](/docs/v4/server-instance/#Utility-methods).
+See [here](categories/02-Server/server-instance.md#utility-methods).
 
 ### server.socketsLeave(rooms)
 
 <span className="changelog">Added in v4.0.0</span>
 
-Alias for [`io.of("/").socketsLeave(rooms)`](#namespace-socketsLeave-rooms).
+Alias for [`io.of("/").socketsLeave(rooms)`](#namespacesocketsleaverooms).
 
 ```js
 // make all Socket instances leave the "room1" room
@@ -277,13 +277,13 @@ io.in("room1").socketsLeave(["room2", "room3"]);
 io.in(theSocketId).socketsLeave("room1");
 ```
 
-See [here](/docs/v4/server-instance/#Utility-methods).
+See [here](categories/02-Server/server-instance.md#utility-methods).
 
 ### server.disconnectSockets([close])
 
 <span className="changelog">Added in v4.0.0</span>
 
-Alias for [`io.of("/").disconnectSockets(close)`](#namespace-disconnectSockets-close).
+Alias for [`io.of("/").disconnectSockets(close)`](#namespacedisconnectsocketsclose).
 
 ```js
 // make all Socket instances disconnect
@@ -293,7 +293,7 @@ io.disconnectSockets();
 io.in("room1").disconnectSockets(true);
 ```
 
-See [here](/docs/v4/server-instance/#Utility-methods).
+See [here](categories/02-Server/server-instance.md#utility-methods).
 
 ### server.fetchSockets()
 
@@ -307,7 +307,7 @@ const sockets = await io.fetchSockets();
 const sockets = await io.in("room1").fetchSockets();
 ```
 
-See [here](/docs/v4/server-instance/#Utility-methods).
+See [here](categories/02-Server/server-instance.md#utility-methods).
 
 ### server.serverSideEmit(eventName[, ...args][, ack])
 
@@ -315,7 +315,7 @@ See [here](/docs/v4/server-instance/#Utility-methods).
 
 Synonym of: `io.of("/").serverSideEmit(/* ... */);`
 
-See [here](#namespace-serverSideEmit-eventName-…args-ack).
+See [here](#namespaceserversideemiteventname-args-ack).
 
 ### Event: `connection`
 
@@ -355,7 +355,7 @@ io.on("new_namespace", (namespace) => {
 });
 ```
 
-- to track the [dynamically created](/docs/v4/namespaces/#Dynamic-namespaces) namespaces
+- to track the [dynamically created](categories/06-Advanced/namespaces.md#dynamic-namespaces) namespaces
 
 ```js
 io.of(/\/nsp-\w+/);
@@ -369,7 +369,7 @@ io.on("new_namespace", (namespace) => {
 
 Represents a pool of sockets connected under a given scope identified by a pathname (eg: `/chat`).
 
-More information can be found [here](/docs/v4/namespaces/).
+More information can be found [here](categories/06-Advanced/namespaces.md).
 
 ### namespace.name
 
@@ -392,11 +392,11 @@ const socketCount = io.of("/admin").sockets.size;
 
   * _(Adapter)_
 
-The ["Adapter"](/docs/v4/glossary/#Adapter) used for the namespace. Useful when using the `Adapter` based on [Redis](https://github.com/socketio/socket.io-redis), as it exposes methods to manage sockets and rooms across your cluster.
+The ["Adapter"](categories/08-Miscellaneous/glossary.md#adapter) used for the namespace. Useful when using the `Adapter` based on [Redis](https://github.com/socketio/socket.io-redis), as it exposes methods to manage sockets and rooms across your cluster.
 
 **Note:** the adapter of the main namespace can be accessed with `io.of("/").adapter`.
 
-Please see the explanation [here](/docs/v4/rooms/#Implementation-details).
+Please see the explanation [here](categories/04-Events/rooms.md#implementation-details).
 
 ### namespace.to(room)
 
@@ -434,7 +434,7 @@ io.to(["room1", "room2"]).emit(/* ... */);
 
 <span className="changelog">Added in v1.0.0</span>
 
-Synonym of [namespace.to(room)](#namespace-to-room).
+Synonym of [namespace.to(room)](#namespacetoroom).
 
 ### namespace.except(rooms)
 
@@ -515,7 +515,7 @@ socket.on("connect_error", err => {
 });
 ```
 
-More information can be found [here](/docs/v4/middlewares/).
+More information can be found [here](categories/02-Server/middlewares.md).
 
 ### namespace.socketsJoin(rooms)
 
@@ -540,7 +540,7 @@ io.of("/admin").in("room1").socketsJoin("room2");
 io.in(theSocketId).socketsJoin("room1");
 ```
 
-More information can be found [here](/docs/v4/server-instance/#Utility-methods).
+More information can be found [here](categories/02-Server/server-instance.md#utility-methods).
 
 ### namespace.socketsLeave(rooms)
 
@@ -650,7 +650,7 @@ console.log(sockets[0].data.username); // "alice"
   - `ack` _(Function)_
   - **Returns** `true`
 
-Sends a message to the other Socket.IO servers of the [cluster](/docs/v4/using-multiple-nodes/).
+Sends a message to the other Socket.IO servers of the [cluster](categories/02-Server/using-multiple-nodes.md).
 
 Syntax:
 
@@ -723,7 +723,7 @@ io.of("/admin").on("connection", (socket) => {
 
 ### Event: 'connect'
 
-Synonym of [Event: "connection"](#event-‘connection’).
+Synonym of [Event: "connection"](#event-connection-1).
 
 ### Flag: 'volatile'
 
@@ -751,7 +751,7 @@ Within each `Namespace`, you can also define arbitrary channels (called `room`) 
 
 The `Socket` class inherits from [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter). The `Socket` class overrides the `emit` method, and does not modify any other `EventEmitter` method. All methods documented here which also appear as `EventEmitter` methods (apart from `emit`) are implemented by `EventEmitter`, and documentation for `EventEmitter` applies.
 
-More information can be found [here](/docs/v4/server-socket-instance/).
+More information can be found [here](categories/02-Server/server-socket-instance.md).
 
 ### socket.id
 
@@ -1103,7 +1103,7 @@ io.on("connection", (socket) => {
 
 <span className="changelog">Added in v1.0.0</span>
 
-Synonym of [socket.to(room)](#socket-to-room).
+Synonym of [socket.to(room)](#sockettoroom).
 
 ### socket.except(rooms)
 
@@ -1189,8 +1189,8 @@ Possible reasons:
 
 Reason | Description
 ------ | -----------
-`server namespace disconnect` | The socket was forcefully disconnected with [socket.disconnect()](/docs/v4/server-api/#socket-disconnect-close)
-`client namespace disconnect` | The client has manually disconnected the socket using [socket.disconnect()](/docs/v4/client-api/#socket-disconnect)
+`server namespace disconnect` | The socket was forcefully disconnected with [socket.disconnect()](server-api.md#socketdisconnectclose)
+`client namespace disconnect` | The client has manually disconnected the socket using [socket.disconnect()](client-api.md#socketdisconnect)
 `server shutting down` | The server is, well, shutting down
 `ping timeout` | The client did not send a PONG packet in the `pingTimeout` delay
 `transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
@@ -1235,7 +1235,7 @@ A getter proxy that returns the reference to the `request` that originated the e
 
 ## Engine
 
-The Engine.IO server, which manages the WebSocket / HTTP long-polling connections. More information [here](/docs/v4/how-it-works/).
+The Engine.IO server, which manages the WebSocket / HTTP long-polling connections. More information [here](categories/01-Documentation/how-it-works.md).
 
 Its source code can be found here: https://github.com/socketio/engine.io
 

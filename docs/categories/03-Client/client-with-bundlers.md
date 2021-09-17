@@ -9,10 +9,10 @@ You will find below the configuration for bundling the client library with diffe
 
 - [Webpack 5](#webpack-5)
   - [Browser](#browser)
-  - [Node.js](#node-js)
+  - [Node.js](#nodejs)
 - [Rollup.js](#rollup-js)
   - [Browser](#browser-1)
-  - [Node.js](#node-js-1)
+  - [Node.js](#nodejs-1)
 
 ## Webpack 5
 

@@ -12,7 +12,7 @@ A Namespace is a communication channel that allows you to split the logic of you
 
 Each namespace has its own:
 
-- [event handlers](/docs/v4/listening-to-events/)
+- [event handlers](../04-Events/listening-to-events.md)
 
 ```js
 io.of("/orders").on("connection", (socket) => {
@@ -25,7 +25,7 @@ io.of("/users").on("connection", (socket) => {
 });
 ```
 
-- [rooms](/docs/v4/rooms/)
+- [rooms](../04-Events/rooms.md)
 
 ```js
 const orderNamespace = io.of("/orders");
@@ -43,7 +43,7 @@ userNamespace.on("connection", (socket) => {
 });
 ```
 
-- [middlewares](/docs/v4/middlewares/)
+- [middlewares](../02-Server/middlewares.md)
 
 ```js
 const orderNamespace = io.of("/orders");
@@ -162,7 +162,7 @@ const socket1 = io("https://first.example.com");
 const socket2 = io("https://second.example.com"); // no multiplexing, two distinct WebSocket connections
 ```
 
-- usage of the [forceNew](/docs/v4/client-initialization/#forceNew) option
+- usage of the [forceNew](../03-Client/client-initialization.md#forcenew) option
 
 ```js
 const socket1 = io();
@@ -195,7 +195,7 @@ io.of(/^\/dynamic-\d+$/).on("connection", (socket) => {
 
 The return value of the `of()` method is what we call the parent namespace, from which you can:
 
-- register [middlewares](/docs/v4/middlewares/)
+- register [middlewares](../02-Server/middlewares.md)
 
 ```js
 const parentNamespace = io.of(/^\/dynamic-\d+$/);
@@ -205,7 +205,7 @@ parentNamespace.use((socket, next) => { next() });
 
 The middleware will automatically be registered on each child namespace.
 
-- [broadcast](/docs/v4/broadcasting-events/) events
+- [broadcast](../04-Events/broadcasting-events.md) events
 
 ```js
 const parentNamespace = io.of(/^\/dynamic-\d+$/);
@@ -215,4 +215,4 @@ parentNamespace.emit("hello"); // will be sent to users in /dynamic-1, /dynamic-
 
 ## Complete API
 
-The complete API exposed by the Namespace instance can be found [here](/docs/v4/server-api/#Namespace).
+The complete API exposed by the Namespace instance can be found [here](../../server-api.md#namespace).

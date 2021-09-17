@@ -50,12 +50,12 @@ Here is the compatibility table between the server and the JS client:
     </tr>
 </table>
 
-[1] Yes, with <code><a href="https://socket.io/docs/v4/server-initialization/#allowEIO3">allowEIO3: true</a></code>
+[1] Yes, with [allowEIO3: true](../../server-options.md#alloweio3)
 
 Please check the associated migration guides:
 
-- [v2 to v3](/docs/v4/migrating-from-2-x-to-3-0/)
-- [v3 to v4](/docs/v4/migrating-from-3-x-to-4-0/)
+- [v2 to v3](../07-Migrations/migrating-from-2-to-3.md)
+- [v3 to v4](../07-Migrations/migrating-from-3-to-4.md)
 
 ## Browser support
 
@@ -114,7 +114,7 @@ There are several bundles available:
 | socket.io.min.js           | 14.7 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) |
 | socket.io.msgpack.min.js   | 15.3 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) and with the [msgpack parser](https://github.com/darrachequesne/socket.io-msgpack-parser)    |
 
-The [debug](https://www.npmjs.com/package/debug) package allows to print debug information to the console. You can find more information [here](/docs/v4/logging-and-debugging/).
+The [debug](https://www.npmjs.com/package/debug) package allows to print debug information to the console. You can find more information [here](../01-Documentation/logging-and-debugging.md).
 
 During development, we recommend using the `socket.io.js` bundle. By setting `localStorage.debug = 'socket.io-client:socket'`, any event received by the client will be printed to the console.
 

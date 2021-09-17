@@ -5,7 +5,7 @@ sidebar_position: 3
 slug: /client-socket-instance/
 ---
 
-Besides [emitting](/docs/v4/emitting-events/#Basic-emit) and [listening to](/docs/v4/listening-to-events/) events, the Socket instance has a few attributes that may be of use in your application:
+Besides [emitting](../04-Events/emitting-events.md) and [listening to](../04-Events/listening-to-events.md) events, the Socket instance has a few attributes that may be of use in your application:
 
 ## Socket#id
 
@@ -67,7 +67,7 @@ socket.io.on("reconnect", () => {
 });
 ```
 
-More information can be found in the [migration guide](/docs/v4/migrating-from-2-x-to-3-0/#The-Socket-instance-will-no-longer-forward-the-events-emitted-by-its-Manager).
+More information can be found in the [migration guide](../07-Migrations/migrating-from-2-to-3.md#the-socket-instance-will-no-longer-forward-the-events-emitted-by-its-manager).
 
 ### `connect`
 
@@ -100,9 +100,9 @@ socket.on("data", () => { /* ... */ });
 This event is fired when:
 
 - the low-level connection cannot be established
-- the connection is denied by the server in a [middleware function](/docs/v4/middlewares/)
+- the connection is denied by the server in a [middleware function](../02-Server/middlewares.md)
 
-In the first case, the Socket will automatically try to reconnect, after a [given delay](/docs/v4/client-initialization/#reconnectionDelay).
+In the first case, the Socket will automatically try to reconnect, after a [given delay](client-initialization.md#reconnectiondelay).
 
 In the latter case, you need to manually reconnect. You might need to update the credentials:
 
@@ -141,15 +141,15 @@ Here is the list of possible reasons:
 
 Reason | Description
 ------ | -----------
-`io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](/docs/v4/server-api/#socket-disconnect-close)
-`io client disconnect` | The socket was manually disconnected using [socket.disconnect()](/docs/v4/client-api/#socket-disconnect)
+`io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](../../server-api.md#socketdisconnectclose)
+`io client disconnect` | The socket was manually disconnected using [socket.disconnect()](../../client-api.md#socketdisconnect)
 `ping timeout` | The server did not send a PING within the `pingInterval + pingTimeout` range
 `transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
 `transport error` | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)
 
 In the first two cases (explicit disconnection), the client will not try to reconnect and you need to manually call `socket.connect()`.
 
-In all other cases, the client will wait for a small [random delay](/docs/v4/client-initialization/#reconnectionDelay) and then try to reconnect:
+In all other cases, the client will wait for a small [random delay](client-initialization.md#reconnectiondelay) and then try to reconnect:
 
 ```js
 socket.on("disconnect", (reason) => {
@@ -170,4 +170,4 @@ socket.emit("disconnect");
 
 ## Complete API
 
-The complete API exposed by the Socket instance can be found [here](/docs/v4/client-api/#Socket).
+The complete API exposed by the Socket instance can be found [here](../../client-api.md#socket).

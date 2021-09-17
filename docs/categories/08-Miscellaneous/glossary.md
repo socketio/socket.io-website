@@ -7,7 +7,7 @@ slug: /glossary/
 We will list here the terms that are related to the Socket.IO ecosystem:
 
 - [Adapter](#adapter)
-- [Engine.IO](#engine-IO)
+- [Engine.IO](#engineio)
 - [Namespace](#namespace)
 - [Room](#room)
 - [Transport](#transport)
@@ -16,37 +16,37 @@ We will list here the terms that are related to the Socket.IO ecosystem:
 
 An Adapter is a server-side component which is responsible for:
 
-- storing the relationships between the Socket instances and the [rooms](/docs/v4/rooms/)
-- broadcasting events to [all](/docs/v4/broadcasting-events/) (or a subset of) clients
+- storing the relationships between the Socket instances and the [rooms](../04-Events/rooms.md)
+- broadcasting events to [all](../04-Events/broadcasting-events.md) (or a subset of) clients
 
 Besides the [in-memory adapter](https://github.com/socketio/socket.io-adapter/) which is included by default with the Socket.IO server, there are currently 4 official adapters:
 
-- the [Redis adapter](/docs/v4/redis-adapter/)
-- the [MongoDB adapter](/docs/v4/mongo-adapter/)
-- the [Postgres adapter](/docs/v4/postgres-adapter/)
-- the [Cluster adapter](/docs/v4/cluster-adapter/)
+- the [Redis adapter](../05-Adapters/adapter-redis.md)
+- the [MongoDB adapter](../05-Adapters/adapter-mongo.md)
+- the [Postgres adapter](../05-Adapters/adapter-postgres.md)
+- the [Cluster adapter](../05-Adapters/adapter-cluster.md)
 
 The in-memory adapter can be extended to add support for other messaging systems, like RabbitMQ or Google Pub/Sub for example.
 
-Please see the documentation [here](/docs/v4/adapter/).
+Please see the documentation [here](../05-Adapters/adapter.md).
 
 ## Engine.IO
 
 Engine.IO is an internal component of Socket.IO, which is responsible for establishing the low-level connection between the server and the client.
 
-You will find more information [here](/docs/v4/how-it-works/).
+You will find more information [here](../01-Documentation/how-it-works.md).
 
 ## Namespace
 
 A Namespace is a concept that allows splitting the application logic on the server-side.
 
-Please see the documentation [here](/docs/v4/namespaces/).
+Please see the documentation [here](../06-Advanced/namespaces.md).
 
 ## Room
 
 A Room is a server-side concept that allows broadcasting data to a subset of clients.
 
-Please see the documentation [here](/docs/v4/rooms/).
+Please see the documentation [here](../04-Events/rooms.md).
 
 ## Transport
 
@@ -57,4 +57,4 @@ There are currently two implemented transports:
 - HTTP long-polling
 - [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
 
-Please see the documentation [here](/docs/v4/how-it-works/#Transports).
+Please see the documentation [here](../01-Documentation/how-it-works.md#transports).

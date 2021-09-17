@@ -20,22 +20,22 @@ Here is the complete list of changes:
 
 - [Configuration](#configuration)
   - [Saner default values](#saner-default-values)
-  - [CORS handling](#cORS-handling)
+  - [CORS handling](#cors-handling)
   - [No more cookie by default](#no-more-cookie-by-default)
 - [API change](#aPI-change)
-  - [io.set() is removed](#io-set-is-removed)
+  - [io.set() is removed](#ioset-is-removed)
   - [No more implicit connection to the default namespace](#no-more-implicit-connection-to-the-default-namespace)
-  - [Namespace.connected is renamed to Namespace.sockets and is now a Map](#namespace-connected-is-renamed-to-Namespace-sockets-and-is-now-a-Map)
-  - [Socket.rooms is now a Set](#socket-rooms-is-now-a-Set)
-  - [Socket.binary() is removed](#socket-binary-is-removed)
-  - [Socket.join() and Socket.leave() are now synchronous](#socket-join-and-Socket-leave-are-now-synchronous)
-  - [Socket.use() is removed](#socket-use-is-removed)
-  - [A middleware error will now emit an Error object](#a-middleware-error-will-now-emit-an-Error-object)
-  - [Add a clear distinction between the Manager query option and the Socket query option](#add-a-clear-distinction-between-the-Manager-query-option-and-the-Socket-query-option)
-  - [The Socket instance will no longer forward the events emitted by its Manager](#the-Socket-instance-will-no-longer-forward-the-events-emitted-by-its-Manager)
-  - [Namespace.clients() is renamed to Namespace.allSockets() and now returns a Promise](#namespace-clients-is-renamed-to-Namespace-allSockets-and-now-returns-a-Promise)
+  - [Namespace.connected is renamed to Namespace.sockets and is now a Map](#namespaceconnected-is-renamed-to-namespacesockets-and-is-now-a-map)
+  - [Socket.rooms is now a Set](#socketrooms-is-now-a-set)
+  - [Socket.binary() is removed](#socketbinary-is-removed)
+  - [Socket.join() and Socket.leave() are now synchronous](#socketjoin-and-socketleave-are-now-synchronous)
+  - [Socket.use() is removed](#socketuse-is-removed)
+  - [A middleware error will now emit an Error object](#a-middleware-error-will-now-emit-an-error-object)
+  - [Add a clear distinction between the Manager query option and the Socket query option](#add-a-clear-distinction-between-the-manager-query-option-and-the-socket-query-option)
+  - [The Socket instance will no longer forward the events emitted by its Manager](#the-socket-instance-will-no-longer-forward-the-events-emitted-by-its-manager)
+  - [Namespace.clients() is renamed to Namespace.allSockets() and now returns a Promise](#namespaceclients-is-renamed-to-namespaceallsockets-and-now-returns-a-promise)
   - [Client bundles](#client-bundles)
-  - [No more "pong" event for retrieving latency](#no-more-“pong”-event-for-retrieving-latency)
+  - [No more "pong" event for retrieving latency](#no-more-pong-event-for-retrieving-latency)
   - [ES modules syntax](#eS-modules-syntax)
   - [`emit()` chains are not possible anymore](#emit-chains-are-not-possible-anymore)
   - [Room names are not coerced to string anymore](#room-names-are-not-coerced-to-string-anymore)
@@ -44,21 +44,21 @@ Here is the complete list of changes:
   - [Volatile events (client)](#volatile-events-client)
   - [Official bundle with the msgpack parser](#official-bundle-with-the-msgpack-parser)
 - [Miscellaneous](#miscellaneous)
-  - [The Socket.IO codebase has been rewritten to TypeScript](#the-Socket-IO-codebase-has-been-rewritten-to-TypeScript)
-  - [Support for IE8 and Node.js 8 is officially dropped](#support-for-IE8-and-Node-js-8-is-officially-dropped)
+  - [The Socket.IO codebase has been rewritten to TypeScript](#the-socketio-codebase-has-been-rewritten-to-typescript)
+  - [Support for IE8 and Node.js 8 is officially dropped](#support-for-ie8-and-nodejs-8-is-officially-dropped)
 
 - [How to upgrade an existing production deployment](#how-to-upgrade-an-existing-production-deployment)
 - [Known migration issues](#known-migration-issues)
 
-## Configuration
+### Configuration
 
-### Saner default values
+#### Saner default values
 
 - the default value of `maxHttpBufferSize` was decreased from `100MB` to `1MB`.
 - the WebSocket [permessage-deflate extension](https://tools.ietf.org/html/draft-ietf-hybi-permessage-compression-19) is now disabled by default
 - you must now explicitly list the domains that are allowed (for CORS, see [below](#cORS-handling))
 
-### CORS handling
+#### CORS handling
 
 In v2, the Socket.IO server automatically added the necessary headers to allow [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS).
 
@@ -104,9 +104,9 @@ const io = require("socket.io")(httpServer, {
 ```
 
 
-### No more cookie by default
+#### No more cookie by default
 
-In previous versions, an `io` cookie was sent by default. This cookie can be used to enable sticky-session, which is still required when you have several servers and HTTP long-polling enabled (more information [here](/docs/v4/using-multiple-nodes/)).
+In previous versions, an `io` cookie was sent by default. This cookie can be used to enable sticky-session, which is still required when you have several servers and HTTP long-polling enabled (more information [here](../02-Server/using-multiple-nodes.md)).
 
 However, this cookie is not needed in some cases (i.e. single server deployment, sticky-session based on IP) so it must now be explicitly enabled.
 
@@ -135,11 +135,11 @@ const io = require("socket.io")(httpServer, {
 All other options (domain, maxAge, sameSite, ...) are now supported. Please see [here](https://github.com/jshttp/cookie/) for the complete list of options.
 
 
-## API change
+### API change
 
 Below are listed the non backward-compatible changes. 
 
-### io.set() is removed
+#### io.set() is removed
 
 This method was deprecated in the 1.0 release and kept for backward-compatibility. It is now removed.
 
@@ -167,7 +167,7 @@ io.use((socket, next) => {
 });
 ```
 
-### No more implicit connection to the default namespace
+#### No more implicit connection to the default namespace
 
 This change impacts the users of the multiplexing feature (what we call Namespace in Socket.IO).
 
@@ -194,7 +194,7 @@ io.of("/admin").use((socket, next) => {
 Besides, we will now refer to the "main" namespace instead of the "default" namespace.
 
 
-### Namespace.connected is renamed to Namespace.sockets and is now a Map
+#### Namespace.connected is renamed to Namespace.sockets and is now a Map
 
 The `connected` object (used to store all the Socket connected to the given Namespace) could be used to retrieve a Socket object from its id. It is now an ES6 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map).
 
@@ -238,7 +238,7 @@ for (const [_, socket] of io.of("/").sockets) {
 const count = io.of("/").sockets.size;
 ```
 
-### Socket.rooms is now a Set
+#### Socket.rooms is now a Set
 
 The `rooms` property contains the list of rooms the Socket is currently in. It was an object, it is now an ES6 [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set).
 
@@ -270,7 +270,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### Socket.binary() is removed
+#### Socket.binary() is removed
 
 The `binary`  method could be used to indicate that a given event did not contain any binary data (in order to skip the lookup done by the library and improve performance in certain conditions).
 
@@ -293,11 +293,11 @@ const io = require("socket.io")(httpServer, {
 Please see [socket.io-msgpack-parser](https://github.com/darrachequesne/socket.io-msgpack-parser) for example.
 
 
-### Socket.join() and Socket.leave() are now synchronous
+#### Socket.join() and Socket.leave() are now synchronous
 
 The asynchronicity was needed for the first versions of the Redis adapter, but this is not the case anymore.
 
-For reference, an Adapter is an object that stores the relationships between Sockets and [Rooms](/docs/v4/rooms/). There are two official adapters: the in-memory adapter (built-in) and the [Redis adapter](https://github.com/socketio/socket.io-redis) based on Redis [pub-sub mechanism](https://redis.io/topics/pubsub).
+For reference, an Adapter is an object that stores the relationships between Sockets and [Rooms](../04-Events/rooms.md). There are two official adapters: the in-memory adapter (built-in) and the [Redis adapter](https://github.com/socketio/socket.io-redis) based on Redis [pub-sub mechanism](https://redis.io/topics/pubsub).
 
 Before:
     
@@ -329,7 +329,7 @@ io.to("room1").emit("hello");
 ```
 
 
-### ~~Socket.use() is removed~~
+#### ~~Socket.use() is removed~~
 
 `socket.use()` could be used as a catch-all listener. But its API was not really intuitive. It is replaced by [socket.onAny()](#catch-all-listeners).
 
@@ -353,7 +353,7 @@ socket.onAny((event, ...args) => {
 ```
 
 
-### A middleware error will now emit an Error object
+#### A middleware error will now emit an Error object
 
 The `error` event is renamed to `connect_error` and the object emitted is now an actual Error:
 
@@ -403,7 +403,7 @@ socket.on("connect_error", err => {
 ```
 
 
-### Add a clear distinction between the Manager query option and the Socket query option
+#### Add a clear distinction between the Manager query option and the Socket query option
 
 In previous versions, the `query` option was used in two distinct places:
 
@@ -494,7 +494,7 @@ io.on("connection", (socket) => {
 Note: the `query` option of the Manager can still be used in order to add a specific query parameter to the HTTP requests.
 
 
-### The Socket instance will no longer forward the events emitted by its Manager
+#### The Socket instance will no longer forward the events emitted by its Manager
 
 In previous versions, the Socket instance emitted the events related to the state of the underlying connection. This will not be the case anymore.
 
@@ -548,7 +548,7 @@ socket.emit("connect_error"); // will now throw an Error
 ```
 
 
-### Namespace.clients() is renamed to Namespace.allSockets() and now returns a Promise
+#### Namespace.clients() is renamed to Namespace.allSockets() and now returns a Promise
 
 This function returns the list of socket IDs that are connected to this namespace.
 
@@ -586,7 +586,7 @@ const ids = await io.of("/chat").in("general").allSockets();
 
 Note: this function was (and still is) supported by the Redis adapter, which means that it will return the list of socket IDs across all the Socket.IO servers.
 
-### Client bundles
+#### Client bundles
 
 There are now 3 distinct bundles:
 
@@ -614,11 +614,11 @@ After:
 <script src="/socket.io/socket.io.min.js"></script>
 ```
 
-### No more "pong" event for retrieving latency
+#### No more "pong" event for retrieving latency
 
 In Socket.IO v2, you could listen to the `pong` event on the client-side, which included the duration of the last health check round-trip.
 
-Due to the reversal of the heartbeat mechanism (more information [here](/blog/engine-io-4-release/#Heartbeat-mechanism-reversal)), this event has been removed.
+Due to the reversal of the heartbeat mechanism (more information [here](/blog/engine-io-4-release/#heartbeat-mechanism-reversal)), this event has been removed.
 
 Before:
 
@@ -651,9 +651,9 @@ setInterval(() => {
 }, 5000);
 ```
 
-### ES modules syntax
+#### ES modules syntax
 
-The ECMAScript modules syntax is now similar to the Typescript one (see [below](#the-Socket-IO-codebase-has-been-rewritten-to-TypeScript)).
+The ECMAScript modules syntax is now similar to the Typescript one (see [below](#the-socketio-codebase-has-been-rewritten-to-typescript)).
 
 Before (using default import):
 
@@ -683,7 +683,7 @@ import { io } from 'socket.io-client';
 const socket = io();
 ```
 
-### `emit()` chains are not possible anymore
+#### `emit()` chains are not possible anymore
 
 The `emit()` method now matches the [`EventEmitter.emit()`](https://nodejs.org/dist/latest/docs/api/events.html#events_emitter_emit_eventname_args) method signature, and returns `true` instead of the current object.
 
@@ -700,7 +700,7 @@ socket.emit("event1");
 socket.emit("event2");
 ```
 
-### Room names are not coerced to string anymore
+#### Room names are not coerced to string anymore
 
 We are now using Maps and Sets internally instead of plain objects, so the room names are not implicitly coerced to string anymore.
 
@@ -726,12 +726,12 @@ socket.join(42);
 io.to(42).emit("hello");
 ```
 
-## New features
+### New features
 
 Some of those new features may be backported to the `2.4.x` branch, depending on the feedback of the users.
 
 
-### Catch-all listeners
+#### Catch-all listeners
 
 This feature is inspired from the [EventEmitter2](https://github.com/EventEmitter2/EventEmitter2) library (which is not used directly in order not to increase the browser bundle size).
 
@@ -757,7 +757,7 @@ const listeners = socket.listenersAny();
 ```
 
 
-### Volatile events (client)
+#### Volatile events (client)
 
 A volatile event is an event that is allowed to be dropped if the low-level transport is not ready yet (for example when an HTTP POST request is already pending).
 
@@ -768,7 +768,7 @@ socket.volatile.emit("volatile event", "might or might not be sent");
 ```
 
 
-### Official bundle with the msgpack parser
+#### Official bundle with the msgpack parser
 
 A bundle with the [socket.io-msgpack-parser](https://github.com/darrachequesne/socket.io-msgpack-parser) will now be provided (either on the CDN or served by the server at `/socket.io/socket.io.msgpack.min.js`).
 
@@ -792,9 +792,9 @@ const io = require("socket.io")(httpServer, {
 No additional configuration is needed on the client-side.
 
 
-## Miscellaneous
+### Miscellaneous
 
-### The Socket.IO codebase has been rewritten to TypeScript
+#### The Socket.IO codebase has been rewritten to TypeScript
 
 Which means `npm i -D @types/socket.io` should not be needed anymore.
 
@@ -829,14 +829,14 @@ socket.on("connect", () => {
 Plain javascript is obviously still fully supported.
 
 
-### Support for IE8 and Node.js 8 is officially dropped
+#### Support for IE8 and Node.js 8 is officially dropped
 
 IE8 is no longer testable on the Sauce Labs platform, and requires a lot of efforts for very few users (if any?), so we are dropping support for it.
 
 Besides, Node.js 8 is now [EOL](https://github.com/nodejs/Release). Please upgrade as soon as possible!
 
 
-## How to upgrade an existing production deployment
+### How to upgrade an existing production deployment
 
 - first, update the servers with `allowEIO3` set to `true` (added in `socket.io@3.1.0`)
 
@@ -846,7 +846,7 @@ const io = require("socket.io")({
 });
 ```
 
-Note: If you are using the Redis adapter to [broadcast packets between nodes](/docs/v4/broadcasting-events/#With-multiple-Socket-IO-servers), you must use `socket.io-redis@5` with `socket.io@2` and `socket.io-redis@6` with `socket.io@3`. Please note that both versions are compatible, so you can update each server one by one (no big bang is needed).
+Note: If you are using the Redis adapter to [broadcast packets between nodes](../04-Events/broadcasting-events.md#with-multiple-socketio-servers), you must use `socket.io-redis@5` with `socket.io@2` and `socket.io-redis@6` with `socket.io@3`. Please note that both versions are compatible, so you can update each server one by one (no big bang is needed).
 
 - then, update the clients
 
@@ -873,7 +873,7 @@ const io = require("socket.io")({
 With `allowEIO3` set to `false`, v2 clients will now receive an HTTP 400 error (`Unsupported protocol version`) when connecting.
 
 
-## Known migration issues
+### Known migration issues
 
 - `stream_1.pipeline is not a function`
 
@@ -920,7 +920,7 @@ const io = require("socket.io")(httpServer, {
 
 - `Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at xxx/socket.io/?EIO=4&transport=polling&t=NMnp2WI. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).`
 
-Since Socket.IO v3, you need to explicitly enable [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS). The documentation can be found [here](/docs/v4/handling-cors/).
+Since Socket.IO v3, you need to explicitly enable [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS). The documentation can be found [here](../02-Server/handling-cors.md).
 
 - `Uncaught TypeError: packet.data is undefined`
 

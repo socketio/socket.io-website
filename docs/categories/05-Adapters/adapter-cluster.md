@@ -83,7 +83,7 @@ if (cluster.isMaster) {
 
 ### With PM2
 
-See the [associated documentation](/docs/v4/pm2/).
+See the [associated documentation](../06-Advanced/usage-with-pm2.md).
 
 ### With `recluster`
 

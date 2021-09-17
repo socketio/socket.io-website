@@ -113,15 +113,15 @@ Whether to serve the client files. If `true`, the different bundles will be serv
 
 (including their associated source maps)
 
-See also [here](/docs/v4/client-installation/#Standalone-build).
+See also [here](categories/03-Client/client-installation.md#standalone-build).
 
 ### `adapter`
 
 Default value: `require("socket.io-adapter")` (in-memory adapter, whose source code can be found [here](https://github.com/socketio/socket.io-adapter/))
 
-The ["Adapter"](/docs/v4/glossary/#Adapter) to use.
+The ["Adapter"](categories/08-Miscellaneous/glossary.md#adapter) to use.
 
-Example with the [Redis adapter](/docs/v4/redis-adapter):
+Example with the [Redis adapter](categories/05-Adapters/adapter-redis.md):
 
 <Tabs groupId="lang">
   <TabItem value="cjs" label="CommonJS" default>
@@ -184,7 +184,7 @@ io.listen(3000);
 
 Default value: `socket.io-parser`
 
-The parser to use. Please see the documentation [here](/docs/v4/custom-parser/).
+The parser to use. Please see the documentation [here](categories/06-Advanced/custom-parser.md).
 
 ### `connectTimeout`
 
@@ -224,7 +224,7 @@ const io = new Server(httpServer, {
 
 Default value: `25000`
 
-See [above](#pingTimeout).
+See [above](#pingtimeout).
 
 ### `upgradeTimeout`
 
@@ -269,7 +269,7 @@ Default value: `["polling", "websocket"]`
 
 The low-level transports that are allowed on the server-side.
 
-See also: client-side [`transports`](/docs/v4/client-initialization/#transports)
+See also: client-side [`transports`](categories/03-Client/client-initialization.md#transports)
 
 ### `allowUpgrades`
 
@@ -351,7 +351,7 @@ const io = new Server(httpServer, {
 
 Default value: `"ws"` (source code can be found [here](https://github.com/websockets/ws))
 
-The WebSocket server implementation to use. Please see the documentation [here](/docs/v4/server-installation/#Other-WebSocket-server-implementations).
+The WebSocket server implementation to use. Please see the documentation [here](categories/02-Server/server-installation.md#other-websocket-server-implementations).
 
 Example:
 
@@ -365,7 +365,7 @@ const io = new Server(httpServer, {
 
 Default value: `-`
 
-The list of options that will be forwarded to the [`cors`](https://www.npmjs.com/package/cors) module. More information can be found [here](/docs/v4/handling-cors/).
+The list of options that will be forwarded to the [`cors`](https://www.npmjs.com/package/cors) module. More information can be found [here](categories/02-Server/handling-cors.md).
 
 Example:
 
@@ -385,7 +385,7 @@ Default value: `-`
 
 The list of options that will be forwarded to the [`cookie`](https://github.com/jshttp/cookie/) module.
 
-Please note that since Socket.IO v3, there is no cookie sent by default anymore ([reference](/docs/v4/migrating-from-2-x-to-3-0/#No-more-cookie-by-default)).
+Please note that since Socket.IO v3, there is no cookie sent by default anymore ([reference](categories/07-Migrations/migrating-from-2-to-3.md#no-more-cookie-by-default)).
 
 Example:
 
@@ -406,7 +406,7 @@ Default value: `false`
 
 Whether to enable compatibility with Socket.IO v2 clients.
 
-See also: [Migrating from 2.x to 3.0](/docs/v4/migrating-from-2-x-to-3-0/#How-to-upgrade-an-existing-production-deployment)
+See also: [Migrating from 2.x to 3.0](categories/07-Migrations/migrating-from-2-to-3.md#how-to-upgrade-an-existing-production-deployment)
 
 Example:
 

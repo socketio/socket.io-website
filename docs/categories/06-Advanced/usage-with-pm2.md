@@ -78,7 +78,7 @@ And then run `pm2 start ecosystem.config.js` (or `pm2 start worker.js -i 0`). Th
 
 ## How it works
 
-When [scaling to multiple nodes](/docs/v4/using-multiple-nodes/), there are two things to do:
+When [scaling to multiple nodes](../02-Server/using-multiple-nodes.md), there are two things to do:
 
 - enable sticky sessions, so that the HTTP requests of a Socket.IO session are routed to the same worker
 - use a custom adapter, so that the packets are broadcast to all clients, even if they are connected to another worker
@@ -93,6 +93,6 @@ The only difference with `pm2` comes from [this commit](https://github.com/socke
 - the God process now creates its own HTTP server and routes the HTTP requests to the right worker
 - the God process also relays the packets between the workers, so that `io.emit()` correctly reaches all clients
 
-Please note that if you have several hosts each running a PM2 cluster, you will have to use another adapter, like the [Redis adapter](/docs/v4/redis-adapter/).
+Please note that if you have several hosts each running a PM2 cluster, you will have to use another adapter, like the [Redis adapter](../05-Adapters/adapter-redis.md).
 
 The source code of the fork can be found [here](https://github.com/socketio/pm2). We will try to closely follow the releases of the `pm2` package.

@@ -6,22 +6,22 @@ slug: /migrating-from-3-x-to-4-0/
 
 The 4.0.0 release adds quite a lot of new features, which are detailed [below](#new-features), but it also contains a few API breaking changes (hence the major bump).
 
-Please note that these breaking changes only impact the API on the server side. The Socket.IO protocol itself was not updated, so a v3 client **will** be able to reach a v4 server and vice-versa. Besides, the compatibility mode ([`allowEIO3: true`](/docs/v4/server-initialization/#allowEIO3)) is still available between a Socket.IO v2 client and a Socket.IO v4 server.
+Please note that these breaking changes only impact the API on the server side. The Socket.IO protocol itself was not updated, so a v3 client **will** be able to reach a v4 server and vice-versa. Besides, the compatibility mode ([`allowEIO3: true`](../../server-options.md#alloweio3)) is still available between a Socket.IO v2 client and a Socket.IO v4 server.
 
 Here is the complete list of changes:
 
 - [Breaking changes](#breaking-changes)
-  - [`io.to()` is now immutable](#io-to-is-now-immutable)
-  - [`wsEngine` option](#wsEngine-option)
+  - [`io.to()` is now immutable](#ioto-is-now-immutable)
+  - [`wsEngine` option](#wsengine-option)
 - [Configuration](#configuration)
-  - [Ensure compatibility with Swift v15 clients](#ensure-compatibility-with-Swift-v15-clients)
-  - [The default value of `pingTimeout` was increased](#the-default-value-of-pingTimeout-was-increased)
+  - [Ensure compatibility with Swift v15 clients](#ensure-compatibility-with-swift-v15-clients)
+  - [The default value of `pingTimeout` was increased](#the-default-value-of-pingtimeout-was-increased)
 - [New features](#new-features)
   - [Allow excluding specific rooms when broadcasting](#allow-excluding-specific-rooms-when-broadcasting)
-  - [Allow to pass an array to `io.to()`](#allow-to-pass-an-array-to-io-to)
+  - [Allow to pass an array to `io.to()`](#allow-to-pass-an-array-to-ioto)
   - [Additional utility methods](#additional-utility-methods)
   - [Typed events](#typed-events)
-  - [`autoUnref` option](#autoUnref-option)
+  - [`autoUnref` option](#autounref-option)
 - [Known migration issues](#known-migration-issues)
 
 ### Breaking changes
@@ -56,7 +56,7 @@ operator4.emit(/* ... */); // to clients in "room3" or in "room4" but the sender
 
 #### `wsEngine` option
 
-The format of the [`wsEngine`](/docs/v4/server-initialization/#wsEngine) option was updated in order to get rid of the following error:
+The format of the [`wsEngine`](../../server-options.md#wsengine) option was updated in order to get rid of the following error:
 
 `Critical dependency: the request of a dependency is an expression`
 
@@ -84,7 +84,7 @@ const io = require("socket.io")(httpServer, {
 
 Before version 16.0.0, the Swift client would not include the `EIO` query parameter in the HTTP requests, and the Socket.IO v3 server would infer `EIO=4` by default.
 
-That's why a Swift client v15 was not able to connect to the server, even when the compatibility mode was enabled ([`allowEIO3: true`](/docs/v4/server-initialization/#allowEIO3)), unless you explicitly specified the query param:
+That's why a Swift client v15 was not able to connect to the server, even when the compatibility mode was enabled ([`allowEIO3: true`](../../server-options.md#alloweio3)), unless you explicitly specified the query param:
 
 ```swift
 let manager = SocketManager(socketURL: URL(string: "http://localhost:8080")!, config: [
@@ -98,7 +98,7 @@ The Socket.IO v4 server will now infer `EIO=3` if the `EIO` query param is not i
 
 #### The default value of `pingTimeout` was increased
 
-The default value of [`pingTimeout`](/docs/v4/server-initialization/#pingTimeout) (used in the [heartbeat mechanism](/docs/v4/how-it-works/#Disconnection-detection)) value was updated from 60000 to 5000 in `socket.io@2.1.0` (March 2018).
+The default value of [`pingTimeout`](../../server-options.md#pingtimeout) (used in the [heartbeat mechanism](../01-Documentation/how-it-works.md#disconnection-detection)) value was updated from 60000 to 5000 in `socket.io@2.1.0` (March 2018).
 
 The reasoning back then:
 
