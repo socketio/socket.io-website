@@ -1,6 +1,6 @@
 ---
 title: Native Socket.IO and Android
-slug: /blog/native-socket-io-and-android/
+slug: /native-socket-io-and-android/
 authors:
   - name: Naoyuki Kanezawa
     title: Maintainer of Socket.IO
