@@ -290,7 +290,7 @@ const io = require("socket.io")(httpServer, {
 });
 ```
 
-Please see [socket.io-msgpack-parser](https://github.com/darrachequesne/socket.io-msgpack-parser) for example.
+Please see [socket.io-msgpack-parser](https://github.com/socketio/socket.io-msgpack-parser) for example.
 
 
 #### Socket.join() and Socket.leave() are now synchronous
@@ -594,7 +594,7 @@ There are now 3 distinct bundles:
 |:------------------|:-----------------|:------------|
 | socket.io.js               | 34.7 kB gzip     | Unminified version, with [debug](https://www.npmjs.com/package/debug)    |
 | socket.io.min.js           | 14.7 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) |
-| socket.io.msgpack.min.js   | 15.3 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) and with the [msgpack parser](https://github.com/darrachequesne/socket.io-msgpack-parser)    |
+| socket.io.msgpack.min.js   | 15.3 kB min+gzip | Production version, without [debug](https://www.npmjs.com/package/debug) and with the [msgpack parser](https://github.com/socketio/socket.io-msgpack-parser)    |
 
 By default, all of them are served by the server, at `/socket.io/<name>`.
 
@@ -770,7 +770,7 @@ socket.volatile.emit("volatile event", "might or might not be sent");
 
 #### Official bundle with the msgpack parser
 
-A bundle with the [socket.io-msgpack-parser](https://github.com/darrachequesne/socket.io-msgpack-parser) will now be provided (either on the CDN or served by the server at `/socket.io/socket.io.msgpack.min.js`).
+A bundle with the [socket.io-msgpack-parser](https://github.com/socketio/socket.io-msgpack-parser) will now be provided (either on the CDN or served by the server at `/socket.io/socket.io.msgpack.min.js`).
 
 Pros:
 

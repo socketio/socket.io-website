@@ -56,7 +56,7 @@ If you find a typo, please open an issue here: https://github.com/socketio/socke
 
 - [socket.io-redis@6.0.1](https://github.com/socketio/socket.io-redis/releases/tag/6.0.1)
 
-- [socket.io-msgpack-parser@3.0.1](https://github.com/darrachequesne/socket.io-msgpack-parser/releases/tag/3.0.1)
+- [socket.io-msgpack-parser@3.0.1](https://github.com/socketio/socket.io-msgpack-parser/releases/tag/3.0.1)
 
 More information about how to use those custom parsers can be found [here](https://github.com/socketio/socket.io/tree/master/examples/custom-parsers).
 
