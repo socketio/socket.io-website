@@ -110,7 +110,13 @@ But first, let's detail what the Socket.IO library is not.
 
 ## What Socket.IO is not
 
-Socket.IO is **NOT** a WebSocket implementation. Although Socket.IO indeed uses WebSocket as a transport when possible, it adds additional metadata to each packet. That is why a WebSocket client will not be able to successfully connect to a Socket.IO server, and a Socket.IO client will not be able to connect to a plain WebSocket server either.
+:::caution
+
+Socket.IO is **NOT** a WebSocket implementation.
+
+:::
+
+Although Socket.IO indeed uses WebSocket as a transport when possible, it adds additional metadata to each packet. That is why a WebSocket client will not be able to successfully connect to a Socket.IO server, and a Socket.IO client will not be able to connect to a plain WebSocket server either.
 
 ```js
 // WARNING: the client will NOT be able to connect!
@@ -122,6 +128,14 @@ If you are looking for a plain WebSocket server, please take a look at [ws](http
 There are also [talks](https://github.com/nodejs/node/issues/19308) to include a WebSocket server in the Node.js core.
 
 On the client-side, you might be interested by the [robust-websocket](https://github.com/nathanboktae/robust-websocket) package.
+
+:::caution
+
+Socket.IO is not meant to be used in a background service, for mobile applications.
+
+:::
+
+The Socket.IO library keeps an open TCP connection to the server, which may result in a high battery drain for your users. Please use a dedicated messaging platform like [FCM](https://firebase.google.com/docs/cloud-messaging) for this use case.
 
 ## Features
 
