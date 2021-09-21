@@ -64,7 +64,7 @@ So, let's [discuss](https://github.com/socketio/socket.io/discussions)!
   - [socket.io-parser@3.3.1](https://github.com/socketio/socket.io-parser/releases/tag/3.3.1) (included in `socket.io-client{% raw %}@{% endraw %}2.3.1`)
 
 - [socket.io-json-parser@2.1.1](https://github.com/darrachequesne/socket.io-json-parser/releases/tag/2.1.1)
-- [socket.io-msgpack-parser@2.2.1](https://github.com/darrachequesne/socket.io-msgpack-parser/releases/tag/2.2.1)
+- [socket.io-msgpack-parser@2.2.1](https://github.com/socketio/socket.io-msgpack-parser/releases/tag/2.2.1)
 
 More information about how to use those custom parsers can be found [here](https://github.com/socketio/socket.io/tree/master/examples/custom-parsers).
 

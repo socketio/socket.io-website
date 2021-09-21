@@ -137,7 +137,7 @@ Cons:
 
 This parser uses the [MessagePack](https://msgpack.org/) serialization format.
 
-The source code of this parser can be found here: https://github.com/darrachequesne/socket.io-msgpack-parser
+The source code of this parser can be found here: https://github.com/socketio/socket.io-msgpack-parser
 
 Sample usage:
 
