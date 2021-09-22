@@ -14,6 +14,7 @@
     { "source": "/docs/client-connection-lifecycle", "destination": "/docs/v4/client-connection-lifecycle" },
     { "source": "/docs/emit-cheatsheet", "destination": "/docs/v4/emit-cheatsheet" },
     { "source": "/docs/namespaces", "destination": "/docs/v4/namespaces" },
+    { "source": "/docs/namespaces/", "destination": "/docs/v4/namespaces" },
     { "source": "/docs/migrating-from-2-x-to-3-0", "destination": "/docs/v4/migrating-from-2-x-to-3-0" },
     { "source": "/docs/migrating-from-3-x-to-4-0", "destination": "/docs/v4/migrating-from-3-x-to-4-0" },
     { "source": "/docs/faq", "destination": "/docs/v4/faq" }
