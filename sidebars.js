@@ -10,6 +10,7 @@ module.exports = {
     "server-options"
   ],
   clientSidebar: [
-    "client-api"
+    "client-api",
+    "client-options"
   ]
 };

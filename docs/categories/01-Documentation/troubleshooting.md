@@ -195,7 +195,7 @@ First and foremost, please note that disconnections are common and expected, eve
 - the browser itself may freeze an inactive tab
 - ...
 
-That being said, the Socket.IO client will always try to reconnect, unless specifically told [otherwise](../03-Client/client-initialization.md#reconnection).
+That being said, the Socket.IO client will always try to reconnect, unless specifically told [otherwise](../../client-options.md#reconnection).
 
 Possible explanations for a disconnection:
 

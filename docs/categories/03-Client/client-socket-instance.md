@@ -102,7 +102,7 @@ This event is fired when:
 - the low-level connection cannot be established
 - the connection is denied by the server in a [middleware function](../02-Server/middlewares.md)
 
-In the first case, the Socket will automatically try to reconnect, after a [given delay](client-initialization.md#reconnectiondelay).
+In the first case, the Socket will automatically try to reconnect, after a [given delay](../../client-options.md#reconnectiondelay).
 
 In the latter case, you need to manually reconnect. You might need to update the credentials:
 
@@ -149,7 +149,7 @@ Reason | Description
 
 In the first two cases (explicit disconnection), the client will not try to reconnect and you need to manually call `socket.connect()`.
 
-In all other cases, the client will wait for a small [random delay](client-initialization.md#reconnectiondelay) and then try to reconnect:
+In all other cases, the client will wait for a small [random delay](../../client-options.md#reconnectiondelay) and then try to reconnect:
 
 ```js
 socket.on("disconnect", (reason) => {

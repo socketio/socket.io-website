@@ -162,7 +162,7 @@ const socket1 = io("https://first.example.com");
 const socket2 = io("https://second.example.com"); // no multiplexing, two distinct WebSocket connections
 ```
 
-- usage of the [forceNew](../03-Client/client-initialization.md#forcenew) option
+- usage of the [forceNew](../../client-options.md#forcenew) option
 
 ```js
 const socket1 = io();

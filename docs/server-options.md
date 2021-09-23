@@ -269,7 +269,7 @@ Default value: `["polling", "websocket"]`
 
 The low-level transports that are allowed on the server-side.
 
-See also: client-side [`transports`](categories/03-Client/client-initialization.md#transports)
+See also: client-side [`transports`](client-options.md#transports)
 
 ### `allowUpgrades`
 

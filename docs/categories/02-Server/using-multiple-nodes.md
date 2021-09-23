@@ -35,7 +35,7 @@ const socket = io("https://io.yourhost.com", {
 });
 ```
 
-Documentation: [`transports`](../03-Client/client-initialization.md#transports)
+Documentation: [`transports`](../../client-options.md#transports)
 
 ### Enabling sticky-session
 
