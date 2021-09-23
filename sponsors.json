@@ -735,24 +735,24 @@
     "alt": "Casinos Hunter"
   },
   {
-    "url": "https://www.casinoonlineaams.com",
-    "img": "https://images.opencollective.com/casinoonlineaamscom/da74236/logo.png",
-    "alt": "Casinoonlineaams.com"
-  },
-  {
-    "url": "https://nettcasinobonus.com/",
-    "img": "https://images.opencollective.com/nettcasinobonus-com1/cda67bd/logo.png",
-    "alt": "Nettcasinobonus.com"
-  },
-  {
     "url": "https://inkedin.com",
     "img": "https://images.opencollective.com/inkedin/40e0c14/logo.png",
     "alt": "inkedin"
   },
   {
+    "url": "https://www.casinoonlineaams.com",
+    "img": "https://images.opencollective.com/casinoonlineaamscom/da74236/logo.png",
+    "alt": "Casinoonlineaams.com"
+  },
+  {
     "url": "https://strony-bukmacherskie.pl/",
     "img": "https://images.opencollective.com/strony-bukmacherskie-pl/e0a1a53/avatar.png",
     "alt": "strony-bukmacherskie.pl"
+  },
+  {
+    "url": "https://nettcasinobonus.com/",
+    "img": "https://images.opencollective.com/nettcasinobonus-com1/cda67bd/logo.png",
+    "alt": "Nettcasinobonus.com"
   },
   {
     "url": "https://casinonutanlicens.nu",
@@ -775,6 +775,11 @@
     "alt": "VPN Norge"
   },
   {
+    "url": "https://www.anonymistic.com/",
+    "img": "https://images.opencollective.com/anonymistic/b9a2c22/logo.png",
+    "alt": "Anonymistic"
+  },
+  {
     "url": "https://www.boosbe.com/",
     "img": "https://images.opencollective.com/boosbe/de47f16/avatar.png",
     "alt": "Boosbe"
@@ -783,11 +788,6 @@
     "url": "https://tweaklab.org",
     "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
     "alt": "Roland Brönnimann"
-  },
-  {
-    "url": "https://www.anonymistic.com/",
-    "img": "https://images.opencollective.com/anonymistic/b9a2c22/logo.png",
-    "alt": "Anonymistic"
   },
   {
     "url": "https://mimy.online",
@@ -925,11 +925,6 @@
     "alt": "ilaria maggi"
   },
   {
-    "url": "https://www.bonusfinder.co.uk/",
-    "img": "https://images.opencollective.com/bonusfinder-uk/ecdd3af/logo.png",
-    "alt": "BonusFinder UK"
-  },
-  {
     "url": "https://famousera.com/product/buyfollowers/",
     "img": "https://images.opencollective.com/famousera/cace7fd/logo.png",
     "alt": "FamousEra"
@@ -948,5 +943,20 @@
     "url": "https://appkong.com/",
     "img": "https://images.opencollective.com/appkong/892ee7e/logo.png",
     "alt": "AppKong"
+  },
+  {
+    "url": "https://www.voetbalgokken.nl",
+    "img": "https://images.opencollective.com/guest-d6ef6073/04e32c9/avatar.png",
+    "alt": "VoetbalGokken"
+  },
+  {
+    "url": "https://www.best50casino.com/",
+    "img": "https://images.opencollective.com/best50casino/avatar.png",
+    "alt": "Fotis"
+  },
+  {
+    "url": "https://www.bookmakers.bet/",
+    "img": "https://images.opencollective.com/bookmakersbet/8722803/logo.png",
+    "alt": "Online Bookmakers"
   }
 ]
