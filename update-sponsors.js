@@ -13,7 +13,7 @@ const graphqlEndpoint = 'https://api.opencollective.com/graphql/v2';
 
 const graphqlQuery = `query account {
   account(slug: "socketio") {
-    members(role: BACKER, limit: 500) {
+    members(role: BACKER, limit: 1000) {
       nodes {
         tier {
           name

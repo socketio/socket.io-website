@@ -705,6 +705,11 @@
     "alt": "Hollandsegokken.nl"
   },
   {
+    "url": "https://slotsempire.com/",
+    "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
+    "alt": "Slots Empire Casino"
+  },
+  {
     "url": "https://www.bystored.com/",
     "img": "https://images.opencollective.com/stored-enterprises-limited1/1438279/logo.png",
     "alt": "STORED Enterprises Limited"
@@ -820,6 +825,11 @@
     "alt": "spinsify.com/uk"
   },
   {
+    "url": "https://allonlinecasinoslist.com",
+    "img": "https://images.opencollective.com/online-casino-list/a231814/avatar.png",
+    "alt": "All online casinos list"
+  },
+  {
     "url": "https://builderbook.org",
     "img": "https://images.opencollective.com/kelly-burke/d256815/avatar.png",
     "alt": "Kelly Burke"
@@ -838,11 +848,6 @@
     "url": "https://idealecasinos.nl/",
     "img": "https://images.opencollective.com/idealecasinos/2f81726/logo.png",
     "alt": "iDealeCasinos"
-  },
-  {
-    "url": "https://allonlinecasinoslist.com",
-    "img": "https://images.opencollective.com/online-casino-list/a231814/avatar.png",
-    "alt": "All online casinos list"
   },
   {
     "url": "https://www.carhp.com/",
@@ -868,6 +873,11 @@
     "url": "https://quickbooksfiledoctor.co/",
     "img": "https://images.opencollective.com/quickbooks-file-doctor/logo.png",
     "alt": "Quickbooks File Doctor"
+  },
+  {
+    "url": "https://cryptocurrencycodes.com",
+    "img": "https://images.opencollective.com/cccc/2898fcd/avatar.png",
+    "alt": "CCC"
   },
   {
     "url": "https://troypoint.com",
@@ -946,7 +956,7 @@
   },
   {
     "url": "https://www.voetbalgokken.nl",
-    "img": "https://images.opencollective.com/guest-d6ef6073/04e32c9/avatar.png",
+    "img": "https://images.opencollective.com/voetbalgokken1/02ab67f/logo.png",
     "alt": "VoetbalGokken"
   },
   {
@@ -968,5 +978,10 @@
     "url": "https://www.nongamstopbetsites.com/",
     "img": "https://images.opencollective.com/nongam/e52d561/logo.png",
     "alt": "NonGam"
+  },
+  {
+    "url": "https://www.wagerdex.com/",
+    "img": "https://images.opencollective.com/wagerdex/780ea73/logo.png",
+    "alt": "WagerDex"
   }
 ]
