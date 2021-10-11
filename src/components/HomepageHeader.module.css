@@ -48,3 +48,10 @@
     width: 60%;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .buttons > a {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
