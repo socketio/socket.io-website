@@ -27,11 +27,3 @@ if (socket.connected) {
 ```js
 socket.volatile.emit( /* ... */ );
 ```
-
-- empty the internal buffer upon reconnection
-
-```js
-socket.on("connect", () => {
-  socket.sendBuffer = [];
-});
-```
