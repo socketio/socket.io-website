@@ -55,7 +55,7 @@ You will find below some examples with common load-balancing solutions:
 For other platforms, please refer to the relevant documentation:
 
 - Kubernetes: https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/
-- AWS (Application Load Balancers): https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#sticky-sessions
+- AWS (Application Load Balancers): https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html
 - GCP: https://cloud.google.com/load-balancing/docs/backend-service#session_affinity
 - Heroku: https://devcenter.heroku.com/articles/session-affinity
 
