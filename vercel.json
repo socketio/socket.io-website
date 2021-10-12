@@ -1,5 +1,7 @@
 {
   "redirects": [
+    { "source": "/docs", "destination": "/docs/v4/" },
+    { "source": "/docs/", "destination": "/docs/v4/" },
     { "source": "/docs/rooms-and-namespaces", "destination": "/docs/v4/rooms" },
     { "source": "/docs/internals", "destination": "/docs/v2/internals" },
     { "source": "/docs/migrating-from-0-9", "destination": "/docs/v2/migrating-from-0-9" },
