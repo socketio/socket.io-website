@@ -5,11 +5,18 @@ sidebar_position: 1
 slug: /server-installation/
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Prerequisites
 
 Please make sure that [Node.js](https://nodejs.org/en/) is installed on your system. The current Long Term Support (LTS) release is an ideal starting point.
 
+:::info
+
 At least Node.js 10 is needed, older versions are not supported anymore.
+
+:::
 
 ## Installation
 
@@ -19,15 +26,55 @@ The latest Socket.IO release is:
 
 To install the latest release:
 
+<Tabs groupId="pm">
+  <TabItem value="npm" label="NPM" default>
+
+```sh
+npm install socket.io
 ```
-$ npm install socket.io
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add socket.io
 ```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add socket.io
+```
+
+  </TabItem>
+</Tabs>
 
 To install a specific version:
 
+<Tabs groupId="pm">
+  <TabItem value="npm" label="NPM" default>
+
+```sh
+npm install socket.io@version
 ```
-$ npm install socket.io@<version>
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add socket.io@version
 ```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add socket.io@version
+```
+
+  </TabItem>
+</Tabs>
 
 ## Additional packages
 
@@ -40,9 +87,29 @@ There are 2 optional packages that can be installed alongside this package. Thes
 
 To install those packages:
 
+<Tabs groupId="pm">
+  <TabItem value="npm" label="NPM" default>
+
+```sh
+npm install --save-optional bufferutil utf-8-validate
 ```
-$ npm install --save-optional bufferutil utf-8-validate
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add --optional bufferutil utf-8-validate
 ```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add -O bufferutil utf-8-validate
+```
+
+  </TabItem>
+</Tabs>
 
 Please note that these packages are optional, the WebSocket server will fallback to the Javascript implementation if they are not available. More information can be found [here](https://github.com/websockets/ws/#opt-in-for-performance-and-spec-compliance).
 
@@ -52,15 +119,38 @@ Any Websocket server implementation which exposes the same API as ws (notably th
 
 For example, you can use the [eiows](https://www.npmjs.com/package/eiows) package, which is a fork of the (now deprecated) [uws](https://www.npmjs.com/package/uws) package:
 
+<Tabs groupId="pm">
+  <TabItem value="npm" label="NPM" default>
+
+```sh
+npm install eiows
 ```
-$ npm install eiows
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add eiows
 ```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add eiows
+```
+
+  </TabItem>
+</Tabs>
 
 And then use the `wsEngine` option:
 
 ```js
-const io = require("socket.io")(3000, {
-  wsEngine: require("eiows").Server
+const { Server } = require("socket.io");
+const eiows = require("eiows");
+
+const io = new Server(3000, {
+  wsEngine: eiows.Server
 });
 ```
 

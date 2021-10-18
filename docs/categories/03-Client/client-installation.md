@@ -5,6 +5,9 @@ sidebar_position: 1
 slug: /client-installation/
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Version compatibility
 
 Here is the compatibility table between the server and the JS client:
@@ -87,7 +90,9 @@ By default, the Socket.IO server exposes a client bundle at `/socket.io/socket.i
 If you don't need this (see other options below), you can disable the functionality on the server side:
 
 ```js
-const io = require("socket.io")({
+const { Server } = require("socket.io");
+
+const io = new Server({
   serveClient: false
 });
 ```
@@ -124,9 +129,29 @@ For production, please use the `socket.io.min.js` bundle, which is an optimized 
 
 The Socket.IO client is compatible with bundlers like [webpack](https://webpack.js.org/) or [browserify](http://browserify.org/).
 
+<Tabs groupId="pm">
+  <TabItem value="npm" label="NPM" default>
+
+```sh
+npm install socket.io-client
 ```
-$ npm install socket.io-client
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add socket.io-client
 ```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add socket.io-client
+```
+
+  </TabItem>
+</Tabs>
 
 The client can also be run from Node.js.
 
