@@ -61,7 +61,7 @@
   },
   {
     "url": "https://www.fortunegames.com",
-    "img": "https://images.opencollective.com/fortunegames/7339bf2/logo.png",
+    "img": "https://images.opencollective.com/fortunegames/657063f/logo.png",
     "alt": "FORTUNE GAMES"
   },
   {
@@ -695,6 +695,11 @@
     "alt": "Casinoonlineaams.com"
   },
   {
+    "url": "https://strony-bukmacherskie.pl/",
+    "img": "https://images.opencollective.com/strony-bukmacherskie-pl/e0a1a53/avatar.png",
+    "alt": "strony-bukmacherskie.pl"
+  },
+  {
     "url": "https://slotsempire.com/",
     "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
     "alt": "Slots Empire Casino"
@@ -703,11 +708,6 @@
     "url": "https://casinosfellow.com/payout/instant-withdrawal-casino/",
     "img": "https://images.opencollective.com/casinosfellow-com/4efc3f8/logo.png",
     "alt": "Casinosfellow.com"
-  },
-  {
-    "url": "https://strony-bukmacherskie.pl/",
-    "img": "https://images.opencollective.com/strony-bukmacherskie-pl/e0a1a53/avatar.png",
-    "alt": "strony-bukmacherskie.pl"
   },
   {
     "url": "https://svenskaonlinecasinon.se",
@@ -773,11 +773,6 @@
     "url": "https://tweaklab.org",
     "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
     "alt": "Roland Brönnimann"
-  },
-  {
-    "url": "https://besturate.com/best-vpn/",
-    "img": "https://images.opencollective.com/besturate1/98633c5/logo.png",
-    "alt": "Besturate"
   },
   {
     "url": "https://idealecasinos.nl/",
@@ -870,6 +865,31 @@
     "alt": "AppKong"
   },
   {
+    "url": "https://www.voetbalgokken.nl",
+    "img": "https://images.opencollective.com/voetbalgokken1/02ab67f/logo.png",
+    "alt": "VoetbalGokken"
+  },
+  {
+    "url": "https://www.best50casino.com/",
+    "img": "https://images.opencollective.com/best50casino/avatar.png",
+    "alt": "Fotis"
+  },
+  {
+    "url": "https://www.bookmakers.bet/",
+    "img": "https://images.opencollective.com/bookmakersbet/8722803/logo.png",
+    "alt": "Online Bookmakers"
+  },
+  {
+    "url": "https://www.best50casino.com/",
+    "img": "https://images.opencollective.com/best50casino1/c5f26b3/logo.png",
+    "alt": "Best50casino"
+  },
+  {
+    "url": "https://www.nongamstopbetsites.com/",
+    "img": "https://images.opencollective.com/nongam/e52d561/logo.png",
+    "alt": "NonGam"
+  },
+  {
     "url": "https://www.targetedwebtraffic.com",
     "img": "https://images.opencollective.com/targeted-web-traffic/7abacc7/logo.png",
     "alt": "Targeted Web Traffic"
@@ -910,31 +930,6 @@
     "alt": "ilaria maggi"
   },
   {
-    "url": "https://www.voetbalgokken.nl",
-    "img": "https://images.opencollective.com/voetbalgokken1/02ab67f/logo.png",
-    "alt": "VoetbalGokken"
-  },
-  {
-    "url": "https://www.best50casino.com/",
-    "img": "https://images.opencollective.com/best50casino/avatar.png",
-    "alt": "Fotis"
-  },
-  {
-    "url": "https://www.bookmakers.bet/",
-    "img": "https://images.opencollective.com/bookmakersbet/8722803/logo.png",
-    "alt": "Online Bookmakers"
-  },
-  {
-    "url": "https://www.best50casino.com/",
-    "img": "https://images.opencollective.com/best50casino1/c5f26b3/logo.png",
-    "alt": "Best50casino"
-  },
-  {
-    "url": "https://www.nongamstopbetsites.com/",
-    "img": "https://images.opencollective.com/nongam/e52d561/logo.png",
-    "alt": "NonGam"
-  },
-  {
     "url": "https://www.wagerdex.com/",
     "img": "https://images.opencollective.com/wagerdex/780ea73/logo.png",
     "alt": "WagerDex"
@@ -963,5 +958,20 @@
     "url": "https://aapeli.net",
     "img": "https://images.opencollective.com/aapeli/dc31a59/logo.png",
     "alt": "Aapeli"
+  },
+  {
+    "url": "https://www.mobindustry.net/",
+    "img": "https://images.opencollective.com/mobindustry/dca595c/logo.png",
+    "alt": "Mobindustry"
+  },
+  {
+    "url": "https://webpundits.in",
+    "img": "https://images.opencollective.com/web-pundits/avatar.png",
+    "alt": "Buy RDP"
+  },
+  {
+    "url": "https://www.forexinthai.com",
+    "img": "https://images.opencollective.com/forex-in-thai/76afa76/logo.png",
+    "alt": "Forex In Thai"
   }
 ]
