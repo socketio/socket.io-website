@@ -319,7 +319,7 @@ See also: [Node.js documentation](https://nodejs.org/api/http2.html#http2_http2_
   <TabItem value="cjs" label="CommonJS" default>
 
 ```js
-const express = require("app");
+const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 
