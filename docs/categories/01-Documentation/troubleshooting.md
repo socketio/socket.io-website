@@ -199,7 +199,7 @@ That being said, the Socket.IO client will always try to reconnect, unless speci
 
 Possible explanations for a disconnection:
 
-- [The browser tab was minimized and heartbeat has failed]()
+- [The browser tab was minimized and heartbeat has failed](#the-browser-tab-was-minimized-and-heartbeat-has-failed)
 - [The client is not compatible with the version of the server](#the-client-is-not-compatible-with-the-version-of-the-server-1)
 - [You are trying to send a huge payload](#you-are-trying-to-send-a-huge-payload)
 
