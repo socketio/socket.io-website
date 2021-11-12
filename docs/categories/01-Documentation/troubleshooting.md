@@ -19,7 +19,7 @@ Possible explanations:
 - [The server is not reachable](#the-server-is-not-reachable)
 - [The client is not compatible with the version of the server](#the-client-is-not-compatible-with-the-version-of-the-server)
 - [The server does not send the necessary CORS headers](#the-server-does-not-send-the-necessary-cors-headers)
-- [You didn’t enable sticky sessions (in a multi server setup)](#you-didn’t-enable-sticky-sessions-in-a-multi-server-setup)
+- [You didn’t enable sticky sessions (in a multi server setup)](#you-didnt-enable-sticky-sessions-in-a-multi-server-setup)
 
 #### You are trying to reach a plain WebSocket server
 
@@ -199,8 +199,23 @@ That being said, the Socket.IO client will always try to reconnect, unless speci
 
 Possible explanations for a disconnection:
 
+- [The browser tab was minimized and heartbeat has failed]()
 - [The client is not compatible with the version of the server](#the-client-is-not-compatible-with-the-version-of-the-server-1)
-- [you are trying to send a huge payload](#you-are-trying-to-send-a-huge-payload)
+- [You are trying to send a huge payload](#you-are-trying-to-send-a-huge-payload)
+
+#### The browser tab was minimized and heartbeat has failed
+
+When a browser tab is not in focus, some browsers (like [Chrome](https://developer.chrome.com/blog/timer-throttling-in-chrome-88/#intensive-throttling)) throttle JavaScript timers, which could lead to a disconnection by ping timeout **in Socket.IO v2**, as the heartbeat mechanism relied on `setTimeout` function on the client side.
+
+As a workaround, you can increase the `pingTimeout` value on the server side:
+
+```js
+const io = new Server({
+  pingTimeout: 60000
+});
+```
+
+Please note that upgrading to Socket.IO v4 (at least `socket.io-client@4.1.3`, due to [this](https://github.com/socketio/engine.io-client/commit/f30a10b7f45517fcb3abd02511c58a89e0ef498f)) should prevent this kind of issues, as the heartbeat mechanism has been reversed (the server now sends PING packets).
 
 #### The client is not compatible with the version of the server
 
