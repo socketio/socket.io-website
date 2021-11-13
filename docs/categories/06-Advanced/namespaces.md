@@ -213,6 +213,21 @@ const parentNamespace = io.of(/^\/dynamic-\d+$/);
 parentNamespace.emit("hello"); // will be sent to users in /dynamic-1, /dynamic-2, ...
 ```
 
+:::caution
+
+Existing namespaces have priority over dynamic namespaces. For example:
+
+```js
+// register "dynamic-101" namespace
+io.of("/dynamic-101");
+
+io.of(/^\/dynamic-\d+$/).on("connection", (socket) => {
+  // will not be called for a connection on the "dynamic-101" namespace
+});
+```
+
+:::
+
 ## Complete API
 
 The complete API exposed by the Namespace instance can be found [here](../../server-api.md#namespace).
