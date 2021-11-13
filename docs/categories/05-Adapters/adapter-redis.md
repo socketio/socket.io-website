@@ -86,6 +86,46 @@ More information can be found [here](../02-Server/using-multiple-nodes.md#why-is
 
 In case the connection to the Redis server is severed, the packets will only be sent to the clients that are connected to the current server.
 
+## Migrating from `socket.io-redis`
+
+The package was renamed from `socket.io-redis` to `@socket.io/redis-adapter` in [v7](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.0), in order to match the name of the Redis emitter (`@socket.io/redis-emitter`).
+
+To migrate to the new package, you'll need to make sure to provide your own Redis clients, as the package will no longer create Redis clients on behalf of the user.
+
+Before:
+
+```js
+const redisAdapter = require("socket.io-redis");
+
+io.adapter(redisAdapter({ host: "localhost", port: 6379 }));
+```
+
+After:
+
+```js
+const { createClient } = require("redis");
+const { createAdapter } = require("@socket.io/redis-adapter");
+
+const pubClient = createClient({ host: "localhost", port: 6379 });
+const subClient = pubClient.duplicate();
+
+io.adapter(createAdapter(pubClient, subClient));
+```
+
+:::tip
+
+The communication protocol between the Socket.IO servers has not been updated, so you can have some servers with `socket.io-redis` and some others with `@socket.io/redis-adapter` at the same time.
+
+:::
+
+## Latest releases
+
+- [7.0.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.0) (2021-05-12)
+- [6.1.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.1.0) (2021-03-13)
+- [6.0.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.0.1) (2020-11-14)
+- [6.0.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.0.0) (2020-11-12)
+- [5.4.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/5.4.0) (2020-09-02)
+
 ## Emitter
 
 The Redis emitter allows sending packets to the connected clients from another Node.js process:
@@ -123,3 +163,33 @@ setInterval(() => {
 ```
 
 Please refer to the cheatsheet [here](adapter.md#emitter-cheatsheet).
+
+### Migrating from `socket.io-emitter`
+
+The package was renamed from `socket.io-emitter` to `@socket.io/redis-emitter` in [v4](https://github.com/socketio/socket.io-redis-emitter/releases/tag/4.0.0), in order to better reflect the relationship with Redis.
+
+To migrate to the new package, you'll need to make sure to provide your own Redis clients, as the package will no longer create Redis clients on behalf of the user.
+
+Before:
+
+```js
+const io = require("socket.io-emitter")({ host: "127.0.0.1", port: 6379 });
+```
+
+After:
+
+```js
+const { Emitter } = require("@socket.io/redis-emitter");
+const { createClient } = require("redis");
+
+const redisClient = createClient();
+const io = new Emitter(redisClient);
+```
+
+### Latest releases
+
+- [4.1.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.0) (2021-05-12)
+- [4.0.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.0.0) (2021-03-17)
+- [3.2.0](https://github.com/socketio/socket.io-redis-emitter/releases/3.2.0) (2020-12-29)
+- [3.1.1](https://github.com/socketio/socket.io-redis-emitter/releases/3.1.1) (2017-10-12)
+- [3.1.0](https://github.com/socketio/socket.io-redis-emitter/releases/3.1.0) (2017-08-03)
