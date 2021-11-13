@@ -71,6 +71,11 @@ module.exports = {
           label: "Documentation",
         },
         {
+          position: "left",
+          label: "Examples",
+          to: "/get-started/"
+        },
+        {
           type: "doc",
           docId: "server-api",
           position: "left",
@@ -109,6 +114,10 @@ module.exports = {
             {
               label: "Documentation",
               to: "/docs/v4/"
+            },
+            {
+              label: "Examples",
+              to: "/get-started/"
             },
             {
               label: "Server API",
