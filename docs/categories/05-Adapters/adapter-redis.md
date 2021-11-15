@@ -120,11 +120,11 @@ The communication protocol between the Socket.IO servers has not been updated, s
 
 ## Latest releases
 
+- [7.0.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.1) (2021-11-15)
 - [7.0.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.0) (2021-05-12)
 - [6.1.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.1.0) (2021-03-13)
 - [6.0.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.0.1) (2020-11-14)
 - [6.0.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.0.0) (2020-11-12)
-- [5.4.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/5.4.0) (2020-09-02)
 
 ## Emitter
 
