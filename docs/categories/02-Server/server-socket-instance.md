@@ -117,6 +117,37 @@ console.log(sockets[0].data.username); // "alice"
 
 More information [here](server-instance.md#utility-methods).
 
+## Socket#conn
+
+A reference to the underlying Engine.IO socket (see [here](../01-Documentation/how-it-works.md)).
+
+```js
+io.on("connection", (socket) => {
+  console.log("initial transport", socket.conn.transport.name); // prints "polling"
+
+  socket.conn.once("upgrade", () => {
+    // called when the transport is upgraded (i.e. from HTTP long-polling to WebSocket)
+    console.log("upgraded transport", socket.conn.transport.name); // prints "websocket"
+  });
+
+  socket.conn.on("packet", ({ type, data }) => {
+    // called for each packet received
+  });
+
+  socket.conn.on("packetCreate", ({ type, data }) => {
+    // called for each packet sent
+  });
+
+  socket.conn.on("drain", () => {
+    // called when the write buffer is drained
+  });
+
+  socket.conn.on("close", (reason) => {
+    // called when the underlying connection is closed
+  });
+});
+```
+
 ## Additional attributes
 
 As long as you do not overwrite any existing attribute, you can attach any attribute to the Socket instance and use it later:
