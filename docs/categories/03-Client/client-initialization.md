@@ -10,6 +10,12 @@ import TabItem from '@theme/TabItem';
 
 Once you have [installed](client-installation.md) the Socket.IO client library, you can now init the client. The complete list of options can be found [here](../../client-options.md).
 
+:::tip
+
+For TypeScript users, it is possible to provide type hints for the events. Please check [this](../01-Documentation/typescript.md).
+
+:::
+
 In the examples below, the `io` object comes either from:
 
 - the `<script>` import

@@ -10,6 +10,12 @@ import TabItem from '@theme/TabItem';
 
 Once you have [installed](server-installation.md) the Socket.IO server library, you can now init the server. The complete list of options can be found [here](../../server-options.md).
 
+:::tip
+
+For TypeScript users, it is possible to provide type hints for the events. Please check [this](../01-Documentation/typescript.md).
+
+:::
+
 ## Initialization
 
 ### Standalone
