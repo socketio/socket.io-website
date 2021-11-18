@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ## Prerequisites
 
-Please make sure that [Node.js](https://nodejs.org/en/) is installed on your system. The current Long Term Support (LTS) release is an ideal starting point.
+Please make sure that [Node.js](https://nodejs.org/en/) is installed on your system. The current Long Term Support (LTS) release is an ideal starting point, see [here](https://github.com/nodejs/Release#release-schedule).
 
 :::info
 
@@ -19,10 +19,6 @@ At least Node.js 10 is needed, older versions are not supported anymore.
 :::
 
 ## Installation
-
-The latest Socket.IO release is:
-
-[![NPM version](https://img.shields.io/npm/v/socket.io.svg?logo=npm)](https://www.npmjs.com/package/socket.io)
 
 To install the latest release:
 
@@ -75,6 +71,14 @@ pnpm add socket.io@version
 
   </TabItem>
 </Tabs>
+
+## Latest releases
+
+- [4.4.0](/blog/socket-io-4-4-0/) (2021-11-18): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.4.0) / [diff](https://github.com/socketio/socket.io/compare/4.3.2...4.4.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.4.0)
+- 4.3.2 (2021-11-08): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.3.2) / [diff](https://github.com/socketio/socket.io/compare/4.3.1...4.3.2) / [npm](https://www.npmjs.com/package/socket.io/v/4.3.2)
+- 4.3.1 (2021-10-17): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.3.1) / [diff](https://github.com/socketio/socket.io/compare/4.3.0...4.3.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.3.1)
+- [4.3.0](/blog/socket-io-4-3-0/) (2021-10-15): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.3.0) / [diff](https://github.com/socketio/socket.io/compare/4.2.0...4.3.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.3.0)
+- 4.2.0 (2021-08-30): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.2.0) / [diff](https://github.com/socketio/socket.io/compare/4.1.3...4.2.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.2.0)
 
 ## Additional packages
 
@@ -155,3 +159,55 @@ const io = new Server(3000, {
 ```
 
 This implementation "allows, but doesn't guarantee" significant performance and memory-usage improvements over the default implementation. As usual, please benchmark it against your own usage.
+
+## Usage with `uWebSocket.js`
+
+Starting with version [4.4.0](/blog/socket-io-4-4-0/), a Socket.IO server can now bind to a `uWebSocket.js` server.
+
+Installation:
+
+<Tabs groupId="pm">
+  <TabItem value="npm" label="NPM" default>
+
+```sh
+npm install uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+```
+
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+```
+
+  </TabItem>
+</Tabs>
+
+Usage:
+
+```js
+const { App } = require("uWebSockets.js");
+const { Server } = require("socket.io");
+
+const app = new App();
+const io = new Server();
+
+io.attachApp(app);
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+app.listen(3000, (token) => {
+  if (!token) {
+    console.warn("port already in use");
+  }
+});
+```

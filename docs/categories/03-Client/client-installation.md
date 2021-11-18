@@ -68,9 +68,13 @@ Browser compatibility is tested thanks to the awesome Sauce Labs platform:
 
 ![Browser support](/images/saucelabs.svg)
 
-## Release notes
+## Latest releases
 
-The release notes of each version can be found in [GitHub](https://github.com/socketio/socket.io-client/releases).
+- [4.4.0](/blog/socket-io-4-4-0/) (2021-11-18): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.2...4.4.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.0)
+- 4.3.2 (2021-11-08): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.2) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.1...4.3.2) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.2)
+- 4.3.1 (2021-10-17): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.0...4.3.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.1)
+- [4.3.0](/blog/socket-io-4-3-0/) (2021-10-15): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.2.0...4.3.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.0)
+- 4.2.0 (2021-08-30): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.2.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.1.3...4.2.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.2.0)
 
 ## Installation
 
