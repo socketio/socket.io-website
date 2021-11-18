@@ -102,14 +102,14 @@ const io = new Server({
 You can also include the client bundle from a CDN:
 
 ```html
-<script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
 ```
 
 Socket.IO is also available from other CDN:
 
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.3.2/dist/socket.io.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.3.2/dist/socket.io.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.4.0/dist/socket.io.min.js
+- unpkg: https://unpkg.com/socket.io-client@4.4.0/dist/socket.io.min.js
 
 There are several bundles available:
 
