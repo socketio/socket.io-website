@@ -219,23 +219,37 @@ io.of((name, query, next) => {
 
   - `callback` _(Function)_
 
-Closes the Socket.IO server. The `callback` argument is optional and will be called when all connections are closed.
+Closes the Socket.IO server and disconnect all clients. The `callback` argument is optional and will be called when all connections are closed.
 
-Note: this also closes the underlying HTTP server.
+:::info
+
+This also closes the underlying HTTP server.
+
+:::
 
 ```js
-const Server = require("socket.io");
-const PORT   = 3030;
-const server = require("http").Server();
+const { createServer } = require("http");
+const { Server } = require("socket.io");
+const PORT = 3030;
 
-const io = Server(PORT);
+const io = new Server(PORT);
 
-io.close(); // Close current server
+io.close();
 
-server.listen(PORT); // PORT is free to use
+const httpServer = createServer();
 
-io = Server(server);
+httpServer.listen(PORT); // PORT is free to use
+
+io.attach(httpServer);
 ```
+
+:::note
+
+Only closing the underlying HTTP server is not sufficient, as it will only prevent the server from accepting new connections but clients connected with WebSocket will not be disconnected right away.
+
+Reference: https://nodejs.org/api/http.html#serverclosecallback
+
+:::
 
 ### server.engine
 
