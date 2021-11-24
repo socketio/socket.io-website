@@ -5,6 +5,9 @@ sidebar_position: 1
 slug: /client-api/
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## IO
 
 Exposed as the `io` namespace in the standalone build, or the result of calling `require("socket.io-client")`.
@@ -103,6 +106,45 @@ Please note that, in most cases, you won't use the Manager directly but use the 
 
 The complete list of available options can be found [here](client-options.md).
 
+<Tabs groupId="lang">
+  <TabItem value="cjs" label="CommonJS" default>
+
+```js
+const { Manager } = require("socket.io-client");
+
+const manager = new Manager("https://example.com");
+
+const socket = manager.socket("/"); // main namespace
+const adminSocket = manager.socket("/admin"); // admin namespace
+```
+
+  </TabItem>
+  <TabItem value="mjs" label="ES modules">
+
+```js
+import { Manager } from "socket.io-client";
+
+const manager = new Manager("https://example.com");
+
+const socket = manager.socket("/"); // main namespace
+const adminSocket = manager.socket("/admin"); // admin namespace
+```
+
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+
+```ts
+import { Manager } from "socket.io-client";
+
+const manager = new Manager("https://example.com");
+
+const socket = manager.socket("/"); // main namespace
+const adminSocket = manager.socket("/admin"); // admin namespace
+```
+
+  </TabItem>
+</Tabs>
+
 ### manager.reconnection([value])
 
   - `value` _(Boolean)_
@@ -146,6 +188,72 @@ Sets the `timeout` option, or returns it if no parameters are passed.
 If the manager was initiated with `autoConnect` to `false`, launch a new connection attempt.
 
 The `callback` argument is optional and will be called once the attempt fails/succeeds.
+
+<Tabs groupId="lang">
+  <TabItem value="cjs" label="CommonJS" default>
+
+```js
+const { Manager } = require("socket.io-client");
+
+const manager = new Manager("https://example.com", {
+  autoConnect: false
+});
+
+const socket = manager.socket("/");
+
+manager.open((err) => {
+  if (err) {
+    // an error has occurred
+  } else {
+    // the connection was successfully established
+  }
+});
+```
+
+  </TabItem>
+  <TabItem value="mjs" label="ES modules">
+
+```js
+import { Manager } from "socket.io-client";
+
+const manager = new Manager("https://example.com", {
+  autoConnect: false
+});
+
+const socket = manager.socket("/");
+
+manager.open((err) => {
+  if (err) {
+    // an error has occurred
+  } else {
+    // the connection was successfully established
+  }
+});
+```
+
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+
+```ts
+import { Manager } from "socket.io-client";
+
+const manager = new Manager("https://example.com", {
+  autoConnect: false
+});
+
+const socket = manager.socket("/");
+
+manager.open((err) => {
+  if (err) {
+    // an error has occurred
+  } else {
+    // the connection was successfully established
+  }
+});
+```
+
+  </TabItem>
+</Tabs>
 
 ### manager.connect([callback])
 
