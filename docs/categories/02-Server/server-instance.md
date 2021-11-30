@@ -157,7 +157,7 @@ io.of("/admin").in(theSocketId).disconnectSockets();
 This method returns the matching Socket instances:
 
 ```js
-// return all Socket instances
+// return all Socket instances of the main namespace
 const sockets = await io.fetchSockets();
 
 // return all Socket instances in the "room1" room of the main namespace

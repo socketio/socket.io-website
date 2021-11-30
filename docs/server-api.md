@@ -314,7 +314,7 @@ See [here](categories/02-Server/server-instance.md#utility-methods).
 <span className="changelog">Added in v4.0.0</span>
 
 ```js
-// return all Socket instances
+// return all Socket instances of the main namespace
 const sockets = await io.fetchSockets();
 
 // return all Socket instances in the "room1" room of the main namespace
@@ -611,7 +611,7 @@ io.of("/admin").in(theSocketId).disconnectSockets();
 Returns the matching Socket instances:
 
 ```js
-// return all Socket instances
+// return all Socket instances in the main namespace
 const sockets = await io.fetchSockets();
 
 // return all Socket instances in the "room1" room of the main namespace
