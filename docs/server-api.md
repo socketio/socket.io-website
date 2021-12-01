@@ -1344,9 +1344,10 @@ httpServer.listen(3000);
 This event will be emitted just before writing the response headers of **the first** HTTP request of the session (the handshake), allowing you to customize them.
 
 ```js
+import { serialize } from "cookie";
+
 io.engine.on("initial_headers", (headers, request) => {
-  headers["test"] = "123";
-  headers["set-cookie"] = "mycookie=456";
+  headers["set-cookie"] = serialize("uid", "1234", { sameSite: "strict" });
 });
 ```
 
@@ -1360,8 +1361,14 @@ io.engine.on("initial_headers", (headers, request) => {
 This event will be emitted just before writing the response headers of **each** HTTP request of the session (including the WebSocket upgrade), allowing you to customize them.
 
 ```js
+import { serialize, parse } from "cookie";
+
 io.engine.on("headers", (headers, request) => {
-  headers["test"] = "789";
+  if (!request.headers.cookie) return;
+  const cookies = parse(request.headers.cookie);
+  if (!cookies.randomId) {
+    headers["set-cookie"] = serialize("randomId", "abc", { maxAge: 86400 });
+  }
 });
 ```
 

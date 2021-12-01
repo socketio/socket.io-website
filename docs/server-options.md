@@ -383,13 +383,22 @@ const io = new Server(httpServer, {
 
 Default value: `-`
 
-The list of options that will be forwarded to the [`cookie`](https://github.com/jshttp/cookie/) module.
+The list of options that will be forwarded to the [`cookie`](https://github.com/jshttp/cookie/) module. Available options:
 
-Please note that since Socket.IO v3, there is no cookie sent by default anymore ([reference](categories/07-Migrations/migrating-from-2-to-3.md#no-more-cookie-by-default)).
+- domain
+- encode
+- expires
+- httpOnly
+- maxAge
+- path
+- sameSite
+- secure
 
 Example:
 
 ```js
+import { Server } from "socket.io";
+
 const io = new Server(httpServer, {
   cookie: {
     name: "my-cookie",
@@ -399,6 +408,12 @@ const io = new Server(httpServer, {
   }
 });
 ```
+
+:::info
+
+Since Socket.IO v3, there is no cookie sent by default anymore ([reference](categories/07-Migrations/migrating-from-2-to-3.md#no-more-cookie-by-default)).
+
+:::
 
 ### `allowEIO3`
 
