@@ -7,6 +7,8 @@ slug: /client-socket-instance/
 
 Besides [emitting](../04-Events/emitting-events.md) and [listening to](../04-Events/listening-to-events.md) events, the Socket instance has a few attributes that may be of use in your application:
 
+The socket instance inherits all methods from the [Emitter](https://github.com/component/emitter) class (i.e. `on`, `off`, `emit`, and `hasListeners`).
+
 ## Socket#id
 
 Each new connection is assigned a random 20-characters identifier.
