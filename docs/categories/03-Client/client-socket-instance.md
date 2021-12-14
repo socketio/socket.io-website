@@ -5,6 +5,22 @@ sidebar_position: 3
 slug: /client-socket-instance/
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+A `Socket` is the fundamental class for interacting with the server. It inherits most of the methods of the Node.js [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter), like [emit](../../client-api.md#socketemiteventname-args), [on](../../client-api.md#socketoneventname-callback), [once](../../client-api.md#socketonceeventname-callback) or [off](../../client-api.md#socketoffeventname).
+
+<ThemedImage
+  alt="Bidirectional communication between server and client"
+  sources={{
+    light: useBaseUrl('/images/bidirectional-communication-socket.png'),
+    dark: useBaseUrl('/images/bidirectional-communication-socket-dark.png'),
+  }}
+/>
+
+<br />
+<br />
+
 Besides [emitting](../04-Events/emitting-events.md) and [listening to](../04-Events/listening-to-events.md) events, the Socket instance has a few attributes that may be of use in your application:
 
 ## Socket#id
