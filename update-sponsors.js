@@ -59,11 +59,6 @@ const customLinks = {
     img: "https://images.opencollective.com/papersowl2/510de59/logo.png",
     alt: "Papersowl"
   },
-  "buy-fineproxy-org": {
-    url: "https://buy.fineproxy.org/eng/",
-    img: "/images/sponsors/fineproxy.png",
-    alt: "Buy.Fineproxy.Org"
-  },
   "nettikasinot-suomalaisille": {
     url: "https://www.nettikasinotsuomalaisille.com/nettikasinot-ilman-rekisteroitymista/",
     img: "/images/sponsors/netti.png",
@@ -73,11 +68,6 @@ const customLinks = {
     url: "https://www.neueonline-casinos.com/",
     img: "/images/sponsors/neue.png",
     alt: "Neue Online Casinos"
-  },
-  "aandelen-kopen1": {
-    url: "https://www.aandelenkopen.com",
-    img: "/images/sponsors/aandelenkopen.png",
-    alt: "Aandelen Kopen"
   },
   vpsservercom: {
     "url": "https://www.vpsserver.com",
@@ -89,11 +79,6 @@ const customLinks = {
     "img": "/images/sponsors/topvpnservice.png",
     "alt": "TopVPNService"
   },
-  "followerspromotion-com": {
-    url: "https://followerspromotion.com/buy-instagram-likes/",
-    img: "/images/sponsors/followerspromotion.svg",
-    alt: "followers promotions"
-  },
   "online-value-group1": {
     url: "https://deutschercasinobonus.com/casino-ohne-deutsche-lizenz/",
     img: "/images/sponsors/deutschercasinobonus.jpg",
@@ -104,15 +89,10 @@ const customLinks = {
     img: "/images/sponsors/quickbookstoolhub.png",
     alt: "Quickbooks Tool Hub"
   },
-  "friendlylikes": {
-    url: "https://friendlylikes.com/buy-instagram-likes/",
-    img: "https://images.opencollective.com/friendlylikes/fdf1b44/avatar.png",
-    alt: "Friendlylikes"
-  },
-  "writepaperforme": {
-    url: "https://writepaperfor.me/",
-    img: "/images/sponsors/writepaperforme.png",
-    alt: "Write my paper for me"
+  "red-dog": {
+    url: "https://reddogcasino.com/en/games/blackjack",
+    img: "https://images.opencollective.com/red-dog/49e9d6f/logo.png",
+    alt: "RedDogCasino.com"
   }
 }
 
