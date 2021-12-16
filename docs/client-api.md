@@ -431,7 +431,7 @@ socket.on("connect", () => {
 
 ### socket.connect()
 
-<span class="changelog">Added in v1.0.0</span>
+*Added in v1.0.0*
 
   - **Returns** `Socket`
 
@@ -456,7 +456,7 @@ socket.on("disconnect", () => {
 
 ### socket.open()
 
-<span class="changelog">Added in v1.0.0</span>
+*Added in v1.0.0*
 
 Synonym of [socket.connect()](#socketconnect).
 
@@ -584,9 +584,27 @@ Sets a modifier for a subsequent event emission that the event data will only be
 socket.compress(false).emit("an event", { some: "data" });
 ```
 
+### socket.timeout(value)
+
+*Added in v4.4.0*
+
+- `value` _(Integer)_
+- **Returns** `Socket`
+
+Sets a modifier for a subsequent event emission that the callback will be called with an error when the
+given number of milliseconds have elapsed without an acknowledgement from the server:
+
+```js
+socket.timeout(5000).emit("my-event", (err) => {
+  if (err) {
+    // the server did not acknowledge the event in the given delay
+  }
+});
+```
+
 ### socket.disconnect()
 
-<span class="changelog">Added in v1.0.0</span>
+*Added in v1.0.0*
 
   - **Returns** `Socket`
 
@@ -601,13 +619,13 @@ If this is the last active Socket instance of the Manager, the low-level connect
 
 ### socket.close()
 
-<span class="changelog">Added in v1.0.0</span>
+*Added in v1.0.0*
 
 Synonym of [socket.disconnect()](#socketdisconnect).
 
 ### Flag: 'volatile'
 
-<span class="changelog">Added in v3.0.0</span>
+*Added in v3.0.0*
 
 Sets a modifier for the subsequent event emission indicating that the packet may be dropped if:
 

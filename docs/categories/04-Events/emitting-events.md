@@ -93,31 +93,16 @@ socket.emit("update item", "1", { name: "updated" }, (response) => {
 });
 ```
 
-Timeouts are not supported by default, but it is quite straightforward to implement:
+## With timeout
+
+Starting with Socket.IO v4.4.0, you can now assign a timeout to each emit:
 
 ```js
-const withTimeout = (onSuccess, onTimeout, timeout) => {
-  let called = false;
-
-  const timer = setTimeout(() => {
-    if (called) return;
-    called = true;
-    onTimeout();
-  }, timeout);
-
-  return (...args) => {
-    if (called) return;
-    called = true;
-    clearTimeout(timer);
-    onSuccess.apply(this, args);
+socket.timeout(5000).emit("my-event", (err) => {
+  if (err) {
+    // the other side did not acknowledge the event in the given delay
   }
-}
-
-socket.emit("hello", 1, 2, withTimeout(() => {
-  console.log("success!");
-}, () => {
-  console.log("timeout!");
-}, 1000));
+});
 ```
 
 ## Volatile events

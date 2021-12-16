@@ -257,7 +257,7 @@ A reference to the underlying Engine.IO server. See [here](#engine).
 
 ### server.socketsJoin(rooms)
 
-<span className="changelog">Added in v4.0.0</span>
+*Added in v4.0.0*
 
 Alias for [`io.of("/").socketsJoin(rooms)`](#namespacesocketsjoinrooms).
 
@@ -276,7 +276,7 @@ See [here](categories/02-Server/server-instance.md#utility-methods).
 
 ### server.socketsLeave(rooms)
 
-<span className="changelog">Added in v4.0.0</span>
+*Added in v4.0.0*
 
 Alias for [`io.of("/").socketsLeave(rooms)`](#namespacesocketsleaverooms).
 
@@ -295,7 +295,7 @@ See [here](categories/02-Server/server-instance.md#utility-methods).
 
 ### server.disconnectSockets([close])
 
-<span className="changelog">Added in v4.0.0</span>
+*Added in v4.0.0*
 
 Alias for [`io.of("/").disconnectSockets(close)`](#namespacedisconnectsocketsclose).
 
@@ -311,7 +311,7 @@ See [here](categories/02-Server/server-instance.md#utility-methods).
 
 ### server.fetchSockets()
 
-<span className="changelog">Added in v4.0.0</span>
+*Added in v4.0.0*
 
 ```js
 // return all Socket instances of the main namespace
@@ -325,7 +325,7 @@ See [here](categories/02-Server/server-instance.md#utility-methods).
 
 ### server.serverSideEmit(eventName[, ...args][, ack])
 
-<span className="changelog">Added in v4.1.0</span>
+*Added in v4.1.0*
 
 Synonym of: `io.of("/").serverSideEmit(/* ... */);`
 
@@ -446,13 +446,13 @@ io.to(["room1", "room2"]).emit(/* ... */);
 
 ### namespace.in(room)
 
-<span className="changelog">Added in v1.0.0</span>
+*Added in v1.0.0*
 
 Synonym of [namespace.to(room)](#namespacetoroom).
 
 ### namespace.except(rooms)
 
-<span className="changelog">Added in v4.0.0</span>
+*Added in v4.0.0*
 
   - `rooms` _(string)_ | _(string[])_
   - **Returns** `BroadcastOperator`
@@ -533,7 +533,7 @@ More information can be found [here](categories/02-Server/middlewares.md).
 
 ### namespace.socketsJoin(rooms)
 
-<span className="changelog">Added in v4.0.0</span>
+*Added in v4.0.0*
 
   - `rooms` _(string)_ | _(string[])_
   - **Returns** `void`
@@ -558,7 +558,7 @@ More information can be found [here](categories/02-Server/server-instance.md#uti
 
 ### namespace.socketsLeave(rooms)
 
-<span className="changelog">Added in v4.0.0</span>
+*Added in v4.0.0*
 
   - `rooms` _(string)_ | _(string[])_
   - **Returns** `void`
@@ -581,7 +581,7 @@ io.in(theSocketId).socketsLeave("room1");
 
 ### namespace.disconnectSockets([close])
 
-<span className="changelog">Added in v4.0.0</span>
+*Added in v4.0.0*
 
   - `close` _(Boolean)_ whether to close the underlying connection
   - **Returns** `void`
@@ -604,7 +604,7 @@ io.of("/admin").in(theSocketId).disconnectSockets();
 
 ### namespace.fetchSockets()
 
-<span className="changelog">Added in v4.0.0</span>
+*Added in v4.0.0*
 
 - **Returns** `(Socket | RemoteSocket)[]`
 
@@ -657,7 +657,7 @@ console.log(sockets[0].data.username); // "alice"
 
 ### namespace.serverSideEmit(eventName[, ...args][, ack])
 
-<span className="changelog">Added in v4.1.0</span>
+*Added in v4.1.0*
 
   - `eventName` _(String)_
   - `args`
@@ -1130,13 +1130,13 @@ io.on("connection", (socket) => {
 
 ### socket.in(room)
 
-<span className="changelog">Added in v1.0.0</span>
+*Added in v1.0.0*
 
 Synonym of [socket.to(room)](#sockettoroom).
 
 ### socket.except(rooms)
 
-<span className="changelog">Added in v4.0.0</span>
+*Added in v4.0.0*
 
   - `rooms` _(string)_ | _(string[])_
   - **Returns** `BroadcastOperator`
@@ -1164,6 +1164,24 @@ Sets a modifier for a subsequent event emission that the event data will only be
 ```js
 io.on("connection", (socket) => {
   socket.compress(false).emit("uncompressed", "that's rough");
+});
+```
+
+### socket.timeout(value)
+
+*Added in v4.4.0*
+
+- `value` _(Integer)_
+- **Returns** `Socket`
+
+Sets a modifier for a subsequent event emission that the callback will be called with an error when the
+given number of milliseconds have elapsed without an acknowledgement from the client:
+
+```js
+socket.timeout(5000).emit("my-event", (err) => {
+  if (err) {
+    // the client did not acknowledge the event in the given delay
+  }
 });
 ```
 
@@ -1270,7 +1288,7 @@ Its source code can be found here: https://github.com/socketio/engine.io
 
 ### engine.clientsCount
 
-<span className="changelog">Added in v1.0.0</span>
+*Added in v1.0.0*
 
   - [_(Number)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 
@@ -1298,7 +1316,7 @@ io.engine.generateId = () => {
 
 ### engine.handleUpgrade(request, socket, head)
 
-<span className="changelog">Added in v1.0.0</span>
+*Added in v1.0.0*
 
   - `request` [_(http.IncomingMessage)_](https://nodejs.org/docs/latest/api/http.html#http_class_http_incomingmessage) the incoming request
   - `socket` [_(stream.Duplex)_](https://nodejs.org/docs/latest/api/stream.html#stream_class_stream_duplex) the network socket between the server and client
@@ -1336,7 +1354,7 @@ httpServer.listen(3000);
 
 ### Event: 'initial_headers'
 
-<span className="changelog">Added in v4.1.0</span>
+*Added in v4.1.0*
 
   - `headers` [_(Object)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) a hash of headers, indexed by header name
   - `request` [_(http.IncomingMessage)_](https://nodejs.org/docs/latest/api/http.html#http_class_http_incomingmessage) the incoming request
@@ -1353,7 +1371,7 @@ io.engine.on("initial_headers", (headers, request) => {
 
 ### Event: 'headers'
 
-<span className="changelog">Added in v4.1.0</span>
+*Added in v4.1.0*
 
   - `headers` [_(Object)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) a hash of headers, indexed by header name
   - `request` [_(http.IncomingMessage)_](https://nodejs.org/docs/latest/api/http.html#http_class_http_incomingmessage) the incoming request
@@ -1374,7 +1392,7 @@ io.engine.on("headers", (headers, request) => {
 
 ### Event: 'connection_error'
 
-<span className="changelog">Added in v4.1.0</span>
+*Added in v4.1.0*
 
   - `error` [_(Error)_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
