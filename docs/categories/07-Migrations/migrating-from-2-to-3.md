@@ -466,7 +466,7 @@ io.of("/my-namespace").on("connection", (socket) => {
 });
 ```
 
-That's why the `query` option of the Socket instance is renamed to ̀`auth` in Socket.IO v3:
+That's why the `query` option of the Socket instance is renamed to `auth` in Socket.IO v3:
 
 ```js
 // plain object
