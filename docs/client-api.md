@@ -22,7 +22,7 @@ Exposed as the `io` namespace in the standalone build, or the result of calling 
 ```js
 const io = require("socket.io-client");
 // or with import syntax
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 ```
 
 ### io.protocol
