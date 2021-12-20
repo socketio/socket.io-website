@@ -580,6 +580,11 @@
     "alt": "Casinos Hunter"
   },
   {
+    "url": "https://inkedin.com/free-spins-no-deposit/",
+    "img": "https://images.opencollective.com/inkedin/40e0c14/logo.png",
+    "alt": "inkedin"
+  },
+  {
     "url": "https://www.casinoonlineaams.com",
     "img": "https://images.opencollective.com/casinoonlineaamscom/da74236/logo.png",
     "alt": "Casinoonlineaams.com"
@@ -603,11 +608,6 @@
     "url": "https://slotsempire.com/",
     "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
     "alt": "Slots Empire Casino"
-  },
-  {
-    "url": "https://inkedin.com/free-spins-no-deposit/",
-    "img": "https://images.opencollective.com/inkedin/40e0c14/logo.png",
-    "alt": "inkedin"
   },
   {
     "url": "https://strony-bukmacherskie.pl/",
@@ -653,11 +653,6 @@
     "url": "https://www.spinsify.com/uk/new-casinos",
     "img": "https://images.opencollective.com/new-casinos/44e0240/logo.png",
     "alt": "spinsify.com/uk"
-  },
-  {
-    "url": "https://www.anonymistic.com/",
-    "img": "https://images.opencollective.com/anonymistic/b9a2c22/logo.png",
-    "alt": "Anonymistic"
   },
   {
     "url": "https://www.vedonlyontibonukset.com/",
@@ -780,7 +775,7 @@
     "alt": "RedDogCasino.com"
   },
   {
-    "url": "https://builderbook.org",
+    "url": "https://github.com/async-labs",
     "img": "https://images.opencollective.com/kelly-burke/d256815/avatar.png",
     "alt": "Kelly Burke"
   },
@@ -908,5 +903,15 @@
     "url": "https://aspireglobalcasinos.com",
     "img": "https://images.opencollective.com/aspire-global-casinos/cdf583d/logo.png",
     "alt": "Aspire Global Casinos"
+  },
+  {
+    "url": "https://sportbetting24.se/",
+    "img": "https://images.opencollective.com/sportbetting24/2459659/avatar.png",
+    "alt": "Sportbetting24"
+  },
+  {
+    "url": "https://sloto.top",
+    "img": "https://images.opencollective.com/slototop/69bb421/logo.png",
+    "alt": "Slototop"
   }
 ]
