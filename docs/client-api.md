@@ -499,9 +499,11 @@ socket.emit("ferret", "tobi", (data) => {
 
 ### socket.on(eventName, callback)
 
-  - `eventName` _(String)_
-  - `callback` _(Function)_
-  - **Returns** `Socket`
+*Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*
+
+- `eventName` [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- `listener` [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+- **Returns** [`Socket`](#socket)
 
 Register a new handler for the given event.
 
@@ -520,7 +522,69 @@ socket.on("news", (cb) => {
 });
 ```
 
-The socket actually inherits every method of the [Emitter](https://github.com/component/emitter) class, like `hasListeners`, `once` or `off` (to remove an event listener).
+### socket.once(eventName, callback)
+
+*Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*
+
+- `eventName` [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- `listener` [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+- **Returns** [`Socket`](#socket)
+
+Adds a one-time `listener` function for the event named `eventName`. The next time `eventName` is triggered, this listener is removed and then invoked.
+
+```js
+socket.once("my-event", () => {
+  // ...
+});
+```
+
+### socket.off([eventName][, listener])
+
+*Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*
+
+- `eventName` [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- `listener` [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+- **Returns** [`Socket`](#socket)
+
+Removes the specified `listener` from the listener array for the event named `eventName`.
+
+```js
+const myListener = () => {
+  // ...
+}
+
+socket.on("my-event", myListener);
+
+// then later
+socket.off("my-event", myListener);
+```
+
+The `listener` argument can also be omitted:
+
+```js
+// remove all listeners for that event
+socket.off("my-event");
+
+// remove all listeners for all events
+socket.off();
+```
+
+### socket.listeners(eventName)
+
+*Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*
+
+- `eventName` [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- **Returns** [`Function[]`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Returns the array of listeners for the event named `eventName`.
+
+```js
+socket.on("my-event", () => {
+  // ...
+});
+
+console.log(socket.listeners("my-event")); // prints [ [Function] ]
+```
 
 ### socket.onAny(callback)
 

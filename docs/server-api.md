@@ -161,6 +161,28 @@ Synonym of [server.attach(httpServer[, options])](#serverattachhttpserver-option
 
 Synonym of [server.attach(port[, options])](#serverattachport-options).
 
+### server.on(eventName, listener)
+
+*Inherited from the [EventEmitter class](https://nodejs.org/api/events.html#class-eventemitter).*
+
+- `eventName` [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`symbol`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- `listener` [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+- **Returns** [`Server`](#server)
+
+Adds the `listener` function to the end of the listeners array for the event named `eventName`.
+
+Available events:
+
+- [`connection`](#event-connection)
+- [`new_namespace`](#event-new_namespace)
+- any custom event from the [`serverSideEmit`](#namespaceserversideemiteventname-args) method
+
+```js
+io.on("connection", (socket) => {
+  // ...
+});
+```
+
 ### server.bind(engine)
 
   - `engine` _(engine.Server)_
