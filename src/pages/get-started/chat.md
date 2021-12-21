@@ -255,6 +255,7 @@ io.on('connection', (socket) => {
 And on the client side when we capture a `chat message` event we’ll include it in the page. The _total_ client-side JavaScript code now amounts to:
 
 ```html
+<script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io();
 
