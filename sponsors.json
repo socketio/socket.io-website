@@ -590,6 +590,11 @@
     "alt": "Casinoonlineaams.com"
   },
   {
+    "url": "https://strony-bukmacherskie.pl/",
+    "img": "https://images.opencollective.com/strony-bukmacherskie-pl/e0a1a53/avatar.png",
+    "alt": "strony-bukmacherskie.pl"
+  },
+  {
     "url": "https://triplebyte.com/os/opencollective",
     "img": "https://images.opencollective.com/triplebyte/3f80e63/logo.png",
     "alt": "Triplebyte"
@@ -608,11 +613,6 @@
     "url": "https://slotsempire.com/",
     "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
     "alt": "Slots Empire Casino"
-  },
-  {
-    "url": "https://strony-bukmacherskie.pl/",
-    "img": "https://images.opencollective.com/strony-bukmacherskie-pl/e0a1a53/avatar.png",
-    "alt": "strony-bukmacherskie.pl"
   },
   {
     "url": "https://svenskaonlinecasinon.se",
@@ -715,6 +715,11 @@
     "alt": "Pikakasinot.pro"
   },
   {
+    "url": "https://www.voetbalgokken.nl",
+    "img": "https://images.opencollective.com/voetbalgokken1/02ab67f/logo.png",
+    "alt": "VoetbalGokken"
+  },
+  {
     "url": "https://www.targetedwebtraffic.com",
     "img": "https://images.opencollective.com/targeted-web-traffic/7abacc7/logo.png",
     "alt": "Targeted Web Traffic"
@@ -723,11 +728,6 @@
     "url": "https://tweaklab.org",
     "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
     "alt": "Roland Brönnimann"
-  },
-  {
-    "url": "https://www.voetbalgokken.nl",
-    "img": "https://images.opencollective.com/voetbalgokken1/02ab67f/logo.png",
-    "alt": "VoetbalGokken"
   },
   {
     "url": "https://www.best50casino.com/",
@@ -913,5 +913,15 @@
     "url": "https://sloto.top",
     "img": "https://images.opencollective.com/slototop/69bb421/logo.png",
     "alt": "Slototop"
+  },
+  {
+    "url": "https://writersperhour.com/write-my-paper",
+    "img": "https://images.opencollective.com/write-my-paper/5787d4b/logo.png",
+    "alt": "Write My Paper"
+  },
+  {
+    "url": "https://polskielajki.pl/",
+    "img": "/images/sponsors/polskielajki.png",
+    "alt": "Polskielajki.pl"
   }
 ]
