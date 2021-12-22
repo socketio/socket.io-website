@@ -542,6 +542,30 @@ server.listen(3000);
   </TabItem>
 </Tabs>
 
+### With uWebSockets.js
+
+```js
+import { App } from "uWebSockets.js";
+import { Server } from "socket.io";
+
+const app = new App();
+const io = new Server();
+
+io.attachApp(app);
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+app.listen(3000, (token) => {
+  if (!token) {
+    console.warn("port already in use");
+  }
+});
+```
+
+Reference: https://github.com/uNetworking/uWebSockets.js
+
 ## Options
 
 The complete list of available options can be found [here](../../server-options.md).

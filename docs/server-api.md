@@ -214,6 +214,33 @@ io.on("connection", (socket) => {
 });
 ```
 
+### server.attachApp(app[, options])
+
+- `app` [`<uws.App>`](https://unetworking.github.io/uWebSockets.js/generated/interfaces/TemplatedApp.html)
+- `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+Attaches the Socket.IO server to an [uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) app:
+
+```js
+import { App } from "uWebSockets.js";
+import { Server } from "socket.io";
+
+const app = new App();
+const io = new Server();
+
+io.attachApp(app);
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+app.listen(3000, (token) => {
+  if (!token) {
+    console.warn("port already in use");
+  }
+});
+```
+
 ### server.listen(httpServer[, options])
 
 Synonym of [server.attach(httpServer[, options])](#serverattachhttpserver-options).
