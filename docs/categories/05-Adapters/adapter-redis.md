@@ -4,6 +4,9 @@ sidebar_position: 2
 slug: /redis-adapter/
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 ## How it works
 
 The Redis adapter relies on the Redis [Pub/Sub mechanism](https://redis.io/topics/pubsub).
@@ -13,7 +16,13 @@ Every packet that is sent to multiple clients (e.g. `io.to("room1").emit()` or `
 - sent to all matching clients connected to the current server
 - published in a Redis channel, and received by the other Socket.IO servers of the cluster
 
-![Diagram of how the Redis adapter works](/images/broadcasting-redis.png)
+<ThemedImage
+  alt="Diagram of how the Redis adapter works"
+  sources={{
+    light: useBaseUrl('/images/broadcasting-redis.png'),
+    dark: useBaseUrl('/images/broadcasting-redis-dark.png'),
+  }}
+/>
 
 The source code of this adapter can be found [here](https://github.com/socketio/socket.io-redis-adapter).
 
@@ -23,14 +32,32 @@ The source code of this adapter can be found [here](https://github.com/socketio/
 npm install @socket.io/redis-adapter redis
 ```
 
-For TypeScript users, you will also need to install `@types/redis`.
+For TypeScript users, you will also need to install `@types/redis` if you are using `redis@3`.
 
 ## Usage
 
 ```js
-const { Server } = require("socket.io");
-const { createAdapter } = require("@socket.io/redis-adapter");
-const { createClient } = require("redis");
+import { Server } from "socket.io";
+import { createAdapter } from "@socket.io/redis-adapter";
+import { createClient } from "redis";
+
+const io = new Server();
+
+const pubClient = createClient({ host: "localhost", port: 6379 });
+const subClient = pubClient.duplicate();
+
+Promise.all([pubClient.connect(), subClient.connect()]).then(() => {
+  io.adapter(createAdapter(pubClient, subClient));
+  io.listen(3000);
+});
+```
+
+Note: with `redis@3`, calling `connect()` on the Redis clients is not needed:
+
+```js
+import { Server } from "socket.io";
+import { createAdapter } from "@socket.io/redis-adapter";
+import { createClient } from "redis";
 
 const io = new Server();
 
@@ -38,22 +65,15 @@ const pubClient = createClient({ host: "localhost", port: 6379 });
 const subClient = pubClient.duplicate();
 
 io.adapter(createAdapter(pubClient, subClient));
-
-// redis@3
 io.listen(3000);
-
-// redis@4
-Promise.all([pubClient.connect(), subClient.connect()]).then(() => {
-  io.listen(3000);
-});
 ```
 
 Or with `ioredis`:
 
 ```js
-const { Server } = require("socket.io");
-const { createAdapter } = require("@socket.io/redis-adapter");
-const { Cluster } = require("ioredis");
+import { Server } from "socket.io";
+import { createAdapter } from "@socket.io/redis-adapter";
+import { Cluster } from "ioredis";
 
 const io = new Server();
 
@@ -137,7 +157,13 @@ The communication protocol between the Socket.IO servers has not been updated, s
 
 The Redis emitter allows sending packets to the connected clients from another Node.js process:
 
-![Diagram of how the Redis emitter works](/images/redis-emitter.png)
+<ThemedImage
+  alt="Diagram of how the Redis emitter works"
+  sources={{
+    light: useBaseUrl('/images/redis-emitter.png'),
+    dark: useBaseUrl('/images/redis-emitter-dark.png'),
+  }}
+/>
 
 This emitter is also available in several languages:
 
@@ -158,8 +184,25 @@ npm install @socket.io/redis-emitter redis
 ### Usage
 
 ```js
-const { Emitter } = require("@socket.io/redis-emitter");
-const { createClient } = require("redis");
+import { Emitter } from "@socket.io/redis-emitter";
+import { createClient } from "redis";
+
+const redisClient = createClient({ host: "localhost", port: 6379 });
+
+redisClient.connect().then(() => {
+  const emitter = new Emitter(redisClient);
+
+  setInterval(() => {
+    emitter.emit("time", new Date);
+  }, 5000);
+});
+```
+
+Note: with `redis@3`, calling `connect()` on the Redis client is not needed:
+
+```js
+import { Emitter } from "@socket.io/redis-emitter";
+import { createClient } from "redis";
 
 const redisClient = createClient({ host: "localhost", port: 6379 });
 const emitter = new Emitter(redisClient);
@@ -195,8 +238,8 @@ const io = new Emitter(redisClient);
 
 ### Latest releases
 
+- [4.1.1](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.1) (2022-01-04)
 - [4.1.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.0) (2021-05-12)
 - [4.0.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.0.0) (2021-03-17)
 - [3.2.0](https://github.com/socketio/socket.io-redis-emitter/releases/3.2.0) (2020-12-29)
 - [3.1.1](https://github.com/socketio/socket.io-redis-emitter/releases/3.1.1) (2017-10-12)
-- [3.1.0](https://github.com/socketio/socket.io-redis-emitter/releases/3.1.0) (2017-08-03)
