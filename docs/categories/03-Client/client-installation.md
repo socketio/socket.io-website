@@ -70,6 +70,7 @@ Browser compatibility is tested thanks to the awesome Sauce Labs platform:
 
 ## Latest releases
 
+- 4.4.1 (2022-01-06): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.4.0...4.4.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.1)
 - [4.4.0](/blog/socket-io-4-4-0/) (2021-11-18): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.2...4.4.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.0)
 - 4.3.2 (2021-11-08): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.2) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.1...4.3.2) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.2)
 - 4.3.1 (2021-10-17): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.0...4.3.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.1)
@@ -106,14 +107,14 @@ const io = new Server({
 You can also include the client bundle from a CDN:
 
 ```html
-<script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
 ```
 
 Socket.IO is also available from other CDN:
 
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.4.0/dist/socket.io.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.4.0/dist/socket.io.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.4.1/dist/socket.io.min.js
+- unpkg: https://unpkg.com/socket.io-client@4.4.1/dist/socket.io.min.js
 
 There are several bundles available:
 
