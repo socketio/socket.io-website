@@ -215,9 +215,9 @@ io.on("connection", (socket) => {
 });
 ```
 
-A few notes:
+:::caution
 
-- this will not work when using only WebSocket in a browser
+In a browser environment, the `extraHeaders` option will be ignored if you only enable the WebSocket transport, since the WebSocket API in the browser does not allow providing custom headers.
 
 ```js
 import { io } from "socket.io-client";
@@ -225,26 +225,16 @@ import { io } from "socket.io-client";
 const socket = io({
   transports: ["websocket"],
   extraHeaders: {
-    "my-custom-header": "1234" // WARN: this will be ignored in a browser
+    "my-custom-header": "1234" // ignored
   }
 });
 ```
 
 This will work in Node.js or in React-Native though.
 
-- you can update the headers during a session, but it will not be reflected on the server-side (as the `socket.handshake.headers` object contains the headers that were sent during the Socket.IO handshake).
+:::
 
-```js
-const socket = io({
-  extraHeaders: {
-    count: 0
-  }
-});
-
-setInterval(() => {
-  socket.io.opts.extraHeaders.count++;
-}, 1000);
-```
+Documentation: [WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
 
 ### `withCredentials`
 
