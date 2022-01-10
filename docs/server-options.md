@@ -16,26 +16,14 @@ Default value: `/socket.io/`
 
 It is the name of the path that is captured on the server side.
 
-The server and the client values must match (unless you are using a path-rewriting proxy in between):
+:::caution
+
+The server and the client values must match (unless you are using a path-rewriting proxy in between).
+
+:::
 
 *Server*
 
-<Tabs groupId="lang">
-  <TabItem value="cjs" label="CommonJS" default>
-
-```js
-const { createServer } = require("http");
-const { Server } = require("socket.io");
-
-const httpServer = createServer();
-const io = new Server(httpServer, {
-  path: "/my-custom-path/"
-});
-```
-
-  </TabItem>
-  <TabItem value="mjs" label="ES modules">
-
 ```js
 import { createServer } from "http";
 import { Server } from "socket.io";
@@ -45,39 +33,9 @@ const io = new Server(httpServer, {
   path: "/my-custom-path/"
 });
 ```
-
-  </TabItem>
-  <TabItem value="ts" label="TypeScript">
-
-```ts
-import { createServer } from "http";
-import { Server } from "socket.io";
-
-const httpServer = createServer();
-const io = new Server(httpServer, {
-  path: "/my-custom-path/"
-});
-```
-
-  </TabItem>
-</Tabs>
 
 *Client*
 
-<Tabs groupId="lang">
-  <TabItem value="cjs" label="CommonJS" default>
-
-```js
-const { io } = require("socket.io-client");
-
-const socket = io("https://example.com", {
-  path: "/my-custom-path/"
-});
-```
-
-  </TabItem>
-  <TabItem value="mjs" label="ES modules">
-
 ```js
 import { io } from "socket.io-client";
 
@@ -85,21 +43,6 @@ const socket = io("https://example.com", {
   path: "/my-custom-path/"
 });
 ```
-
-  </TabItem>
-  <TabItem value="ts" label="TypeScript">
-
-```ts
-import { io } from "socket.io-client";
-
-const socket = io("https://example.com", {
-  path: "/my-custom-path/"
-});
-```
-
-  </TabItem>
-</Tabs>
-
 
 ### `serveClient`
 

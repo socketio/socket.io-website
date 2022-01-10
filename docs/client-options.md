@@ -107,7 +107,11 @@ Default value: `/socket.io/`
 
 It is the name of the path that is captured on the server side.
 
-The server and the client values must match (unless you are using a path-rewriting proxy in between):
+:::caution
+
+The server and the client values must match (unless you are using a path-rewriting proxy in between).
+
+:::
 
 *Client*
 
@@ -122,8 +126,11 @@ const socket = io("https://example.com", {
 *Server*
 
 ```js
-const httpServer = require("http").createServer();
-const io = require("socket.io")(httpServer, {
+import { createServer } from "http";
+import { Server } from "socket.io";
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
   path: "/my-custom-path/"
 });
 ```
