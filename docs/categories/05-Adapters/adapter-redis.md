@@ -43,7 +43,7 @@ import { createClient } from "redis";
 
 const io = new Server();
 
-const pubClient = createClient({ url: 'redis://localhost:6379' });
+const pubClient = createClient({ url: "redis://localhost:6379" });
 const subClient = pubClient.duplicate();
 
 Promise.all([pubClient.connect(), subClient.connect()]).then(() => {
@@ -61,7 +61,7 @@ import { createClient } from "redis";
 
 const io = new Server();
 
-const pubClient = createClient({ url: 'redis://localhost:6379' });
+const pubClient = createClient({ url: "redis://localhost:6379" });
 const subClient = pubClient.duplicate();
 
 io.adapter(createAdapter(pubClient, subClient));
@@ -133,7 +133,7 @@ After:
 const { createClient } = require("redis");
 const { createAdapter } = require("@socket.io/redis-adapter");
 
-const pubClient = createClient({ url: 'redis://localhost:6379' });
+const pubClient = createClient({ url: "redis://localhost:6379" });
 const subClient = pubClient.duplicate();
 
 io.adapter(createAdapter(pubClient, subClient));
@@ -187,7 +187,7 @@ npm install @socket.io/redis-emitter redis
 import { Emitter } from "@socket.io/redis-emitter";
 import { createClient } from "redis";
 
-const redisClient = createClient({ url: 'redis://localhost:6379' });
+const redisClient = createClient({ url: "redis://localhost:6379" });
 
 redisClient.connect().then(() => {
   const emitter = new Emitter(redisClient);
@@ -204,7 +204,7 @@ Note: with `redis@3`, calling `connect()` on the Redis client is not needed:
 import { Emitter } from "@socket.io/redis-emitter";
 import { createClient } from "redis";
 
-const redisClient = createClient({ url: 'redis://localhost:6379' });
+const redisClient = createClient({ url: "redis://localhost:6379" });
 const emitter = new Emitter(redisClient);
 
 setInterval(() => {
