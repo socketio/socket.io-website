@@ -292,6 +292,37 @@ With `closeOnBeforeunload` set to `false`, a `disconnect` event will be emitted 
 
 With `closeOnBeforeunload` set to `true`, all browsers will have the same behavior (no `disconnect` event when reloading the page). But this might cause issues if you use the `beforeunload` event in your application.
 
+### `protocols`
+
+*Added in v2.0.0*
+
+Default value: -
+
+Either a single protocol string or an array of protocol strings. These strings are used to indicate sub-protocols, so that a single server can implement multiple WebSocket sub-protocols (for example, you might want one server to be able to handle different types of interactions depending on the specified protocol).
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  transports: ["websocket"],
+  protocols: ["my-protocol-v1"]
+});
+```
+
+Server:
+
+```js
+io.on("connection", (socket) => {
+  const transport = socket.conn.transport;
+  console.log(transport.socket.protocol); // prints "my-protocol-v1"
+});
+```
+
+References:
+
+- https://datatracker.ietf.org/doc/html/rfc6455#section-1.9
+- https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket
+
 ### Node.js-specific options
 
 The following options are supported:
