@@ -55,7 +55,11 @@ The opposite of `forceNew`: whether to reuse an existing Manager instance.
 
 ## Low-level engine options
 
-Note: These settings will be shared by all Socket instances attached to the same Manager.
+:::info
+
+These settings will be shared by all Socket instances attached to the same Manager.
+
+:::
 
 ### `transports`
 
@@ -282,7 +286,7 @@ The name of the query parameter to use as our timestamp key.
 
 ### `closeOnBeforeunload`
 
-<span class="changelog">Added in v4.1.0</span>
+*Added in v4.1.0*
 
 Default value: `true`
 
@@ -346,21 +350,26 @@ Example with a self-signed certificate:
 * Client
 
 ```js
-const fs = require("fs");
-const socket = require("socket.io-client")("https://example.com", {
-  ca: fs.readFileSync("./cert.pem")
+import { readFileSync } from "fs";
+import { io } from "socket.io-client";
+
+const socket = io("https://example.com", {
+  ca: readFileSync("./cert.pem")
 });
 ```
 
 * Server
 
 ```js
-const fs = require("fs");
-const server = require("https").createServer({
-  cert: fs.readFileSync("./cert.pem"),
-  key: fs.readFileSync("./key.pem")
+import { readFileSync } from "fs";
+import { createServer } from "https";
+import { Server } from "socket.io";
+
+const httpServer = createServer({
+  cert: readFileSync("./cert.pem"),
+  key: readFileSync("./key.pem")
 });
-const io = require("socket.io")(server);
+const io = new Server(httpServer);
 ```
 
 Example with client-certificate authentication:
@@ -368,27 +377,32 @@ Example with client-certificate authentication:
 * Client
 
 ```js
-const fs = require("fs");
-const socket = require("socket.io-client")("https://example.com", {
-  ca: fs.readFileSync("./server-cert.pem"),
-  cert: fs.readFileSync("./client-cert.pem"),
-  key: fs.readFileSync("./client-key.pem"),
+import { readFileSync } from "fs";
+import { io } from "socket.io-client";
+
+const socket = io("https://example.com", {
+  ca: readFileSync("./server-cert.pem"),
+  cert: readFileSync("./client-cert.pem"),
+  key: readFileSync("./client-key.pem"),
 });
 ```
 
 * Server
 
 ```js
-const fs = require("fs");
-const server = require("https").createServer({
-  cert: fs.readFileSync("./server-cert.pem"),
-  key: fs.readFileSync("./server-key.pem"),
+import { readFileSync } from "fs";
+import { createServer } from "https";
+import { Server } from "socket.io";
+
+const httpServer = createServer({
+  cert: readFileSync("./server-cert.pem"),
+  key: readFileSync("./server-key.pem"),
   requestCert: true,
   ca: [
-    fs.readFileSync('client-cert.pem')
+    readFileSync("client-cert.pem")
   ]
 });
-const io = require("socket.io")(server);
+const io = new Server(httpServer);
 ```
 
 **Import note:** `rejectUnauthorized` is a Node.js-only option, it will not bypass the security check in the browser:
@@ -397,9 +411,13 @@ const io = require("socket.io")(server);
 
 ## Manager options
 
-Note: These settings will be shared by all Socket instances attached to the same Manager.
+:::info
 
-### reconnection
+These settings will be shared by all Socket instances attached to the same Manager.
+
+:::
+
+### `reconnection`
 
 Default value: `true`
 
@@ -425,25 +443,25 @@ const tryReconnect = () => {
 socket.io.on("close", tryReconnect);
 ```
 
-### reconnectionAttempts
+### `reconnectionAttempts`
 
 Default value: `Infinity`
 
 The number of reconnection attempts before giving up.
 
-### reconnectionDelay
+### `reconnectionDelay`
 
 Default value: `1000`
 
 The initial delay before reconnection in milliseconds (affected by the [randomizationFactor](#randomizationfactor) value).
 
-### reconnectionDelayMax
+### `reconnectionDelayMax`
 
 Default value: `5000`
 
 The maximum delay between two reconnection attempts. Each attempt increases the reconnection delay by 2x.
 
-### randomizationFactor
+### `randomizationFactor`
 
 Default value: `0.5`
 
@@ -456,13 +474,13 @@ Example with the default values:
 - 3rd reconnection attempt happens between 2000 and 5000 ms (`1000 * 2^2 * (<something between -0.5 and 1.5>)`)
 - next reconnection attempts happen after 5000 ms
 
-### timeout
+### `timeout`
 
 Default value: `20000`
 
 The timeout in milliseconds for each connection attempt.
 
-### autoConnect
+### `autoConnect`
 
 Default value: `true`
 
@@ -482,7 +500,7 @@ socket.io.open();
 
 ### `parser`
 
-<span class="changelog">Added in v2.2.0</span>
+*Added in v2.2.0*
 
 Default value: `require("socket.io-parser")`
 
@@ -490,11 +508,15 @@ The parser used to marshall/unmarshall packets. Please see [here](categories/06-
 
 ## Socket options
 
-Note: These settings are specific to the given Socket instance.
+:::info
+
+These settings are specific to the given Socket instance.
+
+:::
 
 ### `auth`
 
-<span class="changelog">Added in v3.0.0</span>
+*Added in v3.0.0*
 
 Default value: -
 
