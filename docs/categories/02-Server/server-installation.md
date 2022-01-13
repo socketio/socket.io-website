@@ -212,3 +212,65 @@ app.listen(3000, (token) => {
   }
 });
 ```
+
+## Miscellaneous
+
+### Dependency tree
+
+A basic installation of the server includes 23 packages:
+
+```
+└─┬ socket.io@4.4.1
+  ├─┬ accepts@1.3.7
+  │ ├─┬ mime-types@2.1.34
+  │ │ └── mime-db@1.51.0
+  │ └── negotiator@0.6.2
+  ├── base64id@2.0.0
+  ├─┬ debug@4.3.3
+  │ └── ms@2.1.2
+  ├─┬ engine.io@6.1.1
+  │ ├── @types/cookie@0.4.1
+  │ ├── @types/cors@2.8.12
+  │ ├── @types/node@17.0.8
+  │ ├── accepts@1.3.7 deduped
+  │ ├── base64id@2.0.0 deduped
+  │ ├── cookie@0.4.1
+  │ ├─┬ cors@2.8.5
+  │ │ ├── object-assign@4.1.1
+  │ │ └── vary@1.1.2
+  │ ├── debug@4.3.3 deduped
+  │ ├─┬ engine.io-parser@5.0.2
+  │ │ └── base64-arraybuffer@1.0.1
+  │ └─┬ ws@8.2.3
+  │   ├── UNMET OPTIONAL DEPENDENCY bufferutil@^4.0.1
+  │   └── UNMET OPTIONAL DEPENDENCY utf-8-validate@^5.0.2
+  ├── socket.io-adapter@2.3.3
+  └─┬ socket.io-parser@4.0.4
+    ├── @types/component-emitter@1.2.11
+    ├── component-emitter@1.3.0
+    └── debug@4.3.3 deduped
+```
+
+:::info
+
+The type declarations for 3rd party packages are included, in order to ease the use of the library for TypeScript users (but at the cost of a slightly-larger package). 
+
+See also: https://github.com/microsoft/types-publisher/issues/81#issuecomment-234051345
+
+:::
+
+
+### Transitive versions
+
+The `engine.io` package brings the engine that is responsible for managing the low-level connections (HTTP long-polling or WebSocket).  See also: [How it works](../01-Documentation/how-it-works.md)
+
+| `socket.io` version | `engine.io` version | `ws` version |
+|---------------------|---------------------|--------------|
+| `4.4.x`             | `6.1.x`             | `8.2.x`      |
+| `4.3.x`             | `6.0.x`             | `8.2.x`      |
+| `4.2.x`             | `5.2.x`             | `7.4.x`      |
+| `4.1.x`             | `5.1.x`             | `7.4.x`      |
+| `4.0.x`             | `5.0.x`             | `7.4.x`      |
+| `3.1.x`             | `4.1.x`             | `7.4.x`      |
+| `3.0.x`             | `4.0.x`             | `7.4.x`      |
+| `2.4.x`             | `3.5.x`             | `7.4.x`      |

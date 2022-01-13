@@ -167,3 +167,51 @@ Note for TypeScript users: the types are now included in the `socket.io-client` 
 ```
 Object literal may only specify known properties, and 'extraHeaders' does not exist in type 'ConnectOpts'
 ```
+
+## Miscellaneous
+
+### Dependency tree
+
+A basic installation of the client includes 15 packages:
+
+```
+└─┬ socket.io-client@4.4.1 https://github.com/socketio/socket.io-client
+  ├── @socket.io/component-emitter@3.0.0
+  ├── backo2@1.0.2
+  ├─┬ debug@4.3.3
+  │ └── ms@2.1.2
+  ├─┬ engine.io-client@6.1.1
+  │ ├── @socket.io/component-emitter@3.0.0 deduped
+  │ ├── debug@4.3.3 deduped
+  │ ├─┬ engine.io-parser@5.0.2
+  │ │ └── base64-arraybuffer@1.0.1
+  │ ├── has-cors@1.1.0
+  │ ├── parseqs@0.0.6
+  │ ├── parseuri@0.0.6 deduped
+  │ ├─┬ ws@8.2.3
+  │ │ ├── UNMET OPTIONAL DEPENDENCY bufferutil@^4.0.1
+  │ │ └── UNMET OPTIONAL DEPENDENCY utf-8-validate@^5.0.2
+  │ ├── xmlhttprequest-ssl@2.0.0
+  │ └── yeast@0.1.2
+  ├── parseuri@0.0.6
+  └─┬ socket.io-parser@4.1.1
+    ├── @socket.io/component-emitter@3.0.0 deduped
+    └── debug@4.3.3 deduped
+```
+
+### Transitive versions
+
+The `engine.io-client` package brings the engine that is responsible for managing the low-level connections (HTTP long-polling or WebSocket).  See also: [How it works](../01-Documentation/how-it-works.md)
+
+| `socket.io-client` version | `engine.io-client` version | `ws` version<sup>1</sup> |
+|----------------------------|----------------------------|--------------------------|
+| `4.4.x`                    | `6.1.x`                    | `8.2.x`                  |
+| `4.3.x`                    | `6.0.x`                    | `8.2.x`                  |
+| `4.2.x`                    | `5.2.x`                    | `7.4.x`                  |
+| `4.1.x`                    | `5.1.x`                    | `7.4.x`                  |
+| `4.0.x`                    | `5.0.x`                    | `7.4.x`                  |
+| `3.1.x`                    | `4.1.x`                    | `7.4.x`                  |
+| `3.0.x`                    | `4.0.x`                    | `7.4.x`                  |
+| `2.4.x`                    | `3.5.x`                    | `7.4.x`                  |
+
+[1] for Node.js users only. In the browser, the native WebSocket API is used.
