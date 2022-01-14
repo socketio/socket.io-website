@@ -9,10 +9,13 @@ slug: /handling-cors/
 Since Socket.IO v3, you need to explicitly enable [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS).
 
 ```js
-const io = require("socket.io")(httpServer, {
+import { createServer } from "http";
+import { Server } from "socket.io";
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
   cors: {
-    origin: "https://example.com",
-    methods: ["GET", "POST"]
+    origin: "https://example.com"
   }
 });
 ```
@@ -23,17 +26,16 @@ Example with cookies ([withCredentials](https://developer.mozilla.org/en-US/docs
 
 ```js
 // server-side
-const io = require("socket.io")(httpServer, {
+const io = new Server(httpServer, {
   cors: {
     origin: "https://example.com",
-    methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
   }
 });
 
 // client-side
-const io = require("socket.io-client");
+import { io } from "socket.io-client";
 const socket = io("https://api.example.com", {
   withCredentials: true,
   extraHeaders: {
@@ -45,10 +47,9 @@ const socket = io("https://api.example.com", {
 Note: this also applies to localhost if your web application and your server are not served from the same port
 
 ```js
-const io = require("socket.io")(httpServer, {
+const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:8080",
-    methods: ["GET", "POST"]
+    origin: "http://localhost:8080"
   }
 });
 
@@ -58,7 +59,7 @@ httpServer.listen(3000);
 You can disallow all cross-origin requests with the [`allowRequest`](../../server-options.md#allowrequest) option:
 
 ```js
-const io = require("socket.io")(httpServer, {
+const io = new Server(httpServer, {
   allowRequest: (req, callback) => {
     const noOriginHeader = req.headers.origin === undefined;
     callback(null, noOriginHeader);
@@ -68,9 +69,11 @@ const io = require("socket.io")(httpServer, {
 
 ## Troubleshooting
 
-```
-Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at xxx/socket.io/?EIO=4&transport=polling&t=NMnp2WI. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).
-```
+### CORS header ‘Access-Control-Allow-Origin’ missing
+
+Full error message:
+
+> <i>Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at .../socket.io/?EIO=4&transport=polling&t=NMnp2WI. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).</i>
 
 If you have properly configured your server (see [above](#configuration)), this could mean that your browser wasn't able to reach the Socket.IO server.
 
@@ -87,3 +90,34 @@ should return something like:
 ```
 
 If that's not the case, please check that your server is listening and is actually reachable on the given port.
+
+### Credential is not supported if the CORS header ‘Access-Control-Allow-Origin’ is ‘*’
+
+Full error message:
+
+> <i>Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at ‘.../socket.io/?EIO=4&transport=polling&t=NvQfU77’. (Reason: Credential is not supported if the CORS header ‘Access-Control-Allow-Origin’ is ‘*’)</i>
+
+You can't set [`withCredentials`](../../client-options.md#withcredentials) to `true` with `origin: *`, you need to use a specific origin:
+
+```js
+import { createServer } from "http";
+import { Server } from "socket.io";
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
+  cors: {
+    origin: "https://my-frontend.com",
+    // or with an array of origins
+    // origin: ["https://my-frontend.com", "https://my-other-frontend.com", "http://localhost:3000"],
+    credentials: true
+  }
+});
+```
+
+### Expected ‘true’ in CORS header ‘Access-Control-Allow-Credentials’
+
+Full error message:
+
+> <i>Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at .../socket.io/?EIO=4&transport=polling&t=NvQny19. (Reason: expected ‘true’ in CORS header ‘Access-Control-Allow-Credentials’)</i>
+
+In that case, [`withCredentials`](../../client-options.md#withcredentials) is set to `true` on the client, but the server is missing the `credentials` attribute in the [`cors`](../../server-options.md#cors) option. See the example above.

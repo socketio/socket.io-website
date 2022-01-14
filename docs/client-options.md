@@ -256,10 +256,33 @@ Whether or not cross-site requests should made using credentials such as cookies
 ```js
 import { io } from "socket.io-client";
 
-const socket = io({
+const socket = io("https://my-backend.com", {
   withCredentials: true
 });
 ```
+
+The server needs to send the right `Access-Control-Allow-* ` headers to allow the connection:
+
+```js
+import { createServer } from "http";
+import { Server } from "socket.io";
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
+  cors: {
+    origin: "https://my-frontend.com",
+    credentials: true
+  }
+});
+```
+
+:::caution
+
+You cannot use `origin: *` when setting `withCredentials` to `true`. This will trigger the following error:
+
+> <i>Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at ‘.../socket.io/?EIO=4&transport=polling&t=NvQfU77’. (Reason: Credential is not supported if the CORS header ‘Access-Control-Allow-Origin’ is ‘*’)</i>
+
+:::
 
 Documentation:
 
