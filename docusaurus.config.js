@@ -159,6 +159,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
+          showLastUpdateTime: true,
           editUrl:
             "https://github.com/socketio/socket.io-website/edit/master/",
           lastVersion: "current",
