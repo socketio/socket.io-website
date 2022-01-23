@@ -52,7 +52,7 @@ server.listen(3000, () => {
 });
 ```
 
-This means that it:
+This means that:
 
 - Express initializes `app` to be a function handler that you can supply to an HTTP server (as seen in line 4).
 - We define a route handler `/` that gets called when we hit our website home.
