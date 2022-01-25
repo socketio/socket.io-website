@@ -23,3 +23,4 @@ A slightly more complex chat application, introducing [middlewares](/docs/v4/mid
 ## How to...
 
 - [deal with cookies](/how-to/deal-with-cookies)
+- [use with `pkg`](/how-to/use-with-pkg)
