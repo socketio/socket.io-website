@@ -163,7 +163,7 @@ This implementation "allows, but doesn't guarantee" significant performance and 
 
 ## Usage with `uWebSockets.js`
 
-Starting with version [4.4.0](/blog/socket-io-4-4-0/), a Socket.IO server can now bind to a `uWebSockets.js` server.
+Starting with version [4.4.0](/blog/socket-io-4-4-0/), a Socket.IO server can now bind to a [`uWebSockets.js`](https://github.com/uNetworking/uWebSockets.js) server.
 
 Installation:
 
