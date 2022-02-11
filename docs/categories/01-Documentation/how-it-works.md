@@ -43,7 +43,7 @@ Due to the nature of the transport, successive emits may be concatenated and sen
 
 #### WebSocket
 
-The WebSocket transport consists, well, in a [WebSocket connection](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), which provides a bidirectional and low-latency communication channel between the server and the client.
+The WebSocket transport consists, well, of a [WebSocket connection](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), which provides a bidirectional and low-latency communication channel between the server and the client.
 
 Due to the nature of the transport, each emit is sent in its own WebSocket frame (some emits may even result in two distinct WebSocket frames, more information [here](../06-Advanced/custom-parser.md#the-default-parser)).
 
