@@ -55,7 +55,7 @@ socket.onmessage = (data) => {
 };
 ```
 
-You will have, on the client-side:
+On the client-side, you can write:
 
 ```js
 const socket = io("ws://localhost:3000");
