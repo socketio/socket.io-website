@@ -193,7 +193,6 @@ First and foremost, please note that disconnections are common and expected, eve
 - the server itself may be killed as part of an autoscaling policy
 - the user may lose connection or switch from WiFi to 4G, in case of a mobile browser
 - the browser itself may freeze an inactive tab
-- ...
 
 That being said, the Socket.IO client will always try to reconnect, unless specifically told [otherwise](../../client-options.md#reconnection).
 
