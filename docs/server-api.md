@@ -459,6 +459,23 @@ const sockets = await io.fetchSockets();
 const sockets = await io.in("room1").fetchSockets();
 ```
 
+Sample usage:
+
+```js
+io.on("connection", (socket) => {
+  const userId = computeUserId(socket);
+
+  socket.join(userId);
+
+  socket.on("disconnect", async () => {
+    const sockets = await io.in(userId).fetchSockets();
+    if (socket.length === 0) {
+      // no more active connections for the given user
+    }
+  });
+});
+```
+
 See [here](categories/02-Server/server-instance.md#utility-methods).
 
 ### server.serverSideEmit(eventName[, ...args][, ack])
