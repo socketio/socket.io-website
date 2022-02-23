@@ -288,7 +288,7 @@ By default, the events are untyped and the arguments will be inferred as `any`.
 
 And finally, thanks to the awesome work of [KC Erb](https://github.com/KCErb), the `autoUnref` option was added.
 
-With `autoUnref` set to true (default: false), the Socket.IO client will allow the program to exit if there is no other active timer/socket in the event system:
+With `autoUnref` set to true (default: false), the Socket.IO client will allow the program to exit if there is no other active timer/TCP socket in the event system (even if the client is connected):
 
 ```js
 const socket = io({

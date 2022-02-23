@@ -350,6 +350,25 @@ References:
 - https://datatracker.ietf.org/doc/html/rfc6455#section-1.9
 - https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket
 
+### `autoUnref`
+
+*Added in v4.0.0*
+
+Default value: `false`
+
+With `autoUnref` set to `true`, the Socket.IO client will allow the program to exit if there is no other active timer/TCP socket in the event system (even if the client is connected):
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  autoUnref: true
+});
+```
+
+See also: https://nodejs.org/api/timers.html#timeoutunref
+
+
 ### Node.js-specific options
 
 The following options are supported:
