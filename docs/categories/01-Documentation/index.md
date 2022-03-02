@@ -23,6 +23,7 @@ There are also several client implementations in other languages, which are main
 - .Net: https://github.com/doghappy/socket.io-client-csharp
 - Golang: https://github.com/googollee/go-socket.io
 - Rust: https://github.com/1c3t3a/rust-socketio
+- Kotlin: https://github.com/icerockdev/moko-socket-io
 
 Other server implementations:
 
