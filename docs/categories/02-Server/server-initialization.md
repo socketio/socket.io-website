@@ -542,7 +542,7 @@ server.listen(3000);
   </TabItem>
 </Tabs>
 
-### With uWebSockets.js
+### With µWebSockets.js
 
 ```js
 import { App } from "uWebSockets.js";

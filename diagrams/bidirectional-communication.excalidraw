@@ -22,33 +22,44 @@
       "width": 178,
       "height": 108,
       "seed": 1356221588,
-      "groupIds": []
+      "groupIds": [],
+      "strokeSharpness": "sharp",
+      "boundElements": [],
+      "updated": 1646201508573,
+      "link": null
     },
     {
-      "id": "RJAI8QESpOY1mBA-MEyv_",
       "type": "text",
-      "x": 544.5,
-      "y": 449,
-      "width": 132,
-      "height": 75,
-      "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
+      "version": 218,
+      "versionNonce": 1947891409,
+      "isDeleted": false,
+      "id": "RJAI8QESpOY1mBA-MEyv_",
       "fillStyle": "hachure",
       "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 1,
       "opacity": 100,
-      "groupIds": [],
+      "angle": 0,
+      "x": 583.5,
+      "y": 476,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "width": 55,
+      "height": 26,
       "seed": 1185913876,
-      "version": 198,
-      "versionNonce": 573345940,
-      "isDeleted": false,
-      "text": "Browser\n/\nNode.js client",
+      "groupIds": [],
+      "strokeSharpness": "sharp",
+      "boundElements": [],
+      "updated": 1646201558470,
+      "link": null,
       "fontSize": 20,
       "fontFamily": 1,
+      "text": "Client",
+      "baseline": 18,
       "textAlign": "center",
-      "baseline": 68
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Client"
     },
     {
       "type": "arrow",
@@ -70,6 +81,13 @@
       "height": 4,
       "seed": 1388780588,
       "groupIds": [],
+      "strokeSharpness": "round",
+      "boundElements": [],
+      "updated": 1646201508573,
+      "link": null,
+      "lastCommittedPoint": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
       "points": [
         [
           0,
@@ -79,8 +97,7 @@
           386,
           4
         ]
-      ],
-      "lastCommittedPoint": null
+      ]
     },
     {
       "type": "arrow",
@@ -102,6 +119,13 @@
       "height": 3.6447128042578925,
       "seed": 795496340,
       "groupIds": [],
+      "strokeSharpness": "round",
+      "boundElements": [],
+      "updated": 1646201508574,
+      "link": null,
+      "lastCommittedPoint": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
       "points": [
         [
           0,
@@ -111,8 +135,7 @@
           -383.17259316593413,
           -3.6447128042578925
         ]
-      ],
-      "lastCommittedPoint": null
+      ]
     },
     {
       "type": "rectangle",
@@ -133,36 +156,49 @@
       "width": 178,
       "height": 108,
       "seed": 2145103764,
-      "groupIds": []
+      "groupIds": [],
+      "strokeSharpness": "sharp",
+      "boundElements": [],
+      "updated": 1646201508574,
+      "link": null
     },
     {
-      "id": "ThMhFqp2hq8MaxQlWIT7b",
       "type": "text",
-      "x": 1183,
-      "y": 476,
-      "width": 143,
-      "height": 25,
-      "angle": 0,
-      "strokeColor": "#000000",
-      "backgroundColor": "transparent",
+      "version": 479,
+      "versionNonce": 324880383,
+      "isDeleted": false,
+      "id": "ThMhFqp2hq8MaxQlWIT7b",
       "fillStyle": "hachure",
       "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 1,
       "opacity": 100,
-      "groupIds": [],
+      "angle": 0,
+      "x": 1221.5,
+      "y": 479,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "width": 63,
+      "height": 26,
       "seed": 1084736428,
-      "version": 453,
-      "versionNonce": 908377876,
-      "isDeleted": false,
-      "text": "Node.js server",
+      "groupIds": [],
+      "strokeSharpness": "sharp",
+      "boundElements": [],
+      "updated": 1646201563369,
+      "link": null,
       "fontSize": 20,
       "fontFamily": 1,
+      "text": "Server",
+      "baseline": 18,
       "textAlign": "left",
-      "baseline": 18
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Server"
     }
   ],
   "appState": {
+    "gridSize": null,
     "viewBackgroundColor": "#ffffff"
-  }
+  },
+  "files": {}
 }

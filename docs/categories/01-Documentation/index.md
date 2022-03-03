@@ -4,17 +4,45 @@ sidebar_position: 1
 slug: /
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 ## What Socket.IO is
 
-Socket.IO is a library that enables real-time, bidirectional and event-based communication between the browser and the server. It consists of:
+Socket.IO is a library that enables **low-latency**, **bidirectional** and **event-based** communication between a client and a server.
 
-- a Node.js server: [Source](https://github.com/socketio/socket.io) | [API](../../server-api.md)
-- a Javascript client library for the browser (which can be also run from Node.js): [Source](https://github.com/socketio/socket.io-client) | [API](../../client-api.md)
+<ThemedImage
+  alt="Broadcasting to all connected clients"
+  sources={{
+    light: useBaseUrl('/images/bidirectional-communication2.png'),
+    dark: useBaseUrl('/images/bidirectional-communication2-dark.png'),
+  }}
+/>
 
-<img src="/images/bidirectional-communication.png" alt="Diagram for bidirectional communication" />
+It is built on top of the [WebSocket](https://en.wikipedia.org/wiki/WebSocket) protocol and provides additional guarantees like fallback to HTTP long-polling or automatic reconnection.
 
-There are also several client implementations in other languages, which are maintained by the community:
+:::info
 
+WebSocket is a communication protocol which provides a full-duplex and low-latency channel between the server and the browser. More information can be found [here](https://en.wikipedia.org/wiki/WebSocket).
+
+:::
+
+There are several Socket.IO server implementations available:
+
+- JavaScript (whose documentation can be found here on this website)
+  - [Installation steps](../02-Server/server-installation.md)
+  - [API](../../server-api.md)
+  - [Source code](https://github.com/socketio/socket.io)
+- Java: https://github.com/mrniko/netty-socketio
+- Java: https://github.com/trinopoty/socket.io-server-java
+- Python: https://github.com/miguelgrinberg/python-socketio
+
+And client implementations in most major languages:
+
+- JavaScript (which can be run either in the browser, in Node.js or in React Native)
+  - [Installation steps](../03-Client/client-installation.md)
+  - [API](../../client-api.md)
+  - [Source code](https://github.com/socketio/socket.io-client)
 - Java: https://github.com/socketio/socket.io-client-java
 - C++: https://github.com/socketio/socket.io-client-cpp
 - Swift: https://github.com/socketio/socket.io-client-swift
@@ -25,88 +53,99 @@ There are also several client implementations in other languages, which are main
 - Rust: https://github.com/1c3t3a/rust-socketio
 - Kotlin: https://github.com/icerockdev/moko-socket-io
 
-Other server implementations:
+Here's a basic example with plain WebSockets:
 
-- Java: https://github.com/mrniko/netty-socketio
-- Java: https://github.com/trinopoty/socket.io-server-java
-- Python: https://github.com/miguelgrinberg/python-socketio
+*Server* (based on [ws](https://github.com/websockets/ws))
 
-### How does that work?
+```js
+import { WebSocketServer } from "ws";
 
-The client will try to establish a [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) connection if possible, and will fall back on HTTP long polling if not.
+const server = new WebSocketServer({ port: 3000 });
 
-WebSocket is a communication protocol which provides a full-duplex and low-latency channel between the server and the browser. More information can be found [here](https://en.wikipedia.org/wiki/WebSocket).
+server.on("connection", (socket) => {
+  // send a message to the client
+  socket.send(JSON.stringify({
+    type: "hello from server",
+    content: [ 1, "2" ]
+  }));
 
-So, in the best-case scenario, provided that:
+  // receive a message from the client
+  socket.on("message", (data) => {
+    const packet = JSON.parse(data);
 
-- the browser supports WebSocket ([97%](https://caniuse.com/#search=websocket) of all browsers in 2022)
-- there is no element (proxy, firewall, ...) preventing WebSocket connections between the client and the server  
+    switch (packet.type) {
+      case "hello from client":
+        // ...
+        break;
+    }
+  });
+});
+```
 
-you can consider the Socket.IO client as a "light" wrapper around the WebSocket API. Instead of writing:
+*Client*
 
 ```js
 const socket = new WebSocket("ws://localhost:3000");
 
-socket.onopen = () => {
-  socket.send("Hello!");
-};
+socket.addEventListener("open", () => {
+  // send a message to the server
+  socket.send(JSON.stringify({
+    type: "hello from client",
+    content: [ 3, "4" ]
+  }));
+});
 
-socket.onmessage = (data) => {
-  console.log(data);
-};
+// receive a message from the server
+socket.addEventListener("message", ({ data }) => {
+  const packet = JSON.parse(data);
+
+  switch (packet.type) {
+    case "hello from server":
+      // ...
+      break;
+  }
+});
 ```
 
-On the client-side, you can write:
+And here's the same example with Socket.IO:
+
+*Server*
 
 ```js
+import { Server } from "socket.io";
+
+const io = new Server(3000);
+
+io.on("connection", (socket) => {
+  // send a message to the client
+  socket.emit("hello from server", 1, "2", { 3: Buffer.from([4]) });
+
+  // receive a message from the client
+  socket.on("hello from client", (...args) => {
+    // ...
+  });
+});
+```
+
+*Client*
+
+```js
+import { io } from "socket.io-client";
+
 const socket = io("ws://localhost:3000");
 
-socket.on("connect", () => {
-  // either with send()
-  socket.send("Hello!");
+// send a message to the server
+socket.emit("hello from client", 5, "6", { 7: Uint8Array.from([8]) });
 
-  // or with emit() and custom event names
-  socket.emit("salutations", "Hello!", { "mr": "john" }, Uint8Array.from([1, 2, 3, 4]));
-});
-
-// handle the event sent with socket.send()
-socket.on("message", data => {
-  console.log(data);
-});
-
-// handle the event sent with socket.emit()
-socket.on("greetings", (elem1, elem2, elem3) => {
-  console.log(elem1, elem2, elem3);
+// receive a message from the server
+socket.on("hello from server", (...args) => {
+  // ...
 });
 ```
 
-The API on the server-side is similar, you also get a `socket` object which extends the Node.js [EventEmitter](https://nodejs.org/docs/latest/api/events.html#events_class_eventemitter) class:
+Both examples looks really similar, but under the hood Socket.IO provides additional features that hide the complexity of running an application based on WebSockets in production. Those features are listed [below](#features).
 
-```js
-const io = require("socket.io")(3000);
-
-io.on("connection", socket => {
-  // either with send()
-  socket.send("Hello!");
-
-  // or with emit() and custom event names
-  socket.emit("greetings", "Hey!", { "ms": "jane" }, Buffer.from([4, 3, 3, 1]));
-
-  // handle the event sent with socket.send()
-  socket.on("message", (data) => {
-    console.log(data);
-  });
-
-  // handle the event sent with socket.emit()
-  socket.on("salutations", (elem1, elem2, elem3) => {
-    console.log(elem1, elem2, elem3);
-  });
-});
-```
-
-Socket.IO provides additional features over a plain WebSocket object, which are listed [below](#features).
-
-But first, let's detail what the Socket.IO library is not.
+But first, let's make it clear what Socket.IO is not.
 
 ## What Socket.IO is not
 
@@ -123,11 +162,11 @@ Although Socket.IO indeed uses WebSocket for transport when possible, it adds ad
 const socket = io("ws://echo.websocket.org");
 ```
 
-If you are looking for a plain WebSocket server, please take a look at [ws](https://github.com/websockets/ws) or [uWebSockets.js](https://github.com/uNetworking/uWebSockets.js).
+If you are looking for a plain WebSocket server, please take a look at [ws](https://github.com/websockets/ws) or [µWebSockets.js](https://github.com/uNetworking/uWebSockets.js).
 
 There are also [discussions](https://github.com/nodejs/node/issues/19308) for including a WebSocket server in the Node.js core.
 
-On the client-side, you might be interested in [robust-websocket](https://github.com/nathanboktae/robust-websocket) package.
+On the client-side, you might be interested in the [robust-websocket](https://github.com/nathanboktae/robust-websocket) package.
 
 :::caution
 
@@ -141,11 +180,121 @@ The Socket.IO library keeps an open TCP connection to the server, which may resu
 
 Here are the features provided by Socket.IO over plain WebSockets:
 
-- reliability (fallback to HTTP long-polling in case the WebSocket connection cannot be established)
-- automatic reconnection
-- [packet buffering](../03-Client/client-offline-behavior.md#buffered-events)
-- [acknowledgments](../04-Events/emitting-events.md#acknowledgements)
-- broadcasting [to all clients](../04-Events/broadcasting-events.md) or [to a subset of clients](../04-Events/rooms.md) (what we call "Room")
-- [multiplexing](../06-Advanced/namespaces.md) (what we call "Namespace")
+### HTTP long-polling fallback
 
-Please find more details about how it works [here](../01-Documentation/how-it-works.md).
+The connection will fall back to HTTP long-polling in case the WebSocket connection cannot be established.
+
+This feature was the #1 reason people used Socket.IO when the project was created more than ten years ago (!), as the browser support for WebSockets was still in its infancy.
+
+Even if most browsers now support WebSockets (more than [97%](https://caniuse.com/mdn-api_websocket)), it is still a great feature as we still receive reports from users that cannot establish a WebSocket connection because they are behind some misconfigured proxy.
+
+### Automatic reconnection
+
+Under some particular conditions, the WebSocket connection between the server and the client can be interrupted with both sides being unaware of the broken state of the link.
+
+That's why Socket.IO includes a heartbeat mechanism, which periodically checks the status of the connection.
+
+And when the client eventually gets disconnected, it automatically reconnects with an exponential back-off delay, in order not to overwhelm the server.
+
+### Packet buffering
+
+The packets are automatically buffered when the client is disconnected, and will be sent upon reconnection.
+
+More information [here](../03-Client/client-offline-behavior.md#buffered-events).
+
+### Acknowledgements
+
+Socket.IO provides a convenient way to send an event and receive a response:
+
+*Sender*
+
+```js
+socket.emit("hello", "world", (response) => {
+  console.log(response); // "got it"
+});
+```
+
+*Receiver*
+
+```js
+socket.on("hello", (arg, callback) => {
+  console.log(arg); // "world"
+  callback("got it");
+});
+```
+
+You can also add a timeout:
+
+```js
+socket.timeout(5000).emit("hello", "world", (err, response) => {
+  if (err) {
+    // the other side did not acknowledge the event in the given delay
+  } else {
+    console.log(response); // "got it"
+  }
+});
+```
+
+### Broadcasting
+
+On the server-side, you can send an event to [all connected clients](../04-Events/broadcasting-events.md) or [to a subset of clients](../04-Events/rooms.md):
+
+```js
+// to all connected clients
+io.emit("hello");
+
+// to all connected clients in the "news" room
+io.to("news").emit("hello");
+```
+
+This also works when [scaling to multiple nodes](../02-Server/using-multiple-nodes.md).
+
+### Multiplexing
+
+Namespaces allow you to split the logic of your application over a single shared connection. This can be useful for example if you want to create an "admin" channel that only authorized users can join.
+
+```js
+io.on("connection", (socket) => {
+  // classic users
+});
+
+io.of("/admin").on("connection", (socket) => {
+  // admin users
+});
+```
+
+More on that [here](../06-Advanced/namespaces.md).
+
+## Common questions
+
+### Is Socket.IO still needed today?
+
+That's a fair question, since WebSockets are supported [almost everywhere](https://caniuse.com/mdn-api_websocket) now.
+
+That being said, we believe that, if you use plain WebSockets for your application, you will eventually need to implement most of the features that are already included (and battle-tested) in Socket.IO, like [reconnection](#automatic-reconnection), [acknowledgements](#acknowledgements) or [broadcasting](#broadcasting).
+
+### What is the overhead of the Socket.IO protocol?
+
+`socket.emit("hello", "world")` will be sent as a single WebSocket frame containing `42["hello","world"]` with:
+
+- `4` being Engine.IO "message" packet type
+- `2` being Socket.IO "message" packet type
+- `["hello","world"]` being the `JSON.stringify()`-ed version of the arguments array
+
+So, a few additional bytes for each message, which can be further reduced by the usage of a [custom parser](../06-Advanced/custom-parser.md).
+
+:::info
+
+The size of the browser bundle itself is [`10.4 kB`](https://bundlephobia.com/package/socket.io-client) (minified and gzipped).
+
+:::
+
+### Something does not work properly, please help?
+
+Please check the [Troubleshooting guide](../01-Documentation/troubleshooting.md).
+
+## Next steps
+
+- [Get started example](/get-started/chat)
+- [Server installation](../02-Server/server-installation.md)
+- [Client installation](../03-Client/client-installation.md)
