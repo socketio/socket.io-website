@@ -10,13 +10,17 @@ There are several ways to send events between the server and the client.
 
 The Socket.IO API is inspired from the Node.js [EventEmitter](https://nodejs.org/docs/latest/api/events.html#events_events), which means you can emit events on one side and register listeners on the other:
 
+*Server*
+
 ```js
-// server-side
 io.on("connection", (socket) => {
   socket.emit("hello", "world");
 });
+```
 
-// client-side
+*Client*
+
+```js
 socket.on("hello", (arg) => {
   console.log(arg); // world
 });
@@ -24,26 +28,35 @@ socket.on("hello", (arg) => {
 
 This also works in the other direction:
 
+*Server*
+
 ```js
-// server-side
 io.on("connection", (socket) => {
   socket.on("hello", (arg) => {
     console.log(arg); // world
   });
 });
+```
 
-// client-side
+*Client*
+
+```js
 socket.emit("hello", "world");
 ```
 
 You can send any number of arguments, and all serializable datastructures are supported, including binary objects like [Buffer](https://nodejs.org/docs/latest/api/buffer.html#buffer_buffer) or [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray).
 
+*Server*
+
 ```js
-// server-side
 io.on("connection", (socket) => {
   socket.emit("hello", 1, "2", { 3: '4', 5: Buffer.from([6]) });
 });
+```
 
+*Client*
+
+```js
 // client-side
 socket.on("hello", (arg1, arg2, arg3) => {
   console.log(arg1); // 1
@@ -62,11 +75,35 @@ socket.emit("hello", JSON.stringify({ name: "John" }));
 socket.emit("hello", { name: "John" });
 ```
 
-Note: [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) and [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) are not serializable and must be manually serialized:
+Notes:
+
+- [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) objects will be converted to (and received as) their string representation, e.g. `1970-01-01T00:00:00.000Z`
+
+- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) and [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) must be manually serialized:
 
 ```js
 const serializedMap = [...myMap.entries()];
 const serializedSet = [...mySet.keys()];
+```
+
+- you can use the [`toJSON()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#tojson_behavior) method to customize the serialization of an object
+
+Example with a class:
+
+```js
+class Hero {
+  #hp;
+
+  constructor() {
+    this.#hp = 42;
+  }
+
+  toJSON() {
+    return { hp: this.#hp };
+  }
+}
+
+socket.emit("here's a hero", new Hero());
 ```
 
 ## Acknowledgements
@@ -75,8 +112,9 @@ Events are great, but in some cases you may want a more classic request-response
 
 You can add a callback as the last argument of the `emit()`, and this callback will be called once the other side acknowledges the event:
 
+*Server*
+
 ```js
-// server-side
 io.on("connection", (socket) => {
   socket.on("update item", (arg1, arg2, callback) => {
     console.log(arg1); // 1
@@ -86,8 +124,11 @@ io.on("connection", (socket) => {
     });
   });
 });
+```
 
-// client-side
+*Client*
+
+```js
 socket.emit("update item", "1", { name: "updated" }, (response) => {
   console.log(response.status); // ok
 });
@@ -101,6 +142,18 @@ Starting with Socket.IO v4.4.0, you can now assign a timeout to each emit:
 socket.timeout(5000).emit("my-event", (err) => {
   if (err) {
     // the other side did not acknowledge the event in the given delay
+  }
+});
+```
+
+You can also use both a timeout and an [acknowledgement](#acknowledgements):
+
+```js
+socket.timeout(5000).emit("my-event", (err, response) => {
+  if (err) {
+    // the other side did not acknowledge the event in the given delay
+  } else {
+    console.log(response);
   }
 });
 ```
@@ -119,8 +172,9 @@ Another use case is to discard events when the client is not connected (by defau
 
 Example:
 
+*Server*
+
 ```js
-// server-side
 io.on("connection", (socket) => {
   console.log("connect");
 
@@ -128,8 +182,11 @@ io.on("connection", (socket) => {
     console.log(count);
   });
 });
+```
 
-// client-side
+*Client*
+
+```js
 let count = 0;
 setInterval(() => {
   socket.volatile.emit("ping", ++count);
