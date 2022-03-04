@@ -20,6 +20,7 @@ There are also several other options which are maintained by the (awesome!) comm
 
 - [AMQP](https://github.com/sensibill/socket.io-amqp) (e.g. RabbitMQ)
 - [NATS](https://github.com/MickL/socket.io-nats-adapter)
+- [NATS](https://github.com/distrue/socket.io-nats-adapter)
 
 Please note that enabling sticky sessions is still needed when using multiple Socket.IO servers and HTTP long-polling. More information [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
 
