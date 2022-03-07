@@ -120,14 +120,14 @@ io.listen(3000);
   - `value` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
   - **Returns** [`<Server>`](#server) | [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
 
-Sets the path `value` under which `engine.io` and the static files will be served. Defaults to `/socket.io`. If no arguments are supplied this method returns the current value.
+Sets the path `value` under which `engine.io` and the static files will be served. Defaults to `/socket.io/`. If no arguments are supplied this method returns the current value.
 
 ```js
 import { Server } from "socket.io";
 
 const io = new Server();
 
-io.path("/myownpath");
+io.path("/myownpath/");
 ```
 
 :::warning
@@ -138,7 +138,7 @@ The `path` value must match the one on the client side:
 import { io } from "socket.io-client";
 
 const socket = io({
-  path: "/myownpath"
+  path: "/myownpath/"
 });
 ```
 
@@ -219,7 +219,7 @@ io.on("connection", (socket) => {
 - `app` [`<uws.App>`](https://unetworking.github.io/uWebSockets.js/generated/interfaces/TemplatedApp.html)
 - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
-Attaches the Socket.IO server to an [uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) app:
+Attaches the Socket.IO server to an [µWebSockets.js](https://github.com/uNetworking/uWebSockets.js) app:
 
 ```js
 import { App } from "uWebSockets.js";
@@ -1119,19 +1119,22 @@ socket.emit("with-binary", 1, "2", { 3: "4", 5: Buffer.from([6]) });
 
 The `ack` argument is optional and will be called with the client's answer.
 
+*Server*
+
 ```js
 io.on("connection", (socket) => {
-  socket.emit("an event", { some: "data" });
-
-  socket.emit("ferret", "tobi", (data) => {
-    console.log(data); // data will be "woot"
+  socket.emit("hello", "world", (response) => {
+    console.log(response); // "got it"
   });
+});
+```
 
-  // the client code
-  // client.on("ferret", (name, fn) => {
-  //   fn("woot");
-  // });
+*Client*
 
+```js
+socket.on("hello", (arg, callback) => {
+  console.log(arg); // "world"
+  callback("got it");
 });
 ```
 
@@ -1264,7 +1267,11 @@ io.on("connection", (socket) => {
 });
 ```
 
-**Rooms are left automatically upon disconnection**.
+:::info
+
+Rooms are left automatically upon disconnection.
+
+:::
 
 ### socket.to(room)
 

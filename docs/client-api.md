@@ -5,14 +5,12 @@ sidebar_position: 1
 slug: /client-api/
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## IO
 
-Exposed as the `io` namespace in the standalone build, or the result of calling `require("socket.io-client")`.
+The `io` method is bound to the global scope in the standalone build:
 
 ```html
 <script src="/socket.io/socket.io.js"></script>
@@ -21,10 +19,14 @@ Exposed as the `io` namespace in the standalone build, or the result of calling 
 </script>
 ```
 
+Or can be imported from the `socket.io-client` package:
+
 ```js
-const io = require("socket.io-client");
-// or with import syntax
+// ES modules
 import { io } from "socket.io-client";
+
+// CommonJS
+const { io } = require("socket.io-client");
 ```
 
 ### io.protocol
@@ -50,8 +52,10 @@ A new `Socket` instance is returned for the namespace specified by the pathname 
 
 Query parameters can also be provided, either with the `query` option or directly in the url (example: `http://localhost/users?token=abc`).
 
+To understand what happens under the hood, the following example:
+
 ```js
-const io = require("socket.io-client");
+import { io } from "socket.io-client";
 
 const socket = io("ws://example.com/my-namespace", {
   reconnectionDelayMax: 10000,
@@ -67,7 +71,7 @@ const socket = io("ws://example.com/my-namespace", {
 is the short version of:
 
 ```js
-const { Manager } = require("socket.io-client");
+import { Manager } from "socket.io-client";
 
 const manager = new Manager("ws://example.com", {
   reconnectionDelayMax: 10000,
@@ -84,11 +88,6 @@ const socket = manager.socket("/my-namespace", {
 ```
 
 The complete list of available options can be found [here](client-options.md).
-
-Please note: `manager.socket("/my-namespace", options )` will only read the `auth` key in the `options` object.
-`query: {…}` and other optional values are only used when passed via a `new Manager(uri, options)` instance.
-
-See [Migrating from 2.x to 3.0](categories/07-Migrations/migrating-from-2-to-3.md#add-a-clear-distinction-between-the-manager-query-option-and-the-socket-query-option) for more on the difference between the `auth` and `query` options.
 
 ## Manager
 
@@ -116,21 +115,6 @@ Please note that, in most cases, you won't use the Manager directly but use the 
 
 The complete list of available options can be found [here](client-options.md).
 
-<Tabs groupId="lang">
-  <TabItem value="cjs" label="CommonJS" default>
-
-```js
-const { Manager } = require("socket.io-client");
-
-const manager = new Manager("https://example.com");
-
-const socket = manager.socket("/"); // main namespace
-const adminSocket = manager.socket("/admin"); // admin namespace
-```
-
-  </TabItem>
-  <TabItem value="mjs" label="ES modules">
-
 ```js
 import { Manager } from "socket.io-client";
 
@@ -139,21 +123,6 @@ const manager = new Manager("https://example.com");
 const socket = manager.socket("/"); // main namespace
 const adminSocket = manager.socket("/admin"); // admin namespace
 ```
-
-  </TabItem>
-  <TabItem value="ts" label="TypeScript">
-
-```ts
-import { Manager } from "socket.io-client";
-
-const manager = new Manager("https://example.com");
-
-const socket = manager.socket("/"); // main namespace
-const adminSocket = manager.socket("/admin"); // admin namespace
-```
-
-  </TabItem>
-</Tabs>
 
 ### manager.reconnection([value])
 
@@ -199,30 +168,6 @@ If the manager was initiated with `autoConnect` to `false`, launch a new connect
 
 The `callback` argument is optional and will be called once the attempt fails/succeeds.
 
-<Tabs groupId="lang">
-  <TabItem value="cjs" label="CommonJS" default>
-
-```js
-const { Manager } = require("socket.io-client");
-
-const manager = new Manager("https://example.com", {
-  autoConnect: false
-});
-
-const socket = manager.socket("/");
-
-manager.open((err) => {
-  if (err) {
-    // an error has occurred
-  } else {
-    // the connection was successfully established
-  }
-});
-```
-
-  </TabItem>
-  <TabItem value="mjs" label="ES modules">
-
 ```js
 import { Manager } from "socket.io-client";
 
@@ -240,30 +185,6 @@ manager.open((err) => {
   }
 });
 ```
-
-  </TabItem>
-  <TabItem value="ts" label="TypeScript">
-
-```ts
-import { Manager } from "socket.io-client";
-
-const manager = new Manager("https://example.com", {
-  autoConnect: false
-});
-
-const socket = manager.socket("/");
-
-manager.open((err) => {
-  if (err) {
-    // an error has occurred
-  } else {
-    // the connection was successfully established
-  }
-});
-```
-
-  </TabItem>
-</Tabs>
 
 ### manager.connect([callback])
 
@@ -502,17 +423,23 @@ socket.emit("with-binary", 1, "2", { 3: "4", 5: Buffer.from([6, 7, 8]) });
 
 The `ack` argument is optional and will be called with the server answer.
 
-```js
-socket.emit("ferret", "tobi", (data) => {
-  console.log(data); // data will be "woot"
-});
+*Client*
 
-// server:
-//  io.on("connection", (socket) => {
-//    socket.on("ferret", (name, fn) => {
-//      fn("woot");
-//    });
-//  });
+```js
+socket.emit("hello", "world", (response) => {
+  console.log(response); // "got it"
+});
+```
+
+*Server*
+
+```js
+io.on("connection", (socket) => {
+  socket.on("hello", (arg, callback) => {
+    console.log(arg); // "world"
+    callback("got it");
+  });
+});
 ```
 
 ### socket.on(eventName, callback)
@@ -726,13 +653,24 @@ Fired upon connection to the Namespace (including a successful reconnection).
 socket.on("connect", () => {
   // ...
 });
-
-// note: you should register event handlers outside of connect,
-// so they are not registered again on reconnection
-socket.on("myevent", () => {
-  // ...
-});
 ```
+
+:::caution
+
+Please note that you shouldn't register event handlers in the `connect` handler itself, as a new handler will be registered every time the Socket reconnects:
+
+```js
+// BAD
+socket.on("connect", () => {
+  socket.on("data", () => { /* ... */ });
+});
+
+// GOOD
+socket.on("connect", () => { /* ... */ });
+socket.on("data", () => { /* ... */ });
+```
+
+:::
 
 ### Event: 'disconnect'
 

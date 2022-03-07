@@ -53,6 +53,11 @@ Default value: `true`
 
 The opposite of `forceNew`: whether to reuse an existing Manager instance.
 
+```js
+const socket = io(); // 1st manager
+const adminSocket = io("/admin", { multiplex: false }); // 2nd manager
+```
+
 ## Low-level engine options
 
 :::info
@@ -389,7 +394,7 @@ Please refer to the Node.js documentation:
 
 Example with a self-signed certificate:
 
-* Client
+*Client*
 
 ```js
 import { readFileSync } from "fs";
@@ -400,7 +405,7 @@ const socket = io("https://example.com", {
 });
 ```
 
-* Server
+*Server*
 
 ```js
 import { readFileSync } from "fs";
@@ -416,7 +421,7 @@ const io = new Server(httpServer);
 
 Example with client-certificate authentication:
 
-* Client
+*Client*
 
 ```js
 import { readFileSync } from "fs";
@@ -429,7 +434,7 @@ const socket = io("https://example.com", {
 });
 ```
 
-* Server
+*Server*
 
 ```js
 import { readFileSync } from "fs";
@@ -447,9 +452,13 @@ const httpServer = createServer({
 const io = new Server(httpServer);
 ```
 
-**Import note:** `rejectUnauthorized` is a Node.js-only option, it will not bypass the security check in the browser:
+:::caution
+
+`rejectUnauthorized` is a Node.js-only option, it will not bypass the security check in the browser:
 
 ![Security warning in the browser](/images/self-signed-certificate.png)
+
+:::
 
 ## Manager options
 
@@ -574,6 +583,13 @@ import { io } from "socket.io-client";
 const socket = io({
   auth: {
     token: "abcd"
+  }
+});
+
+// or with a function
+const socket = io({
+  auth: (cb) => {
+    cb({ token: localStorage.token })
   }
 });
 ```

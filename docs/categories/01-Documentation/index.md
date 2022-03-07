@@ -12,7 +12,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Socket.IO is a library that enables **low-latency**, **bidirectional** and **event-based** communication between a client and a server.
 
 <ThemedImage
-  alt="Broadcasting to all connected clients"
+  alt="Diagram of a communication between a server and a client"
   sources={{
     light: useBaseUrl('/images/bidirectional-communication2.png'),
     dark: useBaseUrl('/images/bidirectional-communication2-dark.png'),

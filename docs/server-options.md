@@ -265,7 +265,7 @@ const io = new Server(httpServer, {
 
 ### `httpCompression`
 
-<span className="changelog">Added in v1.4.0</span>
+*Added in v1.4.0*
 
 Default value: `true`
 
@@ -292,7 +292,7 @@ const io = new Server(httpServer, {
 
 ### `wsEngine`
 
-Default value: `"ws"` (source code can be found [here](https://github.com/websockets/ws))
+Default value: `require("ws").Server` (source code can be found [here](https://github.com/websockets/ws))
 
 The WebSocket server implementation to use. Please see the documentation [here](categories/02-Server/server-installation.md#other-websocket-server-implementations).
 

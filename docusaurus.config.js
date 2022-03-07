@@ -3,10 +3,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 const communityItems = [
   {
-    label: "Blog",
-    to: "/blog"
-  },
-  {
     label: "GitHub",
     href: "https://github.com/socketio/socket.io",
   },
@@ -22,10 +18,6 @@ const communityItems = [
     label: "Twitter",
     href: "https://twitter.com/SocketIO",
   },
-  {
-    label: "Become a sponsor",
-    href: "https://opencollective.com/socketio",
-  },
 ];
 
 const resourcesItems = [
@@ -36,7 +28,11 @@ const resourcesItems = [
   {
     label: "Admin UI",
     href: "https://admin.socket.io",
-  }
+  },
+  {
+    label: "Become a sponsor",
+    href: "https://opencollective.com/socketio",
+  },
 ]
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
@@ -61,10 +57,6 @@ module.exports = {
       },
       items: [
         {
-          type: "docsVersionDropdown",
-          position: "left"
-        },
-        {
           type: "doc",
           docId: "categories/Documentation/index",
           position: "left",
@@ -88,17 +80,26 @@ module.exports = {
           label: "Client API",
         },
         {
-          type: "dropdown",
-          label: "Community",
-          position: "right",
-          items: communityItems
+          label: "Blog",
+          to: "/blog"
         },
         {
           type: "dropdown",
           label: "Resources",
-          position: "right",
-          items: resourcesItems,
+          position: "left",
+          items: [
+            ...communityItems,
+            ...resourcesItems
+          ],
         },
+        {
+          type: "docsVersionDropdown",
+          position: "right"
+        },
+        {
+          type: "localeDropdown",
+          position: "right"
+        }
       ],
     },
     footer: {
@@ -131,7 +132,13 @@ module.exports = {
         },
         {
           title: "Community",
-          items: communityItems,
+          items: [
+            {
+              label: "Blog",
+              to: "/blog"
+            },
+            ...communityItems
+          ],
         },
         {
           title: "More",
@@ -189,4 +196,8 @@ module.exports = {
       },
     ],
   ],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'fr'],
+  },
 };

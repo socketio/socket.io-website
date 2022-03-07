@@ -1,30 +1,31 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './HomepageFeatures.module.css';
+import Translate from '@docusaurus/Translate';
 
 const FeatureList = [
   {
-    title: "Performant",
+    title: <Translate>Performant</Translate>,
     description: (
-      <>
-        In most cases, the connection will be established with <a href="https://en.wikipedia.org/wiki/WebSocket">WebSocket</a>, providing a low-overhead communication channel between the server and the client.
-      </>
+      <Translate>
+        In most cases, the connection will be established with WebSocket, providing a low-overhead communication channel between the server and the client.
+      </Translate>
     ),
   },
   {
-    title: "Reliable",
+    title: <Translate>Reliable</Translate>,
     description: (
-      <>
+      <Translate>
         Rest assured! In case the WebSocket connection is not possible, it will fall back to HTTP long-polling. And if the connection is lost, the client will automatically try to reconnect.
-      </>
+      </Translate>
     ),
   },
   {
-    title: "Scalable",
+    title: <Translate>Scalable</Translate>,
     description: (
-      <>
+      <Translate>
         Scale to multiple servers and send events to all connected clients with ease.
-      </>
+      </Translate>
     ),
   },
 ];

@@ -2,6 +2,7 @@ import React from "react";
 import sponsors from "../../sponsors.json"
 import styles from "./HomepageSponsors.module.css"
 import Link from "@docusaurus/Link";
+import Translate from '@docusaurus/Translate';
 
 function Sponsor({ url, img, alt }) {
   return (
@@ -16,7 +17,9 @@ function Sponsor({ url, img, alt }) {
 export default function HomepageSponsors() {
   return (
     <div className={styles.list}>
-      <h3>Our sponsors</h3>
+      <h3>
+        <Translate>Our sponsors</Translate>
+      </h3>
       <div>
         {sponsors.map((props, idx) => (
           <Sponsor key={idx} {...props} />
@@ -25,7 +28,7 @@ export default function HomepageSponsors() {
       <Link
         className="button button--primary"
         href="https://opencollective.com/socketio">
-        Become a sponsor
+        <Translate>Become a sponsor</Translate>
       </Link>
     </div>
   )

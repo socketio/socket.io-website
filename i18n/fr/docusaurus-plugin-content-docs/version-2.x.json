@@ -1,0 +1,30 @@
+{
+  "version.label": {
+    "message": "2.x",
+    "description": "The label for version 2.x"
+  },
+  "sidebar.sidebar.category.Documentation": {
+    "message": "Documentation",
+    "description": "The label for category Documentation in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Server": {
+    "message": "Server",
+    "description": "The label for category Server in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Client": {
+    "message": "Client",
+    "description": "The label for category Client in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Advanced": {
+    "message": "Advanced",
+    "description": "The label for category Advanced in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Migrations": {
+    "message": "Migrations",
+    "description": "The label for category Migrations in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Miscellaneous": {
+    "message": "Miscellaneous",
+    "description": "The label for category Miscellaneous in sidebar sidebar"
+  }
+}
