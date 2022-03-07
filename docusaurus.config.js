@@ -3,10 +3,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 const communityItems = [
   {
-    label: "GitHub",
-    href: "https://github.com/socketio/socket.io",
-  },
-  {
     label: "Slack",
     href: "https://socketio-slackin.herokuapp.com/",
   },
@@ -99,6 +95,11 @@ module.exports = {
         {
           type: "localeDropdown",
           position: "right"
+        },
+        {
+          href: "https://github.com/socketio/socket.io",
+          position: "right",
+          className: "header-github-link",
         }
       ],
     },
@@ -136,6 +137,10 @@ module.exports = {
             {
               label: "Blog",
               to: "/blog"
+            },
+            {
+              label: "GitHub",
+              href: "https://github.com/socketio/socket.io",
             },
             ...communityItems
           ],
