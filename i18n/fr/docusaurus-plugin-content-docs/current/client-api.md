@@ -19,7 +19,35 @@ La méthode `io` est attachée au contexte global dans le « bundle » client :
 </script>
 ```
 
-Ou peut être importée à partir du module `socket.io-client` :
+Un « bundle » au format ESM est également disponible depuis la version [4.3.0](../blog/2021-10-15-4.3.0.md) :
+
+```html
+<script type="module">
+  import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+
+  const socket = io();
+</script>
+```
+
+Avec une [map d'imports](https://caniuse.com/import-maps) :
+
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "socket.io-client": "https://cdn.socket.io/4.4.1/socket.io.esm.min.js"
+    }
+  }
+</script>
+
+<script type="module">
+  import { io } from "socket.io-client";
+
+  const socket = io();
+</script>
+```
+
+Dans tous les autres cas (avec des outils de build, en Node.js ou React Native), la méthode `io` peut être importée à partir du module `socket.io-client` :
 
 ```js
 // syntaxe "import"

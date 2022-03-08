@@ -15,11 +15,39 @@ The `io` method is bound to the global scope in the standalone build:
 ```html
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  const socket = io("http://localhost");
+  const socket = io();
 </script>
 ```
 
-Or can be imported from the `socket.io-client` package:
+An ESM bundle is also available since version [4.3.0](../blog/2021-10-15-4.3.0.md):
+
+```html
+<script type="module">
+  import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+
+  const socket = io();
+</script>
+```
+
+With an [import map](https://caniuse.com/import-maps):
+
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "socket.io-client": "https://cdn.socket.io/4.4.1/socket.io.esm.min.js"
+    }
+  }
+</script>
+
+<script type="module">
+  import { io } from "socket.io-client";
+
+  const socket = io();
+</script>
+```
+
+Else, in all other cases (with some build tools, in Node.js or React Native), it can be imported from the `socket.io-client` package:
 
 ```js
 // ES modules
