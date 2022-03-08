@@ -19,7 +19,7 @@ The `io` method is bound to the global scope in the standalone build:
 </script>
 ```
 
-An ESM bundle is also available since version [4.3.0](../blog/2021-10-15-4.3.0.md):
+An ESM bundle is also available since version [4.3.0](/blog/socket-io-4-3-0/):
 
 ```html
 <script type="module">

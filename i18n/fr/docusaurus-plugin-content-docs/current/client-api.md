@@ -19,7 +19,7 @@ La méthode `io` est attachée au contexte global dans le « bundle » client :
 </script>
 ```
 
-Un « bundle » au format ESM est également disponible depuis la version [4.3.0](../blog/2021-10-15-4.3.0.md) :
+Un « bundle » au format ESM est également disponible depuis la version [4.3.0](/fr/blog/socket-io-4-3-0/) :
 
 ```html
 <script type="module">
