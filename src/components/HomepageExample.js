@@ -13,8 +13,8 @@ export default function HomepageExample() {
       </h3>
 
       <div className={ styles.windows }>
-        <img className={ styles.window } src={ server } />
-        <img className={ styles.window } src={ client } />
+        <img className={ styles.window } src={ server } alt="Browser window with server example" />
+        <img className={ styles.window } src={ client } alt="Browser window with client example" />
       </div>
 
       <p className="text--center">
