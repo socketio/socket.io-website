@@ -250,5 +250,27 @@
   },
   "In most cases, the connection will be established with WebSocket, providing a low-overhead communication channel between the server and the client.": {
     "message": "Dans la majorité des cas, la connexion sera établie avec des WebSockets, fournissant un canal de communication à faible surcharge entre le serveur et le client."
+  },
+  "Basic example": {
+    "message": "Exemple de base"
+  },
+  "Run this example on": {
+    "message": "Exécutez ce code sur"
+  },
+  "theme.ErrorPageContent.title": {
+    "message": "Cette page a planté.",
+    "description": "The title of the fallback page when the page crashed"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "Réessayer",
+    "description": "The label of the button to try again when the page crashed"
+  },
+  "theme.BackToTopButton.buttonAriaLabel": {
+    "message": "Revenez en haut",
+    "description": "The ARIA label for the back to top button"
+  },
+  "theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel": {
+    "message": "Toggle the collapsible sidebar category '{label}'",
+    "description": "The ARIA label to toggle the collapsible sidebar category"
   }
 }

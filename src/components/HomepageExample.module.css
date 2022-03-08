@@ -1,0 +1,24 @@
+.example {
+  padding: 4rem 2rem;
+}
+
+.windows {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+.window {
+    max-width: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+    .windows {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .window {
+        max-width: 100%;
+    }
+}
