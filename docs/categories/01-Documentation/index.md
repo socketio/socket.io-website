@@ -45,6 +45,7 @@ And client implementations in most major languages:
   - [Installation steps](../03-Client/client-installation.md)
   - [API](../../client-api.md)
   - [Source code](https://github.com/socketio/socket.io-client)
+- JavaScript (for WeChat Mini-Programs): https://github.com/weapp-socketio/weapp.socket.io
 - Java: https://github.com/socketio/socket.io-client-java
 - C++: https://github.com/socketio/socket.io-client-cpp
 - Swift: https://github.com/socketio/socket.io-client-swift
