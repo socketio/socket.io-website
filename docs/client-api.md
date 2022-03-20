@@ -433,7 +433,7 @@ Synonym of [socket.connect()](#socketconnect).
   - `ack` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
   - **Returns** [`<Socket>`](#socket)
 
-Sends a `message` event. See [socket.emit(eventName[, ...args][, ack])](#socketemiteventname-args-ack).
+Sends a `message` event. See [socket.emit(eventName[, ...args][, ack])](#socketemiteventname-args).
 
 ### socket.emit(eventName[, ...args][, ack])
 
