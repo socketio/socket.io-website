@@ -28,10 +28,6 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 /* GitHub */
 .header-github-link:hover {
   opacity: 0.6;
