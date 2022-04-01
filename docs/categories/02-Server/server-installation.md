@@ -161,7 +161,7 @@ const io = new Server(3000, {
 
 This implementation "allows, but doesn't guarantee" significant performance and memory-usage improvements over the default implementation. As usual, please benchmark it against your own usage.
 
-## Usage with `µWebSockets.js`
+## Usage with `µWebSockets.js` {#usage-with-uwebsockets}
 
 Starting with version [4.4.0](/blog/socket-io-4-4-0/), a Socket.IO server can now bind to a [`µWebSockets.js`](https://github.com/uNetworking/uWebSockets.js) server.
 
