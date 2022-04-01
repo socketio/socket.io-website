@@ -243,6 +243,54 @@ httpServer.listen(3000);
 
 See also: [Node.js documentation](https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener)
 
+With client-certificate authentication:
+
+*Server*
+
+```js
+import { readFileSync } from "fs";
+import { createServer } from "https";
+import { Server } from "socket.io";
+
+const httpServer = createServer({
+  key: readFileSync("/path/to/server-key.pem"),
+  cert: readFileSync("/path/to/server-cert.pem"),
+  requestCert: true,
+  ca: [
+    readFileSync("/path/to/client-cert.pem")
+  ]
+});
+
+const io = new Server(httpServer, { /* options */ });
+
+io.engine.on("connection", (rawSocket) => {
+  // if you need the certificate details (it is no longer available once the handshake is completed)
+  rawSocket.peerCertificate = rawSocket.request.client.getPeerCertificate();
+});
+
+io.on("connection", (socket) => {
+  console.log(socket.conn.peerCertificate);
+  // ...
+});
+
+httpServer.listen(3000);
+```
+
+*Client*
+
+```js
+import { readFileSync } from "fs";
+import { io } from "socket.io-client";
+
+const socket = io("https://example.com", {
+  key: readFileSync("/path/to/client-key.pem"),
+  cert: readFileSync("/path/to/client-cert.pem"),
+  ca: [
+    readFileSync("/path/to/server-cert.pem")
+  ]
+});
+```
+
 ### With an HTTP/2 server
 
 <Tabs groupId="lang">
