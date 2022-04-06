@@ -27,30 +27,4 @@ Take a look at [socket.io-client.java](https://github.com/nkzawa/socket.io-clien
 
 ## Usage with [express-session](https://www.npmjs.com/package/express-session)
 
-```js
-const express = require('express');
-const session = require('express-session');
-const app = express();
-
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-
-const sessionMiddleware = session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }});
-// register middleware in Express
-app.use(sessionMiddleware);
-// register middleware in Socket.IO
-io.use((socket, next) => {
-  sessionMiddleware(socket.request, {}, next);
-  // sessionMiddleware(socket.request, socket.request.res, next); will not work with websocket-only
-  // connections, as 'socket.request.res' will be undefined in that case
-});
-
-io.on('connection', (socket) => {
-  const session = socket.request.session;
-  session.connections++;
-  session.save();
-});
-
-const port = process.env.PORT || 3000;
-server.listen(port, () => console.log('server listening on port ' + port));
-```
+Please check [this guide](/how-to/use-with-express-session).

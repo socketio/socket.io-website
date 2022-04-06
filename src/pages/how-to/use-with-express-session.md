@@ -222,3 +222,77 @@ io.on("connection", (socket) => {
   });
 });
 ```
+
+## With TypeScript
+
+To add proper typings to the session details, you will need to extend the `IncomingMessage` object from the Node.js "http" module.
+
+Which gives, in the [first case](#1st-use-case-socketio-only-retrieves-the-session-context):
+
+```ts
+import { Request, Response, NextFunction } from "express";
+import { Session } from "express-session";
+
+declare module "http" {
+    interface IncomingMessage {
+        session: Session & {
+            authenticated: boolean
+        }
+    }
+}
+
+io.use((socket, next) => {
+    sessionMiddleware(socket.request as Request, {} as Response, next as NextFunction);
+});
+```
+
+And in the [second case](#2nd-use-case-socketio-can-also-create-the-session-context):
+
+```ts
+import { Request, Response } from "express";
+import { Session } from "express-session";
+import { IncomingMessage } from "http";
+
+declare module "http" {
+    interface IncomingMessage {
+        cookieHolder?: string,
+        session: Session & {
+            count: number
+        }
+    }
+}
+
+const io = new Server(httpServer, {
+    allowRequest: (req, callback) => {
+        // with HTTP long-polling, we have access to the HTTP response here, but this is not
+        // the case with WebSocket, so we provide a dummy response object
+        const fakeRes = {
+            getHeader() {
+                return [];
+            },
+            setHeader(key: string, values: string[]) {
+                req.cookieHolder = values[0];
+            },
+            writeHead() {},
+        };
+        sessionMiddleware(req as Request, fakeRes as unknown as Response, () => {
+            if (req.session) {
+                // trigger the setHeader() above
+                fakeRes.writeHead();
+                // manually save the session (normally triggered by res.end())
+                req.session.save();
+            }
+            callback(null, true);
+        });
+    },
+});
+
+io.engine.on("initial_headers", (headers: { [key: string]: string }, req: IncomingMessage) => {
+    if (req.cookieHolder) {
+        headers["set-cookie"] = req.cookieHolder;
+        delete req.cookieHolder;
+    }
+});
+```
+
+Reference: [TypeScript's Declaration Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
