@@ -206,6 +206,31 @@ const io = new Server(httpServer, {
 });
 ```
 
+This can also be used in conjunction with the [`initial_headers`](./server-api.md#event-initial_headers) event, to send a cookie to the client:
+
+```js
+import { serialize } from "cookie";
+
+const io = new Server(httpServer, {
+  allowRequest: async (req, callback) => {
+    const session = await fetchSession(req);
+    req.session = session;
+    callback(null, true);
+  }
+});
+
+io.engine.on("initial_headers", (headers, req) => {
+  if (req.session) {
+    headers["set-cookie"] = serialize("sid", req.session.id, { sameSite: "strict" });
+  }
+});
+```
+
+See also:
+
+- [how to use with `express-session`](/how-to/use-with-express-session)
+- [how to deal with cookies](/how-to/deal-with-cookies)
+
 ### `transports`
 
 Default value: `["polling", "websocket"]`

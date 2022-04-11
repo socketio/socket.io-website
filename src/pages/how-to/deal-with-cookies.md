@@ -72,6 +72,24 @@ io.engine.on("headers", (headers, request) => {
 });
 ```
 
+:::caution
+
+Please note that event emitters are synchronous:
+
+```js
+io.engine.on("initial_headers", async (headers, request) => {
+  // WARNING! this won't work
+  const session = await fetchSession(request);
+  headers["set-cookie"] = serialize("sid", session.id, { sameSite: "strict" });
+});
+```
+
+If you need to do some async operations, you will need to use the [`allowRequest`](/docs/v4/server-options/#allowrequest) option.
+
+Please check [this example](/how-to/use-with-express-session#2nd-use-case-socketio-can-also-create-the-session-context) with `express-session` for reference.
+
+:::
+
 ## Node.js client and cookies
 
 The Node.js client uses the [`xmlhttprequest-ssl`](https://github.com/mjwwit/node-XMLHttpRequest) package, which provides an API similar to the [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) objects in the browser.

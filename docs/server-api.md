@@ -1563,6 +1563,31 @@ io.engine.on("initial_headers", (headers, request) => {
 });
 ```
 
+If you need to perform some asynchronous operations, you will need to use the [`allowRequest`](./server-options.md#allowrequest) option:
+
+```js
+import { serialize } from "cookie";
+
+const io = new Server(httpServer, {
+  allowRequest: async (req, callback) => {
+    const session = await fetchSession(req);
+    req.session = session;
+    callback(null, true);
+  }
+});
+
+io.engine.on("initial_headers", (headers, req) => {
+  if (req.session) {
+    headers["set-cookie"] = serialize("sid", req.session.id, { sameSite: "strict" });
+  }
+});
+```
+
+See also:
+
+- [how to use with `express-session`](/how-to/use-with-express-session)
+- [how to deal with cookies](/how-to/deal-with-cookies)
+
 ### Event: 'headers'
 
 *Added in v4.1.0*
