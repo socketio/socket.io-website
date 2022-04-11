@@ -1056,6 +1056,27 @@ io.on("connection", (socket) => {
 });
 ```
 
+### socket.data
+
+*Added in v4.0.0*
+
+An arbitrary object that can be used in conjunction with the [`fetchSockets()`](#namespacefetchsockets) utility method:
+
+```js
+io.on("connection", (socket) => {
+  socket.data.username = "alice";
+});
+
+const sockets = await io.fetchSockets();
+console.log(sockets[0].data.username); // "alice"
+```
+
+:::tip
+
+This also works within a Socket.IO cluster, with a compatible adapter like the [Postgres adapter](./categories/05-Adapters/adapter-postgres.md).
+
+:::
+
 ### socket.use(fn)
 
 <details className="changelog">
