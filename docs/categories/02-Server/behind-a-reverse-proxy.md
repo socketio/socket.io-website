@@ -41,6 +41,28 @@ Related:
 - [proxy_pass documentation](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
 - [configuration in a multi-server setup](using-multiple-nodes.md#nginx-configuration)
 
+If you only want to forward the Socket.IO requests (for example when NginX handles the static content):
+
+```
+http {
+  server {
+    listen 80;
+    root /var/www/html;
+
+    location /socket.io/ {
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $host;
+
+      proxy_pass http://localhost:3000;
+
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+    }
+  }
+}
+```
+
 ## Apache HTTPD
 
 Content of `/usr/local/apache2/conf/httpd.conf`:
