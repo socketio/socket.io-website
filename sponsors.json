@@ -55,14 +55,14 @@
     "alt": "FORTUNE GAMES"
   },
   {
-    "url": "https://www.bonusfinder.com/casino-bonus",
-    "img": "https://images.opencollective.com/bonusfinder-com-us/8a47a19/logo.png",
-    "alt": "Bonusfinder.com US"
-  },
-  {
     "url": "https://www.bonus.net.nz/free-spins-no-deposit",
     "img": "https://images.opencollective.com/bonusfinder-new-zealand/5e2d35b/logo.png",
     "alt": "BonusFinder New Zealand"
+  },
+  {
+    "url": "https://www.bonusfinder.com/casino-bonus",
+    "img": "https://images.opencollective.com/bonusfinder-com-us/8a47a19/logo.png",
+    "alt": "Bonusfinder.com US"
   },
   {
     "url": "https://casino-professor.com/",
@@ -440,14 +440,14 @@
     "alt": "CasinoOnlinePeru"
   },
   {
-    "url": "https://slotsempire.com/",
-    "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
-    "alt": "Slots Empire Casino"
-  },
-  {
     "url": "https://inkedin.com/free-spins-no-deposit/",
     "img": "https://images.opencollective.com/inkedin/40e0c14/logo.png",
     "alt": "inkedin"
+  },
+  {
+    "url": "https://slotsempire.com/",
+    "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
+    "alt": "Slots Empire Casino"
   },
   {
     "url": "https://www.casinoonlineaams.com",
@@ -525,6 +525,11 @@
     "alt": "AppKong"
   },
   {
+    "url": "https://www.voetbalgokken.nl",
+    "img": "https://images.opencollective.com/voetbalgokken1/02ab67f/logo.png",
+    "alt": "VoetbalGokken"
+  },
+  {
     "url": "https://www.targetedwebtraffic.com",
     "img": "https://images.opencollective.com/targeted-web-traffic/7abacc7/logo.png",
     "alt": "Targeted Web Traffic"
@@ -543,11 +548,6 @@
     "url": "https://www.webton.nl",
     "img": "https://images.opencollective.com/webton/2e2a795/logo.png",
     "alt": "Webton"
-  },
-  {
-    "url": "https://www.voetbalgokken.nl",
-    "img": "https://images.opencollective.com/voetbalgokken1/02ab67f/logo.png",
-    "alt": "VoetbalGokken"
   },
   {
     "url": "https://www.wagerdex.com/",
@@ -680,6 +680,21 @@
     "alt": "Campobet SE"
   },
   {
+    "url": "https://www.igamblingsites.com/",
+    "img": "https://images.opencollective.com/igamblingsites/9380f54/avatar.png",
+    "alt": "iGamblingSites.com"
+  },
+  {
+    "url": "https://www.automatenspiele.org/",
+    "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
+    "alt": "automatenspiele.org"
+  },
+  {
+    "url": "https://1394ta.org",
+    "img": "https://images.opencollective.com/1394ta-org/d655fd3/avatar.png",
+    "alt": "1394TA"
+  },
+  {
     "url": "https://github.com/async-labs",
     "img": "https://images.opencollective.com/kelly-burke/4bcce90/avatar.png",
     "alt": "Kelly Burke"
@@ -710,16 +725,6 @@
     "alt": "Betting-utan-svensk-licens.com"
   },
   {
-    "url": "https://www.igamblingsites.com/",
-    "img": "https://images.opencollective.com/igamblingsites/9380f54/avatar.png",
-    "alt": "iGamblingSites.com"
-  },
-  {
-    "url": "https://www.automatenspiele.org/",
-    "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
-    "alt": "automatenspiele.org"
-  },
-  {
     "url": "https://www.freespingratis.it",
     "img": "https://images.opencollective.com/freespingratis/5c0c98d/logo.png",
     "alt": "Freespingratis.it"
@@ -728,11 +733,6 @@
     "url": "https://www.ibeesoft.com/",
     "img": "https://images.opencollective.com/ibeesoft/53a32e8/logo.png",
     "alt": "iBeesoft"
-  },
-  {
-    "url": "https://1394ta.org",
-    "img": "https://images.opencollective.com/1394ta-org/d655fd3/avatar.png",
-    "alt": "1394TA"
   },
   {
     "url": "https://tankpenge.dk",
@@ -788,5 +788,10 @@
     "url": "https://playcasinoscanada.com/",
     "img": "https://images.opencollective.com/playcasinoscanadacom/69b4a7c/logo.png",
     "alt": "Playcasinoscanada.com"
+  },
+  {
+    "url": "https://poprey.com/",
+    "img": "https://images.opencollective.com/instagram-likes/2a72a03/avatar.png",
+    "alt": "Instagram Likes"
   }
 ]
