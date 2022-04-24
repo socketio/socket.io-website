@@ -70,12 +70,13 @@ Browser compatibility is tested thanks to the awesome Sauce Labs platform:
 
 ## Latest releases
 
-- 4.4.1 (2022-01-06): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.4.0...4.4.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.1)
-- [4.4.0](/blog/socket-io-4-4-0/) (2021-11-18): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.2...4.4.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.0)
-- 4.3.2 (2021-11-08): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.2) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.1...4.3.2) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.2)
-- 4.3.1 (2021-10-17): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.0...4.3.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.1)
-- [4.3.0](/blog/socket-io-4-3-0/) (2021-10-15): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.2.0...4.3.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.0)
-- 4.2.0 (2021-08-30): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.2.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.1.3...4.2.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.2.0)
+- [4.5.0](/blog/socket-io-4-5-0/) (2022/04/23): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.4.1...4.5.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.0)
+- 4.4.1 (2022/01/06): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.4.0...4.4.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.1)
+- [4.4.0](/blog/socket-io-4-4-0/) (2021/11/18): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.2...4.4.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.0)
+- 4.3.2 (2021/11/08): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.2) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.1...4.3.2) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.2)
+- 4.3.1 (2021/10/17): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.0...4.3.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.1)
+- [4.3.0](/blog/socket-io-4-3-0/) (2021/10/15): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.3.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.2.0...4.3.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.3.0)
+- 4.2.0 (2021/08/30): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.2.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.1.3...4.2.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.2.0)
 
 ## Installation
 
@@ -107,14 +108,14 @@ const io = new Server({
 You can also include the client bundle from a CDN:
 
 ```html
-<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
 ```
 
 Socket.IO is also available from other CDN:
 
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.4.1/dist/socket.io.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.4.1/dist/socket.io.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.5.0/dist/socket.io.min.js
+- unpkg: https://unpkg.com/socket.io-client@4.5.0/dist/socket.io.min.js
 
 There are several bundles available:
 
@@ -172,31 +173,25 @@ Object literal may only specify known properties, and 'extraHeaders' does not ex
 
 ### Dependency tree
 
-A basic installation of the client includes 15 packages:
+A basic installation of the client includes 10 packages:
 
 ```
-└─┬ socket.io-client@4.4.1 https://github.com/socketio/socket.io-client
-  ├── @socket.io/component-emitter@3.0.0
-  ├── backo2@1.0.2
-  ├─┬ debug@4.3.3
+└─┬ socket.io-client@4.5.0
+  ├── @socket.io/component-emitter@3.1.0
+  ├─┬ debug@4.3.4
   │ └── ms@2.1.2
-  ├─┬ engine.io-client@6.1.1
-  │ ├── @socket.io/component-emitter@3.0.0 deduped
-  │ ├── debug@4.3.3 deduped
-  │ ├─┬ engine.io-parser@5.0.2
-  │ │ └── base64-arraybuffer@1.0.1
-  │ ├── has-cors@1.1.0
-  │ ├── parseqs@0.0.6
-  │ ├── parseuri@0.0.6 deduped
+  ├─┬ engine.io-client@6.2.1
+  │ ├── @socket.io/component-emitter@3.1.0 deduped
+  │ ├── debug@4.3.4 deduped
+  │ ├─┬ engine.io-parser@5.0.3
+  │ │ └── @socket.io/base64-arraybuffer@1.0.2
   │ ├─┬ ws@8.2.3
   │ │ ├── UNMET OPTIONAL DEPENDENCY bufferutil@^4.0.1
   │ │ └── UNMET OPTIONAL DEPENDENCY utf-8-validate@^5.0.2
-  │ ├── xmlhttprequest-ssl@2.0.0
-  │ └── yeast@0.1.2
-  ├── parseuri@0.0.6
-  └─┬ socket.io-parser@4.1.1
-    ├── @socket.io/component-emitter@3.0.0 deduped
-    └── debug@4.3.3 deduped
+  │ └── xmlhttprequest-ssl@2.0.0
+  └─┬ socket.io-parser@4.2.0
+    ├── @socket.io/component-emitter@3.1.0 deduped
+    └── debug@4.3.4 deduped
 ```
 
 ### Transitive versions
@@ -205,6 +200,7 @@ The `engine.io-client` package brings the engine that is responsible for managin
 
 | `socket.io-client` version | `engine.io-client` version | `ws` version<sup>1</sup> |
 |----------------------------|----------------------------|--------------------------|
+| `4.5.x`                    | `6.2.x`                    | `8.2.x`                  |
 | `4.4.x`                    | `6.1.x`                    | `8.2.x`                  |
 | `4.3.x`                    | `6.0.x`                    | `8.2.x`                  |
 | `4.2.x`                    | `5.2.x`                    | `7.4.x`                  |

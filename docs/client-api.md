@@ -561,6 +561,8 @@ console.log(socket.listeners("my-event")); // prints [ [Function] ]
 
 ### socket.onAny(callback)
 
+*Added in v3.0.0*
+
   - `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
 Register a new catch-all listener.
@@ -573,6 +575,8 @@ socket.onAny((event, ...args) => {
 
 ### socket.prependAny(callback)
 
+*Added in v3.0.0*
+
   - `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
 Register a new catch-all listener. The listener is added to the beginning of the listeners array.
@@ -584,6 +588,8 @@ socket.prependAny((event, ...args) => {
 ```
 
 ### socket.offAny([listener])
+
+*Added in v3.0.0*
 
   - `listener` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
@@ -602,12 +608,74 @@ socket.offAny();
 
 ### socket.listenersAny()
 
+*Added in v3.0.0*
+
   - **Returns** [`<Function[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
 Returns the list of registered catch-all listeners.
 
 ```js
 const listeners = socket.listenersAny();
+```
+
+### socket.onAnyOutgoing(callback)
+
+*Added in v4.5.0*
+
+- `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Register a new catch-all listener for outgoing packets.
+
+```js
+socket.onAnyOutgoing((event, ...args) => {
+  console.log(`got ${event}`);
+});
+```
+
+### socket.prependAnyOutgoing(callback)
+
+*Added in v4.5.0*
+
+- `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Register a new catch-all listener for outgoing packets. The listener is added to the beginning of the listeners array.
+
+```js
+socket.prependAnyOutgoing((event, ...args) => {
+  console.log(`got ${event}`);
+});
+```
+
+### socket.offAnyOutgoing([listener])
+
+*Added in v4.5.0*
+
+- `listener` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Removes the previously registered listener. If no listener is provided, all catch-all listeners are removed.
+
+```js
+const myListener = () => { /* ... */ };
+
+socket.onAnyOutgoing(myListener);
+
+// remove a single listener
+socket.offAnyOutgoing(myListener);
+
+// remove all listeners
+socket.offAnyOutgoing();
+```
+
+### socket.listenersAnyOutgoing()
+
+*Added in v4.5.0*
+
+- **Returns** [`<Function[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Returns the list of registered catch-all listeners for outgoing packets.
+
+```js
+const listeners = socket.listenersAnyOutgoing();
 ```
 
 ### socket.compress(value)
@@ -703,6 +771,7 @@ socket.on("data", () => { /* ... */ });
 ### Event: 'disconnect'
 
   - `reason` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
+  - `details` `<DisconnectDetails>`
 
 Fired upon disconnection. The list of possible disconnection reasons:
 

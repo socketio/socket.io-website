@@ -649,9 +649,39 @@ chat.emit("an event sent to all connected clients in chat namespace");
 
 :::info
 
-Acknowledgements are not currently supported when emitting from namespace.
+Starting with version `4.5.0`, it is now possible to use acknowledgements when broadcasting:
+
+```js
+io.of("/chat").timeout(10000).emit("some-event", (err, responses) => {
+  if (err) {
+    // some clients did not acknowledge the event in the given delay
+  } else {
+    console.log(responses); // one response per client
+  }
+});
+```
 
 :::
+
+### namespace.timeout(value)
+
+*Added in v4.5.0*
+
+  - `value` [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
+  - **Returns** `BroadcastOperator`
+
+Sets a modifier for a subsequent event emission that the callback will be called with an error when the
+given number of milliseconds have elapsed without an acknowledgement from the client:
+
+```js
+io.of("/chat").timeout(10000).emit("some-event", (err, responses) => {
+  if (err) {
+    // some clients did not acknowledge the event in the given delay
+  } else {
+    console.log(responses); // one response per client
+  }
+});
+```
 
 ### namespace.allSockets()
 
@@ -1239,6 +1269,66 @@ Returns the list of registered catch-all listeners.
 
 ```js
 const listeners = socket.listenersAny();
+```
+
+### socket.onAnyOutgoing(callback)
+
+*Added in v4.5.0*
+
+- `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Register a new catch-all listener for outgoing packets.
+
+```js
+socket.onAnyOutgoing((event, ...args) => {
+  console.log(`got ${event}`);
+});
+```
+
+### socket.prependAnyOutgoing(callback)
+
+*Added in v4.5.0*
+
+- `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Register a new catch-all listener for outgoing packets. The listener is added to the beginning of the listeners array.
+
+```js
+socket.prependAnyOutgoing((event, ...args) => {
+  console.log(`got ${event}`);
+});
+```
+
+### socket.offAnyOutgoing([listener])
+
+*Added in v4.5.0*
+
+- `listener` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Removes the previously registered listener. If no listener is provided, all catch-all listeners are removed.
+
+```js
+const myListener = () => { /* ... */ };
+
+socket.onAnyOutgoing(myListener);
+
+// remove a single listener
+socket.offAnyOutgoing(myListener);
+
+// remove all listeners
+socket.offAnyOutgoing();
+```
+
+### socket.listenersAnyOutgoing()
+
+*Added in v4.5.0*
+
+- **Returns** [`<Function[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Returns the list of registered catch-all listeners for outgoing packets.
+
+```js
+const listeners = socket.listenersAnyOutgoing();
 ```
 
 ### socket.join(room)
