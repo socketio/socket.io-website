@@ -600,24 +600,19 @@
     "alt": "Beto_mania"
   },
   {
+    "url": "https://www.kingcasino.com",
+    "img": "https://images.opencollective.com/king-casino/8f587d7/logo.png",
+    "alt": "King Casino"
+  },
+  {
     "url": "https://www.onlinecasinosdeutschland.de/",
     "img": "https://images.opencollective.com/onlinecasinosdeutschland/03ec330/avatar.png",
     "alt": "www.onlinecasinosdeutschland.de"
   },
   {
-    "url": "https://www.anonymistic.com/",
-    "img": "https://images.opencollective.com/anonymistic/b9a2c22/logo.png",
-    "alt": "Anonymistic"
-  },
-  {
     "url": "https://www.wizardslots.com",
     "img": "https://images.opencollective.com/wizard-slots/19381ef/logo.png",
     "alt": "Wizard Slots"
-  },
-  {
-    "url": "https://www.kingcasino.com",
-    "img": "https://images.opencollective.com/king-casino/8f587d7/logo.png",
-    "alt": "King Casino"
   },
   {
     "url": "https://qberror.com/",
@@ -710,11 +705,6 @@
     "alt": "leafletcasino.com"
   },
   {
-    "url": "https://th.parimatch.com/",
-    "img": "https://images.opencollective.com/seo-pmi1/a8b18eb/avatar.png",
-    "alt": "Parimatch Thai"
-  },
-  {
     "url": "https://casino-utan-licens.net",
     "img": "https://images.opencollective.com/guest-07a07b36/737264f/avatar.png",
     "alt": "Casino-utan-licens.net"
@@ -793,5 +783,10 @@
     "url": "https://poprey.com/",
     "img": "https://images.opencollective.com/instagram-likes/2a72a03/avatar.png",
     "alt": "Instagram Likes"
+  },
+  {
+    "url": "https://articlereword.com/",
+    "img": "https://images.opencollective.com/articlereworder/5289ee3/logo.png",
+    "alt": "articlereword"
   }
 ]
