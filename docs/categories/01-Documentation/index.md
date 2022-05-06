@@ -36,6 +36,7 @@ There are several Socket.IO server implementations available:
 - Java: https://github.com/mrniko/netty-socketio
 - Java: https://github.com/trinopoty/socket.io-server-java
 - Python: https://github.com/miguelgrinberg/python-socketio
+- Golang: https://github.com/googollee/go-socket.io
 
 And client implementations in most major languages:
 
@@ -49,7 +50,6 @@ And client implementations in most major languages:
 - Dart: https://github.com/rikulo/socket.io-client-dart
 - Python: https://github.com/miguelgrinberg/python-socketio
 - .Net: https://github.com/doghappy/socket.io-client-csharp
-- Golang: https://github.com/googollee/go-socket.io
 - Rust: https://github.com/1c3t3a/rust-socketio
 - Kotlin: https://github.com/icerockdev/moko-socket-io
 
