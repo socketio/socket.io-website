@@ -25,3 +25,4 @@ A slightly more complex chat application, introducing [middlewares](/docs/v4/mid
 - [deal with cookies](/how-to/deal-with-cookies)
 - [use with `pkg`](/how-to/use-with-pkg)
 - [use with `express-session`](/how-to/use-with-express-session)
+- [check the latency of the Socket.IO connection](/how-to/check-the-latency-of-the-connection)
