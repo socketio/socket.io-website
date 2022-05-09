@@ -6,6 +6,12 @@ slug: /emitting-events/
 
 There are several ways to send events between the server and the client.
 
+:::tip
+
+For TypeScript users, it is possible to provide type hints for the events. Please check [this](../01-Documentation/typescript.md).
+
+:::
+
 ## Basic emit
 
 The Socket.IO API is inspired from the Node.js [EventEmitter](https://nodejs.org/docs/latest/api/events.html#events_events), which means you can emit events on one side and register listeners on the other:
