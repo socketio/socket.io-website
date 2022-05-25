@@ -6,10 +6,10 @@ slug: /reverse-proxy/
 
 You will find below the configuration needed for deploying a Socket.IO server behind a reverse-proxy solution, such as:
 
-- [NginX](#NginX)
-- [Apache HTTPD](#Apache-HTTPD)
-- [Node.js `http-proxy`](#Node-js-http-proxy)
-- [Caddy 2](#Caddy-2)
+- [NginX](#nginx)
+- [Apache HTTPD](#apache-httpd)
+- [Node.js `http-proxy`](#nodejs-http-proxy)
+- [Caddy 2](#caddy-2)
 
 In a multi-server setup, please check the documentation [here](/docs/v3/using-multiple-nodes/).
 
