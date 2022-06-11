@@ -21,7 +21,6 @@ Content of `/etc/nginx/nginx.conf`:
 http {
   server {
     listen 80;
-    server_name example.com;
 
     location / {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -62,6 +61,50 @@ http {
     }
   }
 }
+```
+
+Or with a custom [path](../../server-options.md#path):
+
+```
+http {
+  server {
+    listen 80;
+    root /var/www/html;
+
+    location /my-custom-path/ {
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $host;
+
+      proxy_pass http://localhost:3000;
+
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+    }
+  }
+}
+```
+
+In that case, the server and the client must be configured accordingly:
+
+*Server*
+
+```js
+import { Server } from "socket.io";
+
+const io = new Server({
+  path: "/my-custom-path/"
+});
+```
+
+*Client*
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  path: "/my-custom-path/"
+});
 ```
 
 ## Apache HTTPD
