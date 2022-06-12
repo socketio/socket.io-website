@@ -30,14 +30,14 @@
     "alt": "Lemon Law"
   },
   {
-    "url": "https://www.bonus.ca/",
-    "img": "https://images.opencollective.com/bonus-finder/4b3394e/logo.png",
-    "alt": "BonusFinder Canada"
-  },
-  {
     "url": "https://www.dcsl.com/",
     "img": "https://images.opencollective.com/dcsl-software/a662911/logo.png",
     "alt": "DCSL Guidesmiths"
+  },
+  {
+    "url": "https://www.bonus.ca/",
+    "img": "https://images.opencollective.com/bonus-finder/4b3394e/logo.png",
+    "alt": "BonusFinder Canada"
   },
   {
     "url": "https://bid4papers.com/write-my-essay.html",
@@ -110,19 +110,24 @@
     "alt": "CrediMaxx® GmbH"
   },
   {
-    "url": "https://www.bestecasinobonussen.nl/",
-    "img": "https://images.opencollective.com/bestecasinobonussen/26bfc24/logo.png",
-    "alt": "Bestecasinobonussen.nl"
-  },
-  {
     "url": "https://casinogringos.se",
     "img": "https://images.opencollective.com/casinogringos/1c1782c/logo.png",
     "alt": "Casinogringos"
   },
   {
+    "url": "https://www.bestecasinobonussen.nl/",
+    "img": "https://images.opencollective.com/bestecasinobonussen/26bfc24/logo.png",
+    "alt": "Bestecasinobonussen.nl"
+  },
+  {
     "url": "https://www.kasinohai.com/nettikasinot",
     "img": "https://images.opencollective.com/kasinohai-com/41d4f51/logo.png",
     "alt": "Kasinohai.com"
+  },
+  {
+    "url": "https://FrontendMasters.com",
+    "img": "https://images.opencollective.com/frontendmasters/0b9cda4/logo.png",
+    "alt": "Frontend Masters"
   },
   {
     "url": "https://www.digitallogic.co",
@@ -135,9 +140,9 @@
     "alt": "InvestingReviews.co.uk"
   },
   {
-    "url": "https://FrontendMasters.com",
-    "img": "https://images.opencollective.com/frontendmasters/0b9cda4/logo.png",
-    "alt": "Frontend Masters"
+    "url": "https://www.turtlebet.com/fi/kaikki-nettikasinot.html",
+    "img": "https://images.opencollective.com/turtlebet-nettikasinot/d2f0110/logo.png",
+    "alt": "Turtlebet - Nettikasinot"
   },
   {
     "url": "https://www.nya-casinon.online/spelpaus/",
@@ -163,16 +168,6 @@
     "url": "https://www.777casino.co.uk/",
     "img": "https://images.opencollective.com/777-casino/a58fb66/logo.png",
     "alt": "777 Casino"
-  },
-  {
-    "url": "https://www.turtlebet.com/fi/kaikki-nettikasinot.html",
-    "img": "https://images.opencollective.com/turtlebet-nettikasinot/d2f0110/logo.png",
-    "alt": "Turtlebet - Nettikasinot"
-  },
-  {
-    "url": "https://casinoutankonto.net/casino-utan-svensk-licens/",
-    "img": "https://images.opencollective.com/casinoutankonto-net/24f880b/logo.png",
-    "alt": "Casinoutankonto.net"
   },
   {
     "url": "https://swisscasinohex.com/",
@@ -205,6 +200,11 @@
     "alt": "TheCasinoDB"
   },
   {
+    "url": "https://supplementsreviews.co.uk/",
+    "img": "https://images.opencollective.com/supplementsreviews/ee36500/logo.png",
+    "alt": "SupplementsReviews.co.uk"
+  },
+  {
     "url": "https://casinohex.co.za/",
     "img": "https://images.opencollective.com/casinohex-co-za/470843d/logo.png",
     "alt": "CasinoHEX.co.za"
@@ -215,19 +215,14 @@
     "alt": "NeueCasinos24"
   },
   {
-    "url": "https://papersowl.com/research-papers",
-    "img": "https://images.opencollective.com/papersowl2/510de59/logo.png",
-    "alt": "Papersowl"
-  },
-  {
-    "url": "https://supplementsreviews.co.uk/",
-    "img": "https://images.opencollective.com/supplementsreviews/ee36500/logo.png",
-    "alt": "SupplementsReviews.co.uk"
-  },
-  {
     "url": "https://bitkong.com",
     "img": "https://images.opencollective.com/bitkong/cac9cc0/logo.png",
     "alt": "BitKong"
+  },
+  {
+    "url": "https://papersowl.com/research-papers",
+    "img": "https://images.opencollective.com/papersowl2/510de59/logo.png",
+    "alt": "Papersowl"
   },
   {
     "url": "https://www.neueonline-casinos.com/",
@@ -235,9 +230,9 @@
     "alt": "Neue Online Casinos"
   },
   {
-    "url": "https://www.nettikasinotsuomalaisille.com/nettikasinot-ilman-rekisteroitymista/",
-    "img": "/images/sponsors/netti.png",
-    "alt": "Nettikasinot Suomalaisille"
+    "url": "https://casinodaddy.com",
+    "img": "/images/sponsors/casinodaddy.png",
+    "alt": "Casino Daddy"
   },
   {
     "url": "https://www.newcasinosites.me.uk/",
@@ -248,16 +243,6 @@
     "url": "https://www.online-casino-spielautomaten.de",
     "img": "https://images.opencollective.com/online-casino-spielautomaten/2448303/logo.png",
     "alt": "Online Casino Deutschland"
-  },
-  {
-    "url": "https://pillarwm.com/",
-    "img": "https://images.opencollective.com/pillarwm/f2181e2/avatar.png",
-    "alt": "PillarWm"
-  },
-  {
-    "url": "https://casinodaddy.com",
-    "img": "/images/sponsors/casinodaddy.png",
-    "alt": "Casino Daddy"
   },
   {
     "url": "https://luckydice.com",
@@ -305,16 +290,6 @@
     "alt": "Casinority Australia"
   },
   {
-    "url": "https://deutschercasinobonus.com/casino-ohne-deutsche-lizenz/",
-    "img": "/images/sponsors/deutschercasinobonus.jpg",
-    "alt": "Deutschercasinobonus.com"
-  },
-  {
-    "url": "https://casinoohnelizenz.info/",
-    "img": "https://images.opencollective.com/casinoohnelizenz-info/0f2ae5c/logo.png",
-    "alt": "CasinoOhneLizenz.info"
-  },
-  {
     "url": "https://icasinoreviews.info/",
     "img": "https://images.opencollective.com/icasinoreviews/9f40f5c/logo.png",
     "alt": "Real Money Casinos NZ by iCasinoReviews.info"
@@ -330,6 +305,11 @@
     "alt": "Quickbooks Tool Hub"
   },
   {
+    "url": "https://www.polskiekasyno.com/",
+    "img": "https://images.opencollective.com/polskiekasyno-com/a8975c6/logo.png",
+    "alt": "Polskiekasyno.com"
+  },
+  {
     "url": "https://www.casinovergleich.eu/",
     "img": "https://images.opencollective.com/cvergleich_eu/0e3f707/logo.png",
     "alt": "casinovergleich.eu"
@@ -338,11 +318,6 @@
     "url": "https://writingmetier.com",
     "img": "https://images.opencollective.com/writing-metier/762e081/logo.png",
     "alt": "Writing Metier"
-  },
-  {
-    "url": "https://www.polskiekasyno.com/",
-    "img": "https://images.opencollective.com/polskiekasyno-com/a8975c6/logo.png",
-    "alt": "Polskiekasyno.com"
   },
   {
     "url": "https://socialsup.net/",
@@ -390,19 +365,9 @@
     "alt": "Casino.Guide"
   },
   {
-    "url": "https://onlinecasinofortuna.com/",
-    "img": "https://images.opencollective.com/onlinecasinofortuna-com/0bda94e/avatar.png",
-    "alt": "Onlinecasinofortuna.com"
-  },
-  {
-    "url": "https://casinomartini.com/nz/new-online-casinos/",
-    "img": "https://images.opencollective.com/casino-martini/8efce1c/logo.png",
-    "alt": "Casino Martin New Online Casinos"
-  },
-  {
-    "url": "https://clouddevs.com",
-    "img": "https://images.opencollective.com/clouddevs/b342f76/logo.png",
-    "alt": "CloudDevs"
+    "url": "https://slotsempire.com/",
+    "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
+    "alt": "Slots Empire Casino"
   },
   {
     "url": "https://www.nuovicasino.it",
@@ -415,19 +380,14 @@
     "alt": "CasinoOnlinePeru"
   },
   {
-    "url": "https://inkedin.com/free-spins-no-deposit/",
-    "img": "https://images.opencollective.com/inkedin/40e0c14/logo.png",
-    "alt": "inkedin"
-  },
-  {
     "url": "https://www.norsknettcasino.net",
     "img": "https://images.opencollective.com/norsknettcasino/3ce6d1e/logo.png",
     "alt": "Norsknettcasino"
   },
   {
-    "url": "https://slotsempire.com/",
-    "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
-    "alt": "Slots Empire Casino"
+    "url": "https://inkedin.com/free-spins-no-deposit/",
+    "img": "https://images.opencollective.com/inkedin/40e0c14/logo.png",
+    "alt": "inkedin"
   },
   {
     "url": "https://www.casinoonlineaams.com",
@@ -445,14 +405,14 @@
     "alt": "Online casino NZ"
   },
   {
-    "url": "https://www.boosbe.com/",
-    "img": "https://images.opencollective.com/boosbe/de47f16/avatar.png",
-    "alt": "Boosbe"
-  },
-  {
     "url": "https://mimy.online",
     "img": "https://images.opencollective.com/mimy899167121/f82988e/logo.png",
     "alt": "MiMy Online"
+  },
+  {
+    "url": "https://www.boosbe.com/",
+    "img": "https://images.opencollective.com/boosbe/de47f16/avatar.png",
+    "alt": "Boosbe"
   },
   {
     "url": "https://www.uudetkasinot.com",
@@ -505,19 +465,14 @@
     "alt": "VoetbalGokken"
   },
   {
-    "url": "https://www.targetedwebtraffic.com",
-    "img": "https://images.opencollective.com/targeted-web-traffic/7abacc7/logo.png",
-    "alt": "Targeted Web Traffic"
-  },
-  {
-    "url": "https://appkong.com/",
-    "img": "https://images.opencollective.com/appkong/892ee7e/logo.png",
-    "alt": "AppKong"
-  },
-  {
     "url": "https://www.wagerdex.com/",
     "img": "https://images.opencollective.com/wagerdex/780ea73/logo.png",
     "alt": "WagerDex"
+  },
+  {
+    "url": "https://www.targetedwebtraffic.com",
+    "img": "https://images.opencollective.com/targeted-web-traffic/7abacc7/logo.png",
+    "alt": "Targeted Web Traffic"
   },
   {
     "url": "https://onlinecasinocrawler.com",
@@ -535,14 +490,14 @@
     "alt": "Real Targeted Traffic"
   },
   {
-    "url": "https://reddogcasino.com/en/games/blackjack",
-    "img": "https://images.opencollective.com/red-dog/49e9d6f/logo.png",
-    "alt": "RedDogCasino.com"
-  },
-  {
     "url": "https://triplebyte.com/os/opencollective",
     "img": "https://images.opencollective.com/triplebyte/3f80e63/logo.png",
     "alt": "Triplebyte"
+  },
+  {
+    "url": "https://www.webton.nl",
+    "img": "https://images.opencollective.com/webton/2e2a795/logo.png",
+    "alt": "Webton"
   },
   {
     "url": "https://twojtyp.pl/",
@@ -550,9 +505,9 @@
     "alt": "Typy Bukmacherskie"
   },
   {
-    "url": "https://www.webton.nl",
-    "img": "https://images.opencollective.com/webton/2e2a795/logo.png",
-    "alt": "Webton"
+    "url": "https://reddogcasino.com/en/games/blackjack",
+    "img": "https://images.opencollective.com/red-dog/49e9d6f/logo.png",
+    "alt": "RedDogCasino.com"
   },
   {
     "url": "https://webpundits.in",
@@ -565,29 +520,19 @@
     "alt": "Beto_mania"
   },
   {
-    "url": "https://www.kingcasino.com",
-    "img": "https://images.opencollective.com/king-casino/8f587d7/logo.png",
-    "alt": "King Casino"
-  },
-  {
-    "url": "https://www.onlinecasinosdeutschland.de/",
-    "img": "https://images.opencollective.com/onlinecasinosdeutschland/03ec330/avatar.png",
-    "alt": "www.onlinecasinosdeutschland.de"
-  },
-  {
     "url": "https://speedypaper.com/",
     "img": "https://images.opencollective.com/speedypaper/b6b7aef/logo.png",
     "alt": "SpeedyPaper"
   },
   {
-    "url": "https://www.instafollowers.co/",
-    "img": "https://images.opencollective.com/instafollowersco/5c0cddd/logo.png",
-    "alt": "instafollowers.co"
-  },
-  {
     "url": "https://www.wizardslots.com",
     "img": "https://images.opencollective.com/wizard-slots/19381ef/logo.png",
     "alt": "Wizard Slots"
+  },
+  {
+    "url": "https://www.kingcasino.com",
+    "img": "https://images.opencollective.com/king-casino/8f587d7/logo.png",
+    "alt": "King Casino"
   },
   {
     "url": "https://qberror.com/",
@@ -598,6 +543,11 @@
     "url": "https://funrize.com",
     "img": "https://images.opencollective.com/funrize/3555525/logo.png",
     "alt": "Free Social Promotional Games – Funrize™"
+  },
+  {
+    "url": "https://www.onlinecasinosdeutschland.de/",
+    "img": "https://images.opencollective.com/onlinecasinosdeutschland/03ec330/avatar.png",
+    "alt": "www.onlinecasinosdeutschland.de"
   },
   {
     "url": "https://www.overlyzer.com/en/sports-betting/",
@@ -640,21 +590,6 @@
     "alt": "Campobet SE"
   },
   {
-    "url": "https://www.igamblingsites.com/",
-    "img": "https://images.opencollective.com/igamblingsites/9380f54/avatar.png",
-    "alt": "iGamblingSites.com"
-  },
-  {
-    "url": "https://www.automatenspiele.org/",
-    "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
-    "alt": "automatenspiele.org"
-  },
-  {
-    "url": "https://tweaklab.org",
-    "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
-    "alt": "Roland Brönnimann"
-  },
-  {
     "url": "https://leafletcasino.com/online-casino/",
     "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
     "alt": "leafletcasino.com"
@@ -663,6 +598,16 @@
     "url": "https://betting-utan-svensk-licens.com",
     "img": "https://images.opencollective.com/guest-59be75db/434e174/avatar.png",
     "alt": "Betting-utan-svensk-licens.com"
+  },
+  {
+    "url": "https://www.igamblingsites.com/",
+    "img": "https://images.opencollective.com/igamblingsites/9380f54/avatar.png",
+    "alt": "iGamblingSites.com"
+  },
+  {
+    "url": "https://www.automatenspiele.org/",
+    "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
+    "alt": "automatenspiele.org"
   },
   {
     "url": "https://www.freespingratis.it",
@@ -675,9 +620,14 @@
     "alt": "iBeesoft"
   },
   {
-    "url": "https://1394ta.org",
-    "img": "https://images.opencollective.com/1394ta-org/d655fd3/avatar.png",
-    "alt": "1394TA"
+    "url": "https://codepilot.ai",
+    "img": "https://images.opencollective.com/codepilotai/732befb/logo.png",
+    "alt": "CodePilot.ai"
+  },
+  {
+    "url": "https://tweaklab.org",
+    "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
+    "alt": "Roland Brönnimann"
   },
   {
     "url": "https://github.com/async-labs",
@@ -685,9 +635,9 @@
     "alt": "Kelly Burke"
   },
   {
-    "url": "https://codepilot.ai",
-    "img": "https://images.opencollective.com/codepilotai/732befb/logo.png",
-    "alt": "CodePilot.ai"
+    "url": "https://1394ta.org",
+    "img": "https://images.opencollective.com/1394ta-org/d655fd3/avatar.png",
+    "alt": "1394TA"
   },
   {
     "url": "https://playcasinoscanada.com/",
@@ -695,9 +645,9 @@
     "alt": "Playcasinoscanada.com"
   },
   {
-    "url": "https://tankpenge.dk",
-    "img": "https://images.opencollective.com/tankpenge-dk/15be36a/logo.png",
-    "alt": "Per Andersen"
+    "url": "https://njohnson7.github.io/",
+    "img": "https://images.opencollective.com/njohnson7/fae8bd7/avatar.png",
+    "alt": "Nick Johnson"
   },
   {
     "url": "https://subbed.org",
@@ -705,14 +655,14 @@
     "alt": "Reddit Wiki"
   },
   {
-    "url": "https://njohnson7.github.io/",
-    "img": "https://images.opencollective.com/njohnson7/fae8bd7/avatar.png",
-    "alt": "Nick Johnson"
-  },
-  {
     "url": "https://www.routerhosting.com/",
     "img": "https://images.opencollective.com/routerhosting/1e64200/logo.png",
     "alt": "RouterHosting"
+  },
+  {
+    "url": "https://tankpenge.dk",
+    "img": "https://images.opencollective.com/tankpenge-dk/15be36a/logo.png",
+    "alt": "Per Andersen"
   },
   {
     "url": "https://bitkong.com",
@@ -748,5 +698,25 @@
     "url": "https://www.casinosansdepot.com",
     "img": "/images/sponsors/casinosansdepot.png",
     "alt": "casinosansdepot"
+  },
+  {
+    "url": "https://slotokingua.com",
+    "img": "https://images.opencollective.com/slotoking-casino/avatar.png",
+    "alt": "SlotoKing Casino"
+  },
+  {
+    "url": "https://hellsbet.com/en-au/",
+    "img": "https://images.opencollective.com/hellsbet-au/27988df/logo.png",
+    "alt": "Betting sites Australia"
+  },
+  {
+    "url": "https://onlinecasino.kyiv.ua",
+    "img": "https://images.opencollective.com/online-casino-ua/175e529/logo.png",
+    "alt": "Онлайн Казино"
+  },
+  {
+    "url": "https://www.jobz.best/q-socket.io/",
+    "img": "https://images.opencollective.com/jobzbest/7052bcc/avatar.png",
+    "alt": "Jobz.best, Jobs search"
   }
 ]

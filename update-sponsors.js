@@ -102,6 +102,8 @@ const nodeToSponsor = node => (customLinks[node.account.slug] || {
   alt: node.account.name
 });
 
+const AMOUNT_PER_MONTH = 100;
+
 const main = async () => {
   console.log(`fetching sponsors from the graphql API`);
 
@@ -132,7 +134,7 @@ const main = async () => {
 
   const activeSponsors = sponsors
     .filter(n => {
-      const isSponsor = (!n.tier || n.tier.name === 'sponsors') && n.totalDonations.value >= 100;
+      const isSponsor = (!n.tier || n.tier.name === 'sponsors') && n.totalDonations.value >= AMOUNT_PER_MONTH;
       const isActive = activeMembers.has(n.account.slug);
       const hasWebsite = n.account.website;
 
@@ -140,7 +142,7 @@ const main = async () => {
     })
     .sort((a, b) => {
       const sortByDonation = b.totalDonations.value - a.totalDonations.value;
-      if (sortByDonation !== 0) {
+      if (Math.abs(sortByDonation) > AMOUNT_PER_MONTH) {
         return sortByDonation;
       }
       return a.createdAt.localeCompare(b.createdAt);
