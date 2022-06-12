@@ -131,13 +131,13 @@ io.on("connection", (socket) => {
     const { error, value } = userSchema.validate(payload);
     if (error) {
       return callback({
-        status: "OK",
+        status: "fail",
         error
       });
     }
     // do something with the value, and then
     callback({
-      status: "OK"
+      status: "success"
     });
   });
 
@@ -154,12 +154,12 @@ io.on("connection", (socket) => {
     try {
       const items = await findItems();
       callback({
-        status: "OK",
+        status: "success",
         items
       });
     } catch (e) {
       callback({
-        status: "NOK"
+        status: "fail"
       });
     }
   });
