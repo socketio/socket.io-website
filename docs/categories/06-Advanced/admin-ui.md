@@ -76,7 +76,7 @@ You should see the following modal:
 
 ![login modal screenshot](/images/admin-ui-login-modal.png)
 
-Please enter the URL of your server, including the namespace (for example, `http://localhost:3000/admin` or `https://example.com/admin`) and the credentials, if applicable (see the `auth` option [below](#auth)).
+Please enter the URL of your server (for example, `http://localhost:3000` or `https://example.com`) and the credentials, if applicable (see the `auth` option [below](#auth)).
 
 ### Available options
 
@@ -185,6 +185,24 @@ instrument(io, {
 });
 ```
 
+#### `mode`
+
+Default value: `development`
+
+In production mode, the server won't send all details about the socket instances and the rooms, thus reducing the memory footprint of the instrumentation.
+
+```js
+instrument(io, {
+  mode: "production"
+});
+```
+
+The production mode can also be enabled with the NODE_ENV environment variable:
+
+```
+NODE_ENV=production node index.js
+```
+
 ## How it works
 
 The source code can be found here: https://github.com/socketio/socket.io-admin-ui/
@@ -195,3 +213,9 @@ The `instrument` method simply:
 - register listeners for the `connection` and `disconnect` events for each existing namespaces to track the socket instances
 - register a timer which will periodically send stats from the server to the UI
 - register handlers for the `join`, `leave` and `_disconnect` commands sent from the UI
+
+## Latest releases
+
+- `0.4.0` (2022/06/23): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.4.0) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.3.0...0.4.0)
+- `0.3.0` (2022/05/03): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.3.0) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.2.0...0.3.0)
+- `0.2.0` (2021/06/11): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.2.0) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.1.2...0.2.0)
