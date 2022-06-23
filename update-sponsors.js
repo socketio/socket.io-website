@@ -34,20 +34,10 @@ const graphqlQuery = `query account {
 }`;
 
 const customLinks = {
-  airtract: {
-    url: "https://www.airtract.com",
-    img: "/images/sponsors/airtract.jpg",
-    alt: "AirTract"
-  },
   truevendor: {
     url: "https://www.ramotion.com/agency/ui-ux-design",
     img: "https://images.opencollective.com/truevendor/ddf2f01/logo.png",
     alt: "ui ux design agency"
-  },
-  pinkelephant: {
-    url: "https://akasse-fagforening.dk/",
-    img: "/images/sponsors/a-kasse.png",
-    alt: "a-kasse"
   },
   "veselin-lalev": {
     url: "https://casinodaddy.com",
@@ -59,11 +49,6 @@ const customLinks = {
     img: "https://images.opencollective.com/papersowl2/510de59/logo.png",
     alt: "Papersowl"
   },
-  "nettikasinot-suomalaisille": {
-    url: "https://www.nettikasinotsuomalaisille.com/nettikasinot-ilman-rekisteroitymista/",
-    img: "/images/sponsors/netti.png",
-    alt: "Nettikasinot Suomalaisille"
-  },
   "neue-online-casinos1": {
     url: "https://www.neueonline-casinos.com/",
     img: "/images/sponsors/neue.png",
@@ -74,16 +59,6 @@ const customLinks = {
     "img": "https://images.opencollective.com/vpsservercom/logo.png",
     "alt": "VPS Hosting"
   },
-  topvpnservice: {
-    "url": "https://www.topvpnservice.com/",
-    "img": "/images/sponsors/topvpnservice.png",
-    "alt": "TopVPNService"
-  },
-  "online-value-group1": {
-    url: "https://deutschercasinobonus.com/casino-ohne-deutsche-lizenz/",
-    img: "/images/sponsors/deutschercasinobonus.jpg",
-    alt: "Deutschercasinobonus.com"
-  },
   "quickbooks-tool-hub": {
     url: "https://quickbookstoolhub.com/",
     img: "/images/sponsors/quickbookstoolhub.png",
@@ -93,6 +68,11 @@ const customLinks = {
     url: "https://reddogcasino.com/en/games/blackjack",
     img: "https://images.opencollective.com/red-dog/49e9d6f/logo.png",
     alt: "RedDogCasino.com"
+  },
+  "leafletcasino-com": {
+    url: "https://leafletcasino.com/",
+    img: "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
+    alt: "leafletcasino.com"
   }
 }
 
