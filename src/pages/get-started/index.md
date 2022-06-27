@@ -28,3 +28,4 @@ A slightly more complex chat application, introducing [middlewares](/docs/v4/mid
 - [check the latency of the Socket.IO connection](/how-to/check-the-latency-of-the-connection)
 - [upload a file](/how-to/upload-a-file)
 - [use with React hooks](/how-to/use-with-react-hooks)
+- [register a global middleware](/how-to/register-a-global-middleware)
