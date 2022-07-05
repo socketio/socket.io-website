@@ -11,17 +11,17 @@ Starting with v3, Socket.IO now has first class support for [TypeScript](https:/
 First, declare some types:
 
 ```ts
-interface ServerToClientEvents {
+interface EmitEvents {
   noArg: () => void;
   basicEmit: (a: number, b: string, c: Buffer) => void;
   withAck: (d: string, callback: (e: number) => void) => void;
 }
 
-interface ClientToServerEvents {
+interface ListenEvents {
   hello: () => void;
 }
 
-interface InterServerEvents {
+interface ServerSideEvents {
   ping: () => void;
 }
 
