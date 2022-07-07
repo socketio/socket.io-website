@@ -33,6 +33,13 @@ const graphqlQuery = `query account {
   }
 }`;
 
+const customImages = new Map([
+  ["alessandro-rivieccio", { url: "https://www.casinosansdepot.com", img: "/images/sponsors/casinosansdepot.png", alt: "casinosansdepot" }],
+  ["casinoalpha", { url: "https://casinoalpha.com/", img: "/images/sponsors/casinoalpha.png", alt: "CasinoAlpha" }],
+  ["casinobonusca", { url: "https://casinobonusca.com/", img: "/images/sponsors/casinobonusca.png", alt: "CasinoBonusCa" }],
+  ["king10", { url: "https://kingcasinobonus.co.uk", img: "/images/sponsors/king10.png", alt: "KingCasinoBonus" }],
+]);
+
 const customLinks = {
   truevendor: {
     url: "https://www.ramotion.com/agency/ui-ux-design",
@@ -113,6 +120,21 @@ const main = async () => {
   const unique = new Set(activeMembers);
 
   const activeSponsors = sponsors
+    .map(n => {
+      const customImage = customImages.get(n.account.slug);
+      if (customImage) {
+        if (customImage.img) {
+          n.account.imageUrl = customImage.img;
+        }
+        if (customImage.url) {
+          n.account.website = customImage.url;
+        }
+        if (customImage.alt) {
+          n.account.name = customImage.alt;
+        }
+      }
+      return n;
+    })
     .filter(n => {
       const isSponsor = (!n.tier || n.tier.name === 'sponsors') && n.totalDonations.value >= AMOUNT_PER_MONTH;
       const isActive = activeMembers.has(n.account.slug);
