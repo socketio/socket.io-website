@@ -80,6 +80,11 @@ const customLinks = {
     url: "https://leafletcasino.com/",
     img: "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
     alt: "leafletcasino.com"
+  },
+  "casinotest-ltd": {
+    url: "https://www.casinotest.com/",
+    img: "https://images.opencollective.com/casinotest-ltd/7e3c899/logo.png",
+    alt: "CasinoTest Ltd."
   }
 }
 
