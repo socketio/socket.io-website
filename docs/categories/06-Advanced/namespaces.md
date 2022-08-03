@@ -126,7 +126,7 @@ nsp.on("connection", socket => {
 nsp.emit("hi", "everyone!");
 ```
 
-## Client initialization
+## Client initialization (connecting to a namespace from client)
 
 Same-origin version:
 
