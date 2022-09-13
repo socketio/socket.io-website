@@ -29,10 +29,11 @@ WebSocket is a communication protocol which provides a full-duplex and low-laten
 
 There are several Socket.IO server implementations available:
 
-- JavaScript (whose documentation can be found here on this website)
+- JavaScript (Node.js) (whose documentation can be found here on this website)
   - [Installation steps](../02-Server/server-installation.md)
   - [API](../../server-api.md)
   - [Source code](https://github.com/socketio/socket.io)
+- JavaScript (Deno): https://github.com/socketio/socket.io-deno
 - Java: https://github.com/mrniko/netty-socketio
 - Java: https://github.com/trinopoty/socket.io-server-java
 - Python: https://github.com/miguelgrinberg/python-socketio
