@@ -244,14 +244,17 @@ io.on("connection", (socket) => {
 
 Here is the list of possible reasons:
 
-Reason | Description
------- | -----------
-`server namespace disconnect` | The socket was forcefully disconnected with [socket.disconnect](../../server-api.md#socketdisconnectclose)
-`client namespace disconnect` | The client has manually disconnected the socket using [socket.disconnect()](../../client-api.md#socketdisconnect)
-`server shutting down` | The server is, well, shutting down
-`ping timeout` | The client did not send a PONG packet in the `pingTimeout` delay
-`transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
-`transport error` | The connection has encountered an error
+| Reason                        | Description                                                                                                                                  |
+|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| `server namespace disconnect` | The socket was forcefully disconnected with [socket.disconnect()](server-api.md#socketdisconnectclose).                                      |
+| `client namespace disconnect` | The client has manually disconnected the socket using [socket.disconnect()](client-api.md#socketdisconnect).                                 |
+| `server shutting down`        | The server is, well, shutting down.                                                                                                          |
+| `ping timeout`                | The client did not send a PONG packet in the `pingTimeout` delay.                                                                            |
+| `transport close`             | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G).                               |
+| `transport error`             | The connection has encountered an error.                                                                                                     |
+| `parse error`                 | The server has received an invalid packet from the client.                                                                                   |
+| `forced close`                | The server has received an invalid packet from the client.                                                                                   |
+| `forced server close`         | The client did not join a namespace in time (see the [`connectTimeout`](server-options.md#connecttimeout) option) and was forcefully closed. |
 
 ### `disconnecting`
 
