@@ -39,6 +39,7 @@ const customImages = new Map([
   ["casinobonusca", { url: "https://casinobonusca.com/", img: "/images/sponsors/casinobonusca.png", alt: "CasinoBonusCa" }],
   ["king10", { url: "https://kingcasinobonus.co.uk", img: "/images/sponsors/king10.png", alt: "KingCasinoBonus" }],
   ["gem-m", { url: "https://www.noneedtostudy.com/take-my-online-class/", img: "/images/sponsors/noneedtostudy.png", alt: "Pay someone to take my online class - NoNeedToStudy.com" }],
+  ["yana1", { url: "https://nongamstopcasinos.net/", img: "/images/sponsors/nongamstopcasinos.png", alt: "Non Gamstop Casinos" }],
 ]);
 
 const customLinks = {
