@@ -57,6 +57,7 @@ Here is the complete list of changes:
 - the default value of `maxHttpBufferSize` was decreased from `100MB` to `1MB`.
 - the WebSocket [permessage-deflate extension](https://tools.ietf.org/html/draft-ietf-hybi-permessage-compression-19) is now disabled by default
 - you must now explicitly list the domains that are allowed (for CORS, see [below](#cORS-handling))
+- the `withCredentials` option now defaults to `false` on the client side
 
 #### CORS handling
 
@@ -929,3 +930,36 @@ It seems that you are using a v3 client to connect to a v2 server, which is not 
 - `Object literal may only specify known properties, and 'extraHeaders' does not exist in type 'ConnectOpts'`
 
 Since the codebase has been rewritten to TypeScript (more information [here](#the-socketio-codebase-has-been-rewritten-to-typescript)), `@types/socket.io-client` is no longer needed and will actually conflict with the typings coming from the `socket.io-client` package.
+
+- missing cookie in a cross-origin context
+
+You now need to explicitly enable cookies if the front is not served from the same domain as the backend:
+
+*Server*
+
+```js
+import { Server } from "socket.io";
+
+const io = new Server({
+  cors: {
+    origin: ["https://front.domain.com"],
+    credentials: true
+  }
+});
+```
+
+*Client*
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io("https://backend.domain.com", {
+  withCredentials: true
+});
+````
+
+Reference:
+
+- [Handling CORS](../02-Server/handling-cors.md)
+- [`cors`](../../server-api.md#cors) option
+- [`withCredentials`](../../client-api.md#withcredentials) option

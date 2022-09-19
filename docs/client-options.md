@@ -254,6 +254,16 @@ Documentation: [WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/
 
 ### `withCredentials`
 
+<details className="changelog">
+    <summary>History</summary>
+
+| Version | Changes                                   |
+|---------|-------------------------------------------|
+| v3.0.0  | `withCredentials` now defaults to `false` |
+| v1.0.0  | First implementation.                     |
+
+</details>
+
 Default value: `false`
 
 Whether or not cross-site requests should made using credentials such as cookies, authorization headers or TLS client certificates. Setting `withCredentials` has no effect on same-site requests.
