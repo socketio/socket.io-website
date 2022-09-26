@@ -560,11 +560,6 @@
     "alt": "Campobet SE"
   },
   {
-    "url": "https://1394ta.org",
-    "img": "https://images.opencollective.com/1394ta-org/d655fd3/avatar.png",
-    "alt": "1394TA"
-  },
-  {
     "url": "https://speedypaper.com/",
     "img": "https://images.opencollective.com/speedypaper/b6b7aef/logo.png",
     "alt": "SpeedyPaper"
@@ -600,6 +595,11 @@
     "alt": "iBeesoft"
   },
   {
+    "url": "https://1394ta.org",
+    "img": "https://images.opencollective.com/1394ta-org/d655fd3/avatar.png",
+    "alt": "1394TA"
+  },
+  {
     "url": "https://playcasinoscanada.com/",
     "img": "https://images.opencollective.com/playcasinoscanadacom/69b4a7c/logo.png",
     "alt": "Playcasinoscanada.com"
@@ -615,6 +615,11 @@
     "alt": "SlotoKing Casino"
   },
   {
+    "url": "https://www.casinosansdepot.com",
+    "img": "/images/sponsors/casinosansdepot.png",
+    "alt": "casinosansdepot"
+  },
+  {
     "url": "https://codepilot.ai",
     "img": "https://images.opencollective.com/codepilotai/732befb/logo.png",
     "alt": "CodePilot.ai"
@@ -623,11 +628,6 @@
     "url": "https://tweaklab.org",
     "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
     "alt": "Roland Brönnimann"
-  },
-  {
-    "url": "https://www.casinosansdepot.com",
-    "img": "/images/sponsors/casinosansdepot.png",
-    "alt": "casinosansdepot"
   },
   {
     "url": "https://hellsbet.com/en-au/",
@@ -645,14 +645,14 @@
     "alt": "Jobz.best, Jobs search"
   },
   {
-    "url": "https://github.com/async-labs",
-    "img": "https://images.opencollective.com/kelly-burke/4bcce90/avatar.png",
-    "alt": "Kelly Burke"
-  },
-  {
     "url": "https://www.casimba.com/en-gb/",
     "img": "https://images.opencollective.com/casimba-casino/0506d6d/logo.png",
     "alt": "Casimba Casino"
+  },
+  {
+    "url": "https://github.com/async-labs",
+    "img": "https://images.opencollective.com/kelly-burke/4bcce90/avatar.png",
+    "alt": "Kelly Burke"
   },
   {
     "url": "https://binweevils.com",
@@ -735,11 +735,6 @@
     "alt": "Node Redis"
   },
   {
-    "url": "https://www.newcasinosaustralia.com/",
-    "img": "https://images.opencollective.com/new-casinos-australia1/c393880/logo.png",
-    "alt": "New Casinos Australia"
-  },
-  {
     "url": "https://stayatcasinos.com/",
     "img": "https://images.opencollective.com/stayatcasinos/be4e0dc/avatar.png",
     "alt": "Stayatcasinos.com"
@@ -771,7 +766,27 @@
   },
   {
     "url": "https://nongamstopcasinos.net/",
-    "img": "/images/sponsors/nongamstopcasinos.png",
+    "img": "https://images.opencollective.com/nongamstopcasinosnet/4f744a2/avatar.png",
     "alt": "Non Gamstop Casinos"
+  },
+  {
+    "url": "https://quickbookstoolhub.com",
+    "img": "https://images.opencollective.com/marky-daren/5ad034e/avatar.png",
+    "alt": "Quickbooks Tool Hub"
+  },
+  {
+    "url": "https://stake-casino.org",
+    "img": "https://images.opencollective.com/stake-casino/87608bf/avatar.png",
+    "alt": "Stake-casino.org"
+  },
+  {
+    "url": "https://www.allfreechips.com",
+    "img": "https://images.opencollective.com/chris61/avatar.png",
+    "alt": "Chris"
+  },
+  {
+    "url": "https://www.allfreechips.com",
+    "img": "https://images.opencollective.com/allfreechips/130613e/logo.png",
+    "alt": "Allfreechips"
   }
 ]

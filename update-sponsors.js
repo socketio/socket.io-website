@@ -143,7 +143,7 @@ const main = async () => {
       return n;
     })
     .filter(n => {
-      const isSponsor = (!n.tier || n.tier.name === 'sponsors') && n.totalDonations.value >= AMOUNT_PER_MONTH;
+      const isSponsor = (!n.tier || n.tier.name.toLowerCase() === 'sponsors') && n.totalDonations.value >= AMOUNT_PER_MONTH;
       const isActive = activeMembers.has(n.account.slug);
       const hasWebsite = n.account.website;
 
