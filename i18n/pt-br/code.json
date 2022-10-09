@@ -1,0 +1,276 @@
+{
+  "theme.NotFound.title": {
+    "message": "Pagína não Enconrada",
+    "description": "The title of the 404 page"
+  },
+  "theme.NotFound.p1": {
+    "message": "Nós não conseguimos encontrar a pagina que você estava procurando",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "Entre em contato com o proprietário do site, e informe que o link está quebrado",
+    "description": "The 2nd paragraph of the 404 page"
+  },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "Fechar",
+    "description": "The ARIA label for close button of announcement bar"
+  },
+  "theme.blog.archive.title": {
+    "message": "Arquivo",
+    "description": "The page & hero title of the blog archive page"
+  },
+  "theme.blog.archive.description": {
+    "message": "Arquivo",
+    "description": "The page & hero description of the blog archive page"
+  },
+  "theme.blog.paginator.navAriaLabel": {
+    "message": "Pagination de la liste des articles du blog",
+    "description": "The ARIA label for the blog pagination"
+  },
+  "theme.blog.paginator.newerEntries": {
+    "message": "Nouvelles entrées",
+    "description": "The label used to navigate to the newer blog posts page (previous page)"
+  },
+  "theme.blog.paginator.olderEntries": {
+    "message": "Anciennes entrées",
+    "description": "The label used to navigate to the older blog posts page (next page)"
+  },
+  "theme.blog.post.readingTime.plurals": {
+    "message": "Une minute de lecture|{readingTime} minutes de lecture",
+    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.blog.post.readMore": {
+    "message": "Leia mais sobre",
+    "description": "The label used in blog post item excerpts to link to full blog posts"
+  },
+  "theme.blog.post.paginator.navAriaLabel": {
+    "message": "Pagination des articles du blog",
+    "description": "The ARIA label for the blog posts pagination"
+  },
+  "theme.blog.post.paginator.newerPost": {
+    "message": "Article plus récent",
+    "description": "The blog post button label to navigate to the newer/previous post"
+  },
+  "theme.blog.post.paginator.olderPost": {
+    "message": "Article plus ancien",
+    "description": "The blog post button label to navigate to the older/next post"
+  },
+  "theme.blog.sidebar.navAriaLabel": {
+    "message": "Blog recent posts navigation",
+    "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.blog.post.plurals": {
+    "message": "Um artigo|{count} artigos",
+    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.blog.tagTitle": {
+    "message": "{nPosts} tagués avec « {tagName} »",
+    "description": "The title of the page for a blog tag"
+  },
+  "theme.tags.tagsPageLink": {
+    "message": "Voir tous les tags",
+    "description": "The label of the link targeting the tag list page"
+  },
+  "theme.CodeBlock.copyButtonAriaLabel": {
+    "message": "Copie o código",
+    "description": "The ARIA label for copy code blocks button"
+  },
+  "theme.CodeBlock.copied": {
+    "message": "Copiado",
+    "description": "The copied button label on code blocks"
+  },
+  "theme.CodeBlock.copy": {
+    "message": "Copiar",
+    "description": "The copy button label on code blocks"
+  },
+  "theme.docs.sidebar.expandButtonTitle": {
+    "message": "Déplier le menu latéral",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.docs.sidebar.expandButtonAriaLabel": {
+    "message": "Déplier le menu latéral",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.docs.paginator.navAriaLabel": {
+    "message": "Pagination des documents",
+    "description": "The ARIA label for the docs pagination"
+  },
+  "theme.docs.paginator.previous": {
+    "message": "Anterior",
+    "description": "The label used to navigate to the previous doc"
+  },
+  "theme.docs.paginator.next": {
+    "message": "Próximo",
+    "description": "The label used to navigate to the next doc"
+  },
+  "theme.docs.sidebar.collapseButtonTitle": {
+    "message": "Recolher menu lateral",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.collapseButtonAriaLabel": {
+    "message": "Recolher menu lateral",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "Um documento marcado|{count} documentos marcados",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "{nDocsTagged} com \"{tagName}\"",
+    "description": "The title of the page for a docs tag"
+  },
+  "theme.common.editThisPage": {
+    "message": "Editar está paginá",
+    "description": "The link label to edit the current page"
+  },
+  "theme.docs.versions.unreleasedVersionLabel": {
+    "message": "Esta é a documentação para a próxima versão {versionLabel} do {siteTitle}.",
+    "description": "The label used to tell the user that he's browsing an unreleased doc version"
+  },
+  "theme.docs.versions.unmaintainedVersionLabel": {
+    "message": "Esta é a documentação para {siteTitle} {versionLabel}, que não é mais mantido ativamente.",
+    "description": "The label used to tell the user that he's browsing an unmaintained doc version"
+  },
+  "theme.docs.versions.latestVersionSuggestionLabel": {
+    "message": "Para documentação atualizada, consulte o {latestVersionLink} ({versionLabel}).",
+    "description": "The label used to tell the user to check the latest version"
+  },
+  "theme.docs.versions.latestVersionLinkLabel": {
+    "message": "Última versão",
+    "description": "The label used for the latest version suggestion link label"
+  },
+  "theme.common.headingLinkTitle": {
+    "message": "Link direto para o título",
+    "description": "Title for link to heading"
+  },
+  "theme.lastUpdated.atDate": {
+    "message": " em {date}",
+    "description": "The words used to describe on which date a page has been last updated"
+  },
+  "theme.lastUpdated.byUser": {
+    "message": " por {user}",
+    "description": "The words used to describe by who the page has been last updated"
+  },
+  "theme.lastUpdated.lastUpdatedAtBy": {
+    "message": "Última atualização {atDate}{byUser}",
+    "description": "The sentence used to display when a page has been last updated, and by who"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "← Voltar ao menu principal",
+    "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
+  "theme.navbar.mobileVersionsDropdown.label": {
+    "message": "Versões",
+    "description": "The label for the navbar versions dropdown on mobile view"
+  },
+  "theme.common.skipToMainContent": {
+    "message": "Ir para o conteúdo principal",
+    "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+  },
+  "theme.TOCCollapsible.toggleButtonLabel": {
+    "message": "Nesta página",
+    "description": "The label used by the button on the collapsible TOC component"
+  },
+  "theme.tags.tagsListLabel": {
+    "message": "Tags :",
+    "description": "The label alongside a tag list"
+  },
+  "theme.SearchPage.documentsFound.plurals": {
+    "message": "Um documento encontrado|{count} documentos encontrados",
+    "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.SearchPage.existingResultsTitle": {
+    "message": "Resultados da busca por « {query} »",
+    "description": "The search page title for non-empty query"
+  },
+  "theme.SearchPage.emptyResultsTitle": {
+    "message": "Pesquise a documentação",
+    "description": "The search page title for empty query"
+  },
+  "theme.SearchPage.inputPlaceholder": {
+    "message": "Buscar pagína",
+    "description": "The placeholder for search page input"
+  },
+  "theme.SearchPage.inputLabel": {
+    "message": "Buscar pagína",
+    "description": "The ARIA label for search page input"
+  },
+  "theme.SearchPage.algoliaLabel": {
+    "message": "Menção de Algolia",
+    "description": "The ARIA label for Algolia mention"
+  },
+  "theme.SearchPage.noResultsText": {
+    "message": "Não possui resultados",
+    "description": "The paragraph for empty search result"
+  },
+  "theme.SearchPage.fetchingNewResults": {
+    "message": "Procurando novas buscas de resultado",
+    "description": "The paragraph for fetching new search results"
+  },
+  "theme.SearchBar.label": {
+    "message": "Buscar",
+    "description": "The ARIA label and placeholder for search button"
+  },
+  "theme.tags.tagsPageTitle": {
+    "message": "Tags",
+    "description": "The title of the tag list page"
+  },
+  "Performant": {
+    "message": "Eficiente"
+  },
+  ", providing a low-overhead communication channel between the server and the client.": {
+    "message": "Provendo um canal de comunicação de baixa-sobrecarga com o servidor e seu cliente"
+  },
+  "Reliable": {
+    "message": "Confiável"
+  },
+  "Rest assured! In case the WebSocket connection is not possible, it will fall back to HTTP long-polling. And if the connection is lost, the client will automatically try to reconnect.": {
+    "message": "Tenha certeza! Em caso de conexão com Websocket não for possivel, ele retornará um HTTP long polling. E se a conexão for perdida, o cliente tentará se reconectar automaticamente."
+  },
+  "Scalable": {
+    "message": "Escalavél"
+  },
+  "Scale to multiple servers and send events to all connected clients with ease.": {
+    "message": "Escale para multiplos servidores e envie eventos paratodos os clientes conectados com facilidade."
+  },
+  "Bidirectional and low-latency communication for every platform": {
+    "message": "Comunicação Bidirectional e com baixa-latencia para todas as plataformas"
+  },
+  "Get started": {
+    "message": "Comece"
+  },
+  "Documentation": {
+    "message": "Documentação"
+  },
+  "Our sponsors": {
+    "message": "Nossos Sponsors"
+  },
+  "Become a sponsor": {
+    "message": "Torne-se um Sponsor"
+  },
+  "In most cases, the connection will be established with WebSocket, providing a low-overhead communication channel between the server and the client.": {
+    "message": "Na maioria dos casos, a conexão será estabelecida com o WebSocket, fornecendo um canal de comunicação de baixa sobrecarga entre o servidor e o cliente."
+  },
+  "Basic example": {
+    "message": "Exemplo basíco"
+  },
+  "Run this example on": {
+    "message": "Execute esse exemplo"
+  },
+  "theme.ErrorPageContent.title": {
+    "message": "Está pagína parou",
+    "description": "The title of the fallback page when the page crashed"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "Tente novamente",
+    "description": "The label of the button to try again when the page crashed"
+  },
+  "theme.BackToTopButton.buttonAriaLabel": {
+    "message": "Voltar ao topo",
+    "description": "The ARIA label for the back to top button"
+  },
+  "theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel": {
+    "message": "Toggle the collapsible sidebar category '{label}'",
+    "description": "The ARIA label to toggle the collapsible sidebar category"
+  }
+}
