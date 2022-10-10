@@ -74,10 +74,7 @@ Você pode encontrar mais informações [aqui](https://github.com/socketio/socke
 
 Cria um novo *Manager* para a sua URL, e tentativas de reuso um *Manager* existente para chamadas subseqüente, a não ser que a option `multiplex` seja passada como `false`. Passando essa opção é o equivalente a passar  `"force new connection": true` ou `forceNew: true`.
 
-A new Socket instance is returned for the namespace specified by the pathname in the URL, defaulting to /. For example, if the url is http://localhost/users, a transport connection will be established to http://localhost and a Socket.IO connection will be established to /users.
-
-Uma nova instancia de *Socket* é retornada para o *Namespace* especificado pelo pathname da URL, padronizada por /. Por exemplo, si a `url` é `http://localhost/users`, um transporte de conexão irá se estabelecer em `http://localhost` e uma conexão Socket.IO irá se estabilizar em `/users`.
-
+Uma nova instancia de *Socket* é retornada para o *Namespace* especificado pelo pathname da URL, padronizada por `/`. Por exemplo, si a `url` é `http://localhost/users`, um transporte de conexão irá se estabelecer em `http://localhost` e uma conexão Socket.IO irá se estabilizar em `/users`.
 
 Parametros de Consulta (Query parameters) tambem podem ser fornecidos, sejá com uma opção `query` ou direcionando para a url (exemplo: `http://localhost/users?token=abc`).
 
@@ -115,7 +112,6 @@ const socket = manager.socket("/my-namespace", {
   }
 });
 ```
-The complete list of available options can be found here.
 A lista completa de opções disponiveis pode ser encontradas [aqui](client-options.md).
 
 ## Manager {#manager}
@@ -368,43 +364,44 @@ socket.on("connect", () => {
 
   - [`<Manager>`](#manager)
 
-Une référence au [*Manager*](#manager) sous-jacent.
+Uma referência ao [*Manager*](#manager) subjacente.
 
 ```js
 socket.on("connect", () => {
   const engine = socket.io.engine;
-  console.log(engine.transport.name); // dans la plupart des cas, affiche "polling"
+  console.log(engine.transport.name);  // na maioria dos casos imprime "polling"
 
   engine.once("upgrade", () => {
-    // émis lorsque le transport est mis à jour (exemple : de HTTP long-polling vers WebSocket)
-    console.log(engine.transport.name); // dans la plupart des cas, affiche "websocket"
+        // chamaodo quando o transporte é atualizado (exemplo: de HTTP long polling para WebSocket)
+    console.log(engine.transport.name); // na maioria dos casos, imprime "websocket"
   });
 
   engine.on("packet", ({ type, data }) => {
-    // émis pour chaque paquet reçu
+      // chamado para cada pacote recebida
   });
 
   engine.on("packetCreate", ({ type, data }) => {
-    // appelé pour chaque paquet envoyé
+      // chamado para cada pacote criado recebida
   });
 
   engine.on("drain", () => {
-    // appelé lorsque le tampon d'écriture est vidé
+
+    // chamado quando o buffer de gravação é drenado
   });
 
   engine.on("close", (reason) => {
-    // appelé lorsque la connexion sous-jacente est fermée
+    // chamado quando a conexão subjacente é fechada
   });
 });
 ```
 
 ### socket.connect() {#socketconnect}
 
-*Ajoutée en v1.0.0*
+*Atualizado na v1.0.0*
 
   - **Retorna** *Socket*
 
-Connecte manuellement le *Socket*.
+Conecta manualmente o *Socket*.
 
 ```js
 const socket = io({
@@ -415,7 +412,7 @@ const socket = io({
 socket.connect();
 ```
 
-Cette méthode peut également être utilisée pour se reconnecter manuellement :
+Este método também pode ser usado para reconectar manualmente:
 
 ```js
 socket.on("disconnect", () => {
@@ -425,7 +422,7 @@ socket.on("disconnect", () => {
 
 ### socket.open() {#socketopen}
 
-*Ajoutée en v1.0.0*
+*Atualizado na v1.0.0*
 
 Sinônimo de [socket.connect()](#socketconnect).
 
@@ -435,7 +432,7 @@ Sinônimo de [socket.connect()](#socketconnect).
   - `ack` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
   - **Retorna** [`<Socket>`](#socket)
 
-Envoie un événement `message`. Voir [socket.emit(eventName[, ...args][, ack])](#socketemiteventname-args-ack).
+Envia um evento `message`. Veja [socket.emit(eventName[, ...args][, ack])](#socketemiteventname-args-ack).
 
 ### socket.emit(eventName[, ...args][, ack]) {#socketemiteventname-args-ack}
 
@@ -444,20 +441,20 @@ Envoie un événement `message`. Voir [socket.emit(eventName[, ...args][, ack])]
   - `ack` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
   - **Retorna** `true`
 
-Émet un événement. Tout autre paramètre peut être inclus. Toutes les structures de données sérialisables sont prises en charge, y compris `Buffer` et `TypedArray`.
+Emite um evento para o identificar o socket pelo nome da string. Qualquer outro parâmentro pode ser incluido. Todas as estruturas de dados serializáveis ​​são suportadas, incluindo`Buffer`
 
 ```js
 socket.emit("hello", "world");
 socket.emit("with-binary", 1, "2", { 3: "4", 5: Buffer.from([6, 7, 8]) });
 ```
-
-L'argument `ack` est facultatif et sera appelé avec l'accusé de réception du serveur.
+The ack argument is optional and will be called with the server answer.
+O argumento `ack` é opcional e pode ser chamado com a resposta do servidor.
 
 *Client*
 
 ```js
-socket.emit("bonjour", "ô monde", (response) => {
-  console.log(response); // "bien reçu !"
+socket.emit("hello", "world", (response) => {
+  console.log(response); // "Entendi !"
 });
 ```
 
@@ -466,33 +463,33 @@ socket.emit("bonjour", "ô monde", (response) => {
 ```js
 io.on("connection", (socket) => {
   socket.on("bonjour", (arg, callback) => {
-    console.log(arg); // "ô monde"
-    callback("bien reçu !");
+    console.log(arg); // "world"
+    callback("Entendi !");
   });
 });
 ```
 
 ### socket.on(eventName, callback) {#socketoneventname-callback}
 
-*Héritée de la classe [EventEmitter](https://www.npmjs.com/package/@socket.io/component-emitter).*
+*Herdado da classe [EventEmitter](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
-- `eventName` [`<string>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_string) | [`<symbol>`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Data_structures#le_type_symbole)
+- `eventName` [`<string>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_string) | [`<symbol>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#symbol_type)
 - `listener` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
 - **Retorna** [`<Socket>`](#socket)
 
-Ajoute la fonction `listener` au tableau des auditeurs pour l'événement nommé `eventName`.
+Registre um novo manipulador para o evento fornecido.
 
 ```js
 socket.on("news", (data) => {
   console.log(data);
 });
 
-// avec plusieurs arguments
+// com vários argumentos
 socket.on("news", (arg1, arg2, arg3, arg4) => {
   // ...
 });
 
-// avec un accusé de réception
+// com callback
 socket.on("news", (cb) => {
   cb(0);
 });
@@ -500,9 +497,9 @@ socket.on("news", (cb) => {
 
 ### socket.once(eventName, callback) {#socketonceeventname-callback}
 
-*Héritée de la classe [EventEmitter](https://www.npmjs.com/package/@socket.io/component-emitter).*
+*Herdado da classe [EventEmitter](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
-- `eventName` [`<string>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_string) | [`<symbol>`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Data_structures#le_type_symbole)
+- `eventName` [`<string>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_string) | [`<symbol>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#symbol_type)
 - `listener` [`<Function>`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Globa-Ul_Objects/Function)
 - **Retorna** [`<Socket>`](#socket)
 
@@ -518,7 +515,7 @@ socket.once("my-event", () => {
 
 *Héritée de la classe [EventEmitter](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
-- `eventName` [`<string>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_string) | [`<symbol>`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Data_structures#le_type_symbole)
+- `eventName` [`<string>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_string) | [`<symbol>`](hhttps://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#symbol_type)
 - `listener` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
 - **Retorna** [`<Socket>`](#socket)
 
@@ -626,7 +623,7 @@ socket.compress(false).emit("an event", { some: "data" });
 
 ### socket.timeout(value) {#sockettimeoutvalue}
 
-*Ajoutée en v4.4.0*
+*Adicionado na v4.4.0*
 
 - `value` [`<number>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_number)
 - **Retorna** [`<Socket>`](#socket)
@@ -643,7 +640,7 @@ socket.timeout(5000).emit("my-event", (err) => {
 
 ### socket.disconnect() {#socketdisconnect}
 
-*Ajoutée en v1.0.0*
+*Adicionado na v1.0.0*
 
   - **Retorna** [`<Socket>`](#socket)
 
@@ -658,13 +655,13 @@ S'il s'agit du dernier *Socket* actif du *Manager*, la connexion de bas niveau s
 
 ### socket.close() {#socketclose}
 
-*Ajoutée en v1.0.0*
+*Adicionado na v1.0.0*
 
 Sinônimo de [socket.disconnect()](#socketdisconnect).
 
-### Drapeau : 'volatile' {#flag-volatile}
+### Flag: 'volatile {#flag-volatile}
 
-*Ajouté en v3.0.0*
+*Adicionado na v3.0.0*
 
 Définit un modificateur pour l'émission d'événement ultérieure indiquant que le paquet peut être abandonné si :
 
@@ -672,12 +669,12 @@ Définit un modificateur pour l'émission d'événement ultérieure indiquant qu
 - le transport de bas niveau n'est pas accessible en écriture (par exemple, lorsqu'une requête "POST" est déjà en cours d'exécution en mode HTTP long-polling)
 
 ```js
-socket.volatile.emit(/* ... */); // le serveur recevra peut-être ce paquet
+socket.volatile.emit(/* ... */); // o servidor pode ou não receber
 ```
 
 ### Event : 'connect' {#event-connect}
 
-Émis lors de la connexion au *Namespace* (y compris après une reconnexion réussie).
+Emite após a conexão com o NameSpace (incluindo uma reconexão bem-sucedida).
 
 ```js
 socket.on("connect", () => {
@@ -685,9 +682,9 @@ socket.on("connect", () => {
 });
 ```
 
-:::caution
+:::Cuidado
 
-Vous ne devez pas ajouter d'auditeur lors de l'évènement `connect`, car un nouvel auditeur sera ajouté à chaque fois que le *Socket* se reconnectera :
+Por favor note que você não deve registrar manipuladores de eventos no `connect` no próprio manipulador, pois um novo manipulador será registrado toda vez que o *Socket*  se reconectar:
 
 ```js
 // BAD
