@@ -34,7 +34,12 @@ interface SocketData {
 And use them when creating your server:
 
 ```ts
-const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>();
+const io = new Server<
+  ClientToServerEvents,
+  ServerToClientEvents,
+  InterServerEvents,
+  SocketData
+>();
 ```
 
 Then, profit from the help of your IDE!
@@ -122,5 +127,64 @@ socket.on("basicEmit", (a, b, c) => {
 
 socket.on("withAck", (d, callback) => {
   // d is inferred as string and callback as a function that takes a number as argument
+});
+```
+
+## Custom types for each namespace
+
+Since each [Namespace](../06-Advanced/namespaces.md) can have its own set of events, you can also provide some types for
+each one of them:
+
+```ts
+import { Server } from "socket.io";
+
+// types for the main namespace
+const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>();
+
+// types for the namespace named "/my-namespace"
+interface NamespaceSpecificClientToServerEvents {
+  foo: (arg: string) => void
+}
+
+interface NamespaceSpecificServerToClientEvents {
+  bar: (arg: string) => void;
+}
+
+interface NamespaceSpecificInterServerEvents {
+  // ...
+}
+
+interface NamespaceSpecificSocketData {
+  // ...
+}
+
+const myNamespace: Namespace<
+  NamespaceSpecificClientToServerEvents,
+  NamespaceSpecificServerToClientEvents,
+  NamespaceSpecificInterServerEvents,
+  NamespaceSpecificSocketData
+  > = io.of("/my-namespace");
+
+myNamespace.on("connection", (socket) => {
+  socket.on("foo", () => {
+    // ...
+  });
+
+  socket.emit("bar", "123");
+});
+```
+
+And on the client side:
+
+```ts
+import { io, Socket } from "socket.io-client";
+
+const socket: Socket<
+  NamespaceSpecificServerToClientEvents,
+  NamespaceSpecificClientToServerEvents
+  > = io("/my-namespace");
+
+socket.on("bar", (arg) => {
+  console.log(arg); // "123"
 });
 ```
