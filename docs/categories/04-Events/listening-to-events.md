@@ -166,19 +166,30 @@ io.on("connection", (socket) => {
 });
 ```
 
-On the server-side, using `EventEmitter.captureRejections = true` (experimental, see [here](https://nodejs.org/api/events.html#events_capture_rejections_of_promises)) might be interesting too, depending on your use case.
+This can be refactored into:
 
 ```js
-require("events").captureRejections = true;
-
-io.on("connection", (socket) => {
-  socket.on("list products", async () => {
-    const products = await findProducts();
-    socket.emit("products", products);
-  });
-
-  socket[Symbol.for('nodejs.rejection')] = (err) => {
-    socket.emit("error", err);
+const errorHandler = (handler) => {
+  const handleError = (err) => {
+    console.error("please handle me", err);
   };
-});
+
+  return (...args) => {
+    try {
+      const ret = handler.apply(this, args);
+      if (ret && typeof ret.catch === "function") {
+        // async handler
+        ret.catch(handleError);
+      }
+    } catch (e) {
+      // sync handler
+      handleError(e);
+    }
+  };
+};
+
+// server or client side
+socket.on("hello", errorHandler(() => {
+  throw new Error("let's panic");
+}));
 ```
