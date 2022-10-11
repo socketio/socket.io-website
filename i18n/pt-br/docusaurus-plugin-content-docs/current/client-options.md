@@ -1,131 +1,124 @@
 ---
-title: Opções para clientes
+title: Client options
 sidebar_label: Options
 sidebar_position: 2
 slug: /client-options/
 ---
 
-### Em breve
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-<!-- ## Options d'initialisation {#io-factory-options}
 
-### `forceNew` {#forcenew}
+## IO factory options
 
-Valeur par défaut : `false`
+### `forceNew`
 
-Indique s'il faut créer une nouvelle instance de *Manager*.
+Default value: `false`
 
-Un *Manager* est en charge de la connexion de bas niveau vers le serveur (établie avec le transport HTTP long-polling ou WebSocket). Il gère notamment la logique de reconnexion.
+Whether to create a new Manager instance.
 
-Un *Socket* est l'interface utilisée pour envoyer des événements au serveur et en recevoir. Il appartient à un [*Namespace*](categories/06-Advanced/namespaces.md) donné.
+A Manager instance is in charge of the low-level connection to the server (established with HTTP long-polling or WebSocket). It handles the reconnection logic.
 
-Un même *Manager* peut être rattaché à plusieurs *Sockets*.
+A Socket instance is the interface which is used to sends events to — and receive events from — the server. It belongs to a given [namespace](categories/06-Advanced/namespaces.md).
 
-Dans l'exemple suivant, un même *Manager* est utilisé pour les 3 *Sockets* (une seule connexion WebSocket) :
+A single Manager can be attached to several Socket instances.
 
-```js
-const socket = io("https://example.com"); // le namespace principal
-const productSocket = io("https://example.com/product"); // le namespace "product"
-const orderSocket = io("https://example.com/order"); // le namespace "order"
-```
-
-Dans l'exemple suivant, 3 *Managers* différents sont créés (et donc 3 connexions WebSocket distinctes) :
+The following example will reuse the same Manager instance for the 3 Socket instances (one single WebSocket connection):
 
 ```js
-const socket = io("https://example.com"); // le namespace principal
-const productSocket = io("https://example.com/product", { forceNew: true }); // le namespace "product"
-const orderSocket = io("https://example.com/order", { forceNew: true }); // le namespace "order"
+const socket = io("https://example.com"); // the main namespace
+const productSocket = io("https://example.com/product"); // the "product" namespace
+const orderSocket = io("https://example.com/order"); // the "order" namespace
 ```
 
-La réutilisation d'un *Namespace* existant créera également un nouveau *Manager* à chaque fois :
+The following example will create 3 different Manager instances (and thus 3 distinct WebSocket connections):
 
 ```js
-const socket1 = io(); // création d'un 1er manager
-const socket2 = io(); // création d'un 2ème manager
-const socket3 = io("/admin"); // réutilisation du 1er manager
-const socket4 = io("/admin"); // création d'un 3ème manager
+const socket = io("https://example.com"); // the main namespace
+const productSocket = io("https://example.com/product", { forceNew: true }); // the "product" namespace
+const orderSocket = io("https://example.com/order", { forceNew: true }); // the "order" namespace
 ```
 
-### `multiplex` {#multiplex}
-
-Valeur par défaut : `true`
-
-L'opposé de `forceNew` : indique s'il faut réutiliser un *Manager* existant.
+Reusing an existing namespace will also create a new Manager each time:
 
 ```js
-const socket = io(); // création d'un 1er manager
-const adminSocket = io("/admin", { multiplex: false }); // création d'un 2ème manager
+const socket1 = io(); // 1st manager
+const socket2 = io(); // 2nd manager
+const socket3 = io("/admin"); // reuse the 1st manager
+const socket4 = io("/admin"); // 3rd manager
 ```
 
-## Options du client Engine.IO sous-jacent {#low-level-engine-options}
+### `multiplex`
+
+Default value: `true`
+
+The opposite of `forceNew`: whether to reuse an existing Manager instance.
+
+```js
+const socket = io(); // 1st manager
+const adminSocket = io("/admin", { multiplex: false }); // 2nd manager
+```
+
+## Low-level engine options
 
 :::info
 
-Ces paramètres seront communs à tous les *Sockets* rattachés à un même *Manager*.
+These settings will be shared by all Socket instances attached to the same Manager.
 
 :::
 
-### `transports` {#transports}
+### `transports`
 
-Valeur par défaut : `["polling", "websocket"]`
+Default value: `["polling", "websocket"]`
 
-La connexion de bas niveau au serveur Socket.IO peut être établie soit avec :
+The low-level connection to the Socket.IO server can either be established with:
 
-- HTTP long-polling : requêtes HTTP successives (`POST` pour l'écriture, `GET` pour la lecture)
-- [WebSocket](https://fr.wikipedia.org/wiki/WebSocket)
+- HTTP long-polling: successive HTTP requests (`POST` for writing, `GET` for reading)
+- [WebSocket](https://en.wikipedia.org/wiki/WebSocket)
 
-Dans l'exemple suivant, le transport HTTP long-polling est désactivé :
+The following example disables the HTTP long-polling transport:
 
 ```js
 const socket = io("https://example.com", { transports: ["websocket"] });
 ```
 
-Note : dans ce cas, les sessions persistantes (« sticky sessions ») ne sont pas nécessaires côté serveur (plus d'informations [ici](categories/02-Server/using-multiple-nodes.md)).
+Note: in that case, sticky sessions are not required on the server side (more information [here](categories/02-Server/using-multiple-nodes.md)).
 
-Par défaut, une connexion HTTP long-polling est établie en premier, puis une mise à niveau vers WebSocket est tentée (ce mécanisme est expliqué [ici](categories/01-Documentation/how-it-works.md#upgrade-mechanism)). Vous pouvez forcer l'utilisation du transport WebSocket en premier avec :
+By default, the HTTP long-polling connection is established first, and then an upgrade to WebSocket is attempted (explanation [here](categories/01-Documentation/how-it-works.md#upgrade-mechanism)). You can use WebSocket first with:
 
 ```js
 const socket = io("https://example.com", {
-  transports: ["websocket", "polling"] // utilisation du transport WebSocket en premier, si possible
+  transports: ["websocket", "polling"] // use WebSocket first, if available
 });
 
 socket.on("connect_error", () => {
-  // retour au fonctionnement classique en cas d'erreur
+  // revert to classic upgrade
   socket.io.opts.transports = ["polling", "websocket"];
 });
 ```
 
-:::caution
+One possible downside is that the validity of your [CORS configuration](categories/02-Server/handling-cors.md) will only be checked if the WebSocket connection fails to be established.
 
-Dans ce cas, la validité de votre [configuration CORS](categories/02-Server/handling-cors.md) ne sera vérifiée que dans les rares cas où la connexion WebSocket ne parvient pas à être établie.
+### `upgrade`
 
-:::
+Default value: `true`
 
-### `upgrade` {#upgrade}
+Whether the client should try to upgrade the transport from HTTP long-polling to something better.
 
-Valeur par défaut : `true`
+### `rememberUpgrade`
 
-Indique si le client doit tenter de mettre à niveau le transport utilisé pour la connexion vers le serveur (HTTP long-polling vers WebSocket par exemple).
+Default value: `false`
 
-### `rememberUpgrade` {#rememberupgrade}
+If true and if the previous WebSocket connection to the server succeeded, the connection attempt will bypass the normal upgrade process and will initially try WebSocket. A connection attempt following a transport error will use the normal upgrade process. It is recommended you turn this on only when using SSL/TLS connections, or if you know that your network does not block websockets.
 
-Valeur par défaut : `false`
+### `path`
 
-Si cette option est activée et si la connexion WebSocket précédente a réussi, alors la tentative de reconnexion contournera le processus de mise à niveau normal et essaiera d'établir une connexion WebSocket directement. Une tentative de connexion suite à une erreur de transport utilisera le processus de mise à niveau normal.
+Default value: `/socket.io/`
 
-Il est recommandé d'activer cette option uniquement lorsque vous utilisez des connexions SSL/TLS ou si vous savez que votre réseau ne bloque pas les WebSockets.
-
-### `path` {#path}
-
-Valeur par défaut : `/socket.io/`
-
-Il s'agit du chemin qui est capturé côté serveur.
+It is the name of the path that is captured on the server side.
 
 :::caution
 
-Les valeurs côté serveur et côté client doivent correspondre (sauf si vous utilisez un proxy effectuant une réécriture de chemin entre les deux).
+The server and the client values must match (unless you are using a path-rewriting proxy in between).
 
 :::
 
@@ -139,7 +132,7 @@ const socket = io("https://example.com", {
 });
 ```
 
-*Serveur*
+*Server*
 
 ```js
 import { createServer } from "http";
@@ -151,9 +144,9 @@ const io = new Server(httpServer, {
 });
 ```
 
-Veuillez noter que ceci est différent du chemin dans l'URI, qui représente le [*Namespace*](categories/06-Advanced/namespaces.md).
+Please note that this is different from the path in the URI, which represents the [Namespace](categories/06-Advanced/namespaces.md).
 
-Exemple :
+Example:
 
 ```js
 import { io } from "socket.io-client";
@@ -163,16 +156,16 @@ const socket = io("https://example.com/order", {
 });
 ```
 
-- le *Socket* est rattaché au *Namespace* "order"
-- les requêtes HTTP ressembleront à : `GET https://example.com/my-custom-path/?EIO=4&transport=polling&t=ML4jUwU`
+- the Socket instance is attached to the "order" Namespace
+- the HTTP requests will look like: `GET https://example.com/my-custom-path/?EIO=4&transport=polling&t=ML4jUwU`
 
-### `query` {#query}
+### `query`
 
-Valeur par défaut : -
+Default value: -
 
-Paramètres de requête HTTP additionnels (que l'on retrouve ensuite dans l'objet `socket.handshake.query` côté serveur).
+Additional query parameters (then found in `socket.handshake.query` object on the server-side).
 
-Exemple :
+Example:
 
 *Client*
 
@@ -186,15 +179,15 @@ const socket = io({
 });
 ```
 
-*Serveur*
+*Server*
 
 ```js
 io.on("connection", (socket) => {
-  console.log(socket.handshake.query); // affiche { x: "42", EIO: "4", transport: "polling" }
+  console.log(socket.handshake.query); // prints { x: "42", EIO: "4", transport: "polling" }
 });
 ```
 
-Les paramètres de requête HTTP ne peuvent pas être mis à jour pendant la durée de la session, donc la modification de l'option `query` côté client ne sera effective que lorsque la session en cours sera fermée et qu'une nouvelle sera créée :
+The query parameters cannot be updated for the duration of the session, so changing the `query` on the client-side will only be effective when the current session gets closed and a new one is created:
 
 ```js
 socket.io.on("reconnect_attempt", () => {
@@ -202,25 +195,21 @@ socket.io.on("reconnect_attempt", () => {
 });
 ```
 
-:::info
+Note: the following query parameters are reserved and can't be used in your application:
 
-Les paramètres de requête HTTP suivants sont réservés et ne peuvent pas être utilisés dans votre application :
+- `EIO`: the version of the protocol (currently, "4")
+- `transport`: the transport name ("polling" or "websocket")
+- `sid`: the session ID
+- `j`: if the transport is polling but a JSONP response is required
+- `t`: a hashed-timestamp used for cache-busting
 
-- `EIO`: la version du protocole ("4" actuellement)
-- `transport`: le nom du transport ("polling" ou "websocket")
-- `sid`: l'ID de session
-- `j`: si une réponse JSONP est requise
-- `t`: un horodatage haché utilisé pour le contournement du cache (« cache busting »)
+### `extraHeaders`
 
-:::
+Default value: -
 
-### `extraHeaders` {#extraheaders}
+Additional headers (then found in `socket.handshake.headers` object on the server-side).
 
-Valeur par défaut : -
-
-En-têtes HTTP additionnels (que l'on retrouve ensuite dans l'objet `socket.handshake.headers` côté serveur).
-
-Exemple :
+Example:
 
 *Client*
 
@@ -234,17 +223,17 @@ const socket = io({
 });
 ```
 
-*Serveur*
+*Server*
 
 ```js
 io.on("connection", (socket) => {
-  console.log(socket.handshake.headers); // un objet contenant "my-custom-header": "1234"
+  console.log(socket.handshake.headers); // an object containing "my-custom-header": "1234"
 });
 ```
 
 :::caution
 
-Dans un navigateur, l'option `extraHeaders` sera ignorée si vous activez uniquement le transport WebSocket, car l'API WebSocket ne permet pas de fournir des en-têtes HTTP personnalisés dans le navigateur.
+In a browser environment, the `extraHeaders` option will be ignored if you only enable the WebSocket transport, since the WebSocket API in the browser does not allow providing custom headers.
 
 ```js
 import { io } from "socket.io-client";
@@ -257,19 +246,27 @@ const socket = io({
 });
 ```
 
-Par contre, cela fonctionnera pour un client Node.js ou en React-Native.
+This will work in Node.js or in React-Native though.
 
 :::
 
-Documentation : [WebSocket API](https://developer.mozilla.org/fr/docs/Web/API/WebSockets_API)
+Documentation: [WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
 
-### `withCredentials` {#withcredentials}
+### `withCredentials`
 
-Valeur par défaut : `false`
+<details className="changelog">
+    <summary>History</summary>
 
-Si les demandes intersites doivent ou non être effectuées à l'aide d'informations d'identification telles que des cookies, des en-têtes d'autorisation ou des certificats client TLS.
+| Version | Changes                                   |
+|---------|-------------------------------------------|
+| v3.0.0  | `withCredentials` now defaults to `false` |
+| v1.0.0  | First implementation.                     |
 
-L'option `withCredentials` n'a aucun effet sur les requêtes effectuées sur un même site.
+</details>
+
+Default value: `false`
+
+Whether or not cross-site requests should made using credentials such as cookies, authorization headers or TLS client certificates. Setting `withCredentials` has no effect on same-site requests.
 
 ```js
 import { io } from "socket.io-client";
@@ -279,7 +276,7 @@ const socket = io("https://my-backend.com", {
 });
 ```
 
-Le serveur doit envoyer les bons en-têtes `Access-Control-Allow-* ` pour autoriser la connexion :
+The server needs to send the right `Access-Control-Allow-* ` headers to allow the connection:
 
 ```js
 import { createServer } from "http";
@@ -296,7 +293,7 @@ const io = new Server(httpServer, {
 
 :::caution
 
-Vous ne pouvez pas utiliser `origin: *` lorsque vous définissez `withCredentials` sur `true`. Cela déclenchera l'erreur suivante :
+You cannot use `origin: *` when setting `withCredentials` to `true`. This will trigger the following error:
 
 > <i>Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at ‘.../socket.io/?EIO=4&transport=polling&t=NvQfU77’. (Reason: Credential is not supported if the CORS header ‘Access-Control-Allow-Origin’ is ‘*’)</i>
 
@@ -304,52 +301,46 @@ Vous ne pouvez pas utiliser `origin: *` lorsque vous définissez `withCredential
 
 Documentation:
 
-- [XMLHttpRequest.withCredentials](https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest/withCredentials)
-- [Configuration CORS](categories/02-Server/handling-cors.md)
+- [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
+- [Handling CORS](categories/02-Server/handling-cors.md)
 
-### `forceBase64` {#forcebase64}
+### `forceBase64`
 
-Valeur par défaut : `false`
+Default value: `false`
 
-S'il faut forcer l'encodage base64 pour le contenu binaire envoyé via WebSocket (toujours activé pour le transport HTTP long-polling).
+Whether to force base64 encoding for binary content sent over WebSocket (always enabled for HTTP long-polling).
 
-### `timestampRequests` {#timestamprequests}
+### `timestampRequests`
 
-Valeur par défaut : `true`
+Default value: `true`
 
-S'il faut ajouter le paramètre de requête HTTP d'horodatage à chaque requête pour le contournement du cache (« cache busting »).
+Whether to add the timestamp query param to each request (for cache busting).
 
-### `timestampParam` {#timestampparam}
+### `timestampParam`
 
-Valeur par défaut : `"t"`
+Default value: `"t"`
 
-Le nom du paramètre de requête HTTP à utiliser comme clé d'horodatage.
+The name of the query parameter to use as our timestamp key.
 
-### `closeOnBeforeunload` {#closeonbeforeunload}
+### `closeOnBeforeunload`
 
-*Ajouté en v4.1.0*
+*Added in v4.1.0*
 
-Valeur par défaut : `true`
+Default value: `true`
 
-Indique s'il faut (silencieusement) fermer la connexion lorsque l'événement [`beforeunload`](https://developer.mozilla.org/fr/docs/Web/API/Window/beforeunload_event) est émis dans le navigateur.
+Whether to (silently) close the connection when the [`beforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event) event is emitted in the browser.
 
-Avec `closeOnBeforeunload` défini à `false`, un événement `disconnect` sera émis par le *Socket* lorsque l'utilisateur rechargera la page sur Firefox (mais pas sur Chrome ou Safari).
+With `closeOnBeforeunload` set to `false`, a `disconnect` event will be emitted by the Socket instance when the user reloads the page on Firefox (but not on Chrome or Safari).
 
-Avec `closeOnBeforeunload` défini à `true`, tous les navigateurs auront le même comportement (pas d'événement `disconnect` lors du rechargement de la page).
+With `closeOnBeforeunload` set to `true`, all browsers will have the same behavior (no `disconnect` event when reloading the page). But this might cause issues if you use the `beforeunload` event in your application.
 
-:::caution
+### `protocols`
 
-Si vous utilisez l'événement `beforeunload` dans votre application, pensez à désactiver cette option.
+*Added in v2.0.0*
 
-:::
+Default value: -
 
-### `protocols` {#protocols}
-
-*Ajouté en v2.0.0*
-
-Valeur par défaut : -
-
-Une valeur qui est une chaîne de caractères représentant un seul protocole ou un tableau de chaînes de caractères représentant une liste de protocoles. Ces chaînes de caractères indiquent des sous-protocoles : un serveur donné pourra implémenter différents sous-protocoles WebSocket (on peut vouloir qu'un serveur soit capable de gérer différents types d'intéraction selon le protocol indiqué).
+Either a single protocol string or an array of protocol strings. These strings are used to indicate sub-protocols, so that a single server can implement multiple WebSocket sub-protocols (for example, you might want one server to be able to handle different types of interactions depending on the specified protocol).
 
 ```js
 import { io } from "socket.io-client";
@@ -360,27 +351,27 @@ const socket = io({
 });
 ```
 
-*Serveur*
+Server:
 
 ```js
 io.on("connection", (socket) => {
   const transport = socket.conn.transport;
-  console.log(transport.socket.protocol); // affiche "my-protocol-v1"
+  console.log(transport.socket.protocol); // prints "my-protocol-v1"
 });
 ```
 
-Références :
+References:
 
 - https://datatracker.ietf.org/doc/html/rfc6455#section-1.9
-- https://developer.mozilla.org/fr/docs/Web/API/WebSocket/WebSocket
+- https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket
 
-### `autoUnref` {#autounref}
+### `autoUnref`
 
-*Ajouté en v4.0.0*
+*Added in v4.0.0*
 
-Valeur par défaut : `false`
+Default value: `false`
 
-Avec `autoUnref` défini à `true`, le client Socket.IO autorisera le programme à se fermer s'il n'y a pas d'autre timer ou socket TCP actif dans le système d'événements (même si le client est connecté) :
+With `autoUnref` set to `true`, the Socket.IO client will allow the program to exit if there is no other active timer/TCP socket in the event system (even if the client is connected):
 
 ```js
 import { io } from "socket.io-client";
@@ -390,12 +381,12 @@ const socket = io({
 });
 ```
 
-Voir également : https://nodejs.org/api/timers.html#timeoutunref
+See also: https://nodejs.org/api/timers.html#timeoutunref
 
 
-### Options spécifiques à Node.js {#nodejs-specific-options}
+### Node.js-specific options
 
-Les options suivantes sont prises en charge :
+The following options are supported:
 
 - `agent`
 - `pfx`
@@ -406,12 +397,12 @@ Les options suivantes sont prises en charge :
 - `ciphers`
 - `rejectUnauthorized`
 
-Veuillez vous référer à la documentation de Node.js :
+Please refer to the Node.js documentation:
 
 - [tls.connect(options[, callback])](https://nodejs.org/dist/latest/docs/api/tls.html#tls_tls_connect_options_callback)
 - [tls.createSecureContext([options])](https://nodejs.org/dist/latest/docs/api/tls.html#tls_tls_createsecurecontext_options)
 
-Exemple avec un certificat auto-signé :
+Example with a self-signed certificate:
 
 *Client*
 
@@ -424,7 +415,7 @@ const socket = io("https://example.com", {
 });
 ```
 
-*Serveur*
+*Server*
 
 ```js
 import { readFileSync } from "fs";
@@ -438,7 +429,7 @@ const httpServer = createServer({
 const io = new Server(httpServer);
 ```
 
-Exemple avec authentification par certificat client :
+Example with client-certificate authentication:
 
 *Client*
 
@@ -453,7 +444,7 @@ const socket = io("https://example.com", {
 });
 ```
 
-*Serveur*
+*Server*
 
 ```js
 import { readFileSync } from "fs";
@@ -479,19 +470,19 @@ const io = new Server(httpServer);
 
 :::
 
-## Options du *Manager* {#manager-options}
+## Manager options
 
 :::info
 
-Ces paramètres seront communs à tous les *Sockets* rattachés à un même *Manager*.
+These settings will be shared by all Socket instances attached to the same Manager.
 
 :::
 
-### `reconnection` {#reconnection}
+### `reconnection`
 
-Valeur par défaut : `true`
+Default value: `true`
 
-Si la reconnexion est activée ou non. Si la valeur est `false`, vous devrez vous reconnecter manuellement :
+Whether reconnection is enabled or not. If set to `false`, you need to manually reconnect:
 
 ```js
 import { io } from "socket.io-client";
@@ -513,48 +504,48 @@ const tryReconnect = () => {
 socket.io.on("close", tryReconnect);
 ```
 
-### `reconnectionAttempts` {#reconnectionattempts}
+### `reconnectionAttempts`
 
-Valeur par défaut : `Infinity`
+Default value: `Infinity`
 
-Le nombre de tentatives de reconnexion avant abandon.
+The number of reconnection attempts before giving up.
 
-### `reconnectionDelay` {#reconnectiondelay}
+### `reconnectionDelay`
 
-Valeur par défaut : `1000`
+Default value: `1000`
 
-Le délai initial en millisecondes avant la reconnexion (affecté par la valeur [randomizationFactor](#randomizationfactor)).
+The initial delay before reconnection in milliseconds (affected by the [randomizationFactor](#randomizationfactor) value).
 
-### `reconnectionDelayMax` {#reconnectiondelaymax}
+### `reconnectionDelayMax`
 
-Valeur par défaut : `5000`
+Default value: `5000`
 
-Le délai maximal entre deux tentatives de reconnexion. Chaque tentative multiplie le délai de reconnexion par 2.
+The maximum delay between two reconnection attempts. Each attempt increases the reconnection delay by 2x.
 
-### `randomizationFactor` {#randomizationfactor}
+### `randomizationFactor`
 
-Valeur par défaut : `0.5`
+Default value: `0.5`
 
-Le facteur de randomisation utilisé lors de la reconnexion, afin que les clients ne se reconnectent pas exactement au même moment après un redémarrage du serveur par exemple.
+The randomization factor used when reconnecting (so that the clients do not reconnect at the exact same time after a server crash, for example).
 
-Exemple avec les valeurs par défaut :
+Example with the default values:
 
-- la 1ère tentative de reconnexion se produit après 500 à 1500 ms (`1000 * 2^0 * (<un nombre entre -0.5 and 1.5>)`)
-- la 2ème tentative de reconnexion se produit après 1000 et 3000 ms (`1000 * 2^1 * (<un nombre entre -0.5 and 1.5>)`)
-- la 2ème tentative de reconnexion se produit après 2000 et 5000 ms (`1000 * 2^2 * (<un nombre entre -0.5 and 1.5>)`)
-- les tentatives suivantes se produisent après 5000 ms
+- 1st reconnection attempt happens between 500 and 1500 ms (`1000 * 2^0 * (<something between -0.5 and 1.5>)`)
+- 2nd reconnection attempt happens between 1000 and 3000 ms (`1000 * 2^1 * (<something between -0.5 and 1.5>)`)
+- 3rd reconnection attempt happens between 2000 and 5000 ms (`1000 * 2^2 * (<something between -0.5 and 1.5>)`)
+- next reconnection attempts happen after 5000 ms
 
-### `timeout` {#timeout}
+### `timeout`
 
-Valeur par défaut : `20000`
+Default value: `20000`
 
-Délai d'attente en millisecondes pour chaque tentative de connexion.
+The timeout in milliseconds for each connection attempt.
 
-### `autoConnect` {#autoconnect}
+### `autoConnect`
 
-Valeur par défaut : `true`
+Default value: `true`
 
-Indique si le *Manager* se connecte automatiquement lors de la création. Dans le cas contraire, vous devrez vous connecter manuellement :
+Whether to automatically connect upon creation. If set to `false`, you need to manually connect:
 
 ```js
 import { io } from "socket.io-client";
@@ -568,31 +559,31 @@ socket.connect();
 socket.io.open();
 ```
 
-### `parser` {#parser}
+### `parser`
 
-*Ajouté en v2.2.0*
+*Added in v2.2.0*
 
-Valeur par défaut : `require("socket.io-parser")`
+Default value: `require("socket.io-parser")`
 
-Le *parser* utilisé pour sérialiser/désérialiser les messages. Veuillez consulter la documentation [ici](categories/06-Advanced/custom-parser.md) pour plus d'informations.
+The parser used to marshall/unmarshall packets. Please see [here](categories/06-Advanced/custom-parser.md) for more information.
 
-## Options du *Socket* {#socket-options}
+## Socket options
 
 :::info
 
-Ces paramètres seront spécifiques au *Socket*.
+These settings are specific to the given Socket instance.
 
 :::
 
-### `auth` {#auth}
+### `auth`
 
-*Ajouté en v3.0.0*
+*Added in v3.0.0*
 
-Valeur par défaut : -
+Default value: -
 
-Données envoyées lors de l'accès à un *Namespace* (voir aussi [ici](categories/02-Server/middlewares.md#sending-credentials)).
+Credentials that are sent when accessing a namespace (see also [here](categories/02-Server/middlewares.md#sending-credentials)).
 
-Exemple :
+Example:
 
 *Client*
 
@@ -605,7 +596,7 @@ const socket = io({
   }
 });
 
-// ou avec une fonction
+// or with a function
 const socket = io({
   auth: (cb) => {
     cb({ token: localStorage.token })
@@ -613,15 +604,15 @@ const socket = io({
 });
 ```
 
-*Serveur*
+*Server*
 
 ```js
 io.on("connection", (socket) => {
-  console.log(socket.handshake.auth); // affiche { token: "abcd" }
+  console.log(socket.handshake.auth); // prints { token: "abcd" }
 });
 ```
 
-Vous pouvez mettre à jour l'objet `auth` lorsque l'accès au *Namespace* est refusé :
+You can update the `auth` map when the access to the Namespace is denied:
 
 ```js
 socket.on("connect_error", (err) => {
@@ -632,9 +623,9 @@ socket.on("connect_error", (err) => {
 });
 ```
 
-Ou forcer manuellement le *Socket* à se reconnecter :
+Or manually force the Socket instance to reconnect:
 
 ```js
 socket.auth.token = "efgh";
 socket.disconnect().connect();
-``` -->
+```
