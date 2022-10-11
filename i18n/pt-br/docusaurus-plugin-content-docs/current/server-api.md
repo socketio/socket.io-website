@@ -1,14 +1,17 @@
 ---
-title: API côté serveur
+title: API para Servidpr
 sidebar_label: API
 sidebar_position: 1
 slug: /server-api/
 ---
 
-import ThemedImage from '@theme/ThemedImage';
+
+ import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Server {#server}
+## Servidor {#server}
+
+### Em breve
 
 <ThemedImage
   alt="Server dans le diagramme de classe de la partie serveur"
@@ -18,6 +21,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
   }}
 />
 
+<!--
 Pages de documentation liées :
 
 - [installation du serveur](categories/02-Server/server-installation.md)
@@ -1627,4 +1631,4 @@ Cet événement sera émis lorsqu'une connexion est anormalement fermée. Voici 
 |  2   |     "Bad handshake method"     |
 |  3   |         "Bad request"          |
 |  4   |          "Forbidden"           |
-|  5   | "Unsupported protocol version" |
+|  5   | "Unsupported protocol version" | -->

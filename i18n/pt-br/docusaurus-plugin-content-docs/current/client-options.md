@@ -1,14 +1,15 @@
 ---
-title: Options côté client
+title: Opções para clientes
 sidebar_label: Options
 sidebar_position: 2
 slug: /client-options/
 ---
 
+### Em breve
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-## Options d'initialisation {#io-factory-options}
+<!-- ## Options d'initialisation {#io-factory-options}
 
 ### `forceNew` {#forcenew}
 
@@ -636,4 +637,4 @@ Ou forcer manuellement le *Socket* à se reconnecter :
 ```js
 socket.auth.token = "efgh";
 socket.disconnect().connect();
-```
+``` -->

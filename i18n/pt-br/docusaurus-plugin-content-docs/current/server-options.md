@@ -5,7 +5,9 @@ sidebar_position: 2
 slug: /server-options/
 ---
 
-## Options du serveur Socket.IO {#socketio-server-options}
+## Em breve
+
+<!-- ## Options du serveur Socket.IO {#socketio-server-options}
 
 ### `path` {#path}
 
@@ -328,4 +330,4 @@ Exemple :
 const io = new Server(httpServer, {
   allowEIO3: true // false par défaut
 });
-```
+``` -->

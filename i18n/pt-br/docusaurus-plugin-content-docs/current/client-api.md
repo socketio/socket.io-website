@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## IO {#io}
 
-O metodo `io`  é vinculado com o escopo global na construção standalone:
+O método `io`  é vinculado com o escopo global na construção standalone:
 
 ```html
 <script src="/socket.io/socket.io.js"></script>
@@ -447,7 +447,7 @@ Emite um evento para o identificar o socket pelo nome da string. Qualquer outro 
 socket.emit("hello", "world");
 socket.emit("with-binary", 1, "2", { 3: "4", 5: Buffer.from([6, 7, 8]) });
 ```
-The ack argument is optional and will be called with the server answer.
+
 O argumento `ack` é opcional e pode ser chamado com a resposta do servidor.
 
 *Client*
@@ -513,13 +513,13 @@ socket.once("my-event", () => {
 
 ### socket.off([eventName][, listener]) {#socketoffeventname-listener}
 
-*Héritée de la classe [EventEmitter](https://www.npmjs.com/package/@socket.io/component-emitter).*
+*Herdado da classe [EventEmitter](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
 - `eventName` [`<string>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_string) | [`<symbol>`](hhttps://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#symbol_type)
 - `listener` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
 - **Retorna** [`<Socket>`](#socket)
 
-Supprime la fonction `listener` spécifiée du tableau des auditeurs pour l'événement nommé `eventName`.
+Remove um especifico `listener` de um array ouvinte para o evento chamado `eventName`
 
 ```js
 const myListener = () => {
@@ -528,94 +528,150 @@ const myListener = () => {
 
 socket.on("my-event", myListener);
 
-// puis plus tard
+//então depois
 socket.off("my-event", myListener);
 ```
-
-L'argument `listener` peut également être omis :
+O argumento `listener` também pode ser omitido:
 
 ```js
-// supprime tous les auditeurs pour cet événement
+// remove todos os ouvintes desse evento
 socket.off("my-event");
 
-// supprime tous les auditeurs pour tous les événements
+// remove todos os ouvintes de todos os eventos
 socket.off();
 ```
 
 ### socket.listeners(eventName) {#socketlistenerseventname}
 
-*Héritée de la classe [EventEmitter](https://www.npmjs.com/package/@socket.io/component-emitter).*
+*Herdado da classe [EventEmitter](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
-- `eventName` [`<string>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_string) | [`<symbol>`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Data_structures#le_type_symbole)
+- `eventName` [`<string>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_string) | [`<symbol>`](hhhttps://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#symbol_type)
 - **Retorna** [`<Function[]>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
-Renvoie le tableau des auditeurs pour l'événement nommé `eventName`.
+Retorna o array de ouvintes para o evento nomeado de `eventName`
 
 ```js
 socket.on("my-event", () => {
   // ...
 });
 
-console.log(socket.listeners("my-event")); // affiche [ [Function] ]
+console.log(socket.listeners("my-event"));// prints [ [Function] ]
 ```
 
 ### socket.onAny(callback) {#socketonanycallback}
+  *Adicionado na v3.0.0*
 
   - `callback` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
-
-Ajoute un nouvel auditeur attrape-tout (« catch-all »).
+Registra um novo ouvinte abrangente
 
 ```js
 socket.onAny((event, ...args) => {
-  console.log(`reçu ${event}`);
+  console.log(`got ${event}`);
 });
 ```
 
 ### socket.prependAny(callback) {#socketprependanycallback}
+  *Adicionado na v3.0.0*
 
   - `callback` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
+Registra um novo ouvinte abrangente. O ouvinte é adicionado ao início a matriz de ouvintes
 Ajoute un nouvel auditeur attrape-tout. La fonction est ajoutée au début du tableau des auditeurs.
 
 ```js
 socket.prependAny((event, ...args) => {
-  console.log(`reçu ${event}`);
+  console.log(`got ${event}`);
 });
 ```
 
 ### socket.offAny([listener]) {#socketoffanylistener}
+  *Adicionado na v3.0.0*
 
   - `listener` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
-Supprime l'auditeur attrape-tout donné. Si aucun auditeur n'est fourni, tous les auditeurs attrape-tout sont supprimés.
+Remove o ouvinte registrado anteriormente. Se nenhum listener for fornecido, todos os listeners catch-all serão removidos.
+
 
 ```js
 const myListener = () => { /* ... */ };
 
 socket.onAny(myListener);
 
-// puis plus tard
+// então, depois
 socket.offAny(myListener);
 
 socket.offAny();
 ```
 
 ### socket.listenersAny() {#socketlistenersany}
+  *Adicionado na v3.0.0*
 
   - **Retorna** [`<Function[]>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
-Renvoie le tableau des auditeurs attrape-tout.
+Retorna a lista de listeners catch-all registrados.
 
 ```js
 const listeners = socket.listenersAny();
 ```
+
+### socket.onAnyOutgoing([listener]) {#socketoffanyoutgoinglistener}
+  *Adicionado na v4.5.0*
+
+  - `callback` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Registre um novo ouvinte catch-all para pacotes de saída.
+```js
+socket.onAnyOutgoing((event, ...args) => {
+  console.log(`got ${event}`);
+});
+```
+
+### socket.prependAnyOutgoing() {#socketlistenersanyoutgoing}
+  *Adicionado na v4.5.0*
+
+  - `callback` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Registre um novo ouvinte catch-all para pacotes de saída. O ouvinte é adicionado ao início da matriz de ouvintes.
+
+```js
+socket.prependAnyOutgoing((event, ...args) => {
+  console.log(`got ${event}`);
+});
+```
+
+### socket.offAnyOutgoing([listener])  {#socketoffanyoutgoinglistener}
+  *Adicionado na v4.5.0*
+
+  - `listener` [`<Function>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Remove o ouvinte registrado anteriormente. Se nenhum listener for fornecido, todos os listeners catch-all serão removidos.
+
+```js
+const myListener = () => { /* ... */ };
+
+socket.onAnyOutgoing(myListener);
+
+// remove a single listener
+socket.offAnyOutgoing(myListener);
+
+// remove all listeners
+socket.offAnyOutgoing();
+```
+
+### socket.listenersAnyOutgoing() {#socketlistenersanyoutgoing}
+  *Adicionado na v4.5.0*
+
+- **Retorna** [`<Function[]>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function)
+Retorna a lista de listeners catch-all registrados para pacotes de saída.
+
+const listeners = socket.listenersAnyOutgoing();
 
 ### socket.compress(value) {#socketcompressvalue}
 
   - `value` [`<boolean>`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Data_structures#le_type_bool%C3%A9en)
   - **Retorna** [`<Socket>`](#socket)
 
-Définit un modificateur pour une émission d'événement ultérieure selon lequel les données d'événement ne seront _compressées_ que si la valeur est "true". La valeur par défaut est `true` lorsque vous n'appelez pas la méthode.
+Define um modificador para uma emissão evento subsequente em que os dados dos evento que serão _compactados_ apenas se o valor for `true`. O padrão é `true` qunado você não chama nenhum método.
 
 ```js
 socket.compress(false).emit("an event", { some: "data" });
@@ -628,12 +684,13 @@ socket.compress(false).emit("an event", { some: "data" });
 - `value` [`<number>`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Data_structures#tipo_number)
 - **Retorna** [`<Socket>`](#socket)
 
-Définit un modificateur pour une émission d'événement ultérieure selon lequel la fonction rappel (« callback ») sera invoquée avec une erreur lorsqu'un certain nombre de millisecondes se seront écoulées sans accusé de réception de la part du serveur :
+Define um modificador para uma emissão de evento subsequente em que o retorno de chamada será chamado com um erro quando o número de milissegundos especificado tiver decorrido sem uma confirmação do servidor:
+
 
 ```js
 socket.timeout(5000).emit("my-event", (err) => {
   if (err) {
-    // le serveur n'a pas accusé réception de l'événement dans le délai imparti
+    // o servidor não reconheceu o evento no atraso dado
   }
 });
 ```
@@ -643,15 +700,14 @@ socket.timeout(5000).emit("my-event", (err) => {
 *Adicionado na v1.0.0*
 
   - **Retorna** [`<Socket>`](#socket)
+Desconecta manualmente um. E nesse caso, o socket não irá se reconectar novamente.
 
-Déconnecte manuellement le *Socket*. Dans ce cas, le *Socket* n'essaiera pas de se reconnecter.
+Motidvos Associados a desconeção:
 
-Raison de déconnexion associée :
+- lado do cliente : `"io client disconnect"`
+- lado do servidor : `"client namespace disconnect"`
 
-- côté client : `"io client disconnect"`
-- côté serveur : `"client namespace disconnect"`
-
-S'il s'agit du dernier *Socket* actif du *Manager*, la connexion de bas niveau sera également fermée.
+Se esta for a última instância de Socket ativa do Manager, a conexão de baixo nível será fechada.
 
 ### socket.close() {#socketclose}
 
@@ -663,10 +719,10 @@ Sinônimo de [socket.disconnect()](#socketdisconnect).
 
 *Adicionado na v3.0.0*
 
-Définit un modificateur pour l'émission d'événement ultérieure indiquant que le paquet peut être abandonné si :
+Define um modificador para um evento de emissão subsequente indicando que o pacote pode ser descartado se:
 
-- le *Socket* n'est pas connecté
-- le transport de bas niveau n'est pas accessible en écriture (par exemple, lorsqu'une requête "POST" est déjà en cours d'exécution en mode HTTP long-polling)
+- o Socket não está conectado.
+- o transporte de baixo nível não é gravável (por exemplo, quando uma solicitação `POST` já está em execução no modo de pesquisa longa HTTP)
 
 ```js
 socket.volatile.emit(/* ... */); // o servidor pode ou não receber
