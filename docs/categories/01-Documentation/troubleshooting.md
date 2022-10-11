@@ -10,6 +10,7 @@ Common/known issues:
 - [the socket is not able to connect](#problem-the-socket-is-not-able-to-connect)
 - [the socket gets disconnected](#problem-the-socket-gets-disconnected)
 - [the socket is stuck in HTTP long-polling](#problem-the-socket-is-stuck-in-http-long-polling)
+- [other common gotchas](#other-common-gotchas)
 
 ### Problem: the socket is not able to connect
 
@@ -20,6 +21,7 @@ Possible explanations:
 - [The client is not compatible with the version of the server](#the-client-is-not-compatible-with-the-version-of-the-server)
 - [The server does not send the necessary CORS headers](#the-server-does-not-send-the-necessary-cors-headers)
 - [You didn’t enable sticky sessions (in a multi server setup)](#you-didnt-enable-sticky-sessions-in-a-multi-server-setup)
+- [The request path does not match on both sides](#the-request-path-does-not-match-on-both-sides)
 
 #### You are trying to reach a plain WebSocket server
 
@@ -46,6 +48,12 @@ which should return something like this:
 ```
 
 If that's not the case, please check that the Socket.IO server is running, and that there is nothing in between that prevents the connection.
+
+Note: v1/v2 servers (which implement the v3 of the protocol, hence the `EIO=3`) will return something like this:
+
+```
+96:0{"sid":"ptzi_578ycUci8WLB9G1","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":5000}2:40
+```
 
 #### The client is not compatible with the version of the server
 
@@ -185,6 +193,48 @@ Failure to do so will result in HTTP 400 responses with the code: `{"code":1,"me
 
 Please see the documentation [here](../02-Server/using-multiple-nodes.md).
 
+#### The request path does not match on both sides
+
+By default, the client sends — and the server expects — HTTP requests with the "/socket.io/" request path.
+
+This can be controlled with the `path` option:
+
+*Server*
+
+```js
+import { Server } from "socket.io";
+
+const io = new Server({
+  path: "/my-custom-path/"
+});
+
+io.listen(3000);
+```
+
+*Client*
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io(SERVER_URL, {
+  path: "/my-custom-path/"
+});
+```
+
+In that case, the HTTP requests will look like `<SERVER_URL>/my-custom-path/?EIO=4&transport=polling[&...]`.
+
+:::caution
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io("/my-custom-path/");
+```
+
+means the client will try to reach the [namespace](../06-Advanced/namespaces.md) named "/my-custom-path/", but the request path will still be "/socket.io/".
+
+:::
+
 ### Problem: the socket gets disconnected
 
 First and foremost, please note that disconnections are common and expected, even on a stable Internet connection:
@@ -289,3 +339,47 @@ Possible explanations:
 #### A proxy in front of your servers does not accept the WebSocket connection
 
 Please see the documentation [here](../02-Server/behind-a-reverse-proxy.md).
+
+### Other common gotchas
+
+#### Delayed event handler registration
+
+BAD:
+
+```js
+io.on("connection", async (socket) => {
+  await longRunningOperation();
+
+  // WARNING! Some packets might be received by the server but without handler
+  socket.on("hello", () => {
+    // ...
+  });
+});
+```
+
+GOOD:
+
+```js
+io.on("connection", async (socket) => {
+  socket.on("hello", () => {
+    // ...
+  });
+
+  await longRunningOperation();
+});
+```
+
+#### Usage of the `socket.id` attribute
+
+The `id` attribute is an **ephemeral** ID that is not meant to be used in your application (or only for debugging purposes) because:
+
+- this ID is regenerated after each reconnection (for example when the WebSocket connection is severed, or when the user refreshes the page)
+- two different browser tabs will have two different IDs
+- there is no message queue stored for a given ID on the server (i.e. if the client is disconnected, the messages sent from the server to this ID are lost)
+
+Please use a regular session ID instead (either sent in a cookie, or stored in the localStorage and sent in the [`auth`](./client-options.md#auth) payload).
+
+See also:
+
+- [Part II of our private message guide](/get-started/private-messaging-part-2/)
+- [How to deal with cookies](/how-to/deal-with-cookies)
