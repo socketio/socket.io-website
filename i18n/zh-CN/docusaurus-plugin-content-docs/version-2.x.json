@@ -1,0 +1,30 @@
+{
+  "version.label": {
+    "message": "2.x",
+    "description": "The label for version 2.x"
+  },
+  "sidebar.sidebar.category.Documentation": {
+    "message": "快速入门",
+    "description": "The label for category Documentation in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Server": {
+    "message": "服务器",
+    "description": "The label for category Server in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Client": {
+    "message": "客户端",
+    "description": "The label for category Client in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Advanced": {
+    "message": "高级",
+    "description": "The label for category Advanced in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Migrations": {
+    "message": "版本迁移",
+    "description": "The label for category Migrations in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Miscellaneous": {
+    "message": "更多",
+    "description": "The label for category Miscellaneous in sidebar sidebar"
+  }
+}
