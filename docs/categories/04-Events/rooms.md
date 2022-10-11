@@ -67,20 +67,6 @@ In that case, every socket in the room **excluding** the sender will get the eve
 
 To leave a channel you call `leave` in the same fashion as `join`.
 
-## Default room
-
-Each `Socket` in Socket.IO is identified by a random, unguessable, unique identifier [Socket#id](../02-Server/server-socket-instance.md#socketid). For your convenience, each socket automatically joins a room identified by its own id.
-
-This makes it easy to implement private messages:
-
-```js
-io.on("connection", (socket) => {
-  socket.on("private message", (anotherSocketId, msg) => {
-    socket.to(anotherSocketId).emit("private message", socket.id, msg);
-  });
-});
-```
-
 ## Sample use cases
 
 - broadcast data to each device / tab of a given user

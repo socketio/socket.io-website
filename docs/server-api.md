@@ -981,6 +981,23 @@ More information can be found [here](categories/02-Server/server-socket-instance
 
 A unique identifier for the session, that comes from the underlying `Client`.
 
+:::caution
+
+The `id` attribute is an **ephemeral** ID that is not meant to be used in your application (or only for debugging purposes) because:
+
+- this ID is regenerated after each reconnection (for example when the WebSocket connection is severed, or when the user refreshes the page)
+- two different browser tabs will have two different IDs
+- there is no message queue stored for a given ID on the server (i.e. if the client is disconnected, the messages sent from the server to this ID are lost)
+
+Please use a regular session ID instead (either sent in a cookie, or stored in the localStorage and sent in the [`auth`](./client-options.md#auth) payload).
+
+See also:
+
+- [Part II of our private message guide](/get-started/private-messaging-part-2/)
+- [How to deal with cookies](/how-to/deal-with-cookies)
+
+:::
+
 ### socket.rooms
 
   * [`Set<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
