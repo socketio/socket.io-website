@@ -8,7 +8,7 @@
     "description": "The description for the blog used in SEO"
   },
   "sidebar.title": {
-    "message": "Posts récents",
+    "message": "Posts recentes",
     "description": "The label for the left sidebar"
   }
 }

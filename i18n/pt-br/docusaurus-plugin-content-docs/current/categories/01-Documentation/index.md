@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Introdução
 sidebar_position: 1
 slug: /
 ---
@@ -7,9 +7,9 @@ slug: /
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Ce qu'est Socket.IO {#what-socketio-is}
+## O que o Socket.IO é
 
-Socket.IO est une bibliothèque qui permet une communication **à faible latence**, **bidirectionnelle** et **basée sur les événements** entre un client et un serveur.
+Socket.IO é uma biblioteca que permite **baixa-latência**, **bidirecional** e **baseado em eventos** de comunicação entre cliente e um servidor.
 
 <ThemedImage
   alt="Diagram of a communication between a server and a client"
@@ -19,44 +19,44 @@ Socket.IO est une bibliothèque qui permet une communication **à faible latence
   }}
 />
 
-Il repose sur le protocole [WebSocket](https://fr.wikipedia.org/wiki/WebSocket) et offre des garanties supplémentaires telles qu'un mode dégradé en HTTP long-polling ou la reconnexion automatique.
-
+Ele é construído em cima do protocolo [WebSocket](https://en.wikipedia.org/wiki/WebSocket) e fornece adicionais garantias como retorno para HTTP long-polling ou reconexões automaticas.
 
 :::info
 
-Le protocole WebSocket permet d'ouvrir un canal de communication bidirectionnel (ou "full-duplex") sur un socket TCP pour les navigateurs et les serveurs web. Vous trouverez plus d'informations [ici](https://fr.wikipedia.org/wiki/WebSocket).
+WebSocket é um protocolo de comunicação que fornece um canal full-duplex e baixa latência entre o servidor e o brower. Mais informações podem ser encontradas [aqui](https://en.wikipedia.org/wiki/WebSocket).
 
 :::
 
-Plusieurs implémentations de serveur Socket.IO sont disponibles :
+Existem várias implementações de servidor Socket.IO disponíveis:
 
-- JavaScript (dont la documentation se trouve ici sur ce site)
-  - [Installation](../02-Server/server-installation.md)
+- JavaScript (Node.js) (cuja documentação pode ser encontrada aqui neste site)
+  - [Passo a passo de instalação](../02-Server/server-installation.md)
   - [API](../../server-api.md)
-  - [Code source](https://github.com/socketio/socket.io)
+  - [Código fonte](https://github.com/socketio/socket.io)
+- JavaScript (Deno): https://github.com/socketio/socket.io-deno
 - Java: https://github.com/mrniko/netty-socketio
 - Java: https://github.com/trinopoty/socket.io-server-java
 - Python: https://github.com/miguelgrinberg/python-socketio
+- Golang: https://github.com/googollee/go-socket.io
 
-Et des implémentations client dans la plupart des langages majeurs :
+E implementações do cliente na maioria das principais linguagens:
 
-- JavaScript (qui peut être exécuté soit dans le navigateur, en Node.js ou dans React Native)
-  - [Installation](../03-Client/client-installation.md)
+- JavaScript (que pode ser executado no navegador, em Node.js ou em React Native)
+  - [Passo a passo de instalação](../03-Client/client-installation.md)
   - [API](../../client-api.md)
-  - [Code source](https://github.com/socketio/socket.io-client)
+  - [Código font](https://github.com/socketio/socket.io-client)
 - Java: https://github.com/socketio/socket.io-client-java
 - C++: https://github.com/socketio/socket.io-client-cpp
 - Swift: https://github.com/socketio/socket.io-client-swift
 - Dart: https://github.com/rikulo/socket.io-client-dart
 - Python: https://github.com/miguelgrinberg/python-socketio
 - .Net: https://github.com/doghappy/socket.io-client-csharp
-- Golang: https://github.com/googollee/go-socket.io
 - Rust: https://github.com/1c3t3a/rust-socketio
 - Kotlin: https://github.com/icerockdev/moko-socket-io
 
-Voici un exemple de base avec des WebSockets :
+Aqui é um exemplo basíco com a um WebSockets simples:
 
-*Serveur* (basé sur le module [ws](https://github.com/websockets/ws))
+*Servidor* (baseado em [ws](https://github.com/websockets/ws))
 
 ```js
 import { WebSocketServer } from "ws";
@@ -64,18 +64,18 @@ import { WebSocketServer } from "ws";
 const server = new WebSocketServer({ port: 3000 });
 
 server.on("connection", (socket) => {
-  // envoi d'un message au client
+  // Envia uma messagem para o cliente
   socket.send(JSON.stringify({
-    type: "bonjour du serveur",
+    type: "hello from server",
     content: [ 1, "2" ]
   }));
 
-  // réception d'un message envoyé par le client
+  //recebe uma mensagem do cliente
   socket.on("message", (data) => {
     const packet = JSON.parse(data);
 
     switch (packet.type) {
-      case "bonjour du client":
+      case "hello from client":
         // ...
         break;
     }
@@ -83,34 +83,33 @@ server.on("connection", (socket) => {
 });
 ```
 
-*Client*
+*Cliente*
 
 ```js
 const socket = new WebSocket("ws://localhost:3000");
 
 socket.addEventListener("open", () => {
-  // envoi d'un message au serveur
+  // Envia uma messagem para o servidor
   socket.send(JSON.stringify({
-    type: "bonjour du client",
+    type: "hello from client",
     content: [ 3, "4" ]
   }));
 });
 
-// réception d'un message envoyé par le serveur
+// recebe uma mensagem do servidor
 socket.addEventListener("message", ({ data }) => {
   const packet = JSON.parse(data);
 
   switch (packet.type) {
-    case "bonjour du serveur":
+    case "hello from server":
       // ...
       break;
   }
 });
 ```
+E aqui o mesmo exemplo com o Socket.IO:
 
-Et voici le même exemple avec Socket.IO :
-
-*Serveur*
+*Servidor*
 
 ```js
 import { Server } from "socket.io";
@@ -118,184 +117,184 @@ import { Server } from "socket.io";
 const io = new Server(3000);
 
 io.on("connection", (socket) => {
-  // envoi d'un message au client
-  socket.emit("bonjour du serveur", 1, "2", { 3: Buffer.from([4]) });
+  // Envia uma messagem para o cliente
+  socket.emit("hello from server", 1, "2", { 3: Buffer.from([4]) });
 
-  // réception d'un message envoyé par le client
-  socket.on("bonjour du client", (...args) => {
+  //recebe uma mensagem do cliente
+  socket.on("hello from client", (...args) => {
     // ...
   });
 });
 ```
 
-*Client*
+*Cliente*
 
 ```js
 import { io } from "socket.io-client";
 
 const socket = io("ws://localhost:3000");
 
-// envoi d'un message au serveur
-socket.emit("bonjour du client", 5, "6", { 7: Uint8Array.from([8]) });
+// Envia uma messagem para o servidor
+socket.emit("hello from client", 5, "6", { 7: Uint8Array.from([8]) });
 
-// réception d'un message envoyé par le serveur
-socket.on("bonjour du serveur", (...args) => {
+// recebe uma mensagem do servidor
+socket.on("hello from server", (...args) => {
   // ...
 });
 ```
 
-Les deux exemples sont très similaires, mais sous le capot, Socket.IO fournit des fonctionnalités supplémentaires qui masquent la complexité de l'exploitation en production d'une application basée sur des WebSockets. Ces fonctionnalités sont répertoriées [ci-dessous](#features).
+Both examples looks really similar, but under the hood Socket.IO provides additional features that hide the complexity of running an application based on WebSockets in production. Those features are listed [below](#features).
 
-Mais d'abord, précisons ce que Socket.IO n'est pas.
+But first, let's make it clear what Socket.IO is not.
 
-## Ce que Socket.IO n'est pas {#what-socketio-is-not}
+## O que o Socket.IO não é
 
-:::caution
+:::atenção
 
-Socket.IO n'est **PAS** une implémentation WebSocket.
+Socket.IO  **NÃO** é uma implementação WebSocket.
 
 :::
 
-Bien que Socket.IO utilise effectivement les WebSockets lorsque cela est possible, il dispose de son propre protocole de communication. C'est pourquoi un client WebSocket ne pourra pas se connecter à un serveur Socket.IO, et un client Socket.IO ne pourra pas non plus se connecter à un serveur WebSocket ordinaire.
+Embora o Socket.IO realmente use o WebSocket para transporte quando possível, ele adiciona metadados adicionais a cada pacote. É por isso que um cliente WebSocket não poderá se conectar com êxito a um servidor Socket.IO, e um cliente Socket.IO também não poderá se conectar a um servidor WebSocket simples.
 
 ```js
-// ATTENTION ! Le client ne sera pas en mesure de se connecter !
+// ATENÇÃO: o cliente NÃO poderá se conectar!
 const socket = io("ws://echo.websocket.org");
 ```
 
-Si vous recherchez un serveur WebSocket, vous pouvez vous diriger vers le module [ws](https://github.com/websockets/ws) ou bien [µWebSockets.js](https://github.com/uNetworking/uWebSockets.js).
+Se você estiver procurando por um servidor WebSocket simples, dê uma olhada em [ws](https://github.com/websockets/ws) ou [µWebSockets.js](https://github.com/uNetworking/uWebSockets.js).
 
-Il existe également des [discussions](https://github.com/nodejs/node/issues/19308) pour inclure un serveur WebSocket dans le noyau Node.js.
+Há também [discussões](https://github.com/nodejs/node/issues/19308) para incluir um servidor WebSocket no núcleo do Node.js.
 
-Côté client, vous pourriez être intéressé par le module [robust-websocket](https://github.com/nathanboktae/robust-websocket).
+No lado do cliente, você pode estar interessado no pacote [robust-websocket](https://github.com/nathanboktae/robust-websocket).
 
-:::caution
+:::atenção
 
-Socket.IO n'est pas destiné à être utilisé en arrière-plan dans une application mobile.
+Socket.IO is not meant to be used in a background service for mobile applications.
 
 :::
 
-La bibliothèque Socket.IO maintient une connexion TCP ouverte au serveur, ce qui peut entraîner une décharge importante de la batterie pour vos utilisateurs. Veuillez utiliser une plate-forme de messagerie dédiée telle que [FCM](https://firebase.google.com/docs/cloud-messaging) pour cet usage.
+The Socket.IO library keeps an open TCP connection to the server, which may result in a high battery drain for your users. Please use a dedicated messaging platform like [FCM](https://firebase.google.com/docs/cloud-messaging) for this use case.
 
-## Fonctionnalités {#features}
+## Recursos
 
-Voici les fonctionnalités fournies par Socket.IO par rapport une connexion WebSocket classique :
+Aqui estão os recursos fornecidos pelo Socket.IO sobre WebSockets simples:
 
-### Mode dégradé en HTTP long-polling {#http-long-polling-fallback}
+### HTTP long-polling fallback
 
-La connexion sera dégradée en HTTP long-polling au cas où la connexion WebSocket ne pourrait pas être établie.
+A conexão retornará à sondagem longa HTTP caso a conexão WebSocket não possa ser estabelecida.
 
-Cette fonctionnalité était la principale raison pour laquelle les gens utilisaient Socket.IO lorsque le projet a été créé il y a plus de dix ans (!), car la prise en charge des navigateurs pour WebSockets en était encore à ses balbutiements.
+Esse recurso foi o motivo número 1 pelo qual as pessoas usaram o Socket.IO quando o projeto foi criado há mais de dez anos (!), pois o suporte do navegador para WebSockets ainda estava em seu inicio.
 
-Même si la plupart des navigateurs prennent désormais en charge WebSockets (plus de [97 %](https://caniuse.com/mdn-api_websocket)), cela reste une fonctionnalité intéressante car nous recevons toujours des rapports d'utilisateurs qui ne peuvent pas établir de connexion WebSocket car ils sont derrière un proxy mal configuré.
+Mesmo que a maioria dos navegadores agora suporte WebSockets (mais que [97%](https://caniuse.com/mdn-api_websocket)), ainda é um ótimo recurso, pois ainda recebemos relatórios de usuários que não conseguem estabelecer uma conexão WebSocket porque estão atrás de algum proxy mal configurado.
+### Reconexão Automatica
 
-### Reconnexion automatique {#automatic-reconnection}
+Sob algumas condições particulares, a conexão WebSocket entre o servidor e o cliente pode ser interrompida com ambos os lados desconhecendo o estado quebrado do link.
 
-Dans certaines conditions particulières, la connexion WebSocket entre le serveur et le client peut être interrompue sans que les deux parties soient conscientes de l'état rompu du lien.
+É por isso que o Socket.IO inclui um mecanismo de pulsação, que verifica periodicamente o status da conexão.
 
-C'est pourquoi Socket.IO inclut un mécanisme de ping/pong, qui vérifie périodiquement l'état de la connexion.
+E quando o cliente eventualmente é desconectado, ele se reconecta automaticamente com um atraso exponencial de back-off, para não sobrecarregar o servidor.
+### Buffer de pacote
 
-Et lorsque le client finit par être déconnecté, il se reconnecte automatiquement avec un délai d'attente exponentiel, afin de ne pas submerger le serveur.
+Os pacotes são automaticamente armazenados em buffer quando o cliente é desconectado e serão enviados na reconexão.
 
-### Mise en mémoire tampon des paquets {#packet-buffering}
+Mais informações [aqui](../03-Client/client-offline-behavior.md#buffered-events).
 
-Les paquets sont automatiquement mis en mémoire tampon lorsque le client est déconnecté et seront envoyés lors de la reconnexion.
+### Acknowledgements
 
-Plus d'informations [ici](../03-Client/client-offline-behavior.md#buffered-events).
+O Socket.IO oferece uma maneira conveniente de enviar um evento e receber uma resposta:
 
-### Accusés de réception {#acknowledgements}
-
-Socket.IO fournit un moyen pratique d'envoyer un événement et de recevoir une réponse :
-
-*Émetteur*
+*Remetente*
 
 ```js
-socket.emit("bonjour", "ô monde", (response) => {
-  console.log(response); // "bien reçu !"
+socket.emit("hello", "world", (response) => {
+  console.log(response); // "conseguiu"
 });
 ```
 
-*Receveur*
+*Receptor*
 
 ```js
-socket.on("bonjour", (arg, callback) => {
-  console.log(arg); // "ô monde"
-  callback("bien reçu !");
+socket.on("hello", (arg, callback) => {
+  console.log(arg); // "world"
+  callback("got it");
 });
 ```
 
-Vous pouvez également ajouter un délai maximum de réponse :
+Você também pode adionar um timeout:
 
 ```js
-socket.timeout(5000).emit("bonjour", "ô monde", (err, response) => {
+socket.timeout(5000).emit("hello", "world", (err, response) => {
   if (err) {
-    // le destinataire n'a pas accusé réception de l'événement dans le délai imparti
+// o outro lado não reconheceu o evento no atraso determinado
   } else {
-    console.log(response); // "bien reçu !"
+    console.log(response); // "conseguiu"
   }
 });
 ```
 
-### Diffusion d'événements {#broadcasting}
+### Transmissão
 
-Côté serveur, vous pouvez envoyer un événement à [tous les clients connectés](../04-Events/broadcasting-events.md) ou [à un sous-ensemble de clients](../04-Events/rooms.md ) :
+No lado do servidor, você pode enviar um evento para [todos os clientes conectados](../04-Events/broadcasting-events.md) ou [para um subconjunto de clientes](../04-Events/rooms.md):
 
 ```js
-// à tous les clients connectés
-io.emit("bonjour");
+// para todos os clientes
+io.emit("hello");
 
-// à tous les clients connectés dans la room "news"
-io.to("news").emit("bonjour");
+// para todos os clientes conectados no room "news"
+io.to("news").emit("hello");
 ```
 
-Cela fonctionne également avec [plusieurs serveurs Socket.IO](../02-Server/using-multiple-nodes.md).
+Isso também funciona ao [escalar para vários nós](../02-Server/using-multiple-nodes.md).
 
-### Multiplexage  {#multiplexing}
+### Multiplexing
 
-Les *Namespaces* vous permettent de diviser la logique de votre application sur une seule connexion partagée. Cela peut être utile par exemple si vous souhaitez créer un canal "admin" que seuls les utilisateurs autorisés peuvent rejoindre.
+Os namespaces permitem que você divida a lógica do seu aplicativo em uma única conexão compartilhada. Isso pode ser útil, por exemplo, se você quiser criar um canal "admin" no qual somente usuários autorizados possam participar.
 
 ```js
 io.on("connection", (socket) => {
-  // utilisateurs classiques
+  // classic users
 });
 
 io.of("/admin").on("connection", (socket) => {
-  // administrateurs
+  // admin users
 });
 ```
 
-Plus d'informations à ce sujet [ici](../06-Advanced/namespaces.md).
+Mais sobre isso [aqui](../06-Advanced/namespaces.md).
 
-## Questions fréquentes {#common-questions}
+## Questões comuns
 
-### Socket.IO est-il encore nécessaire aujourd'hui ? {#is-socketio-still-needed-today}
+### O Socket.IO ainda é necessário hoje?
 
-C'est une bonne question, puisque les WebSockets sont pris en charge [presque partout](https://caniuse.com/mdn-api_websocket) maintenant.
+Essa é uma pergunta justa, já que os WebSockets são suportados [quase em todos os lugares](https://caniuse.com/mdn-api_websocket) nesse momento.
 
-Cela étant dit, nous pensons que si vous utilisez des WebSockets classiques pour votre application, vous aurez finalement besoin d'implémenter la plupart des fonctionnalités déjà incluses (et testées !) dans Socket.IO, comme la [reconnexion automatique](#automatic-reconnection), les [accusés de réception](#acknowledgements) ou la [diffusion d'événements](#broadcasting).
+Dito isto, acreditamos que, se você usar WebSockets simples para seu aplicativo, eventualmente precisará implementar a maioria dos recursos que já estão incluídos (e battle-tested) no Socket.IO, como
+[reconexão](#automatic-reconnection), [acknowledgements](#acknowledgements) ou [transmissão](#broadcasting).
 
-### Quelle est la surcharge du protocole Socket.IO ? {#what-is-the-overhead-of-the-socketio-protocol}
+### qual é a sobrecarga do protocolo Socket.IO?
 
-`socket.emit("hello", "world")` sera envoyé sous la forme d'une seule « frame » WebSocket contenant `42["hello","world"]` avec :
+`socket.emit("hello", "world")` será enviado como um único WebSocket frame contendo `42["hello","world"]` com:
 
-- `4` étant le type de paquet "message" du protocol Engine.IO
-- `2` étant le type de paquet "message" du protocol Socket.IO
-- `["hello","world"]` étant la version `JSON.stringify()`-ée du tableau d'arguments
+- `4` ser Engine.IO "message" tipo de pacote
+- `2` ser Socket.IO "message" tipo de pacote
+- `["hello","world"]` sendo o `JSON.stringify()` versão do array de argumentos.
 
-Donc quelques octets supplémentaires pour chaque message, qui peuvent être encore réduits par l'utilisation d'un [*parser* personnalisé](../06-Advanced/custom-parser.md).
+Assim, alguns bytes adicionais para cada mensagem, que podem ser ainda mais reduzidos pelo uso de um [parser customizado](../06-Advanced/custom-parser.md).
 
 :::info
 
-La taille du « bundle » client lui-même est de [`10.4 kB`](https://bundlephobia.com/package/socket.io-client) (minifié et gzippé).
+O tamanho do pacote de navegador em si é [`10.4 kB`](https://bundlephobia.com/package/socket.io-client) (minificado e gzipado)
 
 :::
 
-### Quelque chose ne fonctionne pas correctement, au secours ! {#something-does-not-work-properly-please-help}
+### Algumas coisas não estão funcionando devidamente, por favor me ajude?
 
-Veuillez consulter le [Guide de dépannage](../01-Documentation/troubleshooting.md).
 
-## Étapes suivantes {#next-steps}
+Por favor, cheque o [Guia de solução de problemas](../01-Documentation/troubleshooting.md).
 
-- [Tutoriel](/get-started/chat)
-- [Installation côté serveur](../02-Server/server-installation.md)
-- [Installation côté client](../03-Client/client-installation.md)
+## Proximos passos
+
+- [Exemplo de introdução](/get-started/chat)
+- [Instalação do servidor](../02-Server/server-installation.md)
+- [Installação do cliente](../03-Client/client-installation.md)

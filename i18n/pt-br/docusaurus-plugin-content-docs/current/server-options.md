@@ -1,27 +1,28 @@
 ---
-title: Options côté serveur
-sidebar_label: Options
+title: Opções do Servidor
+sidebar_label: Opções
 sidebar_position: 2
 slug: /server-options/
 ---
 
-## Em breve
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-<!-- ## Options du serveur Socket.IO {#socketio-server-options}
+## Socket.IO Opções de servidor
 
-### `path` {#path}
+### `path`
 
-Valeur par défaut : `/socket.io/`
+Valor padrão: `/socket.io/`
 
-Il s'agit du chemin qui est capturé côté serveur.
+Esse é o nome do caminho e é aquele que é capturada do lado do servidor.
 
-:::caution
+:::Cuidado
 
-Les valeurs côté serveur et côté client doivent correspondre (sauf si vous utilisez un proxy effectuant une réécriture de chemin entre les deux).
+Os valores do Servidor do Cliente devem corresponder (a menos que você esteja usando um proxy de reescrita de caminho entre).
 
 :::
 
-*Server*
+*Servidor*
 
 ```js
 import { createServer } from "http";
@@ -33,7 +34,7 @@ const io = new Server(httpServer, {
 });
 ```
 
-*Client*
+*Cliente*
 
 ```js
 import { io } from "socket.io-client";
@@ -43,27 +44,48 @@ const socket = io("https://example.com", {
 });
 ```
 
-### `serveClient` {#serveclient}
+### `serveClient`
 
-Valeur par défaut : `true`
+Valor padrão: `true`
 
-Détermine si les fichiers client sont servis. Le cas échéant, les fichiers client seront servis à l'emplacement suivant :
+Seja para servidor e arquivos de cliente. Se `true`, diferentes pacotes irão ser servidos para a seguinte localização:
 
 - `<url>/socket.io/socket.io.js`
 - `<url>/socket.io/socket.io.min.js`
 - `<url>/socket.io/socket.io.msgpack.min.js`
 
-Ainsi que les cartographies de code source (source maps) associées.
+(incluindo seus mapas de origem assossiados)
 
-Plus d'informations [ici](categories/03-Client/client-installation.md#standalone-build).
+Veja tambem [aqui](categories/03-Client/client-installation.md#standalone-build).
 
-### `adapter` {#adapter}
+### `adapter`
 
-Valeur par défaut : `require("socket.io-adapter")` (*adapter* basé en mémoire, dont le code source se trouve [ici](https://github.com/socketio/socket.io-adapter/))
+Valor padrão: `require("socket.io-adapter")` (in-memory adapter, cujo código fonte pode ser encontrado [aqui](https://github.com/socketio/socket.io-adapter/))
 
-L'[*adapter*](categories/08-Miscellaneous/glossary.md#adapter) à utiliser.
+O ["Adapter"](categories/08-Miscellaneous/glossary.md#adapter) utiliza.
 
-Exemple avec l'[*adapter* Redis](categories/05-Adapters/adapter-redis.md):
+Exemplo com o [Redis adapter](categories/05-Adapters/adapter-redis.md):
+
+<Tabs groupId="lang">
+  <TabItem value="cjs" label="CommonJS" default>
+
+```js
+const { Server } = require("socket.io");
+const { createAdapter } = require("@socket.io/redis-adapter");
+const { createClient } = require("redis");
+
+const pubClient = createClient({ host: "localhost", port: 6379 });
+const subClient = pubClient.duplicate();
+
+const io = new Server({
+  adapter: createAdapter(pubClient, subClient)
+});
+
+io.listen(3000);
+```
+
+  </TabItem>
+  <TabItem value="mjs" label="ES modules">
 
 ```js
 import { Server } from "socket.io";
@@ -80,31 +102,51 @@ const io = new Server({
 io.listen(3000);
 ```
 
-### `parser` {#parser}
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
 
-Valeur par défaut : `require("socket.io-parser")`
+```ts
+import { Server } from "socket.io";
+import { createAdapter } from "@socket.io/redis-adapter";
+import { createClient } from "redis";
 
-Le *parser* utilisé pour sérialiser/désérialiser les messages. Veuillez consulter la documentation [ici](categories/06-Advanced/custom-parser.md).
+const pubClient = createClient({ host: "localhost", port: 6379 });
+const subClient = pubClient.duplicate();
 
-### `connectTimeout` {#connecttimeout}
+const io = new Server({
+  adapter: createAdapter(pubClient, subClient)
+});
 
-Valeur par défaut : `45000`
+io.listen(3000);
+```
 
-Le nombre de millisecondes avant de déconnecter un client qui n'a pas réussi à rejoindre un *namespace*.
+  </TabItem>
+</Tabs>
 
-## Options du serveur Engine.IO sous-jacent {#low-level-engine-options}
+### `parser`
 
-### `pingTimeout` {#pingtimeout}
+Valor padrão: `socket.io-parser`
 
-Valeur par défaut : `20000`
+O parser a ser utilizado. Por favor veja a documentação [aqui](categories/06-Advanced/custom-parser.md).
 
-Cette valeur est utilisée dans le mécanisme de ping/pong, qui vérifie périodiquement si la connexion est toujours active entre le serveur et le client.
+### `connectTimeout`
 
-Le serveur envoie un ping, et si le client ne répond pas par un pong dans les `pingTimeout` millisecondes, le serveur considère que la connexion est fermée.
+Valor padrão: `45000`
 
-De même, si le client ne reçoit pas de ping du serveur dans les `pingInterval + pingTimeout` millisecondes, il considère également que la connexion est fermée.
+O numero de milissegundos antes de desconectar um cliente que não ingressou com sucesso em um namespace.
 
-Dans les deux cas, la raison de la déconnexion sera : `ping timeout`
+## Opções de motor de baixo nível
+### `pingTimeout`
+
+Valor padrão: `20000`
+
+Esse valor é usado em um mecanimos heartbeat, que periodicamente checa se a conexão continua viva entre o servidor e o cliente,
+
+O servidor envia um ping, e se o cliente não responder com um pong dentro de `pingTimeout` milissegundos, o sividor considera que a conexão foi encerrada.
+
+De forma similar, se o cliente nãp receber um ping do servidor dentro de `pingInterval + pingTimeout` milissegundos, o clinete tambem considera que a conexão está encerrada
+
+Em ambos os casos, é desconectador por causa do `ping timeout`
 
 ```js
 socket.on("disconnect", (reason) => {
@@ -112,7 +154,7 @@ socket.on("disconnect", (reason) => {
 });
 ```
 
-Remarque : la valeur par défaut peut être un peu faible si vous devez envoyer de gros fichiers dans votre application. Veuillez l'augmenter si c'est le cas :
+Nota: o valor padrão pode ser um pouco baixo se você precisar enviar arquivos grandes em seu aplicativo. Aumente-o se for esse o caso:
 
 ```js
 const io = new Server(httpServer, {
@@ -120,23 +162,23 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `pingInterval` {#pinginterval}
+### `pingInterval`
 
-Valeur par défaut : `25000`
+Valor padrão: `25000`
 
-Voir [ci-dessus](#pingtimeout).
+Veja [acima](#pingtimeout).
 
-### `upgradeTimeout` {#upgradetimeout}
+### `upgradeTimeout`
 
-Valeur par défaut : `10000`
+Valor padrão: `10000`
 
-Il s'agit du délai en millisecondes avant l'annulation d'une mise à niveau de transport inachevée.
+É um delay em milissegundos antes que uma atualização de transporte imcompleta seja cancelada.
 
-### `maxHttpBufferSize` {#maxhttpbuffersize}
+### `maxHttpBufferSize`
 
-Valeur par défaut : `1e6` (1 MB)
+Valor padrão: `1e6` (1 MB)
 
-Définit le nombre d'octets qu'un seul message peut contenir, avant de fermer la connexion. Vous pouvez augmenter ou diminuer cette valeur selon vos besoins :
+Isso define quantos bytes uma mensagem unica pode ir, antes do fechamente do socket. Você pode incrementar ou decrementar esta valor dependendo da sua necessidade.
 
 ```js
 const io = new Server(httpServer, {
@@ -144,15 +186,15 @@ const io = new Server(httpServer, {
 });
 ```
 
-Cela correspond à l'option [maxPayload](https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback) du module `ws`.
+Ele corresponde a opção [maxPayload](https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback) do pacote ws.
 
-### `allowRequest` {#allowrequest}
+### `allowRequest`
 
-Default: `-`
+Padrão: `-`
 
-Une fonction qui reçoit une poignée de main ou une demande de mise à niveau comme premier paramètre, et peut décider de continuer ou non.
+Uma função que recebe um dado handshake ou se solicitação de atualização como seu primeiro parâmetro, e pode decidir se continua ou não
 
-Exemple :
+Example:
 
 ```js
 const io = new Server(httpServer, {
@@ -163,98 +205,122 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `transports` {#transports}
+Isso pode tambem ser usado em conjunto com o evento [`initial_headers`](./server-api.md#event-initial_headers), enviando um cookie para o cliente
 
-Valeur par défaut : `["polling", "websocket"]`
+```js
+import { serialize } from "cookie";
 
-Les transports de bas niveau autorisés côté serveur.
+const io = new Server(httpServer, {
+  allowRequest: async (req, callback) => {
+    const session = await fetchSession(req);
+    req.session = session;
+    callback(null, true);
+  }
+});
 
-Voir aussi : [`transports`](client-options.md#transports) côté client
+io.engine.on("initial_headers", (headers, req) => {
+  if (req.session) {
+    headers["set-cookie"] = serialize("sid", req.session.id, { sameSite: "strict" });
+  }
+});
+```
 
-### `allowUpgrades` {#allowupgrades}
+Veja tambem:
 
-Valeur par défaut : `true`
+- [Como utilizar com `express-session`](/how-to/use-with-express-session)
+- [Como lidar com cookies](/how-to/deal-with-cookies)
 
-Indique s'il faut autoriser les mises à niveau de transport (de HTTP long-polling vers WebSocket par exemple).
+### `transports`
 
-### `perMessageDeflate` {#permessagedeflate}
+Valor padrão: `["polling", "websocket"]`
+
+O transporte de baixo-nível que são permitido do lado do cliente
+
+Veja tambem: Lado do cliente [`transports`](client-options.md#transports)
+
+### `allowUpgrades`
+
+Valor padrão: `true`
+
+Se permiti atualizações de transporte.
+
+### `perMessageDeflate`
 
 <details className="changelog">
-    <summary>History</summary>
+    <summary>Historico</summary>
 
 | Version | Changes |
 | ------- | ------- |
-| v3.0.0 | L'extension "permessage-deflate" est maintenant désactivée par défaut. |
-| v1.4.0 | Première implémentation. |
+| v3.0.0 | A extensão permessage-deflate agora está desabilitada por padrão.
+| v1.4.0 | Primeira implementação
 
 </details>
 
-Valeur par défaut : `false`
+Valor padrão: `false`
 
-Indique s'il faut activer [l'extension "permessage-deflate"](https://tools.ietf.org/html/draft-ietf-hybi-permessage-compression-19) pour le transport WebSocket. Cette extension est connue pour ajouter une surcharge importante en termes de performances et de consommation de mémoire, nous suggérons donc de ne l'activer que si elle est vraiment nécessaire.
+Quer habilitar o [permessage-deflate extension](https://tools.ietf.org/html/draft-ietf-hybi-permessage-compression-19) para o transporte do Websocket. Este consumo de memoria, nós sugerimos que apenas permita se isso for realmente necessario 
 
-Veuillez noter que si `perMessageDeflate` est désactivé (la valeur par défaut), le drapeau de compression utilisé lors de l'émission (`socket.compress(true).emit(...)`) sera ignoré lorsque la connexion est établie avec WebSockets, car l'extension "permessage-deflate" ne peut pas être activée pour un message spécifique.
+Observe que se `perMessageDeflate` é definido `false`  (que é o padrão), o compress flag usado ao emitir (`socket.compress(true).emit(...)`) será ignorado quando a conexão está esbilizada com WebSockets, pois a extensão permessage-deflate não pode ser habilitada por mensagem.
 
-Toutes les options du module [`ws`](https://github.com/websockets/ws/blob/master/README.md#websocket-compression) sont supportées :
+Todas as opção para o [`ws` module](https://github.com/websockets/ws/blob/master/README.md#websocket-compression) são suportadas:
 
 ```js
 const io = new Server(httpServer, {
   perMessageDeflate: {
-    threshold: 2048, // 1024 par défaut
+    threshold: 2048, // Padrão é 1024
 
     zlibDeflateOptions: {
-      chunkSize: 8 * 1024, // 16 * 1024 par défaut
+      chunkSize: 8 * 1024, // Padrão é 16 * 1024
     },
 
     zlibInflateOptions: {
-      windowBits: 14, // 15 par défaut
-      memLevel: 7, // 8 par défaut
+      windowBits: 14, // Padrão é  15
+      memLevel: 7, // Padrão é  8
     },
 
-    clientNoContextTakeover: true, // valeur négociée lors de l'initialisation de la connexion client-serveur
-    serverNoContextTakeover: true, // valeur négociée lors de l'initialisation de la connexion client-serveur
-    serverMaxWindowBits: 10, // valeur négociée lors de l'initialisation de la connexion client-serveur
+    clientNoContextTakeover: true, // Padrão é valor negociado.
+    serverNoContextTakeover: true, // Padrão é  valor negociado.
+    serverMaxWindowBits: 10, // Padrão é  valor negociado..
 
-    concurrencyLimit: 20, // 10 par défaut
+    concurrencyLimit: 20, // Padrão é 20.
   }
 });
 ```
 
-### `httpCompression` {#httpcompression}
+### `httpCompression`
 
-*Ajouté en v1.4.0*
+*Adiconada na v1.4.0*
 
-Valeur par défaut : `true`
+Valor padrão: `true`
 
-Indique s'il faut activer la compression pour le transport HTTP long-polling.
+Se deve habilitar a compactação para o transporte de HTTP long-polling.
 
-Veuillez noter que si la compression est désactivée, le drapeau de compression utilisé lors de l'émission (`socket.compress(true).emit(...)`) sera ignoré lorsque la connexion est établie avec le transport HTTP long-polling.
+Observe que se `httpCompression` é definido como `false`, a flag de compactação usando quando emitimos (`socket.compress(true).emit(...)`) irá ser ignorada quando a coenxão é estabilizada com requisições HTTP long-polling.
 
-L'ensemble des options du module Node.js [`zlib`](https://nodejs.org/api/zlib.html#zlib_class_options) est supporté.
+Todas as opções para o Node.js [modulo `zlib`](https://nodejs.org/api/zlib.html#zlib_class_options) são suportadas.
 
-Exemple :
+Exemplo:
 
 ```js
 const io = new Server(httpServer, {
   httpCompression: {
-    // options du serveur Engine.IO
-    threshold: 2048, // 1024 par défaut
-
-    // option du module Node.js zlib
-    chunkSize: 8 * 1024, // 16 * 1024 par défaut
-    windowBits: 14, // 15 par défaut
-    memLevel: 7, // 8 par défaut
+    // Engine.IO options
+    threshold: 2048, // Padrão é 1024
+    // Node.js zlib options
+    chunkSize: 8 * 1024, // Padrão é 16 * 1024
+    windowBits: 14, // Padrão é 15
+    memLevel: 7, // Padrão é  8
   }
 });
 ```
 
-### `wsEngine` {#wsengine}
+### `wsEngine`
 
-Valeur par défaut : `require("ws").Server` (le code source se trouve [ici](https://github.com/websockets/ws))
+Valor padrão: `require("ws").Server` (codígo fontr pode ser encontrado [aqui](https://github.com/websockets/ws))
 
-L'implémentation du serveur WebSocket à utiliser. Veuillez consulter la documentation [ici](categories/02-Server/server-installation.md#other-websocket-server-implementations).
+A implamentação do WebSocket server para uso. Por favor veja a documentação [aqui](categories/02-Server/server-installation.md#other-websocket-server-implementations).
 
-Exemple :
+Exemplo:
 
 ```js
 const io = new Server(httpServer, {
@@ -262,13 +328,14 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `cors` {#cors}
+### `cors`
 
-Valeur par défaut : `-`
+Valor padrão: `-`
 
-La liste des options qui sera transmise au module [`cors`](https://www.npmjs.com/package/cors). Plus d'informations [ici](categories/02-Server/handling-cors.md).
+A lista de opções 
+The list of options que será encaminhado ao modulo[`cors`](https://www.npmjs.com/package/cors). Mais ifformações você pode encontrar [aqui](categories/02-Server/handling-cors.md).
 
-Exemple :
+Exemplo:
 
 ```js
 const io = new Server(httpServer, {
@@ -280,22 +347,43 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `cookie` {#cookie}
+Opções disponiveis:
 
-Valeur par défaut : `-`
+| Opções                 | Descrições                                                                                                                                                                                                                                                                                                        |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `origin`               | Configura o **Access-Control-Allow-Origin** CORS header.                                                                                                                                                                                                                                                        |
+| `methods`              | Configura o **Access-Control-Allow-Methods** CORS header. Espera uma string delimitada por vírgula (ex: 'GET,PUT,POST') ou um array (ex: `['GET', 'PUT', 'POST']`).                                                                                                                                                     |
+| `allowedHeaders`       | Configura o **Access-Control-Allow-Headers** CORS header. Espera uma string delimitada por vírgula (ex: 'Content-Type,Authorization') ou um array (ex: `['Content-Type', 'Authorization']`). Se não especificado, seu padrão irá refletir os headers especificados nos header do **Access-Control-Request-Headers** requesitado. |
+| `exposedHeaders`       | Configura o **Access-Control-Expose-Headers** CORS header.  Espera uma string delimitada por vírgula (ex: 'Content-Range,X-Content-Range') ou um array (ex: `['Content-Range', 'X-Content-Range']`). Se não especificado, nenhum cabeçalho personalizado é exposto.
+| `credentials`          | Configura o **Access-Control-Allow-Credentials** CORS header. Define se `true` para passar o cabeçalho, caso contrário é omitido.                                                  |
+| `maxAge`               | Configura o **Access-Control-Max-Age** CORS header. Define um integer para passar o cabeçalho, caso contrário é omitido.                                                                                                  |
+| `preflightContinue`    | Passa o CORS resposta de comprovação para o próximo manipulador.                                                                                                                                                                                                   |
+| `optionsSuccessStatus` | Fornece um código de status a ser usado para requisições `OPTIONS`, já que alguns navegadores legados (IE11, várias SmartTVs) engasgam `204`.                                                                                                                                                                               |
 
-La liste des options qui sera transmise au module [`cookie`](https://github.com/jshttp/cookie/). Options disponibles :
+Possiveis valores para a opção `origin`:
 
-- `domain`
-- `encode`
-- `expires`
-- `httpOnly`
-- `maxAge`
-- `path`
-- `sameSite`
-- `secure`
+- `Boolean` - Define `origin` para `true` para refletir no [request origin](http://tools.ietf.org/html/draft-abarth-origin-09), e é definido por `req.header('Origin')`, ou define isso `false` para desabilitar CORS.
+- `String` - Define `origin` para uma origem especifica. Por exemplo se você define isso para `"http://example.com"` apenas requisições para "http://example.com" serão permitidas.
+- `RegExp` - Define `origin` para uma expressão regular padrão que irá ser usada para testar a requisição de origem. Se isso é uma correspondência, a origem da solicitação será refletida. Por exemplo, o padrão `/example\.com$/` refletirá qualquer solicitação proveniente de uma origem que termine com "example.com"
+- `Array` - Define `origin` para um array para origens validas. Cada origem pode ser uma `String` ou um  `RegExp`. Por exemplo `["http://example1.com", /\.example2\.com$/]` será aceito qualquer requisição para "http://example1.com" ou padra um subdominio do  "example2.com".
+- `Function` - Define `origin` para uma função implementando alguma logiva customizada. A Função pega a origim da requisição como o primeiro parâmetro e o callback (que espera uma assinatura `err [object], allow [bool]`) como o segundo.
 
-Exemple :
+### `cookie`
+
+Valor padrão: `-`
+
+A lista de opções que será encaminhado para o modulo do [`cookie`](https://github.com/jshttp/cookie/). Opções disponíveis:
+
+- domain
+- encode
+- expires
+- httpOnly
+- maxAge
+- path
+- sameSite
+- secure
+
+Exemplo:
 
 ```js
 import { Server } from "socket.io";
@@ -312,22 +400,22 @@ const io = new Server(httpServer, {
 
 :::info
 
-Depuis Socket.IO v3, il n'y a plus de cookie envoyé par défaut ([référence](categories/07-Migrations/migrating-from-2-to-3.md#no-more-cookie-by-default)).
+Desde Socket.IO v3, não a mais cookies enviados por padrão ([reference](categories/07-Migrations/migrating-from-2-to-3.md#no-more-cookie-by-default)).
 
 :::
 
-### `allowEIO3` {#alloweio3}
+### `allowEIO3`
 
-Valeur par défaut : `false`
+Valor padrão: `false`
 
-Indique s'il faut activer la compatibilité avec les clients Socket.IO v2.
+Se a compatibilidade for permitido com Socket.IO v2 client
 
-Voir aussi : [Migration de 2.x vers 3.0](categories/07-Migrations/migrating-from-2-to-3.md#how-to-upgrade-an-existing-production-deployment)
+Veja sobre: [Migrating from 2.x to 3.0](categories/07-Migrations/migrating-from-2-to-3.md#how-to-upgrade-an-existing-production-deployment)
 
-Exemple :
+Exemplo:
 
 ```js
 const io = new Server(httpServer, {
-  allowEIO3: true // false par défaut
+  allowEIO3: true // false é o padrão
 });
-``` -->
+```

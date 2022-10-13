@@ -1,55 +1,54 @@
 ---
-title: How it works
+title: Como funciona
 sidebar_position: 2
 slug: /how-it-works/
 ---
 
-The bidirectional channel between the Socket.IO server (Node.js) and the Socket.IO client (browser, Node.js, or [another programming language](index.md#what-socketio-is)) is established with a [WebSocket connection](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) whenever possible, and will use HTTP long-polling as fallback.
+O cabal bidirectional entre o servidor Socket.IO (Node.js) e o cliente Socket.IO (browser, Node.js, ou [outra linguagem de programação](index.md#what-socketio-is)) é estabilizada com uma [conexão WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) sempre que possível, e usará a HTTP long-polling como fallback.
 
-The Socket.IO codebase is split into two distinct layers:
+O base de código Socket.IO é dividido em duas camadas distintas:
 
-- the low-level plumbing: what we call Engine.IO, the engine inside Socket.IO
-- the high-level API: Socket.IO itself
+- O plumbing baixo-nível: o que chamamos de Engine.IO, o mecanismo dentro do Socket.IO.
+- A API alto-nível: Socket.IO em si.
 
 ## Engine.IO {#engineio}
 
-Engine.IO is responsible for establishing the low-level connection between the server and the client. It handles:
+Engine.IO é responsavel por estabelecer a conexão de baixo-nivel entre o servidor e o cliente. Ele lida com:
 
-- the various [transports](#transports) and the [upgrade mechanism](#upgrade-mechanism)
-- the [disconnection detection](#disconnection-detection)
+- os varíos [transports](#transports) e o [upgrade mechanism](#upgrade-mechanism)
+- a [detecção de disconecção](#disconnection-detection)
 
-The source code can be found here:
+O cod;igo fonte pode ser encontrado aqui:
 
-- server: https://github.com/socketio/engine.io
-- client: https://github.com/socketio/engine.io-client
+- servidor: https://github.com/socketio/engine.io
+- cliente: https://github.com/socketio/engine.io-client
 - parser: https://github.com/socketio/engine.io-parser
-- protocol description: https://github.com/socketio/engine.io-protocol
+- descrição de protocolo: https://github.com/socketio/engine.io-protocol
 
 ### Transports {#transports}
 
-There are currently two implemented transports:
+Existem atualmente dois transportes implementados:
 
 - [HTTP long-polling](#http-long-polling)
 - [WebSocket](#websocket)
 
 #### HTTP long-polling {#http-long-polling}
 
-The HTTP long-polling transport (also simply referred as "polling") consists of successive HTTP requests:
+O transporte HTTP long-polling (também simplesmente referido como "polling") consiste em sucessivas solicitações HTTP:
 
-- long-running `GET` requests, for receiving data from the server
-- short-running `POST` requests, for sending data to the server
+- long-running `GET` requests, para receber dados do servidor
+- short-running `POST` requests, para enviar dados do servidor
 
-Due to the nature of the transport, successive emits may be concatenated and sent within the same HTTP request.
-
+Devido à natureza do transporte, emissões sucessivas podem ser concatenadas e enviadas dentro de uma mesma requisição HTTP.
 #### WebSocket {#websocket}
 
-The WebSocket transport consists, well, of a [WebSocket connection](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), which provides a bidirectional and low-latency communication channel between the server and the client.
+O transporte WebSocket consite em um [WebSocket connection](https://developer.mozilla.org/pt-BR/docs/Web/API/WebSockets_API), que fornece um canal de comunicação bidirecional e de baixa latência entre o servidor e o cliente.
 
-Due to the nature of the transport, each emit is sent in its own WebSocket frame (some emits may even result in two distinct WebSocket frames, more information [here](../06-Advanced/custom-parser.md#the-default-parser)).
+Devido à natureza do transporte, cada emissão é enviada em seu próprio quadro WebSocket (algumas emissões podem até resultar em dois quadros WebSocket distintos, mais informações [aqui](../06-Advanced/custom-parser.md#the-default-parser)).
 
 ### Handshake {#handshake}
 
-At the beginning of the Engine.IO connection, the server sends some information:
+No início da conexão Engine.IO, o servidor envia algumas informações
 
 ```json
 {
@@ -60,67 +59,67 @@ At the beginning of the Engine.IO connection, the server sends some information:
 }
 ```
 
-- the `sid` is the ID of the session, it must be included in the `sid` query parameter in all subsequent HTTP requests
-- the `upgrades` array contains the list of all "better" transports that are supported by the server
-- the `pingInterval` and `pingTimeout` values are used in the heartbeat mechanism
+- O `sid` é o ID da sessão, deve ser incluído no parâmetro de consulta (query parameter) `sid` e todas subsequentes requisições HTTP.
+- O `upgrades` array qe contém uma lista de todos transportes os "melhores" transportes que são suportados pelo servidor.
+- O `pingInterval` e `pingTimeout` valores são usados em um mecanismo de heartbeat
 
-### Upgrade mechanism {#upgrade-mechanism}
+### Atualizando mecanismos {#upgrade-mechanism}
 
-By default, the client establishes the connection with the HTTP long-polling transport.
+Por padrão, o cliente estabelece uma conexão com o transporte HTTP long-polling.
 
-**But, why?**
+**Mas, por que?**
 
-While WebSocket is clearly the best way to establish a bidirectional communication, experience has shown that it is not always possible to establish a WebSocket connection, due to corporate proxies, personal firewall, antivirus software...
+Embora WebSocket é claramente o melhor que há para estabelecer uma comunicação bidirecional, experiencias mostraram que nem sempre é possivel estabelecer uma conexão WebSocket, devido a proxies corporativos, firewall pessoal, softwares de antivirus...
 
-From the user perspective, an unsuccessful WebSocket connection can translate in up to at least 10 seconds of waiting for the realtime application to begin exchanging data. This **perceptively** hurts user experience.
+Do ponto de vista do usuário, uma conexão WebSocket malsucedida pode ser traduzida em até 10 segundos de espera para que o aplicativo em tempo real comece a trocar dados. Isso **perceptivelmente** prejudica a experiência do usuário.
 
-To summarize, Engine.IO focuses on reliability and user experience first, marginal potential UX improvements and increased server performance second.
+Para resumir, Engine.IO foca em confiabilidade e experiência do usuário em primeiro lugar, melhorias de UX potenciais marginais e aumentar o desempenho do servidor em segundo lugar.
 
-To upgrade, the client will:
+Para atualizar, o cliente vai:
 
-- ensure its outgoing buffer is empty
-- put the current transport in read-only mode
-- try to establish a connection with the other transport
-- if successful, close the first transport
+- certifique-se de que seu buffer de saída esteja vazio
+-coloque o transporte atual em modo somente leitura
+- tente estabelecer uma conexão com o outro transporte
+- se for bem sucedido, feche o primeiro transporte
 
 You can check in the Network Monitor of your browser:
 
 ![Successful upgrade](/images/network-monitor.png)
 
-1. handshake (contains the session ID — here, `zBjrh...AAAK` — that is used in subsequent requests)
-2. send data (HTTP long-polling)
-3. receive data (HTTP long-polling)
-4. upgrade (WebSocket)
-5. receive data (HTTP long-polling, closed once the WebSocket connection in 4. is successfully established)
+1. handshake (contém a sessão ID — aqui, `zBjrh...AAAK` — que é usada em uma requisição subsequente)
+2. envio de daods (HTTP long-polling)
+3. recebimento de dados (HTTP long-polling)
+4. atualizações (WebSocket)
+5. recebimento de dados (HTTP long-polling, fechado uma vez que a conexão WebSocket é 4. E estabelecido com sucesso)
 
-### Disconnection detection {#disconnection-detection}
+### Detecção de disconexão {#disconnection-detection}
 
-The Engine.IO connection is considered as closed when:
+A conexão Engine.IO é considerada encerrada quando:
 
-- one HTTP request (either GET or POST) fails (for example, when the server is shutdown)
-- the WebSocket connection is closed (for example, when the user closes the tab in its browser)
-- `socket.disconnect()` is called on the server-side or on the client-side
+- um request HTTP (qualquer GET ou POST) falha (por exemplo, quando o servidor é desligado)
+- a conexão do WebSocket é encerrada (por exemplo, quando o usuario uma aba em seu browser)
+- `socket.disconnect()` é chamada no lado do servidor ou no lado do cliente.
 
-There is also a heartbeat mechanism which checks that the connection between the server and the client is still up and running:
+Há também um mecanismo de heartbeat que verifica se a conexão entre o servidor e o cliente ainda está funcionando:
 
-At a given interval (the `pingInterval` value sent in the handshake) the server sends a PING packet and the client has a few seconds (the `pingTimeout` value) to send a PONG packet back. If the server does not receive a PONG packet back, it will consider that the connection is closed. Conversely, if the client does not receive a PING packet within `pingInterval + pingTimeout`, it will consider that the connection is closed.
+Em um determinado intervalo (o valor `pingInterval` enviado no handshake) o servidor envia um pacote PING e o cliente tem alguns segundos (o valor `pingTimeout`) para enviar um pacote PONG de volta. Se o servidor não receber um pacote PONG de volta, ele considerará que a conexão foi encerrada. Por outro lado, se o cliente não receber um pacote PING dentro de `pingInterval + pingTimeout`, ele considerará que a conexão foi encerrada.
 
-The disconnection reasons are listed [here](../02-Server/server-socket-instance.md#disconnect) (server-side) and [here](../03-Client/client-socket-instance.md#disconnect) (client-side).
+Os motivos de disconexão são listados [aqui](../02-Server/server-socket-instance.md#disconnect) (lado do servidor) e [aqui](../03-Client/client-socket-instance.md#disconnect) (lado do cliente).
 
 
 ## Socket.IO {#socketio}
 
-Socket.IO provides some additional features over the Engine.IO connection:
+Socket.IO fornece alguns recursos adicionais sobre a conexão Engine.IO:
 
-- automatic reconnection
-- [packet buffering](../03-Client/client-offline-behavior.md#buffered-events)
+- Reconexão automatica
+- [buffer de pacotes](../03-Client/client-offline-behavior.md#buffered-events)
 - [acknowledgments](../04-Events/emitting-events.md#acknowledgements)
-- broadcasting [to all clients](../04-Events/broadcasting-events.md) or [to a subset of clients](../04-Events/rooms.md) (what we call "Room")
-- [multiplexing](../06-Advanced/namespaces.md) (what we call "Namespace")
+- transmissão [para todos os clientes](../04-Events/broadcasting-events.md) ou [um subconjunto de clientes](../04-Events/rooms.md) (que nós chamamos de "Room")
+- [multiplexação](../06-Advanced/namespaces.md) (aue nós chamamos de "Namespace")
 
-The source code can be found here:
+O código fonte pode ser encontrado aqui:
 
-- server: https://github.com/socketio/socket.io
-- client: https://github.com/socketio/socket.io-client
+- servidor: https://github.com/socketio/socket.io
+- cliente: https://github.com/socketio/socket.io-client
 - parser: https://github.com/socketio/socket.io-parser
-- protocol description: https://github.com/socketio/socket.io-protocol
+- descrição de protocolo: https://github.com/socketio/socket.io-protocol
