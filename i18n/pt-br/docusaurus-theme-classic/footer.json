@@ -1,0 +1,70 @@
+{
+  "link.title.Documentation": {
+    "message": "Documentação",
+    "description": "The title of the footer links column with title=Documentation in the footer"
+  },
+  "link.title.Community": {
+    "message": "Comunidade",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.More": {
+    "message": "Mais",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.Get started": {
+    "message": "Comece",
+    "description": "The label of footer link with label=Get started linking to /get-started/chat"
+  },
+  "link.item.label.Documentation": {
+    "message": "Documentação",
+    "description": "The label of footer link with label=Documentation linking to /docs/v4/"
+  },
+  "link.item.label.Examples": {
+    "message": "Exemplos",
+    "description": "The label of footer link with label=Examples linking to /get-started/"
+  },
+  "link.item.label.Server API": {
+    "message": "API do Servidor",
+    "description": "The label of footer link with label=Server API linking to /docs/v4/server-api/"
+  },
+  "link.item.label.Client API": {
+    "message": "API do Cliente",
+    "description": "The label of footer link with label=Client API linking to /docs/v4/client-api/"
+  },
+  "link.item.label.Blog": {
+    "message": "Blog",
+    "description": "The label of footer link with label=Blog linking to /blog"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/socketio/socket.io"
+  },
+  "link.item.label.Slack": {
+    "message": "Slack",
+    "description": "The label of footer link with label=Slack linking to https://socketio-slackin.herokuapp.com/"
+  },
+  "link.item.label.Stack Overflow": {
+    "message": "Stack Overflow",
+    "description": "The label of footer link with label=Stack Overflow linking to https://stackoverflow.com/questions/tagged/socket.io"
+  },
+  "link.item.label.Twitter": {
+    "message": "Twitter",
+    "description": "The label of footer link with label=Twitter linking to https://twitter.com/SocketIO"
+  },
+  "link.item.label.Become a sponsor": {
+    "message": "Seja um Sponsor",
+    "description": "The label of footer link with label=Become a sponsor linking to https://opencollective.com/socketio"
+  },
+  "link.item.label.CDN": {
+    "message": "CDN",
+    "description": "The label of footer link with label=CDN linking to https://cdn.socket.io"
+  },
+  "link.item.label.Admin UI": {
+    "message": "Admin UI",
+    "description": "The label of footer link with label=Admin UI linking to https://admin.socket.io"
+  },
+  "copyright": {
+    "message": "Copyright © 2022 Socket.IO",
+    "description": "The footer copyright"
+  }
+}
