@@ -188,3 +188,36 @@ socket.on("bar", (arg) => {
   console.log(arg); // "123"
 });
 ```
+
+## Emitting with a timeout
+
+Emitting with a timeout breaks the symmetry between the sender and the receiver, because the sender has an additional error argument in case of failure.
+
+This can be fixed with a little helper type:
+
+```ts
+type WithTimeoutAck<isSender extends boolean, args extends any[]> = isSender extends true ? [Error, ...args] : args;
+
+interface ClientToServerEvents<isSender extends boolean = false> {
+  hello: (arg: number, callback: (...args: WithTimeoutAck<isSender, [string]>) => void) => void;
+}
+
+interface ServerToClientEvents<isSender extends boolean = false> {
+  // ...
+}
+
+const io = new Server<ClientToServerEvents, ServerToClientEvents<true>>(3000);
+
+io.on("connection", (socket) => {
+  socket.on("hello", (arg, cb) => {
+    // arg is properly inferred as a number
+    cb("456");
+  });
+});
+
+const socket: Socket<ServerToClientEvents, ClientToServerEvents<true>> = ioc("http://localhost:3000");
+
+socket.timeout(100).emit("hello", 123, (err, arg) => {
+  // arg is properly inferred as a string
+});
+```
