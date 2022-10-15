@@ -70,6 +70,9 @@ Browser compatibility is tested thanks to the awesome Sauce Labs platform:
 
 ## Latest releases
 
+- 4.5.3 (2022/10/15): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.3) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.2...4.5.3) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.3)
+- 4.5.2 (2022/09/02): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.2) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.1...4.5.2) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.2)
+- 4.5.1 (2022/05/17): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.0...4.5.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.1)
 - [4.5.0](/blog/socket-io-4-5-0/) (2022/04/23): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.4.1...4.5.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.0)
 - 4.4.1 (2022/01/06): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.4.0...4.4.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.1)
 - [4.4.0](/blog/socket-io-4-4-0/) (2021/11/18): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.3.2...4.4.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.0)
@@ -108,14 +111,14 @@ const io = new Server({
 You can also include the client bundle from a CDN:
 
 ```html
-<script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
 ```
 
 Socket.IO is also available from other CDN:
 
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.5.0/dist/socket.io.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.5.0/dist/socket.io.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.5.3/dist/socket.io.min.js
+- unpkg: https://unpkg.com/socket.io-client@4.5.3/dist/socket.io.min.js
 
 There are several bundles available:
 
