@@ -150,9 +150,9 @@
     "alt": "SwissCasinoHEX.com"
   },
   {
-    "url": "https://polskiekasynohex.com/",
-    "img": "https://images.opencollective.com/kasynohex-com/b25daf6/logo.png",
-    "alt": "KasynoHEX.com"
+    "url": "https://polskiekasynohex.org/",
+    "img": "https://images.opencollective.com/polskiekasynohex/b25daf6/logo.png",
+    "alt": "KasynoHEX"
   },
   {
     "url": "https://casinohex.ro/",
@@ -305,11 +305,6 @@
     "alt": "Casino.Guide"
   },
   {
-    "url": "https://www.polskiekasyno.com/",
-    "img": "https://images.opencollective.com/polskiekasyno-com/a8975c6/logo.png",
-    "alt": "Polskiekasyno.com"
-  },
-  {
     "url": "https://slotsempire.com/",
     "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
     "alt": "Slots Empire Casino"
@@ -340,6 +335,11 @@
     "alt": "Boosbe"
   },
   {
+    "url": "https://www.polskiekasyno.com/",
+    "img": "https://images.opencollective.com/polskiekasyno-com/a8975c6/logo.png",
+    "alt": "Polskiekasyno.com"
+  },
+  {
     "url": "https://www.uudetkasinot.com",
     "img": "https://images.opencollective.com/uudetkasinot-com/01a3658/logo.png",
     "alt": "uudetkasinot.com"
@@ -360,16 +360,6 @@
     "alt": "iDealeCasinos"
   },
   {
-    "url": "https://www.norsknettcasino.net",
-    "img": "https://images.opencollective.com/norsknettcasino/3ce6d1e/logo.png",
-    "alt": "Norsknettcasino"
-  },
-  {
-    "url": "https://www.topvpnservice.com/",
-    "img": "https://images.opencollective.com/topvpnservice/a48fac8/logo.png",
-    "alt": "TopVPNService"
-  },
-  {
     "url": "https://www.whitehatcasinos.com",
     "img": "https://images.opencollective.com/whitehatcasinos-com/0fee63f/logo.png",
     "alt": "WhiteHatCasinos.com"
@@ -378,6 +368,16 @@
     "url": "https://zamsino.com/uk/free-spins-no-deposit/",
     "img": "https://images.opencollective.com/erik-king/avatar.png",
     "alt": "Erik King"
+  },
+  {
+    "url": "https://www.norsknettcasino.net",
+    "img": "https://images.opencollective.com/norsknettcasino/3ce6d1e/logo.png",
+    "alt": "Norsknettcasino"
+  },
+  {
+    "url": "https://www.topvpnservice.com/",
+    "img": "https://images.opencollective.com/topvpnservice/a48fac8/logo.png",
+    "alt": "TopVPNService"
   },
   {
     "url": "https://famousblast.com/product/buyfollowers/",
@@ -575,6 +575,11 @@
     "alt": "Betting sites Australia"
   },
   {
+    "url": "https://onlinecasino.kyiv.ua",
+    "img": "https://images.opencollective.com/online-casino-ua/175e529/logo.png",
+    "alt": "Онлайн Казино Украины"
+  },
+  {
     "url": "https://codepilot.ai",
     "img": "https://images.opencollective.com/codepilotai/732befb/logo.png",
     "alt": "CodePilot.ai"
@@ -583,11 +588,6 @@
     "url": "https://tweaklab.org",
     "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
     "alt": "Roland Brönnimann"
-  },
-  {
-    "url": "https://onlinecasino.kyiv.ua",
-    "img": "https://images.opencollective.com/online-casino-ua/175e529/logo.png",
-    "alt": "Онлайн Казино Украины"
   },
   {
     "url": "https://www.jobz.best/",
@@ -645,6 +645,11 @@
     "alt": "Stayatcasinos.com"
   },
   {
+    "url": "https://sharehealthcare.com",
+    "img": "https://images.opencollective.com/christian-healthcare-ministries/5f05f8c/logo.png",
+    "alt": "Christian Healthcare Ministries"
+  },
+  {
     "url": "https://njohnson7.github.io/",
     "img": "https://images.opencollective.com/njohnson7/fae8bd7/avatar.png",
     "alt": "Nick Johnson"
@@ -688,16 +693,6 @@
     "url": "https://noderedis.dev",
     "img": "https://images.opencollective.com/node-redis/3f51d3f/logo.png",
     "alt": "Node Redis"
-  },
-  {
-    "url": "https://buzzvoice.com",
-    "img": "https://images.opencollective.com/buzzvoicecom/c7477dd/logo.png",
-    "alt": "buzzvoice.com"
-  },
-  {
-    "url": "https://sharehealthcare.com",
-    "img": "https://images.opencollective.com/christian-healthcare-ministries/5f05f8c/logo.png",
-    "alt": "Christian Healthcare Ministries"
   },
   {
     "url": "https://casinoburst.com/casino-utan-licens/",
@@ -763,5 +758,10 @@
     "url": "https://www.topaustraliangambling.com/",
     "img": "https://images.opencollective.com/top-australian-gambling/e6df914/logo.png",
     "alt": "Top Australian Gambling"
+  },
+  {
+    "url": "https://www.helpwyz.com",
+    "img": "https://images.opencollective.com/helpwyz/a10f626/logo.png",
+    "alt": "Helpwyz"
   }
 ]
