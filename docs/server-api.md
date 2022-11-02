@@ -1738,8 +1738,8 @@ io.on("connection", (socket) => {
   // a private message to another socket
   socket.to(/* another socket id */).emit("hey");
 
-  // WARNING: `socket.to(socket.id).emit()` will NOT work, as it will send to everyone in the room
-  // named `socket.id` but the sender. Please use the classic `socket.emit()` instead.
+  // WARNING: `socket.to(socket.id).emit()` will NOT work
+  // Please use `io.to(socket.id).emit()` instead.
 });
 ```
 
