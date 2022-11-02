@@ -47,7 +47,7 @@ Then, profit from the help of your IDE!
 The events declared in the `ServerToClientEvents` interface are used when sending and broadcasting events:
 
 ```ts
-io.on("connection", (socket) => {
+io.on("connection", (socket: Socket) => {
   socket.emit("noArg");
   socket.emit("basicEmit", 1, "2", Buffer.from([3]));
   socket.emit("withAck", "4", (e) => {
