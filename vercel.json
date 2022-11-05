@@ -20,5 +20,16 @@
     { "source": "/docs/migrating-from-2-x-to-3-0", "destination": "/docs/v4/migrating-from-2-x-to-3-0" },
     { "source": "/docs/migrating-from-3-x-to-4-0", "destination": "/docs/v4/migrating-from-3-x-to-4-0" },
     { "source": "/docs/faq", "destination": "/docs/v4/faq" }
+  ],
+  "headers": [
+    {
+      "source": "/(assets|images)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
   ]
 }
