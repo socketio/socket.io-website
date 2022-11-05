@@ -329,7 +329,7 @@ io.in("room1").disconnectSockets(true);
 
 This method also works within a cluster of multiple Socket.IO servers, with a compatible adapter like the [Postgres adapter](./categories/05-Adapters/adapter-postgres.md).
 
-In that case, if you only want to affect the socket instances on the given node, you need to use the `local` flags:
+In that case, if you only want to affect the socket instances on the given node, you need to use the `local` flag:
 
 ```js
 // make all Socket instances that are currently connected on the given node disconnect
@@ -395,7 +395,7 @@ io.on("connection", (socket) => {
 
 This method also works within a cluster of multiple Socket.IO servers, with a compatible adapter like the [Postgres adapter](./categories/05-Adapters/adapter-postgres.md).
 
-In that case, if you only want to affect the socket instances on the given node, you need to use the `local` flags:
+In that case, if you only want to return the socket instances on the given node, you need to use the `local` flag:
 
 ```js
 // return all Socket instances that are currently connected on the given node
@@ -641,7 +641,7 @@ io.in(theSocketId).socketsJoin("room1");
 
 This method also works within a cluster of multiple Socket.IO servers, with a compatible adapter like the [Postgres adapter](./categories/05-Adapters/adapter-postgres.md).
 
-In that case, if you only want to affect the socket instances on the given node, you need to use the `local` flags:
+In that case, if you only want to affect the socket instances on the given node, you need to use the `local` flag:
 
 ```js
 // make all Socket instances that are currently connected on the given node join the "room1" room
@@ -673,7 +673,7 @@ io.in(theSocketId).socketsLeave("room1");
 
 This method also works within a cluster of multiple Socket.IO servers, with a compatible adapter like the [Postgres adapter](./categories/05-Adapters/adapter-postgres.md).
 
-In that case, if you only want to affect the socket instances on the given node, you need to use the `local` flags:
+In that case, if you only want to affect the socket instances on the given node, you need to use the `local` flag:
 
 ```js
 // make all Socket instances that are currently connected on the given node leave the "room1" room
