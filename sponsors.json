@@ -465,14 +465,14 @@
     "alt": "Aspire Global Casinos"
   },
   {
-    "url": "https://www.norgescasino.com/",
-    "img": "https://images.opencollective.com/norges-casino1/9a90f8f/logo.png",
-    "alt": "Norges Casino"
-  },
-  {
     "url": "https://sportbetting24.se/",
     "img": "https://images.opencollective.com/sportbetting24/2459659/avatar.png",
     "alt": "Sportbetting24"
+  },
+  {
+    "url": "https://www.norgescasino.com/",
+    "img": "https://images.opencollective.com/norges-casino1/9a90f8f/logo.png",
+    "alt": "Norges Casino"
   },
   {
     "url": "https://parimatch.in/",
@@ -495,19 +495,14 @@
     "alt": "Campobet SE"
   },
   {
-    "url": "https://leafletcasino.com/",
-    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
-    "alt": "leafletcasino.com"
-  },
-  {
-    "url": "https://www.igamblingsites.com/",
-    "img": "https://images.opencollective.com/igamblingsites/9380f54/avatar.png",
-    "alt": "iGamblingSites.com"
-  },
-  {
     "url": "https://www.automatenspiele.org/",
     "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
     "alt": "automatenspiele.org"
+  },
+  {
+    "url": "https://leafletcasino.com/",
+    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
+    "alt": "leafletcasino.com"
   },
   {
     "url": "https://www.freespingratis.it",
@@ -685,16 +680,6 @@
     "alt": "Quickbooks Tool Hub"
   },
   {
-    "url": "https://stake-casino.org",
-    "img": "https://images.opencollective.com/stake-casino/87608bf/avatar.png",
-    "alt": "Stake-casino.org"
-  },
-  {
-    "url": "https://www.allfreechips.com",
-    "img": "https://images.opencollective.com/chris61/avatar.png",
-    "alt": "Chris"
-  },
-  {
     "url": "https://www.allfreechips.com",
     "img": "https://images.opencollective.com/allfreechips/130613e/logo.png",
     "alt": "Allfreechips"
@@ -788,5 +773,20 @@
     "url": "https://windowstips.nu",
     "img": "https://images.opencollective.com/windowstips/d531248/logo.png",
     "alt": "Windowstips"
+  },
+  {
+    "url": "https://www.gambleonline.co/nz/",
+    "img": "https://images.opencollective.com/gambleonline-nz/5004fcc/logo.png",
+    "alt": "GambleOnline NZ"
+  },
+  {
+    "url": "https://www.testarna.se/casino/utan-svensk-licens/utlandska",
+    "img": "/images/sponsors/testarna.jpg",
+    "alt": "Testarna.se"
+  },
+  {
+    "url": "https://gcore.com",
+    "img": "https://images.opencollective.com/gcore/1d0b9dc/logo.png",
+    "alt": "Gcore"
   }
 ]

@@ -87,6 +87,11 @@ const customLinks = {
     url: "https://www.casinotest.com/",
     img: "https://images.opencollective.com/casinotest-ltd/7e3c899/logo.png",
     alt: "CasinoTest Ltd."
+  },
+  "guest-3f7631a8": {
+    url: "https://www.testarna.se/casino/utan-svensk-licens/utlandska",
+    img: "/images/sponsors/testarna.jpg",
+    alt: "Testarna.se"
   }
 }
 
