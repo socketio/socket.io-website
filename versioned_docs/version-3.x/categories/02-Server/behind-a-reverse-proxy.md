@@ -63,7 +63,7 @@ http {
 }
 ```
 
-Or with a custom [path](../../server-options.md#path):
+Or with a custom [path](server-initialization.md#path):
 
 ```
 http {
