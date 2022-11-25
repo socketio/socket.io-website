@@ -71,7 +71,7 @@ You can find more details about namespaces [here](/docs/v3/namespaces/).
 - [IO factory options](#IO-factory-options)
   - [forceNew](#forceNew)
   - [multiplex](#multiplex)
-- [Low-level engine options](#Low-level-engine-options)
+- [Low-level engine options](#low-level-engine-options)
   - [transports](#transports)
   - [upgrade](#upgrade)
   - [rememberUpgrade](#rememberUpgrade)
