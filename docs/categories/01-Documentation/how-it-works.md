@@ -72,7 +72,7 @@ By default, the client establishes the connection with the HTTP long-polling tra
 
 While WebSocket is clearly the best way to establish a bidirectional communication, experience has shown that it is not always possible to establish a WebSocket connection, due to corporate proxies, personal firewall, antivirus software...
 
-From the user perspective, an unsuccessful WebSocket connection can translate in up to at least 10 seconds of waiting for the realtime application to begin exchanging data. This **perceptively** hurts user experience.
+From the user perspective, an unsuccessful WebSocket connection can translate in up to 10 seconds of waiting for the realtime application to begin exchanging data. This **perceptively** hurts user experience.
 
 To summarize, Engine.IO focuses on reliability and user experience first, marginal potential UX improvements and increased server performance second.
 
