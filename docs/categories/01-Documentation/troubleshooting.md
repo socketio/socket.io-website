@@ -5,6 +5,12 @@ sidebar_position: 5
 slug: /troubleshooting-connection-issues/
 ---
 
+:::tip
+
+The [Admin UI](../06-Advanced/admin-ui.md) can give you additional insights about the status of your Socket.IO deployment.
+
+:::
+
 Common/known issues:
 
 - [the socket is not able to connect](#problem-the-socket-is-not-able-to-connect)

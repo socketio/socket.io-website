@@ -14,15 +14,19 @@ Link to the hosted version: https://admin.socket.io/
 
 - overview of the servers and the clients that are currently connected
 
-![dashboard screenshot](/images/admin-ui-dashboard.png)
+![Screenshot of the dashboard](/images/admin-ui-dashboard.png)
 
 - details of each socket instance (active transport, handshake, rooms, ...)
 
-![socket details screenshot](/images/admin-ui-socket-details.png)
+![Screenshot of the page displaying the details of a socket](/images/admin-ui-socket-details.png)
 
 - details of each room
 
-![room details screenshot](/images/admin-ui-room-details.png)
+![Screenshot of the page displaying the details of a room](/images/admin-ui-room-details.png)
+
+- details of every event emitted or received by the server
+
+![Screenshot of the page displaying the list of events](/images/admin-ui-events.png)
 
 - administrative operations (join, leave, disconnect)
 
@@ -55,7 +59,8 @@ const io = new Server(httpServer, {
 });
 
 instrument(io, {
-  auth: false
+  auth: false,
+  mode: "development",
 });
 
 httpServer.listen(3000);
@@ -65,6 +70,23 @@ The module is compatible with:
 
 - Socket.IO v4 server
 - Socket.IO v3 server (>= 3.1.0), but without the operations on rooms (join, leave, disconnection)
+
+Example with [NestJS](https://docs.nestjs.com/websockets/gateways):
+
+```ts
+import { instrument } from "@socket.io/admin-ui";
+
+@WebSocketGateway()
+export class MyGateway {
+    // ...
+    afterInit() {
+        instrument(this.server, {
+            auth: false,
+            mode: "development",
+        });
+    }
+}
+```
 
 ### Client-side
 
@@ -104,7 +126,9 @@ instrument(io, {
 });
 ```
 
-WARNING! Please note that the `bcrypt` package does not currently support hashes starting with the `$2y$` prefix, which is used by some BCrypt implementations (for example https://bcrypt-generator.com/ or https://www.bcrypt.fr/). You can check the validity of the hash with:
+:::caution
+
+Please note that the `bcrypt` package does not currently support hashes starting with the `$2y$` prefix, which is used by some BCrypt implementations (for example https://bcrypt-generator.com/ or https://www.bcrypt.fr/). You can check the validity of the hash with:
 
 ```
 $ node
@@ -124,6 +148,8 @@ See also:
 
 - https://github.com/kelektiv/node.bcrypt.js/issues/849
 - https://stackoverflow.com/a/36225192/5138796
+
+:::
 
 #### `namespaceName`
 
@@ -216,6 +242,6 @@ The `instrument` method simply:
 
 ## Latest releases
 
-- `0.4.0` (2022/06/23): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.4.0) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.3.0...0.4.0)
-- `0.3.0` (2022/05/03): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.3.0) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.2.0...0.3.0)
-- `0.2.0` (2021/06/11): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.2.0) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.1.2...0.2.0)
+- `0.5.1` (Oct 2022): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.5.1) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.5.0...0.5.1)
+- `0.5.0` (Sep 2022): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.5.0) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.4.0...0.5.0)
+- `0.4.0` (Jun 2022): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.4.0) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.3.0...0.4.0)
