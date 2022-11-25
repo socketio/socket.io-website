@@ -137,15 +137,15 @@ The number of ms before disconnecting a client that has not successfully joined 
 
 ## Low-level engine options
 
-### `pingTimeout`
+### `pingInterval`
 
-Default value: `20000`
+Default value: `25000`
 
 This value is used in the heartbeat mechanism, which periodically checks if the connection is still alive between the server and the client.
 
-The server sends a ping, and if the client does not answer with a pong within `pingTimeout` ms, the server considers that the connection is closed.
+The server sends a ping packet every `pingInterval` ms, and if the client does not answer with a pong within `pingTimeout` ms, the server considers that the connection is closed.
 
-Similarly, if the client does not receive a ping from the server within `pingInterval + pingTimeout` ms, the client also considers that the connection is closed.
+Similarly, if the client does not receive a ping packet from the server within `pingInterval + pingTimeout` ms, then the client also considers that the connection is closed.
 
 In both cases, the disconnection reason will be: `ping timeout`
 
@@ -155,19 +155,36 @@ socket.on("disconnect", (reason) => {
 });
 ```
 
-Note: the default value might be a bit low if you need to send big files in your application. Please increase it if that's the case:
+:::caution
 
-```js
-const io = new Server(httpServer, {
-  pingTimeout: 30000
-});
-```
+Using a small value like `1000` (one heartbeat per second) will incur some load on your server, which might become noticeable with a few thousands connected clients.
 
-### `pingInterval`
+:::
 
-Default value: `25000`
+### `pingTimeout`
 
-See [above](#pingtimeout).
+<details className="changelog">
+    <summary>History</summary>
+
+| Version | Changes                                   |
+|---------|-------------------------------------------|
+| v4.0.0  | `pingTimeout` now defaults to `20000` ms. |
+| v2.1.0  | Defaults to `5000` ms.                    |
+| v1.0.0  | Defaults to `60000` ms.                   |
+
+</details>
+
+Default value: `20000`
+
+See [above](#pinginterval).
+
+:::caution
+
+Using a smaller value means that a temporarily unresponsive server might trigger a lot of client reconnections.
+
+On the contrary, using a bigger value means that a broken connection will take longer to get detected (and you might get a warning on React Native if `pingInterval + pingTimeout` is bigger than 60 seconds).
+
+:::
 
 ### `upgradeTimeout`
 
