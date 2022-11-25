@@ -9,7 +9,7 @@ slug: /emit-cheatsheet/
 ```js
 io.on("connection", (socket) => {
 
-  // basic emit
+  // basic emit back to sender
   socket.emit(/* ... */);
 
   // to all clients in the current namespace except the sender
