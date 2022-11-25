@@ -111,13 +111,9 @@ Content of `Caddyfile` for [Caddy 2](https://caddyserver.com/v2)
 ```
 example.com {
   rewrite /path /path/
-  handle /path/* {
-    uri strip_prefix /path
+  handle_path /path/* {
     rewrite * /socket.io{path}
-    reverse_proxy localhost:3000 {
-      header_up Host {host}
-      header_up X-Real-IP {remote}
-    }
+    reverse_proxy localhost:3000
   }
 }
 ```
