@@ -11,7 +11,7 @@ You will find below the configuration needed for deploying a Socket.IO server be
 - [Node.js `http-proxy`](#nodejs-http-proxy)
 - [Caddy 2](#caddy-2)
 
-In a multi-server setup, please check the documentation [here](/docs/v3/using-multiple-nodes/).
+In a multi-server setup, please check the documentation [here](using-multiple-nodes.md).
 
 ## NginX
 
@@ -21,7 +21,6 @@ Content of `/etc/nginx/nginx.conf`:
 http {
   server {
     listen 80;
-    server_name example.com;
 
     location / {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -40,7 +39,73 @@ http {
 Related:
 
 - [proxy_pass documentation](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
-- [configuration in a multi-server setup](/docs/v3/using-multiple-nodes/#NginX-configuration)
+- [configuration in a multi-server setup](using-multiple-nodes.md#nginx-configuration)
+
+If you only want to forward the Socket.IO requests (for example when NginX handles the static content):
+
+```
+http {
+  server {
+    listen 80;
+    root /var/www/html;
+
+    location /socket.io/ {
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $host;
+
+      proxy_pass http://localhost:3000;
+
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+    }
+  }
+}
+```
+
+Or with a custom [path](../../server-options.md#path):
+
+```
+http {
+  server {
+    listen 80;
+    root /var/www/html;
+
+    location /my-custom-path/ {
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $host;
+
+      proxy_pass http://localhost:3000;
+
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+    }
+  }
+}
+```
+
+In that case, the server and the client must be configured accordingly:
+
+*Server*
+
+```js
+import { Server } from "socket.io";
+
+const io = new Server({
+  path: "/my-custom-path/"
+});
+```
+
+*Client*
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  path: "/my-custom-path/"
+});
+```
 
 ## Apache HTTPD
 
@@ -85,7 +150,7 @@ ProxyTimeout 3
 Related:
 
 - [mod_proxy_wstunnel documentation](https://httpd.apache.org/docs/2.4/en/mod/mod_proxy_wstunnel.html)
-- [configuration in a multi-server setup](/docs/v3/using-multiple-nodes/#Apache-HTTPD-configuration)
+- [configuration in a multi-server setup](using-multiple-nodes.md#apache-httpd-configuration)
 
 ## Node.js `http-proxy`
 
