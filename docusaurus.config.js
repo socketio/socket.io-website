@@ -189,6 +189,18 @@ module.exports = {
               path: "v2",
             },
           },
+          sidebarItemsGenerator({
+            isCategoryIndex: defaultCategoryIndexMatcher,
+            defaultSidebarItemsGenerator,
+            ...args
+          }) {
+            return defaultSidebarItemsGenerator({
+              ...args,
+              isCategoryIndex() {
+                return false;
+              },
+            });
+          },
         },
         blog: {
           showReadingTime: true,
