@@ -180,18 +180,18 @@ const { readFileSync } = require("fs");
 const { createServer } = require("https");
 const { Server } = require("socket.io");
 
-const httpServer = createServer({
+const httpsServer = createServer({
   key: readFileSync("/path/to/my/key.pem"),
   cert: readFileSync("/path/to/my/cert.pem")
 });
 
-const io = new Server(httpServer, { /* options */ });
+const io = new Server(httpsServer, { /* options */ });
 
 io.on("connection", (socket) => {
   // ...
 });
 
-httpServer.listen(3000);
+httpsServer.listen(3000);
 ```
 
   </TabItem>
@@ -202,18 +202,18 @@ import { readFileSync } from "fs";
 import { createServer } from "https";
 import { Server } from "socket.io";
 
-const httpServer = createServer({
+const httpsServer = createServer({
   key: readFileSync("/path/to/my/key.pem"),
   cert: readFileSync("/path/to/my/cert.pem")
 });
 
-const io = new Server(httpServer, { /* options */ });
+const io = new Server(httpsServer, { /* options */ });
 
 io.on("connection", (socket) => {
   // ...
 });
 
-httpServer.listen(3000);
+httpsServer.listen(3000);
 ```
 
   </TabItem>
@@ -224,18 +224,18 @@ import { readFileSync } from "fs";
 import { createServer } from "https";
 import { Server } from "socket.io";
 
-const httpServer = createServer({
+const httpsServer = createServer({
   key: readFileSync("/path/to/my/key.pem"),
   cert: readFileSync("/path/to/my/cert.pem")
 });
 
-const io = new Server(httpServer, { /* options */ });
+const io = new Server(httpsServer, { /* options */ });
 
 io.on("connection", (socket) => {
   // ...
 });
 
-httpServer.listen(3000);
+httpsServer.listen(3000);
 ```
 
   </TabItem>
@@ -252,7 +252,7 @@ import { readFileSync } from "fs";
 import { createServer } from "https";
 import { Server } from "socket.io";
 
-const httpServer = createServer({
+const httpsServer = createServer({
   key: readFileSync("/path/to/server-key.pem"),
   cert: readFileSync("/path/to/server-cert.pem"),
   requestCert: true,
@@ -261,7 +261,7 @@ const httpServer = createServer({
   ]
 });
 
-const io = new Server(httpServer, { /* options */ });
+const io = new Server(httpsServer, { /* options */ });
 
 io.engine.on("connection", (rawSocket) => {
   // if you need the certificate details (it is no longer available once the handshake is completed)
@@ -273,7 +273,7 @@ io.on("connection", (socket) => {
   // ...
 });
 
-httpServer.listen(3000);
+httpsServer.listen(3000);
 ```
 
 *Client*
