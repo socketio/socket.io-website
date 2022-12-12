@@ -57,6 +57,46 @@ In the example above, using `socket.emit("hello", "world")` (without `broadcast`
 
 :::
 
+## With acknowledgements
+
+Starting with Socket.IO 4.5.0, you can now broadcast an event to multiple clients and expect an acknowledgement from each one of them:
+
+```js
+io.timeout(5000).emit("hello", "world", (err, responses) => {
+  if (err) {
+    // some clients did not acknowledge the event in the given delay
+  } else {
+    console.log(responses); // one response per client
+  }
+});
+```
+
+All broadcasting forms are supported:
+
+- in a room
+
+```js
+io.to("room123").timeout(5000).emit("hello", "world", (err, responses) => {
+  // ...
+});
+```
+
+- from a specific `socket`
+
+```js
+socket.broadcast.timeout(5000).emit("hello", "world", (err, responses) => {
+  // ...
+});
+```
+
+- in a namespace
+
+```js
+io.of("/the-namespace").timeout(5000).emit("hello", "world", (err, responses) => {
+  // ...
+});
+```
+
 ## With multiple Socket.IO servers
 
 Broadcasting also works with multiple Socket.IO servers.

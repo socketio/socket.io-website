@@ -42,6 +42,15 @@ io.on("connection", (socket) => {
   // to all connected clients
   io.emit(/* ... */);
 
+  // to all clients, with one acknowledgement per client
+  io.timeout(5000).emit("hello", "world", (err, responses) => {
+    if (err) {
+      // some clients did not acknowledge the event in the given delay
+    } else {
+      console.log(responses); // one response per client
+    }
+  });
+
   // WARNING: `socket.to(socket.id).emit()` will NOT work, as it will send to everyone in the room
   // named `socket.id` but the sender. Please use the classic `socket.emit()` instead.
 
