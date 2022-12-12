@@ -147,11 +147,13 @@ The communication protocol between the Socket.IO servers has not been updated, s
 
 ## Latest releases
 
-- [7.1.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.1.0) (2021-11-30)
-- [7.0.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.1) (2021-11-15)
-- [7.0.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.0) (2021-05-12)
-- [6.1.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.1.0) (2021-03-13)
-- [6.0.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.0.1) (2020-11-14)
+- [8.0.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.0.0) (Dec 2022)
+- [7.2.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.2.0) (May 2022)
+- [7.1.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.1.0) (Nov 2021)
+- [7.0.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.1) (Nov 2021)
+- [7.0.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.0) (May 2021)
+- [6.1.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.1.0) (Mar 2021)
+- [6.0.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.0.1) (Nov 2020)
 
 ## Emitter
 
@@ -238,8 +240,9 @@ const io = new Emitter(redisClient);
 
 ### Latest releases
 
-- [4.1.1](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.1) (2022-01-04)
-- [4.1.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.0) (2021-05-12)
-- [4.0.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.0.0) (2021-03-17)
-- [3.2.0](https://github.com/socketio/socket.io-redis-emitter/releases/3.2.0) (2020-12-29)
-- [3.1.1](https://github.com/socketio/socket.io-redis-emitter/releases/3.1.1) (2017-10-12)
+- [5.0.0](https://github.com/socketio/socket.io-redis-emitter/releases/5.0.0) (Sep 2022)
+- [4.1.1](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.1) (Jan 2022)
+- [4.1.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.0) (May 2021)
+- [4.0.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.0.0) (Mar 2021)
+- [3.2.0](https://github.com/socketio/socket.io-redis-emitter/releases/3.2.0) (Dec 2020)
+- [3.1.1](https://github.com/socketio/socket.io-redis-emitter/releases/3.1.1) (Oct 2017)
