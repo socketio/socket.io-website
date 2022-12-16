@@ -310,6 +310,11 @@
     "alt": "Boosbe"
   },
   {
+    "url": "https://codeless.co",
+    "img": "https://images.opencollective.com/codelessthemes/9851572/logo.png",
+    "alt": "Codeless"
+  },
+  {
     "url": "https://www.uudetkasinot.com",
     "img": "https://images.opencollective.com/uudetkasinot-com/01a3658/logo.png",
     "alt": "uudetkasinot.com"
@@ -323,11 +328,6 @@
     "url": "https://www.spinsify.com/uk/new-casinos",
     "img": "https://images.opencollective.com/new-casinos/44e0240/logo.png",
     "alt": "spinsify.com/uk"
-  },
-  {
-    "url": "https://codeless.co",
-    "img": "https://images.opencollective.com/codelessthemes/9851572/logo.png",
-    "alt": "Codeless"
   },
   {
     "url": "https://www.polskiekasyno.com/",
@@ -783,5 +783,20 @@
     "url": "https://soc-promotion.com",
     "img": "https://images.opencollective.com/soc-promotion/50963d9/avatar.png",
     "alt": "Soc-Promotion"
+  },
+  {
+    "url": "https://www.broadband.deals",
+    "img": "https://images.opencollective.com/broadband-deals/3d41247/avatar.png",
+    "alt": "Broadband Deals"
+  },
+  {
+    "url": "https://mobogift.com",
+    "img": "https://images.opencollective.com/mobogift/cae1424/avatar.png",
+    "alt": "mobogift"
+  },
+  {
+    "url": "https://twicsy.com/buy-instagram-likes",
+    "img": "https://images.opencollective.com/twicsy/7af290f/avatar.png",
+    "alt": "Twicsy"
   }
 ]
