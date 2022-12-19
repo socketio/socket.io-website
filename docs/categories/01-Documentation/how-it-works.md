@@ -23,7 +23,8 @@ The source code can be found here:
 - server: https://github.com/socketio/engine.io
 - client: https://github.com/socketio/engine.io-client
 - parser: https://github.com/socketio/engine.io-parser
-- protocol description: https://github.com/socketio/engine.io-protocol
+
+A detailed version of the Engine.IO protocol can be found [here](../08-Miscellaneous/eio-protocol.md).
 
 ### Transports
 
