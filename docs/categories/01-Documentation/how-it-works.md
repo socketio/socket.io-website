@@ -18,13 +18,13 @@ Engine.IO is responsible for establishing the low-level connection between the s
 - the various [transports](#transports) and the [upgrade mechanism](#upgrade-mechanism)
 - the [disconnection detection](#disconnection-detection)
 
-The source code can be found here:
+A detailed version of the Engine.IO protocol can be found [here](../08-Miscellaneous/eio-protocol.md).
+
+The source code of the reference implementation (written in TypeScript) can be found here:
 
 - server: https://github.com/socketio/engine.io
 - client: https://github.com/socketio/engine.io-client
 - parser: https://github.com/socketio/engine.io-parser
-
-A detailed version of the Engine.IO protocol can be found [here](../08-Miscellaneous/eio-protocol.md).
 
 ### Transports
 
@@ -119,9 +119,10 @@ Socket.IO provides some additional features over the Engine.IO connection:
 - broadcasting [to all clients](../04-Events/broadcasting-events.md) or [to a subset of clients](../04-Events/rooms.md) (what we call "Room")
 - [multiplexing](../06-Advanced/namespaces.md) (what we call "Namespace")
 
-The source code can be found here:
+A detailed version of the Socket.IO protocol can be found [here](../08-Miscellaneous/sio-protocol.md).
+
+The source code of the reference implementation (written in TypeScript) can be found here:
 
 - server: https://github.com/socketio/socket.io
 - client: https://github.com/socketio/socket.io-client
 - parser: https://github.com/socketio/socket.io-parser
-- protocol description: https://github.com/socketio/socket.io-protocol
