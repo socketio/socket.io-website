@@ -410,9 +410,9 @@
     "alt": "King Casino"
   },
   {
-    "url": "https://qberror.com/",
-    "img": "https://images.opencollective.com/quickbooks-error-codes/6054857/logo.png",
-    "alt": "Quickbooks Error Codes"
+    "url": "https://cfi-blog.org",
+    "img": "/images/sponsors/cfi-blog.png",
+    "alt": "CFI-BLOG"
   },
   {
     "url": "https://funrize.com",
@@ -470,19 +470,14 @@
     "alt": "Campobet SE"
   },
   {
-    "url": "https://leafletcasino.com/",
-    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
-    "alt": "leafletcasino.com"
-  },
-  {
     "url": "https://www.automatenspiele.org/",
     "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
     "alt": "automatenspiele.org"
   },
   {
-    "url": "https://www.freespingratis.it",
-    "img": "https://images.opencollective.com/freespingratis/5c0c98d/logo.png",
-    "alt": "Freespingratis.it"
+    "url": "https://leafletcasino.com/",
+    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
+    "alt": "leafletcasino.com"
   },
   {
     "url": "https://www.ibeesoft.com/",
@@ -515,14 +510,14 @@
     "alt": "Instagram Likes"
   },
   {
-    "url": "https://speedypaper.com/",
-    "img": "https://images.opencollective.com/speedypaper/b6b7aef/logo.png",
-    "alt": "SpeedyPaper"
-  },
-  {
     "url": "https://www.casinosansdepot.com",
     "img": "/images/sponsors/casinosansdepot.png",
     "alt": "casinosansdepot"
+  },
+  {
+    "url": "https://speedypaper.com/",
+    "img": "https://images.opencollective.com/speedypaper/b6b7aef/logo.png",
+    "alt": "SpeedyPaper"
   },
   {
     "url": "https://hellsbet.com/en-au/",
@@ -565,16 +560,6 @@
     "alt": "SocialBoosting.com"
   },
   {
-    "url": "https://codepilot.ai",
-    "img": "https://images.opencollective.com/codepilotai/732befb/logo.png",
-    "alt": "CodePilot.ai"
-  },
-  {
-    "url": "https://tweaklab.org",
-    "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
-    "alt": "Roland Brönnimann"
-  },
-  {
     "url": "https://stayatcasinos.com/",
     "img": "https://images.opencollective.com/stayatcasinos/be4e0dc/avatar.png",
     "alt": "Stayatcasinos.com"
@@ -593,6 +578,16 @@
     "url": "https://www.noneedtostudy.com/take-my-online-class/",
     "img": "/images/sponsors/noneedtostudy.png",
     "alt": "Pay someone to take my online class - NoNeedToStudy.com"
+  },
+  {
+    "url": "https://codepilot.ai",
+    "img": "https://images.opencollective.com/codepilotai/732befb/logo.png",
+    "alt": "CodePilot.ai"
+  },
+  {
+    "url": "https://tweaklab.org",
+    "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
+    "alt": "Roland Brönnimann"
   },
   {
     "url": "https://nongamstopcasinos.net/",
@@ -645,6 +640,11 @@
     "alt": "Helpwyz"
   },
   {
+    "url": "https://www.norskeautomater.com/",
+    "img": "https://images.opencollective.com/norskeautomater/c3ae6ee/avatar.png",
+    "alt": "NorskeAutomater"
+  },
+  {
     "url": "https://njohnson7.github.io/",
     "img": "https://images.opencollective.com/njohnson7/fae8bd7/avatar.png",
     "alt": "Nick Johnson"
@@ -688,11 +688,6 @@
     "url": "https://noderedis.dev",
     "img": "https://images.opencollective.com/node-redis/3f51d3f/logo.png",
     "alt": "Node Redis"
-  },
-  {
-    "url": "https://www.norskeautomater.com/",
-    "img": "https://images.opencollective.com/norskeautomater/c3ae6ee/avatar.png",
-    "alt": "NorskeAutomater"
   },
   {
     "url": "https://investingreviews.com/",
@@ -785,9 +780,9 @@
     "alt": "Soc-Promotion"
   },
   {
-    "url": "https://www.broadband.deals",
+    "url": "https://broadband.deals",
     "img": "https://images.opencollective.com/broadband-deals/3d41247/avatar.png",
-    "alt": "Broadband Deals"
+    "alt": "Broadband.Deals"
   },
   {
     "url": "https://mobogift.com",

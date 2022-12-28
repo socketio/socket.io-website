@@ -92,6 +92,11 @@ const customLinks = {
     url: "https://www.testarna.se/casino/utan-svensk-licens/utlandska",
     img: "/images/sponsors/testarna.jpg",
     alt: "Testarna.se"
+  },
+  "quickbooks-error-codes": {
+    url: "https://cfi-blog.org",
+    img: "/images/sponsors/cfi-blog.png",
+    alt: "CFI-BLOG"
   }
 }
 
