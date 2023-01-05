@@ -132,7 +132,7 @@ Please note that the `bcrypt` package does not currently support hashes starting
 
 ```
 $ node
-> require("bcrypt").compareSync("<the password>", "<the hash>")
+> require("bcryptjs").compareSync("<the password>", "<the hash>")
 true
 ```
 
@@ -140,7 +140,7 @@ You can generate a valid hash with:
 
 ```
 $ node
-> require("bcrypt").hashSync("changeit", 10)
+> require("bcryptjs").hashSync("changeit", 10)
 '$2b$10$LQUE...'
 ```
 
