@@ -50,7 +50,7 @@ io.on("connection", (socket) => {
 socket.emit("hello", "world");
 ```
 
-You can send any number of arguments, and all serializable datastructures are supported, including binary objects like [Buffer](https://nodejs.org/docs/latest/api/buffer.html#buffer_buffer) or [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray).
+You can send any number of arguments, and all serializable data structures are supported, including binary objects like [Buffer](https://nodejs.org/docs/latest/api/buffer.html#buffer_buffer) or [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray).
 
 *Server*
 

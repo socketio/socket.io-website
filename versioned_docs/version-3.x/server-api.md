@@ -579,7 +579,7 @@ Sends a `message` event. See [socket.emit(eventName[, ...args][, ack])](#sockete
   - `ack` _(Function)_
   - **Returns** `true`
 
-Emits an event to the socket identified by the string name. Any other parameters can be included. All serializable datastructures are supported, including `Buffer`.
+Emits an event to the socket identified by the string name. Any other parameters can be included. All serializable data structures are supported, including `Buffer`.
 
 ```js
 socket.emit("hello", "world");
