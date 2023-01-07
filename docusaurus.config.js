@@ -173,7 +173,7 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           showLastUpdateTime: true,
           editUrl:
-            "https://github.com/socketio/socket.io-website/edit/master/",
+            "https://github.com/socketio/socket.io-website/edit/main/",
           lastVersion: "current",
           versions: {
             current: {
@@ -204,7 +204,7 @@ module.exports = {
         },
         blog: {
           showReadingTime: true,
-          editUrl: "https://github.com/socketio/socket.io-website/edit/master/",
+          editUrl: "https://github.com/socketio/socket.io-website/edit/main/",
           blogSidebarCount: 10,
         },
         theme: {
