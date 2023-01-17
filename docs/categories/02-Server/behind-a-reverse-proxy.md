@@ -171,7 +171,15 @@ httpProxy
 
 ## Caddy 2
 
-Content of `Caddyfile` for [Caddy 2](https://caddyserver.com/v2)
+Content of `Caddyfile` for [Caddy 2](https://caddyserver.com/v2), if you only want to forward the Socket.IO requests
+
+```
+example.com {
+    reverse_proxy /socket.io/* localhost:3000
+}
+```
+
+Or, if you want a custom path:
 
 ```
 example.com {
@@ -186,4 +194,5 @@ example.com {
 Related
 
 - [Solution forum post](https://caddy.community/t/i-cant-get-socket-io-proxy-to-work-on-v2/8703/2)
+- [Caddyfile reverse proxy](https://caddyserver.com/docs/caddyfile/patterns#reverse-proxy)
 - [Caddyfile directives](https://caddyserver.com/docs/caddyfile/directives)
