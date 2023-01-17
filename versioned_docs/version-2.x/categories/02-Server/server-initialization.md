@@ -169,13 +169,13 @@ const io = require('socket.io')({
 
 ### `maxHttpBufferSize` option
 
-Default value: `10e7`
+Default value: `1e6`
 
-This defines how many bytes a message can be, before closing the socket. It defaults to `10e7` (100MB). You may increase or decrement this value depending on your needs.
+This defines how many bytes a single message can be, before closing the socket. It defaults to `1e6` (1MB). You may increase or decrease this value depending on your needs.
 
 ```js
 const io = require('socket.io')({
-  maxHttpBufferSize: 1e5
+  maxHttpBufferSize: 1e8
 });
 ```
 
