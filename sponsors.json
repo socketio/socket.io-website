@@ -420,11 +420,6 @@
     "alt": "www.onlinecasinosdeutschland.de"
   },
   {
-    "url": "https://www.norsknettcasino.net",
-    "img": "https://images.opencollective.com/norsknettcasino/3ce6d1e/logo.png",
-    "alt": "Norsknettcasino"
-  },
-  {
     "url": "https://www.overlyzer.com/en/sports-betting/",
     "img": "https://images.opencollective.com/overlyzer/9e907d2/avatar.png",
     "alt": "Overlyzer"
@@ -438,6 +433,11 @@
     "url": "https://sportbetting24.se/",
     "img": "https://images.opencollective.com/sportbetting24/2459659/avatar.png",
     "alt": "Sportbetting24"
+  },
+  {
+    "url": "https://www.norsknettcasino.net",
+    "img": "https://images.opencollective.com/norsknettcasino/3ce6d1e/logo.png",
+    "alt": "Norsknettcasino"
   },
   {
     "url": "https://parimatch.in/",
@@ -520,14 +520,14 @@
     "alt": "Онлайн Казино Украины"
   },
   {
-    "url": "https://speedypaper.com/",
-    "img": "https://images.opencollective.com/speedypaper/b6b7aef/logo.png",
-    "alt": "SpeedyPaper"
-  },
-  {
     "url": "https://www.casimba.com/en-gb/",
     "img": "https://images.opencollective.com/casimba-casino/0506d6d/logo.png",
     "alt": "Casimba Casino"
+  },
+  {
+    "url": "https://speedypaper.com/",
+    "img": "https://images.opencollective.com/speedypaper/b6b7aef/logo.png",
+    "alt": "SpeedyPaper"
   },
   {
     "url": "https://www.sure.bet/casinos-not-on-gamstop/",
@@ -640,6 +640,11 @@
     "alt": "InvestingReviews.com"
   },
   {
+    "url": "https://nytcrosswordtoday.com",
+    "img": "https://images.opencollective.com/nytcrosswordtoday/7e6f97c/logo.png",
+    "alt": "NYTCrosswordToday"
+  },
+  {
     "url": "https://njohnson7.github.io/",
     "img": "https://images.opencollective.com/njohnson7/fae8bd7/avatar.png",
     "alt": "Nick Johnson"
@@ -683,11 +688,6 @@
     "url": "https://noderedis.dev",
     "img": "https://images.opencollective.com/node-redis/3f51d3f/logo.png",
     "alt": "Node Redis"
-  },
-  {
-    "url": "https://nytcrosswordtoday.com",
-    "img": "https://images.opencollective.com/nytcrosswordtoday/7e6f97c/logo.png",
-    "alt": "NYTCrosswordToday"
   },
   {
     "url": "https://nba.nu",
@@ -810,8 +810,28 @@
     "alt": "Link Building Brazil"
   },
   {
-    "url": "https://nongambancasinos.com",
+    "url": "https://nongambancasinos.com/casinos-not-on-gamban/",
     "img": "https://images.opencollective.com/nongambancasinos/79e3baf/avatar.png",
     "alt": "Non Gamban Casinos"
+  },
+  {
+    "url": "https://linkbuildingitaly.co",
+    "img": "https://images.opencollective.com/link-building-italy/dabd081/logo.png",
+    "alt": "Link Building Italy"
+  },
+  {
+    "url": "https://newcasinos-au.com/",
+    "img": "https://images.opencollective.com/new-casinos-au/b608ef9/logo.png",
+    "alt": "New Casinos AU"
+  },
+  {
+    "url": "http://onlinecasinoosusume.jp/",
+    "img": "https://images.opencollective.com/onlinecasinoosusume/1e5fce6/avatar.png",
+    "alt": "Osusume"
+  },
+  {
+    "url": "https://www.slotsup.com",
+    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.png",
+    "alt": "SlotsUp"
   }
 ]
