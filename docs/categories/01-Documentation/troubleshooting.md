@@ -3,6 +3,7 @@ title: Troubleshooting connection issues
 sidebar_label: Troubleshooting
 sidebar_position: 6
 slug: /troubleshooting-connection-issues/
+toc_max_heading_level: 2
 ---
 
 :::tip
@@ -18,7 +19,14 @@ Common/known issues:
 - [the socket is stuck in HTTP long-polling](#problem-the-socket-is-stuck-in-http-long-polling)
 - [other common gotchas](#other-common-gotchas)
 
-### Problem: the socket is not able to connect
+Other common gotchas:
+
+- [Delayed event handler registration](#delayed-event-handler-registration)
+- [Usage of the `socket.id` attribute](#usage-of-the-socketid-attribute)
+- [Deployment on a serverless platform](#deployment-on-a-serverless-platform)
+
+
+## Problem: the socket is not able to connect
 
 Possible explanations:
 
@@ -29,7 +37,7 @@ Possible explanations:
 - [You didn’t enable sticky sessions (in a multi server setup)](#you-didnt-enable-sticky-sessions-in-a-multi-server-setup)
 - [The request path does not match on both sides](#the-request-path-does-not-match-on-both-sides)
 
-#### You are trying to reach a plain WebSocket server
+### You are trying to reach a plain WebSocket server
 
 As explained in the ["What Socket.IO is not"](index.md#what-socketio-is-not) section, the Socket.IO client is not a WebSocket implementation and thus will not be able to establish a connection with a WebSocket server, even with `transports: ["websocket"]`:
 
@@ -39,7 +47,7 @@ const socket = io("ws://echo.websocket.org", {
 });
 ```
 
-#### The server is not reachable
+### The server is not reachable
 
 Please make sure the Socket.IO server is actually reachable at the given URL. You can test it with:
 
@@ -61,7 +69,27 @@ Note: v1/v2 servers (which implement the v3 of the protocol, hence the `EIO=3`) 
 96:0{"sid":"ptzi_578ycUci8WLB9G1","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":5000}2:40
 ```
 
-#### The client is not compatible with the version of the server
+### The client is not compatible with the version of the server
+
+Maintaining backward compatibility is a top priority for us, but in some particular cases we had to implement some breaking changes at the protocol level:
+
+- from v1.x to v2.0.0 (released in May 2017), to improve the compatibility with non-Javascript clients (see [here](https://github.com/socketio/engine.io/issues/315))
+- from v2.x to v3.0.0 (released in November 2020), to fix some long-standing issues in the protocol once for all (see [here](../07-Migrations/migrating-from-2-to-3.md))
+
+:::info
+
+`v4.0.0` contains some breaking changes in the API of the JavaScript server. The Socket.IO protocol itself was not updated, so a v3 client will be able to reach a v4 server and vice-versa (see [here](../07-Migrations/migrating-from-3-to-4.md)).
+
+:::
+
+For example, reaching a v3/v4 server with a v1/v2 client will result in the following response:
+
+```
+< HTTP/1.1 400 Bad Request
+< Content-Type: application/json
+
+{"code":5,"message":"Unsupported protocol version"}
+```
 
 Here is the compatibility table for the [JS client](https://github.com/socketio/socket.io-client/):
 
@@ -176,7 +204,7 @@ SocketManager(socketURL: URL(string:"http://localhost:8087/")!, config: [.connec
 SocketManager(socketURL: URL(string:"http://localhost:8087/")!, config: [.version(.two)])
 ```
 
-#### The server does not send the necessary CORS headers
+### The server does not send the necessary CORS headers
 
 If you see the following error in your console:
 
@@ -191,7 +219,7 @@ It probably means that:
 
 Please see the documentation [here](../02-Server/handling-cors.md).
 
-#### You didn't enable sticky sessions (in a multi server setup)
+### You didn't enable sticky sessions (in a multi server setup)
 
 When scaling to multiple Socket.IO servers, you need to make sure that all the requests of a given Socket.IO session reach the same Socket.IO server. The explanation can be found [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
 
@@ -199,7 +227,7 @@ Failure to do so will result in HTTP 400 responses with the code: `{"code":1,"me
 
 Please see the documentation [here](../02-Server/using-multiple-nodes.md).
 
-#### The request path does not match on both sides
+### The request path does not match on both sides
 
 By default, the client sends — and the server expects — HTTP requests with the "/socket.io/" request path.
 
@@ -241,7 +269,7 @@ means the client will try to reach the [namespace](../06-Advanced/namespaces.md)
 
 :::
 
-### Problem: the socket gets disconnected
+## Problem: the socket gets disconnected
 
 First and foremost, please note that disconnections are common and expected, even on a stable Internet connection:
 
@@ -272,13 +300,13 @@ const io = new Server({
 
 Please note that upgrading to Socket.IO v4 (at least `socket.io-client@4.1.3`, due to [this](https://github.com/socketio/engine.io-client/commit/f30a10b7f45517fcb3abd02511c58a89e0ef498f)) should prevent this kind of issues, as the heartbeat mechanism has been reversed (the server now sends PING packets).
 
-#### The client is not compatible with the version of the server
+### The client is not compatible with the version of the server
 
 Since the format of the packets sent over the WebSocket transport is similar in v2 and v3/v4, you might be able to connect with an incompatible client (see [above](#the-client-is-not-compatible-with-the-version-of-the-server)), but the connection will eventually be closed after a given delay.
 
 So if you are experiencing a regular disconnection after 30 seconds (which was the sum of the values of [pingTimeout](../../server-options.md#pingtimeout) and [pingInterval](../../server-options.md#pinginterval) in Socket.IO v2), this is certainly due to a version incompatibility.
 
-#### You are trying to send a huge payload
+### You are trying to send a huge payload
 
 If you get disconnected while sending a huge payload, this may mean that you have reached the [`maxHttpBufferSize`](../../server-options.md#maxhttpbuffersize) value, which defaults to 1 MB. Please adjust it according to your needs:
 
@@ -296,7 +324,7 @@ const io = require("socket.io")(httpServer, {
 });
 ```
 
-### Problem: the socket is stuck in HTTP long-polling
+## Problem: the socket is stuck in HTTP long-polling
 
 In most cases, you should see something like this:
 
@@ -342,13 +370,13 @@ Possible explanations:
 
 - [a proxy in front of your servers does not accept the WebSocket connection](#a-proxy-in-front-of-your-servers-does-not-accept-the-WebSocket-connection)
 
-#### A proxy in front of your servers does not accept the WebSocket connection
+### A proxy in front of your servers does not accept the WebSocket connection
 
 Please see the documentation [here](../02-Server/behind-a-reverse-proxy.md).
 
-### Other common gotchas
+## Other common gotchas
 
-#### Delayed event handler registration
+### Delayed event handler registration
 
 BAD:
 
@@ -375,7 +403,7 @@ io.on("connection", async (socket) => {
 });
 ```
 
-#### Usage of the `socket.id` attribute
+### Usage of the `socket.id` attribute
 
 The `id` attribute is an **ephemeral** ID that is not meant to be used in your application (or only for debugging purposes) because:
 
@@ -389,3 +417,12 @@ See also:
 
 - [Part II of our private message guide](/get-started/private-messaging-part-2/)
 - [How to deal with cookies](/how-to/deal-with-cookies)
+
+### Deployment on a serverless platform
+
+Since most serverless platforms (such as Vercel) bill by the duration of the request handler, maintaining a long-running connection with Socket.IO (or even plain WebSocket) is not recommended.
+
+References:
+
+- https://vercel.com/guides/do-vercel-serverless-functions-support-websocket-connections
+- https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html
