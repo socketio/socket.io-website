@@ -586,6 +586,58 @@ io.on("connection", (socket) => {
 });
 ```
 
+#### socket.emitWithAck(eventName[, ...args])
+
+*Added in v4.6.0*
+
+- `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- `args` `any[]`
+- **Returns** [`Promise<any>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+Promised-based version of emitting and expecting an acknowledgement from the server:
+
+```js
+// without timeout
+const response = await socket.emitWithAck("hello", "world");
+
+// with a specific timeout
+try {
+  const response = await socket.timeout(10000).emitWithAck("hello", "world");
+} catch (err) {
+  // the server did not acknowledge the event in the given delay
+}
+```
+
+The example above is equivalent to:
+
+```js
+// without timeout
+socket.emit("hello", "world", (val) => {
+  // ...
+});
+
+// with a specific timeout
+socket.timeout(10000).emitWithAck("hello", "world", (err, val) => {
+  // ...
+});
+```
+
+And on the receiving side:
+
+```js
+io.on("connection", (socket) => {
+  socket.on("hello", (arg1, callback) => {
+    callback("got it"); // only one argument is expected
+  });
+});
+```
+
+:::caution
+
+Environments that [do not support Promises](https://caniuse.com/promises) will need to add a polyfill in order to use this feature.
+
+:::
+
 #### socket.listeners(eventName)
 
 *Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*

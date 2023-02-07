@@ -340,6 +340,116 @@ io.local.disconnectSockets();
 
 See [here](categories/02-Server/server-instance.md#utility-methods).
 
+#### server.emit(eventName[, ...args])
+
+<details className="changelog">
+    <summary>History</summary>
+
+| Version | Changes                                    |
+|---------|--------------------------------------------|
+| v4.5.0  | `io.emit()` now supports acknowledgements. |
+| v1.0.0  | Initial implementation.                    |
+
+</details>
+
+- `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- `args` `any[]`
+- **Returns** `true`
+
+Emits an event to all connected clients in the main namespace.
+
+```js
+io.emit("hello");
+```
+
+Any number of parameters can be included, and all serializable data structures are supported:
+
+```js
+io.emit("hello", 1, "2", { "3": 4 }, Buffer.from([5]));
+```
+
+And on the receiving side:
+
+```js
+socket.on("hello", (arg1, arg2, arg3, arg4) => {
+  console.log(arg1); // 1
+  console.log(arg2); // "2"
+  console.log(arg3); // { "3": 4 }
+  console.log(arg4); // ArrayBuffer or Buffer, depending on the platform
+});
+```
+
+:::info
+
+The arguments will automatically be serialized, so calling `JSON.stringify()` is not needed.
+
+:::
+
+You can use [`to()`](#servertoroom) and [`except()`](#serverexceptrooms) to send the packet to specific clients:
+
+```js
+// the “hello” event will be broadcast to all connected clients that are either
+// in the "room1" room or in the "room2" room, excluding those in the "room3" room
+io.to("room1").to("room2").except("room3").emit("hello");
+```
+
+Starting with version `4.5.0`, it is now possible to use acknowledgements when broadcasting:
+
+```js
+io.timeout(10000).emit("some-event", (err, responses) => {
+  if (err) {
+    // some clients did not acknowledge the event in the given delay
+  } else {
+    console.log(responses); // one response per client
+  }
+});
+```
+
+:::caution
+
+Calling [`timeout()`](#servertimeoutvalue) is mandatory in that case.
+
+:::
+
+#### server.emitWithAck(eventName[, ...args])
+
+*Added in v4.6.0*
+
+- `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- `args` `any[]`
+- **Returns** [`Promise<any[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+Promised-based version of broadcasting and expecting an acknowledgement from all targeted clients:
+
+```js
+try {
+  const responses = await io.timeout(10000).emitWithAck("some-event");
+  console.log(responses); // one response per client
+} catch (e) {
+  // some clients did not acknowledge the event in the given delay
+}
+```
+
+The example above is equivalent to:
+
+```js
+io.timeout(10000).emit("some-event", (err, responses) => {
+  if (err) {
+    // some clients did not acknowledge the event in the given delay
+  } else {
+    console.log(responses); // one response per client
+  }
+});
+```
+
+And on the receiving side:
+
+```js
+socket.on("some-event", (callback) => {
+  callback("got it"); // only one argument is expected
+});
+```
+
 #### server.except(rooms)
 
 *Added in v4.0.0*
@@ -620,6 +730,48 @@ io.serverSideEmit("ping", (err, responses) => {
 });
 ```
 
+#### server.serverSideEmitWithAck(eventName[, ...args])
+
+*Added in v4.6.0*
+
+Alias for: [`io.of("/").serverSideEmitWithAck(/* ... */);`](#namespaceserversideemitwithackeventname-args)
+
+- `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
+- `args` `<any[]>`
+- `ack` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+- **Returns** [`Promise<any[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+Promised-based version of broadcasting and expecting an acknowledgement from the other Socket.IO servers of the [cluster](categories/02-Server/using-multiple-nodes.md).
+
+```js
+try {
+  const responses = await io.serverSideEmitWithAck("some-event");
+  console.log(responses); // one response per server (except itself)
+} catch (e) {
+  // some servers did not acknowledge the event in the given delay
+}
+```
+
+The example above is equivalent to:
+
+```js
+io.serverSideEmit("some-event", (err, responses) => {
+  if (err) {
+    // some servers did not acknowledge the event in the given delay
+  } else {
+    console.log(responses); // one response per server (except itself)
+  }
+});
+```
+
+And on the receiving side:
+
+```js
+io.on("some-event", (callback) => {
+  callback("got it"); // only one argument is expected
+});
+```
+
 #### server.socketsJoin(rooms)
 
 *Added in v4.0.0*
@@ -683,6 +835,26 @@ io.local.socketsLeave("room1");
 :::
 
 See [here](categories/02-Server/server-instance.md#utility-methods).
+
+#### server.timeout(value)
+
+*Added in v4.5.0*
+
+- `value` [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
+- **Returns** `BroadcastOperator`
+
+Sets a modifier for a subsequent event emission that the callback will be called with an error when the
+given number of milliseconds have elapsed without an acknowledgement from all targeted clients:
+
+```js
+io.timeout(10000).emit("some-event", (err, responses) => {
+  if (err) {
+    // some clients did not acknowledge the event in the given delay
+  } else {
+    console.log(responses); // one response per client
+  }
+});
+```
 
 #### server.to(room)
 
@@ -838,6 +1010,16 @@ io.of("/admin").in(theSocketId).disconnectSockets();
 
 #### namespace.emit(eventName[, ...args])
 
+<details className="changelog">
+    <summary>History</summary>
+
+| Version | Changes                                    |
+|---------|--------------------------------------------|
+| v4.5.0  | `io.emit()` now supports acknowledgements. |
+| v1.0.0  | Initial implementation.                    |
+
+</details>
+
 - `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
 - `args` `any[]`
 - **Returns** `true`
@@ -845,13 +1027,39 @@ io.of("/admin").in(theSocketId).disconnectSockets();
 Emits an event to all connected clients in the given namespace.
 
 ```js
-io.emit("an event sent to all connected clients"); // main namespace
+io.of("/chat").emit("hello");
+```
 
-const chat = io.of("/chat");
-chat.emit("an event sent to all connected clients in chat namespace");
+Any number of parameters can be included, and all serializable data structures are supported:
+
+```js
+io.of("/chat").emit("hello", 1, "2", { "3": 4 }, Buffer.from([5]));
+```
+
+And on the receiving side:
+
+```js
+socket.on("hello", (arg1, arg2, arg3, arg4) => {
+  console.log(arg1); // 1
+  console.log(arg2); // "2"
+  console.log(arg3); // { "3": 4 }
+  console.log(arg4); // ArrayBuffer or Buffer, depending on the platform
+});
 ```
 
 :::info
+
+The arguments will automatically be serialized, so calling `JSON.stringify()` is not needed.
+
+:::
+
+You can use [`to()`](#namespacetoroom) and [`except()`](#namespaceexceptrooms) to send the packet to specific clients:
+
+```js
+// the “hello” event will be broadcast to all connected clients that are either
+// in the "room1" room or in the "room2" room, excluding those in the "room3" room
+io.of("/chat").to("room1").to("room2").except("room3").emit("hello");
+```
 
 Starting with version `4.5.0`, it is now possible to use acknowledgements when broadcasting:
 
@@ -865,7 +1073,50 @@ io.of("/chat").timeout(10000).emit("some-event", (err, responses) => {
 });
 ```
 
+:::caution
+
+Calling [`timeout()`](#namespacetimeoutvalue) is mandatory in that case.
+
 :::
+
+#### namespace.emitWithAck(eventName[, ...args])
+
+*Added in v4.6.0*
+
+- `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- `args` `any[]`
+- **Returns** [`Promise<any[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+Promised-based version of broadcasting and expecting an acknowledgement from all targeted clients in the given namespace:
+
+```js
+try {
+  const responses = await io.of("/chat").timeout(10000).emitWithAck("some-event");
+  console.log(responses); // one response per client
+} catch (e) {
+  // some clients did not acknowledge the event in the given delay
+}
+```
+
+The example above is equivalent to:
+
+```js
+io.of("/chat").timeout(10000).emit("some-event", (err, responses) => {
+  if (err) {
+    // some clients did not acknowledge the event in the given delay
+  } else {
+    console.log(responses); // one response per client
+  }
+});
+```
+
+And on the receiving side:
+
+```js
+socket.on("some-event", (callback) => {
+  callback("got it"); // only one argument is expected
+});
+```
 
 #### namespace.except(rooms)
 
@@ -968,13 +1219,13 @@ Sends a message to the other Socket.IO servers of the [cluster](categories/02-Se
 Syntax:
 
 ```js
-io.serverSideEmit("hello", "world");
+io.of("/chat")serverSideEmit("hello", "world");
 ```
 
 And on the receiving side:
 
 ```js
-io.on("hello", (arg1) => {
+io.of("/chat").on("hello", (arg1) => {
   console.log(arg1); // prints "world"
 });
 ```
@@ -983,12 +1234,12 @@ Acknowledgements are supported too:
 
 ```js
 // server A
-io.serverSideEmit("ping", (err, responses) => {
+io.of("/chat").serverSideEmit("ping", (err, responses) => {
   console.log(responses[0]); // prints "pong"
 });
 
 // server B
-io.on("ping", (cb) => {
+io.of("/chat").on("ping", (cb) => {
   cb("pong");
 });
 ```
@@ -1002,19 +1253,59 @@ Notes:
 Example:
 
 ```js
-io.serverSideEmit("hello", "world", 1, "2", { 3: "4" });
+io.of("/chat").serverSideEmit("hello", "world", 1, "2", { 3: "4" });
 ```
 
 - the acknowledgement callback might be called with an error, if the other Socket.IO servers do not respond after a given delay
 
 ```js
-io.serverSideEmit("ping", (err, responses) => {
+io.of("/chat").serverSideEmit("ping", (err, responses) => {
   if (err) {
     // at least one Socket.IO server has not responded
     // the 'responses' array contains all the responses already received though
   } else {
     // success! the 'responses' array contains one object per other Socket.IO server in the cluster
   }
+});
+```
+
+#### namespace.serverSideEmitWithAck(eventName[, ...args])
+
+*Added in v4.6.0*
+
+- `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
+- `args` `<any[]>`
+- `ack` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+- **Returns** [`Promise<any[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+Promised-based version of broadcasting and expecting an acknowledgement from the other Socket.IO servers of the [cluster](categories/02-Server/using-multiple-nodes.md).
+
+```js
+try {
+  const responses = await io.of("/chat").serverSideEmitWithAck("some-event");
+  console.log(responses); // one response per server (except itself)
+} catch (e) {
+  // some servers did not acknowledge the event in the given delay
+}
+```
+
+The example above is equivalent to:
+
+```js
+io.of("/chat").serverSideEmit("some-event", (err, responses) => {
+  if (err) {
+    // some servers did not acknowledge the event in the given delay
+  } else {
+    console.log(responses); // one response per server (except itself)
+  }
+});
+```
+
+And on the receiving side:
+
+```js
+io.of("/chat").on("some-event", (callback) => {
+  callback("got it"); // only one argument is expected
 });
 ```
 
@@ -1423,8 +1714,10 @@ io.on("connection", (socket) => {
 Emits an event to the socket identified by the string name. Any other parameters can be included. All serializable data structures are supported, including `Buffer`.
 
 ```js
-socket.emit("hello", "world");
-socket.emit("with-binary", 1, "2", { 3: "4", 5: Buffer.from([6]) });
+io.on("connection", () => {
+  socket.emit("hello", "world");
+  socket.emit("with-binary", 1, "2", { 3: "4", 5: Buffer.from([6]) });
+});
 ```
 
 The `ack` argument is optional and will be called with the client's answer.
@@ -1445,6 +1738,54 @@ io.on("connection", (socket) => {
 socket.on("hello", (arg, callback) => {
   console.log(arg); // "world"
   callback("got it");
+});
+```
+
+#### socket.emitWithAck(eventName[, ...args])
+
+*Added in v4.6.0*
+
+- `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- `args` `any[]`
+- **Returns** [`Promise<any>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+Promised-based version of emitting and expecting an acknowledgement from the given client:
+
+```js
+io.on("connection", async (socket) => {
+  // without timeout
+  const response = await socket.emitWithAck("hello", "world");
+
+  // with a specific timeout
+  try {
+    const response = await socket.timeout(10000).emitWithAck("hello", "world");
+  } catch (err) {
+    // the client did not acknowledge the event in the given delay
+  }
+});
+```
+
+The example above is equivalent to:
+
+```js
+io.on("connection", (socket) => {
+  // without timeout
+  socket.emit("hello", "world", (val) => {
+    // ...
+  });
+
+  // with a specific timeout
+  socket.timeout(10000).emitWithAck("hello", "world", (err, val) => {
+    // ...
+  });
+});
+```
+
+And on the receiving side:
+
+```js
+socket.on("hello", (arg1, callback) => {
+  callback("got it"); // only one argument is expected
 });
 ```
 
