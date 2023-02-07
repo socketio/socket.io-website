@@ -74,17 +74,13 @@ pnpm add socket.io@version
 
 ## Latest releases
 
+- 4.6.0 (Feb 2023): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.6.0) / [diff](https://github.com/socketio/socket.io/compare/4.5.4...4.6.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.6.0)
 - 4.5.4 (Nov 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.4) / [diff](https://github.com/socketio/socket.io/compare/4.5.3...4.5.4) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.4)
 - 4.5.3 (Oct 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.3) / [diff](https://github.com/socketio/socket.io/compare/4.5.2...4.5.3) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.3)
 - 4.5.2 (Sep 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.2) / [diff](https://github.com/socketio/socket.io/compare/4.5.1...4.5.2) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.2)
 - 4.5.1 (May 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.1) / [diff](https://github.com/socketio/socket.io/compare/4.5.0...4.5.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.1)
 - [4.5.0](/blog/socket-io-4-5-0/) (Apr 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.0) / [diff](https://github.com/socketio/socket.io/compare/4.4.1...4.5.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.0)
 - 4.4.1 (Jan 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.4.1) / [diff](https://github.com/socketio/socket.io/compare/4.4.0...4.4.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.4.1)
-- [4.4.0](/blog/socket-io-4-4-0/) (Nov 2021): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.4.0) / [diff](https://github.com/socketio/socket.io/compare/4.3.2...4.4.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.4.0)
-- 4.3.2 (Nov 2021): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.3.2) / [diff](https://github.com/socketio/socket.io/compare/4.3.1...4.3.2) / [npm](https://www.npmjs.com/package/socket.io/v/4.3.2)
-- 4.3.1 (Oct 2021): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.3.1) / [diff](https://github.com/socketio/socket.io/compare/4.3.0...4.3.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.3.1)
-- [4.3.0](/blog/socket-io-4-3-0/) (Oct 2021): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.3.0) / [diff](https://github.com/socketio/socket.io/compare/4.2.0...4.3.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.3.0)
-- 4.2.0 (Aug 2021): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.2.0) / [diff](https://github.com/socketio/socket.io/compare/4.1.3...4.2.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.2.0)
 
 ## Additional packages
 
@@ -222,10 +218,10 @@ app.listen(3000, (token) => {
 
 ### Dependency tree
 
-A basic installation of the server includes 23 packages:
+A basic installation of the server includes 21 packages:
 
 ```
-└─┬ socket.io@4.5.0
+└─┬ socket.io@4.6.0
   ├─┬ accepts@1.3.8
   │ ├─┬ mime-types@2.1.35
   │ │ └── mime-db@1.52.0
@@ -233,10 +229,11 @@ A basic installation of the server includes 23 packages:
   ├── base64id@2.0.0
   ├─┬ debug@4.3.4
   │ └── ms@2.1.2
-  ├─┬ engine.io@6.2.0
+  ├─┬ engine.io@6.4.0
   │ ├── @types/cookie@0.4.1
-  │ ├── @types/cors@2.8.12
-  │ ├── @types/node@17.0.26
+  │ ├─┬ @types/cors@2.8.13
+  │ │ └── @types/node@18.11.19 deduped
+  │ ├── @types/node@18.11.19
   │ ├── accepts@1.3.8 deduped
   │ ├── base64id@2.0.0 deduped
   │ ├── cookie@0.4.2
@@ -244,15 +241,14 @@ A basic installation of the server includes 23 packages:
   │ │ ├── object-assign@4.1.1
   │ │ └── vary@1.1.2
   │ ├── debug@4.3.4 deduped
-  │ ├─┬ engine.io-parser@5.0.3
-  │ │ └── @socket.io/base64-arraybuffer@1.0.2
-  │ └─┬ ws@8.2.3
+  │ ├── engine.io-parser@5.0.6
+  │ └─┬ ws@8.11.0
   │   ├── UNMET OPTIONAL DEPENDENCY bufferutil@^4.0.1
   │   └── UNMET OPTIONAL DEPENDENCY utf-8-validate@^5.0.2
-  ├── socket.io-adapter@2.4.0
-  └─┬ socket.io-parser@4.0.4
-    ├── @types/component-emitter@1.2.11
-    ├── component-emitter@1.3.0
+  ├─┬ socket.io-adapter@2.5.2
+  │ └── ws@8.11.0 deduped
+  └─┬ socket.io-parser@4.2.2
+    ├── @socket.io/component-emitter@3.1.0
     └── debug@4.3.4 deduped
 ```
 
@@ -271,6 +267,7 @@ The `engine.io` package brings the engine that is responsible for managing the l
 
 | `socket.io` version | `engine.io` version | `ws` version |
 |---------------------|---------------------|--------------|
+| `4.6.x`             | `6.4.x`             | `8.11.x`     |
 | `4.5.x`             | `6.2.x`             | `8.2.x`      |
 | `4.4.x`             | `6.1.x`             | `8.2.x`      |
 | `4.3.x`             | `6.0.x`             | `8.2.x`      |
@@ -279,4 +276,5 @@ The `engine.io` package brings the engine that is responsible for managing the l
 | `4.0.x`             | `5.0.x`             | `7.4.x`      |
 | `3.1.x`             | `4.1.x`             | `7.4.x`      |
 | `3.0.x`             | `4.0.x`             | `7.4.x`      |
+| `2.5.x`             | `3.6.x`             | `7.4.x`      |
 | `2.4.x`             | `3.5.x`             | `7.4.x`      |
