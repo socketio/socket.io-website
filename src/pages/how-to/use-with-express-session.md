@@ -4,6 +4,30 @@ title: How to use with `express-session`
 
 # How to use with `express-session`
 
+:::caution
+
+Starting with version `4.6.0`, Express middlewares are now officially supported, so the workarounds detailed below can be simplified to:
+
+```js
+import session from "express-session";
+
+const sessionMiddleware = session({
+  secret: "changeit",
+  resave: false,
+  saveUninitialized: false
+});
+
+io.engine.use(sessionMiddleware);
+```
+
+The next sections are still applicable though:
+
+- [Modifying the session](#modifying-the-session)
+- [Handling logout](#handling-logout)
+- [Handling session expiration](#handling-session-expiration)
+
+:::
+
 There are two ways to share the session context between [Express](http://expressjs.com/) and [Socket.IO](https://socket.io/docs/v4/), depending on your use case:
 
 ### 1st use case: Socket.IO only retrieves the session context
@@ -194,7 +218,7 @@ app.post("/logout", (req, res) => {
 
   req.session.destroy(() => {
     // disconnect all Socket.IO connections linked to this session ID
-    io.to(sessionId).disconnectSockets();
+    io.in(sessionId).disconnectSockets();
     res.status(204).end();
   });
 });

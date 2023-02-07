@@ -886,6 +886,46 @@ io.to(["room-101", "room-102"]).emit("foo", "bar");
 io.to("room-101").to("room-102").emit("foo", "bar");
 ```
 
+#### server.use(fn)
+
+*Added in v1.0.0*
+
+Alias for [`io.of("/").use(fn)`](#namespaceusefn).
+
+- `fn` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Registers a middleware for the main namespace, which is a function that gets executed for every incoming `Socket`, and receives as parameters the socket and a function to optionally defer execution to the next registered middleware.
+
+Errors passed to middleware callbacks are sent as special `connect_error` packets to clients.
+
+*Server*
+
+```js
+io.of("/chat").use((socket, next) => {
+  const err = new Error("not authorized");
+  err.data = { content: "Please retry later" }; // additional details
+  next(err);
+});
+```
+
+*Client*
+
+```js
+socket.on("connect_error", err => {
+  console.log(err instanceof Error); // true
+  console.log(err.message); // not authorized
+  console.log(err.data); // { content: "Please retry later" }
+});
+```
+
+More information can be found [here](categories/02-Server/middlewares.md).
+
+:::info
+
+If you are looking for Express middlewares, please check [this section](#engineusemiddleware).
+
+:::
+
 ## Namespace
 
 <ThemedImage
@@ -1411,21 +1451,27 @@ myNamespace.to("room-101").to("room-102").emit("foo", "bar");
 
 #### namespace.use(fn)
 
+*Added in v1.0.0*
+
   - `fn` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
-Registers a middleware, which is a function that gets executed for every incoming `Socket`, and receives as parameters the socket and a function to optionally defer execution to the next registered middleware.
+Registers a middleware for the given namespace, which is a function that gets executed for every incoming `Socket`, and receives as parameters the socket and a function to optionally defer execution to the next registered middleware.
 
 Errors passed to middleware callbacks are sent as special `connect_error` packets to clients.
 
+*Server*
+
 ```js
-// server-side
-io.use((socket, next) => {
+io.of("/chat").use((socket, next) => {
   const err = new Error("not authorized");
   err.data = { content: "Please retry later" }; // additional details
   next(err);
 });
+```
 
-// client-side
+*Client*
+
+```js
 socket.on("connect_error", err => {
   console.log(err instanceof Error); // true
   console.log(err.message); // not authorized
@@ -1434,6 +1480,12 @@ socket.on("connect_error", err => {
 ```
 
 More information can be found [here](categories/02-Server/middlewares.md).
+
+:::info
+
+If you are looking for Express middlewares, please check [this section](#engineusemiddleware).
+
+:::
 
 ### Flags
 
@@ -2337,4 +2389,43 @@ httpServer.on("upgrade", (req, socket, head) => {
 });
 
 httpServer.listen(3000);
+```
+
+#### engine.use(middleware)
+
+*Added in v4.6.0*
+
+- [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Adds a new [Express middleware](https://expressjs.com/en/guide/using-middleware.html).
+
+```js
+io.engine.use((req, res, next) => {
+  // do something
+
+  next();
+});
+```
+
+The middlewares will be called for each incoming HTTP requests, including upgrade requests.
+
+Example with [`express-session`](https://www.npmjs.com/package/express-session):
+
+```js
+import session from "express-session";
+
+io.engine.use(session({
+  secret: "keyboard cat",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}));
+```
+
+Example with [`helmet`](https://www.npmjs.com/package/helmet):
+
+```js
+import helmet from "helmet";
+
+io.engine.use(helmet());
 ```
