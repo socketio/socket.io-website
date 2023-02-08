@@ -10,54 +10,6 @@ import TabItem from '@theme/TabItem';
 
 ## Socket.IO server options
 
-### `path`
-
-Default value: `/socket.io/`
-
-It is the name of the path that is captured on the server side.
-
-:::caution
-
-The server and the client values must match (unless you are using a path-rewriting proxy in between).
-
-:::
-
-*Server*
-
-```js
-import { createServer } from "http";
-import { Server } from "socket.io";
-
-const httpServer = createServer();
-const io = new Server(httpServer, {
-  path: "/my-custom-path/"
-});
-```
-
-*Client*
-
-```js
-import { io } from "socket.io-client";
-
-const socket = io("https://example.com", {
-  path: "/my-custom-path/"
-});
-```
-
-### `serveClient`
-
-Default value: `true`
-
-Whether to serve the client files. If `true`, the different bundles will be served at the following location:
-
-- `<url>/socket.io/socket.io.js`
-- `<url>/socket.io/socket.io.min.js`
-- `<url>/socket.io/socket.io.msgpack.min.js`
-
-(including their associated source maps)
-
-See also [here](categories/03-Client/client-installation.md#standalone-build).
-
 ### `adapter`
 
 Default value: `require("socket.io-adapter")` (in-memory adapter, whose source code can be found [here](https://github.com/socketio/socket.io-adapter/))
@@ -123,11 +75,19 @@ io.listen(3000);
   </TabItem>
 </Tabs>
 
-### `parser`
 
-Default value: `socket.io-parser`
+### `cleanupEmptyChildNamespaces`
 
-The parser to use. Please see the documentation [here](categories/06-Advanced/custom-parser.md).
+*Added in v4.6.0*
+
+Default value: `false`
+
+Whether to remove [child namespaces](categories/06-Advanced/namespaces.md#dynamic-namespaces) that have no sockets connected to them.
+
+This option might be useful if you create a lot of dynamic namespaces, since each namespace creates its own adapter instance.
+
+With this option enabled (disabled by default), when a socket disconnects from a dynamic namespace and if there are no other sockets connected to it then the namespace will be cleaned up and its adapter will be closed.
+
 
 ### `connectTimeout`
 
@@ -135,7 +95,315 @@ Default value: `45000`
 
 The number of ms before disconnecting a client that has not successfully joined a namespace.
 
+### `parser`
+
+Default value: `socket.io-parser`
+
+The parser to use. Please see the documentation [here](categories/06-Advanced/custom-parser.md).
+
+
+### `path`
+
+Default value: `/socket.io/`
+
+It is the name of the path that is captured on the server side.
+
+:::caution
+
+The server and the client values must match (unless you are using a path-rewriting proxy in between).
+
+:::
+
+*Server*
+
+```js
+import { createServer } from "http";
+import { Server } from "socket.io";
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
+  path: "/my-custom-path/"
+});
+```
+
+*Client*
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io("https://example.com", {
+  path: "/my-custom-path/"
+});
+```
+
+### `serveClient`
+
+Default value: `true`
+
+Whether to serve the client files. If `true`, the different bundles will be served at the following location:
+
+- `<url>/socket.io/socket.io.js`
+- `<url>/socket.io/socket.io.min.js`
+- `<url>/socket.io/socket.io.msgpack.min.js`
+
+(including their associated source maps)
+
+See also [here](categories/03-Client/client-installation.md#standalone-build).
+
+
 ## Low-level engine options
+
+### `addTrailingSlash`
+
+*Added in v4.6.0*
+
+Default value: `true`
+
+The trailing slash which was added by default can now be disabled:
+
+```js
+import { createServer } from "node:http";
+import { Server } from "socket.io";
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
+addTrailingSlash: false
+});
+```
+
+In the example above, the clients can omit the trailing slash and use `/socket.io` instead of `/socket.io/`.
+
+
+### `allowEIO3`
+
+Default value: `false`
+
+Whether to enable compatibility with Socket.IO v2 clients.
+
+See also: [Migrating from 2.x to 3.0](categories/07-Migrations/migrating-from-2-to-3.md#how-to-upgrade-an-existing-production-deployment)
+
+Example:
+
+```js
+const io = new Server(httpServer, {
+  allowEIO3: true // false by default
+});
+```
+
+
+### `allowRequest`
+
+Default: `-`
+
+A function that receives a given handshake or upgrade request as its first parameter, and can decide whether to continue or not.
+
+Example:
+
+```js
+const io = new Server(httpServer, {
+  allowRequest: (req, callback) => {
+    const isOriginValid = check(req);
+    callback(null, isOriginValid);
+  }
+});
+```
+
+This can also be used in conjunction with the [`initial_headers`](./server-api.md#event-initial_headers) event, to send a cookie to the client:
+
+```js
+import { serialize } from "cookie";
+
+const io = new Server(httpServer, {
+  allowRequest: async (req, callback) => {
+    const session = await fetchSession(req);
+    req.session = session;
+    callback(null, true);
+  }
+});
+
+io.engine.on("initial_headers", (headers, req) => {
+  if (req.session) {
+    headers["set-cookie"] = serialize("sid", req.session.id, { sameSite: "strict" });
+  }
+});
+```
+
+See also:
+
+- [how to use with `express-session`](/how-to/use-with-express-session)
+- [how to deal with cookies](/how-to/deal-with-cookies)
+
+
+### `allowUpgrades`
+
+Default value: `true`
+
+Whether to allow transport upgrades.
+
+
+### `cookie`
+
+Default value: `-`
+
+The list of options that will be forwarded to the [`cookie`](https://github.com/jshttp/cookie/) module. Available options:
+
+- domain
+- encode
+- expires
+- httpOnly
+- maxAge
+- path
+- sameSite
+- secure
+
+Example:
+
+```js
+import { Server } from "socket.io";
+
+const io = new Server(httpServer, {
+  cookie: {
+    name: "my-cookie",
+    httpOnly: true,
+    sameSite: "strict",
+    maxAge: 86400
+  }
+});
+```
+
+:::info
+
+Since Socket.IO v3, there is no cookie sent by default anymore ([reference](categories/07-Migrations/migrating-from-2-to-3.md#no-more-cookie-by-default)).
+
+:::
+
+
+### `cors`
+
+Default value: `-`
+
+The list of options that will be forwarded to the [`cors`](https://www.npmjs.com/package/cors) module. More information can be found [here](categories/02-Server/handling-cors.md).
+
+Example:
+
+```js
+const io = new Server(httpServer, {
+  cors: {
+    origin: ["https://example.com", "https://dev.example.com"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true
+  }
+});
+```
+
+Available options:
+
+| Option                 | Description                                                                                                                                                                                                                                                                                                        |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `origin`               | Configures the **Access-Control-Allow-Origin** CORS header.                                                                                                                                                                                                                                                        |
+| `methods`              | Configures the **Access-Control-Allow-Methods** CORS header. Expects a comma-delimited string (ex: 'GET,PUT,POST') or an array (ex: `['GET', 'PUT', 'POST']`).                                                                                                                                                     |
+| `allowedHeaders`       | Configures the **Access-Control-Allow-Headers** CORS header. Expects a comma-delimited string (ex: 'Content-Type,Authorization') or an array (ex: `['Content-Type', 'Authorization']`). If not specified, defaults to reflecting the headers specified in the request's **Access-Control-Request-Headers** header. |
+| `exposedHeaders`       | Configures the **Access-Control-Expose-Headers** CORS header. Expects a comma-delimited string (ex: 'Content-Range,X-Content-Range') or an array (ex: `['Content-Range', 'X-Content-Range']`). If not specified, no custom headers are exposed.                                                                    |
+| `credentials`          | Configures the **Access-Control-Allow-Credentials** CORS header. Set to `true` to pass the header, otherwise it is omitted.                                                                                                                                                                                        |
+| `maxAge`               | Configures the **Access-Control-Max-Age** CORS header. Set to an integer to pass the header, otherwise it is omitted.                                                                                                                                                                                              |
+| `preflightContinue`    | Pass the CORS preflight response to the next handler.                                                                                                                                                                                                                                                              |
+| `optionsSuccessStatus` | Provides a status code to use for successful `OPTIONS` requests, since some legacy browsers (IE11, various SmartTVs) choke on `204`.                                                                                                                                                                               |
+
+Possible values for the `origin` option:
+
+- `Boolean` - set `origin` to `true` to reflect the [request origin](http://tools.ietf.org/html/draft-abarth-origin-09), as defined by `req.header('Origin')`, or set it to `false` to disable CORS.
+- `String` - set `origin` to a specific origin. For example if you set it to `"http://example.com"` only requests from "http://example.com" will be allowed.
+- `RegExp` - set `origin` to a regular expression pattern which will be used to test the request origin. If it's a match, the request origin will be reflected. For example the pattern `/example\.com$/` will reflect any request that is coming from an origin ending with "example.com".
+- `Array` - set `origin` to an array of valid origins. Each origin can be a `String` or a `RegExp`. For example `["http://example1.com", /\.example2\.com$/]` will accept any request from "http://example1.com" or from a subdomain of "example2.com".
+- `Function` - set `origin` to a function implementing some custom logic. The function takes the request origin as the first parameter and a callback (which expects the signature `err [object], allow [bool]`) as the second.
+
+
+### `httpCompression`
+
+*Added in v1.4.0*
+
+Default value: `true`
+
+Whether to enable the compression for the HTTP long-polling transport.
+
+Please note that if `httpCompression` is set to `false`, the compress flag used when emitting (`socket.compress(true).emit(...)`) will be ignored when the connection is established with HTTP long-polling requests.
+
+All options from the Node.js [`zlib` module](https://nodejs.org/api/zlib.html#zlib_class_options) are supported.
+
+Example:
+
+```js
+const io = new Server(httpServer, {
+  httpCompression: {
+    // Engine.IO options
+    threshold: 2048, // defaults to 1024
+    // Node.js zlib options
+    chunkSize: 8 * 1024, // defaults to 16 * 1024
+    windowBits: 14, // defaults to 15
+    memLevel: 7, // defaults to 8
+  }
+});
+```
+
+
+### `maxHttpBufferSize`
+
+Default value: `1e6` (1 MB)
+
+This defines how many bytes a single message can be, before closing the socket. You may increase or decrease this value depending on your needs.
+
+```js
+const io = new Server(httpServer, {
+  maxHttpBufferSize: 1e8
+});
+```
+
+It matches the [maxPayload](https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback) option of the ws package.
+
+
+### `perMessageDeflate`
+
+<details className="changelog">
+    <summary>History</summary>
+
+| Version | Changes                                                      |
+|---------|--------------------------------------------------------------|
+| v3.0.0  | The permessage-deflate extension is now disabled by default. |
+| v1.4.0  | First implementation.                                        |
+
+</details>
+
+Default value: `false`
+
+Whether to enable the [permessage-deflate extension](https://tools.ietf.org/html/draft-ietf-hybi-permessage-compression-19) for the WebSocket transport. This extension is known to add a significant overhead in terms of performance and memory consumption, so we suggest to only enable it if it is really needed.
+
+Please note that if `perMessageDeflate` is set to `false` (which is the default), the compress flag used when emitting (`socket.compress(true).emit(...)`) will be ignored when the connection is established with WebSockets, as the permessage-deflate extension cannot be enabled on a per-message basis.
+
+All options from the [`ws` module](https://github.com/websockets/ws/blob/master/README.md#websocket-compression) are supported:
+
+```js
+const io = new Server(httpServer, {
+  perMessageDeflate: {
+    threshold: 2048, // defaults to 1024
+
+    zlibDeflateOptions: {
+      chunkSize: 8 * 1024, // defaults to 16 * 1024
+    },
+
+    zlibInflateOptions: {
+      windowBits: 14, // defaults to 15
+      memLevel: 7, // defaults to 8
+    },
+
+    clientNoContextTakeover: true, // defaults to negotiated value.
+    serverNoContextTakeover: true, // defaults to negotiated value.
+    serverMaxWindowBits: 10, // defaults to negotiated value.
+
+    concurrencyLimit: 20, // defaults to 10
+  }
+});
+```
+
 
 ### `pingInterval`
 
@@ -186,68 +454,6 @@ On the contrary, using a bigger value means that a broken connection will take l
 
 :::
 
-### `upgradeTimeout`
-
-Default value: `10000`
-
-This is the delay in milliseconds before an uncompleted transport upgrade is cancelled.
-
-### `maxHttpBufferSize`
-
-Default value: `1e6` (1 MB)
-
-This defines how many bytes a single message can be, before closing the socket. You may increase or decrease this value depending on your needs.
-
-```js
-const io = new Server(httpServer, {
-  maxHttpBufferSize: 1e8
-});
-```
-
-It matches the [maxPayload](https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback) option of the ws package.
-
-### `allowRequest`
-
-Default: `-`
-
-A function that receives a given handshake or upgrade request as its first parameter, and can decide whether to continue or not.
-
-Example:
-
-```js
-const io = new Server(httpServer, {
-  allowRequest: (req, callback) => {
-    const isOriginValid = check(req);
-    callback(null, isOriginValid);
-  }
-});
-```
-
-This can also be used in conjunction with the [`initial_headers`](./server-api.md#event-initial_headers) event, to send a cookie to the client:
-
-```js
-import { serialize } from "cookie";
-
-const io = new Server(httpServer, {
-  allowRequest: async (req, callback) => {
-    const session = await fetchSession(req);
-    req.session = session;
-    callback(null, true);
-  }
-});
-
-io.engine.on("initial_headers", (headers, req) => {
-  if (req.session) {
-    headers["set-cookie"] = serialize("sid", req.session.id, { sameSite: "strict" });
-  }
-});
-```
-
-See also:
-
-- [how to use with `express-session`](/how-to/use-with-express-session)
-- [how to deal with cookies](/how-to/deal-with-cookies)
-
 ### `transports`
 
 Default value: `["polling", "websocket"]`
@@ -256,81 +462,13 @@ The low-level transports that are allowed on the server-side.
 
 See also: client-side [`transports`](client-options.md#transports)
 
-### `allowUpgrades`
 
-Default value: `true`
+### `upgradeTimeout`
 
-Whether to allow transport upgrades.
+Default value: `10000`
 
-### `perMessageDeflate`
+This is the delay in milliseconds before an uncompleted transport upgrade is cancelled.
 
-<details className="changelog">
-    <summary>History</summary>
-
-| Version | Changes |
-| ------- | ------- |
-| v3.0.0 | The permessage-deflate extension is now disabled by default.
-| v1.4.0 | First implementation.
-
-</details>
-
-Default value: `false`
-
-Whether to enable the [permessage-deflate extension](https://tools.ietf.org/html/draft-ietf-hybi-permessage-compression-19) for the WebSocket transport. This extension is known to add a significant overhead in terms of performance and memory consumption, so we suggest to only enable it if it is really needed.
-
-Please note that if `perMessageDeflate` is set to `false` (which is the default), the compress flag used when emitting (`socket.compress(true).emit(...)`) will be ignored when the connection is established with WebSockets, as the permessage-deflate extension cannot be enabled on a per-message basis.
-
-All options from the [`ws` module](https://github.com/websockets/ws/blob/master/README.md#websocket-compression) are supported:
-
-```js
-const io = new Server(httpServer, {
-  perMessageDeflate: {
-    threshold: 2048, // defaults to 1024
-
-    zlibDeflateOptions: {
-      chunkSize: 8 * 1024, // defaults to 16 * 1024
-    },
-
-    zlibInflateOptions: {
-      windowBits: 14, // defaults to 15
-      memLevel: 7, // defaults to 8
-    },
-
-    clientNoContextTakeover: true, // defaults to negotiated value.
-    serverNoContextTakeover: true, // defaults to negotiated value.
-    serverMaxWindowBits: 10, // defaults to negotiated value.
-
-    concurrencyLimit: 20, // defaults to 10
-  }
-});
-```
-
-### `httpCompression`
-
-*Added in v1.4.0*
-
-Default value: `true`
-
-Whether to enable the compression for the HTTP long-polling transport.
-
-Please note that if `httpCompression` is set to `false`, the compress flag used when emitting (`socket.compress(true).emit(...)`) will be ignored when the connection is established with HTTP long-polling requests.
-
-All options from the Node.js [`zlib` module](https://nodejs.org/api/zlib.html#zlib_class_options) are supported.
-
-Example:
-
-```js
-const io = new Server(httpServer, {
-  httpCompression: {
-    // Engine.IO options
-    threshold: 2048, // defaults to 1024
-    // Node.js zlib options
-    chunkSize: 8 * 1024, // defaults to 16 * 1024
-    windowBits: 14, // defaults to 15
-    memLevel: 7, // defaults to 8
-  }
-});
-```
 
 ### `wsEngine`
 
@@ -343,96 +481,5 @@ Example:
 ```js
 const io = new Server(httpServer, {
   wsEngine: require("eiows").Server
-});
-```
-
-### `cors`
-
-Default value: `-`
-
-The list of options that will be forwarded to the [`cors`](https://www.npmjs.com/package/cors) module. More information can be found [here](categories/02-Server/handling-cors.md).
-
-Example:
-
-```js
-const io = new Server(httpServer, {
-  cors: {
-    origin: ["https://example.com", "https://dev.example.com"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true
-  }
-});
-```
-
-Available options:
-
-| Option                 | Description                                                                                                                                                                                                                                                                                                        |
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `origin`               | Configures the **Access-Control-Allow-Origin** CORS header.                                                                                                                                                                                                                                                        |
-| `methods`              | Configures the **Access-Control-Allow-Methods** CORS header. Expects a comma-delimited string (ex: 'GET,PUT,POST') or an array (ex: `['GET', 'PUT', 'POST']`).                                                                                                                                                     |
-| `allowedHeaders`       | Configures the **Access-Control-Allow-Headers** CORS header. Expects a comma-delimited string (ex: 'Content-Type,Authorization') or an array (ex: `['Content-Type', 'Authorization']`). If not specified, defaults to reflecting the headers specified in the request's **Access-Control-Request-Headers** header. |
-| `exposedHeaders`       | Configures the **Access-Control-Expose-Headers** CORS header. Expects a comma-delimited string (ex: 'Content-Range,X-Content-Range') or an array (ex: `['Content-Range', 'X-Content-Range']`). If not specified, no custom headers are exposed.                                                                    |
-| `credentials`          | Configures the **Access-Control-Allow-Credentials** CORS header. Set to `true` to pass the header, otherwise it is omitted.                                                                                                                                                                                        |
-| `maxAge`               | Configures the **Access-Control-Max-Age** CORS header. Set to an integer to pass the header, otherwise it is omitted.                                                                                                                                                                                              |
-| `preflightContinue`    | Pass the CORS preflight response to the next handler.                                                                                                                                                                                                                                                              |
-| `optionsSuccessStatus` | Provides a status code to use for successful `OPTIONS` requests, since some legacy browsers (IE11, various SmartTVs) choke on `204`.                                                                                                                                                                               |
-
-Possible values for the `origin` option:
-
-- `Boolean` - set `origin` to `true` to reflect the [request origin](http://tools.ietf.org/html/draft-abarth-origin-09), as defined by `req.header('Origin')`, or set it to `false` to disable CORS.
-- `String` - set `origin` to a specific origin. For example if you set it to `"http://example.com"` only requests from "http://example.com" will be allowed.
-- `RegExp` - set `origin` to a regular expression pattern which will be used to test the request origin. If it's a match, the request origin will be reflected. For example the pattern `/example\.com$/` will reflect any request that is coming from an origin ending with "example.com".
-- `Array` - set `origin` to an array of valid origins. Each origin can be a `String` or a `RegExp`. For example `["http://example1.com", /\.example2\.com$/]` will accept any request from "http://example1.com" or from a subdomain of "example2.com".
-- `Function` - set `origin` to a function implementing some custom logic. The function takes the request origin as the first parameter and a callback (which expects the signature `err [object], allow [bool]`) as the second.
-
-### `cookie`
-
-Default value: `-`
-
-The list of options that will be forwarded to the [`cookie`](https://github.com/jshttp/cookie/) module. Available options:
-
-- domain
-- encode
-- expires
-- httpOnly
-- maxAge
-- path
-- sameSite
-- secure
-
-Example:
-
-```js
-import { Server } from "socket.io";
-
-const io = new Server(httpServer, {
-  cookie: {
-    name: "my-cookie",
-    httpOnly: true,
-    sameSite: "strict",
-    maxAge: 86400
-  }
-});
-```
-
-:::info
-
-Since Socket.IO v3, there is no cookie sent by default anymore ([reference](categories/07-Migrations/migrating-from-2-to-3.md#no-more-cookie-by-default)).
-
-:::
-
-### `allowEIO3`
-
-Default value: `false`
-
-Whether to enable compatibility with Socket.IO v2 clients.
-
-See also: [Migrating from 2.x to 3.0](categories/07-Migrations/migrating-from-2-to-3.md#how-to-upgrade-an-existing-production-deployment)
-
-Example:
-
-```js
-const io = new Server(httpServer, {
-  allowEIO3: true // false by default
 });
 ```

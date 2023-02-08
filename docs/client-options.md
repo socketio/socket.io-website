@@ -66,49 +66,111 @@ These settings will be shared by all Socket instances attached to the same Manag
 
 :::
 
-### `transports`
+### `addTrailingSlash`
 
-Default value: `["polling", "websocket"]`
+*Added in v4.6.0*
 
-The low-level connection to the Socket.IO server can either be established with:
-
-- HTTP long-polling: successive HTTP requests (`POST` for writing, `GET` for reading)
-- [WebSocket](https://en.wikipedia.org/wiki/WebSocket)
-
-The following example disables the HTTP long-polling transport:
+The trailing slash which was added by default can now be disabled:
 
 ```js
-const socket = io("https://example.com", { transports: ["websocket"] });
-```
+import { io } from "socket.io-client";
 
-Note: in that case, sticky sessions are not required on the server side (more information [here](categories/02-Server/using-multiple-nodes.md)).
-
-By default, the HTTP long-polling connection is established first, and then an upgrade to WebSocket is attempted (explanation [here](categories/01-Documentation/how-it-works.md#upgrade-mechanism)). You can use WebSocket first with:
-
-```js
 const socket = io("https://example.com", {
-  transports: ["websocket", "polling"] // use WebSocket first, if available
-});
-
-socket.on("connect_error", () => {
-  // revert to classic upgrade
-  socket.io.opts.transports = ["polling", "websocket"];
+  addTrailingSlash: false
 });
 ```
 
-One possible downside is that the validity of your [CORS configuration](categories/02-Server/handling-cors.md) will only be checked if the WebSocket connection fails to be established.
+In the example above, the request URL will be `https://example.com/socket.io` instead of `https://example.com/socket.io/`.
 
-### `upgrade`
 
-Default value: `true`
+### `autoUnref`
 
-Whether the client should try to upgrade the transport from HTTP long-polling to something better.
-
-### `rememberUpgrade`
+*Added in v4.0.0*
 
 Default value: `false`
 
-If true and if the previous WebSocket connection to the server succeeded, the connection attempt will bypass the normal upgrade process and will initially try WebSocket. A connection attempt following a transport error will use the normal upgrade process. It is recommended you turn this on only when using SSL/TLS connections, or if you know that your network does not block websockets.
+With `autoUnref` set to `true`, the Socket.IO client will allow the program to exit if there is no other active timer/TCP socket in the event system (even if the client is connected):
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  autoUnref: true
+});
+```
+
+See also: https://nodejs.org/api/timers.html#timeoutunref
+
+
+### `closeOnBeforeunload`
+
+*Added in v4.1.0*
+
+Default value: `true`
+
+Whether to (silently) close the connection when the [`beforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event) event is emitted in the browser.
+
+With `closeOnBeforeunload` set to `false`, a `disconnect` event will be emitted by the Socket instance when the user reloads the page on Firefox (but not on Chrome or Safari).
+
+With `closeOnBeforeunload` set to `true`, all browsers will have the same behavior (no `disconnect` event when reloading the page). But this might cause issues if you use the `beforeunload` event in your application.
+
+
+### `extraHeaders`
+
+Default value: -
+
+Additional headers (then found in `socket.handshake.headers` object on the server-side).
+
+Example:
+
+*Client*
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  extraHeaders: {
+    "my-custom-header": "1234"
+  }
+});
+```
+
+*Server*
+
+```js
+io.on("connection", (socket) => {
+  console.log(socket.handshake.headers); // an object containing "my-custom-header": "1234"
+});
+```
+
+:::caution
+
+In a browser environment, the `extraHeaders` option will be ignored if you only enable the WebSocket transport, since the WebSocket API in the browser does not allow providing custom headers.
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  transports: ["websocket"],
+  extraHeaders: {
+    "my-custom-header": "1234" // ignored
+  }
+});
+```
+
+This will work in Node.js or in React-Native though.
+
+:::
+
+Documentation: [WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+
+
+### `forceBase64`
+
+Default value: `false`
+
+Whether to force base64 encoding for binary content sent over WebSocket (always enabled for HTTP long-polling).
+
 
 ### `path`
 
@@ -159,6 +221,39 @@ const socket = io("https://example.com/order", {
 - the Socket instance is attached to the "order" Namespace
 - the HTTP requests will look like: `GET https://example.com/my-custom-path/?EIO=4&transport=polling&t=ML4jUwU`
 
+
+### `protocols`
+
+*Added in v2.0.0*
+
+Default value: -
+
+Either a single protocol string or an array of protocol strings. These strings are used to indicate sub-protocols, so that a single server can implement multiple WebSocket sub-protocols (for example, you might want one server to be able to handle different types of interactions depending on the specified protocol).
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  transports: ["websocket"],
+  protocols: ["my-protocol-v1"]
+});
+```
+
+Server:
+
+```js
+io.on("connection", (socket) => {
+  const transport = socket.conn.transport;
+  console.log(transport.socket.protocol); // prints "my-protocol-v1"
+});
+```
+
+References:
+
+- https://datatracker.ietf.org/doc/html/rfc6455#section-1.9
+- https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket
+
+
 ### `query`
 
 Default value: -
@@ -203,54 +298,66 @@ Note: the following query parameters are reserved and can't be used in your appl
 - `j`: if the transport is polling but a JSONP response is required
 - `t`: a hashed-timestamp used for cache-busting
 
-### `extraHeaders`
 
-Default value: -
+### `rememberUpgrade`
 
-Additional headers (then found in `socket.handshake.headers` object on the server-side).
+Default value: `false`
 
-Example:
+If true and if the previous WebSocket connection to the server succeeded, the connection attempt will bypass the normal upgrade process and will initially try WebSocket. A connection attempt following a transport error will use the normal upgrade process. It is recommended you turn this on only when using SSL/TLS connections, or if you know that your network does not block websockets.
 
-*Client*
+
+### `timestampParam`
+
+Default value: `"t"`
+
+The name of the query parameter to use as our timestamp key.
+
+
+### `timestampRequests`
+
+Default value: `true`
+
+Whether to add the timestamp query param to each request (for cache busting).
+
+
+### `transports`
+
+Default value: `["polling", "websocket"]`
+
+The low-level connection to the Socket.IO server can either be established with:
+
+- HTTP long-polling: successive HTTP requests (`POST` for writing, `GET` for reading)
+- [WebSocket](https://en.wikipedia.org/wiki/WebSocket)
+
+The following example disables the HTTP long-polling transport:
 
 ```js
-import { io } from "socket.io-client";
+const socket = io("https://example.com", { transports: ["websocket"] });
+```
 
-const socket = io({
-  extraHeaders: {
-    "my-custom-header": "1234"
-  }
+Note: in that case, sticky sessions are not required on the server side (more information [here](categories/02-Server/using-multiple-nodes.md)).
+
+By default, the HTTP long-polling connection is established first, and then an upgrade to WebSocket is attempted (explanation [here](categories/01-Documentation/how-it-works.md#upgrade-mechanism)). You can use WebSocket first with:
+
+```js
+const socket = io("https://example.com", {
+  transports: ["websocket", "polling"] // use WebSocket first, if available
+});
+
+socket.on("connect_error", () => {
+  // revert to classic upgrade
+  socket.io.opts.transports = ["polling", "websocket"];
 });
 ```
 
-*Server*
+One possible downside is that the validity of your [CORS configuration](categories/02-Server/handling-cors.md) will only be checked if the WebSocket connection fails to be established.
 
-```js
-io.on("connection", (socket) => {
-  console.log(socket.handshake.headers); // an object containing "my-custom-header": "1234"
-});
-```
+### `upgrade`
 
-:::caution
+Default value: `true`
 
-In a browser environment, the `extraHeaders` option will be ignored if you only enable the WebSocket transport, since the WebSocket API in the browser does not allow providing custom headers.
+Whether the client should try to upgrade the transport from HTTP long-polling to something better.
 
-```js
-import { io } from "socket.io-client";
-
-const socket = io({
-  transports: ["websocket"],
-  extraHeaders: {
-    "my-custom-header": "1234" // ignored
-  }
-});
-```
-
-This will work in Node.js or in React-Native though.
-
-:::
-
-Documentation: [WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
 
 ### `withCredentials`
 
@@ -303,85 +410,6 @@ Documentation:
 
 - [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
 - [Handling CORS](categories/02-Server/handling-cors.md)
-
-### `forceBase64`
-
-Default value: `false`
-
-Whether to force base64 encoding for binary content sent over WebSocket (always enabled for HTTP long-polling).
-
-### `timestampRequests`
-
-Default value: `true`
-
-Whether to add the timestamp query param to each request (for cache busting).
-
-### `timestampParam`
-
-Default value: `"t"`
-
-The name of the query parameter to use as our timestamp key.
-
-### `closeOnBeforeunload`
-
-*Added in v4.1.0*
-
-Default value: `true`
-
-Whether to (silently) close the connection when the [`beforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event) event is emitted in the browser.
-
-With `closeOnBeforeunload` set to `false`, a `disconnect` event will be emitted by the Socket instance when the user reloads the page on Firefox (but not on Chrome or Safari).
-
-With `closeOnBeforeunload` set to `true`, all browsers will have the same behavior (no `disconnect` event when reloading the page). But this might cause issues if you use the `beforeunload` event in your application.
-
-### `protocols`
-
-*Added in v2.0.0*
-
-Default value: -
-
-Either a single protocol string or an array of protocol strings. These strings are used to indicate sub-protocols, so that a single server can implement multiple WebSocket sub-protocols (for example, you might want one server to be able to handle different types of interactions depending on the specified protocol).
-
-```js
-import { io } from "socket.io-client";
-
-const socket = io({
-  transports: ["websocket"],
-  protocols: ["my-protocol-v1"]
-});
-```
-
-Server:
-
-```js
-io.on("connection", (socket) => {
-  const transport = socket.conn.transport;
-  console.log(transport.socket.protocol); // prints "my-protocol-v1"
-});
-```
-
-References:
-
-- https://datatracker.ietf.org/doc/html/rfc6455#section-1.9
-- https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket
-
-### `autoUnref`
-
-*Added in v4.0.0*
-
-Default value: `false`
-
-With `autoUnref` set to `true`, the Socket.IO client will allow the program to exit if there is no other active timer/TCP socket in the event system (even if the client is connected):
-
-```js
-import { io } from "socket.io-client";
-
-const socket = io({
-  autoUnref: true
-});
-```
-
-See also: https://nodejs.org/api/timers.html#timeoutunref
 
 
 ### Node.js-specific options
@@ -478,6 +506,48 @@ These settings will be shared by all Socket instances attached to the same Manag
 
 :::
 
+### `autoConnect`
+
+Default value: `true`
+
+Whether to automatically connect upon creation. If set to `false`, you need to manually connect:
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  autoConnect: false
+});
+
+socket.connect();
+// or
+socket.io.open();
+```
+
+
+### `parser`
+
+*Added in v2.2.0*
+
+Default value: `require("socket.io-parser")`
+
+The parser used to marshall/unmarshall packets. Please see [here](categories/06-Advanced/custom-parser.md) for more information.
+
+
+### `randomizationFactor`
+
+Default value: `0.5`
+
+The randomization factor used when reconnecting (so that the clients do not reconnect at the exact same time after a server crash, for example).
+
+Example with the default values:
+
+- 1st reconnection attempt happens between 500 and 1500 ms (`1000 * 2^0 * (<something between -0.5 and 1.5>)`)
+- 2nd reconnection attempt happens between 1000 and 3000 ms (`1000 * 2^1 * (<something between -0.5 and 1.5>)`)
+- 3rd reconnection attempt happens between 2000 and 5000 ms (`1000 * 2^2 * (<something between -0.5 and 1.5>)`)
+- next reconnection attempts happen after 5000 ms
+
+
 ### `reconnection`
 
 Default value: `true`
@@ -522,18 +592,6 @@ Default value: `5000`
 
 The maximum delay between two reconnection attempts. Each attempt increases the reconnection delay by 2x.
 
-### `randomizationFactor`
-
-Default value: `0.5`
-
-The randomization factor used when reconnecting (so that the clients do not reconnect at the exact same time after a server crash, for example).
-
-Example with the default values:
-
-- 1st reconnection attempt happens between 500 and 1500 ms (`1000 * 2^0 * (<something between -0.5 and 1.5>)`)
-- 2nd reconnection attempt happens between 1000 and 3000 ms (`1000 * 2^1 * (<something between -0.5 and 1.5>)`)
-- 3rd reconnection attempt happens between 2000 and 5000 ms (`1000 * 2^2 * (<something between -0.5 and 1.5>)`)
-- next reconnection attempts happen after 5000 ms
 
 ### `timeout`
 
@@ -541,31 +599,6 @@ Default value: `20000`
 
 The timeout in milliseconds for each connection attempt.
 
-### `autoConnect`
-
-Default value: `true`
-
-Whether to automatically connect upon creation. If set to `false`, you need to manually connect:
-
-```js
-import { io } from "socket.io-client";
-
-const socket = io({
-  autoConnect: false
-});
-
-socket.connect();
-// or
-socket.io.open();
-```
-
-### `parser`
-
-*Added in v2.2.0*
-
-Default value: `require("socket.io-parser")`
-
-The parser used to marshall/unmarshall packets. Please see [here](categories/06-Advanced/custom-parser.md) for more information.
 
 ## Socket options
 
@@ -574,6 +607,15 @@ The parser used to marshall/unmarshall packets. Please see [here](categories/06-
 These settings are specific to the given Socket instance.
 
 :::
+
+### `ackTimeout`
+
+*Added in v4.6.0*
+
+Default value: -
+
+The default timeout in milliseconds used when waiting for an acknowledgement (not to be mixed up with the already existing [timeout](#timeout) option, which is used by the Manager during the connection)
+
 
 ### `auth`
 
@@ -628,4 +670,28 @@ Or manually force the Socket instance to reconnect:
 ```js
 socket.auth.token = "efgh";
 socket.disconnect().connect();
+```
+
+### `retries`
+
+*Added in v4.6.0*
+
+Default value: -
+
+The maximum number of retries. Above the limit, the packet will be discarded.
+
+```js
+const socket = io({
+  retries: 3,
+  ackTimeout: 10000
+});
+
+// implicit ack
+socket.emit("my-event");
+
+// explicit ack
+socket.emit("my-event", (err, val) => { /* ... */ });
+
+// custom timeout (in that case the ackTimeout is optional)
+socket.timeout(5000).emit("my-event", (err, val) => { /* ... */ });
 ```
