@@ -1644,19 +1644,17 @@ This also works within a Socket.IO cluster, with a compatible adapter like the [
 
 The handshake details:
 
-```js
-{
-  headers: /* the headers sent as part of the handshake */,
-  time: /* the date of creation (as string) */,
-  address: /* the ip of the client */,
-  xdomain: /* whether the connection is cross-domain */,
-  secure: /* whether the connection is secure */,
-  issued: /* the date of creation (as unix timestamp) */,
-  url: /* the request URL string */,
-  query: /* the query parameters of the first request */,
-  auth: /* the authentication payload */
-}
-```
+| Field   | Type                                                                                                | Description                                                                       |
+|---------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| headers | `IncomingHttpHeaders`                                                                               | The headers sent as part of the handshake.                                        |
+| time    | [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)   | The date of creation (as string).                                                 |
+| address | [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)   | The ip address of the client.                                                     |
+| xdomain | [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type) | Whether the connection is cross-domain.                                           |
+| secure  | [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type) | Whether the connection is made over SSL.                                          |
+| issued  | [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)   | The date of creation (as unix timestamp).                                         |
+| url     | [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)   | The request URL string.                                                           |
+| query   | `Record<string, string or string[]>`                                                                | The query parameters of the first request.                                        |
+| auth    | `Record<string, any>`                                                                               | The authentication payload. See also [here](categories/02-Server/middlewares.md). |
 
 Usage:
 
@@ -1669,6 +1667,40 @@ io.use((socket, next) => {
 io.on("connection", (socket) => {
   let handshake = socket.handshake;
   // ...
+});
+```
+
+Example:
+
+```js
+const handshake = {
+  headers: {
+    "user-agent": "node-XMLHttpRequest",
+    accept: "*/*",
+    host: "localhost:3000",
+    connection: "close"
+  },
+  time: "Wed Jan 01 2020 01:00:00 GMT+0100 (Central European Standard Time)",
+  address: "::ffff:127.0.0.1",
+  xdomain: false,
+  secure: false,
+  issued: 1577836800000,
+  url: "/socket.io/?EIO=4&transport=polling&t=OPAfXv5&b64=1",
+  query: {
+    EIO: "4",
+    transport: "polling",
+    t: "OPAfXv5",
+    b64: "1"
+  },
+  auth: {}
+}
+```
+
+Note: the `headers` attribute refers to the headers of the first HTTP request of the session, and won't be updated by the subsequent HTTP requests.
+
+```js
+io.on("connection", (socket) => {
+  console.log(socket.handshake.headers === socket.request.headers); // prints "true"
 });
 ```
 
@@ -1706,6 +1738,22 @@ import { parse } from "cookie";
 
 io.on("connection", (socket) => {
   const cookies = parse(socket.request.headers.cookie || "");
+});
+```
+
+Note: `socket.request` refers to the first HTTP request of the session, and won't be updated by the subsequent HTTP requests.
+
+```js
+io.on("connection", (socket) => {
+  console.log(socket.request.headers === socket.handshake.headers); // prints "true"
+});
+```
+
+If you don't need this reference, you can discard it in order to reduce the memory footprint:
+
+```js
+io.on("connection", (socket) => {
+  delete socket.conn.request;
 });
 ```
 
