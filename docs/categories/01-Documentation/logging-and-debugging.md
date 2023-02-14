@@ -1,6 +1,6 @@
 ---
 title: Logging and debugging
-sidebar_position: 4
+sidebar_position: 5
 slug: /logging-and-debugging/
 ---
 

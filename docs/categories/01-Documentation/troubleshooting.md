@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting connection issues
 sidebar_label: Troubleshooting
-sidebar_position: 6
+sidebar_position: 7
 slug: /troubleshooting-connection-issues/
 toc_max_heading_level: 2
 ---
@@ -405,7 +405,7 @@ io.on("connection", async (socket) => {
 
 ### Usage of the `socket.id` attribute
 
-The `id` attribute is an **ephemeral** ID that is not meant to be used in your application (or only for debugging purposes) because:
+Please note that, unless [connection state recovery](../01-Documentation/connection-state-recovery.md) is enabled, the `id` attribute is an **ephemeral** ID that is not meant to be used in your application (or only for debugging purposes) because:
 
 - this ID is regenerated after each reconnection (for example when the WebSocket connection is severed, or when the user refreshes the page)
 - two different browser tabs will have two different IDs
