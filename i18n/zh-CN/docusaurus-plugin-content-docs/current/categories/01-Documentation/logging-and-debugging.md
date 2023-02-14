@@ -1,6 +1,6 @@
 ---
 title: 记录和调试
-sidebar_position: 3
+sidebar_position: 5
 slug: /logging-and-debugging/
 ---
 

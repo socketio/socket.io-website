@@ -1,7 +1,7 @@
 ---
 title: 解决连接问题
 sidebar_label: 故障排除
-sidebar_position: 5
+sidebar_position: 7
 slug: /troubleshooting-connection-issues/
 ---
 

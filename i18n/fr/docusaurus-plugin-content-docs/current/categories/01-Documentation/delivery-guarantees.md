@@ -1,6 +1,6 @@
 ---
 title: Delivery guarantees
-sidebar_position: 2
+sidebar_position: 3
 slug: /delivery-guarantees
 toc_max_heading_level: 4
 ---
