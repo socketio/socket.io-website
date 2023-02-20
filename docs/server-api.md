@@ -1259,7 +1259,7 @@ Sends a message to the other Socket.IO servers of the [cluster](categories/02-Se
 Syntax:
 
 ```js
-io.of("/chat")serverSideEmit("hello", "world");
+io.of("/chat").serverSideEmit("hello", "world");
 ```
 
 And on the receiving side:
