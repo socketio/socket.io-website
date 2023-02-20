@@ -131,7 +131,7 @@ io.on("connection", (socket) => {
     const { error, value } = userSchema.validate(payload);
     if (error) {
       return callback({
-        status: "KO",
+        status: "Bad Request",
         error
       });
     }
