@@ -132,8 +132,10 @@ main();
 
 ## 最新版本
 
-- `0.2.0` (2022/07/24): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.2.0) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.1.0...0.2.0)
-- `0.1.0` (2021/06/01): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.1.0)
+- `0.3.0` (Feb 2023): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.2.1...0.3.0)
+- `0.2.1` (May 2022): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.2.1) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.2.0...0.2.1)
+- `0.2.0` (Apr 2022): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.2.0) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.1.0...0.2.0)
+- `0.1.0` (Jun 2021): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.1.0)
 
 ## Emitter
 

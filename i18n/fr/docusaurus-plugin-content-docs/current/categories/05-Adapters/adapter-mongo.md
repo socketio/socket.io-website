@@ -89,6 +89,13 @@ In case the connection to the MongoDB cluster is severed, the behavior will depe
 
 Documentation: http://mongodb.github.io/node-mongodb-native/3.6/api/global.html#MongoClientOptions
 
+## Latest releases
+
+- `0.3.0` (Feb 2023): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.2.1...0.3.0)
+- `0.2.1` (May 2022): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.2.1) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.2.0...0.2.1)
+- `0.2.0` (Apr 2022): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.2.0) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.1.0...0.2.0)
+- `0.1.0` (Jun 2021): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.1.0)
+
 ## Emitter {#emitter}
 
 The MongoDB emitter allows sending packets to the connected clients from another Node.js process:
