@@ -157,12 +157,9 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
     algolia: {
-      apiKey: '58123f8fe0926bd32287730dbc483f6d',
-      indexName: 'socket_io',
-      contextualSearch: false, // temporary fix until the "docusaurus_tag" facet is taken in account
-      searchParameters: {
-        facetFilters: ["language:en", "version:v4"]
-      }
+      apiKey: 'bcf148e965eaca9ed2e6868a50a9e42c',
+      appId: 'ZM7QMFKQCJ',
+      indexName: 'socket_io'
     },
   },
   presets: [

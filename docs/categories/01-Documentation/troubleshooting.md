@@ -411,7 +411,7 @@ Please note that, unless [connection state recovery](../01-Documentation/connect
 - two different browser tabs will have two different IDs
 - there is no message queue stored for a given ID on the server (i.e. if the client is disconnected, the messages sent from the server to this ID are lost)
 
-Please use a regular session ID instead (either sent in a cookie, or stored in the localStorage and sent in the [`auth`](./client-options.md#auth) payload).
+Please use a regular session ID instead (either sent in a cookie, or stored in the localStorage and sent in the [`auth`](../../client-options.md#auth) payload).
 
 See also:
 
