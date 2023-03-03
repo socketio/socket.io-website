@@ -240,7 +240,7 @@ Attaches the Socket.IO server to an [µWebSockets.js](https://github.com/uNetwor
 import { App } from "uWebSockets.js";
 import { Server } from "socket.io";
 
-const app = new App();
+const app = App();
 const io = new Server();
 
 io.attachApp(app);

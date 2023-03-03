@@ -198,7 +198,7 @@ Usage:
 const { App } = require("uWebSockets.js");
 const { Server } = require("socket.io");
 
-const app = new App();
+const app = App();
 const io = new Server();
 
 io.attachApp(app);
