@@ -1,20 +1,20 @@
 ---
-title: Delivery guarantees
+title: 消息可达性保证
 sidebar_position: 3
 slug: /delivery-guarantees
 toc_max_heading_level: 4
 ---
 
-## Message ordering
+## 消息顺序 {#message-ordering}
 
-Socket.IO does guarantee message ordering, no matter which low-level transport is used (even during an upgrade from HTTP long-polling to WebSocket).
+无论使用哪种底层传输方式（甚至在从HTTP长轮询到WebSocket的升级过程中），Socket.IO都能保证消息的顺序。
 
-This is achieved thanks to:
+这要归功于以下几点:
 
-- the guarantees provided by the underlying TCP connection
-- the careful design of the [upgrade mechanism](how-it-works.md#upgrade-mechanism)
+- 底层TCP连接所提供的保证
+- 精心设计的[升级机制](how-it-works.md#upgrade-mechanism)
 
-Example:
+示例:
 
 ```js
 socket.emit("event1");
@@ -22,35 +22,35 @@ socket.emit("event2");
 socket.emit("event3");
 ```
 
-In the example above, the events will always be received in the same order by the other side (provided that they actually arrive, see [below](#message-arrival)).
+在上面的例子中，事件将总是以相同的顺序被另一方接收（当然前提是它们确实到达，参考[下面](#message-arrival)）。
 
-## Message arrival
+## 消息到达 {#message-arrival}
 
-### At most once
+### 最多一次 {#at-most-once}
 
-By default, Socket.IO provides an **at most once** guarantee of delivery:
+默认情况下，Socket.IO提供 **最多一次** 的送达保证:
 
-- if the connection is broken while an event is being sent, then there is no guarantee that the other side has received it and there will be no retry upon reconnection
-- a disconnected client will [buffer events until reconnection](../03-Client/client-offline-behavior.md) (though the previous point still applies)
-- there is no such buffer on the server, which means that any event that was missed by a disconnected client will not be transmitted to that client upon reconnection
+- 如果在事件发送过程中连接中断，那么就不能保证另一方已经收到该事件，重新连接时也不会重试。
+- 断开连接的客户端将[缓冲事件，直到重新连接](../03-Client/client-offline-behavior.md)（不过上面的观点仍然适用）。
+- 服务器端上没有这样的缓冲区，这意味着任何被断开连接的客户端错过的事件在重新连接时不会被传送到该客户端。
 
 :::info
 
-As of now, additional delivery guarantees must be implemented in your application.
+现在必须在你的应用程序中额外实现的消息送达保证。
 
 :::
 
-### At least once
+### 至少一次 {#at-least-once}
 
-#### From client to server
+#### 从客户端到服务器端
 
-From the client side, you can achieve an **at least once** guarantee with [acknowledgements and timeouts](../04-Events/emitting-events.md#with-timeout):
+在客户端，你可以通过[确认和超时](../04-Events/emitting-events.md#with-timeout)来实现 **至少一次** 的送达保证:
 
 ```js
 function emit(socket, event, arg) {
   socket.timeout(2000).emit(event, arg, (err) => {
     if (err) {
-      // no ack from the server, let's retry
+      // 没有来自服务器的应答，让我们重试吧
       emit(socket, event, arg);
     }
   });
@@ -59,25 +59,25 @@ function emit(socket, event, arg) {
 emit(socket, "foo", "bar");
 ```
 
-In the example above, the client will retry to send the event after a given delay, so the server might receive the same event several times.
+在上面的例子中，客户端将在给定的延迟后重试发送事件，因此服务器可能会多次收到相同的事件。
 
 :::caution
 
-Even in that case, any pending event will be lost if the user refreshes its tab.
+即使在这种情况下，如果用户刷新其浏览器标签，任何待处理的事件都会丢失。
 
 :::
 
-#### From server to client
+#### 从服务器端到客户端
 
-For events sent by the server, additional delivery guarantees can be implemented by:
+对于由服务器端发送的事件，可以通过以下方式实现额外的送达保证：
 
-- assigning a unique ID to each event
-- persisting the events in a database
-- storing the offset of the last received event on the client side, and send it upon reconnection
+- 为每个事件分配一个唯一的ID
+- 在数据库中持久保存这些事件
+- 在客户端存储最后收到的事件的偏移量，并在重新连接时发送。
 
-Example:
+示例:
 
-*Client*
+*客户端*
 
 ```js
 const socket = io({
@@ -92,7 +92,7 @@ socket.on("my-event", ({ id, data }) => {
 });
 ```
 
-*Server*
+*服务器端*
 
 ```js
 io.on("connection", async (socket) => {
@@ -118,9 +118,9 @@ setInterval(async () => {
 }, 1000);
 ```
 
-Implementing the missing methods (`fetchMissedEventsFromDatabase()`, `generateUniqueId()` and `persistEventToDatabase()`) is database-specific and is left as an exercise for the reader.
+作为练习，读者可以自行实现 `fetchMissedEventsFromDatabase()`, `generateUniqueId()` 和 `persistEventToDatabase()`。
 
-References:
+参考:
 
-- [`socket.auth`](../../client-options.md#socket-options) (client)
-- [`socket.handshake`](../../server-api.md#sockethandshake) (server)
+- [`socket.auth`](../../client-options.md#socket-options) (客户端)
+- [`socket.handshake`](../../server-api.md#sockethandshake) (服务器端)

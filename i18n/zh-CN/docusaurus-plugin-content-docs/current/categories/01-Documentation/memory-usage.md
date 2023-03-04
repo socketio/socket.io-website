@@ -1,57 +1,56 @@
 ---
-title: Memory usage
+title: 内存占用
 sidebar_position: 9
 slug: /memory-usage/
 ---
 
-The resources consumed by your Socket.IO server will mainly depend on:
+Socket.IO服务器消耗的资源主要取决于：
 
-- the number of connected clients
-- the number of messages ([basic emit](../04-Events/emitting-events.md#basic-emit), [emit with acknowledgement](../04-Events/emitting-events.md#acknowledgements) and [broadcast](../04-Events/broadcasting-events.md)) received and sent per second
+- 连接的客户端的数量
+- 每秒接收和发送的信息（[基础emit](../04-Events/emitting-events.md#basic-emit)、[有确认的emit](../04-Events/emitting-events.md#acknowledgements)和[广播](../04-Events/broadcasting-events.md)）的数量
 
 :::info
 
-The memory usage of the Socket.IO server should scale **linearly** with the number of connected clients.
+Socket.IO服务器的内存使用量应与连接的客户端数量成**线性关系**。
 
 :::
 
-The source code to reproduce the results presented in this page can be found [there](https://github.com/socketio/socket.io-benchmarks).
+在[这里](https://github.com/socketio/socket.io-benchmarks)可以找到重现本页所展示的结果的源代码。
 
-See also:
+另请参见:
 
-- [Load testing](../06-Advanced/load-testing.md)
-- [Performance tuning](../06-Advanced/performance-tuning.md)
+- [负载测试](../06-Advanced/load-testing.md)
+- [性能调整](../06-Advanced/performance-tuning.md)
 
-## Memory usage per WebSocket server implementation
+## 每个WebSocket服务器实现的内存使用情况 {#memory-usage-per-webSocket-server-implementation}
 
-The memory usage of the Socket.IO server heavily depends on the memory usage of the underlying WebSocket server implementation.
+Socket.IO服务器的内存使用严重依赖于底层WebSocket服务器实现的内存使用。
 
-The chart below displays the memory usage of the Socket.IO server, from 0 up to 10 000 connected clients, with:
+下图显示了Socket.IO服务器的内存使用情况，从0到10000个连接的客户端，包括：
 
-- a Socket.IO server based on the [`ws`](https://github.com/websockets/ws) package (used by default)
-- a Socket.IO server based on the [`eiows`](https://github.com/mmdevries/eiows) package, a C++ WebSocket server implementation (see [installation steps](../02-Server/server-installation.md#other-websocket-server-implementations))
-- a Socket.IO server based on the [`µWebSockets.js`](https://github.com/uNetworking/uWebSockets.js) package, a C++ alternative to the Node.js native HTTP server (see [installation steps](../02-Server/server-installation.md#usage-with-uwebsockets))
-- a plain WebSocket server based on the [`ws`](https://github.com/websockets/ws) package
+- 基于[`ws`](https://github.com/websockets/ws) 包的Socket.IO服务器（默认使用）
+- 基于[`eiows`](https://github.com/mmdevries/eiows) 包的Socket.IO服务器，一个C++的WebSocket服务器实现（见[安装步骤](../02-Server/server-installation.md#other-websocket-server-implementations)）
+- 基于[`µWebSockets.js`](https://github.com/uNetworking/uWebSockets.js)包的Socket.IO服务器，是Node.js本地HTTP服务器的C++替代方案(见[安装步骤](../02-Server/server-installation.md#usage-with-uwebsockets))
+- 基于[`ws`](https://github.com/websockets/ws)包的普通WebSocket服务器
 
 ![Chart of the memory usage per WebSocket server implementation](/images/memory-usage-per-impl.png)
 
-
-Tested on `Ubuntu 20.04.5 LTS` with Node.js `v16.18.1`, with the following package versions:
+使用`Node.js v16.18.1`在`Ubuntu 20.04.5 LTS`上测试，软件包版本如下：
 
 - `socket.io@4.5.4`
 - `eiows@3.8.0`
 - `uWebSockets.js@20.4.0`
 - `ws@8.2.3`
 
-## Memory usage over time
+## 随时间变化的内存使用情况 {#memory-usage-over-time}
 
-The chart below displays the memory usage of the Socket.IO server over time, from 0 up to 10 000 connected clients.
+下图显示了Socket.IO服务器在一段时间内的内存使用情况，从0到10000个连接的客户端。
 
 ![Chart of the memory usage over time](/images/memory-usage-over-time.png)
 
 :::note
 
-For demonstration purposes, we manually call the garbage collector at the end of each wave of clients:
+出于演示目的，我们在每一波客户端结束时手动调用垃圾收集器：
 
 ```js
 io.on("connection", (socket) => {
@@ -64,6 +63,6 @@ io.on("connection", (socket) => {
 });
 ```
 
-Which explains the clean drop in memory usage when the last client disconnects. This is not needed in your application, the garbage collection will be automatically triggered when necessary.
+这解释了当最后一个客户端断开连接时，内存使用率的下降。这在您的应用程序中是不需要的，垃圾收集将在必要时自动触发。
 
 :::
