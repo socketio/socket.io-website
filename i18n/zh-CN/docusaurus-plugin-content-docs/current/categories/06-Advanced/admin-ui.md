@@ -68,7 +68,7 @@ httpServer.listen(3000);
 
 ### 客户端 {#client-side}
 
-然后，您可以前往https://admin.socket.io，或托管在[此处](https://github.com/socketio/socket.io-admin-ui/tree/main/ui/dist)`ui/dist`夹中的文件。
+然后，您可以前往[https://admin.socket.io](https://admin.socket.io)，或托管在[此处](https://github.com/socketio/socket.io-admin-ui/tree/main/ui/dist)`ui/dist`夹中的文件。
 
 **重要提示：** https://admin.socket.io 上的网站是完全静态的（托管在 [Vercel](https://vercel.com)上），我们不会（也永远不会）存储有关您自己或您的浏览器的任何信息（没有跟踪，没有分析，...... ）。话虽如此，自己托管文件完全没问题。
 
@@ -104,7 +104,7 @@ instrument(io, {
 });
 ```
 
-警告！请注意，该`bcrypt`包目前不支持以`$2y$`前缀开头的哈希，某些 BCrypt 实现使用该前缀（例如https://bcrypt-generator.com/ 或 https://www.bcrypt.fr/）。您可以使用以下方法检查哈希的有效性：
+警告！请注意，该`bcrypt`包目前不支持以`$2y$`前缀开头的哈希，某些 BCrypt 实现使用该前缀（例如[https://bcrypt-generator.com/](https://bcrypt-generator.com/) 或 [https://www.bcrypt.fr/](https://www.bcrypt.fr/)）。您可以使用以下方法检查哈希的有效性：
 
 ```
 $ node
