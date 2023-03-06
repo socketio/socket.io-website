@@ -20,6 +20,10 @@ Let's create a classic CRUD (**C**reate-**R**ead-**U**pdate-**D**elete) applicat
 
 A slightly more complex chat application, introducing [middlewares](/docs/v4/middlewares/) and [rooms](/docs/v4/rooms/) features.
 
+## Front-end frameworks
+
+- [Vue 3](/how-to/use-with-vue)
+
 ## How to...
 
 - [deal with cookies](/how-to/deal-with-cookies)
