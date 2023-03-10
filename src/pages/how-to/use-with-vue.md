@@ -81,7 +81,7 @@ The event listeners are registered in the `src/socket.js` file, as we strongly a
 
 You can then use it in your components:
 
-- `src/component/ConnectionState.vue`
+- `src/components/ConnectionState.vue`
 
 ```html
 <template>
@@ -103,7 +103,7 @@ export default {
 </script>
 ```
 
-- `src/component/ConnectionManager.vue`
+- `src/components/ConnectionManager.vue`
 
 ```html
 <template>
@@ -143,7 +143,7 @@ This can be useful for example when the user must provide some credentials befor
 
 :::
 
-- `src/component/MyForm.vue`
+- `src/components/MyForm.vue`
 
 ```html
 <template>
@@ -201,9 +201,9 @@ The only known workaround is to do a **full-page reload** when this specific fil
 
 Reference: https://vue-loader.vuejs.org/guide/hot-reload.html
 
-### Listeners in a component
+### Listeners in a child component
 
-We strongly advise against registering event listeners in your components, because it ties the state of the UI with the time of reception of the events: if the component is not mounted, then some messages might be missed.
+We strongly advise against registering event listeners in your child components, because it ties the state of the UI with the time of reception of the events: if the component is not mounted, then some messages might be missed.
 
 `src/components/MyComponent.vue`
 

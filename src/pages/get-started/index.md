@@ -22,6 +22,7 @@ A slightly more complex chat application, introducing [middlewares](/docs/v4/mid
 
 ## Front-end frameworks
 
+- [React](/how-to/use-with-react)
 - [Vue 3](/how-to/use-with-vue)
 
 ## How to...
@@ -31,5 +32,4 @@ A slightly more complex chat application, introducing [middlewares](/docs/v4/mid
 - [use with `express-session`](/how-to/use-with-express-session)
 - [check the latency of the Socket.IO connection](/how-to/check-the-latency-of-the-connection)
 - [upload a file](/how-to/upload-a-file)
-- [use with React hooks](/how-to/use-with-react-hooks)
 - [register a global middleware](/how-to/register-a-global-middleware)

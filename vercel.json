@@ -19,7 +19,8 @@
     { "source": "/docs/namespaces/", "destination": "/docs/v4/namespaces" },
     { "source": "/docs/migrating-from-2-x-to-3-0", "destination": "/docs/v4/migrating-from-2-x-to-3-0" },
     { "source": "/docs/migrating-from-3-x-to-4-0", "destination": "/docs/v4/migrating-from-3-x-to-4-0" },
-    { "source": "/docs/faq", "destination": "/docs/v4/faq" }
+    { "source": "/docs/faq", "destination": "/docs/v4/faq" },
+    { "source": "/how-to/use-with-react-hooks", "destination": "/how-to/use-with-react" }
   ],
   "headers": [
     {
