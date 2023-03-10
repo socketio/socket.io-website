@@ -115,24 +115,24 @@
     "alt": "NeueCasinos24"
   },
   {
-    "url": "https://papersowl.com/research-papers",
-    "img": "https://images.opencollective.com/papersowl2/510de59/logo.png",
-    "alt": "Papersowl"
-  },
-  {
-    "url": "https://casinodaddy.com",
-    "img": "/images/sponsors/casinodaddy.png",
-    "alt": "Casino Daddy"
-  },
-  {
     "url": "https://bitkong.com",
     "img": "https://images.opencollective.com/bitkong/cac9cc0/logo.png",
     "alt": "BitKong"
   },
   {
+    "url": "https://papersowl.com/research-papers",
+    "img": "https://images.opencollective.com/papersowl2/510de59/logo.png",
+    "alt": "Papersowl"
+  },
+  {
     "url": "https://www.neueonline-casinos.com/",
     "img": "/images/sponsors/neue.png",
     "alt": "Neue Online Casinos"
+  },
+  {
+    "url": "https://casinodaddy.com",
+    "img": "/images/sponsors/casinodaddy.png",
+    "alt": "Casino Daddy"
   },
   {
     "url": "https://www.newcasinosites.me.uk/",
@@ -240,11 +240,6 @@
     "alt": "Boosbe"
   },
   {
-    "url": "https://codeless.co",
-    "img": "https://images.opencollective.com/codelessthemes/9851572/logo.png",
-    "alt": "Codeless"
-  },
-  {
     "url": "https://www.uudetkasinot.com",
     "img": "https://images.opencollective.com/uudetkasinot-com/01a3658/logo.png",
     "alt": "uudetkasinot.com"
@@ -258,6 +253,11 @@
     "url": "https://www.spinsify.com/uk/new-casinos",
     "img": "https://images.opencollective.com/new-casinos/44e0240/logo.png",
     "alt": "spinsify.com/uk"
+  },
+  {
+    "url": "https://codeless.co",
+    "img": "https://images.opencollective.com/codelessthemes/9851572/logo.png",
+    "alt": "Codeless"
   },
   {
     "url": "https://www.whitehatcasinos.com",
@@ -671,12 +671,27 @@
   },
   {
     "url": "https://likes.io/buy-instagram-followers",
-    "img": "https://images.opencollective.com/likes-io/15df7fa/avatar.png",
+    "img": "https://images.opencollective.com/likes-io/2daaf1b/avatar.png",
     "alt": "Likes.io"
   },
   {
     "url": "https://spelacasinonu.com/",
-    "img": "https://images.opencollective.com/spelacasinonu/b320136/avatar.png",
+    "img": "https://images.opencollective.com/spelacasinonu2/b320136/avatar.png",
     "alt": "Spelacasinonu"
+  },
+  {
+    "url": "https://www.bestaucasinosites.com/",
+    "img": "https://images.opencollective.com/bestaucasinosites/f4b908a/avatar.png",
+    "alt": "Best AU Casino Sites"
+  },
+  {
+    "url": "https://fatgambler.ca/",
+    "img": "https://images.opencollective.com/fatgambler/0f1872b/logo.png",
+    "alt": "FatGambler"
+  },
+  {
+    "url": "https://onlinecasino.ua",
+    "img": "https://images.opencollective.com/onlinecasinoua/455e84e/logo.png",
+    "alt": "OnlineCasino.Ua"
   }
 ]
