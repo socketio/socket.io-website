@@ -34,6 +34,20 @@ const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhos
 export const socket = io(URL);
 ```
 
+:::tip
+
+By default, the Socket.IO client opens a connection to the server right away. You can prevent this behavior with the [`autoConnect`](/docs/v4/client-options/#autoconnect) option:
+
+```js
+export const socket = io(URL, {
+  autoConnect: false
+});
+```
+
+In that case, you will need to call `socket.connect()` to make the Socket.IO client connect. This can be useful for example when the user must provide some kind of credentials before connecting.
+
+:::
+
 :::info
 
 During development, you need to enable CORS on your server:
@@ -257,6 +271,7 @@ If you need to close the Socket.IO client when your component is unmounted (for 
 
 ```js
 useEffect(() => {
+  // no-op if the socket is already connected
   socket.connect();
 
   return () => {
@@ -306,6 +321,7 @@ function App() {
   const [fooEvents, setFooEvents] = useState([]);
 
   useEffect(() => {
+    // no-op if the socket is already connected
     socket.connect();
 
     return () => {
