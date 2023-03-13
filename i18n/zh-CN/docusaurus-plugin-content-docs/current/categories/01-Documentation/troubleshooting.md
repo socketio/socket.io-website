@@ -7,7 +7,7 @@ slug: /troubleshooting-connection-issues/
 
 常见/已知问题：
 
-- [socket 无法连接t](#problem-the-socket-is-not-able-to-connect)
+- [socket 无法连接](#problem-the-socket-is-not-able-to-connect)
 - [socket 断开连接](#problem-the-socket-gets-disconnected)
 - [socket 卡在 HTTP 长轮询中](#problem-the-socket-is-stuck-in-http-long-polling)
 
