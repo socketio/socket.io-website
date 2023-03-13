@@ -450,11 +450,6 @@
     "alt": "SpeedyPaper"
   },
   {
-    "url": "https://sharehealthcare.com",
-    "img": "https://images.opencollective.com/christian-healthcare-ministries/5f05f8c/logo.png",
-    "alt": "Christian Healthcare Ministry"
-  },
-  {
     "url": "https://casinoburst.com/casino-utan-licens/",
     "img": "https://images.opencollective.com/bmsk/687b909/avatar.png",
     "alt": "Casinoburst.com"
@@ -671,7 +666,7 @@
   },
   {
     "url": "https://likes.io/buy-instagram-followers",
-    "img": "https://images.opencollective.com/likes-io/2daaf1b/avatar.png",
+    "img": "https://images.opencollective.com/likes_io/2daaf1b/avatar.png",
     "alt": "Likes.io"
   },
   {
@@ -693,5 +688,10 @@
     "url": "https://onlinecasino.ua",
     "img": "https://images.opencollective.com/onlinecasinoua/455e84e/logo.png",
     "alt": "OnlineCasino.Ua"
+  },
+  {
+    "url": "https://legitgamblingsites.com",
+    "img": "https://images.opencollective.com/legitgamblingsites/logo.png",
+    "alt": "LegitGamblingSites"
   }
 ]
