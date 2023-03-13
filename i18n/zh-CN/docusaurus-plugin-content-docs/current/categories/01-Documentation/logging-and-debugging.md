@@ -6,7 +6,7 @@ slug: /logging-and-debugging/
 
 Socket.IO 现在完全由 TJ Holowaychuk 开发的名为[debug](https://github.com/visionmedia/debug)的简约但功能强大的实用程序进行检测。
 
-在 1.0 之前，Socket.IO 服务器默认将所有内容都记录到控制台。事实证明，这对于许多用户来说非常冗长（尽管对其他人非常有用），所以现在我们默认默认为完全静音。
+在 1.0 之前，Socket.IO 服务器默认将所有内容都记录到控制台。事实证明，这对于许多用户来说非常冗长（尽管对其他人非常有用），所以现在我们默认为完全静音。
 
 基本思想是 Socket.IO 使用的每个模块都提供不同的调试范围，让您深入了解内部结构。默认情况下，所有输出都被抑制，您可以通过提供`DEBUG`env 变量 (Node.JS) 或`localStorage.debug`属性 (Browsers) 来选择查看消息。
 

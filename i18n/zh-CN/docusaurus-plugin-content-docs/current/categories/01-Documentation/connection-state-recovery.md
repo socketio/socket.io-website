@@ -1,22 +1,22 @@
 ---
-title: Connection state recovery
+title: 连接状态恢复
 sidebar_position: 4
 slug: /connection-state-recovery
 ---
 
-Connection state recovery is a feature which allows to restore the state of a client after a temporary disconnection, including any missed packets. 
+连接状态恢复是一项功能，允许在临时断开连接后恢复客户端的状态，包括任何丢失的数据包。
 
-## Disclaimer
+## 免责声明 {#disclaimer}
 
-Under real conditions, a Socket.IO client will inevitably experience temporary disconnections, regardless of the quality of the connection.
+在实际情况下，无论连接质量如何，Socket.IO客户端将不可避免地经历暂时的断开连接。
 
-This feature will help you cope with such disconnections, but unless you want to store the packets and the sessions forever (by setting `maxDisconnectionDuration` to `Infinity`), you can't be assured that the recovery will always be successful.
+这个功能可以帮助你应对这种断开连接的情况，但除非你想永远存储数据包和会话（通过设置 `maxDisconnectionDuration ` 为 `Infinity`），否则你不能保证恢复总是会成功的。
 
-That's why you will still need to handle the case where the states of the client and the server must be synchronized.
+这就是为什么你仍然需要处理客户端和服务器端的状态必须同步的情况。
 
-## Usage
+## 用法 {#usage}
 
-Connection state recovery must be enabled by the server:
+连接状态恢复功能必须由服务器端启用:
 
 ```js
 const io = new Server(httpServer, {
@@ -29,11 +29,11 @@ const io = new Server(httpServer, {
 });
 ```
 
-Upon an unexpected disconnection (i.e. no manual disconnection with `socket.disconnect()`), the server will store the `id`, the rooms and the `data` attribute of the socket.
+在意外断开连接时（即没有用socket.disconnect()手动断开连接），服务器端将存储socket的`id`、房间和`数据`属性。
 
-Then upon reconnection, the server will try to restore the state of the client. The `recovered` attribute indicates whether this recovery was successful:
+然后在重新连接时，服务器端将尝试恢复客户端的状态。`recovered`属性表明这个恢复是否成功:
 
-*Server*
+*服务端*
 
 ```js
 io.on("connection", (socket) => {
@@ -45,7 +45,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-*Client*
+*客户端*
 
 ```js
 socket.on("connect", () => {
@@ -57,7 +57,7 @@ socket.on("connect", () => {
 });
 ```
 
-You can check that the recovery is working by forcefully closing the underlying engine:
+你可以通过强行关闭底层引擎来检查恢复是否有效:
 
 ```js
 import { io } from "socket.io-client";
@@ -79,11 +79,11 @@ socket.on("connect", () => {
 });
 ```
 
-## How it works under the hood
+## 它的工作原理是什么 {#how-it-works-under-the-hood}
 
-- the server sends a session ID [during the handshake](../08-Miscellaneous/sio-protocol.md#connection-to-a-namespace-1) (which is different from the current id attribute, which is public and can be freely shared)
+- 服务器端在[握手过程中](../08-Miscellaneous/sio-protocol.md#connection-to-a-namespace-1)发送一个会话ID（这与当前的id属性不同，后者是公开的，可以自由分享）。
 
-Example:
+示例:
 
 ```
 40{"sid":"GNpWD7LbGCBNCr8GAAAB","pid":"YHcX2sdAF1z452-HAAAW"}
@@ -96,9 +96,9 @@ GN...AB   => the public id of the session
 YH...AW   => the private id of the session
 ```
 
-- the server also includes an offset in [each packet](../08-Miscellaneous/sio-protocol.md#sending-and-receiving-data-1) (added at the end of the data array, for backward compatibility)
+- 服务器在[每个数据包](../08-Miscellaneous/sio-protocol.md#sending-and-receiving-data-1) 中还包括一个偏移量（为了向后兼容，在数据阵列的末尾添加）。
 
-Example:
+示例:
 
 ```
 42["foo","MzUPkW0"]
@@ -111,11 +111,11 @@ foo       => the event name (socket.emit("foo"))
 MzUPkW0   => the offset
 ```
 
-- upon temporary disconnection, the server stores the client state for a given delay (implemented at the adapter level)
+- 在临时断开连接时，服务器端会在给定的延迟内存储客户端状态（在适配器级别实现）
 
-- upon reconnection, the client sends both the session ID and the last offset it has processed, and the server tries to restore the state
+- 在重新连接时，客户端发送会话ID和它所处理的最后一个偏移量，而服务器端试图恢复状态
 
-Example:
+示例:
 
 ```
 40{"pid":"YHcX2sdAF1z452-HAAAW","offset":"MzUPkW0"}
@@ -128,14 +128,14 @@ YH...AW   => the private id of the session
 MzUPkW0   => the last processed offset
 ```
 
-## Compatibility with existing adapters
+## 与现有适配器的兼容性 {#compatibility-with-existing-adapters}
 
-| Adapter                                                |                                                         Support?                                                         |
-|--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------:|
-| Built-in adapter (in memory)                           |                                                  YES :white_check_mark:                                                  |
-| [Redis adapter](../05-Adapters/adapter-redis.md)       |                                                      NO<sup>1</sup>                                                      |
-| [MongoDB adapter](../05-Adapters/adapter-mongo.md)     | YES :white_check_mark: (since version [`0.3.0`](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0)) |
-| [Postgres adapter](../05-Adapters/adapter-postgres.md) |                                                           WIP                                                            |
-| [Cluster adapter](../05-Adapters/adapter-cluster.md)   |                                                           WIP                                                            |
+| 适配器                                                  |                                                         是否支持?                                                         |
+|--------------------------------------------------------|:------------------------------------------------------------------ -----------------------------------------------------:|
+| 内置适配器 (内存中)                                       |                                                  是  :white_check_mark:                                                  |
+| [Redis 适配器](../05-Adapters/adapter-redis.md)         |                                                      不<sup>1</sup>                                                      |
+| [MongoDB 适配器](../05-Adapters/adapter-mongo.md)       | 是 :white_check_mark: (since version [`0.3.0`](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0)) |
+| [Postgres 适配器](../05-Adapters/adapter-postgres.md)   |                                                           开发中                                                            |
+| [Cluster 适配器](../05-Adapters/adapter-cluster.md)     |                                                           开发中                                                            |
 
-[1] Persisting the packets is not compatible with the Redis PUB/SUB mechanism, so we will create a new adapter based on [Redis Streams](https://redis.io/docs/data-types/streams/) which will support this feature. 
+[1] 持久数据包与Redis PUB/SUB机制不兼容，所以我们将在[Redis Streams](https://redis.io/docs/data-types/streams/)的基础上创建一个新的适配器，它将支持这一功能。

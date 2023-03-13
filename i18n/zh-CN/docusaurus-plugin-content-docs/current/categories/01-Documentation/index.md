@@ -280,7 +280,7 @@ io.of("/admin").on("connection", (socket) => {
 
 - `4` 是 Engine.IO “消息”数据包类型
 - `2` 是 Socket.IO “消息”数据包类型
-- `["hello","world"]`是`JSON.stringify()`参数数组的 -ed 版本
+- `["hello","world"]`是参数数组被`JSON.stringify()`过的版本
 
 因此，每条消息都会增加几个字节，可以通过使用[自定义解析器](../06-Advanced/custom-parser.md)进一步减少。
 

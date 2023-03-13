@@ -4,7 +4,7 @@ sidebar_position: 2
 slug: /how-it-works/
 ---
 
-Socket.IO 服务器 (Node.js) 和 Socket.IO 客户端（浏览器, Node.js, or [其他编程语言](index.md#what-socketio-is)）之间的双向通道尽可能使用[WebSocket 连接](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)建立，并将使用 HTTP 长轮询作为后备。
+Socket.IO 服务器 (Node.js) 和 Socket.IO 客户端（浏览器, Node.js 或 [其他编程语言](index.md#what-socketio-is)）之间的双向通道尽可能使用[WebSocket 连接](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)建立，并将使用 HTTP 长轮询作为后备。
 
 Socket.IO 代码库分为两个不同的层：
 
@@ -34,7 +34,7 @@ Engine.IO 负责建立服务器和客户端之间的低级连接。它处理：
 
 #### HTTP 长轮询 {#http-long-polling}
 
-THTTP 长轮询传输（也简称为“轮询”）由连续的 HTTP 请求组成：
+HTTP 长轮询传输（也简称为“轮询”）由连续的 HTTP 请求组成：
 
 - 长时间运行的 `GET` 请求，用于从服务器接收数据
 - 短时 `POST` 请求，用于向服务器发送数据
