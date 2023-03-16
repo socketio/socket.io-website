@@ -97,6 +97,11 @@ const customLinks = {
     url: "https://cfi-blog.org",
     img: "/images/sponsors/cfi-blog.png",
     alt: "CFI-BLOG"
+  },
+  "automatenspielexcom": {
+    url: "https://automatenspielex.com/online-casinos",
+    img: "/images/sponsors/automatenspielexcom.png",
+    alt: "beste online casino deutschland"
   }
 }
 

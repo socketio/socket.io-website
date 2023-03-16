@@ -290,14 +290,24 @@
     "alt": "Online Casino Crawler"
   },
   {
+    "url": "https://reddogcasino.com/en/games/blackjack",
+    "img": "https://images.opencollective.com/red-dog/49e9d6f/logo.png",
+    "alt": "RedDogCasino.com"
+  },
+  {
     "url": "https://starwarscasinos.com/",
     "img": "https://images.opencollective.com/casino-utan-svensk-licens1/f3487ff/logo.png",
     "alt": "Spela på Casino utan svensk licens"
   },
   {
-    "url": "https://reddogcasino.com/en/games/blackjack",
-    "img": "https://images.opencollective.com/red-dog/49e9d6f/logo.png",
-    "alt": "RedDogCasino.com"
+    "url": "https://www.onlinecasinosdeutschland.de/",
+    "img": "https://images.opencollective.com/onlinecasinosdeutschland/03ec330/avatar.png",
+    "alt": "www.onlinecasinosdeutschland.de"
+  },
+  {
+    "url": "https://www.polskiekasyno.com/",
+    "img": "https://images.opencollective.com/polskiekasyno-com/a8975c6/logo.png",
+    "alt": "Polskiekasyno.com"
   },
   {
     "url": "https://www.targetedwebtraffic.com",
@@ -318,16 +328,6 @@
     "url": "https://funrize.com",
     "img": "https://images.opencollective.com/funrize/3555525/logo.png",
     "alt": "Funrize™ Social Casino"
-  },
-  {
-    "url": "https://www.onlinecasinosdeutschland.de/",
-    "img": "https://images.opencollective.com/onlinecasinosdeutschland/03ec330/avatar.png",
-    "alt": "www.onlinecasinosdeutschland.de"
-  },
-  {
-    "url": "https://www.polskiekasyno.com/",
-    "img": "https://images.opencollective.com/polskiekasyno-com/a8975c6/logo.png",
-    "alt": "Polskiekasyno.com"
   },
   {
     "url": "https://aspireglobalcasinos.com",
@@ -385,14 +385,19 @@
     "alt": "Playcasinoscanada.com"
   },
   {
-    "url": "https://www.norgescasino.com/",
-    "img": "https://images.opencollective.com/norges-casino1/9a90f8f/logo.png",
-    "alt": "Norges Casino"
-  },
-  {
     "url": "https://poprey.com/",
     "img": "https://images.opencollective.com/instagram-likes/2a72a03/avatar.png",
     "alt": "Poprey.com"
+  },
+  {
+    "url": "https://automatenspielex.com/online-casinos",
+    "img": "/images/sponsors/automatenspielexcom.png",
+    "alt": "beste online casino deutschland"
+  },
+  {
+    "url": "https://www.norgescasino.com/",
+    "img": "https://images.opencollective.com/norges-casino1/9a90f8f/logo.png",
+    "alt": "Norges Casino"
   },
   {
     "url": "https://www.casinosansdepot.com",
@@ -448,6 +453,11 @@
     "url": "https://speedypaper.com/",
     "img": "https://images.opencollective.com/speedypaper/b6b7aef/logo.png",
     "alt": "SpeedyPaper"
+  },
+  {
+    "url": "https://sloto-top.com/casino",
+    "img": "https://images.opencollective.com/slototop/69bb421/logo.png",
+    "alt": "Slototop"
   },
   {
     "url": "https://casinoburst.com/casino-utan-licens/",
@@ -515,6 +525,11 @@
     "alt": "Legalbet"
   },
   {
+    "url": "https://www.gambleonline.co/nz/",
+    "img": "https://images.opencollective.com/gambleonline-nz/5004fcc/logo.png",
+    "alt": "GambleOnline NZ"
+  },
+  {
     "url": "https://codepilot.ai",
     "img": "https://images.opencollective.com/codepilotai/732befb/logo.png",
     "alt": "CodePilot.ai"
@@ -523,11 +538,6 @@
     "url": "https://tweaklab.org",
     "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
     "alt": "Roland Brönnimann"
-  },
-  {
-    "url": "https://www.gambleonline.co/nz/",
-    "img": "https://images.opencollective.com/gambleonline-nz/5004fcc/logo.png",
-    "alt": "GambleOnline NZ"
   },
   {
     "url": "https://www.testarna.se/casino/utan-svensk-licens/utlandska",
@@ -555,14 +565,14 @@
     "alt": "Soc-Promotion"
   },
   {
-    "url": "https://broadband.deals",
-    "img": "https://images.opencollective.com/broadband-deals/3d41247/avatar.png",
-    "alt": "Broadband.Deals"
-  },
-  {
     "url": "https://mobogift.com",
     "img": "https://images.opencollective.com/mobogift/cae1424/avatar.png",
     "alt": "mobogift"
+  },
+  {
+    "url": "https://broadband.deals",
+    "img": "https://images.opencollective.com/broadband-deals/3d41247/avatar.png",
+    "alt": "Broadband.Deals"
   },
   {
     "url": "https://twicsy.com/buy-instagram-likes",
@@ -691,7 +701,12 @@
   },
   {
     "url": "https://legitgamblingsites.com",
-    "img": "https://images.opencollective.com/legitgamblingsites/logo.png",
+    "img": "https://images.opencollective.com/legitgamblingsites/a6efbd9/logo.png",
     "alt": "LegitGamblingSites"
+  },
+  {
+    "url": "https://www.bestunitedstatescasinos.com/",
+    "img": "https://images.opencollective.com/best-united-states-casinos/d138fcc/avatar.png",
+    "alt": "Best United States Casinos"
   }
 ]
