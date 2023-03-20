@@ -385,6 +385,11 @@
     "alt": "Playcasinoscanada.com"
   },
   {
+    "url": "https://www.norgescasino.com/",
+    "img": "https://images.opencollective.com/norges-casino1/9a90f8f/logo.png",
+    "alt": "Norges Casino"
+  },
+  {
     "url": "https://poprey.com/",
     "img": "https://images.opencollective.com/instagram-likes/2a72a03/avatar.png",
     "alt": "Poprey.com"
@@ -393,11 +398,6 @@
     "url": "https://automatenspielex.com/online-casinos",
     "img": "/images/sponsors/automatenspielexcom.png",
     "alt": "beste online casino deutschland"
-  },
-  {
-    "url": "https://www.norgescasino.com/",
-    "img": "https://images.opencollective.com/norges-casino1/9a90f8f/logo.png",
-    "alt": "Norges Casino"
   },
   {
     "url": "https://www.casinosansdepot.com",
@@ -475,6 +475,11 @@
     "alt": "nongamstopcasinos.net"
   },
   {
+    "url": "https://quickbookstoolhub.com",
+    "img": "https://images.opencollective.com/marky-daren/5ad034e/avatar.png",
+    "alt": "Quickbooks Tool Hub"
+  },
+  {
     "url": "https://www.allfreechips.com",
     "img": "https://images.opencollective.com/allfreechips/130613e/logo.png",
     "alt": "Allfreechips"
@@ -538,11 +543,6 @@
     "url": "https://tweaklab.org",
     "img": "https://images.opencollective.com/roland-bronnimann/avatar.png",
     "alt": "Roland Brönnimann"
-  },
-  {
-    "url": "https://www.testarna.se/casino/utan-svensk-licens/utlandska",
-    "img": "/images/sponsors/testarna.jpg",
-    "alt": "Testarna.se"
   },
   {
     "url": "https://gcore.com",
@@ -635,11 +635,6 @@
     "alt": "Spin-Paradise"
   },
   {
-    "url": "https://noderedis.dev",
-    "img": "https://images.opencollective.com/node-redis/3f51d3f/logo.png",
-    "alt": "Node Redis"
-  },
-  {
     "url": "https://linkbuildingitaly.co",
     "img": "https://images.opencollective.com/link-building-italy/dabd081/logo.png",
     "alt": "Link Building Italy"
@@ -648,6 +643,11 @@
     "url": "https://newcasinos-au.com/",
     "img": "https://images.opencollective.com/new-casinos-au/b608ef9/logo.png",
     "alt": "New Casinos AU"
+  },
+  {
+    "url": "https://noderedis.dev",
+    "img": "https://images.opencollective.com/node-redis/3f51d3f/logo.png",
+    "alt": "Node Redis"
   },
   {
     "url": "https://onlinecasinoosusume.jp/",
@@ -708,5 +708,10 @@
     "url": "https://www.bestunitedstatescasinos.com/",
     "img": "https://images.opencollective.com/best-united-states-casinos/d138fcc/avatar.png",
     "alt": "Best United States Casinos"
+  },
+  {
+    "url": "https://sup.today/",
+    "img": "https://images.opencollective.com/vivek10/0aea146/avatar.png",
+    "alt": "Sup.today"
   }
 ]
