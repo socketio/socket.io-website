@@ -74,6 +74,26 @@ socket.onAny((eventName, ...args) => {
 });
 ```
 
+:::caution
+
+[Acknowledgements](./emitting-events.md#acknowledgements) are not caught in the catch-all listener.
+
+```js
+socket.emit("foo", (value) => {
+  // ...
+});
+
+socket.onAnyOutgoing(() => {
+  // triggered when the event is sent
+});
+
+socket.onAny(() => {
+  // not triggered when the acknowledgement is received
+});
+```
+
+:::
+
 ### socket.prependAny(listener)
 
 Adds a listener that will be fired when any event is emitted. The listener is added to the beginning of the listeners array.
@@ -100,6 +120,64 @@ socket.offAny(listener);
 
 // or all listeners
 socket.offAny();
+```
+
+### socket.onAnyOutgoing(listener)
+
+Register a new catch-all listener for outgoing packets.
+
+```js
+socket.onAnyOutgoing((event, ...args) => {
+  // ...
+});
+```
+
+:::caution
+
+[Acknowledgements](./emitting-events.md#acknowledgements) are not caught in the catch-all listener.
+
+```js
+socket.on("foo", (value, callback) => {
+  callback("OK");
+});
+
+socket.onAny(() => {
+  // triggered when the event is received
+});
+
+socket.onAnyOutgoing(() => {
+  // not triggered when the acknowledgement is sent
+});
+```
+
+:::
+
+### socket.prependAnyOutgoing(listener)
+
+Register a new catch-all listener for outgoing packets. The listener is added to the beginning of the listeners array.
+
+```js
+socket.prependAnyOutgoing((event, ...args) => {
+  // ...
+});
+```
+
+### socket.offAnyOutgoing([listener])
+
+Removes the previously registered listener. If no listener is provided, all catch-all listeners are removed.
+
+```js
+const listener = (eventName, ...args) => {
+  console.log(eventName, args);
+}
+
+socket.onAnyOutgoing(listener);
+
+// remove a single listener
+socket.offAnyOutgoing(listener);
+
+// remove all listeners
+socket.offAnyOutgoing();
 ```
 
 ## Validation

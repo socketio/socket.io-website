@@ -788,6 +788,26 @@ socket.onAny((event, ...args) => {
 });
 ```
 
+:::caution
+
+[Acknowledgements](categories/04-Events/emitting-events.md#acknowledgements) are not caught in the catch-all listener.
+
+```js
+socket.emit("foo", (value) => {
+  // ...
+});
+
+socket.onAnyOutgoing(() => {
+  // triggered when the event is sent
+});
+
+socket.onAny(() => {
+  // not triggered when the acknowledgement is received
+});
+```
+
+:::
+
 #### socket.onAnyOutgoing(callback)
 
 *Added in v4.5.0*
@@ -801,6 +821,26 @@ socket.onAnyOutgoing((event, ...args) => {
   console.log(`got ${event}`);
 });
 ```
+
+:::caution
+
+[Acknowledgements](categories/04-Events/emitting-events.md#acknowledgements) are not caught in the catch-all listener.
+
+```js
+socket.on("foo", (value, callback) => {
+  callback("OK");
+});
+
+socket.onAny(() => {
+  // triggered when the event is received
+});
+
+socket.onAnyOutgoing(() => {
+  // not triggered when the acknowledgement is sent
+});
+```
+
+:::
 
 #### socket.once(eventName, callback)
 
