@@ -1,22 +1,28 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-const communityItems = [
+const helpItems = [
   {
-    label: "Slack",
-    href: "https://socketio-slackin.herokuapp.com/",
+    // using 'type: "doc"' makes the link active whenever the user is on a page from the "/docs" directory
+    // see: https://github.com/facebook/docusaurus/issues/8018
+    label: "Troubleshooting",
+    to: "/docs/v4/troubleshooting-connection-issues/"
   },
   {
     label: "Stack Overflow",
     href: "https://stackoverflow.com/questions/tagged/socket.io",
   },
   {
-    label: "Twitter",
-    href: "https://twitter.com/SocketIO",
+    label: "GitHub Discussions",
+    href: "https://github.com/socketio/socket.io/discussions",
+  },
+  {
+    label: "Slack",
+    href: "https://socketio-slackin.herokuapp.com/",
   },
 ];
 
-const resourcesItems = [
+const toolsItems = [
   {
     label: "CDN",
     href: "https://cdn.socket.io",
@@ -24,6 +30,24 @@ const resourcesItems = [
   {
     label: "Admin UI",
     href: "https://admin.socket.io",
+  }
+];
+
+const newsItems = [
+  {
+    label: "Blog",
+    to: "/blog"
+  },
+  {
+    label: "Twitter",
+    href: "https://twitter.com/SocketIO",
+  },
+];
+
+const aboutItems = [
+  {
+    label: "Roadmap",
+    href: "https://github.com/socketio/socket.io/projects/3"
   },
   {
     label: "Become a sponsor",
@@ -76,17 +100,43 @@ module.exports = {
           label: "Client API",
         },
         {
-          label: "Blog",
-          to: "/blog"
+          type: "dropdown",
+          label: "Ecosystem",
+          position: "left",
+          items: [
+            {
+              type: "html",
+              className: "dropdown-category",
+              value: "<b>Help</b>",
+            },
+            ...helpItems,
+            {
+              type: "html",
+              value: '<hr class="dropdown-separator">',
+            },
+            {
+              type: "html",
+              className: "dropdown-category",
+              value: "<b>News</b>",
+            },
+            ...newsItems,
+            {
+              type: "html",
+              value: '<hr class="dropdown-separator">',
+            },
+            {
+              type: "html",
+              className: "dropdown-category",
+              value: "<b>Tools</b>",
+            },
+            ...toolsItems,
+          ],
         },
         {
           type: "dropdown",
-          label: "Resources",
+          label: "About",
           position: "left",
-          items: [
-            ...communityItems,
-            ...resourcesItems
-          ],
+          items: aboutItems
         },
         {
           type: "docsVersionDropdown",
@@ -132,22 +182,20 @@ module.exports = {
           ],
         },
         {
-          title: "Community",
-          items: [
-            {
-              label: "Blog",
-              to: "/blog"
-            },
-            {
-              label: "GitHub",
-              href: "https://github.com/socketio/socket.io",
-            },
-            ...communityItems
-          ],
+          title: "Help",
+          items: helpItems,
         },
         {
-          title: "More",
-          items: resourcesItems,
+          title: "News",
+          items: newsItems,
+        },
+        {
+          title: "Tools",
+          items: toolsItems,
+        },
+        {
+          title: "About",
+          items: aboutItems,
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Socket.IO`,
