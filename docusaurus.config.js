@@ -46,6 +46,10 @@ const newsItems = [
 
 const aboutItems = [
   {
+    label: "Changelog",
+    to: "/docs/v4/changelog"
+  },
+  {
     label: "Roadmap",
     href: "https://github.com/socketio/socket.io/projects/3"
   },
