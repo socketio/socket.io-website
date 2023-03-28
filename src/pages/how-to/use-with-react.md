@@ -4,7 +4,7 @@ title: How to use with React
 
 # How to use with React
 
-This guide shows how to use Socket.IO within a [React](https://beta.reactjs.org/) application.
+This guide shows how to use Socket.IO within a [React](https://react.dev) application.
 
 ## Example
 
@@ -68,7 +68,7 @@ Reference: [Handling CORS](/docs/v4/handling-cors)
 
 The events listeners are then registered in the `App` component, which stores the state and pass it down to its child components via props.
 
-See also: https://beta.reactjs.org/learn/sharing-state-between-components
+See also: https://react.dev/learn/sharing-state-between-components
 
 `src/App.js`
 
@@ -120,7 +120,7 @@ export default function App() {
 
 :::tip
 
-A few remarks about the usage of the [`useEffect`](https://beta.reactjs.org/reference/react/useEffect) hook can be found [below](#remarks-about-the-useeffect-hook).
+A few remarks about the usage of the [`useEffect`](https://react.dev/reference/react/useEffect) hook can be found [below](#remarks-about-the-useeffect-hook).
 
 :::
 
@@ -282,7 +282,7 @@ useEffect(() => {
 
 :::info
 
-In [Strict Mode](https://beta.reactjs.org/reference/react/StrictMode), every Effect is run twice in order to catch bugs during development, so you will see:
+In [Strict Mode](https://react.dev/reference/react/StrictMode), every Effect is run twice in order to catch bugs during development, so you will see:
 
 - setup: `socket.connect()`
 - cleanup: `socket.disconnect()`
