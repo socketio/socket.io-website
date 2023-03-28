@@ -360,6 +360,11 @@
     "alt": "Campobet SE"
   },
   {
+    "url": "https://www.automatenspiele.org/",
+    "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
+    "alt": "automatenspiele.org"
+  },
+  {
     "url": "https://www.norsknettcasino.net",
     "img": "https://images.opencollective.com/norsknettcasino/3ce6d1e/logo.png",
     "alt": "Norsknettcasino"
@@ -368,11 +373,6 @@
     "url": "https://leafletcasino.com/",
     "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
     "alt": "leafletcasino.com"
-  },
-  {
-    "url": "https://www.automatenspiele.org/",
-    "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
-    "alt": "automatenspiele.org"
   },
   {
     "url": "https://www.ibeesoft.com/",
@@ -385,14 +385,14 @@
     "alt": "Playcasinoscanada.com"
   },
   {
-    "url": "https://www.norgescasino.com/",
-    "img": "https://images.opencollective.com/norges-casino1/9a90f8f/logo.png",
-    "alt": "Norges Casino"
-  },
-  {
     "url": "https://poprey.com/",
     "img": "https://images.opencollective.com/instagram-likes/2a72a03/avatar.png",
     "alt": "Poprey.com"
+  },
+  {
+    "url": "https://www.casinosansdepot.com",
+    "img": "/images/sponsors/casinosansdepot.png",
+    "alt": "casinosansdepot"
   },
   {
     "url": "https://automatenspielex.com/online-casinos",
@@ -400,9 +400,9 @@
     "alt": "beste online casino deutschland"
   },
   {
-    "url": "https://www.casinosansdepot.com",
-    "img": "/images/sponsors/casinosansdepot.png",
-    "alt": "casinosansdepot"
+    "url": "https://www.norgescasino.com/",
+    "img": "https://images.opencollective.com/norges-casino1/9a90f8f/logo.png",
+    "alt": "Norges Casino"
   },
   {
     "url": "https://hellsbet.com/en-au/",
@@ -450,6 +450,11 @@
     "alt": "Typy Bukmacherskie"
   },
   {
+    "url": "https://www.noneedtostudy.com/take-my-online-class/",
+    "img": "/images/sponsors/noneedtostudy.png",
+    "alt": "Pay someone to take my online class - NoNeedToStudy.com"
+  },
+  {
     "url": "https://speedypaper.com/",
     "img": "https://images.opencollective.com/speedypaper/b6b7aef/logo.png",
     "alt": "SpeedyPaper"
@@ -463,11 +468,6 @@
     "url": "https://casinoburst.com/casino-utan-licens/",
     "img": "https://images.opencollective.com/bmsk/687b909/avatar.png",
     "alt": "Casinoburst.com"
-  },
-  {
-    "url": "https://www.noneedtostudy.com/take-my-online-class/",
-    "img": "/images/sponsors/noneedtostudy.png",
-    "alt": "Pay someone to take my online class - NoNeedToStudy.com"
   },
   {
     "url": "https://nongamstopcasinos.net/",
@@ -635,6 +635,11 @@
     "alt": "Spin-Paradise"
   },
   {
+    "url": "https://noderedis.dev",
+    "img": "https://images.opencollective.com/node-redis/3f51d3f/logo.png",
+    "alt": "Node Redis"
+  },
+  {
     "url": "https://linkbuildingitaly.co",
     "img": "https://images.opencollective.com/link-building-italy/dabd081/logo.png",
     "alt": "Link Building Italy"
@@ -643,11 +648,6 @@
     "url": "https://newcasinos-au.com/",
     "img": "https://images.opencollective.com/new-casinos-au/b608ef9/logo.png",
     "alt": "New Casinos AU"
-  },
-  {
-    "url": "https://noderedis.dev",
-    "img": "https://images.opencollective.com/node-redis/3f51d3f/logo.png",
-    "alt": "Node Redis"
   },
   {
     "url": "https://onlinecasinoosusume.jp/",
@@ -713,5 +713,10 @@
     "url": "https://sup.today/",
     "img": "https://images.opencollective.com/vivek10/0aea146/avatar.png",
     "alt": "Sup.today"
+  },
+  {
+    "url": "https://www.nettcasino.com/",
+    "img": "https://images.opencollective.com/nettcasino/df22622/logo.png",
+    "alt": "Nettcasino"
   }
 ]
