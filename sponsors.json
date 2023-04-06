@@ -300,6 +300,11 @@
     "alt": "Wizard Slots"
   },
   {
+    "url": "https://www.onlinecasinosdeutschland.de/",
+    "img": "https://images.opencollective.com/onlinecasinosdeutschland/03ec330/avatar.png",
+    "alt": "www.onlinecasinosdeutschland.de"
+  },
+  {
     "url": "https://www.targetedwebtraffic.com",
     "img": "https://images.opencollective.com/targeted-web-traffic/7abacc7/logo.png",
     "alt": "Targeted Web Traffic"
@@ -313,11 +318,6 @@
     "url": "https://funrize.com",
     "img": "https://images.opencollective.com/funrize/3555525/logo.png",
     "alt": "Funrize™ Social Casino"
-  },
-  {
-    "url": "https://www.onlinecasinosdeutschland.de/",
-    "img": "https://images.opencollective.com/onlinecasinosdeutschland/03ec330/avatar.png",
-    "alt": "www.onlinecasinosdeutschland.de"
   },
   {
     "url": "https://www.polskiekasyno.com/",
@@ -590,16 +590,6 @@
     "alt": "Online Casino Osusume"
   },
   {
-    "url": "https://www.slotsup.com",
-    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.png",
-    "alt": "SlotsUp"
-  },
-  {
-    "url": "https://www.casinoaams.eu",
-    "img": "https://images.opencollective.com/renato-baldo/avatar.png",
-    "alt": "Renato Baldo"
-  },
-  {
     "url": "https://njohnson7.github.io/",
     "img": "https://images.opencollective.com/njohnson7/fae8bd7/avatar.png",
     "alt": "Nick Johnson"
@@ -643,6 +633,16 @@
     "url": "https://noderedis.dev",
     "img": "https://images.opencollective.com/node-redis/3f51d3f/logo.png",
     "alt": "Node Redis"
+  },
+  {
+    "url": "https://www.slotsup.com",
+    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.png",
+    "alt": "SlotsUp"
+  },
+  {
+    "url": "https://www.casinoaams.eu",
+    "img": "https://images.opencollective.com/renato-baldo/avatar.png",
+    "alt": "Renato Baldo"
   },
   {
     "url": "https://justuk.club/",
@@ -698,5 +698,10 @@
     "url": "https://www.correctcasinos.com/australian-online-casinos/fast-payout/",
     "img": "https://images.opencollective.com/fast-payout-casinos-australia/ac4fb8e/logo.png",
     "alt": "Fast Payout Casinos Australia"
+  },
+  {
+    "url": "https://kiwigambler.co.nz/online-casinos/no-deposit-bonuses/free-spins",
+    "img": "https://images.opencollective.com/ncsquare/d1da555/avatar.png",
+    "alt": "ncsquare"
   }
 ]
