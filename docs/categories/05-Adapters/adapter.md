@@ -9,9 +9,10 @@ An Adapter is a server-side component which is responsible for broadcasting even
 
 When scaling to multiple Socket.IO servers, you will need to replace the default in-memory adapter by another implementation, so the events are properly routed to all clients.
 
-Besides the in-memory adapter, there are four official implementations:
+Besides the in-memory adapter, there are 5 official implementations:
 
 - the [Redis adapter](adapter-redis.md)
+- the [Redis Streams adapter](adapter-redis-streams.md)
 - the [MongoDB adapter](adapter-mongo.md)
 - the [Postgres adapter](adapter-postgres.md)
 - the [Cluster adapter](adapter-cluster.md)

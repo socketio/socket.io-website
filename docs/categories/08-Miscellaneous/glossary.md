@@ -19,9 +19,10 @@ An Adapter is a server-side component which is responsible for:
 - storing the relationships between the Socket instances and the [rooms](../04-Events/rooms.md)
 - broadcasting events to [all](../04-Events/broadcasting-events.md) (or a subset of) clients
 
-Besides the [in-memory adapter](https://github.com/socketio/socket.io-adapter/) which is included by default with the Socket.IO server, there are currently 4 official adapters:
+Besides the [in-memory adapter](https://github.com/socketio/socket.io-adapter/) which is included by default with the Socket.IO server, there are currently 5 official adapters:
 
 - the [Redis adapter](../05-Adapters/adapter-redis.md)
+- the [Redis Streams adapter](../05-Adapters/adapter-redis-streams.md)
 - the [MongoDB adapter](../05-Adapters/adapter-mongo.md)
 - the [Postgres adapter](../05-Adapters/adapter-postgres.md)
 - the [Cluster adapter](../05-Adapters/adapter-cluster.md)

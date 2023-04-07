@@ -1,6 +1,6 @@
 ---
 title: MongoDB adapter
-sidebar_position: 3
+sidebar_position: 4
 slug: /mongo-adapter/
 ---
 
@@ -26,6 +26,13 @@ npm install @socket.io/mongo-adapter mongodb
 For TypeScript users, you might also need `@types/mongodb`.
 
 ## Usage {#usage}
+
+There are two ways to clean up the MongoDB documents that are created by the adapter:
+
+- a [capped collection](https://www.mongodb.com/docs/manual/core/capped-collections/)
+- a [TTL index](https://www.mongodb.com/docs/manual/core/index-ttl/)
+
+### Usage with a capped collection {#usage-with-a-capped-collection}
 
 ```js
 const { Server } = require("socket.io");
@@ -61,16 +68,50 @@ const main = async () => {
 main();
 ```
 
-Note: the [capped collection](https://docs.mongodb.com/manual/core/capped-collections/) prevents the collection from growing too big.
+### Usage with a TTL index {#usage-with-a-ttl-index}
+
+```js
+const { Server } = require("socket.io");
+const { createAdapter } = require("@socket.io/mongo-adapter");
+const { MongoClient } = require("mongodb");
+
+const DB = "mydb";
+const COLLECTION = "socket.io-adapter-events";
+
+const io = new Server();
+
+const mongoClient = new MongoClient("mongodb://localhost:27017/?replicaSet=rs0", {
+  useUnifiedTopology: true,
+});
+
+const main = async () => {
+  await mongoClient.connect();
+
+  const mongoCollection = mongoClient.db(DB).collection(COLLECTION);
+
+  await mongoCollection.createIndex(
+    { createdAt: 1 },
+    { expireAfterSeconds: 3600, background: true }
+  );
+
+  io.adapter(createAdapter(mongoCollection, {
+    addCreatedAtField: true
+  }));
+  io.listen(3000);
+}
+
+main();
+```
 
 ## Options {#options}
 
-| Name | Description | Default value |
-| ---- | ----------- | ------------- |
-| `uid` | the ID of this node | a random id |
-| `requestsTimeout` | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000` |
-| `heartbeatInterval` | the number of ms between two heartbeats | `5000` |
-| `heartbeatTimeout` | the number of ms without heartbeat before we consider a node down | `10000` |
+| Name                | Description                                                                                   | Default value | Added in |
+|---------------------|-----------------------------------------------------------------------------------------------|---------------|----------|
+| `uid`               | the ID of this node                                                                           | a random id   | `v0.1.0` |
+| `requestsTimeout`   | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000`        | `v0.1.0` |
+| `heartbeatInterval` | the number of ms between two heartbeats                                                       | `5000`        | `v0.1.0` |
+| `heartbeatTimeout`  | the number of ms without heartbeat before we consider a node down                             | `10000`       | `v0.1.0` |
+| `addCreatedAtField` | whether to add a `createdAt` field to each MongoDB document                                   | `false`       | `v0.2.0` |
 
 ## Common questions {#common-questions}
 
@@ -89,7 +130,7 @@ In case the connection to the MongoDB cluster is severed, the behavior will depe
 
 Documentation: http://mongodb.github.io/node-mongodb-native/3.6/api/global.html#MongoClientOptions
 
-## Latest releases
+## Latest releases {#latest-releases}
 
 - `0.3.0` (Feb 2023): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.2.1...0.3.0)
 - `0.2.1` (May 2022): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.2.1) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.2.0...0.2.1)

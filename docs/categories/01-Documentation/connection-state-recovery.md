@@ -130,12 +130,13 @@ MzUPkW0   => the last processed offset
 
 ## Compatibility with existing adapters
 
-| Adapter                                                |                                                         Support?                                                         |
-|--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------:|
-| Built-in adapter (in memory)                           |                                                  YES :white_check_mark:                                                  |
-| [Redis adapter](../05-Adapters/adapter-redis.md)       |                                                      NO<sup>1</sup>                                                      |
-| [MongoDB adapter](../05-Adapters/adapter-mongo.md)     | YES :white_check_mark: (since version [`0.3.0`](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0)) |
-| [Postgres adapter](../05-Adapters/adapter-postgres.md) |                                                           WIP                                                            |
-| [Cluster adapter](../05-Adapters/adapter-cluster.md)   |                                                           WIP                                                            |
+| Adapter                                                          |                                                         Support?                                                         |
+|------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------:|
+| Built-in adapter (in memory)                                     |                                                  YES :white_check_mark:                                                  |
+| [Redis adapter](../05-Adapters/adapter-redis.md)                 |                                                      NO<sup>1</sup>                                                      |
+| [Redis Streams adapter](../05-Adapters/adapter-redis-streams.md) |                                                  YES :white_check_mark:                                                  |
+| [MongoDB adapter](../05-Adapters/adapter-mongo.md)               | YES :white_check_mark: (since version [`0.3.0`](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0)) |
+| [Postgres adapter](../05-Adapters/adapter-postgres.md)           |                                                           WIP                                                            |
+| [Cluster adapter](../05-Adapters/adapter-cluster.md)             |                                                           WIP                                                            |
 
-[1] Persisting the packets is not compatible with the Redis PUB/SUB mechanism, so we will create a new adapter based on [Redis Streams](https://redis.io/docs/data-types/streams/) which will support this feature. 
+[1] Persisting the packets is not compatible with the Redis PUB/SUB mechanism.
