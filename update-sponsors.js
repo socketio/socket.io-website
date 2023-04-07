@@ -102,7 +102,12 @@ const customLinks = {
     url: "https://automatenspielex.com/online-casinos",
     img: "/images/sponsors/automatenspielexcom.png",
     alt: "beste online casino deutschland"
-  }
+  },
+  "ncsquare": {
+    url: "https://kiwigambler.co.nz/online-casinos/no-deposit-bonuses/free-spins",
+    img: "/images/sponsors/ncsquare.png",
+    alt: "ncsquare"
+  },
 }
 
 const nodeToSponsor = node => (customLinks[node.account.slug] || {
