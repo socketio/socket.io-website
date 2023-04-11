@@ -106,8 +106,13 @@ const customLinks = {
   "ncsquare": {
     url: "https://kiwigambler.co.nz/online-casinos/no-deposit-bonuses/free-spins",
     img: "/images/sponsors/ncsquare.png",
-    alt: "ncsquare"
+    alt: "Kiwi Gambler NZ"
   },
+  "correct-casinos": {
+    url: "https://www.casinoaustraliaonline.com/payid-casinos/",
+    img: "/images/sponsors/correct-casinos.svg",
+    alt: "PayID Casinos Australia"
+  }
 }
 
 const nodeToSponsor = node => (customLinks[node.account.slug] || {

@@ -660,14 +660,14 @@
     "alt": "Spelacasinonu"
   },
   {
-    "url": "https://www.bestaucasinosites.com/",
-    "img": "https://images.opencollective.com/bestaucasinosites/f4b908a/avatar.png",
-    "alt": "Best AU Casino Sites"
-  },
-  {
     "url": "https://fatgambler.ca/",
     "img": "https://images.opencollective.com/fatgambler/0f1872b/logo.png",
     "alt": "FatGambler"
+  },
+  {
+    "url": "https://www.bestaucasinosites.com/",
+    "img": "https://images.opencollective.com/bestaucasinosites/f4b908a/avatar.png",
+    "alt": "Best AU Casino Sites"
   },
   {
     "url": "https://onlinecasino.ua",
@@ -702,6 +702,16 @@
   {
     "url": "https://kiwigambler.co.nz/online-casinos/no-deposit-bonuses/free-spins",
     "img": "/images/sponsors/ncsquare.png",
-    "alt": "ncsquare"
+    "alt": "Kiwi Gambler NZ"
+  },
+  {
+    "url": "https://www.weareroli.com/",
+    "img": "https://images.opencollective.com/pucuk138/avatar.png",
+    "alt": "pucuk138"
+  },
+  {
+    "url": "https://www.casinoaustraliaonline.com/payid-casinos/",
+    "img": "/images/sponsors/correct-casinos.svg",
+    "alt": "PayID Casinos Australia"
   }
 ]
