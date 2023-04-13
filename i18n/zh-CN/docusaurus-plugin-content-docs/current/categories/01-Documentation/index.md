@@ -175,7 +175,7 @@ Socket.IO 并不打算在移动应用程序的后台服务中使用。
 
 :::
 
-Socket.IO 库保持与服务器的开放 TCP 连接，这可能会导致用户消耗大量电池。请为此用例使用请为此用例使用[FCM](https://firebase.google.com/docs/cloud-messaging)等专用消息传递平台。
+Socket.IO 库保持与服务器的开放 TCP 连接，这可能会导致用户消耗大量电池。请为此用例使用[FCM](https://firebase.google.com/docs/cloud-messaging)等专用消息传递平台。
 
 ## 特点 {#features}
 
