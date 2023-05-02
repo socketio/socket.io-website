@@ -112,6 +112,11 @@ const customLinks = {
     url: "https://www.casinoaustraliaonline.com/payid-casinos/",
     img: "/images/sponsors/correct-casinos.svg",
     alt: "PayID Casinos Australia"
+  },
+  "veepn-vpn": {
+    url: "https://veepn.com/vpn-apps/download-vpn-for-pc/",
+    img: "https://images.opencollective.com/veepn-vpn/5e3715a/avatar.png",
+    alt: "VeePN VPN"
   }
 }
 
