@@ -7,21 +7,36 @@ const request = require('request-promise');
 const filename = 'sponsors.json';
 const absoluteFilename = path.resolve(__dirname, filename);
 
-const membersUrl = 'https://opencollective.com/socketio/members/all.json';
-
 const graphqlEndpoint = 'https://api.opencollective.com/graphql/v2';
 
 const graphqlQuery = `query account {
   account(slug: "socketio") {
+    orders(status: [ACTIVE, PAID], minAmount: 10000, limit: 1000) {
+      nodes {
+        fromAccount {
+          id
+        }
+        status
+        processedAt
+        totalAmount {
+          value
+        }
+      }
+    }
     members(role: BACKER, limit: 1000) {
       nodes {
         tier {
           name
         }
         account {
+          id
           name
           slug
           website
+          socialLinks {
+            type
+            url
+          }
           imageUrl
         }
         totalDonations {
@@ -33,21 +48,7 @@ const graphqlQuery = `query account {
   }
 }`;
 
-const customImages = new Map([
-  ["alessandro-rivieccio", { url: "https://www.casinosansdepot.com", img: "/images/sponsors/casinosansdepot.png", alt: "casinosansdepot" }],
-  ["casinoalpha", { url: "https://casinoalpha.com/", img: "/images/sponsors/casinoalpha.png", alt: "CasinoAlpha" }],
-  ["casinobonusca", { url: "https://casinobonusca.com/", img: "/images/sponsors/casinobonusca.png", alt: "CasinoBonusCa" }],
-  ["king10", { url: "https://kingcasinobonus.co.uk", img: "/images/sponsors/king10.png", alt: "KingCasinoBonus" }],
-  ["gem-m", { url: "https://www.noneedtostudy.com/take-my-online-class/", img: "/images/sponsors/noneedtostudy.png", alt: "Pay someone to take my online class - NoNeedToStudy.com" }],
-  ["yana1", { url: "https://nongamstopcasinos.net/", img: "/images/sponsors/nongamstopcasinos.png", alt: "Non Gamstop Casinos" }],
-]);
-
 const customLinks = {
-  truevendor: {
-    url: "https://www.ramotion.com/agency/ui-ux-design",
-    img: "https://images.opencollective.com/truevendor/ddf2f01/logo.png",
-    alt: "ui ux design agency"
-  },
   "veselin-lalev": {
     url: "https://casinodaddy.com",
     img: "/images/sponsors/casinodaddy.png",
@@ -62,11 +63,6 @@ const customLinks = {
     url: "https://www.neueonline-casinos.com/",
     img: "/images/sponsors/neue.png",
     alt: "Neue Online Casinos"
-  },
-  vpsservercom: {
-    "url": "https://www.vpsserver.com",
-    "img": "https://images.opencollective.com/vpsservercom/logo.png",
-    "alt": "VPS Hosting"
   },
   "quickbooks-tool-hub": {
     url: "https://quickbookstoolhub.com/",
@@ -88,16 +84,6 @@ const customLinks = {
     img: "https://images.opencollective.com/casinotest-ltd/7e3c899/logo.png",
     alt: "CasinoTest Ltd."
   },
-  "guest-3f7631a8": {
-    url: "https://www.testarna.se/casino/utan-svensk-licens/utlandska",
-    img: "/images/sponsors/testarna.jpg",
-    alt: "Testarna.se"
-  },
-  "quickbooks-error-codes": {
-    url: "https://cfi-blog.org",
-    img: "/images/sponsors/cfi-blog.png",
-    alt: "CFI-BLOG"
-  },
   "automatenspielexcom": {
     url: "https://automatenspielex.com/online-casinos",
     img: "/images/sponsors/automatenspielexcom.png",
@@ -108,11 +94,6 @@ const customLinks = {
     img: "/images/sponsors/ncsquare.png",
     alt: "Kiwi Gambler NZ"
   },
-  "correct-casinos": {
-    url: "https://www.casinoaustraliaonline.com/payid-casinos/",
-    img: "/images/sponsors/correct-casinos.svg",
-    alt: "PayID Casinos Australia"
-  },
   "veepn-vpn": {
     url: "https://veepn.com/vpn-apps/download-vpn-for-pc/",
     img: "https://images.opencollective.com/veepn-vpn/5e3715a/avatar.png",
@@ -121,63 +102,49 @@ const customLinks = {
 }
 
 const nodeToSponsor = node => (customLinks[node.account.slug] || {
-  url: node.account.website,
+  url: node.account.socialLinks.find(link => link.type === "WEBSITE")?.url || node.account.website,
   img: node.account.imageUrl,
   alt: node.account.name
 });
 
+function monthDiff(dateFrom, dateTo) {
+  return dateTo.getMonth() - dateFrom.getMonth() + (12 * (dateTo.getFullYear() - dateFrom.getFullYear()));
+}
+
+const NOW = new Date();
 const AMOUNT_PER_MONTH = 100;
 
 const main = async () => {
   console.log(`fetching sponsors from the graphql API`);
 
-  const [ members, sponsors ] = await Promise.all([
-    request({
-      method: 'GET',
-      uri: membersUrl,
-      json: true
-    }),
-    request({
-      method: 'POST',
-      uri: graphqlEndpoint,
-      body: { query: graphqlQuery },
-      json: true
-    }).then(result => result.data.account.members.nodes)
-  ]);
+  const result = await request({
+    method: 'POST',
+    uri: graphqlEndpoint,
+    body: { query: graphqlQuery },
+    json: true
+  });
 
-  const activeMembers = new Set();
-  members.forEach(member => {
-    if (member.isActive && member.profile) {
-      const slug = member.profile.substring('https://opencollective.com/'.length);
-      activeMembers.add(slug);
+  const sponsors = result.data.account.members.nodes;
+  const orders = result.data.account.orders.nodes;
+
+  const activeSponsorsById = new Set();
+
+  orders.forEach(order => {
+    const isActiveSubscription = order.status === "ACTIVE";
+    const isSufficientOneShotPayment = order.totalAmount.value / (monthDiff(new Date(order.processedAt), NOW) || 1) >= AMOUNT_PER_MONTH;
+
+    if (isActiveSubscription || isSufficientOneShotPayment) {
+      activeSponsorsById.add(order.fromAccount.id);
     }
   });
-  console.log(`${activeMembers.size} active members out of ${members.length}`);
-
-  const unique = new Set(activeMembers);
 
   const activeSponsors = sponsors
-    .map(n => {
-      const customImage = customImages.get(n.account.slug);
-      if (customImage) {
-        if (customImage.img) {
-          n.account.imageUrl = customImage.img;
-        }
-        if (customImage.url) {
-          n.account.website = customImage.url;
-        }
-        if (customImage.alt) {
-          n.account.name = customImage.alt;
-        }
-      }
-      return n;
-    })
     .filter(n => {
-      const isSponsor = (!n.tier || n.tier.name.toLowerCase() === 'sponsors') && n.totalDonations.value >= AMOUNT_PER_MONTH;
-      const isActive = activeMembers.has(n.account.slug);
-      const hasWebsite = n.account.website;
+      const isSponsor = !n.tier || n.tier.name.toLowerCase() === 'sponsors';
+      const isActive = activeSponsorsById.delete(n.account.id); // prevent duplicates
+      const hasWebsite = n.account.socialLinks.some(link => link.type === "WEBSITE") || n.account.website; // website attribute is deprecated but still used in some cases
 
-      return isSponsor && isActive && hasWebsite && unique.delete(n.account.slug);
+      return isSponsor && isActive && hasWebsite;
     })
     .sort((a, b) => {
       const sortByDonation = b.totalDonations.value - a.totalDonations.value;
@@ -187,6 +154,8 @@ const main = async () => {
       return a.createdAt.localeCompare(b.createdAt);
     })
     .map(nodeToSponsor);
+
+  console.log(`${activeSponsors.length} active sponsors out of ${sponsors.length}`);
 
   fs.writeFileSync(absoluteFilename, JSON.stringify(activeSponsors, null, 2));
   console.log(`content written to ${absoluteFilename}`);
