@@ -266,4 +266,10 @@ module.exports = {
     defaultLocale: 'en',
     locales: ['en', 'fr', 'pt-br', 'zh-CN'],
   },
+  scripts: [
+    {
+      src: '/_vercel/insights/script.js',
+      defer: true,
+    }
+  ]
 };
