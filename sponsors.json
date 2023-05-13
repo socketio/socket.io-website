@@ -215,11 +215,6 @@
     "alt": "Canada Casino Hub"
   },
   {
-    "url": "https://www.spinsify.com/uk/new-casinos",
-    "img": "https://images.opencollective.com/new-casinos/44e0240/logo.png",
-    "alt": "spinsify.com/uk"
-  },
-  {
     "url": "https://zamsino.com/uk/free-spins-no-deposit/",
     "img": "https://images.opencollective.com/erik-king/avatar.png",
     "alt": "Erik King"
@@ -535,18 +530,23 @@
     "alt": "CasinosHunter Ontario"
   },
   {
-    "url": "https://linkbuildingcanada.com",
-    "img": "https://images.opencollective.com/link-building-canada/48eb8ef/logo.png",
-    "alt": "Link Building Canada"
-  },
-  {
     "url": "https://luckygambler.com/",
     "img": "https://images.opencollective.com/luckygamblercom/7723672/logo.png",
     "alt": "LuckyGambler"
   },
   {
     "url": "https://casinolandia.com/",
-    "img": "https://images.opencollective.com/viktor-atanasov/avatar.png",
+    "img": "https://images.opencollective.com/viktor-atanasov/8904683/avatar.png",
     "alt": "Viktor Atanasov"
+  },
+  {
+    "url": "https://no-verification.casino/canada/",
+    "img": "https://images.opencollective.com/noverificationcasino/6e11a64/logo.png",
+    "alt": "online casino no verification withdrawal canada"
+  },
+  {
+    "url": "https://www.vedonlyontibonukset.com/pitkavetovihjeet",
+    "img": "https://images.opencollective.com/pitkavetovihjeet/0131f1d/logo.png",
+    "alt": "Ilmaiset Pitkävetovihjeet"
   }
 ]

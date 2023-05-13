@@ -98,6 +98,11 @@ const customLinks = {
     url: "https://veepn.com/vpn-apps/download-vpn-for-pc/",
     img: "https://images.opencollective.com/veepn-vpn/5e3715a/avatar.png",
     alt: "VeePN VPN"
+  },
+  "noverificationcasino": {
+    url: "https://no-verification.casino/canada/",
+    img: "https://images.opencollective.com/noverificationcasino/6e11a64/logo.png",
+    alt: "online casino no verification withdrawal canada"
   }
 }
 
