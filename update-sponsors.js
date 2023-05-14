@@ -48,6 +48,15 @@ const graphqlQuery = `query account {
   }
 }`;
 
+const customImages = new Map([
+  ["alessandro-rivieccio", { url: "https://www.casinosansdepot.com", img: "/images/sponsors/casinosansdepot.png", alt: "casinosansdepot" }],
+  ["casinoalpha", { url: "https://casinoalpha.com/", img: "/images/sponsors/casinoalpha.png", alt: "CasinoAlpha" }],
+  ["casinobonusca", { url: "https://casinobonusca.com/", img: "/images/sponsors/casinobonusca.png", alt: "CasinoBonusCa" }],
+  ["king10", { url: "https://kingcasinobonus.co.uk", img: "/images/sponsors/king10.png", alt: "KingCasinoBonus" }],
+  ["gem-m", { url: "https://www.noneedtostudy.com/take-my-online-class/", img: "/images/sponsors/noneedtostudy.png", alt: "Pay someone to take my online class - NoNeedToStudy.com" }],
+  ["yana1", { url: "https://nongamstopcasinos.net/", img: "/images/sponsors/nongamstopcasinos.png", alt: "Non Gamstop Casinos" }],
+]);
+
 const customLinks = {
   "veselin-lalev": {
     url: "https://casinodaddy.com",
@@ -144,6 +153,21 @@ const main = async () => {
   });
 
   const activeSponsors = sponsors
+    .map(n => {
+      const customImage = customImages.get(n.account.slug);
+      if (customImage) {
+        if (customImage.img) {
+          n.account.imageUrl = customImage.img;
+        }
+        if (customImage.url) {
+          n.account.website = customImage.url;
+        }
+        if (customImage.alt) {
+          n.account.name = customImage.alt;
+        }
+      }
+      return n;
+    })
     .filter(n => {
       const isSponsor = !n.tier || n.tier.name.toLowerCase() === 'sponsors';
       const isActive = activeSponsorsById.delete(n.account.id); // prevent duplicates
