@@ -4,6 +4,9 @@ sidebar_position: 7
 slug: /using-multiple-nodes/
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 When deploying multiple Socket.IO servers, there are two things to take care of:
 
 - enabling sticky session, if HTTP long-polling is enabled (which is the default): see [below](#enabling-sticky-session)
@@ -19,7 +22,13 @@ This is because the HTTP long-polling transport sends multiple HTTP requests dur
 
 In fact, Socket.IO could technically work without sticky sessions, with the following synchronization (in dashed lines):
 
-![Using multiple nodes without sticky sessions](/images/mutiple-nodes-no-sticky.png)
+<ThemedImage
+  alt="Using multiple nodes without sticky sessions"
+  sources={{
+    light: useBaseUrl('/images/mutiple-nodes-no-sticky.png'),
+    dark: useBaseUrl('/images/multiple-nodes-no-sticky-dark.png'),
+  }}
+/>
 
 While obviously possible to implement, we think that this synchronization process between the Socket.IO servers would result in a big performance hit for your application.
 

@@ -4,6 +4,9 @@ sidebar_position: 5
 slug: /postgres-adapter/
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 ## How it works
 
 The Postgres adapter relies on the [NOTIFY](https://www.postgresql.org/docs/current/sql-notify.html) and [LISTEN](https://www.postgresql.org/docs/current/sql-listen.html) commands.
@@ -17,7 +20,13 @@ Every packet that is sent to multiple clients (e.g. `io.to("room1").emit()` or `
   - this row ID is received by the other Socket.IO servers of the cluster, which query the table, decode the packet and then broadcast it to their own set of connected clients
 - else, the packet is simply sent within a NOTIFY command and received by the other Socket.IO servers of the cluster
 
-![Diagram of how the Postgres adapter works](/images/postgres-adapter.png)
+<ThemedImage
+  alt="Diagram of how the Postgres adapter works"
+  sources={{
+    light: useBaseUrl('/images/postgres-adapter.png'),
+    dark: useBaseUrl('/images/postgres-adapter-dark.png'),
+  }}
+/>
 
 The source code of this adapter can be found [here](https://github.com/socketio/socket.io-postgres-adapter).
 
@@ -87,7 +96,13 @@ In case the connection to the Postgres server is severed, the packets will only 
 
 The Postgres emitter allows sending packets to the connected clients from another Node.js process:
 
-![Diagram of how the Postgres emitter works](/images/postgres-emitter.png)
+<ThemedImage
+  alt="Diagram of how the Postgres emitter works"
+  sources={{
+    light: useBaseUrl('/images/postgres-emitter.png'),
+    dark: useBaseUrl('/images/postgres-emitter-dark.png'),
+  }}
+/>
 
 ### Installation
 

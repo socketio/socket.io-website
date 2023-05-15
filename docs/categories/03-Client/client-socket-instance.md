@@ -110,7 +110,13 @@ socket.on("connect", () => {
 
 ## Lifecycle
 
-<img src="/images/client_socket_events.png" alt="Lifecycle diagram" />
+<ThemedImage
+  alt="Lifecycle diagram"
+  sources={{
+    light: useBaseUrl('/images/client_socket_events.png'),
+    dark: useBaseUrl('/images/client_socket_events-dark.png'),
+  }}
+/>
 
 ## Events
 

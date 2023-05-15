@@ -5,6 +5,9 @@ sidebar_position: 1
 slug: /adapter/
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 An Adapter is a server-side component which is responsible for broadcasting events to all or a subset of clients.
 
 When scaling to multiple Socket.IO servers, you will need to replace the default in-memory adapter by another implementation, so the events are properly routed to all clients.
@@ -59,7 +62,13 @@ io.of("/").adapter.on("join-room", (room, id) => {
 
 Most adapter implementations come with their associated emitter package, which allows communicating to the group of Socket.IO servers from another Node.js process.
 
-![Emitter diagram](/images/emitter.png)
+<ThemedImage
+  alt="Emitter diagram"
+  sources={{
+    light: useBaseUrl('/images/emitter.png'),
+    dark: useBaseUrl('/images/emitter-dark.png'),
+  }}
+/>
 
 This may be useful for example in a microservice setup, where all clients connect to the microservice M1, while the microservice M2 uses the emitter to broadcast packets (uni-directional communication).
 

@@ -4,6 +4,9 @@ sidebar_position: 4
 slug: /mongo-adapter/
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 ## How it works
 
 The MongoDB adapter relies on MongoDB's [Change Streams](https://docs.mongodb.com/manual/changeStreams/) (and thus requires a replica set or a sharded cluster).
@@ -13,7 +16,13 @@ Every packet that is sent to multiple clients (e.g. `io.to("room1").emit()` or `
 - sent to all matching clients connected to the current server
 - inserted in a MongoDB capped collection, and received by the other Socket.IO servers of the cluster
 
-![Diagram of how the MongoDB adapter works](/images/mongo-adapter.png)
+<ThemedImage
+  alt="Diagram of how the MongoDB adapter works"
+  sources={{
+    light: useBaseUrl('/images/mongo-adapter.png'),
+    dark: useBaseUrl('/images/mongo-adapter-dark.png'),
+  }}
+/>
 
 The source code of this adapter can be found [here](https://github.com/socketio/socket.io-mongo-adapter).
 
@@ -141,7 +150,13 @@ Documentation: http://mongodb.github.io/node-mongodb-native/3.6/api/global.html#
 
 The MongoDB emitter allows sending packets to the connected clients from another Node.js process:
 
-![Diagram of how the MongoDB emitter works](/images/mongo-emitter.png)
+<ThemedImage
+  alt="Diagram of how the MongoDB adapter works"
+  sources={{
+    light: useBaseUrl('/images/mongo-emitter.png'),
+    dark: useBaseUrl('/images/mongo-emitter-dark.png'),
+  }}
+/>
 
 ### Installation
 
