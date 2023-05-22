@@ -170,11 +170,6 @@
     "alt": "Cricket Betting"
   },
   {
-    "url": "https://www.bitcoinbuster.com/",
-    "img": "https://images.opencollective.com/bitcoinbuster-com/858a895/logo.png",
-    "alt": "Bitcoinbuster.com"
-  },
-  {
     "url": "https://www.casinotest.com/",
     "img": "https://images.opencollective.com/casinotest-ltd/7e3c899/logo.png",
     "alt": "CasinoTest Ltd."
@@ -325,6 +320,11 @@
     "alt": "Онлайн Казино Украины"
   },
   {
+    "url": "https://www.casimba.com/en-gb/",
+    "img": "https://images.opencollective.com/casimba-casino/0506d6d/logo.png",
+    "alt": "Casimba Casino"
+  },
+  {
     "url": "https://www.sure.bet/casinos-not-on-gamstop/",
     "img": "https://images.opencollective.com/surebet/a2fecb2/avatar.png",
     "alt": "SureBet"
@@ -343,11 +343,6 @@
     "url": "https://automatenspielex.com/online-casinos",
     "img": "/images/sponsors/automatenspielexcom.png",
     "alt": "beste online casino deutschland"
-  },
-  {
-    "url": "https://www.casimba.com/en-gb/",
-    "img": "https://images.opencollective.com/casimba-casino/0506d6d/logo.png",
-    "alt": "Casimba Casino"
   },
   {
     "url": "https://casinoburst.com/casino-utan-licens/",
@@ -455,11 +450,6 @@
     "alt": "Likes.io"
   },
   {
-    "url": "https://spelacasinonu.com/",
-    "img": "https://images.opencollective.com/spelacasinonu2/b320136/avatar.png",
-    "alt": "Spelacasinonu"
-  },
-  {
     "url": "https://legitgamblingsites.com",
     "img": "https://images.opencollective.com/legitgamblingsites/a6efbd9/logo.png",
     "alt": "LegitGamblingSites"
@@ -558,5 +548,20 @@
     "url": "https://www.vedonlyontibonukset.com/pitkavetovihjeet",
     "img": "https://images.opencollective.com/pitkavetovihjeet/0131f1d/logo.png",
     "alt": "Ilmaiset Pitkävetovihjeet"
+  },
+  {
+    "url": "https://www.nyecasino.me/",
+    "img": "https://images.opencollective.com/nyecasino/3361ca8/logo.png",
+    "alt": "NyeCasino"
+  },
+  {
+    "url": "https://www.casino-comparatif.fr/",
+    "img": "https://images.opencollective.com/casinocomparatif-tm/ee59a12/avatar.png",
+    "alt": "CasinoComparatif™"
+  },
+  {
+    "url": "https://releaf.co.uk",
+    "img": "https://images.opencollective.com/releaf/b1db8e6/logo.png",
+    "alt": "Releaf"
   }
 ]
