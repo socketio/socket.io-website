@@ -284,7 +284,29 @@ Default value: `-`
 
 The list of options that will be forwarded to the [`cors`](https://www.npmjs.com/package/cors) module. More information can be found [here](categories/02-Server/handling-cors.md).
 
-Example:
+Examples:
+
+- allow a given origin
+
+```js
+const io = new Server(httpServer, {
+  cors: {
+    origin: ["https://example.com"]
+  }
+});
+```
+
+- allow a given origin for local development
+
+```js
+const io = new Server(httpServer, {
+  cors: {
+    origin: process.env.NODE_ENV === "production" ? false : ["http://localhost:3000"]
+  }
+});
+```
+
+- allow the given origins, headers and credentials (such as cookies, authorization headers or TLS client certificates)
 
 ```js
 const io = new Server(httpServer, {
@@ -295,6 +317,38 @@ const io = new Server(httpServer, {
   }
 });
 ```
+
+:::note
+
+If you want the browser to send credentials such as cookies, authorization headers or TLS client certificates, you also need to set [`withCredentials`](./client-options.md#withcredentials) option to `true` on the client side:
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io("https://my-backend.com", {
+  withCredentials: true
+});
+```
+
+More information [here](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials).
+
+:::
+
+- allow any origin
+
+```js
+const io = new Server(httpServer, {
+  cors: {
+    origin: "*"
+  }
+});
+```
+
+:::warning
+
+Please note that in that case, you are basically disabling the security provided by Cross-Origin Resource Sharing (CORS), as any domain will be able to reach your server. Please use with caution.
+
+:::
 
 Available options:
 
@@ -317,6 +371,57 @@ Possible values for the `origin` option:
 - `Array` - set `origin` to an array of valid origins. Each origin can be a `String` or a `RegExp`. For example `["http://example1.com", /\.example2\.com$/]` will accept any request from "http://example1.com" or from a subdomain of "example2.com".
 - `Function` - set `origin` to a function implementing some custom logic. The function takes the request origin as the first parameter and a callback (which expects the signature `err [object], allow [bool]`) as the second.
 
+:::note
+
+The option is named `origin` (and not `origins`) even with multiple domains:
+
+```js
+const io = new Server(httpServer, {
+  cors: {
+    // BAD
+    origins: ["https://example.com"],
+    // GOOD
+    origin: ["https://example.com"],
+  }
+});
+```
+
+:::
+
+:::caution
+
+You can't use `origin: "*"` when setting `credentials: true`:
+
+```js
+// THIS WON'T WORK
+const io = new Server(httpServer, {
+  cors: {
+    origin: "*",
+    credentials: true
+  }
+});
+```
+
+You will see an error like this in the browser console:
+
+> Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at ‘.../socket.io/?EIO=4&transport=polling&t=NvQfU77’. (Reason: Credential is not supported if the CORS header ‘Access-Control-Allow-Origin’ is ‘*’)
+
+You need to either provide a list of domains (recommended solution) or use the following method:
+
+```js
+const io = new Server(httpServer, {
+  cors: {
+    origin: (_req, callback) => {
+      callback(null, true);
+    },
+    credentials: true
+  }
+});
+```
+
+Please note that in that case, like with `origin: "*"` or `origin: true`, you are basically disabling the security provided by Cross-Origin Resource Sharing (CORS), as any domain will be able to reach your server. Please use with caution.
+
+:::
 
 ### `httpCompression`
 
