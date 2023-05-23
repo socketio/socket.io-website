@@ -163,7 +163,7 @@ pnpm add socket.io-client
 
 注意：由于上述原因，您可能希望从浏览器包中排除调试。使用 webpack，您可以使用[webpack-remove-debug](https://github.com/johngodley/webpack-remove-debug).
 
-TypeScript 用户注意：这些类型现在包含在`socket.io-client`包中，因此`@types/socket.io-client`不再需要来自的类型，实际上可能会导致错误：
+TypeScript 用户注意：这些类型现在包含在`socket.io-client`包中，因此不再需要来自`@types/socket.io-client`的类型，实际上可能会导致错误：
 
 ```
 Object literal may only specify known properties, and 'extraHeaders' does not exist in type 'ConnectOpts'
