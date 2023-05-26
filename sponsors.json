@@ -15,11 +15,6 @@
     "alt": "Icons8: free icons, photos, illustrations, and music"
   },
   {
-    "url": "https://www.one-beyond.com/",
-    "img": "https://images.opencollective.com/dcsl-software/5b702c5/logo.png",
-    "alt": "One Beyond"
-  },
-  {
     "url": "https://www.bonus.ca/",
     "img": "https://images.opencollective.com/bonus-finder/4b3394e/logo.png",
     "alt": "BonusFinder Canada"
@@ -280,14 +275,14 @@
     "alt": "Parimatch India"
   },
   {
-    "url": "https://leafletcasino.com/",
-    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
-    "alt": "leafletcasino.com"
-  },
-  {
     "url": "https://www.automatenspiele.org/",
     "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
     "alt": "automatenspiele.org"
+  },
+  {
+    "url": "https://leafletcasino.com/",
+    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
+    "alt": "leafletcasino.com"
   },
   {
     "url": "https://www.ibeesoft.com/",
@@ -540,6 +535,11 @@
     "alt": "CasinoLandia"
   },
   {
+    "url": "https://idealecasinos.nl/",
+    "img": "https://images.opencollective.com/idealecasinos_nl/a10fad1/logo.png",
+    "alt": "IDealeCasinos.nl"
+  },
+  {
     "url": "https://no-verification.casino/canada/",
     "img": "https://images.opencollective.com/noverificationcasino/6e11a64/logo.png",
     "alt": "online casino no verification withdrawal canada"
@@ -563,5 +563,15 @@
     "url": "https://releaf.co.uk",
     "img": "https://images.opencollective.com/releaf/b1db8e6/logo.png",
     "alt": "Releaf"
+  },
+  {
+    "url": "https://famoid.com/",
+    "img": "https://images.opencollective.com/famoid/90aac79/logo.png",
+    "alt": "Famoid"
+  },
+  {
+    "url": "https://kajino.com/",
+    "img": "https://images.opencollective.com/kajinocom/2703707/logo.png",
+    "alt": "Kajino.com"
   }
 ]
