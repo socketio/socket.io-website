@@ -5,11 +5,6 @@
     "alt": "Streamlabs"
   },
   {
-    "url": "https://xn--smlnutensikkerhet-9qbb.com",
-    "img": "https://images.opencollective.com/smalanutensikkerhet/ea9fabf/logo.png",
-    "alt": "smålån uten sikkerhet"
-  },
-  {
     "url": "https://icons8.com",
     "img": "https://images.opencollective.com/icons8/7fa1641/logo.png",
     "alt": "Icons8: free icons, photos, illustrations, and music"
@@ -80,24 +75,24 @@
     "alt": "InvestingReviews.co.uk"
   },
   {
-    "url": "https://www.turtlebet.com/fi/kaikki-nettikasinot.html",
-    "img": "https://images.opencollective.com/turtlebet-nettikasinot/d2f0110/logo.png",
-    "alt": "Turtlebet - Nettikasinot"
-  },
-  {
     "url": "https://www.777casino.co.uk/",
     "img": "https://images.opencollective.com/777-casino/a58fb66/logo.png",
     "alt": "777 Casino"
   },
   {
-    "url": "https://supplementsreviews.co.uk/",
-    "img": "https://images.opencollective.com/supplementsreviews/ee36500/logo.png",
-    "alt": "SupplementsReviews.co.uk"
+    "url": "https://www.turtlebet.com/fi/kaikki-nettikasinot.html",
+    "img": "https://images.opencollective.com/turtlebet-nettikasinot/d2f0110/logo.png",
+    "alt": "Turtlebet - Nettikasinot"
   },
   {
     "url": "https://neuecasinos24.com/casino-bonus/ohne-einzahlung",
     "img": "https://images.opencollective.com/neuecasinos24/7ab3e66/logo.png",
     "alt": "NeueCasinos24"
+  },
+  {
+    "url": "https://supplementsreviews.co.uk/",
+    "img": "https://images.opencollective.com/supplementsreviews/ee36500/logo.png",
+    "alt": "SupplementsReviews.co.uk"
   },
   {
     "url": "https://bitkong.com",
@@ -380,14 +375,14 @@
     "alt": "Top Australian Gambling"
   },
   {
-    "url": "https://quickbookstoolhub.com",
-    "img": "https://images.opencollective.com/marky-daren/5ad034e/avatar.png",
-    "alt": "Quickbooks Tool Hub"
-  },
-  {
     "url": "https://www.norskeautomater.com/",
     "img": "https://images.opencollective.com/norskeautomater/c3ae6ee/avatar.png",
     "alt": "NorskeAutomater"
+  },
+  {
+    "url": "https://quickbookstoolhub.com",
+    "img": "https://images.opencollective.com/marky-daren/5ad034e/avatar.png",
+    "alt": "Quickbooks Tool Hub"
   },
   {
     "url": "https://investingreviews.com/",
@@ -408,6 +403,11 @@
     "url": "https://www.onlinecasinos.net/",
     "img": "https://images.opencollective.com/onlinecasinos1/avatar.png",
     "alt": "OnlineCasinos"
+  },
+  {
+    "url": "https://mobogift.com",
+    "img": "https://images.opencollective.com/mobogift/cae1424/avatar.png",
+    "alt": "mobogift"
   },
   {
     "url": "https://twicsy.com/buy-instagram-likes",
@@ -438,6 +438,11 @@
     "url": "https://www.casinoaams.eu",
     "img": "https://images.opencollective.com/renato-baldo/avatar.png",
     "alt": "Renato Baldo"
+  },
+  {
+    "url": "https://casinozondercruks.net/",
+    "img": "https://images.opencollective.com/czc-net/fa79dac/avatar.png",
+    "alt": "CZC-NET"
   },
   {
     "url": "https://likes.io/buy-instagram-followers",
@@ -573,5 +578,20 @@
     "url": "https://kajino.com/",
     "img": "https://images.opencollective.com/kajinocom/2703707/logo.png",
     "alt": "Kajino.com"
+  },
+  {
+    "url": "https://quantumaitrading.net/",
+    "img": "https://images.opencollective.com/quantum-ai/e27c380/avatar.png",
+    "alt": "Quantum AI"
+  },
+  {
+    "url": "https://casino-zonder-cruks.com/",
+    "img": "https://images.opencollective.com/casino-zonder-cruks/66658c9/avatar.png",
+    "alt": "Casino-zonder-cruks"
+  },
+  {
+    "url": "https://technologypep.com/",
+    "img": "https://images.opencollective.com/technologypep/a402d1e/logo.png",
+    "alt": "TechnologyPep"
   }
 ]
