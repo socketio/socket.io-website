@@ -6,7 +6,7 @@ const helpItems = [
     // using 'type: "doc"' makes the link active whenever the user is on a page from the "/docs" directory
     // see: https://github.com/facebook/docusaurus/issues/8018
     label: "Troubleshooting",
-    to: "/docs/v4/troubleshooting-connection-issues/"
+    to: "/docs/v4/troubleshooting-connection-issues/",
   },
   {
     label: "Stack Overflow",
@@ -30,13 +30,13 @@ const toolsItems = [
   {
     label: "Admin UI",
     href: "https://admin.socket.io",
-  }
+  },
 ];
 
 const newsItems = [
   {
     label: "Blog",
-    to: "/blog"
+    to: "/blog",
   },
   {
     label: "Twitter",
@@ -47,17 +47,17 @@ const newsItems = [
 const aboutItems = [
   {
     label: "Changelog",
-    to: "/docs/v4/changelog"
+    to: "/docs/v4/changelog",
   },
   {
     label: "Roadmap",
-    href: "https://github.com/socketio/socket.io/projects/3"
+    href: "https://github.com/socketio/socket.io/projects/3",
   },
   {
     label: "Become a sponsor",
     href: "https://opencollective.com/socketio",
   },
-]
+];
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
@@ -77,7 +77,7 @@ module.exports = {
       logo: {
         alt: "Socket.IO logo",
         src: "images/logo.svg",
-        srcDark: "images/logo-dark.svg"
+        srcDark: "images/logo-dark.svg",
       },
       items: [
         {
@@ -89,7 +89,7 @@ module.exports = {
         {
           position: "left",
           label: "Examples",
-          to: "/get-started/"
+          to: "/get-started/",
         },
         {
           type: "doc",
@@ -140,21 +140,21 @@ module.exports = {
           type: "dropdown",
           label: "About",
           position: "left",
-          items: aboutItems
+          items: aboutItems,
         },
         {
           type: "docsVersionDropdown",
-          position: "right"
+          position: "right",
         },
         {
           type: "localeDropdown",
-          position: "right"
+          position: "right",
         },
         {
           href: "https://github.com/socketio/socket.io",
           position: "right",
           className: "header-github-link",
-        }
+        },
       ],
     },
     footer: {
@@ -169,19 +169,19 @@ module.exports = {
             },
             {
               label: "Documentation",
-              to: "/docs/v4/"
+              to: "/docs/v4/",
             },
             {
               label: "Examples",
-              to: "/get-started/"
+              to: "/get-started/",
             },
             {
               label: "Server API",
-              to: "/docs/v4/server-api/"
+              to: "/docs/v4/server-api/",
             },
             {
               label: "Client API",
-              to: "/docs/v4/client-api/"
+              to: "/docs/v4/client-api/",
             },
           ],
         },
@@ -209,9 +209,16 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
     algolia: {
-      apiKey: 'bcf148e965eaca9ed2e6868a50a9e42c',
-      appId: 'ZM7QMFKQCJ',
-      indexName: 'socket_io'
+      apiKey: "bcf148e965eaca9ed2e6868a50a9e42c",
+      appId: "ZM7QMFKQCJ",
+      indexName: "socket_io",
+    },
+    announcementBar: {
+      content:
+        '📣 📣 📣 Participate in paid</strong> user research to help Azure build the most productive cloud. <a target="_blank" rel="noopener noreferrer" href="https://microsoft.qualtrics.com/jfe/form/SV_4NmtotjrO4tJtki">Learn more</a>',
+      backgroundColor: "#25c2a0",
+      textColor: "#fff",
+      isCloseable: false,
     },
   },
   presets: [
@@ -221,8 +228,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           showLastUpdateTime: true,
-          editUrl:
-            "https://github.com/socketio/socket.io-website/edit/main/",
+          editUrl: "https://github.com/socketio/socket.io-website/edit/main/",
           lastVersion: "current",
           versions: {
             current: {
@@ -263,13 +269,13 @@ module.exports = {
     ],
   ],
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'fr', 'pt-br', 'zh-CN'],
+    defaultLocale: "en",
+    locales: ["en", "fr", "pt-br", "zh-CN"],
   },
   scripts: [
     {
-      src: '/_vercel/insights/script.js',
+      src: "/_vercel/insights/script.js",
       defer: true,
-    }
-  ]
+    },
+  ],
 };
