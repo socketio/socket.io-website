@@ -143,7 +143,7 @@ Basically, it consists in two [ES6 Maps](https://developer.mozilla.org/en-US/doc
 
 Calling `socket.join("the-room")` will result in:
 
-- in the ̀`sids` Map, adding "the-room" to the Set identified by the socket ID
+- in the `sids` Map, adding "the-room" to the Set identified by the socket ID
 - in the `rooms` Map, adding the socket ID in the Set identified by the string "the-room"
 
 Those two maps are then used when broadcasting:
