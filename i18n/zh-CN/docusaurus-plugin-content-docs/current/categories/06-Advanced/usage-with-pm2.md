@@ -91,7 +91,7 @@ module.exports = {
 与`pm2`唯一的区别来自[这个 commit](https://github.com/socketio/pm2/commit/8c29a7feb6cbde3c8ef9eb072fee284686f1553f)：
 
 - God 进程现在创建自己的 HTTP 服务器并将 HTTP 请求路由到正确的工作程序
-- God进程还在worker之间中继数据包，以便`io.emit()`正确到达所有客户端
+- God 进程还在 worker 之间中继数据包，以便`io.emit()`正确到达所有客户端
 
 请注意，如果您有多个主机，每个主机都运行一个 PM2 集群，您将不得不使用另一个适配器，例如[Redis 适配器](../05-Adapters/adapter-redis.md)。
 
