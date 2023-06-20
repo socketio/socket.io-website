@@ -75,24 +75,24 @@
     "alt": "InvestingReviews.co.uk"
   },
   {
-    "url": "https://www.777casino.co.uk/",
-    "img": "https://images.opencollective.com/777-casino/a58fb66/logo.png",
-    "alt": "777 Casino"
-  },
-  {
     "url": "https://www.turtlebet.com/fi/kaikki-nettikasinot.html",
     "img": "https://images.opencollective.com/turtlebet-nettikasinot/d2f0110/logo.png",
     "alt": "Turtlebet - Nettikasinot"
   },
   {
-    "url": "https://neuecasinos24.com/casino-bonus/ohne-einzahlung",
-    "img": "https://images.opencollective.com/neuecasinos24/7ab3e66/logo.png",
-    "alt": "NeueCasinos24"
+    "url": "https://www.777casino.co.uk/",
+    "img": "https://images.opencollective.com/777-casino/a58fb66/logo.png",
+    "alt": "777 Casino"
   },
   {
     "url": "https://supplementsreviews.co.uk/",
     "img": "https://images.opencollective.com/supplementsreviews/ee36500/logo.png",
     "alt": "SupplementsReviews.co.uk"
+  },
+  {
+    "url": "https://neuecasinos24.com/casino-bonus/ohne-einzahlung",
+    "img": "https://images.opencollective.com/neuecasinos24/7ab3e66/logo.png",
+    "alt": "NeueCasinos24"
   },
   {
     "url": "https://bitkong.com",
@@ -190,6 +190,11 @@
     "alt": "Boosbe"
   },
   {
+    "url": "https://coolspins.net/",
+    "img": "https://images.opencollective.com/casino-utan-svensk-licens1/63947bf/logo.png",
+    "alt": "Casino Utan Svensk Licens"
+  },
+  {
     "url": "https://www.uudetkasinot.com",
     "img": "https://images.opencollective.com/uudetkasinot-com/01a3658/logo.png",
     "alt": "uudetkasinot.com"
@@ -200,24 +205,19 @@
     "alt": "Canada Casino Hub"
   },
   {
+    "url": "https://www.whitehatcasinos.com",
+    "img": "https://images.opencollective.com/whitehatcasinos-com/0fee63f/logo.png",
+    "alt": "WhiteHatCasinos.com"
+  },
+  {
     "url": "https://zamsino.com/uk/free-spins-no-deposit/",
     "img": "https://images.opencollective.com/erik-king/avatar.png",
     "alt": "Erik King"
   },
   {
-    "url": "https://coolspins.net/",
-    "img": "https://images.opencollective.com/casino-utan-svensk-licens1/63947bf/logo.png",
-    "alt": "Casino Utan Svensk Licens"
-  },
-  {
     "url": "https://www.5bingosites.com",
     "img": "https://images.opencollective.com/www-5bingosites-com/3ffb7e5/logo.png",
     "alt": "www.5bingosites.com"
-  },
-  {
-    "url": "https://www.whitehatcasinos.com",
-    "img": "https://images.opencollective.com/whitehatcasinos-com/0fee63f/logo.png",
-    "alt": "WhiteHatCasinos.com"
   },
   {
     "url": "https://www.voetbalgokken.nl",
@@ -228,11 +228,6 @@
     "url": "https://www.wagerdex.com/",
     "img": "https://images.opencollective.com/wagerdex/780ea73/logo.png",
     "alt": "WagerDex"
-  },
-  {
-    "url": "https://onlinecasinocrawler.com",
-    "img": "https://images.opencollective.com/online-casino-crawler2/4176d2c/logo.png",
-    "alt": "Online Casino Crawler"
   },
   {
     "url": "https://reddogcasino.com/en/games/blackjack",
@@ -270,14 +265,14 @@
     "alt": "Parimatch India"
   },
   {
-    "url": "https://www.automatenspiele.org/",
-    "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
-    "alt": "automatenspiele.org"
-  },
-  {
     "url": "https://leafletcasino.com/",
     "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
     "alt": "leafletcasino.com"
+  },
+  {
+    "url": "https://www.automatenspiele.org/",
+    "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
+    "alt": "automatenspiele.org"
   },
   {
     "url": "https://www.ibeesoft.com/",
@@ -375,14 +370,14 @@
     "alt": "Top Australian Gambling"
   },
   {
-    "url": "https://www.norskeautomater.com/",
-    "img": "https://images.opencollective.com/norskeautomater/c3ae6ee/avatar.png",
-    "alt": "NorskeAutomater"
-  },
-  {
     "url": "https://quickbookstoolhub.com",
     "img": "https://images.opencollective.com/marky-daren/5ad034e/avatar.png",
     "alt": "Quickbooks Tool Hub"
+  },
+  {
+    "url": "https://www.norskeautomater.com/",
+    "img": "https://images.opencollective.com/norskeautomater/c3ae6ee/avatar.png",
+    "alt": "NorskeAutomater"
   },
   {
     "url": "https://investingreviews.com/",
@@ -415,6 +410,11 @@
     "alt": "Twicsy"
   },
   {
+    "url": "https://newcasinos-au.com/",
+    "img": "https://images.opencollective.com/new-casinos-au/b608ef9/logo.png",
+    "alt": "New Casinos AU"
+  },
+  {
     "url": "https://gamerules.com/online-casinos/new/canada/",
     "img": "https://images.opencollective.com/new-online-casinos-canada-2023/292db8e/logo.png",
     "alt": "New Online Casinos Canada 2023"
@@ -423,11 +423,6 @@
     "url": "https://nolimit-casinos.de/",
     "img": "https://images.opencollective.com/nolimit-casinos/91f820f/avatar.png",
     "alt": "No Limit Casinos"
-  },
-  {
-    "url": "https://newcasinos-au.com/",
-    "img": "https://images.opencollective.com/new-casinos-au/b608ef9/logo.png",
-    "alt": "New Casinos AU"
   },
   {
     "url": "https://onlinecasinoosusume.jp/",
@@ -443,6 +438,11 @@
     "url": "https://casinozondercruks.net/",
     "img": "https://images.opencollective.com/czc-net/fa79dac/avatar.png",
     "alt": "CZC-NET"
+  },
+  {
+    "url": "https://justuk.club/",
+    "img": "https://images.opencollective.com/justuk-club/d1944d8/avatar.png",
+    "alt": "justuk.club"
   },
   {
     "url": "https://likes.io/buy-instagram-followers",
@@ -495,6 +495,11 @@
     "alt": "Kiekkotorni - Nikotiinipussit"
   },
   {
+    "url": "https://luckygambler.com/",
+    "img": "https://images.opencollective.com/luckygamblercom/7723672/logo.png",
+    "alt": "LuckyGambler"
+  },
+  {
     "url": "https://www.sportsbookreviewsonline.com/",
     "img": "https://images.opencollective.com/sportsbook-reviews-online/17b05a6/logo.png",
     "alt": "Sportsbook Reviews Online"
@@ -528,11 +533,6 @@
     "url": "https://casinoshunter.com/online-casinos/ontario/",
     "img": "https://images.opencollective.com/casinoshunter-ontario/0483374/logo.png",
     "alt": "CasinosHunter Ontario"
-  },
-  {
-    "url": "https://luckygambler.com/",
-    "img": "https://images.opencollective.com/luckygamblercom/7723672/logo.png",
-    "alt": "LuckyGambler"
   },
   {
     "url": "https://casinolandia.com/",
@@ -590,8 +590,13 @@
     "alt": "Casino-zonder-cruks"
   },
   {
-    "url": "https://technologypep.com/",
-    "img": "https://images.opencollective.com/technologypep/a402d1e/logo.png",
-    "alt": "TechnologyPep"
+    "url": "https://freewaysocial.com/",
+    "img": "https://images.opencollective.com/freewaysocial/f45f126/avatar.png",
+    "alt": "FreewaySocial"
+  },
+  {
+    "url": "https://pleeease-casino.com/",
+    "img": "https://images.opencollective.com/user-7a381d4c/2c36963/avatar.png",
+    "alt": "Pleeease Casino"
   }
 ]
