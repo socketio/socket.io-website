@@ -144,7 +144,8 @@ RewriteCond %{HTTP:Upgrade} websocket [NC]
 RewriteCond %{HTTP:Connection} upgrade [NC]
 RewriteRule ^/?(.*) "ws://localhost:3000/$1" [P,L]
 
-ProxyTimeout 3
+# must be bigger than pingInterval (25s by default) + pingTimeout (20s by default)
+ProxyTimeout 60
 ```
 
 Related:

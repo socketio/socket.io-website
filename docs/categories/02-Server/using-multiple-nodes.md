@@ -165,7 +165,8 @@ RewriteRule /(.*) balancer://nodes_ws/$1 [P,L]
 RewriteCond %{HTTP:Upgrade} !=websocket [NC]
 RewriteRule /(.*) balancer://nodes_polling/$1 [P,L]
 
-ProxyTimeout 3
+# must be bigger than pingInterval (25s by default) + pingTimeout (20s by default)
+ProxyTimeout 60
 ```
 
 Links:
