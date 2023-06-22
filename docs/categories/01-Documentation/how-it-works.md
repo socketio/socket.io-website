@@ -99,7 +99,7 @@ You can check in the Network Monitor of your browser:
 The Engine.IO connection is considered as closed when:
 
 - one HTTP request (either GET or POST) fails (for example, when the server is shutdown)
-- the WebSocket connection is closed (for example, when the user closes the tab in its browser)
+- the WebSocket connection is closed (for example, when the user closes the tab in their browser)
 - `socket.disconnect()` is called on the server-side or on the client-side
 
 There is also a heartbeat mechanism which checks that the connection between the server and the client is still up and running:
