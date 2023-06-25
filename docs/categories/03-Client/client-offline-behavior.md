@@ -25,5 +25,5 @@ if (socket.connected) {
 - use [volatile events](../04-Events/emitting-events.md#volatile-events)
 
 ```js
-socket.volatile.emit( /* ... */ );
+socket.volatile.emit( /* ... */ );//reconnection estabalish
 ```
