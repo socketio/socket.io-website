@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const fs = require('fs');
 const path = require('path');
 const request = require('request-promise');
@@ -9,7 +7,7 @@ const absoluteFilename = path.resolve(__dirname, filename);
 
 const graphqlEndpoint = 'https://api.opencollective.com/graphql/v2';
 
-const graphqlQuery = `query account {
+const graphqlQuery = `query {
   account(slug: "socketio") {
     orders(status: [ACTIVE, PAID], minAmount: 10000, limit: 1000) {
       nodes {
@@ -63,7 +61,7 @@ const customLinks = {
     img: "/images/sponsors/casinodaddy.png",
     alt: "Casino Daddy"
   },
-  papersowl2: {
+  "papersowl2": {
     url: "https://papersowl.com/research-papers",
     img: "https://images.opencollective.com/papersowl2/510de59/logo.png",
     alt: "Papersowl"
@@ -113,13 +111,23 @@ const customLinks = {
     img: "https://images.opencollective.com/noverificationcasino/6e11a64/logo.png",
     alt: "online casino no verification withdrawal canada"
   }
-}
+};
 
-const nodeToSponsor = node => (customLinks[node.account.slug] || {
-  url: node.account.socialLinks.find(link => link.type === "WEBSITE")?.url || node.account.website,
-  img: node.account.imageUrl,
-  alt: node.account.name
-});
+const nodeToSponsor = node => {
+  const customImage = customImages.get(node.account.slug);
+  if (customImage) {
+    if (customImage.img) {
+      node.account.imageUrl = customImage.img;
+    }
+    if (customImage.url) {
+      node.account.website = customImage.url;
+    }
+    if (customImage.alt) {
+      node.account.name = customImage.alt;
+    }
+  }
+  return node;
+};
 
 function monthDiff(dateFrom, dateTo) {
   return dateTo.getMonth() - dateFrom.getMonth() + (12 * (dateTo.getFullYear() - dateFrom.getFullYear()));
@@ -129,7 +137,7 @@ const NOW = new Date();
 const AMOUNT_PER_MONTH = 100;
 
 const main = async () => {
-  console.log(`fetching sponsors from the graphql API`);
+  console.log(`Fetching sponsors from the GraphQL API`);
 
   const result = await request({
     method: 'POST',
@@ -153,25 +161,11 @@ const main = async () => {
   });
 
   const activeSponsors = sponsors
-    .map(n => {
-      const customImage = customImages.get(n.account.slug);
-      if (customImage) {
-        if (customImage.img) {
-          n.account.imageUrl = customImage.img;
-        }
-        if (customImage.url) {
-          n.account.website = customImage.url;
-        }
-        if (customImage.alt) {
-          n.account.name = customImage.alt;
-        }
-      }
-      return n;
-    })
-    .filter(n => {
-      const isSponsor = !n.tier || n.tier.name.toLowerCase() === 'sponsors';
-      const isActive = activeSponsorsById.delete(n.account.id); // prevent duplicates
-      const hasWebsite = n.account.socialLinks.some(link => link.type === "WEBSITE") || n.account.website; // website attribute is deprecated but still used in some cases
+    .map(nodeToSponsor)
+    .filter(node => {
+      const isSponsor = !node.tier || node.tier.name.toLowerCase() === 'sponsors';
+      const isActive = activeSponsorsById.delete(node.account.id); // prevent duplicates
+      const hasWebsite = node.account.socialLinks.some(link => link.type === "WEBSITE") || node.account.website; // website attribute is deprecated but still used in some cases
 
       return isSponsor && isActive && hasWebsite;
     })
@@ -187,7 +181,7 @@ const main = async () => {
   console.log(`${activeSponsors.length} active sponsors out of ${sponsors.length}`);
 
   fs.writeFileSync(absoluteFilename, JSON.stringify(activeSponsors, null, 2));
-  console.log(`content written to ${absoluteFilename}`);
-}
+  console.log(`Content written to ${absoluteFilename}`);
+};
 
 main();
