@@ -8,6 +8,10 @@ title: Get started
 
 Recommended for beginners to Socket.IO or Node.js. The “Hello world!” of the framework is [here](/get-started/chat).
 
+- [Socket.IO with WebTransport](/get-started/webtransport) :rocket: <b style={{ 'color': 'red' }}>[NEW]</b>
+
+Let's test the support for WebTransport added in version [4.7.0](/docs/v4/changelog/4.7.0).
+
 - A basic [CRUD project](/get-started/basic-crud-application/)
 
 Let's create a classic CRUD (**C**reate-**R**ead-**U**pdate-**D**elete) application with Socket.IO. We'll introduce [acknowledgements](/docs/v4/emitting-events/#Acknowledgements) and the ability to [broadcast](/docs/v4/broadcasting-events/) events.
@@ -33,4 +37,4 @@ A slightly more complex chat application, introducing [middlewares](/docs/v4/mid
 - [check the latency of the Socket.IO connection](/how-to/check-the-latency-of-the-connection)
 - [upload a file](/how-to/upload-a-file)
 - [register a global middleware](/how-to/register-a-global-middleware)
-- [build a basic Socket.IO client](/how-to/build-a-basic-client) (**NEW**)
+- [build a basic Socket.IO client](/how-to/build-a-basic-client)
