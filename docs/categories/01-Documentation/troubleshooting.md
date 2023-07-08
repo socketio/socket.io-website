@@ -369,6 +369,7 @@ io.on("connection", (socket) => {
 Possible explanations:
 
 - [a proxy in front of your servers does not accept the WebSocket connection](#a-proxy-in-front-of-your-servers-does-not-accept-the-WebSocket-connection)
+- you have [express-status-monitor](https://www.npmjs.com/package/express-status-monitor) library enabled that runs its own socket.io instance. Please see the solution [here](https://github.com/RafalWilinski/express-status-monitor) 
 
 ### A proxy in front of your servers does not accept the WebSocket connection
 
