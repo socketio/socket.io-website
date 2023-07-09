@@ -73,7 +73,10 @@ pnpm add socket.io@version
 </Tabs>
 
 ## Latest releases
-
+- 4.7.1 (June 2023): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.7.1) / [diff](https://github.com/socketio/socket.io/compare/4.7.0...4.7.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.7.1)
+- 4.7.0 (June 2023): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.7.0) / [diff](https://github.com/socketio/socket.io/compare/4.6.2...4.7.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.7.0)
+- 4.6.2 (May 2023): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.6.2) / [diff](https://github.com/socketio/socket.io/compare/4.6.1...4.6.2) / [npm](https://www.npmjs.com/package/socket.io/v/4.6.2)
+- 4.6.1 (Feb 2023): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.6.1) / [diff](https://github.com/socketio/socket.io/compare/4.6.0...4.6.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.6.1)
 - 4.6.0 (Feb 2023): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.6.0) / [diff](https://github.com/socketio/socket.io/compare/4.5.4...4.6.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.6.0)
 - 4.5.4 (Nov 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.4) / [diff](https://github.com/socketio/socket.io/compare/4.5.3...4.5.4) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.4)
 - 4.5.3 (Oct 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.3) / [diff](https://github.com/socketio/socket.io/compare/4.5.2...4.5.3) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.3)
