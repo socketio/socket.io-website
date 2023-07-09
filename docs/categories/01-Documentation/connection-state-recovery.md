@@ -4,7 +4,7 @@ sidebar_position: 4
 slug: /connection-state-recovery
 ---
 
-Connection state recovery is a feature which allows to restore the state of a client after a temporary disconnection, including any missed packets. 
+Connection state recovery is a feature which allows restoring a client's state after a temporary disconnection (including any missed packets).
 
 ## Disclaimer
 
