@@ -155,6 +155,11 @@
     "alt": "AusCasinos"
   },
   {
+    "url": "https://cricket-betting.com/",
+    "img": "https://images.opencollective.com/cricket-betting/52699d3/avatar.png",
+    "alt": "Cricket Betting"
+  },
+  {
     "url": "https://www.casinotest.com/",
     "img": "https://images.opencollective.com/casinotest-ltd/7e3c899/logo.png",
     "alt": "CasinoTest Ltd."
@@ -385,6 +390,11 @@
     "alt": "Legalbet"
   },
   {
+    "url": "https://newcasinos-au.com/",
+    "img": "https://images.opencollective.com/new-casinos-au/b608ef9/logo.png",
+    "alt": "New Casinos AU"
+  },
+  {
     "url": "https://www.gambleonline.co/nz/",
     "img": "https://images.opencollective.com/gambleonline-nz/5004fcc/logo.png",
     "alt": "GambleOnline NZ"
@@ -405,11 +415,6 @@
     "alt": "Twicsy"
   },
   {
-    "url": "https://newcasinos-au.com/",
-    "img": "https://images.opencollective.com/new-casinos-au/b608ef9/logo.png",
-    "alt": "New Casinos AU"
-  },
-  {
     "url": "https://gamerules.com/online-casinos/new/canada/",
     "img": "https://images.opencollective.com/new-online-casinos-canada-2023/292db8e/logo.png",
     "alt": "New Online Casinos Canada 2023"
@@ -425,11 +430,6 @@
     "alt": "Renato Baldo"
   },
   {
-    "url": "https://casinozondercruks.net/",
-    "img": "https://images.opencollective.com/czc-net/fa79dac/avatar.png",
-    "alt": "CZC-NET"
-  },
-  {
     "url": "https://justuk.club/",
     "img": "https://images.opencollective.com/justuk-club/d1944d8/avatar.png",
     "alt": "justuk.club"
@@ -440,11 +440,6 @@
     "alt": "Likes.io"
   },
   {
-    "url": "https://luckygambler.com/",
-    "img": "https://images.opencollective.com/luckygamblercom/7723672/logo.png",
-    "alt": "LuckyGambler"
-  },
-  {
     "url": "https://legitgamblingsites.com",
     "img": "https://images.opencollective.com/legitgamblingsites/a6efbd9/logo.png",
     "alt": "LegitGamblingSites"
@@ -453,6 +448,16 @@
     "url": "https://www.bestunitedstatescasinos.com/",
     "img": "https://images.opencollective.com/best-united-states-casinos/d138fcc/avatar.png",
     "alt": "Best United States Casinos"
+  },
+  {
+    "url": "https://luckygambler.com/",
+    "img": "https://images.opencollective.com/luckygamblercom/7723672/logo.png",
+    "alt": "LuckyGambler"
+  },
+  {
+    "url": "https://casinozondercruks.net/",
+    "img": "https://images.opencollective.com/czc-net/fa79dac/avatar.png",
+    "alt": "CZC-NET"
   },
   {
     "url": "https://sup.today/",
@@ -603,5 +608,20 @@
     "url": "https://twicsy.com/buy-instagram-comments",
     "img": "https://images.opencollective.com/buy-instagram-comments-twicsy/logo.png",
     "alt": "Buy Instagram Comments Twicsy"
+  },
+  {
+    "url": "https://iboysoft.com/",
+    "img": "https://images.opencollective.com/iboysoft-software/7f9d60e/avatar.png",
+    "alt": "iBoysoft"
+  },
+  {
+    "url": "https://www.easeus.de/",
+    "img": "https://images.opencollective.com/easeus-sofware-german/1fb5fa1/logo.png",
+    "alt": "EaseUS Germany"
+  },
+  {
+    "url": "https://holymolycasinos.com/",
+    "img": "https://images.opencollective.com/andynichols/1b4feff/avatar.png",
+    "alt": "Andy Nichols"
   }
 ]
