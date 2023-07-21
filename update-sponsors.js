@@ -112,6 +112,11 @@ const customLinks = {
     url: "https://no-verification.casino/canada/",
     img: "https://images.opencollective.com/noverificationcasino/6e11a64/logo.png",
     alt: "online casino no verification withdrawal canada"
+  },
+  andynichols: {
+    url: "https://hmkasinotsuomi.com",
+    img: "/images/sponsors/holymolycasinos.png",
+    alt: "Suomalaiset kasinot"
   }
 }
 
