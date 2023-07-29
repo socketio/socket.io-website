@@ -536,7 +536,7 @@ server.ready().then(() => {
   });
 });
 
-server.listen(3000);
+server.listen({ port: 3000 });
 ```
 
   </TabItem>
@@ -560,7 +560,7 @@ server.ready().then(() => {
   });
 });
 
-server.listen(3000);
+server.listen({ port: 3000 });
 ```
 
   </TabItem>
@@ -584,7 +584,7 @@ server.ready().then(() => {
   });
 });
 
-server.listen(3000);
+server.listen({ port: 3000 });
 ```
 
   </TabItem>
