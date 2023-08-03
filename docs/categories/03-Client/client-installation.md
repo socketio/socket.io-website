@@ -8,6 +8,14 @@ slug: /client-installation/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::info
+
+The latest release is currently `4.7.2`, released in August 2023.
+
+You can find the release notes [here](../../changelog/4.7.2.md).
+
+:::
+
 ## Version compatibility
 
 Here is the compatibility table between the server and the JS client:
@@ -67,16 +75,6 @@ Socket.IO does support IE9 and above. IE 6/7/8 are not supported anymore.
 Browser compatibility is tested thanks to the awesome Sauce Labs platform:
 
 ![Browser support](/images/saucelabs.svg)
-
-## Latest releases
-
-- 4.6.0 (Feb 2023): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.6.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.4...4.6.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.6.0)
-- 4.5.4 (Nov 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.4) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.3...4.5.4) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.4)
-- 4.5.3 (Oct 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.3) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.2...4.5.3) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.3)
-- 4.5.2 (Sep 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.2) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.1...4.5.2) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.2)
-- 4.5.1 (May 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.0...4.5.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.1)
-- [4.5.0](/blog/socket-io-4-5-0/) (Apr 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.4.1...4.5.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.0)
-- 4.4.1 (Jan 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.4.0...4.4.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.1)
 
 ## Installation
 
@@ -173,22 +171,22 @@ Object literal may only specify known properties, and 'extraHeaders' does not ex
 
 ### Dependency tree
 
-A basic installation of the client includes 9 packages:
+A basic installation of the client includes **9** packages, of which **5** are maintained by our team:
 
 ```
-└─┬ socket.io-client@4.6.0
+└─┬ socket.io-client@4.7.2
   ├── @socket.io/component-emitter@3.1.0
   ├─┬ debug@4.3.4
   │ └── ms@2.1.2
-  ├─┬ engine.io-client@6.4.0
+  ├─┬ engine.io-client@6.5.2
   │ ├── @socket.io/component-emitter@3.1.0 deduped
   │ ├── debug@4.3.4 deduped
-  │ ├── engine.io-parser@5.0.6
+  │ ├── engine.io-parser@5.2.1
   │ ├─┬ ws@8.11.0
   │ │ ├── UNMET OPTIONAL DEPENDENCY bufferutil@^4.0.1
   │ │ └── UNMET OPTIONAL DEPENDENCY utf-8-validate@^5.0.2
   │ └── xmlhttprequest-ssl@2.0.0
-  └─┬ socket.io-parser@4.2.2
+  └─┬ socket.io-parser@4.2.4
     ├── @socket.io/component-emitter@3.1.0 deduped
     └── debug@4.3.4 deduped
 ```
@@ -199,6 +197,7 @@ The `engine.io-client` package brings the engine that is responsible for managin
 
 | `socket.io-client` version | `engine.io-client` version | `ws` version<sup>1</sup> |
 |----------------------------|----------------------------|--------------------------|
+| `4.7.x`                    | `6.5.x`                    | `8.11.x`                 |
 | `4.6.x`                    | `6.4.x`                    | `8.11.x`                 |
 | `4.5.x`                    | `6.2.x`                    | `8.2.x`                  |
 | `4.4.x`                    | `6.1.x`                    | `8.2.x`                  |

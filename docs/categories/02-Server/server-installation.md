@@ -8,6 +8,14 @@ slug: /server-installation/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::info
+
+The latest release is currently `4.7.2`, released in August 2023.
+
+You can find the release notes [here](../../changelog/4.7.2.md).
+
+:::
+
 ## Prerequisites
 
 Please make sure that [Node.js](https://nodejs.org/en/) is installed on your system. The current Long Term Support (LTS) release is an ideal starting point, see [here](https://github.com/nodejs/Release#release-schedule).
@@ -71,19 +79,6 @@ pnpm add socket.io@version
 
   </TabItem>
 </Tabs>
-
-## Latest releases
-- 4.7.1 (June 2023): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.7.1) / [diff](https://github.com/socketio/socket.io/compare/4.7.0...4.7.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.7.1)
-- 4.7.0 (June 2023): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.7.0) / [diff](https://github.com/socketio/socket.io/compare/4.6.2...4.7.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.7.0)
-- 4.6.2 (May 2023): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.6.2) / [diff](https://github.com/socketio/socket.io/compare/4.6.1...4.6.2) / [npm](https://www.npmjs.com/package/socket.io/v/4.6.2)
-- 4.6.1 (Feb 2023): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.6.1) / [diff](https://github.com/socketio/socket.io/compare/4.6.0...4.6.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.6.1)
-- 4.6.0 (Feb 2023): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.6.0) / [diff](https://github.com/socketio/socket.io/compare/4.5.4...4.6.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.6.0)
-- 4.5.4 (Nov 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.4) / [diff](https://github.com/socketio/socket.io/compare/4.5.3...4.5.4) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.4)
-- 4.5.3 (Oct 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.3) / [diff](https://github.com/socketio/socket.io/compare/4.5.2...4.5.3) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.3)
-- 4.5.2 (Sep 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.2) / [diff](https://github.com/socketio/socket.io/compare/4.5.1...4.5.2) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.2)
-- 4.5.1 (May 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.1) / [diff](https://github.com/socketio/socket.io/compare/4.5.0...4.5.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.1)
-- [4.5.0](/blog/socket-io-4-5-0/) (Apr 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.0) / [diff](https://github.com/socketio/socket.io/compare/4.4.1...4.5.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.0)
-- 4.4.1 (Jan 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.4.1) / [diff](https://github.com/socketio/socket.io/compare/4.4.0...4.4.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.4.1)
 
 ## Additional packages
 
@@ -221,36 +216,37 @@ app.listen(3000, (token) => {
 
 ### Dependency tree
 
-A basic installation of the server includes 21 packages:
+A basic installation of the server includes **21** packages, of which **6** are maintained by our team:
 
 ```
-└─┬ socket.io@4.6.0
+└─┬ socket.io@4.7.2
   ├─┬ accepts@1.3.8
   │ ├─┬ mime-types@2.1.35
   │ │ └── mime-db@1.52.0
   │ └── negotiator@0.6.3
   ├── base64id@2.0.0
+  ├─┬ cors@2.8.5
+  │ ├── object-assign@4.1.1
+  │ └── vary@1.1.2
   ├─┬ debug@4.3.4
   │ └── ms@2.1.2
-  ├─┬ engine.io@6.4.0
+  ├─┬ engine.io@6.5.2
   │ ├── @types/cookie@0.4.1
   │ ├─┬ @types/cors@2.8.13
-  │ │ └── @types/node@18.11.19 deduped
-  │ ├── @types/node@18.11.19
+  │ │ └── @types/node@20.4.6 deduped
+  │ ├── @types/node@20.4.6
   │ ├── accepts@1.3.8 deduped
   │ ├── base64id@2.0.0 deduped
   │ ├── cookie@0.4.2
-  │ ├─┬ cors@2.8.5
-  │ │ ├── object-assign@4.1.1
-  │ │ └── vary@1.1.2
+  │ ├── cors@2.8.5 deduped
   │ ├── debug@4.3.4 deduped
-  │ ├── engine.io-parser@5.0.6
+  │ ├── engine.io-parser@5.2.1
   │ └─┬ ws@8.11.0
   │   ├── UNMET OPTIONAL DEPENDENCY bufferutil@^4.0.1
   │   └── UNMET OPTIONAL DEPENDENCY utf-8-validate@^5.0.2
   ├─┬ socket.io-adapter@2.5.2
   │ └── ws@8.11.0 deduped
-  └─┬ socket.io-parser@4.2.2
+  └─┬ socket.io-parser@4.2.4
     ├── @socket.io/component-emitter@3.1.0
     └── debug@4.3.4 deduped
 ```
@@ -270,6 +266,7 @@ The `engine.io` package brings the engine that is responsible for managing the l
 
 | `socket.io` version | `engine.io` version | `ws` version |
 |---------------------|---------------------|--------------|
+| `4.7.x`             | `6.5.x`             | `8.11.x`     |
 | `4.6.x`             | `6.4.x`             | `8.11.x`     |
 | `4.5.x`             | `6.2.x`             | `8.2.x`      |
 | `4.4.x`             | `6.1.x`             | `8.2.x`      |
