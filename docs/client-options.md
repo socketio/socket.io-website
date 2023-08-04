@@ -340,15 +340,48 @@ Default value: `true`
 
 Whether to add the timestamp query param to each request (for cache busting).
 
+### `transportOptions`
+
+*Added in v2.0.0*
+
+Default value: `{}`
+
+Transport-specific options.
+
+Example:
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  path: "/path-for-http-long-polling/",
+  transportOptions: {
+    websocket: {
+      path: "/path-for-websocket/"
+    }
+  }
+});
+```
 
 ### `transports`
 
-Default value: `["polling", "websocket"]`
+<details className="changelog">
+    <summary>History</summary>
+
+| Version | Changes                  |
+|---------|--------------------------|
+| v4.7.0  | `webtransport` is added. |
+| v1.0.0  | First implementation.    |
+
+</details>
+
+Default value: `["polling", "websocket", "webtransport"]`
 
 The low-level connection to the Socket.IO server can either be established with:
 
 - HTTP long-polling: successive HTTP requests (`POST` for writing, `GET` for reading)
-- [WebSocket](https://en.wikipedia.org/wiki/WebSocket)
+- [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+- [WebTransport](https://developer.mozilla.org/en-US/docs/Web/API/WebTransport_API)
 
 The following example disables the HTTP long-polling transport:
 

@@ -565,8 +565,17 @@ Default value: `["polling", "websocket"]`
 
 The low-level transports that are allowed on the server-side.
 
-See also: client-side [`transports`](client-options.md#transports)
+Example with WebTransport enabled:
 
+```js
+const io = new Server({
+  transports: ["polling", "websocket", "webtransport"]
+});
+```
+
+Please check the WebTransport example [here](/get-started/webtransport).
+
+See also: client-side [`transports`](client-options.md#transports)
 
 ### `upgradeTimeout`
 
