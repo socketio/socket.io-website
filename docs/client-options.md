@@ -118,7 +118,9 @@ Default value: `false`
 
 Whether to (silently) close the connection when the [`beforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event) event is emitted in the browser.
 
-When this option is set to `false` (the default value), the Socket instance will emit a `disconnect` event when the user reloads the page **on Firefox**.
+When this option is set to `false` (the default value), the Socket instance will emit a `disconnect` event when the user reloads the page **on Firefox**:
+
+![Example with Firefox when closeOnBeforeunload is set to false](/images/closeonbeforeunload-false.gif)
 
 :::note
 
@@ -126,7 +128,9 @@ This behavior is specific to Firefox, on other browsers the Socket instance will
 
 :::
 
-When this option is set to `true`, all browsers will have the same behavior (no `disconnect` event when reloading the page).
+When this option is set to `true`, all browsers will have the same behavior (no `disconnect` event when reloading the page):
+
+![Example with Firefox when closeOnBeforeunload is set to true](/images/closeonbeforeunload-true.gif)
 
 :::caution
 
