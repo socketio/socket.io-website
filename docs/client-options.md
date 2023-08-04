@@ -104,16 +104,37 @@ See also: https://nodejs.org/api/timers.html#timeoutunref
 
 ### `closeOnBeforeunload`
 
-*Added in v4.1.0*
+<details className="changelog">
+    <summary>History</summary>
 
-Default value: `true`
+| Version | Changes                             |
+|---------|-------------------------------------|
+| v4.7.1  | The option now defaults to `false`. |
+| v4.1.0  | First implementation.               |
+
+</details>
+
+Default value: `false`
 
 Whether to (silently) close the connection when the [`beforeunload`](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event) event is emitted in the browser.
 
-With `closeOnBeforeunload` set to `false`, a `disconnect` event will be emitted by the Socket instance when the user reloads the page on Firefox (but not on Chrome or Safari).
+When this option is set to `false` (the default value), the Socket instance will emit a `disconnect` event when the user reloads the page **on Firefox**.
 
-With `closeOnBeforeunload` set to `true`, all browsers will have the same behavior (no `disconnect` event when reloading the page). But this might cause issues if you use the `beforeunload` event in your application.
+:::note
 
+This behavior is specific to Firefox, on other browsers the Socket instance will not emit any `disconnect` event when the user reloads the page.
+
+:::
+
+When this option is set to `true`, all browsers will have the same behavior (no `disconnect` event when reloading the page).
+
+:::caution
+
+If you use the `beforeunload` event in your application ("are you sure that you want to leave this page?"), it is recommended to leave this option to `false`.
+
+:::
+
+Please check [this issue](https://github.com/socketio/socket.io/issues/3639) for more information.
 
 ### `extraHeaders`
 
