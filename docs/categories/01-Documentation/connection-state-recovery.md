@@ -4,7 +4,15 @@ sidebar_position: 4
 slug: /connection-state-recovery
 ---
 
-Connection state recovery is a feature which allows restoring a client's state after a temporary disconnection (including any missed packets).
+Connection state recovery is a feature which allows restoring a client's state after a temporary disconnection, including any missed packets.
+
+:::info
+
+This feature was added in version `4.6.0`, released in February 2023.
+
+The release notes can be found [here](../../changelog/4.6.0.md).
+
+:::
 
 ## Disclaimer
 
@@ -110,6 +118,12 @@ where
 foo       => the event name (socket.emit("foo"))
 MzUPkW0   => the offset
 ```
+
+:::note
+
+For the recovery to succeed, the server must send at least one event, in order to initialize the offset on the client side.
+
+:::
 
 - upon temporary disconnection, the server stores the client state for a given delay (implemented at the adapter level)
 
