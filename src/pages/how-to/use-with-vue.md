@@ -75,7 +75,7 @@ Reference: [Handling CORS](/docs/v4/handling-cors)
 
 :::tip
 
-The event listeners are registered in the `src/socket.js` file, as we strongly advise against registering listeners in your components. More on that [below](#listeners-in-a-component).
+The event listeners are registered in the `src/socket.js` file, as we strongly advise against registering listeners in your components. More on that [below](#listeners-in-a-child-component).
 
 :::
 
