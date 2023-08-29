@@ -99,7 +99,7 @@ const customLinks = {
     alt: "beste online casino deutschland"
   },
   "ncsquare": {
-    url: "https://kiwigambler.co.nz/online-casinos/no-deposit-bonuses/free-spins",
+    url: "https://kiwigambler.co.nz/online-casinos/online-pokies/free-spins-no-deposit",
     img: "/images/sponsors/ncsquare.png",
     alt: "Kiwi Gambler NZ"
   },
