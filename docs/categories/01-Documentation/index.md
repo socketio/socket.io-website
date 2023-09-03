@@ -139,6 +139,11 @@ const socket = io("ws://localhost:3000");
 // send a message to the server
 socket.emit("hello from client", 5, "6", { 7: Uint8Array.from([8]) });
 
+// When the connection to the server is established, not to be confused with on connection, which is the server event.
+socket.on("connect", () => {
+  // ...
+}
+
 // receive a message from the server
 socket.on("hello from server", (...args) => {
   // ...
