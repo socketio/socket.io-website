@@ -1557,6 +1557,8 @@ Possible reasons:
 
 #### Event: 'disconnecting'
 
+*Added in v1.5.0*
+
 - `reason` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) the reason of the disconnection (either client or server-side)
 
 Fired when the client is going to be disconnected (but hasn't left its `rooms` yet).
@@ -1569,12 +1571,31 @@ io.on("connection", (socket) => {
 });
 ```
 
-Note: those events, along with `connect`, `connect_error`, `newListener` and `removeListener`, are special events that shouldn't be used in your application:
+With an asynchronous handler, you will need to create a copy of the `rooms` attribute:
+
+```js
+io.on("connection", (socket) => {
+  socket.on("disconnecting", async (reason) => {
+    const rooms = new Set(socket.rooms);
+
+    await someLongRunningOperation();
+
+    // socket.rooms will be empty there
+    console.log(rooms);
+  });
+});
+```
+
+:::caution
+
+Those events, along with `connect`, `connect_error`, `newListener` and `removeListener`, are special events that shouldn't be used in your application:
 
 ```js
 // BAD, will throw an error
 socket.emit("disconnect");
 ```
+
+:::
 
 ### Attributes
 
