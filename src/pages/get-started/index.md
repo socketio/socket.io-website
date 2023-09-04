@@ -38,3 +38,4 @@ A slightly more complex chat application, introducing [middlewares](/docs/v4/mid
 - [upload a file](/how-to/upload-a-file)
 - [register a global middleware](/how-to/register-a-global-middleware)
 - [build a basic Socket.IO client](/how-to/build-a-basic-client)
+- [implement a subscription model](/how-to/implement-a-subscription-model)
