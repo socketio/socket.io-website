@@ -492,6 +492,26 @@ socket.on("connect", () => {
 });
 ```
 
+#### socket.recovered
+
+*Added in v4.6.0*
+
+- [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
+
+Whether the connection state was successfully recovered during the last reconnection.
+
+```js
+socket.on("connect", () => {
+  if (socket.recovered) {
+    // any event missed during the disconnection period will be received now
+  } else {
+    // new or unrecoverable session
+  }
+});
+```
+
+More information about this feature [here](../docs/categories/01-Documentation/connection-state-recovery.md).
+
 ### Methods
 
 #### socket.close()

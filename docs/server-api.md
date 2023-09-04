@@ -1727,6 +1727,26 @@ See also:
 
 :::
 
+#### socket.recovered
+
+*Added in v4.6.0*
+
+- [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
+
+Whether the connection state was successfully recovered during the last reconnection.
+
+```js
+io.on("connection", (socket) => {
+  if (socket.recovered) {
+    // recovery was successful: socket.id, socket.rooms and socket.data were restored
+  } else {
+    // new or unrecoverable session
+  }
+});
+```
+
+More information about this feature [here](../docs/categories/01-Documentation/connection-state-recovery.md).
+
 #### socket.request
 
 * [`<http.IncomingMessage>`](https://nodejs.org/api/http.html#class-httpincomingmessage)

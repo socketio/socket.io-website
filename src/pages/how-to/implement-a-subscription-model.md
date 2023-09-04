@@ -121,3 +121,5 @@ socket.on("connect", () => {
 The `!socket.recovered` condition is related to the [Connection state recovery feature](/docs/v4/connection-state-recovery).
 
 If the connection state was successfully recovered, then the subscriptions (the rooms on the server side) will be automatically restored.
+
+Reference: [`socket.recovered` attribute](/docs/v4/client-api/#socketrecovered)

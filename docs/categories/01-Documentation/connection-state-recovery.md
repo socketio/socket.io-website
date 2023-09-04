@@ -58,7 +58,7 @@ io.on("connection", (socket) => {
 ```js
 socket.on("connect", () => {
   if (socket.recovered) {
-    // any missed packets will be received
+    // any event missed during the disconnection period will be received now
   } else {
     // new or unrecoverable session
   }
