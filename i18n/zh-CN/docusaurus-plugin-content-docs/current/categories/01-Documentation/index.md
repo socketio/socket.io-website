@@ -19,134 +19,44 @@ Socket.IO 是一个库，可以在客户端和服务器之间实现 **低延迟*
   }}
 />
 
-它建立在 [WebSocket](https://fr.wikipedia.org/wiki/WebSocket) 协议之上，并提供额外的保证，例如回退到 HTTP 长轮询或自动重新连接。
+The Socket.IO connection can be established with different low-level transports:
 
+- HTTP long-polling
+- [WebSocket](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSockets_API)
+- [WebTransport](https://developer.mozilla.org/zh-CN/docs/Web/API/WebTransport_API)
 
-:::info
+Socket.IO will automatically pick the best available option, depending on:
 
-WebSocket 是一种在服务器和浏览器之间提供全双工和低延迟通道的通信协议。更多信息可以在[这里](https://fr.wikipedia.org/wiki/WebSocket)找到。
+- the capabilities of the browser (see [here](https://caniuse.com/websockets) and [here](https://caniuse.com/webtransport))
+- the network (some networks block WebSocket and/or WebTransport connections)
 
-:::
+You can find more detail about that in the ["How it works" section](./how-it-works.md).
 
-有几种可用的 Socket.IO 服务器实现：
+### Server implementations {#server-implementations}
 
-- JavaScript (可以在本网站上找到其文档)
-  - [安装步骤](../02-Server/server-installation.md)
-  - [API](../../server-api.md)
-  - [源代码](https://github.com/socketio/socket.io)
-- Java: https://github.com/mrniko/netty-socketio
-- Java: https://github.com/trinopoty/socket.io-server-java
-- Python: https://github.com/miguelgrinberg/python-socketio
+| Language             | Website                                                                                                                           |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| JavaScript (Node.js) | - [安装步骤](../02-Server/server-installation.md)<br/>- [API](../../server-api.md)<br/>- [源代码](https://github.com/socketio/socket.io) |
+| JavaScript (Deno)    | https://github.com/socketio/socket.io-deno                                                                                        |
+| Java                 | https://github.com/mrniko/netty-socketio                                                                                          |
+| Java                 | https://github.com/trinopoty/socket.io-server-java                                                                                |
+| Python               | https://github.com/miguelgrinberg/python-socketio                                                                                 |
+| Golang               | https://github.com/googollee/go-socket.io                                                                                         |
 
-大多数主要语言的客户端实现：
+### Client implementations {#client-implementations}
 
-- JavaScript (可以在浏览器、Node.js 或 React Native 中运行)
-  - [安装步骤](../03-Client/client-installation.md)
-  - [API](../../client-api.md)
-  - [源代码](https://github.com/socketio/socket.io-client)
-- Java: https://github.com/socketio/socket.io-client-java
-- C++: https://github.com/socketio/socket.io-client-cpp
-- Swift: https://github.com/socketio/socket.io-client-swift
-- Dart: https://github.com/rikulo/socket.io-client-dart
-- Python: https://github.com/miguelgrinberg/python-socketio
-- .Net: https://github.com/doghappy/socket.io-client-csharp
-- Golang: https://github.com/googollee/go-socket.io
-- Rust: https://github.com/1c3t3a/rust-socketio
-- Kotlin: https://github.com/icerockdev/moko-socket-io
-
-这是一个使用普通 WebSocket 的基本示例：
-
-*服务器* (基于 [ws](https://github.com/websockets/ws))
-
-```js
-import { WebSocketServer } from "ws";
-
-const server = new WebSocketServer({ port: 3000 });
-
-server.on("connection", (socket) => {
-  // 向客户端发送消息
-  socket.send(JSON.stringify({
-    type: "hello from server",
-    content: [ 1, "2" ]
-  }));
-
-  // 从客户端接收消息
-  socket.on("message", (data) => {
-    const packet = JSON.parse(data);
-
-    switch (packet.type) {
-      case "hello from server":
-        // ...
-        break;
-    }
-  });
-});
-```
-
-*客户端*
-
-```js
-const socket = new WebSocket("ws://localhost:3000");
-
-socket.addEventListener("open", () => {
-  // 向服务器发送消息
-  socket.send(JSON.stringify({
-    type: "hello from server",
-    content: [ 3, "4" ]
-  }));
-});
-
-// 从服务器接收消息
-socket.addEventListener("message", ({ data }) => {
-  const packet = JSON.parse(data);
-
-  switch (packet.type) {
-    case "hello from server":
-      // ...
-      break;
-  }
-});
-```
-
-这是与 Socket.IO 相同的示例：
-
-*服务器*
-
-```js
-import { Server } from "socket.io";
-
-const io = new Server(3000);
-
-io.on("connection", (socket) => {
-  // 向客户端发送消息
-  socket.emit("hello from server", 1, "2", { 3: Buffer.from([4]) });
-
-  // 从客户端接收消息
-  socket.on("hello from server", (...args) => {
-    // ...
-  });
-});
-```
-
-*客户端*
-
-```js
-import { io } from "socket.io-client";
-
-const socket = io("ws://localhost:3000");
-
-// 向服务器发送消息
-socket.emit("hello from server", 5, "6", { 7: Uint8Array.from([8]) });
-
-// 从服务器接收消息
-socket.on("hello from server", (...args) => {
-  // ...
-});
-```
-
-这两个示例看起来非常相似，但实际上 Socket.IO 提供了附加功能，这些功能隐藏了在生产环境中运行基于 WebSockets 的应用程序的复杂性。 [下面](#features)列出了这些功能。
-
-但首先，让我们明确 Socket.IO 不是什么。
+| Language                                      | Website                                                                                                                                  |
+|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| JavaScript (browser, Node.js or React Native) | - [安装步骤](../03-Client/client-installation.md)<br/>- [API](../../client-api.md)<br/>- [源代码](https://github.com/socketio/socket.io-client) |
+| JavaScript (for WeChat Mini-Programs)         | https://github.com/weapp-socketio/weapp.socket.io                                                                                        |
+| Java                                          | https://github.com/socketio/socket.io-client-java                                                                                        |
+| C++                                           | https://github.com/socketio/socket.io-client-cpp                                                                                         |
+| Swift                                         | https://github.com/socketio/socket.io-client-swift                                                                                       |
+| Dart                                          | https://github.com/rikulo/socket.io-client-dart                                                                                          |
+| Python                                        | https://github.com/miguelgrinberg/python-socketio                                                                                        |
+| .Net                                          | https://github.com/doghappy/socket.io-client-csharp                                                                                      |
+| Rust                                          | https://github.com/1c3t3a/rust-socketio                                                                                                  |
+| Kotlin                                        | https://github.com/icerockdev/moko-socket-io                                                                                             |
 
 ## Socket.IO 不是什么 {#what-socketio-is-not}
 

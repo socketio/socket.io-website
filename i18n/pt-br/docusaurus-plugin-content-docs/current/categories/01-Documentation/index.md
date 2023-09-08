@@ -19,133 +19,44 @@ Socket.IO é uma biblioteca que permite **baixa-latência**, **bidirecional** e 
   }}
 />
 
-Ele é construído em cima do protocolo [WebSocket](https://en.wikipedia.org/wiki/WebSocket) e fornece adicionais garantias como retorno para HTTP long-polling ou reconexões automaticas.
+The Socket.IO connection can be established with different low-level transports:
 
-:::info
+- HTTP long-polling
+- [WebSocket](https://developer.mozilla.org/pt-BR/docs/Web/API/WebSockets_API)
+- [WebTransport](https://developer.mozilla.org/pt-BR/docs/Web/API/WebTransport_API)
 
-WebSocket é um protocolo de comunicação que fornece um canal full-duplex e baixa latência entre o servidor e o brower. Mais informações podem ser encontradas [aqui](https://en.wikipedia.org/wiki/WebSocket).
+Socket.IO will automatically pick the best available option, depending on:
 
-:::
+- the capabilities of the browser (see [here](https://caniuse.com/websockets) and [here](https://caniuse.com/webtransport))
+- the network (some networks block WebSocket and/or WebTransport connections)
 
-Existem várias implementações de servidor Socket.IO disponíveis:
+You can find more detail about that in the ["How it works" section](./how-it-works.md).
 
-- JavaScript (Node.js) (cuja documentação pode ser encontrada aqui neste site)
-  - [Passo a passo de instalação](../02-Server/server-installation.md)
-  - [API](../../server-api.md)
-  - [Código fonte](https://github.com/socketio/socket.io)
-- JavaScript (Deno): https://github.com/socketio/socket.io-deno
-- Java: https://github.com/mrniko/netty-socketio
-- Java: https://github.com/trinopoty/socket.io-server-java
-- Python: https://github.com/miguelgrinberg/python-socketio
-- Golang: https://github.com/googollee/go-socket.io
+### Server implementations {#server-implementations}
 
-E implementações do cliente na maioria das principais linguagens:
+| Language             | Website                                                                                                                                                 |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| JavaScript (Node.js) | - [Installation steps](../02-Server/server-installation.md)<br/>- [API](../../server-api.md)<br/>- [Source code](https://github.com/socketio/socket.io) |
+| JavaScript (Deno)    | https://github.com/socketio/socket.io-deno                                                                                                              |
+| Java                 | https://github.com/mrniko/netty-socketio                                                                                                                |
+| Java                 | https://github.com/trinopoty/socket.io-server-java                                                                                                      |
+| Python               | https://github.com/miguelgrinberg/python-socketio                                                                                                       |
+| Golang               | https://github.com/googollee/go-socket.io                                                                                                               |
 
-- JavaScript (que pode ser executado no navegador, em Node.js ou em React Native)
-  - [Passo a passo de instalação](../03-Client/client-installation.md)
-  - [API](../../client-api.md)
-  - [Código font](https://github.com/socketio/socket.io-client)
-- Java: https://github.com/socketio/socket.io-client-java
-- C++: https://github.com/socketio/socket.io-client-cpp
-- Swift: https://github.com/socketio/socket.io-client-swift
-- Dart: https://github.com/rikulo/socket.io-client-dart
-- Python: https://github.com/miguelgrinberg/python-socketio
-- .Net: https://github.com/doghappy/socket.io-client-csharp
-- Rust: https://github.com/1c3t3a/rust-socketio
-- Kotlin: https://github.com/icerockdev/moko-socket-io
+### Client implementations {#client-implementations}
 
-Aqui é um exemplo basíco com a um WebSockets simples:
-
-*Servidor* (baseado em [ws](https://github.com/websockets/ws))
-
-```js
-import { WebSocketServer } from "ws";
-
-const server = new WebSocketServer({ port: 3000 });
-
-server.on("connection", (socket) => {
-  // Envia uma messagem para o cliente
-  socket.send(JSON.stringify({
-    type: "hello from server",
-    content: [ 1, "2" ]
-  }));
-
-  //recebe uma mensagem do cliente
-  socket.on("message", (data) => {
-    const packet = JSON.parse(data);
-
-    switch (packet.type) {
-      case "hello from client":
-        // ...
-        break;
-    }
-  });
-});
-```
-
-*Cliente*
-
-```js
-const socket = new WebSocket("ws://localhost:3000");
-
-socket.addEventListener("open", () => {
-  // Envia uma messagem para o servidor
-  socket.send(JSON.stringify({
-    type: "hello from client",
-    content: [ 3, "4" ]
-  }));
-});
-
-// recebe uma mensagem do servidor
-socket.addEventListener("message", ({ data }) => {
-  const packet = JSON.parse(data);
-
-  switch (packet.type) {
-    case "hello from server":
-      // ...
-      break;
-  }
-});
-```
-E aqui o mesmo exemplo com o Socket.IO:
-
-*Servidor*
-
-```js
-import { Server } from "socket.io";
-
-const io = new Server(3000);
-
-io.on("connection", (socket) => {
-  // Envia uma messagem para o cliente
-  socket.emit("hello from server", 1, "2", { 3: Buffer.from([4]) });
-
-  //recebe uma mensagem do cliente
-  socket.on("hello from client", (...args) => {
-    // ...
-  });
-});
-```
-
-*Cliente*
-
-```js
-import { io } from "socket.io-client";
-
-const socket = io("ws://localhost:3000");
-
-// Envia uma messagem para o servidor
-socket.emit("hello from client", 5, "6", { 7: Uint8Array.from([8]) });
-
-// recebe uma mensagem do servidor
-socket.on("hello from server", (...args) => {
-  // ...
-});
-```
-
-Both examples looks really similar, but under the hood Socket.IO provides additional features that hide the complexity of running an application based on WebSockets in production. Those features are listed [below](#features).
-
-But first, let's make it clear what Socket.IO is not.
+| Language                                      | Website                                                                                                                                                        |
+|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| JavaScript (browser, Node.js or React Native) | - [Installation steps](../03-Client/client-installation.md)<br/>- [API](../../client-api.md)<br/>- [Source code](https://github.com/socketio/socket.io-client) |
+| JavaScript (for WeChat Mini-Programs)         | https://github.com/weapp-socketio/weapp.socket.io                                                                                                              |
+| Java                                          | https://github.com/socketio/socket.io-client-java                                                                                                              |
+| C++                                           | https://github.com/socketio/socket.io-client-cpp                                                                                                               |
+| Swift                                         | https://github.com/socketio/socket.io-client-swift                                                                                                             |
+| Dart                                          | https://github.com/rikulo/socket.io-client-dart                                                                                                                |
+| Python                                        | https://github.com/miguelgrinberg/python-socketio                                                                                                              |
+| .Net                                          | https://github.com/doghappy/socket.io-client-csharp                                                                                                            |
+| Rust                                          | https://github.com/1c3t3a/rust-socketio                                                                                                                        |
+| Kotlin                                        | https://github.com/icerockdev/moko-socket-io                                                                                                                   |
 
 ## O que o Socket.IO não é {#o-que-o-socketio-não-é}
 
