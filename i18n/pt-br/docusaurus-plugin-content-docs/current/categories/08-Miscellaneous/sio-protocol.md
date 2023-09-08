@@ -33,7 +33,7 @@ The source of this document can be found [here](https://github.com/socketio/sock
 - [Test suite](#test-suite)
 
 
-## Introduction
+## Introduction {#introduction}
 
 The Socket.IO protocol enables [full-duplex](https://en.wikipedia.org/wiki/Duplex_(telecommunications)#FULL-DUPLEX) and low-overhead communication between a client and a server.
 
@@ -91,7 +91,7 @@ The reference implementation is written in [TypeScript](https://www.typescriptla
 - client: https://github.com/socketio/socket.io-client
 
 
-## Exchange protocol
+## Exchange protocol {#exchange-protocol}
 
 A Socket.IO packet contains the following fields:
 
@@ -113,7 +113,7 @@ Here is the list of available packet types:
 | BINARY_ACK    | 6   | Used to [acknowledge](#acknowledgement) an event (the response includes binary data). |
 
 
-### Connection to a namespace
+### Connection to a namespace {#connection-to-a-namespace}
 
 At the beginning of a Socket.IO session, the client MUST send a `CONNECT` packet:
 
@@ -165,7 +165,7 @@ Client > { type: CONNECT, namespace: "/" }
 Server > { type: CONNECT_ERROR, namespace: "/", data: { message: "Not authorized" } }
 ```
 
-### Sending and receiving data
+### Sending and receiving data {#sending-and-receiving-data}
 
 Once the [connection to a namespace](#connection-to-a-namespace) is established, the client and the server can begin exchanging data:
 
@@ -201,7 +201,7 @@ Server > { type: EVENT, namespace: "/admin", data: ["bar"] }
 Client > { type: BINARY_EVENT, namespace: "/", data: ["baz", <Buffer <01 02 03 04>> ] }
 ```
 
-### Acknowledgement
+### Acknowledgement {#acknowledgement}
 
 The sender MAY include an event ID in order to request an acknowledgement from the receiver:
 
@@ -246,7 +246,7 @@ Server > { type: EVENT, namespace: "/", data: ["foo" ], id: 15 }
 Client > { type: BINARY_ACK, namespace: "/", data: ["bar", <buffer <01 02 03 04>], id: 15 }
 ```
 
-### Disconnection from a namespace
+### Disconnection from a namespace {#disconnection-from-a-namespace}
 
 At any time, one side can end the connection to a namespace by sending a `DISCONNECT` packet:
 
@@ -260,7 +260,7 @@ CLIENT                                                      SERVER
 No response is expected from the other side. The low-level connection MAY be kept alive if the client is connected to another namespace.
 
 
-## Packet encoding
+## Packet encoding {#packet-encoding}
 
 This section details the encoding used by the default parser which is included in Socket.IO server and client, and
 whose source can be found [here](https://github.com/socketio/socket.io-parser).
@@ -273,7 +273,7 @@ Please also note that each Socket.IO packet is sent as a Engine.IO `message` pac
 so the encoded result will be prefixed by the character `"4"` when sent over the wire (in the request/response body with HTTP
 long-polling, or in the WebSocket frame).
 
-### Format
+### Format {#format}
 
 ```
 <packet type>[<# of binary attachments>-][<namespace>,][<acknowledgment id>][JSON-stringified payload without binary]
@@ -283,9 +283,9 @@ long-polling, or in the WebSocket frame).
 
 Note: the namespace is only included if it is different from the main namespace (`/`)
 
-### Examples
+### Examples {#examples}
 
-#### Connection to a namespace
+#### Connection to a namespace {#connection-to-a-namespace-1}
 
 - with the main namespace
 
@@ -329,7 +329,7 @@ Note: the namespace is only included if it is different from the main namespace 
 4{"message":"Not authorized"}
 ```
 
-#### Sending and receiving data
+#### Sending and receiving data {#sending-and-receiving-data-1}
 
 - with the main namespace
 
@@ -396,7 +396,7 @@ Please remember that each Socket.IO packet is wrapped in a Engine.IO `message` p
 
 Example: `{ type: EVENT, namespace: "/", data: ["foo"] }` will be sent as `42["foo"]`
 
-#### Acknowledgement
+#### Acknowledgement {#acknowledgement-1}
 
 - with the main namespace
 
@@ -442,7 +442,7 @@ Example: `{ type: EVENT, namespace: "/", data: ["foo"] }` will be sent as `42["f
 + <Buffer <01 02 03 04>>
 ```
 
-#### Disconnection from a namespace
+#### Disconnection from a namespace {#disconnection-from-a-namespace-1}
 
 - with the main namespace
 
@@ -471,7 +471,7 @@ Example: `{ type: EVENT, namespace: "/", data: ["foo"] }` will be sent as `42["f
 ```
 
 
-## Sample session
+## Sample session {#sample-session}
 
 Here is an example of what is sent over the wire when combining both the Engine.IO and the Socket.IO protocols.
 
@@ -588,9 +588,9 @@ WebSocket frames:
 > 1                                             => Engine.IO "close" packet type
 ```
 
-## History
+## History {#history}
 
-### Difference between v5 and v4
+### Difference between v5 and v4 {#difference-between-v5-and-v4}
 
 The 5th revision (current) of the Socket.IO protocol is used in Socket.IO v3 and above (`v3.0.0` was released in November 2020).
 
@@ -650,7 +650,7 @@ Commits: [2875d2c](https://github.com/socketio/socket.io/commit/2875d2cfdfa463e6
 Commits: [54bf4a4](https://github.com/socketio/socket.io/commit/54bf4a44e9e896dfb64764ee7bd4e8823eb7dc7b) (server) and [0939395](https://github.com/socketio/socket.io-client/commit/09393952e3397a0c71f239ea983f8ec1623b7c21) (client)
 
 
-### Difference between v4 and v3
+### Difference between v4 and v3 {#difference-between-v4-and-v3}
 
 The 4th revision of the Socket.IO protocol is used in Socket.IO v1 (`v1.0.3` was released in June 2014) and v2 (`v2.0.0` was released in May 2017).
 
@@ -667,7 +667,7 @@ objects, which could hurt performance.
 
 Reference: https://github.com/socketio/socket.io-parser/commit/ca4f42a922ba7078e840b1bc09fe3ad618acc065
 
-### Difference between v3 and v2
+### Difference between v3 and v2 {#difference-between-v3-and-v2}
 
 The 3rd revision of the Socket.IO protocol is used in early Socket.IO v1 versions (`socket.io@1.0.0...1.0.2`) (released in May 2014).
 
@@ -677,7 +677,7 @@ List of changes:
 
 - remove the usage of msgpack to encode packets containing binary objects (see also [299849b](https://github.com/socketio/socket.io-parser/commit/299849b00294c3bc95817572441f3aca8ffb1f65))
 
-### Difference between v2 and v1
+### Difference between v2 and v1 {#difference-between-v2-and-v1}
 
 List of changes:
 
@@ -686,13 +686,13 @@ List of changes:
 This was added during the work towards Socket.IO 1.0, in order to add support for binary objects. The `BINARY_EVENT`
 packets were encoded with [msgpack](https://msgpack.org/).
 
-### Initial revision
+### Initial revision {#initial-revision}
 
 This first revision was the result of the split between the Engine.IO protocol (low-level plumbing with WebSocket / HTTP
 long-polling, heartbeat) and the Socket.IO protocol. It was never included in a Socket.IO release, but paved the way for
 the next iterations.
 
-## Test suite
+## Test suite {#test-suite}
 
 The test suite in the [`test-suite/`](https://github.com/socketio/socket.io-protocol/tree/main/test-suite) directory lets you check the compliance of a server implementation.
 

@@ -5,7 +5,7 @@ slug: /delivery-guarantees
 toc_max_heading_level: 4
 ---
 
-## Message ordering
+## Message ordering {#message-ordering}
 
 Socket.IO does guarantee message ordering, no matter which low-level transport is used (even during an upgrade from HTTP long-polling to WebSocket).
 
@@ -24,9 +24,9 @@ socket.emit("event3");
 
 In the example above, the events will always be received in the same order by the other side (provided that they actually arrive, see [below](#message-arrival)).
 
-## Message arrival
+## Message arrival {#message-arrival}
 
-### At most once
+### At most once {#at-most-once}
 
 By default, Socket.IO provides an **at most once** guarantee of delivery:
 
@@ -40,9 +40,9 @@ As of now, additional delivery guarantees must be implemented in your applicatio
 
 :::
 
-### At least once
+### At least once {#at-least-once}
 
-#### From client to server
+#### From client to server {#from-client-to-server}
 
 From the client side, you can achieve an **at least once** guarantee with [acknowledgements and timeouts](../04-Events/emitting-events.md#with-timeout):
 
@@ -67,7 +67,7 @@ Even in that case, any pending event will be lost if the user refreshes its tab.
 
 :::
 
-#### From server to client
+#### From server to client {#from-server-to-client}
 
 For events sent by the server, additional delivery guarantees can be implemented by:
 

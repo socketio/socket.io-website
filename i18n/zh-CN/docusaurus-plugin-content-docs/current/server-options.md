@@ -8,9 +8,9 @@ slug: /server-options/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Socket.IO server options
+## Socket.IO server options {#socketio-server-options}
 
-### `path`
+### `path` {#path}
 
 Default value: `/socket.io/`
 
@@ -44,7 +44,7 @@ const socket = io("https://example.com", {
 });
 ```
 
-### `serveClient`
+### `serveClient` {#serveclient}
 
 Default value: `true`
 
@@ -58,7 +58,7 @@ Whether to serve the client files. If `true`, the different bundles will be serv
 
 See also [here](categories/03-Client/client-installation.md#standalone-build).
 
-### `adapter`
+### `adapter` {#adapter}
 
 Default value: `require("socket.io-adapter")` (in-memory adapter, whose source code can be found [here](https://github.com/socketio/socket.io-adapter/))
 
@@ -123,21 +123,21 @@ io.listen(3000);
   </TabItem>
 </Tabs>
 
-### `parser`
+### `parser` {#parser}
 
 Default value: `socket.io-parser`
 
 The parser to use. Please see the documentation [here](categories/06-Advanced/custom-parser.md).
 
-### `connectTimeout`
+### `connectTimeout` {#connecttimeout}
 
 Default value: `45000`
 
 The number of ms before disconnecting a client that has not successfully joined a namespace.
 
-## Low-level engine options
+## Low-level engine options {#low-level-engine-options}
 
-### `pingTimeout`
+### `pingTimeout` {#pingtimeout}
 
 Default value: `20000`
 
@@ -163,19 +163,19 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `pingInterval`
+### `pingInterval` {#pinginterval}
 
 Default value: `25000`
 
 See [above](#pingtimeout).
 
-### `upgradeTimeout`
+### `upgradeTimeout` {#upgradetimeout}
 
 Default value: `10000`
 
 This is the delay in milliseconds before an uncompleted transport upgrade is cancelled.
 
-### `maxHttpBufferSize`
+### `maxHttpBufferSize` {#maxhttpbuffersize}
 
 Default value: `1e6` (1 MB)
 
@@ -189,7 +189,7 @@ const io = new Server(httpServer, {
 
 It matches the [maxPayload](https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback) option of the ws package.
 
-### `allowRequest`
+### `allowRequest` {#allowrequest}
 
 Default: `-`
 
@@ -231,7 +231,7 @@ See also:
 - [how to use with `express-session`](/how-to/use-with-express-session)
 - [how to deal with cookies](/how-to/deal-with-cookies)
 
-### `transports`
+### `transports` {#transports}
 
 Default value: `["polling", "websocket"]`
 
@@ -239,13 +239,13 @@ The low-level transports that are allowed on the server-side.
 
 See also: client-side [`transports`](client-options.md#transports)
 
-### `allowUpgrades`
+### `allowUpgrades` {#allowupgrades}
 
 Default value: `true`
 
 Whether to allow transport upgrades.
 
-### `perMessageDeflate`
+### `perMessageDeflate` {#permessagedeflate}
 
 <details className="changelog">
     <summary>History</summary>
@@ -288,7 +288,7 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `httpCompression`
+### `httpCompression` {#httpcompression}
 
 *Added in v1.4.0*
 
@@ -315,7 +315,7 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `wsEngine`
+### `wsEngine` {#wsengine}
 
 Default value: `require("ws").Server` (source code can be found [here](https://github.com/websockets/ws))
 
@@ -329,7 +329,7 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `cors`
+### `cors` {#cors}
 
 Default value: `-`
 
@@ -347,7 +347,7 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `cookie`
+### `cookie` {#cookie}
 
 Default value: `-`
 
@@ -383,7 +383,7 @@ Since Socket.IO v3, there is no cookie sent by default anymore ([reference](cate
 
 :::
 
-### `allowEIO3`
+### `allowEIO3` {#alloweio3}
 
 Default value: `false`
 

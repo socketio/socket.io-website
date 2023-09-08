@@ -8,7 +8,7 @@ slug: /server-api/
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Server
+## Server {#server}
 
 <ThemedImage
   alt="Server in the class diagram for the server"
@@ -24,7 +24,7 @@ Related documentation pages:
 - [initialization](categories/02-Server/server-initialization.md)
 - [details of the server instance](categories/02-Server/server-instance.md)
 
-### new Server(httpServer[, options])
+### new Server(httpServer[, options]) {#new-serverhttpserver-options}
 
 - `httpServer` [`<http.Server>`](https://nodejs.org/api/http.html#class-httpserver) | [`<https.Server>`](https://nodejs.org/api/https.html#class-httpsserver)
 - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
@@ -47,7 +47,7 @@ httpServer.listen(3000);
 
 The complete list of available options can be found [here](server-options.md).
 
-### new Server(port[, options])
+### new Server(port[, options]) {#new-serverport-options}
 
 - `port` [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
@@ -66,7 +66,7 @@ io.on("connection", (socket) => {
 
 The complete list of available options can be found [here](server-options.md).
 
-### new Server(options)
+### new Server(options) {#new-serveroptions}
 
   - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
@@ -86,7 +86,7 @@ io.listen(3000);
 
 The complete list of available options can be found [here](server-options.md).
 
-### server.sockets
+### server.sockets {#serversockets}
 
   * [`<Namespace>`](#namespace)
 
@@ -98,7 +98,7 @@ io.sockets.emit("hi", "everyone");
 io.of("/").emit("hi", "everyone");
 ```
 
-### server.serveClient([value])
+### server.serveClient([value]) {#serverserveclientvalue}
 
   - `value` [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
   - **Returns** [`<Server>`](#server) | [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
@@ -115,7 +115,7 @@ io.serveClient(false);
 io.listen(3000);
 ```
 
-### server.path([value])
+### server.path([value]) {#serverpathvalue}
 
   - `value` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
   - **Returns** [`<Server>`](#server) | [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
@@ -144,7 +144,7 @@ const socket = io({
 
 :::
 
-### server.adapter([value])
+### server.adapter([value]) {#serveradaptervalue}
 
   - `value` [`<Adapter>`](categories/05-Adapters/adapter.md)
   - **Returns** [`<Server>`](#server) | [`<Adapter>`](categories/05-Adapters/adapter.md)
@@ -172,7 +172,7 @@ Promise.all([pubClient.connect(), subClient.connect()]).then(() => {
 });
 ```
 
-### server.attach(httpServer[, options])
+### server.attach(httpServer[, options]) {#serverattachhttpserver-options}
 
 - `httpServer` [`<http.Server>`](https://nodejs.org/api/http.html#class-httpserver) | [`<https.Server>`](https://nodejs.org/api/https.html#class-httpsserver)
 - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
@@ -195,7 +195,7 @@ io.on("connection", (socket) => {
 httpServer.listen(3000);
 ```
 
-### server.attach(port[, options])
+### server.attach(port[, options]) {#serverattachport-options}
 
 - `port` [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
@@ -214,7 +214,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### server.attachApp(app[, options])
+### server.attachApp(app[, options]) {#serverattachappapp-options}
 
 - `app` [`<uws.App>`](https://unetworking.github.io/uWebSockets.js/generated/interfaces/TemplatedApp.html)
 - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
@@ -241,15 +241,15 @@ app.listen(3000, (token) => {
 });
 ```
 
-### server.listen(httpServer[, options])
+### server.listen(httpServer[, options]) {#serverlistenhttpserver-options}
 
 Synonym of [server.attach(httpServer[, options])](#serverattachhttpserver-options).
 
-### server.listen(port[, options])
+### server.listen(port[, options]) {#serverlistenport-options}
 
 Synonym of [server.attach(port[, options])](#serverattachport-options).
 
-### server.on(eventName, listener)
+### server.on(eventName, listener) {#serveroneventname-listener}
 
 *Inherited from the [EventEmitter class](https://nodejs.org/api/events.html#class-eventemitter).*
 
@@ -271,7 +271,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### server.bind(engine)
+### server.bind(engine) {#serverbindengine}
 
 - `engine` `<engine.Server>`
 - **Returns** [`<Server>`](#server)
@@ -290,7 +290,7 @@ io.bind(engine);
 engine.listen(3000);
 ```
 
-### server.onconnection(socket)
+### server.onconnection(socket) {#serveronconnectionsocket}
 
 - `socket` `<engine.Socket>`
 - **Returns** [`<Server>`](#server)
@@ -311,7 +311,7 @@ engine.on("connection", (socket) => {
 engine.listen(3000);
 ```
 
-### server.of(nsp)
+### server.of(nsp) {#serverofnsp}
 
   - `nsp` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<RegExp>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) | [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
   - **Returns** [`<Namespace>`](#namespace)
@@ -351,7 +351,7 @@ io.of((name, query, next) => {
 }).on("connection", (socket) => { /* ... */ });
 ```
 
-### server.close([callback])
+### server.close([callback]) {#serverclosecallback}
 
   - `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
@@ -387,11 +387,11 @@ Reference: https://nodejs.org/api/http.html#serverclosecallback
 
 :::
 
-### server.engine
+### server.engine {#serverengine}
 
 A reference to the underlying Engine.IO server. See [here](#engine).
 
-### server.socketsJoin(rooms)
+### server.socketsJoin(rooms) {#serversocketsjoinrooms}
 
 *Added in v4.0.0*
 
@@ -410,7 +410,7 @@ io.in(theSocketId).socketsJoin("room1");
 
 See [here](categories/02-Server/server-instance.md#utility-methods).
 
-### server.socketsLeave(rooms)
+### server.socketsLeave(rooms) {#serversocketsleaverooms}
 
 *Added in v4.0.0*
 
@@ -429,7 +429,7 @@ io.in(theSocketId).socketsLeave("room1");
 
 See [here](categories/02-Server/server-instance.md#utility-methods).
 
-### server.disconnectSockets([close])
+### server.disconnectSockets([close]) {#serverdisconnectsocketsclose}
 
 *Added in v4.0.0*
 
@@ -445,7 +445,7 @@ io.in("room1").disconnectSockets(true);
 
 See [here](categories/02-Server/server-instance.md#utility-methods).
 
-### server.fetchSockets()
+### server.fetchSockets() {#serverfetchsockets}
 
 *Added in v4.0.0*
 
@@ -478,13 +478,13 @@ io.on("connection", (socket) => {
 
 See [here](categories/02-Server/server-instance.md#utility-methods).
 
-### server.serverSideEmit(eventName[, ...args][, ack])
+### server.serverSideEmit(eventName[, ...args][, ack]) {#serverserversideemiteventname-args-ack}
 
 *Added in v4.1.0*
 
 Alias for: [`io.of("/").serverSideEmit(/* ... */);`](#namespaceserversideemiteventname-args)
 
-### Event: `connection`
+### Event: `connection` {#event-connection}
 
   - `socket` _(Socket)_ socket connection with client
 
@@ -496,11 +496,11 @@ io.on("connection", (socket) => {
 });
 ```
 
-### Event: `connect`
+### Event: `connect` {#event-connect}
 
 Synonym of [Event: "connection"](#event-connection).
 
-### Event: `new_namespace`
+### Event: `new_namespace` {#event-new_namespace}
 
   - `namespace` [`Namespace`](#namespace)
 
@@ -532,7 +532,7 @@ io.on("new_namespace", (namespace) => {
 });
 ```
 
-## Namespace
+## Namespace {#namespace}
 
 <ThemedImage
   alt="Namespace in the class diagram for the server"
@@ -546,13 +546,13 @@ Represents a pool of sockets connected under a given scope identified by a pathn
 
 More information can be found [here](categories/06-Advanced/namespaces.md).
 
-### namespace.name
+### namespace.name {#namespacename}
 
   * [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
 
 The namespace identifier property.
 
-### namespace.sockets
+### namespace.sockets {#namespacesockets}
 
   * [`Map<SocketId, Socket>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
@@ -563,7 +563,7 @@ A map of [Socket](#socket) instances that are connected to this namespace.
 const socketCount = io.of("/admin").sockets.size;
 ```
 
-### namespace.adapter
+### namespace.adapter {#namespaceadapter}
 
   * [`<Adapter>`](categories/05-Adapters/adapter.md)
 
@@ -577,7 +577,7 @@ More information about it [here](categories/05-Adapters/adapter.md).
 const adapter = io.of("/my-namespace").adapter;
 ```
 
-### namespace.to(room)
+### namespace.to(room) {#namespacetoroom}
 
 <details className="changelog">
     <summary>History</summary>
@@ -609,13 +609,13 @@ io.to("room1").to("room2").emit(/* ... */);
 io.to(["room1", "room2"]).emit(/* ... */);
 ```
 
-### namespace.in(room)
+### namespace.in(room) {#namespaceinroom}
 
 *Added in v1.0.0*
 
 Synonym of [namespace.to(room)](#namespacetoroom).
 
-### namespace.except(rooms)
+### namespace.except(rooms) {#namespaceexceptrooms}
 
 *Added in v4.0.0*
 
@@ -632,7 +632,7 @@ io.except("room1").emit(/* ... */);
 io.to("room2").except("room3").emit(/* ... */);
 ```
 
-### namespace.emit(eventName[, ...args])
+### namespace.emit(eventName[, ...args]) {#namespaceemiteventname-args}
 
   - `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
   - `args` `any[]`
@@ -663,7 +663,7 @@ io.of("/chat").timeout(10000).emit("some-event", (err, responses) => {
 
 :::
 
-### namespace.timeout(value)
+### namespace.timeout(value) {#namespacetimeoutvalue}
 
 *Added in v4.5.0*
 
@@ -683,7 +683,7 @@ io.of("/chat").timeout(10000).emit("some-event", (err, responses) => {
 });
 ```
 
-### namespace.allSockets()
+### namespace.allSockets() {#namespaceallsockets}
 
   - **Returns** `Promise<Set<SocketId>>`
 
@@ -703,7 +703,7 @@ const ids = await io.of("/chat").allSockets();
 const ids = await io.of("/chat").in("general").allSockets();
 ```
 
-### namespace.use(fn)
+### namespace.use(fn) {#namespaceusefn}
 
   - `fn` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
@@ -729,7 +729,7 @@ socket.on("connect_error", err => {
 
 More information can be found [here](categories/02-Server/middlewares.md).
 
-### namespace.socketsJoin(rooms)
+### namespace.socketsJoin(rooms) {#namespacesocketsjoinrooms}
 
 *Added in v4.0.0*
 
@@ -754,7 +754,7 @@ io.in(theSocketId).socketsJoin("room1");
 
 More information can be found [here](categories/02-Server/server-instance.md#utility-methods).
 
-### namespace.socketsLeave(rooms)
+### namespace.socketsLeave(rooms) {#namespacesocketsleaverooms}
 
 *Added in v4.0.0*
 
@@ -777,7 +777,7 @@ io.of("/admin").in("room1").socketsLeave("room2");
 io.in(theSocketId).socketsLeave("room1");
 ```
 
-### namespace.disconnectSockets([close])
+### namespace.disconnectSockets([close]) {#namespacedisconnectsocketsclose}
 
 *Added in v4.0.0*
 
@@ -800,7 +800,7 @@ io.of("/admin").in("room1").disconnectSockets();
 io.of("/admin").in(theSocketId).disconnectSockets();
 ```
 
-### namespace.fetchSockets()
+### namespace.fetchSockets() {#namespacefetchsockets}
 
 *Added in v4.0.0*
 
@@ -853,7 +853,7 @@ console.log(sockets[0].data.username); // "alice"
 **Important note**: this method (and `socketsJoin`, `socketsLeave` and `disconnectSockets` too) is compatible with the Redis adapter (starting with `socket.io-redis@6.1.0`), which means that they will work across Socket.IO servers.
 
 
-### namespace.serverSideEmit(eventName[, ...args][, ack])
+### namespace.serverSideEmit(eventName[, ...args][, ack]) {#namespaceserversideemiteventname-args-ack}
 
 *Added in v4.1.0*
 
@@ -917,7 +917,7 @@ io.serverSideEmit("ping", (err, responses) => {
 });
 ```
 
-### Event: 'connection'
+### Event: 'connection' {#event-connection-1}
 
   - `socket` [`<Socket>`](#socket)
 
@@ -935,11 +935,11 @@ io.of("/admin").on("connection", (socket) => {
 });
 ```
 
-### Event: 'connect'
+### Event: 'connect' {#event-connect-1}
 
 Synonym of [Event: "connection"](#event-connection-1).
 
-### Flag: 'volatile'
+### Flag: 'volatile' {#flag-volatile}
 
 Sets a modifier for a subsequent event emission that the event data may be lost if the clients are not ready to receive messages (because of network slowness or other issues, or because they’re connected through long polling and is in the middle of a request-response cycle).
 
@@ -947,7 +947,7 @@ Sets a modifier for a subsequent event emission that the event data may be lost 
 io.volatile.emit("an event", { some: "data" }); // the clients may or may not receive it
 ```
 
-### Flag: 'local'
+### Flag: 'local' {#flag-local}
 
 Sets a modifier for a subsequent event emission that the event data will only be _broadcast_ to the current node (when [scaling to multiple nodes](categories/02-Server/using-multiple-nodes.md)).
 
@@ -955,7 +955,7 @@ Sets a modifier for a subsequent event emission that the event data will only be
 io.local.emit("an event", { some: "data" });
 ```
 
-## Socket
+## Socket {#socket}
 
 <ThemedImage
   alt="Socket in the class diagram for the server"
@@ -975,13 +975,13 @@ The `Socket` class inherits from [EventEmitter](https://nodejs.org/api/events.ht
 
 More information can be found [here](categories/02-Server/server-socket-instance.md).
 
-### socket.id
+### socket.id {#socketid}
 
   * [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
 
 A unique identifier for the session, that comes from the underlying `Client`.
 
-### socket.rooms
+### socket.rooms {#socketrooms}
 
   * [`Set<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 
@@ -999,13 +999,13 @@ io.on("connection", (socket) => {
 });
 ```
 
-### socket.client
+### socket.client {#socketclient}
 
   * [`<Client>`](#client)
 
 A reference to the underlying `Client` object.
 
-### socket.conn
+### socket.conn {#socketconn}
 
   * `<engine.Socket>`
 
@@ -1038,7 +1038,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### socket.request
+### socket.request {#socketrequest}
 
   * [`<http.IncomingMessage>`](https://nodejs.org/api/http.html#class-httpincomingmessage)
 
@@ -1052,7 +1052,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### socket.handshake
+### socket.handshake {#sockethandshake}
 
   * [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
@@ -1086,7 +1086,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### socket.data
+### socket.data {#socketdata}
 
 *Added in v4.0.0*
 
@@ -1107,7 +1107,7 @@ This also works within a Socket.IO cluster, with a compatible adapter like the [
 
 :::
 
-### socket.use(fn)
+### socket.use(fn) {#socketusefn}
 
 <details className="changelog">
     <summary>History</summary>
@@ -1145,7 +1145,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### socket.send([...args][, ack])
+### socket.send([...args][, ack]) {#socketsendargs-ack}
 
   - `args` `<any[]>`
   - `ack` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
@@ -1153,7 +1153,7 @@ io.on("connection", (socket) => {
 
 Sends a `message` event. See [socket.emit(eventName[, ...args][, ack])](#socketemiteventname-args-ack).
 
-### socket.emit(eventName[, ...args][, ack])
+### socket.emit(eventName[, ...args][, ack]) {#socketemiteventname-args-ack}
 
 *(overrides `EventEmitter.emit`)*
   - `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
@@ -1189,7 +1189,7 @@ socket.on("hello", (arg, callback) => {
 });
 ```
 
-### socket.on(eventName, callback)
+### socket.on(eventName, callback) {#socketoneventname-callback}
 
 *Inherited from the [EventEmitter class](https://nodejs.org/api/events.html#class-eventemitter).*
 
@@ -1213,14 +1213,14 @@ socket.on("news", (data, callback) => {
 });
 ```
 
-### socket.once(eventName, listener)
-### socket.removeListener(eventName, listener)
-### socket.removeAllListeners([eventName])
-### socket.eventNames()
+### socket.once(eventName, listener) {#socketonceeventname-listener}
+### socket.removeListener(eventName, listener) {#socketremovelistenereventname-listener}
+### socket.removeAllListeners([eventName]) {#socketremovealllistenerseventname}
+### socket.eventNames() {#socketeventnames}
 
 Inherited from `EventEmitter` (along with other methods not mentioned here). See the Node.js documentation for the [events](https://nodejs.org/docs/latest/api/events.html) module.
 
-### socket.onAny(callback)
+### socket.onAny(callback) {#socketonanycallback}
 
   - `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
@@ -1232,7 +1232,7 @@ socket.onAny((event, ...args) => {
 });
 ```
 
-### socket.prependAny(callback)
+### socket.prependAny(callback) {#socketprependanycallback}
 
   - `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
@@ -1244,7 +1244,7 @@ socket.prependAny((event, ...args) => {
 });
 ```
 
-### socket.offAny([listener])
+### socket.offAny([listener]) {#socketoffanylistener}
 
   - `listener` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
@@ -1261,7 +1261,7 @@ socket.offAny(myListener);
 socket.offAny();
 ```
 
-### socket.listenersAny()
+### socket.listenersAny() {#socketlistenersany}
 
   - **Returns** [`<Function[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
@@ -1271,7 +1271,7 @@ Returns the list of registered catch-all listeners.
 const listeners = socket.listenersAny();
 ```
 
-### socket.onAnyOutgoing(callback)
+### socket.onAnyOutgoing(callback) {#socketonanyoutgoingcallback}
 
 *Added in v4.5.0*
 
@@ -1285,7 +1285,7 @@ socket.onAnyOutgoing((event, ...args) => {
 });
 ```
 
-### socket.prependAnyOutgoing(callback)
+### socket.prependAnyOutgoing(callback) {#socketprependanyoutgoingcallback}
 
 *Added in v4.5.0*
 
@@ -1299,7 +1299,7 @@ socket.prependAnyOutgoing((event, ...args) => {
 });
 ```
 
-### socket.offAnyOutgoing([listener])
+### socket.offAnyOutgoing([listener]) {#socketoffanyoutgoinglistener}
 
 *Added in v4.5.0*
 
@@ -1319,7 +1319,7 @@ socket.offAnyOutgoing(myListener);
 socket.offAnyOutgoing();
 ```
 
-### socket.listenersAnyOutgoing()
+### socket.listenersAnyOutgoing() {#socketlistenersanyoutgoing}
 
 *Added in v4.5.0*
 
@@ -1331,7 +1331,7 @@ Returns the list of registered catch-all listeners for outgoing packets.
 const listeners = socket.listenersAnyOutgoing();
 ```
 
-### socket.join(room)
+### socket.join(room) {#socketjoinroom}
 
   - `room` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<string[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
   - **Returns** `void` | `Promise`
@@ -1363,7 +1363,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### socket.leave(room)
+### socket.leave(room) {#socketleaveroom}
 
   - `room` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
   - **Returns** `void` | `Promise`
@@ -1384,7 +1384,7 @@ Rooms are left automatically upon disconnection.
 
 :::
 
-### socket.to(room)
+### socket.to(room) {#sockettoroom}
 
 <details className="changelog">
     <summary>History</summary>
@@ -1425,13 +1425,13 @@ io.on("connection", (socket) => {
 
 **Note:** acknowledgements are not supported when broadcasting.
 
-### socket.in(room)
+### socket.in(room) {#socketinroom}
 
 *Added in v1.0.0*
 
 Synonym of [socket.to(room)](#sockettoroom).
 
-### socket.except(rooms)
+### socket.except(rooms) {#socketexceptrooms}
 
 *Added in v4.0.0*
 
@@ -1451,7 +1451,7 @@ socket.except("room1").emit(/* ... */);
 socket.to("room4").except("room5").emit(/* ... */);
 ```
 
-### socket.compress(value)
+### socket.compress(value) {#socketcompressvalue}
 
   - `value` [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type) whether to following packet will be compressed
   - **Returns** `Socket` for chaining
@@ -1464,7 +1464,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### socket.timeout(value)
+### socket.timeout(value) {#sockettimeoutvalue}
 
 *Added in v4.4.0*
 
@@ -1482,7 +1482,7 @@ socket.timeout(5000).emit("my-event", (err) => {
 });
 ```
 
-### socket.disconnect(close)
+### socket.disconnect(close) {#socketdisconnectclose}
 
   - `close` [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type) whether to close the underlying connection
   - **Returns** [`Socket`](#socket)
@@ -1495,7 +1495,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### Flag: 'broadcast'
+### Flag: 'broadcast' {#flag-broadcast}
 
 Sets a modifier for a subsequent event emission that the event data will only be _broadcast_ to every sockets but the sender.
 
@@ -1505,7 +1505,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### Flag: 'volatile'
+### Flag: 'volatile' {#flag-volatile-1}
 
 Sets a modifier for a subsequent event emission that the event data may be lost if the client is not ready to receive messages (because of network slowness or other issues, or because they’re connected through long polling and is in the middle of a request-response cycle).
 
@@ -1515,7 +1515,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### Event: 'disconnect'
+### Event: 'disconnect' {#event-disconnect}
 
   - `reason` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) the reason of the disconnection (either client or server-side)
 
@@ -1543,7 +1543,7 @@ Possible reasons:
 | `forced close`                | The server has received an invalid packet from the client.                                                                                   |
 | `forced server close`         | The client did not join a namespace in time (see the [`connectTimeout`](server-options.md#connecttimeout) option) and was forcefully closed. |
 
-### Event: 'disconnecting'
+### Event: 'disconnecting' {#event-disconnecting}
 
   - `reason` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) the reason of the disconnection (either client or server-side)
 
@@ -1564,7 +1564,7 @@ Note: those events, along with `connect`, `connect_error`, `newListener` and `re
 socket.emit("disconnect");
 ```
 
-## Client
+## Client {#client}
 
 <ThemedImage
   alt="Client in the class diagram for the server"
@@ -1576,25 +1576,25 @@ socket.emit("disconnect");
 
 The `Client` class represents an incoming transport (engine.io) connection. A `Client` can be associated with many multiplexed `Socket`s that belong to different `Namespace`s.
 
-### client.conn
+### client.conn {#clientconn}
 
   * `<engine.Socket>`
 
 A reference to the underlying `engine.io` `Socket` connection.
 
-### client.request
+### client.request {#clientrequest}
 
   * [`<http.IncomingMessage>`](https://nodejs.org/api/http.html#class-httpincomingmessage)
 
 A getter proxy that returns the reference to the `request` that originated the engine.io connection. Useful for accessing request headers such as `Cookie` or `User-Agent`.
 
-## Engine
+## Engine {#engine}
 
 The Engine.IO server, which manages the WebSocket / HTTP long-polling connections. More information [here](categories/01-Documentation/how-it-works.md).
 
 Its source code can be found here: https://github.com/socketio/engine.io
 
-### engine.clientsCount
+### engine.clientsCount {#engineclientscount}
 
 *Added in v1.0.0*
 
@@ -1608,7 +1608,7 @@ const count = io.engine.clientsCount;
 const count2 = io.of("/").sockets.size;
 ```
 
-### engine.generateId
+### engine.generateId {#enginegenerateid}
 
   - [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
@@ -1622,7 +1622,7 @@ io.engine.generateId = () => {
 }
 ```
 
-### engine.handleUpgrade(request, socket, head)
+### engine.handleUpgrade(request, socket, head) {#enginehandleupgraderequest-socket-head}
 
 *Added in v1.0.0*
 
@@ -1660,7 +1660,7 @@ httpServer.on("upgrade", (req, socket, head) => {
 httpServer.listen(3000);
 ```
 
-### Event: 'initial_headers'
+### Event: 'initial_headers' {#event-initial_headers}
 
 *Added in v4.1.0*
 
@@ -1702,7 +1702,7 @@ See also:
 - [how to use with `express-session`](/how-to/use-with-express-session)
 - [how to deal with cookies](/how-to/deal-with-cookies)
 
-### Event: 'headers'
+### Event: 'headers' {#event-headers}
 
 *Added in v4.1.0*
 
@@ -1723,7 +1723,7 @@ io.engine.on("headers", (headers, request) => {
 });
 ```
 
-### Event: 'connection_error'
+### Event: 'connection_error' {#event-connection_error}
 
 *Added in v4.1.0*
 

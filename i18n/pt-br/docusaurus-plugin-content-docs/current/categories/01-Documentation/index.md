@@ -7,7 +7,7 @@ slug: /
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## O que o Socket.IO é
+## O que o Socket.IO é {#o-que-o-socketio-é}
 
 Socket.IO é uma biblioteca que permite **baixa-latência**, **bidirecional** e **baseado em eventos** de comunicação entre cliente e um servidor.
 
@@ -147,7 +147,7 @@ Both examples looks really similar, but under the hood Socket.IO provides additi
 
 But first, let's make it clear what Socket.IO is not.
 
-## O que o Socket.IO não é
+## O que o Socket.IO não é {#o-que-o-socketio-não-é}
 
 :::atenção
 
@@ -176,31 +176,31 @@ Socket.IO is not meant to be used in a background service for mobile application
 
 The Socket.IO library keeps an open TCP connection to the server, which may result in a high battery drain for your users. Please use a dedicated messaging platform like [FCM](https://firebase.google.com/docs/cloud-messaging) for this use case.
 
-## Recursos
+## Recursos {#recursos}
 
 Aqui estão os recursos fornecidos pelo Socket.IO sobre WebSockets simples:
 
-### HTTP long-polling fallback
+### HTTP long-polling fallback {#http-long-polling-fallback}
 
 A conexão retornará à sondagem longa HTTP caso a conexão WebSocket não possa ser estabelecida.
 
 Esse recurso foi o motivo número 1 pelo qual as pessoas usaram o Socket.IO quando o projeto foi criado há mais de dez anos (!), pois o suporte do navegador para WebSockets ainda estava em seu inicio.
 
 Mesmo que a maioria dos navegadores agora suporte WebSockets (mais que [97%](https://caniuse.com/mdn-api_websocket)), ainda é um ótimo recurso, pois ainda recebemos relatórios de usuários que não conseguem estabelecer uma conexão WebSocket porque estão atrás de algum proxy mal configurado.
-### Reconexão Automatica
+### Reconexão Automatica {#reconexão-automatica}
 
 Sob algumas condições particulares, a conexão WebSocket entre o servidor e o cliente pode ser interrompida com ambos os lados desconhecendo o estado quebrado do link.
 
 É por isso que o Socket.IO inclui um mecanismo de pulsação, que verifica periodicamente o status da conexão.
 
 E quando o cliente eventualmente é desconectado, ele se reconecta automaticamente com um atraso exponencial de back-off, para não sobrecarregar o servidor.
-### Buffer de pacote
+### Buffer de pacote {#buffer-de-pacote}
 
 Os pacotes são automaticamente armazenados em buffer quando o cliente é desconectado e serão enviados na reconexão.
 
 Mais informações [aqui](../03-Client/client-offline-behavior.md#buffered-events).
 
-### Acknowledgements
+### Acknowledgements {#acknowledgements}
 
 O Socket.IO oferece uma maneira conveniente de enviar um evento e receber uma resposta:
 
@@ -233,7 +233,7 @@ socket.timeout(5000).emit("hello", "world", (err, response) => {
 });
 ```
 
-### Transmissão
+### Transmissão {#transmissão}
 
 No lado do servidor, você pode enviar um evento para [todos os clientes conectados](../04-Events/broadcasting-events.md) ou [para um subconjunto de clientes](../04-Events/rooms.md):
 
@@ -247,7 +247,7 @@ io.to("news").emit("hello");
 
 Isso também funciona ao [escalar para vários nós](../02-Server/using-multiple-nodes.md).
 
-### Multiplexing
+### Multiplexing {#multiplexing}
 
 Os namespaces permitem que você divida a lógica do seu aplicativo em uma única conexão compartilhada. Isso pode ser útil, por exemplo, se você quiser criar um canal "admin" no qual somente usuários autorizados possam participar.
 
@@ -263,16 +263,16 @@ io.of("/admin").on("connection", (socket) => {
 
 Mais sobre isso [aqui](../06-Advanced/namespaces.md).
 
-## Questões comuns
+## Questões comuns {#questões-comuns}
 
-### O Socket.IO ainda é necessário hoje?
+### O Socket.IO ainda é necessário hoje? {#o-socketio-ainda-é-necessário-hoje}
 
 Essa é uma pergunta justa, já que os WebSockets são suportados [quase em todos os lugares](https://caniuse.com/mdn-api_websocket) nesse momento.
 
 Dito isto, acreditamos que, se você usar WebSockets simples para seu aplicativo, eventualmente precisará implementar a maioria dos recursos que já estão incluídos (e battle-tested) no Socket.IO, como
 [reconexão](#automatic-reconnection), [acknowledgements](#acknowledgements) ou [transmissão](#broadcasting).
 
-### qual é a sobrecarga do protocolo Socket.IO?
+### qual é a sobrecarga do protocolo Socket.IO? {#qual-é-a-sobrecarga-do-protocolo-socketio}
 
 `socket.emit("hello", "world")` será enviado como um único WebSocket frame contendo `42["hello","world"]` com:
 
@@ -288,12 +288,12 @@ O tamanho do pacote de navegador em si é [`10.4 kB`](https://bundlephobia.com/p
 
 :::
 
-### Algumas coisas não estão funcionando devidamente, por favor me ajude?
+### Algumas coisas não estão funcionando devidamente, por favor me ajude? {#algumas-coisas-não-estão-funcionando-devidamente-por-favor-me-ajude}
 
 
 Por favor, cheque o [Guia de solução de problemas](../01-Documentation/troubleshooting.md).
 
-## Proximos passos
+## Proximos passos {#proximos-passos}
 
 - [Exemplo de introdução](/get-started/chat)
 - [Instalação do servidor](../02-Server/server-installation.md)

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Ending notes
 
-## Final server code
+## Final server code {#final-server-code}
 
 <Tabs groupId="lang">
   <TabItem value="cjs" label="CommonJS" default>
@@ -68,7 +68,7 @@ server.listen(3000, () => {
   </TabItem>
 </Tabs>
 
-## Final client code
+## Final client code {#final-client-code}
 
 <Tabs groupId="syntax">
   <TabItem value="es6" label="ES6" default>
@@ -181,7 +181,7 @@ server.listen(3000, () => {
   </TabItem>
 </Tabs>
 
-## Homework
+## Homework {#homework}
 
 Here are some ideas to improve the application:
 
@@ -193,7 +193,7 @@ Here are some ideas to improve the application:
 - Add private messaging.
 - Share your improvements!
 
-## Getting this example
+## Getting this example {#getting-this-example}
 
 You can find it on GitHub [here](https://github.com/socketio/chat-example).
 

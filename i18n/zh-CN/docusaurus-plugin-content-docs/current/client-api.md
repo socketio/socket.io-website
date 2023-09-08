@@ -8,7 +8,7 @@ slug: /client-api/
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## IO
+## IO {#io}
 
 The `io` method is bound to the global scope in the standalone build:
 
@@ -57,7 +57,7 @@ import { io } from "socket.io-client";
 const { io } = require("socket.io-client");
 ```
 
-### io.protocol
+### io.protocol {#ioprotocol}
 
   * [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 
@@ -67,7 +67,7 @@ The protocol defines the format of the packets exchanged between the client and 
 
 You can find more information [here](https://github.com/socketio/socket.io-protocol).
 
-### io([url][, options])
+### io([url][, options]) {#iourl-options}
 
   - `url` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) (defaults to `window.location`)
   - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
@@ -117,7 +117,7 @@ const socket = manager.socket("/my-namespace", {
 
 The complete list of available options can be found [here](client-options.md).
 
-## Manager
+## Manager {#manager}
 
 <ThemedImage
   alt="Manager in the class diagram for the client"
@@ -135,7 +135,7 @@ A single `Manager` can be used by several [Sockets](#socket). You can find more 
 
 Please note that, in most cases, you won't use the Manager directly but use the [Socket](#socket) instance instead.
 
-### new Manager(url[, options])
+### new Manager(url[, options]) {#new-managerurl-options}
 
   - `url` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
   - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
@@ -152,42 +152,42 @@ const socket = manager.socket("/"); // main namespace
 const adminSocket = manager.socket("/admin"); // admin namespace
 ```
 
-### manager.reconnection([value])
+### manager.reconnection([value]) {#managerreconnectionvalue}
 
   - `value` [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
   - **Returns** [`<Manager>`](#manager) | [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
 
 Sets the `reconnection` option, or returns it if no parameters are passed.
 
-### manager.reconnectionAttempts([value])
+### manager.reconnectionAttempts([value]) {#managerreconnectionattemptsvalue}
 
   - `value` [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
   - **Returns** [`<Manager>`](#manager) | [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 
 Sets the `reconnectionAttempts` option, or returns it if no parameters are passed.
 
-### manager.reconnectionDelay([value])
+### manager.reconnectionDelay([value]) {#managerreconnectiondelayvalue}
 
   - `value` [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
   - **Returns** [`<Manager>`](#manager) | [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 
 Sets the `reconnectionDelay` option, or returns it if no parameters are passed.
 
-### manager.reconnectionDelayMax([value])
+### manager.reconnectionDelayMax([value]) {#managerreconnectiondelaymaxvalue}
 
   - `value` [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
   - **Returns** [`<Manager>`](#manager) | [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 
 Sets the `reconnectionDelayMax` option, or returns it if no parameters are passed.
 
-### manager.timeout([value])
+### manager.timeout([value]) {#managertimeoutvalue}
 
   - `value` [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
   - **Returns** [`<Manager>`](#manager) | [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 
 Sets the `timeout` option, or returns it if no parameters are passed.
 
-### manager.open([callback])
+### manager.open([callback]) {#manageropencallback}
 
   - `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
   - **Returns** [`<Manager>`](#manager)
@@ -214,11 +214,11 @@ manager.open((err) => {
 });
 ```
 
-### manager.connect([callback])
+### manager.connect([callback]) {#managerconnectcallback}
 
 Synonym of [manager.open([callback])](#manageropencallback).
 
-### manager.socket(nsp, options)
+### manager.socket(nsp, options) {#managersocketnsp-options}
 
   - `nsp` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
   - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
@@ -226,7 +226,7 @@ Synonym of [manager.open([callback])](#manageropencallback).
 
 Creates a new `Socket` for the given namespace. Only `auth` (`{ auth: {key: "value"} }`) is read from the `options` object. Other keys will be ignored and should be passed when instancing a `new Manager(nsp, options)`.
 
-### Event: 'error'
+### Event: 'error' {#event-error}
 
   - `error` [`<Error>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) error object
 
@@ -238,7 +238,7 @@ socket.io.on("error", (error) => {
 });
 ```
 
-### Event: 'reconnect'
+### Event: 'reconnect' {#event-reconnect}
 
   - `attempt` [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type) reconnection attempt number
 
@@ -250,7 +250,7 @@ socket.io.on("reconnect", (attempt) => {
 });
 ```
 
-### Event: 'reconnect_attempt'
+### Event: 'reconnect_attempt' {#event-reconnect_attempt}
 
   - `attempt` [`<number>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type) reconnection attempt number
 
@@ -262,7 +262,7 @@ socket.io.on("reconnect_attempt", (attempt) => {
 });
 ```
 
-### Event: 'reconnect_error'
+### Event: 'reconnect_error' {#event-reconnect_error}
 
   - `error` [`<Error>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) error object
 
@@ -274,7 +274,7 @@ socket.io.on("reconnect_error", (error) => {
 });
 ```
 
-### Event: 'reconnect_failed'
+### Event: 'reconnect_failed' {#event-reconnect_failed}
 
 Fired when couldn't reconnect within `reconnectionAttempts`.
 
@@ -284,7 +284,7 @@ socket.io.on("reconnect_failed", () => {
 });
 ```
 
-### Event: 'ping'
+### Event: 'ping' {#event-ping}
 
 Fired when a ping packet is received from the server.
 
@@ -294,7 +294,7 @@ socket.io.on("ping", () => {
 });
 ```
 
-## Socket
+## Socket {#socket}
 
 <ThemedImage
   alt="Socket in the class diagram for the client"
@@ -318,7 +318,7 @@ socket.on("hey", (...args) => {
 
 More information can be found [here](categories/03-Client/client-socket-instance.md).
 
-### socket.id
+### socket.id {#socketid}
 
   - [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
 
@@ -334,7 +334,7 @@ socket.on("connect", () => {
 });
 ```
 
-### socket.connected
+### socket.connected {#socketconnected}
 
   - [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
 
@@ -348,7 +348,7 @@ socket.on("connect", () => {
 });
 ```
 
-### socket.disconnected
+### socket.disconnected {#socketdisconnected}
 
   - [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
 
@@ -362,7 +362,7 @@ socket.on("connect", () => {
 });
 ```
 
-### socket.io
+### socket.io {#socketio}
 
   - [`<Manager>`](#manager)
 
@@ -396,7 +396,7 @@ socket.on("connect", () => {
 });
 ```
 
-### socket.connect()
+### socket.connect() {#socketconnect}
 
 *Added in v1.0.0*
 
@@ -421,13 +421,13 @@ socket.on("disconnect", () => {
 });
 ```
 
-### socket.open()
+### socket.open() {#socketopen}
 
 *Added in v1.0.0*
 
 Synonym of [socket.connect()](#socketconnect).
 
-### socket.send([...args][, ack])
+### socket.send([...args][, ack]) {#socketsendargs-ack}
 
   - `args` `<any[]>`
   - `ack` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
@@ -435,7 +435,7 @@ Synonym of [socket.connect()](#socketconnect).
 
 Sends a `message` event. See [socket.emit(eventName[, ...args][, ack])](#socketemiteventname-args).
 
-### socket.emit(eventName[, ...args][, ack])
+### socket.emit(eventName[, ...args][, ack]) {#socketemiteventname-args-ack}
 
   - `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
   - `args` `<any[]>`
@@ -470,7 +470,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-### socket.on(eventName, callback)
+### socket.on(eventName, callback) {#socketoneventname-callback}
 
 *Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
@@ -495,7 +495,7 @@ socket.on("news", (cb) => {
 });
 ```
 
-### socket.once(eventName, callback)
+### socket.once(eventName, callback) {#socketonceeventname-callback}
 
 *Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
@@ -511,7 +511,7 @@ socket.once("my-event", () => {
 });
 ```
 
-### socket.off([eventName][, listener])
+### socket.off([eventName][, listener]) {#socketoffeventname-listener}
 
 *Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
@@ -542,7 +542,7 @@ socket.off("my-event");
 socket.off();
 ```
 
-### socket.listeners(eventName)
+### socket.listeners(eventName) {#socketlistenerseventname}
 
 *Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
@@ -559,7 +559,7 @@ socket.on("my-event", () => {
 console.log(socket.listeners("my-event")); // prints [ [Function] ]
 ```
 
-### socket.onAny(callback)
+### socket.onAny(callback) {#socketonanycallback}
 
 *Added in v3.0.0*
 
@@ -573,7 +573,7 @@ socket.onAny((event, ...args) => {
 });
 ```
 
-### socket.prependAny(callback)
+### socket.prependAny(callback) {#socketprependanycallback}
 
 *Added in v3.0.0*
 
@@ -587,7 +587,7 @@ socket.prependAny((event, ...args) => {
 });
 ```
 
-### socket.offAny([listener])
+### socket.offAny([listener]) {#socketoffanylistener}
 
 *Added in v3.0.0*
 
@@ -606,7 +606,7 @@ socket.offAny(myListener);
 socket.offAny();
 ```
 
-### socket.listenersAny()
+### socket.listenersAny() {#socketlistenersany}
 
 *Added in v3.0.0*
 
@@ -618,7 +618,7 @@ Returns the list of registered catch-all listeners.
 const listeners = socket.listenersAny();
 ```
 
-### socket.onAnyOutgoing(callback)
+### socket.onAnyOutgoing(callback) {#socketonanyoutgoingcallback}
 
 *Added in v4.5.0*
 
@@ -632,7 +632,7 @@ socket.onAnyOutgoing((event, ...args) => {
 });
 ```
 
-### socket.prependAnyOutgoing(callback)
+### socket.prependAnyOutgoing(callback) {#socketprependanyoutgoingcallback}
 
 *Added in v4.5.0*
 
@@ -646,7 +646,7 @@ socket.prependAnyOutgoing((event, ...args) => {
 });
 ```
 
-### socket.offAnyOutgoing([listener])
+### socket.offAnyOutgoing([listener]) {#socketoffanyoutgoinglistener}
 
 *Added in v4.5.0*
 
@@ -666,7 +666,7 @@ socket.offAnyOutgoing(myListener);
 socket.offAnyOutgoing();
 ```
 
-### socket.listenersAnyOutgoing()
+### socket.listenersAnyOutgoing() {#socketlistenersanyoutgoing}
 
 *Added in v4.5.0*
 
@@ -678,7 +678,7 @@ Returns the list of registered catch-all listeners for outgoing packets.
 const listeners = socket.listenersAnyOutgoing();
 ```
 
-### socket.compress(value)
+### socket.compress(value) {#socketcompressvalue}
 
   - `value` [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
   - **Returns** [`<Socket>`](#socket)
@@ -689,7 +689,7 @@ Sets a modifier for a subsequent event emission that the event data will only be
 socket.compress(false).emit("an event", { some: "data" });
 ```
 
-### socket.timeout(value)
+### socket.timeout(value) {#sockettimeoutvalue}
 
 *Added in v4.4.0*
 
@@ -707,7 +707,7 @@ socket.timeout(5000).emit("my-event", (err) => {
 });
 ```
 
-### socket.disconnect()
+### socket.disconnect() {#socketdisconnect}
 
 *Added in v1.0.0*
 
@@ -722,13 +722,13 @@ Associated disconnection reason:
 
 If this is the last active Socket instance of the Manager, the low-level connection will be closed.
 
-### socket.close()
+### socket.close() {#socketclose}
 
 *Added in v1.0.0*
 
 Synonym of [socket.disconnect()](#socketdisconnect).
 
-### Flag: 'volatile'
+### Flag: 'volatile' {#flag-volatile}
 
 *Added in v3.0.0*
 
@@ -741,7 +741,7 @@ Sets a modifier for the subsequent event emission indicating that the packet may
 socket.volatile.emit(/* ... */); // the server may or may not receive it
 ```
 
-### Event: 'connect'
+### Event: 'connect' {#event-connect}
 
 Fired upon connection to the Namespace (including a successful reconnection).
 
@@ -768,7 +768,7 @@ socket.on("data", () => { /* ... */ });
 
 :::
 
-### Event: 'disconnect'
+### Event: 'disconnect' {#event-disconnect}
 
   - `reason` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
   - `details` `<DisconnectDetails>`
@@ -797,7 +797,7 @@ socket.on("disconnect", (reason) => {
 });
 ```
 
-### Event: 'connect_error'
+### Event: 'connect_error' {#event-connect_error}
 
   - `connect_error` [`<Error>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) error object
 

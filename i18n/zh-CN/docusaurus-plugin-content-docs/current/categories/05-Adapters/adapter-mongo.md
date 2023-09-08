@@ -32,7 +32,7 @@ npm install @socket.io/mongo-adapter mongodb
 - [capped collection](https://www.mongodb.com/docs/manual/core/capped-collections/)
 - [TTL index](https://www.mongodb.com/docs/manual/core/index-ttl/)
 
-### 使用 capped collection
+### 使用 capped collection {#使用-capped-collection}
 
 ```js
 const { Server } = require("socket.io");
@@ -68,7 +68,7 @@ const main = async () => {
 main();
 ```
 
-### 使用 TTL index
+### 使用 TTL index {#使用-ttl-index}
 
 ```js
 const { Server } = require("socket.io");
@@ -103,7 +103,7 @@ const main = async () => {
 main();
 ```
 
-## 配置
+## 配置 {#配置}
 
 | 配置项                | 描述                                                                                         |     默认值    |    添加于 |
 |---------------------|-----------------------------------------------------------------------------------------------|---------------|----------|
@@ -113,7 +113,7 @@ main();
 | `heartbeatTimeout`  | 在我们考虑节点关闭之前没有心跳的毫秒数                                                            | `10000`       | `v0.1.0` |
 | `addCreatedAtField` | 是否为每个 MongoDB 文档添加一个`createdAt`字段                                                   | `false`       | `v0.2.0` |
 
-## 常见问题
+## 常见问题 {#常见问题}
 
 - 使用 MongoDB 适配器时是否还需要启用粘性会话？
 
@@ -130,26 +130,26 @@ main();
 
 文档： http://mongodb.github.io/node-mongodb-native/3.6/api/global.html#MongoClientOptions
 
-## 最新版本
+## 最新版本 {#最新版本}
 
 - `0.3.0` (Feb 2023): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.2.1...0.3.0)
 - `0.2.1` (May 2022): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.2.1) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.2.0...0.2.1)
 - `0.2.0` (Apr 2022): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.2.0) / [diff](https://github.com/socketio/socket.io-mongo-adapter/compare/0.1.0...0.2.0)
 - `0.1.0` (Jun 2021): [GitHub release](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.1.0)
 
-## Emitter
+## Emitter {#emitter}
 
 MongoDB 发射器允许从另一个 Node.js 进程向连接的客户端发送数据包：
 
 ![Diagram of how the MongoDB emitter works](/images/mongo-emitter.png)
 
-### 安装
+### 安装 {#安装}
 
 ```
 npm install @socket.io/mongo-emitter mongodb
 ```
 
-### 用法
+### 用法 {#用法}
 
 ```js
 const { Emitter } = require("@socket.io/mongo-emitter");

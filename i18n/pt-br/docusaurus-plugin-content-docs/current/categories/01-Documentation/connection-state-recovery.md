@@ -6,7 +6,7 @@ slug: /connection-state-recovery
 
 Connection state recovery is a feature which allows to restore the state of a client after a temporary disconnection, including any missed packets.
 
-## Disclaimer
+## Disclaimer {#disclaimer}
 
 Under real conditions, a Socket.IO client will inevitably experience temporary disconnections, regardless of the quality of the connection.
 
@@ -14,7 +14,7 @@ This feature will help you cope with such disconnections, but unless you want to
 
 That's why you will still need to handle the case where the states of the client and the server must be synchronized.
 
-## Usage
+## Usage {#usage}
 
 Connection state recovery must be enabled by the server:
 
@@ -79,7 +79,7 @@ socket.on("connect", () => {
 });
 ```
 
-## How it works under the hood
+## How it works under the hood {#how-it-works-under-the-hood}
 
 - the server sends a session ID [during the handshake](../08-Miscellaneous/sio-protocol.md#connection-to-a-namespace-1) (which is different from the current id attribute, which is public and can be freely shared)
 
@@ -128,7 +128,7 @@ YH...AW   => the private id of the session
 MzUPkW0   => the last processed offset
 ```
 
-## Compatibility with existing adapters
+## Compatibility with existing adapters {#compatibility-with-existing-adapters}
 
 | Adapter                                                          |                                                         Support?                                                         |
 |------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------:|

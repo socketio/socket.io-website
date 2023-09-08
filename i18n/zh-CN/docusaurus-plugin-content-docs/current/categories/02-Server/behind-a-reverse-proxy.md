@@ -169,7 +169,7 @@ httpProxy
 
 [Documentation](https://github.com/http-party/node-http-proxy#readme)
 
-## Caddy 2
+## Caddy 2 {#caddy-2}
 
 [Caddy 2](https://caddyserver.com/v2)中`Caddyfile`的内容
 

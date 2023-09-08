@@ -8,9 +8,9 @@ slug: /server-options/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Socket.IO Opções de servidor
+## Socket.IO Opções de servidor {#socketio-opções-de-servidor}
 
-### `path`
+### `path` {#path}
 
 Valor padrão: `/socket.io/`
 
@@ -44,7 +44,7 @@ const socket = io("https://example.com", {
 });
 ```
 
-### `serveClient`
+### `serveClient` {#serveclient}
 
 Valor padrão: `true`
 
@@ -58,7 +58,7 @@ Seja para servidor e arquivos de cliente. Se `true`, diferentes pacotes irão se
 
 Veja tambem [aqui](categories/03-Client/client-installation.md#standalone-build).
 
-### `adapter`
+### `adapter` {#adapter}
 
 Valor padrão: `require("socket.io-adapter")` (in-memory adapter, cujo código fonte pode ser encontrado [aqui](https://github.com/socketio/socket.io-adapter/))
 
@@ -123,20 +123,20 @@ io.listen(3000);
   </TabItem>
 </Tabs>
 
-### `parser`
+### `parser` {#parser}
 
 Valor padrão: `socket.io-parser`
 
 O parser a ser utilizado. Por favor veja a documentação [aqui](categories/06-Advanced/custom-parser.md).
 
-### `connectTimeout`
+### `connectTimeout` {#connecttimeout}
 
 Valor padrão: `45000`
 
 O numero de milissegundos antes de desconectar um cliente que não ingressou com sucesso em um namespace.
 
-## Opções de motor de baixo nível
-### `pingTimeout`
+## Opções de motor de baixo nível {#opções-de-motor-de-baixo-nível}
+### `pingTimeout` {#pingtimeout}
 
 Valor padrão: `20000`
 
@@ -162,19 +162,19 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `pingInterval`
+### `pingInterval` {#pinginterval}
 
 Valor padrão: `25000`
 
 Veja [acima](#pingtimeout).
 
-### `upgradeTimeout`
+### `upgradeTimeout` {#upgradetimeout}
 
 Valor padrão: `10000`
 
 É um delay em milissegundos antes que uma atualização de transporte imcompleta seja cancelada.
 
-### `maxHttpBufferSize`
+### `maxHttpBufferSize` {#maxhttpbuffersize}
 
 Valor padrão: `1e6` (1 MB)
 
@@ -188,7 +188,7 @@ const io = new Server(httpServer, {
 
 Ele corresponde a opção [maxPayload](https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback) do pacote ws.
 
-### `allowRequest`
+### `allowRequest` {#allowrequest}
 
 Padrão: `-`
 
@@ -230,7 +230,7 @@ Veja tambem:
 - [Como utilizar com `express-session`](/how-to/use-with-express-session)
 - [Como lidar com cookies](/how-to/deal-with-cookies)
 
-### `transports`
+### `transports` {#transports}
 
 Valor padrão: `["polling", "websocket"]`
 
@@ -238,13 +238,13 @@ O transporte de baixo-nível que são permitido do lado do cliente
 
 Veja tambem: Lado do cliente [`transports`](client-options.md#transports)
 
-### `allowUpgrades`
+### `allowUpgrades` {#allowupgrades}
 
 Valor padrão: `true`
 
 Se permiti atualizações de transporte.
 
-### `perMessageDeflate`
+### `perMessageDeflate` {#permessagedeflate}
 
 <details className="changelog">
     <summary>Historico</summary>
@@ -287,7 +287,7 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `httpCompression`
+### `httpCompression` {#httpcompression}
 
 *Adiconada na v1.4.0*
 
@@ -314,7 +314,7 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `wsEngine`
+### `wsEngine` {#wsengine}
 
 Valor padrão: `require("ws").Server` (codígo fontr pode ser encontrado [aqui](https://github.com/websockets/ws))
 
@@ -328,7 +328,7 @@ const io = new Server(httpServer, {
 });
 ```
 
-### `cors`
+### `cors` {#cors}
 
 Valor padrão: `-`
 
@@ -368,7 +368,7 @@ Possiveis valores para a opção `origin`:
 - `Array` - Define `origin` para um array para origens validas. Cada origem pode ser uma `String` ou um  `RegExp`. Por exemplo `["http://example1.com", /\.example2\.com$/]` será aceito qualquer requisição para "http://example1.com" ou padra um subdominio do  "example2.com".
 - `Function` - Define `origin` para uma função implementando alguma logiva customizada. A Função pega a origim da requisição como o primeiro parâmetro e o callback (que espera uma assinatura `err [object], allow [bool]`) como o segundo.
 
-### `cookie`
+### `cookie` {#cookie}
 
 Valor padrão: `-`
 
@@ -404,7 +404,7 @@ Desde Socket.IO v3, não a mais cookies enviados por padrão ([reference](catego
 
 :::
 
-### `allowEIO3`
+### `allowEIO3` {#alloweio3}
 
 Valor padrão: `false`
 

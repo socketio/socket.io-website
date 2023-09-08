@@ -3,7 +3,7 @@ title: Changelog
 sidebar_position: 1
 ---
 
-## Versioning Policy
+## Versioning Policy {#versioning-policy}
 
 Socket.IO releases closely follow [Semantic Versioning](https://semver.org/).
 
@@ -13,7 +13,7 @@ That means that with a version number `x.y.z`:
 - when releasing new features or non-critical fixes, we make a minor release by increasing the `y` number (ex: `1.2.3` to `1.3.0`).
 - when releasing breaking changes, we make a major release by increasing the `x` number (ex: `1.2.3` to `2.0.0`).
 
-## Breaking changes
+## Breaking changes {#breaking-changes}
 
 Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases.
 

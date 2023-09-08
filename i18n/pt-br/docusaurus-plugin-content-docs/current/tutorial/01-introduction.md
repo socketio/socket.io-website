@@ -13,7 +13,7 @@ Welcome to the Socket.IO tutorial!
 
 In this tutorial we'll create a basic chat application. It requires almost no basic prior knowledge of Node.JS or Socket.IO, so it’s ideal for users of all knowledge levels.
 
-## Introduction
+## Introduction {#introduction}
 
 Writing a chat application with popular web applications stacks like LAMP (PHP) has normally been very hard. It involves polling the server for changes, keeping track of timestamps, and it’s a lot slower than it should be.
 
@@ -21,9 +21,9 @@ Sockets have traditionally been the solution around which most real-time chat sy
 
 This means that the server can *push* messages to clients. Whenever you write a chat message, the idea is that the server will get it and push it to all other connected clients.
 
-## How to use this tutorial
+## How to use this tutorial {#how-to-use-this-tutorial}
 
-### Tooling
+### Tooling {#tooling}
 
 Any text editor (from a basic text editor to a complete IDE such as [VS Code](https://code.visualstudio.com/)) should be sufficient to complete this tutorial.
 
@@ -31,7 +31,7 @@ Additionally, at the end of each step you will find a link to some online platfo
 
 ![Screenshot of the CodeSandbox platform](/images/codesandbox.png)
 
-### Syntax settings
+### Syntax settings {#syntax-settings}
 
 In the Node.js world, there are two ways to import modules:
 
