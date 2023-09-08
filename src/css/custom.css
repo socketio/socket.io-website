@@ -52,3 +52,7 @@ html[data-theme='dark'] .header-github-link:before {
   font-size: 0.875rem;
   padding: 0.2rem 0.5rem;
 }
+
+.display-none {
+  display: none;
+}

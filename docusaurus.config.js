@@ -81,15 +81,25 @@ module.exports = {
       },
       items: [
         {
-          type: "doc",
-          docId: "categories/Documentation/index",
+          type: "dropdown",
+          label: "Docs",
           position: "left",
-          label: "Documentation",
-        },
-        {
-          position: "left",
-          label: "Examples",
-          to: "/get-started/",
+          items: [
+            {
+              type: "doc",
+              label: "Guide",
+              docId: "categories/Documentation/index",
+            },
+            {
+              type: "doc",
+              label: "Tutorial",
+              docId: "tutorial/introduction",
+            },
+            {
+              label: "Examples",
+              to: "/get-started/",
+            }
+          ]
         },
         {
           type: "doc",
