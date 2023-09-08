@@ -7,6 +7,12 @@ slug: /
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+:::tip
+
+If you are new to Socket.IO, we recommend checking out our [tutorial](../../tutorial/01-introduction.md).
+
+:::
+
 ## O que o Socket.IO é {#o-que-o-socketio-é}
 
 Socket.IO é uma biblioteca que permite **baixa-latência**, **bidirecional** e **baseado em eventos** de comunicação entre cliente e um servidor.

@@ -7,6 +7,12 @@ slug: /
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+:::tip
+
+If you are new to Socket.IO, we recommend checking out our [tutorial](../../tutorial/01-introduction.md).
+
+:::
+
 ## 什么是 Socket.IO {#what-socketio-is}
 
 Socket.IO 是一个库，可以在客户端和服务器之间实现 **低延迟**, **双向** 和 **基于事件的** 通信。
