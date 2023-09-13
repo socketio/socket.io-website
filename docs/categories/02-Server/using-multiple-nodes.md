@@ -56,6 +56,7 @@ To achieve sticky-session, there are two main solutions:
 You will find below some examples with common load-balancing solutions:
 
 - [NginX](#nginx-configuration) (IP-based)
+- [NginX Ingress (Kubernetes)](#nginx-ingress-kubernetes) (IP-based)
 - [Apache HTTPD](#apache-httpd-configuration) (cookie-based)
 - [HAProxy](#haproxy-configuration) (cookie-based)
 - [Traefik](#traefik) (cookie-based)
@@ -139,6 +140,63 @@ Links:
 
 - [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-nginx)
 - [NginX Documentation](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
+
+### NginX Ingress (Kubernetes)
+
+Within the `annotations` section of your Ingress configuration, you can declare an upstream hashing based on the client's IP address, so that the Ingress controller always assigns the requests from a given IP address to the same pod:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: your-ingress
+  namespace: your-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      set $forwarded_client_ip "";
+      if ($http_x_forwarded_for ~ "^([^,]+)") {
+        set $forwarded_client_ip $1;
+      }
+      set $client_ip $remote_addr;
+      if ($forwarded_client_ip != "") {
+        set $client_ip $forwarded_client_ip;
+      }
+    nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: io.yourhost.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: your-service
+                port:
+                  number: 80
+```
+
+Notes:
+
+- `nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"`
+
+This annotation instructs the NGINX Ingress Controller to use the client's IP address for routing incoming traffic to a specific Pod in your Kubernetes cluster. This is crucial for maintaining sticky sessions.
+
+- `nginx.ingress.kubernetes.io/configuration-snippet`
+
+This custom NGINX configuration snippet serves a dual purpose:
+
+1. If the request passes through upstream reverse proxies or API gateways that append an `X-Forwarded-For` header, this snippet extracts the first IP address from that header and uses it to update the $client_ip.
+
+2. In the absence of such proxies or gateways, the snippet simply uses the remote_addr, which is the IP address of the client directly connected to the ingress.
+
+This ensures that the correct client IP is used for the sticky session logic, enabled by the `nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"` annotation. The snippet is particularly important when your architecture includes upstream network components like reverse proxies or API gateways.
+
+Links:
+
+- [Ingress Nginx Documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-nginx-upstream-hashing)
+- [X-Forwarded-For Header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For)
 
 ### Apache HTTPD configuration
 
