@@ -39,7 +39,13 @@ And then simply use `to` or `in` (they are the same) when broadcasting or emitti
 io.to("some room").emit("some event");
 ```
 
-You can emit to several rooms at the same time:
+Or exclude a room:
+
+```js
+io.except("some room").emit("some event");
+```
+
+You can also emit to several rooms at the same time:
 
 ```js
 io.to("room1").to("room2").to("room3").emit("some event");
