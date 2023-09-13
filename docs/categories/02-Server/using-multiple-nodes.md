@@ -177,13 +177,17 @@ spec:
                   number: 80
 ```
 
-#### `nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"`
+Notes:
+
+- `nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"`
+
 This annotation instructs the NGINX Ingress Controller to use the client's IP address for routing incoming traffic to a specific Pod in your Kubernetes cluster. This is crucial for maintaining sticky sessions.
 
-#### `nginx.ingress.kubernetes.io/configuration-snippet`
+- `nginx.ingress.kubernetes.io/configuration-snippet`
+
 This custom NGINX configuration snippet serves a dual purpose:
 
-1. If the request passes through upstream reverse proxies or API gateways that append an X-Forwarded-For header, this snippet extracts the first IP address from that header and uses it to update the $client_ip.
+1. If the request passes through upstream reverse proxies or API gateways that append an `X-Forwarded-For` header, this snippet extracts the first IP address from that header and uses it to update the $client_ip.
 
 2. In the absence of such proxies or gateways, the snippet simply uses the remote_addr, which is the IP address of the client directly connected to the ingress.
 
