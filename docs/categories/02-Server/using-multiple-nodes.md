@@ -56,7 +56,7 @@ To achieve sticky-session, there are two main solutions:
 You will find below some examples with common load-balancing solutions:
 
 - [NginX](#nginx-configuration) (IP-based)
-- [Ingress NginX (Kubernetes)](#nginx-ingressk8s-configuration) (IP-based)
+- [NginX Ingress (Kubernetes)](#nginx-ingress-kubernetes) (IP-based)
 - [Apache HTTPD](#apache-httpd-configuration) (cookie-based)
 - [HAProxy](#haproxy-configuration) (cookie-based)
 - [Traefik](#traefik) (cookie-based)
@@ -141,9 +141,9 @@ Links:
 - [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-nginx)
 - [NginX Documentation](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
 
-### NginX Ingress(k8s) configuration
+### NginX Ingress (Kubernetes)
 
-Within the `annotations` section of your `ingress` configuration, you can declare a `upstream` hashing based on the clientIp, so that the `ingress controller` always assigns the requests with the same client ip address to the same `socket.io` pods/servers:
+Within the `annotations` section of your Ingress configuration, you can declare an upstream hashing based on the client's IP address, so that the Ingress controller always assigns the requests from a given IP address to the same pod:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
