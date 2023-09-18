@@ -155,11 +155,6 @@
     "alt": "Casino.Guide"
   },
   {
-    "url": "https://coolspins.net/",
-    "img": "https://images.opencollective.com/casino-utan-svensk-licens1/63947bf/logo.png",
-    "alt": "Casino Utan Svensk Licens"
-  },
-  {
     "url": "https://slotsempire.com/",
     "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
     "alt": "Slots Empire Casino"
@@ -385,11 +380,6 @@
     "alt": "New Online Casinos Canada 2023"
   },
   {
-    "url": "https://luckygambler.com/",
-    "img": "https://images.opencollective.com/luckygamblercom/7723672/logo.png",
-    "alt": "LuckyGambler"
-  },
-  {
     "url": "https://onlinecasinoosusume.jp/",
     "img": "https://images.opencollective.com/onlinecasinoosusume/1e5fce6/avatar.png",
     "alt": "Online Casino Osusume"
@@ -430,16 +420,6 @@
     "alt": "Kiwi Gambler NZ"
   },
   {
-    "url": "https://www.casinoaustraliaonline.com/payid-casinos/",
-    "img": "https://images.opencollective.com/payid-casinos-australia/b67dfd9/logo.png",
-    "alt": "PayID Casinos Australia"
-  },
-  {
-    "url": "https://kiekkotorni.com/",
-    "img": "https://images.opencollective.com/kiekkotorni/a393d0a/logo.png",
-    "alt": "Kiekkotorni - Nikotiinipussit"
-  },
-  {
     "url": "https://www.slotsup.com",
     "img": "https://images.opencollective.com/slotsup/5a69a49/logo.png",
     "alt": "SlotsUp"
@@ -448,6 +428,16 @@
     "url": "https://www.nettcasino.com/",
     "img": "https://images.opencollective.com/nettcasino/df22622/logo.png",
     "alt": "Nettcasino"
+  },
+  {
+    "url": "https://www.casinoaustraliaonline.com/payid-casinos/",
+    "img": "https://images.opencollective.com/payid-casinos-australia/b67dfd9/logo.png",
+    "alt": "PayID Casinos Australia"
+  },
+  {
+    "url": "https://kiekkotorni.com/",
+    "img": "https://images.opencollective.com/kiekkotorni/a393d0a/logo.png",
+    "alt": "Kiekkotorni - Nikotiinipussit"
   },
   {
     "url": "https://www.sportsbookreviewsonline.com/",
@@ -480,9 +470,19 @@
     "alt": "CasinoLandia"
   },
   {
+    "url": "https://no-verification.casino/canada/",
+    "img": "https://images.opencollective.com/noverificationcasino/6e11a64/logo.png",
+    "alt": "online casino no verification withdrawal canada"
+  },
+  {
     "url": "https://www.vedonlyontibonukset.com/pitkavetovihjeet",
     "img": "https://images.opencollective.com/pitkavetovihjeet/0131f1d/logo.png",
     "alt": "Ilmaiset Pitkävetovihjeet"
+  },
+  {
+    "url": "https://www.casino-comparatif.org/",
+    "img": "https://images.opencollective.com/casinocomparatif-tm/ee59a12/avatar.png",
+    "alt": "CasinoComparatif™"
   },
   {
     "url": "https://www.bestaucasinosites.com/",
@@ -495,19 +495,9 @@
     "alt": "pucuk138"
   },
   {
-    "url": "https://no-verification.casino/canada/",
-    "img": "https://images.opencollective.com/noverificationcasino/6e11a64/logo.png",
-    "alt": "online casino no verification withdrawal canada"
-  },
-  {
     "url": "https://www.nyecasino.me/",
     "img": "https://images.opencollective.com/nyecasino/3361ca8/logo.png",
     "alt": "NyeCasino"
-  },
-  {
-    "url": "https://www.casino-comparatif.org/",
-    "img": "https://images.opencollective.com/casinocomparatif-tm/ee59a12/avatar.png",
-    "alt": "CasinoComparatif™"
   },
   {
     "url": "https://releaf.co.uk",
@@ -578,5 +568,20 @@
     "url": "https://www.cryptolists.com/casinos/",
     "img": "https://images.opencollective.com/cryptolists/b8c5829/logo.png",
     "alt": "CryptoLists.com"
+  },
+  {
+    "url": "https://cfi-blog.org/",
+    "img": "https://images.opencollective.com/cfi-blog1/6ded3e5/avatar.png",
+    "alt": "CFI Blog"
+  },
+  {
+    "url": "https://crescitaly.com",
+    "img": "https://images.opencollective.com/crescitaly/a7ded1b/logo.png",
+    "alt": "Crescitaly"
+  },
+  {
+    "url": "https://777.ua/",
+    "img": "https://images.opencollective.com/777ua/logo.png",
+    "alt": "777"
   }
 ]
