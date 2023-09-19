@@ -48,6 +48,7 @@ Vous trouverez plus d'informations à ce sujet dans la [section "Comment ça mar
 | Java                 | https://github.com/trinopoty/socket.io-server-java                                                                                                |
 | Python               | https://github.com/miguelgrinberg/python-socketio                                                                                                 |
 | Golang               | https://github.com/googollee/go-socket.io                                                                                                         |
+| Rust                 | https://github.com/Totodore/socketioxide                                                                                                          |
 
 ### Implémentations côté client {#client-implementations}
 
