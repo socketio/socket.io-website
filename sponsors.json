@@ -230,11 +230,6 @@
     "alt": "Aspire Global Casinos"
   },
   {
-    "url": "https://sportbetting24.se/",
-    "img": "https://images.opencollective.com/sportbetting24/2459659/avatar.png",
-    "alt": "Sportbetting24"
-  },
-  {
     "url": "https://parimatch.in/",
     "img": "https://images.opencollective.com/seo-pmi/768ffc5/avatar.png",
     "alt": "Parimatch India"
@@ -340,11 +335,6 @@
     "alt": "Top Australian Gambling"
   },
   {
-    "url": "https://automatenspielex.com/online-casinos",
-    "img": "/images/sponsors/automatenspielexcom.png",
-    "alt": "beste online casino deutschland"
-  },
-  {
     "url": "https://quickbookstoolhub.com",
     "img": "https://images.opencollective.com/marky-daren/5ad034e/avatar.png",
     "alt": "Quickbooks Tool Hub"
@@ -363,6 +353,11 @@
     "url": "https://www.gambleonline.co/nz/",
     "img": "https://images.opencollective.com/gambleonline-nz/5004fcc/logo.png",
     "alt": "GambleOnline NZ"
+  },
+  {
+    "url": "https://automatenspielex.com/online-casinos",
+    "img": "/images/sponsors/automatenspielexcom.png",
+    "alt": "beste online casino deutschland"
   },
   {
     "url": "https://www.onlinecasinos.net/",
@@ -390,11 +385,6 @@
     "alt": "Renato Baldo"
   },
   {
-    "url": "https://casinozondercruks.net/",
-    "img": "https://images.opencollective.com/czc-net/fa79dac/avatar.png",
-    "alt": "CZC-NET"
-  },
-  {
     "url": "https://justuk.club/",
     "img": "https://images.opencollective.com/justuk-club/d1944d8/avatar.png",
     "alt": "justuk.club"
@@ -403,6 +393,11 @@
     "url": "https://legitgamblingsites.com",
     "img": "https://images.opencollective.com/legitgamblingsites/a6efbd9/logo.png",
     "alt": "LegitGamblingSites"
+  },
+  {
+    "url": "https://casinozondercruks.net/",
+    "img": "https://images.opencollective.com/czc-net/fa79dac/avatar.png",
+    "alt": "CZC-NET"
   },
   {
     "url": "https://sup.today/",
@@ -583,5 +578,10 @@
     "url": "https://777.ua/",
     "img": "https://images.opencollective.com/777ua/logo.png",
     "alt": "777"
+  },
+  {
+    "url": "https://immediateedgeapp.org/",
+    "img": "https://images.opencollective.com/immediate-edge30/logo.png",
+    "alt": "Immediate Edge"
   }
 ]
