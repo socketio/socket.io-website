@@ -57,5 +57,6 @@ There are currently two implemented transports:
 
 - HTTP long-polling
 - [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+- [WebTransport](https://developer.mozilla.org/en-US/docs/Web/API/WebTransport_API)
 
 Please see the documentation [here](../01-Documentation/how-it-works.md#transports).

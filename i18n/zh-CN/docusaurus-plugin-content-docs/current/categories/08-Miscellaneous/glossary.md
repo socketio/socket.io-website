@@ -55,6 +55,7 @@ Room 是一个服务器端概念，允许将数据广播到客户端的子集。
 目前有两种实现的传输：
 
 - HTTP 长轮询
-- [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+- [WebSocket](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSockets_API)
+- [WebTransport](https://developer.mozilla.org/zh-CN/docs/Web/API/WebTransport_API)
 
 请查看[这个文档](../01-Documentation/how-it-works.md#transports).

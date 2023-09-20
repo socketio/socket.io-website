@@ -53,9 +53,10 @@ Observe a documentação [aqui](../04-Events/rooms.md).
 
 Um Transport representa um forma de baixo-nível de estabelecer uma conexão entre o servidor e o cliente.
 
-Existem atualmente dois transportes implementados:
+Existem atualmente três transportes implementados:
 
 - HTTP long-polling
-- [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+- [WebSocket](https://developer.mozilla.org/pt-BR/docs/Web/API/WebSockets_API)
+- [WebTransport](https://developer.mozilla.org/pt-BR/docs/Web/API/WebTransport_API)
 
 Observe a documentação [aqui](../01-Documentation/how-it-works.md#transports).
