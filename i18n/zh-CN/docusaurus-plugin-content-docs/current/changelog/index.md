@@ -29,3 +29,15 @@ Socket.IO v4 (released in March 2021) did not include any update to the Socket.I
 Reference: [Migrating from 3.x to 4.0](../categories/07-Migrations/migrating-from-3-to-4.md)
 
 :::
+
+## Important milestones {#important-milestones}
+
+Aside from the breaking changes listed above, here are the latest important changes in Socket.IO:
+
+| Version             | Date          | Description                                                                                              |
+|---------------------|---------------|----------------------------------------------------------------------------------------------------------|
+| [`4.7.0`](4.7.0.md) | June 2023     | Support for WebTransport                                                                                 |
+| [`4.6.0`](4.6.0.md) | February 2023 | Introduction of [Connection state recovery](../categories/01-Documentation/connection-state-recovery.md) |
+| `4.4.0`             | November 2021 | Support for [uWebSockets.js](../categories/02-Server/server-installation.md#usage-with-uwebsockets)      |
+| `4.1.0`             | May 2021      | Introduction of [`serverSideEmit()`](../categories/02-Server/server-instance.md#serversideemit)          |
+| `4.0.0`             | March 2021    | Rewrite to [TypeScript](https://www.typescriptlang.org/)                                                 |
