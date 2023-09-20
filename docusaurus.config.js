@@ -178,12 +178,12 @@ module.exports = {
           title: "Documentation",
           items: [
             {
-              label: "Get started",
-              to: "/get-started/chat",
+              label: "Guide",
+              to: "/docs/v4/",
             },
             {
-              label: "Documentation",
-              to: "/docs/v4/",
+              label: "Tutorial",
+              to: "/docs/v4/tutorial/introduction",
             },
             {
               label: "Examples",
