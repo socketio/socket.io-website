@@ -4,7 +4,15 @@ sidebar_position: 4
 slug: /connection-state-recovery
 ---
 
-Connection state recovery is a feature which allows to restore the state of a client after a temporary disconnection, including any missed packets.
+Connection state recovery is a feature which allows restoring a client's state after a temporary disconnection, including any missed packets.
+
+:::info
+
+This feature was added in version `4.6.0`, released in February 2023.
+
+The release notes can be found [here](../../changelog/4.6.0.md).
+
+:::
 
 ## Disclaimer {#disclaimer}
 
@@ -50,7 +58,7 @@ io.on("connection", (socket) => {
 ```js
 socket.on("connect", () => {
   if (socket.recovered) {
-    // any missed packets will be received
+    // any event missed during the disconnection period will be received now
   } else {
     // new or unrecoverable session
   }
@@ -78,6 +86,28 @@ socket.on("connect", () => {
   }, 10000);
 });
 ```
+
+:::tip
+
+You can also run this example directly in your browser on:
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/socket.io/tree/main/examples/connection-state-recovery-example/esm?file=index.js)
+- [StackBlitz](https://stackblitz.com/github/socketio/socket.io/tree/main/examples/connection-state-recovery-example/esm?file=index.js)
+
+:::
+
+## Compatibility with existing adapters {#compatibility-with-existing-adapters}
+
+| Adapter                                                          |                                                         Support?                                                         |
+|------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------:|
+| Built-in adapter (in memory)                                     |                                                  YES :white_check_mark:                                                  |
+| [Redis adapter](../05-Adapters/adapter-redis.md)                 |                                                      NO<sup>1</sup>                                                      |
+| [Redis Streams adapter](../05-Adapters/adapter-redis-streams.md) |                                                  YES :white_check_mark:                                                  |
+| [MongoDB adapter](../05-Adapters/adapter-mongo.md)               | YES :white_check_mark: (since version [`0.3.0`](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0)) |
+| [Postgres adapter](../05-Adapters/adapter-postgres.md)           |                                                           WIP                                                            |
+| [Cluster adapter](../05-Adapters/adapter-cluster.md)             |                                                           WIP                                                            |
+
+[1] Persisting the packets is not compatible with the Redis PUB/SUB mechanism.
 
 ## How it works under the hood {#how-it-works-under-the-hood}
 
@@ -111,6 +141,12 @@ foo       => the event name (socket.emit("foo"))
 MzUPkW0   => the offset
 ```
 
+:::note
+
+For the recovery to succeed, the server must send at least one event, in order to initialize the offset on the client side.
+
+:::
+
 - upon temporary disconnection, the server stores the client state for a given delay (implemented at the adapter level)
 
 - upon reconnection, the client sends both the session ID and the last offset it has processed, and the server tries to restore the state
@@ -127,16 +163,3 @@ where
 YH...AW   => the private id of the session
 MzUPkW0   => the last processed offset
 ```
-
-## Compatibility with existing adapters {#compatibility-with-existing-adapters}
-
-| Adapter                                                          |                                                         Support?                                                         |
-|------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------:|
-| Built-in adapter (in memory)                                     |                                                  YES :white_check_mark:                                                  |
-| [Redis adapter](../05-Adapters/adapter-redis.md)                 |                                                      NO<sup>1</sup>                                                      |
-| [Redis Streams adapter](../05-Adapters/adapter-redis-streams.md) |                                                  YES :white_check_mark:                                                  |
-| [MongoDB adapter](../05-Adapters/adapter-mongo.md)               | YES :white_check_mark: (since version [`0.3.0`](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0)) |
-| [Postgres adapter](../05-Adapters/adapter-postgres.md)           |                                                           WIP                                                            |
-| [Cluster adapter](../05-Adapters/adapter-cluster.md)             |                                                           WIP                                                            |
-
-[1] Persisting the packets is not compatible with the Redis PUB/SUB mechanism.
