@@ -166,3 +166,84 @@ test.onFinish(() => {
   clientSocket.close();
 });
 ```
+
+## Example with `vitest` with TypeScript
+
+Installation: `npm i -D vitest`
+
+```ts
+import { beforeAll, afterAll, describe, it, expect } from "vitest";
+import { Server, Socket } from "socket.io";
+import { io as ioc, Socket as ClientSocket } from "socket.io-client";
+import { createServer } from "http";
+
+function waitFor(emitter: ClientSocket, event: string) {
+  return new Promise<number>((resolve) => {
+    emitter.once(event, resolve);
+  });
+}
+
+const PORT = 5555;
+
+async function setupTestServer() {
+  const httpServer = createServer();
+
+  const io = new Server(httpServer);
+  httpServer.listen(PORT);
+
+  const clientSocket = ioc(`ws://localhost:${PORT}`, {
+    transports: ["websocket"],
+  });
+
+  let serverSocket: Socket | undefined = undefined;
+  io.on("connection", (connectedSocket) => {
+    serverSocket = connectedSocket;
+    serverSocket.on("multiply-by-two", (number) => {
+      serverSocket?.emit("result-by-two", number * 2);
+    });
+
+    serverSocket.on("multiply-by-three", (number) => {
+      serverSocket?.emit("result-by-three", number * 3);
+    });
+  });
+
+  await waitFor(clientSocket, "connect");
+
+  return { io, clientSocket, serverSocket };
+}
+
+describe("websocket integration test", () => {
+  let io: Server;
+
+  let serverSocket: Socket | undefined;
+  let clientSocket: ClientSocket;
+
+  beforeAll(async () => {
+    const response = await setupTestServer();
+    io = response.io;
+    clientSocket = response.clientSocket;
+    serverSocket = response.serverSocket;
+  });
+
+  afterAll(() => {
+    io.close();
+    clientSocket.close();
+  });
+
+  it("should multiply numbers", async () => {
+    clientSocket.emit("multiply-by-two", 2);
+    clientSocket.emit("multiply-by-three", 3);
+
+    const promises = [
+      waitFor(clientSocket, "result-by-two"),
+      waitFor(clientSocket, "result-by-three"),
+    ];
+
+    const [promise1, promise2] = await Promise.all(promises);
+
+    expect(promise1).toBe(4);
+    expect(promise2).toBe(9);
+  });
+});
+
+```
