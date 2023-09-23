@@ -9,6 +9,7 @@ You will find below some code examples with common testing libraries:
 - [mocha](#example-with-mocha)
 - [jest](#example-with-jest)
 - [tape](#example-with-tape)
+- [vitest](#example-with-vitest-and-typescript)
 
 ## Example with `mocha`
 
@@ -167,7 +168,7 @@ test.onFinish(() => {
 });
 ```
 
-## Example with `vitest` with TypeScript
+## Example with `vitest` and TypeScript
 
 Installation: `npm i -D vitest`
 
