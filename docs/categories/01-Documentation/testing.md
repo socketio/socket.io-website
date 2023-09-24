@@ -199,12 +199,9 @@ async function setupTestServer() {
   let serverSocket: Socket | undefined = undefined;
   io.on("connection", (connectedSocket) => {
     serverSocket = connectedSocket;
-    serverSocket.on("multiply-by-two", (number) => {
-      serverSocket?.emit("result-by-two", number * 2);
-    });
-
-    serverSocket.on("multiply-by-three", (number) => {
-      serverSocket?.emit("result-by-three", number * 3);
+    serverSocket.on("multiply-by", (number) => {
+      serverSocket?.emit("multiplied-by-two", number * 2);
+      serverSocket?.emit("multiplied-by-three", number * 3);
     });
   });
 
@@ -232,18 +229,17 @@ describe("websocket integration test", () => {
   });
 
   it("should multiply numbers", async () => {
-    clientSocket.emit("multiply-by-two", 2);
-    clientSocket.emit("multiply-by-three", 3);
+    clientSocket.emit("multiply-by", 2);
 
     const promises = [
-      waitFor(clientSocket, "result-by-two"),
-      waitFor(clientSocket, "result-by-three"),
+      waitFor(clientSocket, "multiplied-by-two"),
+      waitFor(clientSocket, "multiplied-by-three"),
     ];
 
     const [promise1, promise2] = await Promise.all(promises);
 
     expect(promise1).toBe(4);
-    expect(promise2).toBe(9);
+    expect(promise2).toBe(6);
   });
 });
 
