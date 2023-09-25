@@ -9,6 +9,7 @@ You will find below some code examples with common testing libraries:
 - [mocha](#example-with-mocha)
 - [jest](#example-with-jest)
 - [tape](#example-with-tape)
+- [vitest](#example-with-vitest-and-typescript)
 
 ## Example with `mocha`
 
@@ -165,4 +166,81 @@ test.onFinish(() => {
   io.close();
   clientSocket.close();
 });
+```
+
+## Example with `vitest` and TypeScript
+
+Installation: `npm i -D vitest`
+
+```ts
+import { beforeAll, afterAll, describe, it, expect } from "vitest";
+import { Server, Socket } from "socket.io";
+import { io as ioc, Socket as ClientSocket } from "socket.io-client";
+import { createServer } from "http";
+
+function waitFor(emitter: ClientSocket, event: string) {
+  return new Promise<number>((resolve) => {
+    emitter.once(event, resolve);
+  });
+}
+
+const PORT = 5555;
+
+async function setupTestServer() {
+  const httpServer = createServer();
+
+  const io = new Server(httpServer);
+  httpServer.listen(PORT);
+
+  const clientSocket = ioc(`ws://localhost:${PORT}`, {
+    transports: ["websocket"],
+  });
+
+  let serverSocket: Socket | undefined = undefined;
+  io.on("connection", (connectedSocket) => {
+    serverSocket = connectedSocket;
+    serverSocket.on("multiply-by", (number) => {
+      serverSocket?.emit("multiplied-by-two", number * 2);
+      serverSocket?.emit("multiplied-by-three", number * 3);
+    });
+  });
+
+  await waitFor(clientSocket, "connect");
+
+  return { io, clientSocket, serverSocket };
+}
+
+describe("websocket integration test", () => {
+  let io: Server;
+
+  let serverSocket: Socket | undefined;
+  let clientSocket: ClientSocket;
+
+  beforeAll(async () => {
+    const response = await setupTestServer();
+    io = response.io;
+    clientSocket = response.clientSocket;
+    serverSocket = response.serverSocket;
+  });
+
+  afterAll(() => {
+    io.close();
+    clientSocket.close();
+  });
+
+  it("should multiply numbers", async () => {
+    clientSocket.emit("multiply-by", 2);
+
+    const promises = [
+      waitFor(clientSocket, "multiplied-by-two"),
+      waitFor(clientSocket, "multiplied-by-three"),
+    ];
+
+    const [promise1, promise2] = await Promise.all(promises);
+
+    expect(promise1).toBe(4);
+    expect(promise2).toBe(6);
+  });
+});
+
 ```
