@@ -235,14 +235,14 @@
     "alt": "Parimatch India"
   },
   {
-    "url": "https://leafletcasino.com/",
-    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
-    "alt": "leafletcasino.com"
-  },
-  {
     "url": "https://www.automatenspiele.org/",
     "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
     "alt": "automatenspiele.org"
+  },
+  {
+    "url": "https://leafletcasino.com/",
+    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
+    "alt": "leafletcasino.com"
   },
   {
     "url": "https://www.ibeesoft.com/",
@@ -363,6 +363,11 @@
     "url": "https://www.onlinecasinos.net/",
     "img": "https://images.opencollective.com/onlinecasinos1/avatar.png",
     "alt": "OnlineCasinos"
+  },
+  {
+    "url": "https://mobogift.com",
+    "img": "https://images.opencollective.com/mobogift/cae1424/avatar.png",
+    "alt": "mobogift"
   },
   {
     "url": "https://twicsy.com/buy-instagram-likes",
@@ -583,5 +588,10 @@
     "url": "https://immediateedgeapp.org/",
     "img": "https://images.opencollective.com/immediate-edge30/logo.png",
     "alt": "Immediate Edge"
+  },
+  {
+    "url": "https://payidpokies.com",
+    "img": "https://images.opencollective.com/payidpokies/7c3cbee/logo.png",
+    "alt": "PayIDPokies"
   }
 ]
