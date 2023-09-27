@@ -79,7 +79,7 @@ To leave a channel you call `leave` in the same fashion as `join`.
 
 ```js
 io.on("connection", async (socket) => {
-  const userId = await fetchUserId(socket);
+  const userId = await computeUserIdFromHeaders(socket);
 
   socket.join(userId);
 
