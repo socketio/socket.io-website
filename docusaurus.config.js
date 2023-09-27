@@ -47,11 +47,11 @@ const newsItems = [
 const aboutItems = [
   {
     label: "FAQ",
-    to: "/docs/v4/faq",
+    to: "/docs/v4/faq/",
   },
   {
     label: "Changelog",
-    to: "/docs/v4/changelog",
+    to: "/docs/v4/changelog/",
   },
   {
     label: "Roadmap",
