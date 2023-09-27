@@ -360,6 +360,11 @@
     "alt": "beste online casino deutschland"
   },
   {
+    "url": "https://www.slotozilla.com/de/software/novoline-de",
+    "img": "/images/sponsors/slotozilla.png",
+    "alt": "Novoline Spielautomaten"
+  },
+  {
     "url": "https://www.onlinecasinos.net/",
     "img": "https://images.opencollective.com/onlinecasinos1/avatar.png",
     "alt": "OnlineCasinos"
@@ -420,6 +425,11 @@
     "alt": "Kiwi Gambler NZ"
   },
   {
+    "url": "https://www.overlyzer.com/",
+    "img": "https://images.opencollective.com/overlyzer_com/34ddd64/avatar.png",
+    "alt": "Overlyzer"
+  },
+  {
     "url": "https://www.slotsup.com",
     "img": "https://images.opencollective.com/slotsup/5a69a49/logo.png",
     "alt": "SlotsUp"
@@ -443,11 +453,6 @@
     "url": "https://www.sportsbookreviewsonline.com/",
     "img": "https://images.opencollective.com/sportsbook-reviews-online/17b05a6/logo.png",
     "alt": "Sportsbook Reviews Online"
-  },
-  {
-    "url": "https://www.overlyzer.com/",
-    "img": "https://images.opencollective.com/overlyzer_com/34ddd64/avatar.png",
-    "alt": "Overlyzer"
   },
   {
     "url": "https://veepn.com/vpn-apps/download-vpn-for-pc/",
@@ -593,5 +598,10 @@
     "url": "https://payidpokies.com",
     "img": "https://images.opencollective.com/payidpokies/7c3cbee/logo.png",
     "alt": "PayIDPokies"
+  },
+  {
+    "url": "https://www.onlineunitedstatescasinos.com/",
+    "img": "https://images.opencollective.com/online-united-states-casinos/375aa90/logo.png",
+    "alt": "Online United States Casinos"
   }
 ]
