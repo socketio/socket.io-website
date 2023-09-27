@@ -102,6 +102,11 @@ module.exports = {
             {
               label: "Examples",
               to: "/get-started/",
+            },
+            {
+              type: "doc",
+              label: "Emit cheatsheet",
+              docId: "emit-cheatsheet"
             }
           ]
         },
