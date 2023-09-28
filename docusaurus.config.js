@@ -223,6 +223,11 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Socket.IO`,
     },
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     prism: {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
