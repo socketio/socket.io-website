@@ -7,10 +7,10 @@ slug: /rooms/
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-A *room* is an arbitrary channel that sockets can `join` and `leave`. It can be used to broadcast events to a subset of clients:
+Uma *sala* é um canal arbitrário ao qual os sockets podem `entrar` e `sair`. Ela pode ser usada para transmitir eventos para um subconjunto de clientes:
 
 <ThemedImage
-  alt="Broadcasting to all clients in a room"
+  alt="Transmitindo para todos os clientes em uma sala"
   sources={{
     light: useBaseUrl('/images/rooms.png'),
     dark: useBaseUrl('/images/rooms-dark.png'),
@@ -19,13 +19,13 @@ A *room* is an arbitrary channel that sockets can `join` and `leave`. It can be 
 
 :::info
 
-Please note that rooms are a **server-only** concept (i.e. the client does not have access to the list of rooms it has joined).
+Por favor, observe que as salas são um conceito **apenas do servidor** (ou seja, o cliente não tem acesso à lista de salas às quais se juntou).
 
 :::
 
-## Joining and leaving {#joining-and-leaving}
+## Entrando e saindo {#entrando-e-saindo}
 
-You can call `join` to subscribe the socket to a given channel:
+Você pode chamar `join` para inscrever o socket em um canal específico:
 
 ```js
 io.on("connection", (socket) => {
@@ -33,21 +33,21 @@ io.on("connection", (socket) => {
 });
 ```
 
-And then simply use `to` or `in` (they are the same) when broadcasting or emitting:
+E então, simplesmente use `to` ou `in` (eles são equivalentes) ao transmitir ou emitir:
 
 ```js
 io.to("some room").emit("some event");
 ```
 
-You can emit to several rooms at the same time:
+Você pode emitir para várias salas ao mesmo tempo:
 
 ```js
 io.to("room1").to("room2").to("room3").emit("some event");
 ```
 
-In that case, a <a href="https://en.wikipedia.org/wiki/Union_(set_theory)">union</a> is performed: every socket that is at least in one of the rooms will get the event **once** (even if the socket is in two or more rooms).
+Nesse caso, uma <a href="https://pt.wikipedia.org/wiki/Uni%C3%A3o_(teoria_dos_conjuntos)">união</a> é realizada: todo socket que está pelo menos em uma das salas receberá o evento **uma vez** (mesmo que o socket esteja em duas ou mais salas).
 
-You can also broadcast to a room from a given socket:
+Você também pode transmitir para uma sala a partir de um socket específico:
 
 ```js
 io.on("connection", (socket) => {
@@ -55,23 +55,23 @@ io.on("connection", (socket) => {
 });
 ```
 
-In that case, every socket in the room **excluding** the sender will get the event.
+Nesse caso, todos os sockets na sala, **exceto** o remetente, receberão o evento.
 
 <ThemedImage
-  alt="Broadcasting to all clients in a room excepting the sender"
+  alt="Transmitindo para todos os clientes em uma sala, excluindo o remetente."
   sources={{
     light: useBaseUrl('/images/rooms2.png'),
     dark: useBaseUrl('/images/rooms2-dark.png'),
   }}
 />
 
-To leave a channel you call `leave` in the same fashion as `join`.
+Para sair de um canal, você chama `leave` da mesma forma que `join`.
 
-## Default room {#default-room}
+## Sala padrão {#sala-padrão}
 
-Each `Socket` in Socket.IO is identified by a random, unguessable, unique identifier [Socket#id](../02-Server/server-socket-instance.md#socketid). For your convenience, each socket automatically joins a room identified by its own id.
+Cada `Socket` no Socket.IO é identificado por um identificador único, aleatório e imprevisível [Socket#id](../02-Server/server-socket-instance.md#socketid). Para sua conveniência, cada socket automaticamente entra em uma sala identificada pelo seu próprio ID.
 
-This makes it easy to implement private messages:
+Isso torna fácil implementar mensagens privadas:
 
 ```js
 io.on("connection", (socket) => {
@@ -81,9 +81,9 @@ io.on("connection", (socket) => {
 });
 ```
 
-## Sample use cases {#sample-use-cases}
+## Exemplos de casos de uso {#exemplos-de-casos-de-uso}
 
-- broadcast data to each device / tab of a given user
+- Transmitir dados para cada dispositivo / aba de um usuário específico.
 
 ```js
 io.on("connection", async (socket) => {
@@ -96,7 +96,7 @@ io.on("connection", async (socket) => {
 });
 ```
 
-- send notifications about a given entity
+- Enviar notificações sobre uma entidade específica.
 
 ```js
 io.on("connection", async (socket) => {
@@ -109,11 +109,11 @@ io.on("connection", async (socket) => {
 });
 ```
 
-## Disconnection {#disconnection}
+## Desconexão {#desconexão}
 
-Upon disconnection, sockets `leave` all the channels they were part of automatically, and no special teardown is needed on your part.
+Após a desconexão, os sockets saem automaticamente de todos os canais dos quais faziam parte, e você não precisa fazer nenhuma desmontagem especial.
 
-You can fetch the rooms the Socket was in by listening to the `disconnecting` event:
+Você pode obter as salas nas quais o Socket estava ouvindo o evento `disconnecting`:
 
 ```js
 io.on("connection", socket => {
@@ -127,11 +127,11 @@ io.on("connection", socket => {
 });
 ```
 
-## With multiple Socket.IO servers {#with-multiple-socketio-servers}
+## Com múltiplos servidores Socket.IO {#com-múltiplos-servidores-socketio}
 
-Like [global broadcasting](broadcasting-events.md#with-multiple-socketio-servers), broadcasting to rooms also works with multiple Socket.IO servers.
+Assim como [transmissão global](broadcasting-events.md#com-múltiplos-servidores-socketio), a transmissão para salas também funciona com múltiplos servidores Socket.IO.
 
-You just need to replace the default [Adapter](../08-Miscellaneous/glossary.md#adapter) by the Redis Adapter. More information about it [here](../05-Adapters/adapter-redis.md).
+Você só precisa substituir o [Adaptador](../08-Miscellaneous/glossary.md#adapter) padrão pelo Adaptador Redis. Mais informações sobre isso [aqui](../05-Adapters/adapter-redis.md).
 
 <ThemedImage
   alt="Broadcasting to all clients in a room with Redis"
@@ -141,31 +141,31 @@ You just need to replace the default [Adapter](../08-Miscellaneous/glossary.md#a
   }}
 />
 
-## Implementation details {#implementation-details}
+## Detalhes de implementação {#detalhes-de-implementação}
 
-The "room" feature is implemented by what we call an Adapter. This Adapter is a server-side component which is responsible for:
+O recurso de "sala" é implementado pelo que chamamos de Adaptador. Este Adaptador é um componente do lado do servidor que é responsável por:
 
-- storing the relationships between the Socket instances and the rooms
-- broadcasting events to all (or a subset of) clients
+- armazenar as relações entre as instâncias de Socket e as salas
+- transmitir eventos para todos (ou um subconjunto de) clientes
 
-You can find the code of the default in-memory adapter [here](https://github.com/socketio/socket.io-adapter).
+Você pode encontrar o código do adaptador padrão em memória [aqui](https://github.com/socketio/socket.io-adapter).
 
-Basically, it consists in two [ES6 Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
+Basicamente, ele consiste em dois [ES6 Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
 
 - `sids`: `Map<SocketId, Set<Room>>`
 - `rooms`: `Map<Room, Set<SocketId>>`
 
-Calling `socket.join("the-room")` will result in:
+Chamar `socket.join("the-room")` resultará em:
 
-- in the ̀`sids` Map, adding "the-room" to the Set identified by the socket ID
-- in the `rooms` Map, adding the socket ID in the Set identified by the string "the-room"
+- no `Map` `sids`, adicionando "the-room" ao conjunto identificado pelo ID do socket
+- no `Map` `rooms`, adicionando o ID do socket ao conjunto identificado pela string "the-room"
 
-Those two maps are then used when broadcasting:
+Esses dois mapas são então usados ao transmitir:
 
-- a broadcast to all sockets (`io.emit()`) loops through the `sids` Map, and send the packet to all sockets
-- a broadcast to a given room (`io.to("room21").emit()`) loops through the Set in the `rooms` Map, and sends the packet to all matching sockets
+- uma transmissão para todos os sockets (`io.emit()`) percorre o `Map` `sids` e envia o pacote para todos os sockets
+- uma transmissão para uma sala específica (`io.to("room21").emit()`) percorre o conjunto no `Map` `rooms` e envia o pacote para todos os sockets correspondentes
 
-You can access those objects with:
+Você pode acessar esses objetos com:
 
 ```js
 // main namespace
@@ -177,21 +177,21 @@ const rooms = io.of("/my-namespace").adapter.rooms;
 const sids = io.of("/my-namespace").adapter.sids;
 ```
 
-Notes:
+Observações:
 
-- those objects are not meant to be directly modified, you should always use [`socket.join(...)`](../../server-api.md#socketjoinroom) and [`socket.leave(...)`](../../server-api.md#socketleaveroom) instead.
-- in a [multi-server](../02-Server/using-multiple-nodes.md) setup, the `rooms` and `sids` objects are not shared between the Socket.IO servers (a room may only "exist" on one server and not on another).
+- Esses objetos não devem ser modificados diretamente; você deve sempre usar [`socket.join(...)`](../../server-api.md#socketjoinroom) e [`socket.leave(...)`](../../server-api.md#socketleaveroom) em vez disso.
+- Em uma configuração [multi-servidor](../02-Server/using-multiple-nodes.md), os objetos `rooms` e `sids` não são compartilhados entre os servidores Socket.IO (uma sala pode "existir" apenas em um servidor e não em outro).
 
-## Room events {#room-events}
+## Eventos de sala {#eventos-de-sala}
 
-Starting with `socket.io@3.1.0`, the underlying Adapter will emit the following events:
+A partir do `socket.io@3.1.0`, o Adaptador subjacente emitirá os seguintes eventos:
 
-- `create-room` (argument: room)
-- `delete-room` (argument: room)
-- `join-room` (argument: room, id)
-- `leave-room` (argument: room, id)
+- `create-room` (argumento: sala)
+- `delete-room` (argumento: sala)
+- `join-room` (argumento: sala, id)
+- `leave-room` (argumento: sala, id)
 
-Example:
+Exemplo:
 
 ```js
 io.of("/").adapter.on("create-room", (room) => {
