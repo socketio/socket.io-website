@@ -10,11 +10,11 @@ Here is a list of common questions about Socket.IO:
 
 <TOCInline toc={toc} />
 
-## Something does not work properly, please help?
+## Something does not work properly, please help? {#something-does-not-work-properly-please-help}
 
 Please check the [Troubleshooting guide](../01-Documentation/troubleshooting.md).
 
-## How does it work under the hood?
+## How does it work under the hood? {#how-does-it-work-under-the-hood}
 
 The Socket.IO connection can be established with different low-level transports:
 
@@ -29,7 +29,7 @@ Socket.IO will automatically pick the best available option, depending on:
 
 You can find more detail about that in the ["How it works" section](../01-Documentation/how-it-works.md).
 
-## What are the features provided by Socket.IO over plain WebSocket?
+## What are the features provided by Socket.IO over plain WebSocket? {#what-are-the-features-provided-by-socketio-over-plain-websocket}
 
 WebSockets are awesome! No, really. They provide an efficient way for transferring data between a client and a server. Among the advantages:
 
@@ -49,7 +49,7 @@ That being said, WebSockets are also pretty low-level and developing a realtime 
 
 As you might have guessed, this additional layer is implemented by the Socket.IO library.
 
-## What is WebTransport?
+## What is WebTransport? {#what-is-webtransport}
 
 In short, WebTransport is an alternative to WebSocket which fixes several performance issues that plague WebSockets like [head-of-line blocking](https://en.wikipedia.org/wiki/Head-of-line_blocking).
 
@@ -65,7 +65,7 @@ Support for WebTransport is not enabled by default in Socket.IO, as it requires 
 
 :::
 
-## Does Socket.IO store the messages?
+## Does Socket.IO store the messages? {#does-socketio-store-the-messages}
 
 The Socket.IO server does not store any message.
 
@@ -77,7 +77,7 @@ That being said, Socket.IO will store the messages for a brief period of time if
 
 :::
 
-## What are the delivery guarantees of Socket.IO?
+## What are the delivery guarantees of Socket.IO? {#what-are-the-delivery-guarantees-of-socketio}
 
 Socket.IO **does guarantee message ordering**, no matter which low-level transport is used (even when switching between two transports).
 
@@ -85,7 +85,7 @@ Moreover, by default Socket.IO provides an **at most once** guarantee of deliver
 
 More information about this [here](../01-Documentation/delivery-guarantees.md).
 
-## How to identify a given user?
+## How to identify a given user? {#how-to-identify-a-given-user}
 
 There is no concept of user in Socket.IO.
 
@@ -96,6 +96,6 @@ For Node.js applications, you can for example:
 - reuse the user context provided by [Passport](https://www.passportjs.org/) (check [this tutorial](/how-to/use-with-express-session))
 - or use the [`auth`](../../client-options.md#auth) option on the client side to send the user credentials and validate them in a [middleware](../02-Server/middlewares.md)
 
-## Where can I find the changelog?
+## Where can I find the changelog? {#where-can-i-find-the-changelog}
 
 Please see [here](../../changelog/index.md).

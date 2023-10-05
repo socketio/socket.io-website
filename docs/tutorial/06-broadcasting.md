@@ -15,10 +15,7 @@ In order to send an event to everyone, Socket.IO gives us the `io.emit()` method
 
 ```js
 // this will emit the event to all connected sockets
-io.emit('some event', {
-  someProperty: 'some value',
-  otherProperty: 'other value'
-}); 
+io.emit('hello', 'world'); 
 ```
 
 If you want to send a message to everyone except for a certain emitting socket, we have the `broadcast` flag for emitting from that socket:
@@ -110,7 +107,7 @@ And on the client side when we capture a `chat message` event we’ll include it
   </TabItem>
 </Tabs>
 
-And that completes our chat application, in about 20 lines of code! This is what it looks like:
+Let's see it in action:
 
 <video autoplay="" loop="" width="100%"><source src="https://i.cloudup.com/transcoded/J4xwRU9DRn.mp4" /></video>
 

@@ -26,11 +26,11 @@ socket.emit("disconnecting");
 
 :::
 
-## Server
+## Server {#server}
 
-### Single client
+### Single client {#single-client}
 
-#### Basic emit
+#### Basic emit {#basic-emit}
 
 ```js
 io.on("connection", (socket) => {
@@ -38,7 +38,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-#### Acknowledgement
+#### Acknowledgement {#acknowledgement}
 
 <Tabs>
   <TabItem value="callback" label="Callback" default>
@@ -63,7 +63,7 @@ io.on("connection", async (socket) => {
   </TabItem>
 </Tabs>
 
-#### Acknowledgement and timeout
+#### Acknowledgement and timeout {#acknowledgement-and-timeout}
 
 <Tabs>
   <TabItem value="callback" label="Callback" default>
@@ -96,15 +96,15 @@ io.on("connection", async (socket) => {
   </TabItem>
 </Tabs>
 
-### Broadcasting
+### Broadcasting {#broadcasting}
 
-#### To all connected clients
+#### To all connected clients {#to-all-connected-clients}
 
 ```js
 io.emit("hello");
 ```
 
-#### Except the sender
+#### Except the sender {#except-the-sender}
 
 ```js
 io.on("connection", (socket) => {
@@ -112,7 +112,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-#### Acknowledgements
+#### Acknowledgements {#acknowledgements}
 
 <Tabs>
   <TabItem value="callback" label="Callback" default>
@@ -142,7 +142,7 @@ try {
   </TabItem>
 </Tabs>
 
-#### In a room
+#### In a room {#in-a-room}
 
 - to all connected clients in the room named "my room"
 
@@ -162,7 +162,7 @@ io.except("my room").emit("hello");
 io.to("room1").to(["room2", "room3"]).except("room4").emit("hello");
 ```
 
-#### In a namespace
+#### In a namespace {#in-a-namespace}
 
 ```js
 io.of("/my-namespace").emit("hello");
@@ -195,9 +195,9 @@ And expect an acknowledgement in the next 5 seconds.
 
 :::
 
-### Between servers
+### Between servers {#between-servers}
 
-#### Basic emit
+#### Basic emit {#basic-emit-1}
 
 ```js
 io.serverSideEmit("hello", "world");
@@ -211,7 +211,7 @@ io.on("hello", (value) => {
 });
 ```
 
-#### Acknowledgements
+#### Acknowledgements {#acknowledgements-1}
 
 <Tabs>
   <TabItem value="callback" label="Callback" default>
@@ -250,15 +250,15 @@ io.on("hello", (value, callback) => {
 });
 ```
 
-## Client
+## Client {#client}
 
-### Basic emit
+### Basic emit {#basic-emit-2}
 
 ```js
 socket.emit("hello", 1, "2", { 3: "4", 5: Uint8Array.from([6]) });
 ```
 
-### Acknowledgement
+### Acknowledgement {#acknowledgement-1}
 
 <Tabs>
   <TabItem value="callback" label="Callback" default>
@@ -279,7 +279,7 @@ const response = await socket.emitWithAck("hello", "world");
   </TabItem>
 </Tabs>
 
-### Acknowledgement and timeout
+### Acknowledgement and timeout {#acknowledgement-and-timeout-1}
 
 <Tabs>
   <TabItem value="callback" label="Callback" default>

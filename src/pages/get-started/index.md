@@ -2,11 +2,13 @@
 title: Get started
 ---
 
+:::tip
+
+If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/tutorial/introduction).
+
+:::
+
 ## CHOOSE YOUR OWN ADVENTURE!
-
-- Write a simple [chat application](/get-started/chat)
-
-Recommended for beginners to Socket.IO or Node.js. The “Hello world!” of the framework is [here](/get-started/chat).
 
 - [Socket.IO with WebTransport](/get-started/webtransport) :rocket: <b style={{ 'color': 'red' }}>[NEW]</b>
 
