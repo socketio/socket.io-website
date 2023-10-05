@@ -113,7 +113,7 @@ And if you point your browser to `http://localhost:3000`:
 
 So far, so good!
 
-:::tip
+:::info
 
 <Tabs groupId="lang">
   <TabItem value="cjs" label="CommonJS" default attributes={{ className: 'display-none' }}>

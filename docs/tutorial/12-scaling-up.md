@@ -208,3 +208,28 @@ And that finally completes our chat application! In this tutorial, we have seen 
 - scale up
 
 You should now have a better overview of the features provided by Socket.IO. Now it's your time to build your own realtime application!
+
+:::info
+
+<Tabs groupId="lang">
+  <TabItem value="cjs" label="CommonJS" default attributes={{ className: 'display-none' }}>
+
+You can run this example directly in your browser on:
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/cjs/step9?file=index.js)
+- [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/cjs/step9?file=index.js)
+
+
+  </TabItem>
+  <TabItem value="mjs" label="ES modules" attributes={{ className: 'display-none' }}>
+
+You can run this example directly in your browser on:
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/esm/step9?file=index.js)
+- [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/esm/step9?file=index.js)
+
+
+  </TabItem>
+</Tabs>
+
+:::

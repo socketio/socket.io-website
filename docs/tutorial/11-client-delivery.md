@@ -256,3 +256,28 @@ Again, the default guarantee ("at most once") might be sufficient for your appli
 :::
 
 Let's scale up!
+
+:::info
+
+<Tabs groupId="lang">
+  <TabItem value="cjs" label="CommonJS" default attributes={{ className: 'display-none' }}>
+
+You can run this example directly in your browser on:
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/cjs/step8?file=index.js)
+- [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/cjs/step8?file=index.js)
+
+
+  </TabItem>
+  <TabItem value="mjs" label="ES modules" attributes={{ className: 'display-none' }}>
+
+You can run this example directly in your browser on:
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/esm/step8?file=index.js)
+- [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/esm/step8?file=index.js)
+
+
+  </TabItem>
+</Tabs>
+
+:::
