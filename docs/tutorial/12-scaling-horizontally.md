@@ -1,6 +1,6 @@
 ---
-title: "Tutorial step #9 - Scaling up"
-sidebar_label: "Step #9: Scaling up"
+title: "Tutorial step #9 - Scaling horizontally"
+sidebar_label: "Step #9: Scaling horizontally"
 slug: step-9
 ---
 
@@ -9,7 +9,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Scaling up
+# Scaling horizontally
 
 Now that our application is resilient to temporary network interruptions, let's see how we can horizontally scale it in order to be able to support thousands of concurrent clients. 
 
@@ -227,6 +227,7 @@ You can run this example directly in your browser on:
 
 - [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/esm/step9?file=index.js)
 - [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/esm/step9?file=index.js)
+- [Repl.it](https://replit.com/github/socketio/chat-example)
 
 
   </TabItem>

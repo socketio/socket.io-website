@@ -95,7 +95,7 @@ If you restart the process (by hitting Control+C and running `node index.js` aga
 
 <img src="/images/chat-3.png" alt="A browser displaying an input and a 'Send' button" />
 
-:::tip
+:::info
 
 <Tabs groupId="lang">
   <TabItem value="cjs" label="CommonJS" default attributes={{ className: 'display-none' }}>

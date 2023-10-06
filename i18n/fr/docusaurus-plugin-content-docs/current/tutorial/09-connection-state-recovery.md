@@ -19,15 +19,11 @@ This feature will **temporarily** store all the events that are sent by the serv
 It must be enabled on the server side:
 
 ```js title="index.js"
-// [...]
-
 const io = new Server(server, {
   // highlight-start
   connectionStateRecovery: {}
   // highlight-end
 });
-
-// [...]
 ```
 
 Let's see it in action:
@@ -52,3 +48,28 @@ That being said, it is indeed a great feature since you don't have to synchroniz
 :::
 
 We will explore a more general solution in the next step.
+
+:::info
+
+<Tabs groupId="lang">
+  <TabItem value="cjs" label="CommonJS" default attributes={{ className: 'display-none' }}>
+
+You can run this example directly in your browser on:
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/cjs/step6?file=index.js)
+- [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/cjs/step6?file=index.js)
+
+
+  </TabItem>
+  <TabItem value="mjs" label="ES modules" attributes={{ className: 'display-none' }}>
+
+You can run this example directly in your browser on:
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/esm/step6?file=index.js)
+- [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/esm/step6?file=index.js)
+
+
+  </TabItem>
+</Tabs>
+
+:::

@@ -157,7 +157,7 @@ Then if you refresh a tab several times you can see it in action.
 
 <img src="/images/chat-5.png" alt="A console displaying several messages, indicating that some users have connected and disconnected" />
 
-:::tip
+:::info
 
 <Tabs groupId="lang">
   <TabItem value="cjs" label="CommonJS" default attributes={{ className: 'display-none' }}>

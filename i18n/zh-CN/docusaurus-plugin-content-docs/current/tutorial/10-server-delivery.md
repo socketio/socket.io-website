@@ -63,51 +63,59 @@ const { Server } = require('socket.io');
 // highlight-start
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
-
-// open the database file
-const db = await open({
-  filename: 'chat.db',
-  driver: sqlite3.Database
-});
-
-// create our 'messages' table (you can ignore the 'client_offset' column for now)
-await db.exec(`
-  CREATE TABLE IF NOT EXISTS messages (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      client_offset TEXT UNIQUE,
-      content TEXT
-  );
-`);
 // highlight-end
 
-const app = express();
-const server = createServer(app);
-const io = new Server(server);
-
-app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, 'index.html'));
-});
-
-io.on('connection', (socket) => {
-  socket.on('chat message', async (msg) => {
-    // highlight-start
-    let result;
-    try {
-      // store the message in the database
-      result = await db.run('INSERT INTO messages (content) VALUES (?)', msg);
-    } catch (e) {
-      // TODO handle the failure
-      return;
-    }
-    // include the offset with the message
-    io.emit('chat message', msg, result.lastID);
-    // highlight-end
+async function main() {
+  // highlight-start
+  // open the database file
+  const db = await open({
+    filename: 'chat.db',
+    driver: sqlite3.Database
   });
-});
 
-server.listen(3000, () => {
-  console.log('server running at http://localhost:3000');
-});
+  // create our 'messages' table (you can ignore the 'client_offset' column for now)
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS messages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        client_offset TEXT UNIQUE,
+        content TEXT
+    );
+  `);
+  // highlight-end
+
+  const app = express();
+  const server = createServer(app);
+  const io = new Server(server, {
+    connectionStateRecovery: {}
+  });
+
+  app.get('/', (req, res) => {
+    res.sendFile(join(__dirname, 'index.html'));
+  });
+
+  io.on('connection', (socket) => {
+    socket.on('chat message', async (msg) => {
+      // highlight-start
+      let result;
+      try {
+        // store the message in the database
+        result = await db.run('INSERT INTO messages (content) VALUES (?)', msg);
+      } catch (e) {
+        // TODO handle the failure
+        return;
+      }
+      // include the offset with the message
+      io.emit('chat message', msg, result.lastID);
+      // highlight-end
+    });
+  });
+
+  server.listen(3000, () => {
+    console.log('server running at http://localhost:3000');
+  });
+}
+
+main();
 ```
 
   </TabItem>
@@ -139,7 +147,9 @@ await db.exec(`
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  connectionStateRecovery: {}
+});
 
 app.get('/', (req, res) => {
   res.sendFile(new URL('./index.html', import.meta.url).pathname);

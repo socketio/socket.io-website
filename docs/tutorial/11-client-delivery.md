@@ -7,7 +7,7 @@ slug: step-8
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Ensuring delivery to the server
+# Client delivery
 
 Let's see how we can make sure that the server always receives the messages sent by the clients.
 
@@ -255,7 +255,7 @@ Again, the default guarantee ("at most once") might be sufficient for your appli
 
 :::
 
-Let's scale up!
+In the next step, we will see how we can scale our application horizontally.
 
 :::info
 
