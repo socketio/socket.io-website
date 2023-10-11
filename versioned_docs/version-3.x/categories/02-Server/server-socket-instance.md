@@ -128,7 +128,7 @@ io.on("connection", (socket) => {
 
 ## Socket middlewares
 
-Those middlewares looks a lot like the usual [middlewares](/docs/v3/middlewares/), except that they are called for each incoming packet:
+Those middlewares look a lot like the usual [middlewares](/docs/v3/middlewares/), except that they are called for each incoming packet:
 
 ```js
 socket.use(([event, ...args], next) => {
