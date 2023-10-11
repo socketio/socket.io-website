@@ -242,7 +242,7 @@ module.exports = {
         'Thank you for your interest in the user study, aimed at providing better support for Socket.IO users on Azure. <a target="_blank" rel="noopener noreferrer" href="https://socket.io/blog/socket-io-on-azure-preview/"> Read our findings</a> from the hundreds of responses and learn about how Azure can help with scaling out Socket.IO apps easily.',
       backgroundColor: "#25c2a0",
       textColor: "#fff",
-      isCloseable: false,
+      isCloseable: true,
     },
   },
   presets: [

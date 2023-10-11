@@ -56,3 +56,7 @@ html[data-theme='dark'] .header-github-link:before {
 .display-none {
   display: none;
 }
+
+div[class^="announcementBar_"] {
+  height: auto;
+}
