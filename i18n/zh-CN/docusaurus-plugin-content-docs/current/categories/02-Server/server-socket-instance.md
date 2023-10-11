@@ -192,7 +192,7 @@ io.on("connection", (socket) => {
 
 ## Socket middlewares {#socket-middlewares}
 
-这些中间件看起来很像通常的[中间价](middlewares.md)，除了它们是为每个传入的数据包调用的：
+这些中间件看起来很像通常的[中间件](middlewares.md)，除了它们是为每个传入的数据包调用的：
 
 ```js
 socket.use(([event, ...args], next) => {
