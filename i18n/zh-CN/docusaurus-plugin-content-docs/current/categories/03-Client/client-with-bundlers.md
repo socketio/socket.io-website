@@ -1,11 +1,11 @@
 ---
-title: 客户使用捆绑器
-sidebar_label: 使用捆绑器
+title: 客户端使用构建工具
+sidebar_label: 使用构建工具
 sidebar_position: 5
 slug: /client-with-bundlers/
 ---
 
-您将在下面找到将客户端库与不同捆绑器捆绑的配置：
+您将在下面找到客户端使用不同构建工具时的配置：
 
 - [Webpack 5](#webpack-5)
   - [Browser](#browser)
