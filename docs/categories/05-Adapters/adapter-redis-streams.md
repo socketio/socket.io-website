@@ -32,7 +32,7 @@ import { createClient } from "redis";
 import { Server } from "socket.io";
 import { createAdapter } from "@socket.io/redis-streams-adapter";
 
-const redisClient = createClient({ host: "localhost", port: 6379 });
+const redisClient = createClient({ url: "redis://localhost:6379" });
 
 await redisClient.connect();
 
