@@ -16,7 +16,7 @@ src
 ├── components
 │   ├── ConnectionManager.js
 │   ├── ConnectionState.js
-│   ├── MyEvents.js
+│   ├── Events.js
 │   └── MyForm.js
 └── socket.js
 ```
@@ -77,6 +77,7 @@ import React, { useState, useEffect } from 'react';
 import { socket } from './socket';
 import { ConnectionState } from './components/ConnectionState';
 import { ConnectionManager } from './components/ConnectionManager';
+import { Events } from "./components/Events";
 import { MyForm } from './components/MyForm';
 
 export default function App() {
