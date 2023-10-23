@@ -53,9 +53,7 @@ const COLLECTION = "socket.io-adapter-events";
 
 const io = new Server();
 
-const mongoClient = new MongoClient("mongodb://localhost:27017/?replicaSet=rs0", {
-  useUnifiedTopology: true,
-});
+const mongoClient = new MongoClient("mongodb://localhost:27017/?replicaSet=rs0");
 
 const main = async () => {
   await mongoClient.connect();
@@ -89,9 +87,7 @@ const COLLECTION = "socket.io-adapter-events";
 
 const io = new Server();
 
-const mongoClient = new MongoClient("mongodb://localhost:27017/?replicaSet=rs0", {
-  useUnifiedTopology: true,
-});
+const mongoClient = new MongoClient("mongodb://localhost:27017/?replicaSet=rs0");
 
 const main = async () => {
   await mongoClient.connect();
@@ -170,9 +166,7 @@ npm install @socket.io/mongo-emitter mongodb
 const { Emitter } = require("@socket.io/mongo-emitter");
 const { MongoClient } = require("mongodb");
 
-const mongoClient = new MongoClient("mongodb://localhost:27017/?replicaSet=rs0", {
-  useUnifiedTopology: true,
-});
+const mongoClient = new MongoClient("mongodb://localhost:27017/?replicaSet=rs0");
 
 const main = async () => {
   await mongoClient.connect();
