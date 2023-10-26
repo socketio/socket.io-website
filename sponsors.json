@@ -235,14 +235,14 @@
     "alt": "Parimatch India"
   },
   {
-    "url": "https://leafletcasino.com/",
-    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
-    "alt": "leafletcasino.com"
-  },
-  {
     "url": "https://www.automatenspiele.org/",
     "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
     "alt": "automatenspiele.org"
+  },
+  {
+    "url": "https://leafletcasino.com/",
+    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
+    "alt": "leafletcasino.com"
   },
   {
     "url": "https://www.ibeesoft.com/",
@@ -545,6 +545,11 @@
     "alt": "Suomalaiset kasinot"
   },
   {
+    "url": "https://buzzvoice.com/instagram/likes/order",
+    "img": "https://images.opencollective.com/buzzvoicecom/c7477dd/logo.png",
+    "alt": "buzzvoice.com"
+  },
+  {
     "url": "https://immediate.net",
     "img": "https://images.opencollective.com/immediate-connect1/logo.png",
     "alt": "Immediate Connect"
@@ -590,17 +595,12 @@
     "alt": "Aussiebestcasinos"
   },
   {
-    "url": "https://instanavigation.io/",
-    "img": "https://images.opencollective.com/instanavigationio/dde956f/avatar.png",
-    "alt": "InstaNavigation.io"
-  },
-  {
     "url": "https://PlayAUCasino.com",
     "img": "https://images.opencollective.com/playaucasino/da52350/logo.png",
     "alt": "PlayAUCasino.com"
   },
   {
-    "url": "https://bulkfollows.com",
+    "url": "https://bulkfollows.com/",
     "img": "https://images.opencollective.com/david128/c45a0fd/logo.png",
     "alt": "Bulkfollows"
   },
@@ -623,5 +623,10 @@
     "url": "https://www.casinot.biz/",
     "img": "https://images.opencollective.com/casinotbiz/0836b4b/logo.png",
     "alt": "Casinot.biz"
+  },
+  {
+    "url": "https://smmlite.com",
+    "img": "https://images.opencollective.com/smm-panel-sl/284492d/logo.png",
+    "alt": "smm panel"
   }
 ]
