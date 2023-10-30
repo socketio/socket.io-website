@@ -146,20 +146,21 @@ If you restart the process (by hitting Control+C and running `node index.js` aga
 :::info
 
 <Tabs groupId="lang">
-  <TabItem value="cjs" label="CommonJS" default attributes={{ className: 'display-none' }}>
+<TabItem value="cjs" label="CommonJS" default attributes={{ className: 'display-none' }}>
 
 You can run this example directly in your browser on:
 
-- [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/cjs/step2?file=index.js)
-- [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/cjs/step2?file=index.js)
+    - [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/cjs/step2?file=index.js)
+    - [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/cjs/step2?file=index.js)
 
   </TabItem>
-  <TabItem value="mjs" label="ES modules" attributes={{ className: 'display-none' }}>
+
+<TabItem value="mjs" label="ES modules" attributes={{ className: 'display-none' }}>
 
 You can run this example directly in your browser on:
 
-- [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/esm/step2?file=index.js)
-- [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/esm/step2?file=index.js)
+    - [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/esm/step2?file=index.js)
+    - [StackBlitz](https://stackblitz.com/github/socketio/chat-example/tree/esm/step2?file=index.js)
 
   </TabItem>
 </Tabs>
