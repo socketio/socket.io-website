@@ -195,6 +195,11 @@
     "alt": "WagerDex"
   },
   {
+    "url": "https://www.wizardslots.com",
+    "img": "https://images.opencollective.com/wizard-slots/19381ef/logo.png",
+    "alt": "Wizard Slots"
+  },
+  {
     "url": "https://www.onlinecasinosdeutschland.de/",
     "img": "https://images.opencollective.com/onlinecasinosdeutschland/03ec330/avatar.png",
     "alt": "www.onlinecasinosdeutschland.de"
@@ -205,29 +210,24 @@
     "alt": "CryptoNewsZ"
   },
   {
-    "url": "https://reddogcasino.com/en/games/blackjack",
-    "img": "https://images.opencollective.com/red-dog/49e9d6f/logo.png",
-    "alt": "RedDogCasino.com"
-  },
-  {
-    "url": "https://www.wizardslots.com",
-    "img": "https://images.opencollective.com/wizard-slots/19381ef/logo.png",
-    "alt": "Wizard Slots"
-  },
-  {
-    "url": "https://www.5bingosites.com",
-    "img": "https://images.opencollective.com/www-5bingosites-com/3ffb7e5/logo.png",
-    "alt": "www.5bingosites.com"
-  },
-  {
     "url": "https://famousblast.com/product/buyfollowers/",
     "img": "https://images.opencollective.com/famousblast/fc5479a/logo.png",
     "alt": "FamousBlast"
   },
   {
+    "url": "https://reddogcasino.com/en/games/blackjack",
+    "img": "https://images.opencollective.com/red-dog/49e9d6f/logo.png",
+    "alt": "RedDogCasino.com"
+  },
+  {
     "url": "https://aspireglobalcasinos.com",
     "img": "https://images.opencollective.com/aspire-global-casinos/cdf583d/logo.png",
     "alt": "Aspire Global Casinos"
+  },
+  {
+    "url": "https://www.5bingosites.com",
+    "img": "https://images.opencollective.com/www-5bingosites-com/3ffb7e5/logo.png",
+    "alt": "www.5bingosites.com"
   },
   {
     "url": "https://parimatch.in/",
@@ -475,11 +475,6 @@
     "alt": "Ilmaiset Pitkävetovihjeet"
   },
   {
-    "url": "https://www.casino-comparatif.org/",
-    "img": "https://images.opencollective.com/casinocomparatif-tm/ee59a12/avatar.png",
-    "alt": "CasinoComparatif™"
-  },
-  {
     "url": "https://www.bestaucasinosites.com/",
     "img": "https://images.opencollective.com/bestaucasinosites/f4b908a/avatar.png",
     "alt": "Best AU Casino Sites"
@@ -488,6 +483,11 @@
     "url": "https://www.nyecasino.me/",
     "img": "https://images.opencollective.com/nyecasino/3361ca8/logo.png",
     "alt": "NyeCasino"
+  },
+  {
+    "url": "https://www.casino-comparatif.org/",
+    "img": "https://images.opencollective.com/casinocomparatif-tm/ee59a12/avatar.png",
+    "alt": "CasinoComparatif™"
   },
   {
     "url": "https://releaf.co.uk",
@@ -628,5 +628,20 @@
     "url": "https://smmlite.com",
     "img": "https://images.opencollective.com/smm-panel-sl/284492d/logo.png",
     "alt": "smm panel"
+  },
+  {
+    "url": "https://feedpixel.com/",
+    "img": "https://images.opencollective.com/feedpixel/41fd4b0/avatar.png",
+    "alt": "FeedPixel"
+  },
+  {
+    "url": "https://kasinoceske.com",
+    "img": "https://images.opencollective.com/kasinoceskecom/4283200/logo.png",
+    "alt": "Kasinoceske.com"
+  },
+  {
+    "url": "https://siticasinononaams.com",
+    "img": "https://images.opencollective.com/siticasinononaamscom/1c92762/logo.png",
+    "alt": "Siticasinononaams.com"
   }
 ]
