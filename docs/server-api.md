@@ -494,7 +494,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", async () => {
     const sockets = await io.in(userId).fetchSockets();
-    if (socket.length === 0) {
+    if (sockets.length === 0) {
       // no more active connections for the given user
     }
   });
