@@ -124,6 +124,8 @@ main();
 ```js title="index.js"
 import express from 'express';
 import { createServer } from 'node:http';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 import { Server } from 'socket.io';
 // highlight-start
 import sqlite3 from 'sqlite3';
@@ -151,8 +153,10 @@ const io = new Server(server, {
   connectionStateRecovery: {}
 });
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 app.get('/', (req, res) => {
-  res.sendFile(new URL('./index.html', import.meta.url).pathname);
+  res.sendFile(join(__dirname, 'index.html'));
 });
 
 io.on('connection', (socket) => {
@@ -298,7 +302,7 @@ io.on('connection', async (socket) => {
 
 Let's see it in action:
 
-<video width="100%"><source src="/videos/tutorial/server-delivery.mp4" /></video>
+<video controls width="100%"><source src="/videos/tutorial/server-delivery.mp4" /></video>
 
 As you can see in the video above, it works both after a temporary disconnection and a full page refresh.
 

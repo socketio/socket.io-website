@@ -60,6 +60,8 @@ server.listen(3000, () => {
 ```js
 import express from 'express';
 import { createServer } from 'node:http';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 // highlight-start
 import { Server } from 'socket.io';
 // highlight-end
@@ -70,8 +72,10 @@ const server = createServer(app);
 const io = new Server(server);
 // highlight-end
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 app.get('/', (req, res) => {
-  res.sendFile(new URL('./index.html', import.meta.url).pathname);
+  res.sendFile(join(__dirname, 'index.html'));
 });
 
 // highlight-start

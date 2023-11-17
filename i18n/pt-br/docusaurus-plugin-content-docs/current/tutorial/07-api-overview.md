@@ -283,6 +283,15 @@ socket.onAny((eventName, ...args) => {
 });
 ```
 
+Similarly, for outgoing packets:
+
+```js
+socket.onAnyOutgoing((eventName, ...args) => {
+  console.log(eventName); // 'hello'
+  console.log(args); // [ 1, '2', { 3: '4', 5: ArrayBuffer (1) [ 6 ] } ]
+});
+```
+
 ## Server API {#server-api}
 
 ### Broadcasting {#broadcasting}

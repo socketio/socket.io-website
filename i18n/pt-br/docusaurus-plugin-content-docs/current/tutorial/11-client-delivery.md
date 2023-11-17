@@ -21,7 +21,7 @@ By default, Socket.IO provides an "at most once" guarantee of delivery (also kno
 
 When a client gets disconnected, any call to `socket.emit()` is buffered until reconnection:
 
-<video width="100%"><source src="/videos/tutorial/buffered-events.mp4" /></video>
+<video controls width="100%"><source src="/videos/tutorial/buffered-events.mp4" /></video>
 
 In the video above, the "realtime" message is buffered until the connection is reestablished.
 

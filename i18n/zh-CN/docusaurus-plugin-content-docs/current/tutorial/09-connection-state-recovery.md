@@ -28,9 +28,80 @@ const io = new Server(server, {
 
 Let's see it in action:
 
-<video width="100%"><source src="/videos/tutorial/connection-state-recovery.mp4" /></video>
+<video controls width="100%"><source src="/videos/tutorial/connection-state-recovery.mp4" /></video>
 
-In the video above, the "realtime" message is delivered when the connection is reestablished (the "Disconnect" button was added for demonstration purposes).
+As you can see in the video above, the "realtime" message is eventually delivered when the connection is reestablished.
+
+:::note
+
+The "Disconnect" button was added for demonstration purposes.
+
+<details className="changelog">
+    <summary>Code</summary>
+
+<Tabs groupId="syntax">
+  <TabItem value="es6" label="ES6" default>
+
+```html
+<form id="form" action="">
+  <input id="input" autocomplete="off" /><button>Send</button>
+  // highlight-start
+  <button id="toggle-btn">Disconnect</button>
+  // highlight-end
+</form>
+
+<script>
+  // highlight-start
+  const toggleButton = document.getElementById('toggle-btn');
+
+  toggleButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (socket.connected) {
+      toggleButton.innerText = 'Connect';
+      socket.disconnect();
+    } else {
+      toggleButton.innerText = 'Disconnect';
+      socket.connect();
+    }
+  });
+  // highlight-end
+</script>
+```
+
+  </TabItem>
+  <TabItem value="es5" label="ES5">
+
+```html
+<form id="form" action="">
+  <input id="input" autocomplete="off" /><button>Send</button>
+  // highlight-start
+  <button id="toggle-btn">Disconnect</button>
+  // highlight-end
+</form>
+
+<script>
+  // highlight-start
+  var toggleButton = document.getElementById('toggle-btn');
+
+  toggleButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (socket.connected) {
+      toggleButton.innerText = 'Connect';
+      socket.disconnect();
+    } else {
+      toggleButton.innerText = 'Disconnect';
+      socket.connect();
+    }
+  });
+  // highlight-end
+</script>
+```
+
+  </TabItem>
+</Tabs>
+</details>
+
+:::
 
 Great! Now, you may ask:
 

@@ -109,7 +109,7 @@ And on the client side when we capture a `chat message` event we’ll include it
 
 Let's see it in action:
 
-<video autoplay="" loop="" width="100%"><source src="https://i.cloudup.com/transcoded/J4xwRU9DRn.mp4" /></video>
+<video controls autoplay="" loop="" width="100%"><source src="https://i.cloudup.com/transcoded/J4xwRU9DRn.mp4" /></video>
 
 :::info
 

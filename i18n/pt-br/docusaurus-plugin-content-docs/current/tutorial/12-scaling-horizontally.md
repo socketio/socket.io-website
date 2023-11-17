@@ -174,7 +174,7 @@ if (cluster.isPrimary) {
 
 That's it! This will spawn one worker thread per CPU available on your machine. Let's see it in action:
 
-<video width="100%"><source src="/videos/tutorial/scaling-up.mp4" /></video>
+<video controls width="100%"><source src="/videos/tutorial/scaling-up.mp4" /></video>
 
 As you can see in the address bar, each browser tab is connected to a different Socket.IO server, and the adapter is simply forwarding the `chat message` events between them.
 

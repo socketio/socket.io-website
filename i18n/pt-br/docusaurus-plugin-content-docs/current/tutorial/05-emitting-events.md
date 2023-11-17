@@ -70,7 +70,7 @@ io.on('connection', (socket) => {
 
 The result should be like the following video:
 
-<video width="100%"><source src="https://i.cloudup.com/transcoded/zboNrGSsai.mp4" /></video>
+<video controls width="100%"><source src="https://i.cloudup.com/transcoded/zboNrGSsai.mp4" /></video>
 
 :::info
 
