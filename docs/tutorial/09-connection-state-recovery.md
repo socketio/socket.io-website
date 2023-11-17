@@ -28,7 +28,7 @@ const io = new Server(server, {
 
 Let's see it in action:
 
-<video width="100%"><source src="/videos/tutorial/connection-state-recovery.mp4" /></video>
+<video controls width="100%"><source src="/videos/tutorial/connection-state-recovery.mp4" /></video>
 
 In the video above, the "realtime" message is delivered when the connection is reestablished (the "Disconnect" button was added for demonstration purposes).
 

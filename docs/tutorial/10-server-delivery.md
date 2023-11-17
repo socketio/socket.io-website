@@ -298,7 +298,7 @@ io.on('connection', async (socket) => {
 
 Let's see it in action:
 
-<video width="100%"><source src="/videos/tutorial/server-delivery.mp4" /></video>
+<video controls width="100%"><source src="/videos/tutorial/server-delivery.mp4" /></video>
 
 As you can see in the video above, it works both after a temporary disconnection and a full page refresh.
 
