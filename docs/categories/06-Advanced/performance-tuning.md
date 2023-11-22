@@ -80,6 +80,24 @@ const socket = io("https://example.com", {
 });
 ```
 
+### Discard the initial HTTP request
+
+By default, a reference to the first HTTP request of each session is kept in memory. This reference is needed when working with `express-session` for example (see [here](/how-to/use-with-express-session)), but can be discarded to save memory:
+
+```js
+io.engine.on("connection", (rawSocket) => {
+  rawSocket.request = null;
+});
+```
+
+Before:
+
+![Memory usage before](/images/memory-usage-with-request.png)
+
+After:
+
+![Memory usage with request discarded](/images/memory-usage-without-request.png)
+
 ## At the OS level
 
 There are lots of good articles on how to tune your OS to accept a large number of connections. Please see [this one](https://blog.jayway.com/2015/04/13/600k-concurrent-websocket-connections-on-aws-using-node-js/) or [this one](https://medium.com/@elliekang/scaling-to-a-millions-websocket-concurrent-connections-at-spoon-radio-bbadd6ec1901) for example.

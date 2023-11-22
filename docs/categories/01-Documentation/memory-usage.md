@@ -15,6 +15,18 @@ The memory usage of the Socket.IO server should scale **linearly** with the numb
 
 :::
 
+:::tip
+
+By default, a reference to the first HTTP request of each session is kept in memory. This reference is needed when working with `express-session` for example (see [here](/how-to/use-with-express-session)), but can be discarded to save memory:
+
+```js
+io.engine.on("connection", (rawSocket) => {
+  rawSocket.request = null;
+});
+```
+
+:::
+
 The source code to reproduce the results presented in this page can be found [there](https://github.com/socketio/socket.io-benchmarks).
 
 See also:
