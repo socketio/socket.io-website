@@ -171,7 +171,7 @@ If you would like to use the local version of the client-side JS file, you can f
 
 :::tip
 
-You can also use a CDN instead of the local files (e.g. `<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>`).
+You can also use a CDN instead of the local files (e.g. `<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>`).
 
 :::
 

@@ -283,7 +283,7 @@ A few explanations:
 
 The Socket.IO client bundle is served by the server at `/socket.io/socket.io.js`.
 
-We could also have used the minified bundle (`/socket.io/socket.io.min.js`, without debug logs) or a CDN (for example https://cdn.socket.io/4.7.0/socket.io.min.js).
+We could also have used the minified bundle (`/socket.io/socket.io.min.js`, without debug logs) or a CDN (for example https://cdn.socket.io/4.7.2/socket.io.min.js).
 
 - transport
 
