@@ -251,5 +251,106 @@ The good news is that Socket.IO includes some features that can help you. Please
 - [Connection state recovery](/docs/v4/connection-state-recovery)
 - [Delivery guarantees](/docs/v4/delivery-guarantees)
 
+## With Pinia
+
+:::info
+
+Pinia is a store library for Vue, it allows you to share a state across components/pages.
+
+More information can be found [here](https://pinia.vuejs.org/core-concepts/).
+
+:::
+
+Pinia's stores and Socket.IO connection can be synced with the following pattern:
+
+```js title="stores/item.js"
+import { defineStore } from "pinia";
+import { socket } from "@/socket";
+
+export const useItemStore = defineStore("item", {
+  state: () => ({
+    items: [],
+  }),
+
+  actions: {
+    bindEvents() {
+      // sync the list of items upon connection
+      socket.on("connect", () => {
+        socket.emit("item:list", (res) => {
+          this.items = res.data;
+        });
+      });
+
+      // update the store when an item was created
+      socket.on("item:created", (item) => {
+        this.items.push(item);
+      });
+    },
+
+    createItem(label) {
+      const item = {
+        id: Date.now(), // temporary ID for v-for key
+        label
+      };
+      this.items.push(item);
+
+      socket.emit("item:create", { label }, (res) => {
+        item.id = res.data;
+      });
+    },
+  },
+});
+```
+
+```js title="stores/connection.js"
+import { defineStore } from "pinia";
+import { socket } from "@/socket";
+
+export const useConnectionStore = defineStore("connection", {
+  state: () => ({
+    isConnected: false,
+  }),
+
+  actions: {
+    bindEvents() {
+      socket.on("connect", () => {
+        this.isConnected = true;
+      });
+
+      socket.on("disconnect", () => {
+        this.isConnected = false;
+      });
+    },
+
+    connect() {
+      socket.connect();
+    }
+  },
+});
+```
+
+And then in your root component:
+
+```html title="App.vue"
+<script setup>
+import { useItemStore } from "@/stores/item";
+import { useConnectionStore } from "@/stores/connection";
+import { socket } from "@/socket";
+
+const itemStore = useItemStore();
+const connectionStore = useConnectionStore();
+
+// remove any existing listeners (after a hot module replacement)
+socket.off();
+
+itemStore.bindEvents();
+connectionStore.bindEvents();
+</script>
+```
+
+## Sample projects
+
+- [TODO application](https://github.com/socketio/socket.io/tree/main/examples/basic-crud-application/vue-client)
+
 
 [Back to the list of examples](/get-started/)
