@@ -3,6 +3,9 @@ title: Changelog
 sidebar_position: 1
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 ## Versioning Policy {#versioning-policy}
 
 Socket.IO releases closely follow [Semantic Versioning](https://semver.org/).
