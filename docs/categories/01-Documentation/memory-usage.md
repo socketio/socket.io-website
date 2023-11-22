@@ -45,21 +45,21 @@ The chart below displays the memory usage of the Socket.IO server, from 0 up to 
 - a Socket.IO server based on the [`µWebSockets.js`](https://github.com/uNetworking/uWebSockets.js) package, a C++ alternative to the Node.js native HTTP server (see [installation steps](../02-Server/server-installation.md#usage-with-uwebsockets))
 - a plain WebSocket server based on the [`ws`](https://github.com/websockets/ws) package
 
-![Chart of the memory usage per WebSocket server implementation](/images/memory-usage-per-impl.png)
+![Chart of the memory usage per WebSocket server implementation](/images/memory-usage-per-impl.png?v=2)
 
 
-Tested on `Ubuntu 20.04.5 LTS` with Node.js `v16.18.1`, with the following package versions:
+Tested on `Ubuntu 22.04 LTS` with Node.js `v20.3.0`, with the following package versions:
 
-- `socket.io@4.5.4`
-- `eiows@3.8.0`
-- `uWebSockets.js@20.4.0`
-- `ws@8.2.3`
+- `socket.io@4.7.2`
+- `eiows@6.7.2`
+- `uWebSockets.js@20.33.0`
+- `ws@8.11.0`
 
 ## Memory usage over time
 
 The chart below displays the memory usage of the Socket.IO server over time, from 0 up to 10 000 connected clients.
 
-![Chart of the memory usage over time](/images/memory-usage-over-time.png)
+![Chart of the memory usage over time](/images/memory-usage-over-time.png?v=2)
 
 :::note
 
