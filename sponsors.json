@@ -15,11 +15,6 @@
     "alt": "Icons8"
   },
   {
-    "url": "https://www.bonus.ca/",
-    "img": "https://images.opencollective.com/bonus-finder/4b3394e/logo.png",
-    "alt": "BonusFinder Canada"
-  },
-  {
     "url": "https://bitcasino.io",
     "img": "https://images.opencollective.com/bitcasino/fd9ebb5/logo.png",
     "alt": "Bitcasino"
@@ -28,16 +23,6 @@
     "url": "https://www.fortunegames.com",
     "img": "https://images.opencollective.com/fortunegames/657063f/logo.png",
     "alt": "FORTUNE GAMES"
-  },
-  {
-    "url": "https://www.bonus.net.nz/free-spins-no-deposit",
-    "img": "https://images.opencollective.com/bonusfinder-new-zealand/5e2d35b/logo.png",
-    "alt": "BonusFinder New Zealand"
-  },
-  {
-    "url": "https://www.bonusfinder.com/casino-bonus",
-    "img": "https://images.opencollective.com/bonusfinder-com-us/8a47a19/logo.png",
-    "alt": "Bonusfinder.com US"
   },
   {
     "url": "https://casino-professor.com/",
@@ -155,11 +140,6 @@
     "alt": "Casinoonlineaams.com"
   },
   {
-    "url": "https://www.uudetkasinot.com",
-    "img": "https://images.opencollective.com/uudetkasinot-com/01a3658/logo.png",
-    "alt": "uudetkasinot.com"
-  },
-  {
     "url": "https://www.canadacasinohub.com/",
     "img": "https://images.opencollective.com/canada-casino-hub/43fa1b5/logo.png",
     "alt": "Canada Casino Hub"
@@ -168,6 +148,11 @@
     "url": "https://slotsempire.com/",
     "img": "https://images.opencollective.com/slots-empire/3e98199/logo.png",
     "alt": "Slots Empire Casino"
+  },
+  {
+    "url": "https://www.uudetkasinot.com",
+    "img": "https://images.opencollective.com/uudetkasinot-com/01a3658/logo.png",
+    "alt": "uudetkasinot.com"
   },
   {
     "url": "https://www.whitehatcasinos.com",
@@ -190,6 +175,11 @@
     "alt": "WagerDex"
   },
   {
+    "url": "https://www.cryptonewsz.com/",
+    "img": "https://images.opencollective.com/cryptonewsz/f50c823/logo.png",
+    "alt": "CryptoNewsZ"
+  },
+  {
     "url": "https://www.wizardslots.com",
     "img": "https://images.opencollective.com/wizard-slots/19381ef/logo.png",
     "alt": "Wizard Slots"
@@ -198,11 +188,6 @@
     "url": "https://www.onlinecasinosdeutschland.de/",
     "img": "https://images.opencollective.com/onlinecasinosdeutschland/03ec330/avatar.png",
     "alt": "www.onlinecasinosdeutschland.de"
-  },
-  {
-    "url": "https://www.cryptonewsz.com/",
-    "img": "https://images.opencollective.com/cryptonewsz/f50c823/logo.png",
-    "alt": "CryptoNewsZ"
   },
   {
     "url": "https://famousblast.com/product/buyfollowers/",
@@ -225,6 +210,11 @@
     "alt": "Parimatch India"
   },
   {
+    "url": "https://www.automatenspiele.org/",
+    "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
+    "alt": "automatenspiele.org"
+  },
+  {
     "url": "https://www.5bingosites.com",
     "img": "https://images.opencollective.com/www-5bingosites-com/3ffb7e5/logo.png",
     "alt": "www.5bingosites.com"
@@ -233,11 +223,6 @@
     "url": "https://leafletcasino.com/",
     "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
     "alt": "leafletcasino.com"
-  },
-  {
-    "url": "https://www.automatenspiele.org/",
-    "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
-    "alt": "automatenspiele.org"
   },
   {
     "url": "https://www.ibeesoft.com/",
@@ -405,7 +390,7 @@
     "alt": "LegitGamblingSites"
   },
   {
-    "url": "https://sup.today/",
+    "url": "https://supbot.com/",
     "img": "https://images.opencollective.com/vivek10/0aea146/avatar.png",
     "alt": "Sup.today"
   },
@@ -540,6 +525,11 @@
     "alt": "Suomalaiset kasinot"
   },
   {
+    "url": "https://immediate.net",
+    "img": "https://images.opencollective.com/immediate-connect1/logo.png",
+    "alt": "Immediate Connect"
+  },
+  {
     "url": "https://777.ua/",
     "img": "https://images.opencollective.com/777ua/9f0d388/logo.png",
     "alt": "777 казино"
@@ -548,11 +538,6 @@
     "url": "https://buzzvoice.com/instagram/likes/order",
     "img": "https://images.opencollective.com/buzzvoicecom/c7477dd/logo.png",
     "alt": "buzzvoice.com"
-  },
-  {
-    "url": "https://immediate.net",
-    "img": "https://images.opencollective.com/immediate-connect1/logo.png",
-    "alt": "Immediate Connect"
   },
   {
     "url": "https://purekana.com/",
@@ -648,5 +633,10 @@
     "url": "https://anonstories.com/",
     "img": "https://images.opencollective.com/ig-story-viewer/fb59b9f/avatar.png",
     "alt": "Instagram Story Viewer"
+  },
+  {
+    "url": "https://wekrypto.co",
+    "img": "https://images.opencollective.com/wekrypto/9c11b60/logo.png",
+    "alt": "WeKrypto"
   }
 ]
