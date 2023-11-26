@@ -27,7 +27,7 @@ Related documentation pages:
 
 ### Constructor
 
-#### new Server(httpServer[, options])
+#### new Server(httpServer, [ options])
 
 - `httpServer` [`<http.Server>`](https://nodejs.org/api/http.html#class-httpserver) | [`<https.Server>`](https://nodejs.org/api/https.html#class-httpsserver)
 - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
