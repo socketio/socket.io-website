@@ -206,7 +206,7 @@ The `emitWithAck()` method provides the same functionality, but returns a Promis
 
 ```js
 try {
-  const response = socket.timeout(5000).emitWithAck('request', { foo: 'bar' }, 'baz');
+  const response = await socket.timeout(5000).emitWithAck('request', { foo: 'bar' }, 'baz');
   console.log(response.status); // 'ok'
 } catch (e) {
   // the server did not acknowledge the event in the given delay
