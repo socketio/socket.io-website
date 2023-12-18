@@ -1916,7 +1916,7 @@ io.on("connection", (socket) => {
   });
 
   // with a specific timeout
-  socket.timeout(10000).emitWithAck("hello", "world", (err, val) => {
+  socket.timeout(10000).emit("hello", "world", (err, val) => {
     // ...
   });
 });
