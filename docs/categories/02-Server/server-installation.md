@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
 
 :::info
 
-The latest release is currently `4.7.2`, released in August 2023.
+The latest release is currently `4.7.3`, released in January 2024.
 
-You can find the release notes [here](../../changelog/4.7.2.md).
+You can find the release notes [here](../../changelog/4.7.3.md).
 
 :::
 
