@@ -86,42 +86,10 @@ io.engine.on("initial_headers", async (headers, request) => {
 
 If you need to do some async operations, you will need to use the [`allowRequest`](/docs/v4/server-options/#allowrequest) option.
 
-Please check [this example](/how-to/use-with-express-session#2nd-use-case-socketio-can-also-create-the-session-context) with `express-session` for reference.
+Please check [this example](/how-to/use-with-express-session) with `express-session` for reference.
 
 :::
 
 ## Node.js client and cookies
 
-The Node.js client uses the [`xmlhttprequest-ssl`](https://github.com/mjwwit/node-XMLHttpRequest) package, which provides an API similar to the [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) objects in the browser.
-
-The package does not provide a way to store the cookies sent by the server, but you can manually parse them:
-
-```js
-import { io } from "socket.io-client";
-import { parse } from "cookie";
-
-const socket = io("https://my-domain.com");
-const COOKIE_NAME = "AWSALB";
-
-socket.io.on("open", () => {
-  socket.io.engine.transport.on("pollComplete", () => {
-    const request = socket.io.engine.transport.pollXhr.xhr;
-    const cookieHeader = request.getResponseHeader("set-cookie");
-    if (!cookieHeader) {
-      return;
-    }
-    cookieHeader.forEach(cookieString => {
-      if (cookieString.includes(`${COOKIE_NAME}=`)) {
-        const cookie = parse(cookieString);
-        socket.io.opts.extraHeaders = {
-          cookie: `${COOKIE_NAME}=${cookie[COOKIE_NAME]}`
-        }
-      }
-    });
-  });
-});
-```
-
-This might be useful if you want to load test your Socket.IO servers running behind an AWS Application Load Balancer.
-
-Reference: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html
+Starting with version `4.7.0`, when setting the `withCredentials` option to `true`, the Node.js client will now include the cookies in the HTTP requests, making it easier to use it with cookie-based sticky sessions.

@@ -264,6 +264,17 @@ Documentation : [WebSocket API](https://developer.mozilla.org/fr/docs/Web/API/We
 
 ### `withCredentials` {#withcredentials}
 
+<details className="changelog">
+    <summary>Historique</summary>
+
+| Version | Changements                                                     |
+|---------|-----------------------------------------------------------------|
+| v4.7.0  | Le client Node.js honore maintenant l'option `withCredentials`. |
+| v3.0.0  | `withCredentials` vaut maintenant `false` par défaut.           |
+| v1.0.0  | Implémentation initiale.                                        |
+
+</details>
+
 Valeur par défaut : `false`
 
 Si les demandes intersites doivent ou non être effectuées à l'aide d'informations d'identification telles que des cookies, des en-têtes d'autorisation ou des certificats client TLS.
@@ -305,6 +316,12 @@ Documentation:
 
 - [XMLHttpRequest.withCredentials](https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest/withCredentials)
 - [Configuration CORS](categories/02-Server/handling-cors.md)
+
+:::info
+
+À partir de la version `4.7.0`, en passant l'option `withCredentials` à `true`, le client Node.js incluera les cookies dans les requêtes HTTP, afin de faciliter son utilisation avec des *sticky-sessions* basées sur les cookies.
+
+:::
 
 ### `forceBase64` {#forcebase64}
 

@@ -422,16 +422,17 @@ Whether the client should try to upgrade the transport from HTTP long-polling to
 <details className="changelog">
     <summary>History</summary>
 
-| Version | Changes                                   |
-|---------|-------------------------------------------|
-| v3.0.0  | `withCredentials` now defaults to `false` |
-| v1.0.0  | First implementation.                     |
+| Version | Changes                                                      |
+|---------|--------------------------------------------------------------|
+| v4.7.0  | The Node.js client now honors the `withCredentials` setting. |
+| v3.0.0  | `withCredentials` now defaults to `false`.                   |
+| v1.0.0  | First implementation.                                        |
 
 </details>
 
 Default value: `false`
 
-Whether or not cross-site requests should made using credentials such as cookies, authorization headers or TLS client certificates. Setting `withCredentials` has no effect on same-site requests.
+Whether the cross-site requests should be sent including credentials such as cookies, authorization headers or TLS client certificates. Setting `withCredentials` has no effect on same-site requests.
 
 ```js
 import { io } from "socket.io-client";
@@ -469,6 +470,11 @@ Documentation:
 - [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
 - [Handling CORS](categories/02-Server/handling-cors.md)
 
+:::info
+
+Starting with version `4.7.0`, when setting the `withCredentials` option to `true`, the Node.js client will now include the cookies in the HTTP requests, making it easier to use it with cookie-based sticky sessions.
+
+:::
 
 ### Node.js-specific options
 
