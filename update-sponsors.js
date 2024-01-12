@@ -57,6 +57,7 @@ const customImages = new Map([
   ["yana1", { url: "https://nongamstopcasinos.net/gb/", img: "/images/sponsors/nongamstopcasinos.png", alt: "Non Gamstop Casinos" }],
   ["de2", { url: "https://www.slotozilla.com/de/software/novoline-de", img: "/images/sponsors/slotozilla.png", alt: "Novoline Spielautomaten" }],
   ["david128", { url: "https://bulkfollows.com", img: "https://images.opencollective.com/david128/c45a0fd/logo.png", alt: "Bulkfollows" }],
+  ["guest-3f7631a8", { url: "https://casino.xyz", img: "/images/sponsors/guest-3f7631a8.png", alt: "Casino.xyz" }],
 ]);
 
 const customLinks = {
