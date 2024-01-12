@@ -8,23 +8,17 @@ If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/t
 
 :::
 
-## CHOOSE YOUR OWN ADVENTURE!
+## Examples
 
-- [Socket.IO with WebTransport](/get-started/webtransport) :rocket: <b style={{ 'color': 'red' }}>[NEW]</b>
+| Title                                                        | Description                                                                                                                                                                                                                                              |
+|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Socket.IO with WebTransport](/get-started/webtransport)     | Let's test the support for WebTransport added in version [4.7.0](/docs/v4/changelog/4.7.0).                                                                                                                                                              |
+| [A basic CRUD project](/get-started/basic-crud-application/) | Let's create a classic CRUD (**C**reate-**R**ead-**U**pdate-**D**elete) application with Socket.IO. We'll introduce [acknowledgements](/docs/v4/emitting-events/#Acknowledgements) and the ability to [broadcast](/docs/v4/broadcasting-events/) events. |
+| [Private messaging](/get-started/private-messaging-part-1/)  | A slightly more complex chat application, introducing [middlewares](/docs/v4/middlewares/) and [rooms](/docs/v4/rooms/) features.                                                                                                                        |
 
-Let's test the support for WebTransport added in version [4.7.0](/docs/v4/changelog/4.7.0).
+## Sample projects
 
-- A basic [CRUD project](/get-started/basic-crud-application/)
-
-Let's create a classic CRUD (**C**reate-**R**ead-**U**pdate-**D**elete) application with Socket.IO. We'll introduce [acknowledgements](/docs/v4/emitting-events/#Acknowledgements) and the ability to [broadcast](/docs/v4/broadcasting-events/) events.
-
-- Private messaging
-  - [Part I](/get-started/private-messaging-part-1/): initial implementation
-  - [Part II](/get-started/private-messaging-part-2/): persistent user ID
-  - [Part III](/get-started/private-messaging-part-3/): persistent messages
-  - [Part IV](/get-started/private-messaging-part-4/): scaling up
-
-A slightly more complex chat application, introducing [middlewares](/docs/v4/middlewares/) and [rooms](/docs/v4/rooms/) features.
+- [Chat platform](https://github.com/socketio/socket.io-chat-platform)
 
 ## Front-end frameworks
 
