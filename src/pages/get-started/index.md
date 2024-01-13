@@ -36,3 +36,4 @@ If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/t
 - [build a basic Socket.IO client](/how-to/build-a-basic-client)
 - [implement a subscription model](/how-to/implement-a-subscription-model)
 - [handle EADDRINUSE errors](/how-to/handle-eaddrinused-errors)
+- [use with Passport.js](/how-to/use-with-passport)
