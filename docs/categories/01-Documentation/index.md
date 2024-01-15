@@ -40,7 +40,18 @@ You can find more detail about that in the ["How it works" section](./how-it-wor
 
 ### Server implementations
 
-| Language             | Website                                                                                                                                                 |
+| Language             | Website           
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
+  // options
+});
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+httpServer.listen(3000);                                                                                                                                   |
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | JavaScript (Node.js) | - [Installation steps](../02-Server/server-installation.md)<br/>- [API](../../server-api.md)<br/>- [Source code](https://github.com/socketio/socket.io) |
 | JavaScript (Deno)    | https://github.com/socketio/socket.io-deno                                                                                                              |
