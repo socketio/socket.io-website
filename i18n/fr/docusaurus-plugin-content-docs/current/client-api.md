@@ -23,7 +23,7 @@ Un « bundle » au format ESM est également disponible depuis la version [4.3.0
 
 ```html
 <script type="module">
-  import { io } from "https://cdn.socket.io/4.7.3/socket.io.esm.min.js";
+  import { io } from "https://cdn.socket.io/4.7.4/socket.io.esm.min.js";
 
   const socket = io();
 </script>
@@ -35,7 +35,7 @@ Avec une [map d'imports](https://caniuse.com/import-maps) :
 <script type="importmap">
   {
     "imports": {
-      "socket.io-client": "https://cdn.socket.io/4.7.3/socket.io.esm.min.js"
+      "socket.io-client": "https://cdn.socket.io/4.7.4/socket.io.esm.min.js"
     }
   }
 </script>
