@@ -3,7 +3,6 @@ title: Troubleshooting connection issues
 sidebar_label: Troubleshooting
 sidebar_position: 7
 slug: /troubleshooting-connection-issues/
-toc_max_heading_level: 2
 ---
 
 :::tip
@@ -27,6 +26,32 @@ Other common gotchas:
 
 
 ## Problem: the socket is not able to connect
+
+The `connect_error` event provides additional information:
+
+```js
+socket.on("connect_error", (err) => {
+  // the reason of the error, for example "xhr poll error"
+  console.log(err.message);
+
+  // some additional description, for example the status code of the initial HTTP response
+  console.log(err.description);
+
+  // some additional context, for example the XMLHttpRequest object
+  console.log(err.context);
+});
+```
+
+On the server side, the `connection_error` event may also provide some additional insights:
+
+```js
+io.engine.on("connection_error", (err) => {
+  console.log(err.req);	     // the request object
+  console.log(err.code);     // the error code, for example 1
+  console.log(err.message);  // the error message, for example "Session ID unknown"
+  console.log(err.context);  // some additional error context
+});
+```
 
 Possible explanations:
 
@@ -279,6 +304,26 @@ First and foremost, please note that disconnections are common and expected, eve
 - the browser itself may freeze an inactive tab
 
 That being said, the Socket.IO client will always try to reconnect, unless specifically told [otherwise](../../client-options.md#reconnection).
+
+The `disconnect` event provides additional information:
+
+```js
+socket.on("disconnect", (reason, details) => {
+  // the reason of the disconnection, for example "transport error"
+  console.log(reason);
+
+  // the low-level reason of the disconnection, for example "xhr post error"
+  console.log(details.message);
+
+  // some additional description, for example the status code of the HTTP response
+  console.log(details.description);
+
+  // some additional context, for example the XMLHttpRequest object
+  console.log(details.context);
+});
+```
+
+The possible reasons are listed [here](../03-Client/client-socket-instance.md#disconnect).
 
 Possible explanations for a disconnection:
 

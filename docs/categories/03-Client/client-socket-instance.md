@@ -203,20 +203,20 @@ socket.on("connect_error", () => {
 This event is fired upon disconnection.
 
 ```js
-socket.on("disconnect", (reason) => {
+socket.on("disconnect", (reason, details) => {
   // ...
 });
 ```
 
 Here is the list of possible reasons:
 
-Reason | Description
------- | -----------
-`io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](../../server-api.md#socketdisconnectclose)
-`io client disconnect` | The socket was manually disconnected using [socket.disconnect()](../../client-api.md#socketdisconnect)
-`ping timeout` | The server did not send a PING within the `pingInterval + pingTimeout` range
-`transport close` | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)
-`transport error` | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)
+| Reason                 | Description                                                                                                             |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](../../server-api.md#socketdisconnectclose) |
+| `io client disconnect` | The socket was manually disconnected using [socket.disconnect()](../../client-api.md#socketdisconnect)                  |
+| `ping timeout`         | The server did not send a PING within the `pingInterval + pingTimeout` range                                            |
+| `transport close`      | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)           |
+| `transport error`      | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)               |
 
 In the first two cases (explicit disconnection), the client will not try to reconnect and you need to manually call `socket.connect()`.
 
