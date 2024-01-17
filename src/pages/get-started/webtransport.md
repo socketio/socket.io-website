@@ -383,6 +383,8 @@ const h3Server = new Http3Server({
   privKey: key,
 });
 
+h3Server.startServer();
+
 (async () => {
   const stream = await h3Server.sessionStream("/socket.io/");
   const sessionReader = stream.getReader();
@@ -395,8 +397,6 @@ const h3Server = new Http3Server({
     io.engine.onWebTransportSession(value);
   }
 })();
-
-h3Server.startServer();
 // highlight-end
 ```
 
