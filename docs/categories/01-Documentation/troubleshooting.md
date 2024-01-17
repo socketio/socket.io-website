@@ -20,6 +20,7 @@ Common/known issues:
 
 Other common gotchas:
 
+- [Duplicate event registration](#duplicate-event-registration)
 - [Delayed event handler registration](#delayed-event-handler-registration)
 - [Usage of the `socket.id` attribute](#usage-of-the-socketid-attribute)
 - [Deployment on a serverless platform](#deployment-on-a-serverless-platform)
@@ -422,9 +423,37 @@ Please see the documentation [here](../02-Server/behind-a-reverse-proxy.md).
 
 ## Other common gotchas
 
+### Duplicate event registration
+
+On the client side, the `connect` event will be emitted every time the socket reconnects, so the event listeners must be registered outside the `connect` event listener:
+
+BAD :warning:
+
+```js
+socket.on("connect", () => {
+  socket.on("foo", () => {
+    // ...
+  });
+});
+```
+
+GOOD :+1:
+
+```js
+socket.on("connect", () => {
+  // ...
+});
+
+socket.on("foo", () => {
+  // ...
+});
+```
+
+If that's not the case, your event listener might be called multiple times.
+
 ### Delayed event handler registration
 
-BAD:
+BAD :warning:
 
 ```js
 io.on("connection", async (socket) => {
@@ -437,7 +466,7 @@ io.on("connection", async (socket) => {
 });
 ```
 
-GOOD:
+GOOD :+1:
 
 ```js
 io.on("connection", async (socket) => {
