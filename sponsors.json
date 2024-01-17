@@ -140,14 +140,19 @@
     "alt": "Canada Casino Hub"
   },
   {
-    "url": "https://www.whitehatcasinos.com",
-    "img": "https://images.opencollective.com/whitehatcasinos-com/0fee63f/logo.png",
-    "alt": "WhiteHatCasinos.com"
-  },
-  {
     "url": "https://zamsino.com/uk/free-spins-no-deposit/",
     "img": "https://images.opencollective.com/erik-king/avatar.png",
     "alt": "Erik King"
+  },
+  {
+    "url": "https://FrontendMasters.com",
+    "img": "https://images.opencollective.com/frontendmasters/0b9cda4/logo.png",
+    "alt": "Frontend Masters"
+  },
+  {
+    "url": "https://www.whitehatcasinos.com",
+    "img": "https://images.opencollective.com/whitehatcasinos-com/0fee63f/logo.png",
+    "alt": "WhiteHatCasinos.com"
   },
   {
     "url": "https://www.voetbalgokken.nl",
@@ -175,7 +180,7 @@
     "alt": "CryptoNewsZ"
   },
   {
-    "url": "https://famousblast.com/product/buyfollowers/",
+    "url": "https://famousblast.com/",
     "img": "https://images.opencollective.com/famousblast/fc5479a/logo.png",
     "alt": "FamousBlast"
   },
@@ -330,11 +335,6 @@
     "alt": "Renato Baldo"
   },
   {
-    "url": "https://automatenspielex.com/online-casinos",
-    "img": "/images/sponsors/automatenspielexcom.png",
-    "alt": "beste online casino deutschland"
-  },
-  {
     "url": "https://www.instafollowers.co/",
     "img": "https://images.opencollective.com/instafollowersco/5c0cddd/logo.png",
     "alt": "instafollowers.co"
@@ -353,6 +353,11 @@
     "url": "https://legitgamblingsites.com",
     "img": "https://images.opencollective.com/legitgamblingsites/a6efbd9/logo.png",
     "alt": "LegitGamblingSites"
+  },
+  {
+    "url": "https://automatenspielex.com/online-casinos",
+    "img": "/images/sponsors/automatenspielexcom.png",
+    "alt": "beste online casino deutschland"
   },
   {
     "url": "https://www.slotozilla.com/de/software/novoline-de",
@@ -430,6 +435,11 @@
     "alt": "CasinoComparatif™"
   },
   {
+    "url": "https://777.ua/",
+    "img": "https://images.opencollective.com/777ua/9f0d388/logo.png",
+    "alt": "777 казино"
+  },
+  {
     "url": "https://releaf.co.uk",
     "img": "https://images.opencollective.com/releaf/b1db8e6/logo.png",
     "alt": "Releaf"
@@ -468,11 +478,6 @@
     "url": "https://slotoking.ua/games/",
     "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.png",
     "alt": "Игровые автоматы"
-  },
-  {
-    "url": "https://777.ua/",
-    "img": "https://images.opencollective.com/777ua/9f0d388/logo.png",
-    "alt": "777 казино"
   },
   {
     "url": "https://twicsy.com/buy-instagram-followers",
@@ -663,5 +668,10 @@
     "url": "https://vedonlyontiyhtiot.com/",
     "img": "https://images.opencollective.com/vedonlyontiyhtiot-com/avatar.png",
     "alt": "Vedonlyontiyhtiot.com"
+  },
+  {
+    "url": "https://www.casinoszondercruks.nu/",
+    "img": "https://images.opencollective.com/casinos-zonder-cruks/logo.png",
+    "alt": "Casinos Zonder Cruks"
   }
 ]
