@@ -366,6 +366,39 @@ io.on("connection", (socket) => {
 });
 ```
 
+## Manual parsing
+
+In the example above, we use the [`passport-jwt`](https://www.npmjs.com/package/passport-jwt) package, but you can totally verify the bearer token manually with the [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) package:
+
+```js
+io.engine.use((req, res, next) => {
+  const isHandshake = req._query.sid === undefined;
+  if (!isHandshake) {
+    return next();
+  }
+
+  const header = req.headers["authorization"];
+
+  if (!header) {
+    return next(new Error("no token"));
+  }
+
+  if (!header.startsWith("bearer ")) {
+    return next(new Error("invalid token"));
+  }
+
+  const token = header.substring(7);
+
+  jwt.verify(token, jwtSecret, (err, decoded) => {
+    if (err) {
+      return next(new Error("invalid token"));
+    }
+    req.user = decoded.data;
+    next();
+  });
+});
+```
+
 ## Using the user ID
 
 You can use the user ID to make the link between Express and Socket.IO:
