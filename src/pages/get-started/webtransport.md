@@ -317,7 +317,7 @@ On the client side, WebTransport is currently available in all major browsers bu
 On the server side, until support for WebTransport lands [in Node.js](https://github.com/nodejs/node/issues/38478) (and [in Deno](https://github.com/denoland/deno/issues/1558)), we can use the `@fails-components/webtransport` package maintained by [Marten Richter](https://github.com/martenrichter).
 
 ```
-npm i @fails-components/webtransport
+npm i @fails-components/webtransport @fails-components/webtransport-transport-http3-quiche
 ```
 
 Source: https://github.com/fails-components/webtransport
