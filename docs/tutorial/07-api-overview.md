@@ -144,7 +144,7 @@ socket.timeout(5000).emit('request', { foo: 'bar' }, 'baz', (err, response) => {
   if (err) {
     // the server did not acknowledge the event in the given delay
   } else {
-    console.log(response.status); // 'ok'
+    console.log(response[0].status); // 'ok'
   }
 });
 ```
