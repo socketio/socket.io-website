@@ -180,9 +180,9 @@
     "alt": "CryptoNewsZ"
   },
   {
-    "url": "https://famousblast.com/",
+    "url": "https://famousblast.com/product/buyfollowers/",
     "img": "https://images.opencollective.com/famousblast/fc5479a/logo.png",
-    "alt": "FamousBlast"
+    "alt": "FamousBlast - Lifetime Guarantee"
   },
   {
     "url": "https://aspireglobalcasinos.com",
@@ -195,14 +195,14 @@
     "alt": "Parimatch India"
   },
   {
-    "url": "https://leafletcasino.com/",
-    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
-    "alt": "leafletcasino.com"
-  },
-  {
     "url": "https://www.automatenspiele.org/",
     "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
     "alt": "automatenspiele.org"
+  },
+  {
+    "url": "https://leafletcasino.com/",
+    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
+    "alt": "leafletcasino.com"
   },
   {
     "url": "https://www.ibeesoft.com/",
@@ -420,16 +420,6 @@
     "alt": "Ilmaiset Pitkävetovihjeet"
   },
   {
-    "url": "https://www.slotsup.com",
-    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.png",
-    "alt": "SlotsUp"
-  },
-  {
-    "url": "https://www.nyecasino.me/",
-    "img": "https://images.opencollective.com/nyecasino/3361ca8/logo.png",
-    "alt": "NyeCasino"
-  },
-  {
     "url": "https://www.casino-comparatif.org/",
     "img": "https://images.opencollective.com/casinocomparatif-tm/ee59a12/avatar.png",
     "alt": "CasinoComparatif™"
@@ -438,6 +428,11 @@
     "url": "https://777.ua/",
     "img": "https://images.opencollective.com/777ua/9f0d388/logo.png",
     "alt": "777 казино"
+  },
+  {
+    "url": "https://www.slotsup.com",
+    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.png",
+    "alt": "SlotsUp"
   },
   {
     "url": "https://releaf.co.uk",
@@ -500,6 +495,11 @@
     "alt": "Suomalaiset kasinot"
   },
   {
+    "url": "https://immediate.net",
+    "img": "https://images.opencollective.com/immediate-connect1/logo.png",
+    "alt": "Immediate Connect"
+  },
+  {
     "url": "https://buzzvoice.com/instagram/likes/order",
     "img": "https://images.opencollective.com/buzzvoicecom/c7477dd/logo.png",
     "alt": "buzzvoice.com"
@@ -508,11 +508,6 @@
     "url": "https://www.casino.xyz",
     "img": "/images/sponsors/guest-3f7631a8.png",
     "alt": "Casino.xyz"
-  },
-  {
-    "url": "https://immediate.net",
-    "img": "https://images.opencollective.com/immediate-connect1/logo.png",
-    "alt": "Immediate Connect"
   },
   {
     "url": "https://purekana.com/",
@@ -548,11 +543,6 @@
     "url": "https://detectico.com/",
     "img": "https://images.opencollective.com/detectico/ab36e43/logo.png",
     "alt": "Detectico"
-  },
-  {
-    "url": "https://outlookindia.com/outlook-spotlight/en-%C4%B0yi-ve-g%C3%BCvenilir-canl%C4%B1-casino-siteleri-rehberi-news-324841",
-    "img": "https://images.opencollective.com/canli-casino-siteleri/7c04682/logo.png",
-    "alt": "Canlı Casino Siteleri"
   },
   {
     "url": "https://www.casinot.biz/",
@@ -673,5 +663,10 @@
     "url": "https://www.casinoszondercruks.nu/",
     "img": "https://images.opencollective.com/casinos-zonder-cruks/logo.png",
     "alt": "Casinos Zonder Cruks"
+  },
+  {
+    "url": "https://ssstwitter.online/",
+    "img": "https://images.opencollective.com/ssstwitter/9924968/logo.png",
+    "alt": "SSSTwitter"
   }
 ]
