@@ -3,6 +3,7 @@ title: Troubleshooting connection issues
 sidebar_label: Troubleshooting
 sidebar_position: 7
 slug: /troubleshooting-connection-issues/
+toc_max_heading_level: 4
 ---
 
 :::tip
@@ -16,7 +17,6 @@ Common/known issues:
 - [the socket is not able to connect](#problem-the-socket-is-not-able-to-connect)
 - [the socket gets disconnected](#problem-the-socket-gets-disconnected)
 - [the socket is stuck in HTTP long-polling](#problem-the-socket-is-stuck-in-http-long-polling)
-- [other common gotchas](#other-common-gotchas)
 
 Other common gotchas:
 
@@ -28,7 +28,9 @@ Other common gotchas:
 
 ## Problem: the socket is not able to connect
 
-The `connect_error` event provides additional information:
+### Troubleshooting steps
+
+On the client side, the `connect_error` event provides additional information:
 
 ```js
 socket.on("connect_error", (err) => {
@@ -54,16 +56,20 @@ io.engine.on("connection_error", (err) => {
 });
 ```
 
-Possible explanations:
+Here is the list of possible error codes:
 
-- [You are trying to reach a plain WebSocket server](#you-are-trying-to-reach-a-plain-websocket-server)
-- [The server is not reachable](#the-server-is-not-reachable)
-- [The client is not compatible with the version of the server](#the-client-is-not-compatible-with-the-version-of-the-server)
-- [The server does not send the necessary CORS headers](#the-server-does-not-send-the-necessary-cors-headers)
-- [You didn’t enable sticky sessions (in a multi server setup)](#you-didnt-enable-sticky-sessions-in-a-multi-server-setup)
-- [The request path does not match on both sides](#the-request-path-does-not-match-on-both-sides)
+| Code |            Message             | Possible explanations                                                                                                                                           |
+|:----:|:------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  0   |      "Transport unknown"       | This should not happen under normal circumstances.                                                                                                              |
+|  1   |      "Session ID unknown"      | Usually, this means that sticky sessions are not enabled (see [below](#you-didnt-enable-sticky-sessions-in-a-multi-server-setup)).                              |
+|  2   |     "Bad handshake method"     | This should not happen under normal circumstances.                                                                                                              |
+|  3   |         "Bad request"          | Usually, this means that a proxy in front of your server is not properly forwarding the WebSocket headers (see [here](../02-Server/behind-a-reverse-proxy.md)). |
+|  4   |          "Forbidden"           | The connection was denied by the [`allowRequest()`](../../server-options.md#allowrequest) method.                                                               |
+|  5   | "Unsupported protocol version" | The version of the client is not compatible with the server (see [here](#the-client-is-not-compatible-with-the-version-of-the-server)).                         |
 
-### You are trying to reach a plain WebSocket server
+### Possible explanations
+
+#### You are trying to reach a plain WebSocket server
 
 As explained in the ["What Socket.IO is not"](index.md#what-socketio-is-not) section, the Socket.IO client is not a WebSocket implementation and thus will not be able to establish a connection with a WebSocket server, even with `transports: ["websocket"]`:
 
@@ -73,7 +79,7 @@ const socket = io("ws://echo.websocket.org", {
 });
 ```
 
-### The server is not reachable
+#### The server is not reachable
 
 Please make sure the Socket.IO server is actually reachable at the given URL. You can test it with:
 
@@ -95,7 +101,7 @@ Note: v1/v2 servers (which implement the v3 of the protocol, hence the `EIO=3`) 
 96:0{"sid":"ptzi_578ycUci8WLB9G1","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":5000}2:40
 ```
 
-### The client is not compatible with the version of the server
+#### The client is not compatible with the version of the server
 
 Maintaining backward compatibility is a top priority for us, but in some particular cases we had to implement some breaking changes at the protocol level:
 
@@ -230,7 +236,7 @@ SocketManager(socketURL: URL(string:"http://localhost:8087/")!, config: [.connec
 SocketManager(socketURL: URL(string:"http://localhost:8087/")!, config: [.version(.two)])
 ```
 
-### The server does not send the necessary CORS headers
+#### The server does not send the necessary CORS headers
 
 If you see the following error in your console:
 
@@ -245,7 +251,7 @@ It probably means that:
 
 Please see the documentation [here](../02-Server/handling-cors.md).
 
-### You didn't enable sticky sessions (in a multi server setup)
+#### You didn't enable sticky sessions (in a multi server setup)
 
 When scaling to multiple Socket.IO servers, you need to make sure that all the requests of a given Socket.IO session reach the same Socket.IO server. The explanation can be found [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
 
@@ -253,7 +259,7 @@ Failure to do so will result in HTTP 400 responses with the code: `{"code":1,"me
 
 Please see the documentation [here](../02-Server/using-multiple-nodes.md).
 
-### The request path does not match on both sides
+#### The request path does not match on both sides
 
 By default, the client sends — and the server expects — HTTP requests with the "/socket.io/" request path.
 
