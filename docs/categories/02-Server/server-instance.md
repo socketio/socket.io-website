@@ -76,7 +76,7 @@ Here is the list of possible error codes:
 Some utility methods were added in Socket.IO v4.0.0 to manage the Socket instances and their rooms:
 
 - [`socketsJoin`](#socketsjoin): makes the matching socket instances join the specified rooms
-- [̀`socketsLeave`](#socketsleave): makes the matching socket instances leave the specified rooms
+- [`socketsLeave`](#socketsleave): makes the matching socket instances leave the specified rooms
 - [`disconnectSockets`](#disconnectsockets): makes the matching socket instances disconnect
 - [`fetchSockets`](#fetchsockets): returns the matching socket instances
 
