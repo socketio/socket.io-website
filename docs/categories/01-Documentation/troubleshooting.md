@@ -95,11 +95,15 @@ which should return something like this:
 
 If that's not the case, please check that the Socket.IO server is running, and that there is nothing in between that prevents the connection.
 
-Note: v1/v2 servers (which implement the v3 of the protocol, hence the `EIO=3`) will return something like this:
+:::note
+
+v1/v2 servers (which implement the v3 of the protocol, hence the `EIO=3`) will return something like this:
 
 ```
 96:0{"sid":"ptzi_578ycUci8WLB9G1","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":5000}2:40
 ```
+
+:::
 
 #### The client is not compatible with the version of the server
 
@@ -303,6 +307,8 @@ means the client will try to reach the [namespace](../06-Advanced/namespaces.md)
 
 ## Problem: the socket gets disconnected
 
+### Troubleshooting steps
+
 First and foremost, please note that disconnections are common and expected, even on a stable Internet connection:
 
 - anything between the user and the Socket.IO server may encounter a temporary failure or be restarted
@@ -332,11 +338,7 @@ socket.on("disconnect", (reason, details) => {
 
 The possible reasons are listed [here](../03-Client/client-socket-instance.md#disconnect).
 
-Possible explanations for a disconnection:
-
-- [The browser tab was minimized and heartbeat has failed](#the-browser-tab-was-minimized-and-heartbeat-has-failed)
-- [The client is not compatible with the version of the server](#the-client-is-not-compatible-with-the-version-of-the-server-1)
-- [You are trying to send a huge payload](#you-are-trying-to-send-a-huge-payload)
+### Possible explanations
 
 #### The browser tab was minimized and heartbeat has failed
 
@@ -352,13 +354,13 @@ const io = new Server({
 
 Please note that upgrading to Socket.IO v4 (at least `socket.io-client@4.1.3`, due to [this](https://github.com/socketio/engine.io-client/commit/f30a10b7f45517fcb3abd02511c58a89e0ef498f)) should prevent this kind of issues, as the heartbeat mechanism has been reversed (the server now sends PING packets).
 
-### The client is not compatible with the version of the server
+#### The client is not compatible with the version of the server
 
 Since the format of the packets sent over the WebSocket transport is similar in v2 and v3/v4, you might be able to connect with an incompatible client (see [above](#the-client-is-not-compatible-with-the-version-of-the-server)), but the connection will eventually be closed after a given delay.
 
 So if you are experiencing a regular disconnection after 30 seconds (which was the sum of the values of [pingTimeout](../../server-options.md#pingtimeout) and [pingInterval](../../server-options.md#pinginterval) in Socket.IO v2), this is certainly due to a version incompatibility.
 
-### You are trying to send a huge payload
+#### You are trying to send a huge payload
 
 If you get disconnected while sending a huge payload, this may mean that you have reached the [`maxHttpBufferSize`](../../server-options.md#maxhttpbuffersize) value, which defaults to 1 MB. Please adjust it according to your needs:
 
@@ -377,6 +379,8 @@ const io = require("socket.io")(httpServer, {
 ```
 
 ## Problem: the socket is stuck in HTTP long-polling
+
+### Troubleshooting steps
 
 In most cases, you should see something like this:
 
@@ -418,14 +422,27 @@ io.on("connection", (socket) => {
 });
 ```
 
-Possible explanations:
+### Possible explanations
 
-- [a proxy in front of your servers does not accept the WebSocket connection](#a-proxy-in-front-of-your-servers-does-not-accept-the-WebSocket-connection)
-- you have [express-status-monitor](https://www.npmjs.com/package/express-status-monitor) library enabled that runs its own socket.io instance. Please see the solution [here](https://github.com/RafalWilinski/express-status-monitor) 
+#### A proxy in front of your servers does not accept the WebSocket connection
 
-### A proxy in front of your servers does not accept the WebSocket connection
+If a proxy like NginX or Apache HTTPD is not properly configured to accept WebSocket connections, then you might get a `TRANSPORT_MISMATCH` error:
+
+```js
+io.engine.on("connection_error", (err) => {
+  console.log(err.code);     // 3
+  console.log(err.message);  // "Bad request"
+  console.log(err.context);  // { name: 'TRANSPORT_MISMATCH', transport: 'websocket', previousTransport: 'polling' }
+});
+```
+
+Which means that the Socket.IO server does not receive the necessary `Connection: upgrade` header (you can check the `err.req.headers` object).
 
 Please see the documentation [here](../02-Server/behind-a-reverse-proxy.md).
+
+#### [`express-status-monitor`](https://www.npmjs.com/package/express-status-monitor) runs its own socket.io instance
+
+Please see the solution [here](https://github.com/RafalWilinski/express-status-monitor).
 
 ## Other common gotchas
 
