@@ -140,6 +140,39 @@ console.log(sockets[0].data.username); // "alice"
 
 More information [here](server-instance.md#utility-methods).
 
+:::caution
+Do not rely on reference equality when using properties of `data`.
+:::
+
+```js
+// BAD
+const activeUsers = new Set();
+io.on("connection", (socket) => {
+  socket.data.user = { name: "alice" };
+  activeUsers.add(socket.data.user);
+
+  socket.on("disconnect", () => {
+    // Socket.IO makes no guarentee data.user will reference the same object...
+    activeUsers.delete(socket.data.user);
+  });
+});
+```
+
+```js
+// GOOD
+const activeUsers = Map();
+io.on("connection", (socket) => {
+  const newUser = { name: "alice" };
+  socket.data.user = newUser;
+  activeUsers.set(socket.data.user.name, newUser);
+
+  socket.on("disconnect", () => {
+    // ... however primitive values will be preserved
+    activeUsers.delete(socket.data.user.name);
+  });
+});
+```
+
 ## Socket#conn
 
 A reference to the underlying Engine.IO socket (see [here](../01-Documentation/how-it-works.md)).
