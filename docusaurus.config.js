@@ -164,6 +164,17 @@ module.exports = {
         {
           type: "docsVersionDropdown",
           position: "right",
+          dropdownItemsAfter: [
+            {
+              type: "html",
+              value: '<hr class="dropdown-separator">',
+            },
+            {
+              label: "Changelog",
+              to: "/docs/v4/changelog/",
+              activeBaseRegex: 'never',
+            }
+          ],
         },
         {
           type: "localeDropdown",
