@@ -152,7 +152,7 @@ io.on("connection", (socket) => {
   activeUsers.add(socket.data.user);
 
   socket.on("disconnect", () => {
-    // Socket.IO makes no guarentee data.user will reference the same object...
+    // Socket.IO makes no guarantee data.user will reference the same object...
     activeUsers.delete(socket.data.user);
   });
 });
