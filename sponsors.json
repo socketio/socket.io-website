@@ -50,14 +50,14 @@
     "alt": "Kasinohai.com"
   },
   {
-    "url": "https://www.turtlebet.com/fi/kaikki-nettikasinot.html",
-    "img": "https://images.opencollective.com/turtlebet-nettikasinot/d2f0110/logo.png",
-    "alt": "Turtlebet - Nettikasinot"
-  },
-  {
     "url": "https://www.777casino.co.uk/",
     "img": "https://images.opencollective.com/777-casino/a58fb66/logo.png",
     "alt": "777 Casino"
+  },
+  {
+    "url": "https://www.turtlebet.com/fi/kaikki-nettikasinot.html",
+    "img": "https://images.opencollective.com/turtlebet-nettikasinot/d2f0110/logo.png",
+    "alt": "Turtlebet - Nettikasinot"
   },
   {
     "url": "https://neuecasinos24.com/casino-bonus/ohne-einzahlung",
@@ -70,14 +70,14 @@
     "alt": "BitKong"
   },
   {
-    "url": "https://casinodaddy.com",
-    "img": "/images/sponsors/casinodaddy.png",
-    "alt": "Casino Daddy"
-  },
-  {
     "url": "https://www.newcasinosites.me.uk/",
     "img": "https://images.opencollective.com/newcasinosites1/490d1f2/logo.png",
     "alt": "NewCasinoSites"
+  },
+  {
+    "url": "https://casinodaddy.com",
+    "img": "/images/sponsors/casinodaddy.png",
+    "alt": "Casino Daddy"
   },
   {
     "url": "https://goread.io/buy-instagram-followers",
@@ -110,11 +110,6 @@
     "alt": "AusCasinos"
   },
   {
-    "url": "https://cricket-betting.com/",
-    "img": "https://images.opencollective.com/cricket-betting/52699d3/avatar.png",
-    "alt": "Cricket Betting"
-  },
-  {
     "url": "https://www.casinotest.com/",
     "img": "https://images.opencollective.com/casinotest-ltd/7e3c899/logo.png",
     "alt": "CasinoTest Ltd."
@@ -140,11 +135,6 @@
     "alt": "Canada Casino Hub"
   },
   {
-    "url": "https://zamsino.com/uk/free-spins-no-deposit/",
-    "img": "https://images.opencollective.com/erik-king/avatar.png",
-    "alt": "Erik King"
-  },
-  {
     "url": "https://FrontendMasters.com",
     "img": "https://images.opencollective.com/frontendmasters/0b9cda4/logo.png",
     "alt": "Frontend Masters"
@@ -153,6 +143,11 @@
     "url": "https://www.whitehatcasinos.com",
     "img": "https://images.opencollective.com/whitehatcasinos-com/0fee63f/logo.png",
     "alt": "WhiteHatCasinos.com"
+  },
+  {
+    "url": "https://zamsino.com/uk/free-spins-no-deposit/",
+    "img": "https://images.opencollective.com/erik-king/avatar.png",
+    "alt": "Erik King"
   },
   {
     "url": "https://www.voetbalgokken.nl",
@@ -531,7 +526,7 @@
   },
   {
     "url": "https://aussiebestcasinos.com/",
-    "img": "https://images.opencollective.com/aussiebestcasinos/fce0180/logo.png",
+    "img": "https://images.opencollective.com/aussiebestcasinos/0220731/logo.png",
     "alt": "Aussiebestcasinos"
   },
   {
@@ -683,5 +678,10 @@
     "url": "https://indublin.ie",
     "img": "https://images.opencollective.com/indublin/4e62688/logo.png",
     "alt": "InDublin"
+  },
+  {
+    "url": "https://skweezer.net/buy-instagram-followers",
+    "img": "/images/sponsors/skweezer-net.png",
+    "alt": "visit skweezer to buy instagram followers today"
   }
 ]

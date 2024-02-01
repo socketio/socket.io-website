@@ -58,6 +58,7 @@ const customImages = new Map([
   ["de2", { url: "https://www.slotozilla.com/de/software/novoline-de", img: "/images/sponsors/slotozilla.png", alt: "Novoline Spielautomaten" }],
   ["david128", { url: "https://bulkfollows.com", img: "https://images.opencollective.com/david128/c45a0fd/logo.png", alt: "Bulkfollows" }],
   ["guest-3f7631a8", { url: "https://casino.xyz", img: "/images/sponsors/guest-3f7631a8.png", alt: "Casino.xyz" }],
+  ["skweezer-net", { url: "https://skweezer.net/buy-instagram-followers", img: "/images/sponsors/skweezer-net.png", alt: "visit skweezer to buy instagram followers today" }],
 ]);
 
 const customLinks = {
