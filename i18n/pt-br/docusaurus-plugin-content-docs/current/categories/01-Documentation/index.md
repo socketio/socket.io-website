@@ -206,6 +206,8 @@ O tamanho do pacote de navegador em si é [`10.4 kB`](https://bundlephobia.com/p
 
 :::
 
+Você pode encontrar os detalhes do protocolo Socket.IO [aqui](../08-Miscellaneous/sio-protocol.md).
+
 ### Algumas coisas não estão funcionando devidamente, por favor me ajude? {#algumas-coisas-não-estão-funcionando-devidamente-por-favor-me-ajude}
 
 

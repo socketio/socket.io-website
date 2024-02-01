@@ -207,9 +207,11 @@ The size of the browser bundle itself is [`10.4 kB`](https://bundlephobia.com/pa
 
 :::
 
+You can find the details of the Socket.IO protocol [here](../08-Miscellaneous/sio-protocol.md).
+
 ### Something does not work properly, please help?
 
-Please check the [Troubleshooting guide](../01-Documentation/troubleshooting.md).
+Please check our [Troubleshooting guide](../01-Documentation/troubleshooting.md).
 
 ## Next steps
 

@@ -207,9 +207,11 @@ La taille du « bundle » client lui-même est de [`10.4 kB`](https://bundlephob
 
 :::
 
+Vous pouvez trouver le détail du protocole Socket.IO [ici](../08-Miscellaneous/sio-protocol.md).
+
 ### Quelque chose ne fonctionne pas correctement, au secours ! {#something-does-not-work-properly-please-help}
 
-Veuillez consulter le [Guide de dépannage](../01-Documentation/troubleshooting.md).
+Veuillez consulter notre [Guide de dépannage](../01-Documentation/troubleshooting.md).
 
 ## Étapes suivantes {#next-steps}
 

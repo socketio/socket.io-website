@@ -207,6 +207,8 @@ io.of("/admin").on("connection", (socket) => {
 
 :::
 
+You can find the details of the Socket.IO protocol [here](../08-Miscellaneous/sio-protocol.md).
+
 ### 有些东西不能正常工作，想要获取帮助？ {#something-does-not-work-properly-please-help}
 
 请查看[故障排除指南](../01-Documentation/troubleshooting.md)。
