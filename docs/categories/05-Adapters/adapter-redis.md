@@ -96,20 +96,24 @@ io.listen(3000);
 
 ## Options
 
-| Name | Description | Default value |
-| ---- | ----------- | ------------- |
-| `key` | the prefix for the name of the Pub/Sub channel | `socket.io` |
-| `requestsTimeout` | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000` |
+| Name              | Description                                                                                   | Default value |
+|-------------------|-----------------------------------------------------------------------------------------------|---------------|
+| `key`             | the prefix for the name of the Pub/Sub channel                                                | `socket.io`   |
+| `requestsTimeout` | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000`        |
 
 ## Common questions
 
-- Do I still need to enable sticky sessions when using the Redis adapter?
+### Is there any data stored in Redis?
+
+No, the Redis adapter uses the [Pub/Sub mechanism](https://redis.io/topics/pubsub) to forward the packets between the Socket.IO servers, so there are no keys stored in Redis.
+
+### Do I still need to enable sticky sessions when using the Redis adapter?
 
 Yes. Failing to do so will result in HTTP 400 responses (you are reaching a server that is not aware of the Socket.IO session).
 
 More information can be found [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
 
-- What happens when the Redis server is down?
+### What happens when the Redis server is down?
 
 In case the connection to the Redis server is severed, the packets will only be sent to the clients that are connected to the current server.
 
@@ -147,13 +151,13 @@ The communication protocol between the Socket.IO servers has not been updated, s
 
 ## Latest releases
 
+- [8.2.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.2.1) (May 2023)
+- [8.2.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.2.0) (May 2023)
+- [8.1.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.1.0) (Feb 2023)
 - [8.0.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.0.0) (Dec 2022)
 - [7.2.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.2.0) (May 2022)
-- [7.1.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.1.0) (Nov 2021)
-- [7.0.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.1) (Nov 2021)
-- [7.0.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.0) (May 2021)
-- [6.1.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.1.0) (Mar 2021)
-- [6.0.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/6.0.1) (Nov 2020)
+
+[Complete changelog](https://github.com/socketio/socket.io-redis-adapter/blob/main/CHANGELOG.md)
 
 ## Emitter
 
@@ -240,9 +244,10 @@ const io = new Emitter(redisClient);
 
 ### Latest releases
 
+- [5.1.0](https://github.com/socketio/socket.io-redis-emitter/releases/5.1.0) (Jan 2023)
 - [5.0.0](https://github.com/socketio/socket.io-redis-emitter/releases/5.0.0) (Sep 2022)
 - [4.1.1](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.1) (Jan 2022)
 - [4.1.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.0) (May 2021)
 - [4.0.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.0.0) (Mar 2021)
-- [3.2.0](https://github.com/socketio/socket.io-redis-emitter/releases/3.2.0) (Dec 2020)
-- [3.1.1](https://github.com/socketio/socket.io-redis-emitter/releases/3.1.1) (Oct 2017)
+
+[Complete changelog](https://github.com/socketio/socket.io-redis-adapter/blob/main/CHANGELOG.md)
