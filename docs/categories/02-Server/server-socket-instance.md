@@ -158,21 +158,6 @@ io.on("connection", (socket) => {
 });
 ```
 
-```js
-// GOOD
-const activeUsers = Map();
-io.on("connection", (socket) => {
-  const newUser = { name: "alice" };
-  socket.data.user = newUser;
-  activeUsers.set(socket.data.user.name, newUser);
-
-  socket.on("disconnect", () => {
-    // ... however primitive values will be preserved
-    activeUsers.delete(socket.data.user.name);
-  });
-});
-```
-
 ## Socket#conn
 
 A reference to the underlying Engine.IO socket (see [here](../01-Documentation/how-it-works.md)).
