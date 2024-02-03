@@ -64,6 +64,7 @@ You can find more detail about that in the ["How it works" section](./how-it-wor
 | .Net                                          | https://github.com/doghappy/socket.io-client-csharp                                                                                                            |
 | Rust                                          | https://github.com/1c3t3a/rust-socketio                                                                                                                        |
 | Kotlin                                        | https://github.com/icerockdev/moko-socket-io                                                                                                                   |
+| PHP                                           | https://github.com/ElephantIO/elephant.io                                                                                                                      |
 
 ## O que o Socket.IO não é {#o-que-o-socketio-não-é}
 
