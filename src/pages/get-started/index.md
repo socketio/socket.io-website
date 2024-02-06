@@ -39,3 +39,4 @@ If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/t
 - [use with Passport.js](/how-to/use-with-passport)
 - [use with JWT](/how-to/use-with-jwt)
 - [use with Postman](https://blog.postman.com/postman-now-supports-socket-io/)
+- [get the IP address of the client](/how-to/get-the-ip-address-of-the-client)
