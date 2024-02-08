@@ -18,7 +18,7 @@ title: Whiteboard
     https://socketio-whiteboard-zmx4.herokuapp.com/
   </a>
   <a
-    href="https://github.com/socketio/socket.io/tree/master/examples/whiteboard"
+    href="https://github.com/socketio/socket.io/tree/main/examples/whiteboard"
     style={{ float: "right", fontSize: 12 }}
   >
     View source code
