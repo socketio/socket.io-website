@@ -901,7 +901,7 @@ Errors passed to middleware callbacks are sent as special `connect_error` packet
 *Server*
 
 ```js
-io.of("/chat").use((socket, next) => {
+io.use((socket, next) => {
   const err = new Error("not authorized");
   err.data = { content: "Please retry later" }; // additional details
   next(err);
