@@ -78,8 +78,12 @@ To leave a channel you call `leave` in the same fashion as `join`.
 - broadcast data to each device / tab of a given user
 
 ```js
+function computeUserIdFromHeaders(headers) {
+  // to be implemented
+}
+
 io.on("connection", async (socket) => {
-  const userId = await computeUserIdFromHeaders(socket);
+  const userId = await computeUserIdFromHeaders(socket.handshake.headers);
 
   socket.join(userId);
 

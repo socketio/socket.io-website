@@ -10,6 +10,8 @@ import TabItem from '@theme/TabItem';
 
 ## Socket.IO server options
 
+The following options affect the behavior of the Socket.IO server.
+
 ### `adapter`
 
 Default value: `require("socket.io-adapter")` (in-memory adapter, whose source code can be found [here](https://github.com/socketio/socket.io-adapter/))
@@ -88,6 +90,46 @@ This option might be useful if you create a lot of dynamic namespaces, since eac
 
 With this option enabled (disabled by default), when a socket disconnects from a dynamic namespace and if there are no other sockets connected to it then the namespace will be cleaned up and its adapter will be closed.
 
+### `connectionStateRecovery`
+
+*Added in v4.6.0*
+
+Default value: `undefined`
+
+The option for the [Connection state recovery](./categories/01-Documentation/connection-state-recovery.md) feature:
+
+```js
+const io = new Server(httpServer, {
+  connectionStateRecovery: {
+    // the backup duration of the sessions and the packets
+    maxDisconnectionDuration: 2 * 60 * 1000,
+    // whether to skip middlewares upon successful recovery
+    skipMiddlewares: true,
+  }
+});
+```
+
+If the `skipMiddlewares` option is set to `true`, then the middlewares will be skipped when the connection is successfully recovered:
+
+```js
+function computeUserIdFromHeaders(headers) {
+  // to be implemented
+}
+
+// this middleware will be skipped if the connection is successfully recovered
+io.use(async (socket, next) => {
+  socket.data.userId = await computeUserIdFromHeaders(socket.handshake.headers);
+
+  next();
+});
+
+io.on("connection", (socket) => {
+  // the userId attribute will either come:
+  // - from the middleware above (first connection or failed recovery)
+  // - from the recevery mechanism
+  console.log("userId", socket.data.userId);
+});
+```
 
 ### `connectTimeout`
 
@@ -152,6 +194,8 @@ See also [here](categories/03-Client/client-installation.md#standalone-build).
 
 
 ## Low-level engine options
+
+The following options affect the behavior of the underlying Engine.IO server.
 
 ### `addTrailingSlash`
 
