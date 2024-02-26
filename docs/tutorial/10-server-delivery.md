@@ -16,7 +16,7 @@ There are two common ways to synchronize the state of the client upon reconnecti
 
 Both are totally valid solutions and choosing one will depend on your use case. In this tutorial, we will go with the latter.
 
-First, let's persist the messages of our chat application. Today there are plenty of great options, we will use with [SQLite](https://www.sqlite.org/) here.
+First, let's persist the messages of our chat application. Today there are plenty of great options, we will use [SQLite](https://www.sqlite.org/) here.
 
 :::tip
 
