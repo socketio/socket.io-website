@@ -65,11 +65,6 @@
     "alt": "Casino Daddy"
   },
   {
-    "url": "https://www.newcasinosites.me.uk/",
-    "img": "https://images.opencollective.com/newcasinosites1/490d1f2/logo.png",
-    "alt": "NewCasinoSites"
-  },
-  {
     "url": "https://goread.io/buy-instagram-followers",
     "img": "https://images.opencollective.com/goread_io/eb6337d/logo.png",
     "alt": "Goread.io"
@@ -93,6 +88,11 @@
     "url": "https://www.auscasinos.com/online-pokies/",
     "img": "https://images.opencollective.com/auscasinos/8df0f47/logo.png",
     "alt": "AusCasinos"
+  },
+  {
+    "url": "https://cricket-betting.com/",
+    "img": "https://images.opencollective.com/cricket-betting/52699d3/avatar.png",
+    "alt": "Cricket Betting"
   },
   {
     "url": "https://www.casinotest.com/",
@@ -130,14 +130,14 @@
     "alt": "Erik King"
   },
   {
-    "url": "https://FrontendMasters.com",
-    "img": "https://images.opencollective.com/frontendmasters/0b9cda4/logo.png",
-    "alt": "Frontend Masters"
-  },
-  {
     "url": "https://www.voetbalgokken.nl",
     "img": "https://images.opencollective.com/voetbalgokken1/02ab67f/logo.png",
     "alt": "VoetbalGokken"
+  },
+  {
+    "url": "https://FrontendMasters.com",
+    "img": "https://images.opencollective.com/frontendmasters/0b9cda4/logo.png",
+    "alt": "Frontend Masters"
   },
   {
     "url": "https://www.wagerdex.com/",
@@ -175,14 +175,14 @@
     "alt": "Parimatch India"
   },
   {
-    "url": "https://leafletcasino.com/",
-    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
-    "alt": "leafletcasino.com"
-  },
-  {
     "url": "https://www.automatenspiele.org/",
     "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.png",
     "alt": "automatenspiele.org"
+  },
+  {
+    "url": "https://leafletcasino.com/",
+    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
+    "alt": "leafletcasino.com"
   },
   {
     "url": "https://www.ibeesoft.com/",
@@ -400,14 +400,14 @@
     "alt": "Ilmaiset Pitkävetovihjeet"
   },
   {
-    "url": "https://www.slotsup.com",
-    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.png",
-    "alt": "SlotsUp"
-  },
-  {
     "url": "https://www.casino-comparatif.org/",
     "img": "https://images.opencollective.com/casinocomparatif-tm/ee59a12/avatar.png",
     "alt": "CasinoComparatif™"
+  },
+  {
+    "url": "https://www.slotsup.com",
+    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.png",
+    "alt": "SlotsUp"
   },
   {
     "url": "https://releaf.co.uk",
@@ -650,11 +650,6 @@
     "alt": "Thepokies"
   },
   {
-    "url": "https://indublin.ie",
-    "img": "https://images.opencollective.com/indublin/4e62688/logo.png",
-    "alt": "InDublin"
-  },
-  {
     "url": "https://skweezer.net/buy-instagram-followers",
     "img": "/images/sponsors/skweezer-net.png",
     "alt": "visit skweezer to buy instagram followers today"
@@ -668,5 +663,15 @@
     "url": "https://casinoenlignefrance.best/",
     "img": "https://images.opencollective.com/casinoenlignefrancebest/f22a59e/logo.png",
     "alt": "Casinoenlignefrance.best"
+  },
+  {
+    "url": "https://www.greenpromocode.com",
+    "img": "https://images.opencollective.com/greenpromocode-com/75cec3c/logo.png",
+    "alt": "GreenPromoCode.com"
+  },
+  {
+    "url": "https://www.fruityking.co.nz",
+    "img": "https://images.opencollective.com/fruityking-nz/de1ffa0/logo.png",
+    "alt": "FruityKing NZ"
   }
 ]
