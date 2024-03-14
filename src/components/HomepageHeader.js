@@ -4,6 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
 import styles from "./HomepageHeader.module.css";
 import Translate from '@docusaurus/Translate';
+import clsx from "clsx";
 
 export default function HomepageHeader() {
   return (
@@ -26,12 +27,12 @@ export default function HomepageHeader() {
           </p>
           <div className={styles.buttons}>
             <Link
-              className="button button--primary button--lg"
+              className={ clsx("button", "button--primary", "button--lg", styles.button) }
               to="docs/v4/tutorial/introduction">
               <Translate>Get started</Translate>
             </Link>
             <Link
-              className="button button--secondary button--lg"
+              className={ clsx("button", "button--secondary", "button--lg", styles.button) }
               to="/docs/v4/">
               <Translate>Documentation</Translate>
             </Link>
