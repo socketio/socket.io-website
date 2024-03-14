@@ -108,14 +108,14 @@ const io = new Server({
 您还可以包含来自 CDN 的客户端捆绑包：
 
 ```html
-<script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
 ```
 
 Socket.IO 也可从其他 CDN 获得：
 
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.7.4/dist/socket.io.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.7.4/dist/socket.io.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.7.5/dist/socket.io.min.js
+- unpkg: https://unpkg.com/socket.io-client@4.7.5/dist/socket.io.min.js
 
 有几个可用的捆绑包：
 

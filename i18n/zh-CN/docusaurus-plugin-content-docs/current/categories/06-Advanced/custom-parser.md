@@ -160,10 +160,10 @@ const socket = require("socket.io-client")("https://example.com", {
 
 在浏览器中，现在有一个包含此解析器的官方包：
 
-- https://cdn.socket.io/4.7.4/socket.io.msgpack.min.js
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.msgpack.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.7.4/dist/socket.io.msgpack.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.7.4/dist/socket.io.msgpack.min.js
+- https://cdn.socket.io/4.7.5/socket.io.msgpack.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.msgpack.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.7.5/dist/socket.io.msgpack.min.js
+- unpkg: https://unpkg.com/socket.io-client@4.7.5/dist/socket.io.msgpack.min.js
 
 在这种情况下，您不需要指定`parser`配置项。
 
