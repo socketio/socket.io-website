@@ -37,7 +37,7 @@ const graphqlQuery = `query account {
             type
             url
           }
-          imageUrl
+          imageUrl(format: jpg)
         }
         totalDonations {
           value
