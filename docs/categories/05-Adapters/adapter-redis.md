@@ -224,6 +224,22 @@ It is not currently possible to use the sharded adapter with the `ioredis` packa
 | `channelPrefix`    | The prefix for the Redis Pub/Sub channels.                                              | `socket.io`   |
 | `subscriptionMode` | The subscription mode impacts the number of Redis Pub/Sub channels used by the adapter. | `dynamic`     |
 
+## Common questions
+
+### Is there any data stored in Redis?
+
+No, the Redis adapter uses the [Pub/Sub mechanism](https://redis.io/topics/pubsub) to forward the packets between the Socket.IO servers, so there are no keys stored in Redis.
+
+### Do I still need to enable sticky sessions when using the Redis adapter?
+
+Yes. Failing to do so will result in HTTP 400 responses (you are reaching a server that is not aware of the Socket.IO session).
+
+More information can be found [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
+
+### What happens when the Redis server is down?
+
+In case the connection to the Redis server is severed, the packets will only be sent to the clients that are connected to the current server.
+
 ## Migrating from `socket.io-redis`
 
 The package was renamed from `socket.io-redis` to `@socket.io/redis-adapter` in [v7](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.0.0), in order to match the name of the Redis emitter (`@socket.io/redis-emitter`).

@@ -12,6 +12,15 @@ Every packet that is sent to multiple clients (e.g. `io.to("room1").emit()` or `
 
 The source code of this adapter can be found [here](https://github.com/socketio/socket.io-cluster-adapter).
 
+## Supported features
+
+| Feature                         | `socket.io` version                 | Support                                        |
+|---------------------------------|-------------------------------------|------------------------------------------------|
+| Socket management               | `4.0.0`                             | :white_check_mark: YES (since version `0.1.0`) |
+| Inter-server communication      | `4.1.0`                             | :white_check_mark: YES (since version `0.1.0`) |
+| Broadcast with acknowledgements | [`4.5.0`](../../changelog/4.5.0.md) | :white_check_mark: YES (since version `0.2.0`) |
+| Connection state recovery       | [`4.6.0`](../../changelog/4.6.0.md) | :x: NO                                         |
+
 ## Installation
 
 ```
@@ -148,6 +157,17 @@ io.on("connection", (socket) => {
 
 ## Options
 
-| Name | Description | Default value |
-| ---- | ----------- | ------------- |
-| `requestsTimeout` | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000` |
+| Name              | Description                                                                                   | Default value |
+|-------------------|-----------------------------------------------------------------------------------------------|---------------|
+| `requestsTimeout` | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000`        |
+
+## Latest releases
+
+| Version | Release date | Release notes                                                                    | Diff                                                                                           |
+|---------|--------------|----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| `0.2.2` | March 2022   | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.2.2) | [`0.2.1...0.2.2`](https://github.com/socketio/socket.io-cluster-adapter/compare/0.2.1...0.2.2) |
+| `0.2.1` | October 2022 | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.2.1) | [`0.2.0...0.2.1`](https://github.com/socketio/socket.io-cluster-adapter/compare/0.2.0...0.2.1) |
+| `0.2.0` | April 2022   | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.2.0) | [`0.1.0...0.2.0`](https://github.com/socketio/socket.io-cluster-adapter/compare/0.1.0...0.2.0) |
+| `0.1.0` | June 2021    | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.1.0) |                                                                                                |
+
+[Complete changelog](https://github.com/socketio/socket.io-cluster-adapter/blob/main/CHANGELOG.md)
