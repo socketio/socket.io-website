@@ -55,6 +55,17 @@ npm install @socket.io/redis-adapter
 
 ### With the `redis` package
 
+:::caution
+
+The `redis` package seems to have problems restoring the Redis subscriptions after reconnection:
+
+- https://github.com/redis/node-redis/issues/2155
+- https://github.com/redis/node-redis/issues/1252
+
+You may want to use the [`ioredis`](#with-the-ioredis-package) package instead.
+
+:::
+
 ```js
 import { createClient } from "redis";
 import { Server } from "socket.io";
