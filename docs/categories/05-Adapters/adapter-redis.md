@@ -26,96 +26,192 @@ Every packet that is sent to multiple clients (e.g. `io.to("room1").emit()` or `
 
 The source code of this adapter can be found [here](https://github.com/socketio/socket.io-redis-adapter).
 
+## Supported features
+
+| Feature                         | `socket.io` version                 | Support                                        |
+|---------------------------------|-------------------------------------|------------------------------------------------|
+| Socket management               | `4.0.0`                             | :white_check_mark: YES (since version `6.1.0`) |
+| Inter-server communication      | `4.1.0`                             | :white_check_mark: YES (since version `7.0.0`) |
+| Broadcast with acknowledgements | [`4.5.0`](../../changelog/4.5.0.md) | :white_check_mark: YES (since version `7.2.0`) |
+| Connection state recovery       | [`4.6.0`](../../changelog/4.6.0.md) | :x: NO                                         |
+
 ## Installation
 
 ```
-npm install @socket.io/redis-adapter redis
+npm install @socket.io/redis-adapter
 ```
 
-For TypeScript users, you will also need to install `@types/redis` if you are using `redis@3`.
+## Compatibility table
+
+| Redis Adapter version | Socket.IO server version |
+|-----------------------|--------------------------|
+| 4.x                   | 1.x                      |
+| 5.x                   | 2.x                      |
+| 6.0.x                 | 3.x                      |
+| 6.1.x                 | 4.x                      |
+| 7.x and above         | 4.3.1 and above          |
 
 ## Usage
 
+### With the `redis` package
+
 ```js
+import { createClient } from "redis";
 import { Server } from "socket.io";
 import { createAdapter } from "@socket.io/redis-adapter";
-import { createClient } from "redis";
-
-const io = new Server();
 
 const pubClient = createClient({ url: "redis://localhost:6379" });
 const subClient = pubClient.duplicate();
 
-Promise.all([pubClient.connect(), subClient.connect()]).then(() => {
-  io.adapter(createAdapter(pubClient, subClient));
-  io.listen(3000);
+await Promise.all([
+  pubClient.connect(),
+  subClient.connect()
+]);
+
+const io = new Server({
+  adapter: createAdapter(pubClient, subClient)
 });
-```
 
-Note: with `redis@3`, calling `connect()` on the Redis clients is not needed:
-
-```js
-import { Server } from "socket.io";
-import { createAdapter } from "@socket.io/redis-adapter";
-import { createClient } from "redis";
-
-const io = new Server();
-
-const pubClient = createClient({ url: "redis://localhost:6379" });
-const subClient = pubClient.duplicate();
-
-io.adapter(createAdapter(pubClient, subClient));
 io.listen(3000);
 ```
 
-Or with `ioredis`:
+### With the `redis` package and a Redis cluster
 
 ```js
+import { createCluster } from "redis";
 import { Server } from "socket.io";
 import { createAdapter } from "@socket.io/redis-adapter";
-import { Cluster } from "ioredis";
 
-const io = new Server();
+const pubClient = createCluster({
+  rootNodes: [
+    {
+      url: "redis://localhost:7000",
+    },
+    {
+      url: "redis://localhost:7001",
+    },
+    {
+      url: "redis://localhost:7002",
+    },
+  ],
+});
+const subClient = pubClient.duplicate();
+
+await Promise.all([
+  pubClient.connect(),
+  subClient.connect()
+]);
+
+const io = new Server({
+  adapter: createAdapter(pubClient, subClient)
+});
+
+io.listen(3000);
+```
+
+### With the `ioredis` package
+
+```js
+import { Redis } from "ioredis";
+import { Server } from "socket.io";
+import { createAdapter } from "@socket.io/redis-adapter";
+
+const pubClient = new Redis();
+const subClient = pubClient.duplicate();
+
+const io = new Server({
+  adapter: createAdapter(pubClient, subClient)
+});
+
+io.listen(3000);
+```
+
+### With the `ioredis` package and a Redis cluster
+
+```js
+import { Cluster } from "ioredis";
+import { Server } from "socket.io";
+import { createAdapter } from "@socket.io/redis-adapter";
 
 const pubClient = new Cluster([
   {
     host: "localhost",
-    port: 6380,
+    port: 7000,
   },
   {
     host: "localhost",
-    port: 6381,
+    port: 7001,
+  },
+  {
+    host: "localhost",
+    port: 7002,
   },
 ]);
-
 const subClient = pubClient.duplicate();
 
-io.adapter(createAdapter(pubClient, subClient));
+const io = new Server({
+  adapter: createAdapter(pubClient, subClient)
+});
+
 io.listen(3000);
 ```
 
+### With Redis sharded Pub/Sub
+
+Sharded Pub/Sub was introduced in Redis 7.0 in order to help scaling the usage of Pub/Sub in cluster mode.
+
+Reference: https://redis.io/docs/interact/pubsub/#sharded-pubsub
+
+A dedicated adapter can be created with the `createShardedAdapter()` method:
+
+```js
+import { Server } from "socket.io";
+import { createClient } from "redis";
+import { createShardedAdapter } from "@socket.io/redis-adapter";
+
+const pubClient = createClient({ host: "localhost", port: 6379 });
+const subClient = pubClient.duplicate();
+
+await Promise.all([
+  pubClient.connect(),
+  subClient.connect()
+]);
+
+const io = new Server({
+  adapter: createShardedAdapter(pubClient, subClient)
+});
+
+io.listen(3000);
+```
+
+Minimum requirements:
+
+- Redis 7.0
+- [`redis@4.6.0`](https://github.com/redis/node-redis/commit/3b1bad229674b421b2bc6424155b20d4d3e45bd1)
+
+:::caution
+
+It is not currently possible to use the sharded adapter with the `ioredis` package and a Redis cluster ([reference](https://github.com/luin/ioredis/issues/1759)).
+
+:::
+
 ## Options
 
-| Name              | Description                                                                                   | Default value |
-|-------------------|-----------------------------------------------------------------------------------------------|---------------|
-| `key`             | the prefix for the name of the Pub/Sub channel                                                | `socket.io`   |
-| `requestsTimeout` | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000`        |
+### Default adapter
 
-## Common questions
+| Name                               | Description                                                                   | Default value |
+|------------------------------------|-------------------------------------------------------------------------------|---------------|
+| `key`                              | The prefix for the Redis Pub/Sub channels.                                    | `socket.io`   |
+| `requestsTimeout`                  | After this timeout the adapter will stop waiting from responses to request.   | `5_000`       |
+| `publishOnSpecificResponseChannel` | Whether to publish a response to the channel specific to the requesting node. | `false`       |
+| `parser`                           | The parser to use for encoding and decoding messages sent to Redis.           | `-`           |
 
-### Is there any data stored in Redis?
+### Sharded adapter
 
-No, the Redis adapter uses the [Pub/Sub mechanism](https://redis.io/topics/pubsub) to forward the packets between the Socket.IO servers, so there are no keys stored in Redis.
-
-### Do I still need to enable sticky sessions when using the Redis adapter?
-
-Yes. Failing to do so will result in HTTP 400 responses (you are reaching a server that is not aware of the Socket.IO session).
-
-More information can be found [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
-
-### What happens when the Redis server is down?
-
-In case the connection to the Redis server is severed, the packets will only be sent to the clients that are connected to the current server.
+| Name               | Description                                                                             | Default value |
+|--------------------|-----------------------------------------------------------------------------------------|---------------|
+| `channelPrefix`    | The prefix for the Redis Pub/Sub channels.                                              | `socket.io`   |
+| `subscriptionMode` | The subscription mode impacts the number of Redis Pub/Sub channels used by the adapter. | `dynamic`     |
 
 ## Migrating from `socket.io-redis`
 
@@ -151,11 +247,14 @@ The communication protocol between the Socket.IO servers has not been updated, s
 
 ## Latest releases
 
-- [8.2.1](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.2.1) (May 2023)
-- [8.2.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.2.0) (May 2023)
-- [8.1.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.1.0) (Feb 2023)
-- [8.0.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.0.0) (Dec 2022)
-- [7.2.0](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.2.0) (May 2022)
+| Version | Release date  | Release notes                                                                  | Diff                                                                                         |
+|---------|---------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `8.3.0` | March 2024    | [link](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.3.0) | [`8.2.1...8.3.0`](https://github.com/socketio/socket.io-redis-adapter/compare/8.2.1...8.3.0) |
+| `8.2.1` | May 2023      | [link](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.2.1) | [`8.2.0...8.2.1`](https://github.com/socketio/socket.io-redis-adapter/compare/8.2.0...8.2.1) |
+| `8.2.0` | May 2023      | [link](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.2.0) | [`8.1.0...8.2.0`](https://github.com/socketio/socket.io-redis-adapter/compare/8.1.0...8.2.0) |
+| `8.1.0` | February 2023 | [link](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.1.0) | [`8.0.0...8.1.0`](https://github.com/socketio/socket.io-redis-adapter/compare/8.0.0...8.1.0) |
+| `8.0.0` | December 2022 | [link](https://github.com/socketio/socket.io-redis-adapter/releases/tag/8.0.0) | [`7.2.0...8.0.0`](https://github.com/socketio/socket.io-redis-adapter/compare/7.2.0...8.0.0) |
+| `7.2.0` | May 2022      | [link](https://github.com/socketio/socket.io-redis-adapter/releases/tag/7.2.0) | [`7.1.0...7.2.0`](https://github.com/socketio/socket.io-redis-adapter/compare/7.1.0...7.2.0) |
 
 [Complete changelog](https://github.com/socketio/socket.io-redis-adapter/blob/main/CHANGELOG.md)
 
@@ -244,10 +343,12 @@ const io = new Emitter(redisClient);
 
 ### Latest releases
 
-- [5.1.0](https://github.com/socketio/socket.io-redis-emitter/releases/5.1.0) (Jan 2023)
-- [5.0.0](https://github.com/socketio/socket.io-redis-emitter/releases/5.0.0) (Sep 2022)
-- [4.1.1](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.1) (Jan 2022)
-- [4.1.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.1.0) (May 2021)
-- [4.0.0](https://github.com/socketio/socket.io-redis-emitter/releases/4.0.0) (Mar 2021)
+| Version | Release date   | Release notes                                                                  | Diff                                                                                         |
+|---------|----------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `5.1.0` | January 2023   | [link](https://github.com/socketio/socket.io-redis-emitter/releases/tag/5.1.0) | [`5.0.0...5.1.0`](https://github.com/socketio/socket.io-redis-emitter/compare/5.0.0...5.1.0) |
+| `5.0.0` | September 2022 | [link](https://github.com/socketio/socket.io-redis-emitter/releases/tag/5.0.1) | [`4.1.1...5.0.0`](https://github.com/socketio/socket.io-redis-emitter/compare/4.1.1...5.0.0) |
+| `4.1.1` | January 2022   | [link](https://github.com/socketio/socket.io-redis-emitter/releases/tag/4.1.1) | [`4.1.0...4.1.1`](https://github.com/socketio/socket.io-redis-emitter/compare/4.1.0...4.1.1) |
+| `4.1.0` | May 2021       | [link](https://github.com/socketio/socket.io-redis-emitter/releases/tag/4.1.0) | [`4.0.0...4.1.0`](https://github.com/socketio/socket.io-redis-emitter/compare/4.0.0...4.1.0) |
+| `4.0.0` | March 2021     | [link](https://github.com/socketio/socket.io-redis-emitter/releases/tag/4.0.0) | [`3.2.0...4.0.0`](https://github.com/socketio/socket.io-redis-emitter/compare/3.2.0...4.0.0) |
 
-[Complete changelog](https://github.com/socketio/socket.io-redis-adapter/blob/main/CHANGELOG.md)
+[Complete changelog](https://github.com/socketio/socket.io-redis-emitter/blob/main/CHANGELOG.md)
