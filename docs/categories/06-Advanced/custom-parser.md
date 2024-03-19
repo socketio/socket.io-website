@@ -63,7 +63,7 @@ class Decoder extends Emitter {
       case 1: // DISCONNECT
         return data === undefined;
       case 2: // EVENT
-        return Array.isArray(data) && data.length > 0;
+        return Array.isArray(data) && typeof data[0] === "string";
       case 3: // ACK
         return Array.isArray(data);
       case 4: // CONNECT_ERROR
