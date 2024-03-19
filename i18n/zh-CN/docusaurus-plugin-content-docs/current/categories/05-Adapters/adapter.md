@@ -15,6 +15,7 @@ slug: /adapter/
 - the [MongoDB 适配器](adapter-mongo.md)
 - the [Postgres 适配器](adapter-postgres.md)
 - the [Cluster 适配器](adapter-cluster.md)
+- the [Google Cloud Pub/Sub 适配器](adapter-gcp-pubsub.md)
 
 （真棒！）社区还维护了其他几个选项：
 
