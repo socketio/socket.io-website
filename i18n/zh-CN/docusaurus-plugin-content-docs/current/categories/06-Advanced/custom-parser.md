@@ -9,8 +9,9 @@ slug: /custom-parser/
 *服务器*
 
 ```js
-const httpServer = require("http").createServer();
-const io = require("socket.io")(httpServer, {
+import { Server } from "socket.io";
+
+const io = new Server({
   parser: myParser
 });
 ```
@@ -18,17 +19,31 @@ const io = require("socket.io")(httpServer, {
 *客户端*
 
 ```js
+import { io } from "socket.io-client";
+
 const socket = io({
   parser: myParser
 });
 ```
+
+## Available parsers {#available-parsers}
+
+Besides [the default parser](#the-default-parser), here is the list of available parsers:
+
+| Package                                                                                                      | Description                                                                                                                                                |
+|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`socket.io-circular-parser`](https://www.npmjs.com/package/socket.io-circular-parser)                       | Similar to the default parser, but handles circular references.                                                                                            |
+| [`socket.io-msgpack-parser`](https://www.npmjs.com/package/socket.io-msgpack-parser)                         | Uses [MessagePack](https://msgpack.org/) to encode the packets (based on the [`notepack.io`](https://github.com/darrachequesne/notepack) package).         |
+| [`@skgdev/socket.io-msgpack-javascript`](https://www.npmjs.com/package/@skgdev/socket.io-msgpack-javascript) | Uses [MessagePack](https://msgpack.org/) to encode the packets (based on the [`@msgpack/msgpack`](https://github.com/msgpack/msgpack-javascript) package). |
+| [`socket.io-json-parser`](https://www.npmjs.com/package/socket.io-json-parser)                               | Uses `JSON.stringify()` and `JSON.parse()` to encode the packets.                                                                                          |
+| [`socket.io-cbor-x-parser`](https://www.npmjs.com/package/socket.io-cbor-x-parser)                           | Uses [cbor-x](https://github.com/kriszyp/cbor-x) to encode the packets.                                                                                    |
 
 ## 实现自己的解析器 {#implementing-your-own-parser}
 
 这是一个使用`JSON.stringify()`和`JSON.parse()`方法的解析器的基本示例：
 
 ```js
-const Emitter = require("component-emitter"); // polyfill of Node.js EventEmitter in the browser 
+import { Emitter } from "@socket.io/component-emitter"; // polyfill of Node.js EventEmitter in the browser
 
 class Encoder {
   /**
@@ -37,6 +52,10 @@ class Encoder {
   encode(packet) {
     return [JSON.stringify(packet)];
   }
+}
+
+function isObject(value) {
+  return Object.prototype.toString.call(value) === "[object Object]";
 }
 
 class Decoder extends Emitter {
@@ -59,15 +78,15 @@ class Decoder extends Emitter {
     }
     switch (type) {
       case 0: // CONNECT
-        return data === undefined || typeof data === "object";
+        return data === undefined || isObject(data);
       case 1: // DISCONNECT
         return data === undefined;
       case 2: // EVENT
-        return Array.isArray(data) && data.length > 0;
+        return Array.isArray(data) && typeof data[0] === "string";
       case 3: // ACK
         return Array.isArray(data);
       case 4: // CONNECT_ERROR
-        return typeof data === "object";
+        return isObject(data);
       default:
         return false;
     }
@@ -78,7 +97,7 @@ class Decoder extends Emitter {
   destroy() {}
 }
 
-module.exports = { Encoder, Decoder };
+export const parser = { Encoder, Decoder };
 ```
 
 ## 默认解析器 {#the-default-parser}
@@ -144,17 +163,22 @@ and an additional attachment (the extracted Uint8Array)
 *服务器*
 
 ```js
-const httpServer = require("http").createServer();
-const io = require("socket.io")(httpServer, {
-  parser: require("socket.io-msgpack-parser")
+import { Server } from "socket.io";
+import customParser from "socket.io-msgpack-parser";
+
+const io = new Server({
+  parser: customParser
 });
 ```
 
 *客户端 (Node.js)*
 
 ```js
-const socket = require("socket.io-client")("https://example.com", {
-  parser: require("socket.io-msgpack-parser")
+import { io } from "socket.io-client";
+import customParser from "socket.io-msgpack-parser";
+
+const socket = io("https://example.com", {
+  parser: customParser
 });
 ```
 
@@ -177,4 +201,8 @@ const socket = require("socket.io-client")("https://example.com", {
 - 与[不支持 Arraybuffers](https://caniuse.com/mdn-javascript_builtins_arraybuffer)的浏览器不兼容，例如 IE9
 - 在浏览器的网络选项卡中更难调试
 
+:::info
+
 请注意，这`socket.io-msgpack-parser`依赖于[`notepack.io`](https://github.com/darrachequesne/notepack)MessagePack 实现。此实现主要关注性能和最小包大小，因此不支持扩展类型等功能。对于基于[官方 JavaScript 实现](https://github.com/msgpack/msgpack-javascript)的解析器，请查看[这个包](https://www.npmjs.com/package/@skgdev/socket.io-msgpack-javascript)。
+
+:::
