@@ -205,14 +205,14 @@
     "alt": "Онлайн Казино Украины"
   },
   {
-    "url": "https://www.5bingosites.com",
-    "img": "https://images.opencollective.com/www-5bingosites-com/3ffb7e5/logo.jpg",
-    "alt": "www.5bingosites.com"
-  },
-  {
     "url": "https://www.casimba.com/en-gb/",
     "img": "https://images.opencollective.com/casimba-casino/0506d6d/logo.jpg",
     "alt": "Casimba Casino"
+  },
+  {
+    "url": "https://www.5bingosites.com",
+    "img": "https://images.opencollective.com/www-5bingosites-com/3ffb7e5/logo.jpg",
+    "alt": "www.5bingosites.com"
   },
   {
     "url": "https://www.sure.bet/casinos-not-on-gamstop/",
@@ -283,6 +283,11 @@
     "url": "https://www.gambleonline.co/nz/",
     "img": "https://images.opencollective.com/gambleonline-nz/5004fcc/logo.jpg",
     "alt": "GambleOnline NZ"
+  },
+  {
+    "url": "https://mobogift.com",
+    "img": "https://images.opencollective.com/mobogift/cae1424/avatar.jpg",
+    "alt": "mobogift"
   },
   {
     "url": "https://twicsy.com/buy-instagram-likes",
@@ -380,6 +385,11 @@
     "alt": "Ilmaiset Pitkävetovihjeet"
   },
   {
+    "url": "https://www.casino-comparatif.org/",
+    "img": "https://images.opencollective.com/casinocomparatif-tm/ee59a12/avatar.jpg",
+    "alt": "CasinoComparatif™"
+  },
+  {
     "url": "https://slotoking.ua/games/",
     "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.jpg",
     "alt": "Игровые автоматы"
@@ -393,11 +403,6 @@
     "url": "https://www.slotsup.com",
     "img": "https://images.opencollective.com/slotsup/5a69a49/logo.jpg",
     "alt": "SlotsUp"
-  },
-  {
-    "url": "https://www.casino-comparatif.org/",
-    "img": "https://images.opencollective.com/casinocomparatif-tm/ee59a12/avatar.jpg",
-    "alt": "CasinoComparatif™"
   },
   {
     "url": "https://releaf.co.uk",
@@ -668,5 +673,10 @@
     "url": "https://quantumai.bot/",
     "img": "https://images.opencollective.com/quantumai/de2d744/avatar.jpg",
     "alt": "Quantum AI"
+  },
+  {
+    "url": "https://damangamesapp.org/",
+    "img": "https://images.opencollective.com/daman-games-official/1b773d7/avatar.jpg",
+    "alt": "Daman Game Download"
   }
 ]
