@@ -18,6 +18,7 @@ Here is the list of adapters that are maintained by our team:
 - the [Cluster adapter](adapter-cluster.md)
 - the [Google Cloud Pub/Sub adapter](adapter-gcp-pubsub.md)
 - the [AWS SQS adapter](adapter-aws-sqs.md)
+- the [Azure Service Bus adapter](adapter-aws-sqs.md)
 
 There are also several other options which are maintained by the (awesome!) community:
 
