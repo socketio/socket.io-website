@@ -37,6 +37,7 @@ Besides [the default parser](#the-default-parser), here is the list of available
 | [`@skgdev/socket.io-msgpack-javascript`](https://www.npmjs.com/package/@skgdev/socket.io-msgpack-javascript) | Uses [MessagePack](https://msgpack.org/) to encode the packets (based on the [`@msgpack/msgpack`](https://github.com/msgpack/msgpack-javascript) package). |
 | [`socket.io-json-parser`](https://www.npmjs.com/package/socket.io-json-parser)                               | Uses `JSON.stringify()` and `JSON.parse()` to encode the packets.                                                                                          |
 | [`socket.io-cbor-x-parser`](https://www.npmjs.com/package/socket.io-cbor-x-parser)                           | Uses [cbor-x](https://github.com/kriszyp/cbor-x) to encode the packets.                                                                                    |
+| [`@socket.io/devalue-parser`](https://www.npmjs.com/package/@socket.io/devalue-parser)                       | Uses [devalue](https://github.com/Rich-Harris/devalue) to encode the packets.                                                                              |
 
 ## Implementing your own parser {#implementing-your-own-parser}
 
