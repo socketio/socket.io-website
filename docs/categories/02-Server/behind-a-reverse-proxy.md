@@ -6,14 +6,14 @@ slug: /reverse-proxy/
 
 You will find below the configuration needed for deploying a Socket.IO server behind a reverse-proxy solution, such as:
 
-- [NginX](#nginx)
+- [nginx](#nginx)
 - [Apache HTTPD](#apache-httpd)
 - [Node.js `http-proxy`](#nodejs-http-proxy)
 - [Caddy 2](#caddy-2)
 
 In a multi-server setup, please check the documentation [here](using-multiple-nodes.md).
 
-## NginX
+## nginx
 
 Content of `/etc/nginx/nginx.conf`:
 
@@ -41,7 +41,13 @@ Related:
 - [proxy_pass documentation](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
 - [configuration in a multi-server setup](using-multiple-nodes.md#nginx-configuration)
 
-If you only want to forward the Socket.IO requests (for example when NginX handles the static content):
+:::caution
+
+The value of nginx's [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) (60 seconds by default) must be bigger than Socket.IO's [`pingInterval + pingTimeout`](../../server-options.md#pinginterval) (45 seconds by default), else nginx will forcefully close the connection if no data is sent after the given delay and the client will get a "transport close" error.
+
+:::
+
+If you only want to forward the Socket.IO requests (for example when nginx handles the static content):
 
 ```
 http {

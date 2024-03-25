@@ -55,8 +55,8 @@ To achieve sticky-session, there are two main solutions:
 
 You will find below some examples with common load-balancing solutions:
 
-- [NginX](#nginx-configuration) (IP-based)
-- [NginX Ingress (Kubernetes)](#nginx-ingress-kubernetes) (IP-based)
+- [nginx](#nginx-configuration) (IP-based)
+- [nginx Ingress (Kubernetes)](#nginx-ingress-kubernetes) (IP-based)
 - [Apache HTTPD](#apache-httpd-configuration) (cookie-based)
 - [HAProxy](#haproxy-configuration) (cookie-based)
 - [Traefik](#traefik) (cookie-based)
@@ -94,7 +94,7 @@ const socket = io("https://server-domain.com", {
 
 Without it, the cookie will not be sent by the browser and you will experience HTTP 400 "Session ID unknown" responses. More information [here](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials).
 
-### NginX configuration
+### nginx configuration
 
 Within the `http { }` section of your `nginx.conf` file, you can declare a `upstream` section with a list of Socket.IO process you want to balance load between:
 
@@ -134,14 +134,20 @@ http {
 
 Notice the `hash` instruction that indicates the connections will be sticky.
 
-Make sure you also configure `worker_processes` in the topmost level to indicate how many workers NginX should use. You might also want to look into tweaking the `worker_connections` setting within the `events { }` block.
+Make sure you also configure `worker_processes` in the topmost level to indicate how many workers nginx should use. You might also want to look into tweaking the `worker_connections` setting within the `events { }` block.
 
 Links:
 
 - [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-nginx)
-- [NginX Documentation](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
+- [nginx Documentation](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
 
-### NginX Ingress (Kubernetes)
+:::caution
+
+The value of nginx's [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) (60 seconds by default) must be bigger than Socket.IO's [`pingInterval + pingTimeout`](../../server-options.md#pinginterval) (45 seconds by default), else nginx will forcefully close the connection if no data is sent after the given delay and the client will get a "transport close" error.
+
+:::
+
+### nginx Ingress (Kubernetes)
 
 Within the `annotations` section of your Ingress configuration, you can declare an upstream hashing based on the client's IP address, so that the Ingress controller always assigns the requests from a given IP address to the same pod:
 
@@ -299,7 +305,7 @@ Links:
 
 ### Using Node.js Cluster
 
-Just like NginX, Node.js comes with built-in clustering support through the `cluster` module.
+Just like nginx, Node.js comes with built-in clustering support through the `cluster` module.
 
 There are several solutions, depending on your use case:
 

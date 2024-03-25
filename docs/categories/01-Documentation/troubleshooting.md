@@ -340,6 +340,18 @@ The possible reasons are listed [here](../03-Client/client-socket-instance.md#di
 
 ### Possible explanations
 
+#### Something between the server and the client closes the connection
+
+If the disconnection happens at a regular interval, this might indicate that something between the server and the client is not properly configured and closes the connection:
+
+- nginx
+
+The value of nginx's [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) (60 seconds by default) must be bigger than Socket.IO's [`pingInterval + pingTimeout`](../../server-options.md#pinginterval) (45 seconds by default), else it will forcefully close the connection if no data is sent after the given delay and the client will get a "transport close" error.
+
+- Apache HTTP Server
+
+The value of httpd's [`ProxyTimeout`](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#proxytimeout) (60 seconds by default) must be bigger than Socket.IO's [`pingInterval + pingTimeout`](../../server-options.md#pinginterval) (45 seconds by default), else it will forcefully close the connection if no data is sent after the given delay and the client will get a "transport close" error.
+
 #### The browser tab was minimized and heartbeat has failed
 
 When a browser tab is not in focus, some browsers (like [Chrome](https://developer.chrome.com/blog/timer-throttling-in-chrome-88/#intensive-throttling)) throttle JavaScript timers, which could lead to a disconnection by ping timeout **in Socket.IO v2**, as the heartbeat mechanism relied on `setTimeout` function on the client side.
@@ -426,7 +438,7 @@ io.on("connection", (socket) => {
 
 #### A proxy in front of your servers does not accept the WebSocket connection
 
-If a proxy like NginX or Apache HTTPD is not properly configured to accept WebSocket connections, then you might get a `TRANSPORT_MISMATCH` error:
+If a proxy like nginx or Apache HTTPD is not properly configured to accept WebSocket connections, then you might get a `TRANSPORT_MISMATCH` error:
 
 ```js
 io.engine.on("connection_error", (err) => {
