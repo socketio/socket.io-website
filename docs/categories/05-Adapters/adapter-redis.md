@@ -217,6 +217,14 @@ It is not currently possible to use the sharded adapter with the `ioredis` packa
 | `publishOnSpecificResponseChannel` | Whether to publish a response to the channel specific to the requesting node. | `false`       |
 | `parser`                           | The parser to use for encoding and decoding messages sent to Redis.           | `-`           |
 
+:::tip
+
+Setting the `publishOnSpecificResponseChannel` option to `true` is more efficient since the responses (for example when calling `fetchSockets()` or `serverSideEmit()`) are only sent to the requesting server, and not to all the servers.
+
+However, it currently defaults to `false` for backward-compatibility.
+
+:::
+
 ### Sharded adapter
 
 | Name               | Description                                                                             | Default value |
