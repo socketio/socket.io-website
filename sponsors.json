@@ -55,11 +55,6 @@
     "alt": "Turtlebet - Nettikasinot"
   },
   {
-    "url": "https://www.777casino.co.uk/",
-    "img": "https://images.opencollective.com/777-casino/a58fb66/logo.jpg",
-    "alt": "777 Casino"
-  },
-  {
     "url": "https://casinodaddy.com",
     "img": "/images/sponsors/casinodaddy.png",
     "alt": "Casino Daddy"
@@ -115,11 +110,6 @@
     "alt": "uudetkasinot.com"
   },
   {
-    "url": "https://www.canadacasinohub.com/",
-    "img": "https://images.opencollective.com/canada-casino-hub/43fa1b5/logo.jpg",
-    "alt": "Canada Casino Hub"
-  },
-  {
     "url": "https://www.whitehatcasinos.com",
     "img": "https://images.opencollective.com/whitehatcasinos-com/0fee63f/logo.jpg",
     "alt": "WhiteHatCasinos.com"
@@ -155,11 +145,6 @@
     "alt": "www.onlinecasinosdeutschland.de"
   },
   {
-    "url": "https://famousblast.com/product/buyfollowers/",
-    "img": "https://images.opencollective.com/famousblast/fc5479a/logo.jpg",
-    "alt": "Buy cheap instagram followers"
-  },
-  {
     "url": "https://aspireglobalcasinos.com",
     "img": "https://images.opencollective.com/aspire-global-casinos/cdf583d/logo.jpg",
     "alt": "Aspire Global Casinos"
@@ -170,14 +155,14 @@
     "alt": "Parimatch India"
   },
   {
-    "url": "https://leafletcasino.com/",
-    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
-    "alt": "leafletcasino.com"
-  },
-  {
     "url": "https://www.automatenspiele.org/",
     "img": "https://images.opencollective.com/guest-f6c2cab7/3a3f6a4/avatar.jpg",
     "alt": "automatenspiele.org"
+  },
+  {
+    "url": "https://leafletcasino.com/",
+    "img": "https://images.opencollective.com/leafletcasino-com/f8cd951/logo.png",
+    "alt": "leafletcasino.com"
   },
   {
     "url": "https://www.ibeesoft.com/",
@@ -193,6 +178,11 @@
     "url": "https://poprey.com/",
     "img": "https://images.opencollective.com/instagram-likes/2a72a03/avatar.jpg",
     "alt": "Poprey.com"
+  },
+  {
+    "url": "https://automatenspielex.com",
+    "img": "/images/sponsors/automatenspielexcom.png",
+    "alt": "automatenspielex.com"
   },
   {
     "url": "https://hellsbet.com/en-au/",
@@ -265,11 +255,6 @@
     "alt": "CasinoAus"
   },
   {
-    "url": "https://www.topaustraliangambling.com/",
-    "img": "https://images.opencollective.com/top-australian-gambling/e6df914/logo.jpg",
-    "alt": "Top Australian Gambling"
-  },
-  {
     "url": "https://www.norskeautomater.com/",
     "img": "https://images.opencollective.com/norskeautomater/c3ae6ee/avatar.jpg",
     "alt": "NorskeAutomater"
@@ -323,11 +308,6 @@
     "url": "https://legitgamblingsites.com",
     "img": "https://images.opencollective.com/legitgamblingsites/a6efbd9/logo.jpg",
     "alt": "LegitGamblingSites"
-  },
-  {
-    "url": "https://automatenspielex.com/online-casinos",
-    "img": "/images/sponsors/automatenspielexcom.png",
-    "alt": "beste online casino deutschland"
   },
   {
     "url": "https://supbot.com/",
@@ -455,6 +435,11 @@
     "alt": "Suomalaiset kasinot"
   },
   {
+    "url": "https://immediate.net",
+    "img": "https://images.opencollective.com/immediate-connect1/logo.jpg",
+    "alt": "Immediate Connect"
+  },
+  {
     "url": "https://buzzvoice.com/instagram/likes/order",
     "img": "https://images.opencollective.com/buzzvoicecom/c7477dd/logo.jpg",
     "alt": "buzzvoice.com"
@@ -468,11 +453,6 @@
     "url": "https://www.bestaucasinosites.com/",
     "img": "https://images.opencollective.com/bestaucasinosites/f4b908a/avatar.jpg",
     "alt": "Best AU Casino Sites"
-  },
-  {
-    "url": "https://immediate.net",
-    "img": "https://images.opencollective.com/immediate-connect1/logo.jpg",
-    "alt": "Immediate Connect"
   },
   {
     "url": "https://purekana.com/",
@@ -625,11 +605,6 @@
     "alt": "Казино Рейтинги"
   },
   {
-    "url": "https://thepokies.live/",
-    "img": "https://images.opencollective.com/thepokies/6f9353e/logo.jpg",
-    "alt": "Thepokies"
-  },
-  {
     "url": "https://skweezer.net/buy-instagram-followers",
     "img": "/images/sponsors/skweezer-net.png",
     "alt": "visit skweezer to buy instagram followers today"
@@ -678,5 +653,15 @@
     "url": "https://damangamesapp.org/",
     "img": "https://images.opencollective.com/daman-games-official/1b773d7/avatar.jpg",
     "alt": "Daman Game Download"
+  },
+  {
+    "url": "https://fortune-tiger-br.com/",
+    "img": "https://images.opencollective.com/fortune-tiger2/d821e05/logo.jpg",
+    "alt": "Fortune Tiger"
+  },
+  {
+    "url": "https://parimattchbr.com/",
+    "img": "https://images.opencollective.com/parimatch3/c87e839/logo.jpg",
+    "alt": "Parimatch"
   }
 ]

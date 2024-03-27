@@ -98,9 +98,9 @@ const customLinks = {
     alt: "CasinoTest Ltd."
   },
   "automatenspielexcom": {
-    url: "https://automatenspielex.com/online-casinos",
+    url: "https://automatenspielex.com",
     img: "/images/sponsors/automatenspielexcom.png",
-    alt: "beste online casino deutschland"
+    alt: "automatenspielex.com"
   },
   "ncsquare": {
     url: "https://kiwigambler.co.nz/online-casinos/online-pokies/free-spins-no-deposit",
