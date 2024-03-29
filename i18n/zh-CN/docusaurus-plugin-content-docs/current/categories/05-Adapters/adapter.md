@@ -17,7 +17,7 @@ slug: /adapter/
 - the [Cluster 适配器](adapter-cluster.md)
 - the [Google Cloud Pub/Sub 适配器](adapter-gcp-pubsub.md)
 - the [AWS SQS 适配器](adapter-aws-sqs.md)
-- the [Azure Service Bus 适配器](adapter-aws-sqs.md)
+- the [Azure Service Bus 适配器](adapter-azure-service-bus.md)
 
 （真棒！）社区还维护了其他几个选项：
 
