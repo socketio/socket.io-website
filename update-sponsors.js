@@ -49,14 +49,9 @@ const graphqlQuery = `query account {
 }`;
 
 const customImages = new Map([
-  ["alessandro-rivieccio", { url: "https://www.casinosansdepot.com", img: "/images/sponsors/casinosansdepot.png", alt: "casinosansdepot" }],
-  ["casinoalpha", { url: "https://casinoalpha.com/", img: "/images/sponsors/casinoalpha.png", alt: "CasinoAlpha" }],
-  ["casinobonusca", { url: "https://casinobonusca.com/", img: "/images/sponsors/casinobonusca.png", alt: "CasinoBonusCa" }],
-  ["king10", { url: "https://kingcasinobonus.co.uk", img: "/images/sponsors/king10.png", alt: "KingCasinoBonus" }],
   ["gem-m", { url: "https://www.noneedtostudy.com/take-my-online-class/", img: "/images/sponsors/noneedtostudy.png", alt: "Pay someone to take my online class - NoNeedToStudy.com" }],
   ["yana1", { url: "https://nongamstopcasinos.net/gb/", img: "/images/sponsors/nongamstopcasinos.png", alt: "Non Gamstop Casinos" }],
   ["de2", { url: "https://www.slotozilla.com/de/software/novoline-de", img: "/images/sponsors/slotozilla.png", alt: "Novoline Spielautomaten" }],
-  ["david128", { url: "https://bulkfollows.com", img: "https://images.opencollective.com/david128/c45a0fd/logo.png", alt: "Bulkfollows" }],
   ["guest-3f7631a8", { url: "https://www.hityah.com", img: "/images/sponsors/guest-3f7631a8-2.jpg", alt: "Hityah" }],
   ["skweezer-net", { url: "https://skweezer.net/buy-instagram-followers", img: "/images/sponsors/skweezer-net.png", alt: "visit skweezer to buy instagram followers today" }],
 ]);
@@ -67,25 +62,10 @@ const customLinks = {
     img: "/images/sponsors/casinodaddy.png",
     alt: "Casino Daddy"
   },
-  papersowl2: {
-    url: "https://papersowl.com/research-papers",
-    img: "https://images.opencollective.com/papersowl2/510de59/logo.png",
-    alt: "Papersowl"
-  },
-  "neue-online-casinos1": {
-    url: "https://www.neueonline-casinos.com/",
-    img: "/images/sponsors/neue.png",
-    alt: "Neue Online Casinos"
-  },
   "quickbooks-tool-hub": {
     url: "https://quickbookstoolhub.com/",
     img: "/images/sponsors/quickbookstoolhub.png",
     alt: "Quickbooks Tool Hub"
-  },
-  "red-dog": {
-    url: "https://reddogcasino.com/en/games/blackjack",
-    img: "https://images.opencollective.com/red-dog/49e9d6f/logo.png",
-    alt: "RedDogCasino.com"
   },
   "leafletcasino-com": {
     url: "https://leafletcasino.com/",
@@ -102,20 +82,10 @@ const customLinks = {
     img: "/images/sponsors/automatenspielexcom.png",
     alt: "automatenspielex.com"
   },
-  "ncsquare": {
-    url: "https://kiwigambler.co.nz/online-casinos/online-pokies/free-spins-no-deposit",
-    img: "/images/sponsors/ncsquare.png",
-    alt: "Kiwi Gambler NZ"
-  },
   "veepn-vpn": {
     url: "https://veepn.com/vpn-apps/download-vpn-for-pc/",
     img: "https://images.opencollective.com/veepn-vpn/5e3715a/avatar.png",
     alt: "VeePN VPN"
-  },
-  "noverificationcasino": {
-    url: "https://no-verification.casino/canada/",
-    img: "https://images.opencollective.com/noverificationcasino/6e11a64/logo.png",
-    alt: "online casino no verification withdrawal canada"
   },
   andynichols: {
     url: "https://hmkasinotsuomi.com",
