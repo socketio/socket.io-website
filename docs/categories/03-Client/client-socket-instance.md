@@ -226,7 +226,7 @@ Here is the list of possible reasons:
 | `transport close`      | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)           | :white_check_mark: YES  |
 | `transport error`      | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)               | :white_check_mark: YES  |
 
-The [`socket.active`](../../client-api#socketactive) attribute indicates whether the socket will automatically try to reconnect after a small [randomized delay](../../client-options.md#reconnectiondelay):
+The [`socket.active`](../../client-api.md#socketactive) attribute indicates whether the socket will automatically try to reconnect after a small [randomized delay](../../client-options.md#reconnectiondelay):
 
 ```js
 socket.on("disconnect", (reason) => {
