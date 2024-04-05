@@ -23,6 +23,7 @@ If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/t
 ## Front-end frameworks
 
 - [React](/how-to/use-with-react)
+- [React Native](/how-to/use-with-react-native)
 - [Vue 3](/how-to/use-with-vue)
 - [Next.js](/how-to/use-with-nextjs)
 - [Nuxt](/how-to/use-with-nuxt)
