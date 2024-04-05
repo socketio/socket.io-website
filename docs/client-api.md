@@ -329,7 +329,7 @@ More information can be found [here](categories/03-Client/client-socket-instance
 
 #### Event: 'connect'
 
-Fired upon connection to the Namespace (including a successful reconnection).
+This event is fired by the Socket instance upon connection **and** reconnection.
 
 ```js
 socket.on("connect", () => {
@@ -339,72 +339,136 @@ socket.on("connect", () => {
 
 :::caution
 
-Please note that you shouldn't register event handlers in the `connect` handler itself, as a new handler will be registered every time the Socket reconnects:
+Event handlers shouldn't be registered in the `connect` handler itself, as a new handler will be registered every time the socket instance reconnects:
+
+BAD :warning:
 
 ```js
-// BAD
 socket.on("connect", () => {
   socket.on("data", () => { /* ... */ });
 });
+```
 
-// GOOD
-socket.on("connect", () => { /* ... */ });
+GOOD :+1:
+
+```js
+socket.on("connect", () => {
+  // ...
+});
+
 socket.on("data", () => { /* ... */ });
 ```
 
 :::
+
+#### Event: 'connect_error'
+
+- `error` [`<Error>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+This event is fired upon connection failure.
+
+| Reason                                                                                                    | Automatic reconnection? |
+|-----------------------------------------------------------------------------------------------------------|-------------------------|
+| The low-level connection cannot be established (temporary failure)                                        | :white_check_mark: YES  |
+| The connection was denied by the server in a [middleware function](./categories/02-Server/middlewares.md) | :x: NO                  |
+
+The [`socket.active`](#socketactive) attribute indicates whether the socket will automatically try to reconnect after a small [randomized delay](client-options.md#reconnectiondelay):
+
+```js
+socket.on("connect_error", (error) => {
+  if (socket.active) {
+    // temporary failure, the socket will automatically try to reconnect
+  } else {
+    // the connection was denied by the server
+    // in that case, `socket.connect()` must be manually called in order to reconnect
+    console.log(error.message);
+  }
+});
+```
 
 #### Event: 'disconnect'
 
 - `reason` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
 - `details` `<DisconnectDetails>`
 
-Fired upon disconnection. The list of possible disconnection reasons:
-
-| Reason                 | Description                                                                                                       |
-|------------------------|-------------------------------------------------------------------------------------------------------------------|
-| `io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](server-api.md#socketdisconnectclose) |
-| `io client disconnect` | The socket was manually disconnected using [socket.disconnect()](client-api.md#socketdisconnect)                  |
-| `ping timeout`         | The server did not send a PING within the `pingInterval + pingTimeout` range                                      |
-| `transport close`      | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)     |
-| `transport error`      | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)         |
-
-In the first two cases (explicit disconnection), the client will not try to reconnect and you need to manually call `socket.connect()`.
-
-In all other cases, the client will wait for a small [random delay](client-options.md#reconnectiondelay) and then try to reconnect:
+This event is fired upon disconnection.
 
 ```js
-socket.on("disconnect", (reason) => {
-  if (reason === "io server disconnect") {
-    // the disconnection was initiated by the server, you need to reconnect manually
-    socket.connect();
-  }
-  // else the socket will automatically try to reconnect
+socket.on("disconnect", (reason, details) => {
+  // ...
 });
 ```
 
-#### Event: 'connect_error'
+Here is the list of possible reasons:
 
-- `connect_error` [`<Error>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) error object
+| Reason                 | Description                                                                                                       | Automatic reconnection? |
+|------------------------|-------------------------------------------------------------------------------------------------------------------|:------------------------|
+| `io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](server-api.md#socketdisconnectclose) | :x: NO                  |
+| `io client disconnect` | The socket was manually disconnected using [socket.disconnect()](client-api.md#socketdisconnect)                  | :x: NO                  |
+| `ping timeout`         | The server did not send a PING within the `pingInterval + pingTimeout` range                                      | :white_check_mark: YES  |
+| `transport close`      | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)     | :white_check_mark: YES  |
+| `transport error`      | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)         | :white_check_mark: YES  |
 
-Fired when a namespace middleware error occurs.
+The [`socket.active`](#socketactive) attribute indicates whether the socket will automatically try to reconnect after a small [randomized delay](client-options.md#reconnectiondelay):
 
 ```js
-socket.on("connect_error", (error) => {
-  // ...
+socket.on("disconnect", (reason) => {
+  if (socket.active) {
+    // temporary disconnection, the socket will automatically try to reconnect
+  } else {
+    // the connection was forcefully closed by the server or the client itself
+    // in that case, `socket.connect()` must be manually called in order to reconnect
+    console.log(reason);
+  }
 });
 ```
 
 ### Attributes
 
+#### socket.active
+
+- [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
+
+Whether the socket will automatically try to reconnect.
+
+This attribute can be used after a connection failure:
+
+```js
+socket.on("connect_error", (error) => {
+  if (socket.active) {
+    // temporary failure, the socket will automatically try to reconnect
+  } else {
+    // the connection was denied by the server
+    // in that case, `socket.connect()` must be manually called in order to reconnect
+    console.log(error.message);
+  }
+});
+```
+
+Or after a disconnection:
+
+```js
+socket.on("disconnect", (reason) => {
+  if (socket.active) {
+    // temporary disconnection, the socket will automatically try to reconnect
+  } else {
+    // the connection was forcefully closed by the server or the client itself
+    // in that case, `socket.connect()` must be manually called in order to reconnect
+    console.log(reason);
+  }
+});
+```
+
 #### socket.connected
 
   - [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
 
-Whether or not the socket is connected to the server.
+Whether the socket is currently connected to the server.
 
 ```js
-const socket = io("http://localhost");
+const socket = io();
+
+console.log(socket.connected); // false
 
 socket.on("connect", () => {
   console.log(socket.connected); // true
@@ -415,10 +479,12 @@ socket.on("connect", () => {
 
   - [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
 
-Whether or not the socket is disconnected from the server.
+Whether the socket is currently disconnected from the server.
 
 ```js
-const socket = io("http://localhost");
+const socket = io();
+
+console.log(socket.disconnected); // true
 
 socket.on("connect", () => {
   console.log(socket.disconnected); // false
@@ -432,7 +498,7 @@ socket.on("connect", () => {
 A unique identifier for the socket session. Set after the `connect` event is triggered, and updated after the `reconnect` event.
 
 ```js
-const socket = io("http://localhost");
+const socket = io();
 
 console.log(socket.id); // undefined
 

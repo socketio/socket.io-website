@@ -123,10 +123,12 @@ socket.on("connect", () => {
 The Socket instance emits three special events:
 
 - [`connect`](#connect)
-- [`connect_error`](#connect-error)
+- [`connect_error`](#connect_error)
 - [`disconnect`](#disconnect)
 
-Please note that since Socket.IO v3, the Socket instance does not emit any event related to the reconnection logic anymore. You can listen to the events on the Manager instance directly:
+:::tip
+
+Since Socket.IO v3, the Socket instance does not emit any event related to the reconnection logic anymore. You can listen to the events on the Manager instance directly:
 
 ```js
 socket.io.on("reconnect_attempt", () => {
@@ -140,6 +142,8 @@ socket.io.on("reconnect", () => {
 
 More information can be found in the [migration guide](../07-Migrations/migrating-from-2-to-3.md#the-socket-instance-will-no-longer-forward-the-events-emitted-by-its-manager).
 
+:::
+
 ### `connect`
 
 This event is fired by the Socket instance upon connection **and** reconnection.
@@ -150,15 +154,21 @@ socket.on("connect", () => {
 });
 ```
 
-Please note that you shouldn't register event handlers in the `connect` handler itself, as a new handler will be registered every time the Socket reconnects:
+:::caution
+
+Event handlers shouldn't be registered in the `connect` handler itself, as a new handler will be registered every time the socket instance reconnects:
+
+BAD :warning:
 
 ```js
-// BAD
 socket.on("connect", () => {
   socket.on("data", () => { /* ... */ });
 });
+```
 
-// GOOD
+GOOD :+1:
+
+```js
 socket.on("connect", () => {
   // ...
 });
@@ -166,39 +176,37 @@ socket.on("connect", () => {
 socket.on("data", () => { /* ... */ });
 ```
 
+:::
+
 ### `connect_error`
 
-This event is fired when:
+- `error` [`<Error>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-- the low-level connection cannot be established
-- the connection is denied by the server in a [middleware function](../02-Server/middlewares.md)
+This event is fired upon connection failure.
 
-In the first case, the Socket will automatically try to reconnect, after a [given delay](../../client-options.md#reconnectiondelay).
+| Reason                                                                                          | Automatic reconnection? |
+|-------------------------------------------------------------------------------------------------|-------------------------|
+| The low-level connection cannot be established (temporary failure)                              | :white_check_mark: YES  |
+| The connection was denied by the server in a [middleware function](../02-Server/middlewares.md) | :x: NO                  |
 
-In the latter case, you need to manually reconnect. You might need to update the credentials:
+The [`socket.active`](../../client-api.md#socketactive) attribute indicates whether the socket will automatically try to reconnect after a small [randomized delay](../../client-options.md#reconnectiondelay):
 
 ```js
-// either by directly modifying the `auth` attribute
-socket.on("connect_error", () => {
-  socket.auth.token = "abcd";
-  socket.connect();
-});
-
-// or if the `auth` attribute is a function
-const socket = io({
-  auth: (cb) => {
-    cb(localStorage.getItem("token"));
+socket.on("connect_error", (error) => {
+  if (socket.active) {
+    // temporary failure, the socket will automatically try to reconnect
+  } else {
+    // the connection was denied by the server
+    // in that case, `socket.connect()` must be manually called in order to reconnect
+    console.log(error.message);
   }
-});
-
-socket.on("connect_error", () => {
-  setTimeout(() => {
-    socket.connect();
-  }, 1000);
 });
 ```
 
 ### `disconnect`
+
+- `reason` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type)
+- `details` `<DisconnectDetails>`
 
 This event is fired upon disconnection.
 
@@ -210,34 +218,45 @@ socket.on("disconnect", (reason, details) => {
 
 Here is the list of possible reasons:
 
-| Reason                 | Description                                                                                                             |
-|------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](../../server-api.md#socketdisconnectclose) |
-| `io client disconnect` | The socket was manually disconnected using [socket.disconnect()](../../client-api.md#socketdisconnect)                  |
-| `ping timeout`         | The server did not send a PING within the `pingInterval + pingTimeout` range                                            |
-| `transport close`      | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)           |
-| `transport error`      | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)               |
+| Reason                 | Description                                                                                                             | Automatic reconnection? |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------|:------------------------|
+| `io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](../../server-api.md#socketdisconnectclose) | :x: NO                  |
+| `io client disconnect` | The socket was manually disconnected using [socket.disconnect()](../../client-api.md#socketdisconnect)                  | :x: NO                  |
+| `ping timeout`         | The server did not send a PING within the `pingInterval + pingTimeout` range                                            | :white_check_mark: YES  |
+| `transport close`      | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)           | :white_check_mark: YES  |
+| `transport error`      | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)               | :white_check_mark: YES  |
 
-In the first two cases (explicit disconnection), the client will not try to reconnect and you need to manually call `socket.connect()`.
-
-In all other cases, the client will wait for a small [random delay](../../client-options.md#reconnectiondelay) and then try to reconnect:
+The [`socket.active`](../../client-api#socketactive) attribute indicates whether the socket will automatically try to reconnect after a small [randomized delay](../../client-options.md#reconnectiondelay):
 
 ```js
 socket.on("disconnect", (reason) => {
-  if (reason === "io server disconnect") {
-    // the disconnection was initiated by the server, you need to reconnect manually
-    socket.connect();
+  if (socket.active) {
+    // temporary disconnection, the socket will automatically try to reconnect
+  } else {
+    // the connection was forcefully closed by the server or the client itself
+    // in that case, `socket.connect()` must be manually called in order to reconnect
+    console.log(reason);
   }
-  // else the socket will automatically try to reconnect
 });
 ```
 
-Note: those events, along with `disconnecting`, `newListener` and `removeListener`, are special events that shouldn't be used in your application:
+:::caution
+
+The following event names are reserved and must not be used in your application:
+
+- `connect`
+- `connect_error`
+- `disconnect`
+- `disconnecting`
+- `newListener`
+- `removeListener`
 
 ```js
 // BAD, will throw an error
 socket.emit("disconnect");
 ```
+
+:::
 
 ## Complete API
 

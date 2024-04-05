@@ -7,7 +7,7 @@ toc_max_heading_level: 4
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::warning
+:::caution
 
 The following event names are reserved and must not be used in your application:
 
