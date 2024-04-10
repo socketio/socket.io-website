@@ -74,7 +74,7 @@ You can add the following configuration to allow it during development:
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">192.168.0.10</domain>
+        <domain>192.168.0.10</domain>
     </domain-config>
 </network-security-config>
 ```
@@ -90,6 +90,75 @@ You can add the following configuration to allow it during development:
 
 Reference: https://developer.android.com/privacy-and-security/security-config
 
+### With a self-signed certificate
+
+You can reach a Socket.IO server with a self-signed certificate with the following configuration:
+
+```xml title="android/app/src/debug/AndroidManifest.xml"
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+    <application
+            android:networkSecurityConfig="@xml/network_security_config"
+    />
+</manifest>
+```
+
+```xml title="android/app/src/debug/res/xml/network_security_config.xml"
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- needed by the Metro dev server -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain>localhost</domain>
+    </domain-config>
+
+    <domain-config>
+        <domain>192.168.0.10</domain>
+        <trust-anchors>
+            <certificates src="@raw/mycert" />
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
+```
+
+```raw title="android/app/src/debug/res/raw/mycert.pem"
+-----BEGIN CERTIFICATE-----
+[...]
+-----END CERTIFICATE-----
+```
+
+:::caution
+
+The IP address must be included in the `subjectAltName` of the self-signed certificate:
+
+```bash
+$ openssl req -x509 -nodes \
+  -newkey rsa:2048 \
+  -out cert.pem \
+  -keyout key.pem \
+  -subj '/CN=localhost' \
+  -addext 'subjectAltName = IP:192.168.0.10'
+```
+
+Else the client won't be able to establish the connection.
+
+You can check it with the following command:
+
+```bash
+$ openssl x509 -in cert.pem -text -noout | grep X509v3 -A 1
+        X509v3 extensions:
+            X509v3 Subject Key Identifier:
+                C3:67:68:1A:F2:2C:F2:E8:B9:7A:7D:25:3F:5D:E0:AF:B5:B0:AF:16
+            X509v3 Authority Key Identifier:
+                C3:67:68:1A:F2:2C:F2:E8:B9:7A:7D:25:3F:5D:E0:AF:B5:B0:AF:16
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+            X509v3 Subject Alternative Name:
+                IP Address:192.168.0.10
+```
+
+:::
+
+Reference: https://developer.android.com/privacy-and-security/security-config
 
 ## Sample projects
 
