@@ -297,7 +297,7 @@
   {
     "url": "https://supbot.com/",
     "img": "https://images.opencollective.com/vivek10/0aea146/avatar.jpg",
-    "alt": "Sup.today"
+    "alt": "Supbot.com"
   },
   {
     "url": "https://www.nettcasino.com/",
@@ -420,19 +420,14 @@
     "alt": "buzzvoice.com"
   },
   {
-    "url": "https://immediate.net",
-    "img": "https://images.opencollective.com/immediate-connect1/logo.jpg",
-    "alt": "Immediate Connect"
-  },
-  {
     "url": "https://www.hityah.com",
     "img": "/images/sponsors/guest-3f7631a8-2.jpg",
     "alt": "Hityah"
   },
   {
-    "url": "https://www.bestaucasinosites.com/",
-    "img": "https://images.opencollective.com/bestaucasinosites/f4b908a/avatar.jpg",
-    "alt": "Best AU Casino Sites"
+    "url": "https://immediate.net",
+    "img": "https://images.opencollective.com/immediate-connect1/logo.jpg",
+    "alt": "Immediate Connect"
   },
   {
     "url": "https://purekana.com/",
@@ -443,6 +438,11 @@
     "url": "https://www.cryptolists.com/casinos/",
     "img": "https://images.opencollective.com/cryptolists/b8c5829/logo.jpg",
     "alt": "CryptoLists.com"
+  },
+  {
+    "url": "https://www.bestaucasinosites.com/",
+    "img": "https://images.opencollective.com/bestaucasinosites/f4b908a/avatar.jpg",
+    "alt": "Best AU Casino Sites"
   },
   {
     "url": "https://payidpokies.com",
@@ -605,6 +605,11 @@
     "alt": "FruityKing NZ"
   },
   {
+    "url": "https://casinosinlicenciaespana.com/",
+    "img": "https://images.opencollective.com/casinos-sin-licencia-espanola/fa40830/logo.jpg",
+    "alt": "Casinos sin licencia española"
+  },
+  {
     "url": "https://proxidize.com/proxy-server/mobile-proxy/",
     "img": "https://images.opencollective.com/proxidize-mobile-proxies/3658b39/logo.jpg",
     "alt": "Proxidize Mobile Proxies"
@@ -615,11 +620,6 @@
     "alt": "Quantum AI"
   },
   {
-    "url": "https://damangamesapp.org/",
-    "img": "https://images.opencollective.com/daman-games-official/1b773d7/avatar.jpg",
-    "alt": "Daman Game Download"
-  },
-  {
     "url": "https://fortune-tiger-br.com/",
     "img": "https://images.opencollective.com/fortune-tiger2/d821e05/logo.jpg",
     "alt": "Fortune Tiger"
@@ -628,11 +628,6 @@
     "url": "https://parimattchbr.com/",
     "img": "https://images.opencollective.com/parimatch3/c87e839/logo.jpg",
     "alt": "Parimatch"
-  },
-  {
-    "url": "https://www.digitaleplaneet.com/",
-    "img": "https://images.opencollective.com/digitaleplaneet/bebedb9/avatar.jpg",
-    "alt": "MD BELAL HOSSAIN"
   },
   {
     "url": "https://instasocials.com/buy-instagram-reels-views/",
