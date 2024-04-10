@@ -57,23 +57,34 @@ Starting with API level 28 (Android 9 and higher), cleartext traffic is blocked 
 
 You can add the following configuration to allow it during development:
 
-```xml title="res/xml/network_security_config.xml"
+- either with `android:usesCleartextTraffic="true"`
+
+```xml title="android/app/src/debug/AndroidManifest.xml"
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+    <application
+            android:usesCleartextTraffic="true"
+    />
+</manifest>
+```
+
+- or with a Network Security Configuration file:
+
+```xml title="android/app/src/debug/res/xml/network_security_config.xml"
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">10.0.2.2</domain>
+        <domain includeSubdomains="true">192.168.0.10</domain>
     </domain-config>
 </network-security-config>
 ```
 
-```xml title="AndroidManifest.xml"
+```xml title="android/app/src/debug/AndroidManifest.xml"
 <?xml version="1.0" encoding="utf-8"?>
-<manifest ... >
+<manifest>
     <application
-        android:networkSecurityConfig="@xml/network_security_config"
-        ... >
-        ...
-    </application>
+            android:networkSecurityConfig="@xml/network_security_config"
+    />
 </manifest>
 ```
 
