@@ -27,6 +27,7 @@ If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/t
 - [Vue 3](/how-to/use-with-vue)
 - [Next.js](/how-to/use-with-nextjs)
 - [Nuxt](/how-to/use-with-nuxt)
+- [NW.js](/how-to/use-with-nwjs)
 
 ## How to...
 
