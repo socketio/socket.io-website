@@ -92,6 +92,11 @@ const customLinks = {
     url: "https://hmkasinotsuomi.com",
     img: "/images/sponsors/holymolycasinos.png",
     alt: "Suomalaiset kasinot"
+  },
+  auscasinos: {
+    url: "https://www.auscasinos.com/",
+    img: "https://images.opencollective.com/auscasinos/8df0f47/logo.jpg",
+    alt: "AusCasinos"
   }
 }
 
