@@ -170,14 +170,14 @@
     "alt": "Онлайн Казино Украины"
   },
   {
-    "url": "https://automatenspielex.com",
-    "img": "/images/sponsors/automatenspielexcom.png",
-    "alt": "automatenspielex.com"
-  },
-  {
     "url": "https://www.casimba.com/en-gb/",
     "img": "https://images.opencollective.com/casimba-casino/0506d6d/logo.jpg",
     "alt": "Casimba Casino"
+  },
+  {
+    "url": "https://automatenspielex.com",
+    "img": "/images/sponsors/automatenspielexcom.png",
+    "alt": "automatenspielex.com"
   },
   {
     "url": "https://www.sure.bet/casinos-not-on-gamstop/",
@@ -295,11 +295,6 @@
     "alt": "Supbot.com"
   },
   {
-    "url": "https://slotoking.ua/",
-    "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.jpg",
-    "alt": "Ігрові автомати"
-  },
-  {
     "url": "https://www.nettcasino.com/",
     "img": "https://images.opencollective.com/nettcasino/df22622/logo.jpg",
     "alt": "Nettcasino"
@@ -325,11 +320,6 @@
     "alt": "Overlyzer"
   },
   {
-    "url": "https://veepn.com/vpn-apps/download-vpn-for-pc/",
-    "img": "https://images.opencollective.com/veepn-vpn/5e3715a/avatar.png",
-    "alt": "VeePN VPN"
-  },
-  {
     "url": "https://stoiximatora.gr/",
     "img": "https://images.opencollective.com/stoixima-tora/9cf696d/avatar.jpg",
     "alt": "Stoixima Tora"
@@ -340,6 +330,16 @@
     "alt": "Svindel.info"
   },
   {
+    "url": "https://slotoking.ua/",
+    "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.jpg",
+    "alt": "Ігрові автомати"
+  },
+  {
+    "url": "https://veepn.com/vpn-apps/download-vpn-for-pc/",
+    "img": "https://images.opencollective.com/veepn-vpn/5e3715a/avatar.png",
+    "alt": "VeePN VPN"
+  },
+  {
     "url": "https://casinolandia.com/",
     "img": "https://images.opencollective.com/viktor-atanasov/8904683/avatar.jpg",
     "alt": "CasinoLandia"
@@ -348,11 +348,6 @@
     "url": "https://www.vedonlyontibonukset.com/pitkavetovihjeet",
     "img": "https://images.opencollective.com/pitkavetovihjeet/0131f1d/logo.jpg",
     "alt": "Ilmaiset Pitkävetovihjeet"
-  },
-  {
-    "url": "https://www.slotsup.com",
-    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.jpg",
-    "alt": "SlotsUp"
   },
   {
     "url": "https://www.casino-comparatif.org/",
@@ -385,6 +380,11 @@
     "alt": "Novoline Spielautomaten"
   },
   {
+    "url": "https://www.slotsup.com",
+    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.jpg",
+    "alt": "SlotsUp"
+  },
+  {
     "url": "https://www.socialwick.com/instagram/followers",
     "img": "https://images.opencollective.com/socialwick/e244614/logo.jpg",
     "alt": "SocialWick"
@@ -410,6 +410,11 @@
     "alt": "Suomalaiset kasinot"
   },
   {
+    "url": "https://immediate.net",
+    "img": "https://images.opencollective.com/immediate-connect1/logo.jpg",
+    "alt": "Immediate Connect"
+  },
+  {
     "url": "https://buzzvoice.com/instagram/likes/order",
     "img": "https://images.opencollective.com/buzzvoicecom/c7477dd/logo.jpg",
     "alt": "buzzvoice.com"
@@ -418,11 +423,6 @@
     "url": "https://www.hityah.com",
     "img": "/images/sponsors/guest-3f7631a8-2.jpg",
     "alt": "Hityah"
-  },
-  {
-    "url": "https://immediate.net",
-    "img": "https://images.opencollective.com/immediate-connect1/logo.jpg",
-    "alt": "Immediate Connect"
   },
   {
     "url": "https://purekana.com/",
@@ -483,6 +483,11 @@
     "url": "https://dopoid.com/",
     "img": "https://images.opencollective.com/dopoid/6a53418/logo.jpg",
     "alt": "Dopoid"
+  },
+  {
+    "url": "https://payid-casinos.com",
+    "img": "https://images.opencollective.com/payid-gambler/05e5b3b/logo.jpg",
+    "alt": "PayID Gambler"
   },
   {
     "url": "https://ezcasino.in/",
@@ -570,6 +575,11 @@
     "alt": "Казино Рейтинги"
   },
   {
+    "url": "https://thepokies.live/",
+    "img": "https://images.opencollective.com/thepokies/6f9353e/logo.jpg",
+    "alt": "Thepokies"
+  },
+  {
     "url": "https://skweezer.net/buy-instagram-followers",
     "img": "/images/sponsors/skweezer-net.png",
     "alt": "visit skweezer to buy instagram followers today"
@@ -625,11 +635,6 @@
     "alt": "Instasocials"
   },
   {
-    "url": "https://aviatorgamebet.org/",
-    "img": "https://images.opencollective.com/aviator-gamer/d711439/logo.jpg",
-    "alt": "Aviator Game"
-  },
-  {
     "url": "https://expressfollowers.com/buy-instagram-reel-views/",
     "img": "/images/sponsors/buy-instagram-reels-views.ico",
     "alt": "Buy Instagram Reel Views"
@@ -638,5 +643,20 @@
     "url": "https://useviral.com/",
     "img": "https://images.opencollective.com/useviral/29bff43/logo.png",
     "alt": "UseViral"
+  },
+  {
+    "url": "https://polskiekasynaonline24.com/",
+    "img": "https://images.opencollective.com/onlinecasinoprofy/85c222c/avatar.jpg",
+    "alt": "OnlineCasinoProfy"
+  },
+  {
+    "url": "https://greece-casinos.com/",
+    "img": "https://images.opencollective.com/greece-casinos/9971c83/logo.jpg",
+    "alt": "Greece Casinos"
+  },
+  {
+    "url": "https://buitenlandseonlinecasinos.org/",
+    "img": "https://images.opencollective.com/buitenlandseonlinecasinos/31294b1/avatar.jpg",
+    "alt": "BuitenlandseOnlineCasinos"
   }
 ]
