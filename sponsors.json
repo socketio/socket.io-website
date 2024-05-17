@@ -275,11 +275,6 @@
     "alt": "Renato Baldo"
   },
   {
-    "url": "https://slotoking.ua/",
-    "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.jpg",
-    "alt": "Ігрові автомати"
-  },
-  {
     "url": "https://www.instafollowers.co/",
     "img": "https://images.opencollective.com/instafollowersco/5c0cddd/logo.jpg",
     "alt": "instafollowers.co"
@@ -288,6 +283,11 @@
     "url": "https://legitgamblingsites.com",
     "img": "https://images.opencollective.com/legitgamblingsites/a6efbd9/logo.jpg",
     "alt": "LegitGamblingSites"
+  },
+  {
+    "url": "https://slotoking.ua/",
+    "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.jpg",
+    "alt": "Ігрові автомати"
   },
   {
     "url": "https://supbot.com/",
@@ -415,11 +415,6 @@
     "alt": "Immediate Connect"
   },
   {
-    "url": "https://purekana.com/",
-    "img": "https://images.opencollective.com/purekana/3c59e4d/logo.jpg",
-    "alt": "PureKana"
-  },
-  {
     "url": "https://www.cryptolists.com/casinos/",
     "img": "https://images.opencollective.com/cryptolists/b8c5829/logo.jpg",
     "alt": "CryptoLists.com"
@@ -530,11 +525,6 @@
     "alt": "Casinos Zonder Cruks"
   },
   {
-    "url": "https://казино-рейтинги.бг",
-    "img": "https://images.opencollective.com/kazino-rejtingi/fbd4e08/logo.jpg",
-    "alt": "Казино Рейтинги"
-  },
-  {
     "url": "https://thepokies.live/",
     "img": "https://images.opencollective.com/thepokies/6f9353e/logo.jpg",
     "alt": "Thepokies"
@@ -633,5 +623,15 @@
     "url": "https://casinozonderregistratie.net/nieuwe-online-casinos/",
     "img": "https://images.opencollective.com/nieuwe-online-casino/8b2e24f/logo.jpg",
     "alt": "Nieuwe Online Casino"
+  },
+  {
+    "url": "https://Nieuwe-Casinos.net",
+    "img": "https://images.opencollective.com/nieuwecasinos/ee150d6/logo.jpg",
+    "alt": "Nieuwe-Casinos.net"
+  },
+  {
+    "url": "https://toprating.casino/",
+    "img": "https://images.opencollective.com/topratingcasino/bb0b43a/avatar.jpg",
+    "alt": "Top Rating casino"
   }
 ]
