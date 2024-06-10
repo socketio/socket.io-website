@@ -56,6 +56,7 @@ const customImages = new Map([
   ["skweezer-net", { url: "https://skweezer.net/buy-instagram-followers", img: "/images/sponsors/skweezer-net.png", alt: "visit skweezer to buy instagram followers today" }],
   ["buy-instagram-reels-views", { url: "https://expressfollowers.com/buy-instagram-reel-views/", img: "/images/sponsors/buy-instagram-reels-views.ico", alt: "Buy Instagram Reel Views" }],
   ["guest-5c8f6e13", { url: "https://useviral.com/", img: "https://images.opencollective.com/useviral/29bff43/logo.png", alt: "UseViral" }],
+  ["user-53231496", { url: "https://justanotherpanel.com", img: "/images/sponsors/justanotherpanel.png", alt: "JustAnotherPanel" }],
 ]);
 
 const customLinks = {
