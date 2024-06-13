@@ -496,7 +496,7 @@
   },
   {
     "url": "https://www.socialfollowers.uk/",
-    "img": "https://images.opencollective.com/socialfollowersuk/23d63f4/avatar.jpg",
+    "img": "https://images.opencollective.com/socialfollowersuk/e327e52/avatar.jpg",
     "alt": "Social followers"
   },
   {
@@ -610,6 +610,11 @@
     "alt": "Buy Instagram followers Insfollowpro"
   },
   {
+    "url": "https://givemeboost.com/buy-youtube-subscribers",
+    "img": "/images/sponsors/givemeboost.png",
+    "alt": "Give me boost"
+  },
+  {
     "url": "https://au.casinologin.mobi/safe-online-casinos/",
     "img": "https://images.opencollective.com/casinologinmobi-safe/e6b2d8b/logo.jpg",
     "alt": "casinologin.mobi Safe"
@@ -633,5 +638,15 @@
     "url": "https://justanotherpanel.com",
     "img": "/images/sponsors/justanotherpanel.png",
     "alt": "JustAnotherPanel"
+  },
+  {
+    "url": "https://uusimmatkasinot.com/",
+    "img": "https://images.opencollective.com/uusimmatkasinotcom/2115d80/logo.jpg",
+    "alt": "Uusimmatkasinot.com"
+  },
+  {
+    "url": "https://automatenspieler.net/",
+    "img": "https://images.opencollective.com/automatenspieler/0c7ed57/logo.jpg",
+    "alt": "Automatenspieler"
   }
 ]
