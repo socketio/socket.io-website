@@ -64,5 +64,6 @@ io.listen(3000);
 | Version | Release date | Release notes                                                                    | Diff |
 |---------|--------------|----------------------------------------------------------------------------------|------|
 | `0.1.0` | March 2024   | [link](https://github.com/socketio/socket.io-aws-sqs-adapter/releases/tag/0.1.0) | `-`  |
+| `0.1.1` | June 2024   | [link](https://github.com/socketio/socket.io-aws-sqs-adapter/releases/tag/0.1.1) | [`0.1.0...0.1.1`](https://github.com/socketio/socket.io-aws-sqs-adapter/compare/0.1.0...0.1.1)  |
 
 [Complete changelog](https://github.com/socketio/socket.io-aws-sqs-adapter/blob/main/CHANGELOG.md)
