@@ -550,11 +550,6 @@
     "alt": "Instasocials"
   },
   {
-    "url": "https://iboysoft.com/",
-    "img": "https://images.opencollective.com/iboysoft-software/7f9d60e/avatar.jpg",
-    "alt": "iBoysoft"
-  },
-  {
     "url": "https://expressfollowers.com/buy-instagram-reel-views/",
     "img": "/images/sponsors/buy-instagram-reels-views.ico",
     "alt": "Buy Instagram Reel Views"
@@ -563,6 +558,11 @@
     "url": "https://useviral.com/",
     "img": "https://images.opencollective.com/useviral/29bff43/logo.png",
     "alt": "UseViral"
+  },
+  {
+    "url": "https://iboysoft.com/",
+    "img": "https://images.opencollective.com/iboysoft-software/7f9d60e/avatar.jpg",
+    "alt": "iBoysoft"
   },
   {
     "url": "https://greece-casinos.com/",
@@ -648,5 +648,20 @@
     "url": "https://automatenspieler.net/",
     "img": "https://images.opencollective.com/automatenspieler/0c7ed57/logo.jpg",
     "alt": "Automatenspieler"
+  },
+  {
+    "url": "https://kaszinomagyar.net/",
+    "img": "https://images.opencollective.com/casino-magyar/a718b4d/avatar.jpg",
+    "alt": "Casino Magyar"
+  },
+  {
+    "url": "https://bedstespiludenomrofus.com/",
+    "img": "https://images.opencollective.com/bedstespiludenomrofus/2a8e48b/avatar.jpg",
+    "alt": "casino uden ROFUS"
+  },
+  {
+    "url": "https://casinorevisor.com/",
+    "img": "https://images.opencollective.com/casinos-ohne-lizenz/f2284bd/avatar.jpg",
+    "alt": "Сasinorevisor.com"
   }
 ]
