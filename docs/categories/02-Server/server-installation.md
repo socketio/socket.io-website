@@ -266,7 +266,7 @@ The `engine.io` package brings the engine that is responsible for managing the l
 
 | `socket.io` version | `engine.io` version | `ws` version |
 |---------------------|---------------------|--------------|
-| `4.7.x`             | `6.5.x`             | `8.11.x`     |
+| `4.7.x`             | `6.5.x`             | `8.17.x`     |
 | `4.6.x`             | `6.4.x`             | `8.11.x`     |
 | `4.5.x`             | `6.2.x`             | `8.2.x`      |
 | `4.4.x`             | `6.1.x`             | `8.2.x`      |
@@ -276,5 +276,5 @@ The `engine.io` package brings the engine that is responsible for managing the l
 | `4.0.x`             | `5.0.x`             | `7.4.x`      |
 | `3.1.x`             | `4.1.x`             | `7.4.x`      |
 | `3.0.x`             | `4.0.x`             | `7.4.x`      |
-| `2.5.x`             | `3.6.x`             | `7.4.x`      |
+| `2.5.x`             | `3.6.x`             | `7.5.x`      |
 | `2.4.x`             | `3.5.x`             | `7.4.x`      |
