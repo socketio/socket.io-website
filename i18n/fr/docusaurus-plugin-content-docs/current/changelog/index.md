@@ -47,7 +47,7 @@ Aside from the breaking changes listed above, here are the latest important chan
 
 ## Version usage
 
-As of November 2023:
+As of June 2024:
 
 `socket.io` package
 
