@@ -360,14 +360,14 @@
     "alt": "buzzvoice.com"
   },
   {
-    "url": "https://www.hityah.com/",
-    "img": "/images/sponsors/guest-3f7631a8-2.jpg",
-    "alt": "Hityah"
-  },
-  {
     "url": "https://www.cryptolists.com/casinos/",
     "img": "https://images.opencollective.com/cryptolists/b8c5829/logo.jpg",
     "alt": "CryptoLists.com"
+  },
+  {
+    "url": "https://www.hityah.com/",
+    "img": "/images/sponsors/guest-3f7631a8-2.jpg",
+    "alt": "Hityah"
   },
   {
     "url": "https://payidpokies.com",
@@ -440,11 +440,6 @@
     "alt": "Buy Instagram Followers"
   },
   {
-    "url": "https://ceskecasino.best",
-    "img": "https://images.opencollective.com/ceskecasinobest/475881b/logo.jpg",
-    "alt": "CeskeCasino.Best"
-  },
-  {
     "url": "https://www.stormlikes.net/buy-instagram-followers",
     "img": "https://images.opencollective.com/stormlikes-net/42489b9/avatar.jpg",
     "alt": "Buy Instagram Followers Stormlikes"
@@ -485,14 +480,19 @@
     "alt": "Buy Youtube Views - Views4You"
   },
   {
-    "url": "https://www.socialfollowers.uk/",
-    "img": "https://images.opencollective.com/socialfollowersuk/e327e52/avatar.jpg",
-    "alt": "Social followers"
-  },
-  {
     "url": "https://casinoenlignefrance.best/",
     "img": "https://images.opencollective.com/casinoenlignefrancebest/f22a59e/logo.jpg",
     "alt": "Сasinoenlignefrancebest.com"
+  },
+  {
+    "url": "https://buyyoutubviews.com",
+    "img": "https://images.opencollective.com/buyyoutubviewscom/e011e4d/logo.jpg",
+    "alt": "buyyoutubviews.com"
+  },
+  {
+    "url": "https://www.socialfollowers.uk/",
+    "img": "https://images.opencollective.com/socialfollowersuk/e327e52/avatar.jpg",
+    "alt": "Social followers"
   },
   {
     "url": "https://www.greenpromocode.com",
@@ -638,6 +638,11 @@
     "url": "https://leofame.com/buy-instagram-followers",
     "img": "https://images.opencollective.com/leofame/2b658cd/avatar.jpg",
     "alt": "Buy Instagram Followers & Likes"
+  },
+  {
+    "url": "https://vvslikes.com",
+    "img": "/images/sponsors/vvslikes.png",
+    "alt": "Buy TikTok Likes Free Trial"
   },
   {
     "url": "https://socialboss.org/",
