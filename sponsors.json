@@ -45,6 +45,11 @@
     "alt": "Turtlebet - Nettikasinot"
   },
   {
+    "url": "https://casinodaddy.com",
+    "img": "/images/sponsors/casinodaddy.png",
+    "alt": "Casino Daddy"
+  },
+  {
     "url": "https://goread.io/buy-instagram-followers",
     "img": "https://images.opencollective.com/goread_io/eb6337d/logo.jpg",
     "alt": "Goread.io"
@@ -250,14 +255,14 @@
     "alt": "New Online Casinos Canada 2023"
   },
   {
-    "url": "https://www.casinoaams.eu",
-    "img": "https://images.opencollective.com/renato-baldo/avatar.jpg",
-    "alt": "Renato Baldo"
-  },
-  {
     "url": "https://slotoking.ua/games/all-slots/",
     "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.jpg",
     "alt": "Ігрові автомати"
+  },
+  {
+    "url": "https://www.casinoaams.eu",
+    "img": "https://images.opencollective.com/renato-baldo/avatar.jpg",
+    "alt": "Renato Baldo"
   },
   {
     "url": "https://www.instafollowers.co/",
@@ -360,14 +365,14 @@
     "alt": "buzzvoice.com"
   },
   {
-    "url": "https://www.cryptolists.com/casinos/",
-    "img": "https://images.opencollective.com/cryptolists/b8c5829/logo.jpg",
-    "alt": "CryptoLists.com"
-  },
-  {
     "url": "https://www.hityah.com/",
     "img": "/images/sponsors/guest-3f7631a8-2.jpg",
     "alt": "Hityah"
+  },
+  {
+    "url": "https://www.cryptolists.com/casinos/",
+    "img": "https://images.opencollective.com/cryptolists/b8c5829/logo.jpg",
+    "alt": "CryptoLists.com"
   },
   {
     "url": "https://payidpokies.com",
@@ -485,11 +490,6 @@
     "alt": "Сasinoenlignefrancebest.com"
   },
   {
-    "url": "https://buyyoutubviews.com",
-    "img": "https://images.opencollective.com/buyyoutubviewscom/e011e4d/logo.jpg",
-    "alt": "buyyoutubviews.com"
-  },
-  {
     "url": "https://www.socialfollowers.uk/",
     "img": "https://images.opencollective.com/socialfollowersuk/e327e52/avatar.jpg",
     "alt": "Social followers"
@@ -513,6 +513,11 @@
     "url": "https://proxidize.com/proxy-server/mobile-proxy/",
     "img": "https://images.opencollective.com/proxidize-mobile-proxies/3658b39/logo.jpg",
     "alt": "Proxidize Mobile Proxies"
+  },
+  {
+    "url": "https://buyyoutubviews.com",
+    "img": "https://images.opencollective.com/buyyoutubviewscom/e011e4d/logo.jpg",
+    "alt": "buyyoutubviews.com"
   },
   {
     "url": "https://fortune-tiger-br.com/",
@@ -693,5 +698,20 @@
     "url": "https://slotoking.ua/games/all-slots/",
     "img": "https://images.opencollective.com/slotokinguagamesallslots/logo.jpg",
     "alt": "https://slotoking.ua/games/all-slots/"
+  },
+  {
+    "url": "https://thunderclap.it/",
+    "img": "https://images.opencollective.com/thunderclapit/7788363/logo.jpg",
+    "alt": "Thunderclap.it"
+  },
+  {
+    "url": "https://casino-non-aams.info/",
+    "img": "https://images.opencollective.com/casino-non-aams1/330d3d2/avatar.jpg",
+    "alt": "casino non AAMS"
+  },
+  {
+    "url": "https://oddgrenland.no/",
+    "img": "https://images.opencollective.com/trygge-norske-casino/12aea0e/avatar.jpg",
+    "alt": "trygge norske casino"
   }
 ]
