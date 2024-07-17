@@ -109,6 +109,7 @@ In case the connection to the Postgres server is severed, the packets will only 
 
 | Version | Release date  | Release notes                                                                     | Diff                                                                                            |
 |---------|---------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| `0.4.0` | July 2024     | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.4.0) | [`0.3.1...0.4.0`](https://github.com/socketio/socket.io-postgres-adapter/compare/0.3.1...0.4.0) |
 | `0.3.1` | February 2023 | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.3.1) | [`0.3.0...0.3.1`](https://github.com/socketio/socket.io-postgres-adapter/compare/0.3.0...0.3.1) |
 | `0.3.0` | April 2022    | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.3.0) | [`0.2.0...0.3.0`](https://github.com/socketio/socket.io-postgres-adapter/compare/0.2.0...0.3.0) |
 | `0.2.0` | December 2021 | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.2.0) | [`0.1.1...0.2.0`](https://github.com/socketio/socket.io-postgres-adapter/compare/0.1.1...0.2.0) |
