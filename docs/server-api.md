@@ -264,15 +264,25 @@ app.listen(3000, (token) => {
 Advanced use only. Binds the server to a specific engine.io `Server` (or compatible API) instance.
 
 ```js
-import { Server } from "socket.io";
+import { createServer } from "node:http";
 import { Server as Engine } from "engine.io";
+import { Server } from "socket.io";
+
+const httpServer = createServer((req, res) => {
+  res.writeHead(404).end();
+});
 
 const engine = new Engine();
+
+engine.attach(httpServer, {
+  path: "/socket.io/"
+});
+
 const io = new Server();
 
 io.bind(engine);
 
-engine.listen(3000);
+httpServer.listen(3000);
 ```
 
 #### server.close([callback])
