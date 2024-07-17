@@ -57,7 +57,9 @@ const customImages = new Map([
   ["buy-instagram-reels-views", { url: "https://expressfollowers.com/buy-instagram-reel-views/", img: "/images/sponsors/buy-instagram-reels-views.ico", alt: "Buy Instagram Reel Views" }],
   ["guest-5c8f6e13", { url: "https://useviral.com/", img: "https://images.opencollective.com/useviral/29bff43/logo.png", alt: "UseViral" }],
   ["user-53231496", { url: "https://justanotherpanel.com", img: "/images/sponsors/justanotherpanel.png", alt: "JustAnotherPanel" }],
-  ["karan2", { url: "https://givemeboost.com/buy-youtube-subscribers", img: "/images/sponsors/givemeboost.png", alt: "Give me boost" }]
+  ["karan2", { url: "https://givemeboost.com/buy-youtube-subscribers", img: "/images/sponsors/givemeboost.png", alt: "Give me boost" }],
+  ["route4me", { url: "https://route4me.com", img: "/images/sponsors/route4me.png", alt: "Route Planner and Route Optimizer" }],
+  ["user-62981c05", { url: "https://superviral.io/ ", img: "/images/sponsors/superviral.jpg", alt: "Superviral" }],
 ]);
 
 const customLinks = {
@@ -97,7 +99,7 @@ const customLinks = {
     alt: "Suomalaiset kasinot"
   },
   auscasinos: {
-    url: "https://www.auscasinos.com/",
+    url: "https://www.auscasinos.org/",
     img: "https://images.opencollective.com/auscasinos/8df0f47/logo.jpg",
     alt: "AusCasinos"
   }
