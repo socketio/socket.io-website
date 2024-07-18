@@ -6,6 +6,14 @@ title: How to use with Next.js
 
 This guide shows how to use Socket.IO within a [Next.js](https://nextjs.org/) application.
 
+:::caution
+
+You won't be able to deploy your application on [Vercel](https://vercel.com), as it does not support WebSocket connections.
+
+Reference: https://vercel.com/guides/do-vercel-serverless-functions-support-websocket-connections
+
+:::
+
 ## Server
 
 The Socket.IO server can share the same underlying HTTP server with Next.js. You just have to create a `server.js` file at the root of your project:
