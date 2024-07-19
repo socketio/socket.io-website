@@ -55,7 +55,7 @@ const aboutItems = [
   },
   {
     label: "Roadmap",
-    href: "https://github.com/socketio/socket.io/projects/3",
+    href: "https://github.com/orgs/socketio/projects/3",
   },
   {
     label: "Become a sponsor",
