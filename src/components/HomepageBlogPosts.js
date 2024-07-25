@@ -12,17 +12,20 @@ export default function HomepageBlogPosts() {
       </h3>
       <div>
         <ul>
-          <li className={ styles.item }>
+          <li className={styles.item}>
+            July 25, 2024 - <Link to="/blog/npm-package-provenance/">npm package provenance</Link>
+          </li>
+          <li className={styles.item}>
             July 12, 2024 - <Link to="/blog/monorepo/">Socket.IO monorepo</Link>
           </li>
-          <li className={ styles.item }>
+          <li className={styles.item}>
             March 29, 2024 - <Link to="/blog/three-new-adapters/">Three new adapters</Link>
           </li>
-          <li className={ styles.item }>
+          <li className={styles.item}>
             January 12, 2024 - <Link to="/blog/chat-platform/">Chat platform</Link>
           </li>
         </ul>
-        Blog feed: <Link to="blog/rss.xml">RSS</Link> / <Link to="blog/rss.xml">atom</Link>
+        Blog feed: <a href="/blog/rss.xml">RSS</a> / <a href="/blog/atom.xml">atom</a>
       </div>
     </div>
   )
