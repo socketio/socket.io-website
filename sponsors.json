@@ -190,11 +190,6 @@
     "alt": "777 казино"
   },
   {
-    "url": "https://casinoburst.com/casino-utan-licens/",
-    "img": "https://images.opencollective.com/bmsk/687b909/avatar.jpg",
-    "alt": "MATTIAS"
-  },
-  {
     "url": "https://www.noneedtostudy.com/take-my-online-class/",
     "img": "/images/sponsors/noneedtostudy.png",
     "alt": "Pay someone to take my online class - NoNeedToStudy.com"
@@ -505,6 +500,16 @@
     "alt": "FruityKing NZ"
   },
   {
+    "url": "https://buyyoutubviews.com",
+    "img": "https://images.opencollective.com/buyyoutubviewscom/e011e4d/logo.jpg",
+    "alt": "buyyoutubviews.com"
+  },
+  {
+    "url": "https://iboysoft.com/",
+    "img": "https://images.opencollective.com/iboysoft-software/7f9d60e/avatar.jpg",
+    "alt": "iBoysoft"
+  },
+  {
     "url": "https://casinosinlicenciaespana.com/",
     "img": "https://images.opencollective.com/casinos-sin-licencia-espanola/fa40830/logo.jpg",
     "alt": "Casinos sin licencia española"
@@ -513,11 +518,6 @@
     "url": "https://proxidize.com/proxy-server/mobile-proxy/",
     "img": "https://images.opencollective.com/proxidize-mobile-proxies/3658b39/logo.jpg",
     "alt": "Proxidize Mobile Proxies"
-  },
-  {
-    "url": "https://buyyoutubviews.com",
-    "img": "https://images.opencollective.com/buyyoutubviewscom/e011e4d/logo.jpg",
-    "alt": "buyyoutubviews.com"
   },
   {
     "url": "https://fortune-tiger-br.com/",
@@ -530,19 +530,9 @@
     "alt": "Instasocials"
   },
   {
-    "url": "https://expressfollowers.com/buy-instagram-reel-views/",
-    "img": "/images/sponsors/buy-instagram-reels-views.ico",
-    "alt": "Buy Instagram Reel Views"
-  },
-  {
     "url": "https://useviral.com/",
     "img": "https://images.opencollective.com/useviral/29bff43/logo.png",
     "alt": "UseViral"
-  },
-  {
-    "url": "https://iboysoft.com/",
-    "img": "https://images.opencollective.com/iboysoft-software/7f9d60e/avatar.jpg",
-    "alt": "iBoysoft"
   },
   {
     "url": "https://polskiekasynaonline24.com/",
@@ -578,11 +568,6 @@
     "url": "https://Nieuwe-Casinos.net",
     "img": "https://images.opencollective.com/nieuwecasinos/ee150d6/logo.jpg",
     "alt": "Nieuwe-Casinos.net"
-  },
-  {
-    "url": "https://toprating.casino/",
-    "img": "https://images.opencollective.com/topratingcasino/bb0b43a/avatar.jpg",
-    "alt": "Top Rating casino"
   },
   {
     "url": "https://bulkoid.com/",
@@ -655,12 +640,7 @@
     "alt": "SocialBoss"
   },
   {
-    "url": "https://casinoonlineca.ca/real-money/",
-    "img": "https://images.opencollective.com/tools-zks/50ccb88/avatar.jpg",
-    "alt": "top 6 online real money casino Canada"
-  },
-  {
-    "url": "https://route4me.com",
+    "url": "https://route4me.com/",
     "img": "/images/sponsors/route4me.png",
     "alt": "Route Planner and Route Optimizer"
   },
@@ -720,7 +700,7 @@
     "alt": "trygge norske casino"
   },
   {
-    "url": "https://superviral.io/ ",
+    "url": "https://superviral.io/",
     "img": "/images/sponsors/superviral.jpg",
     "alt": "Superviral"
   },
@@ -748,5 +728,10 @@
     "url": "https://buytoplikes.com/",
     "img": "https://images.opencollective.com/buytoplikes/1113536/logo.jpg",
     "alt": "BuyTopLikes"
+  },
+  {
+    "url": "https://bloodycase.com/?promocode=SOCKETIO",
+    "img": "/images/sponsors/bloodycase.png",
+    "alt": "BloodyCase"
   }
 ]

@@ -59,7 +59,8 @@ const customImages = new Map([
   ["user-53231496", { url: "https://justanotherpanel.com", img: "/images/sponsors/justanotherpanel.png", alt: "JustAnotherPanel" }],
   ["karan2", { url: "https://givemeboost.com/buy-youtube-subscribers", img: "/images/sponsors/givemeboost.png", alt: "Give me boost" }],
   ["route4me", { url: "https://route4me.com", img: "/images/sponsors/route4me.png", alt: "Route Planner and Route Optimizer" }],
-  ["user-62981c05", { url: "https://superviral.io/ ", img: "/images/sponsors/superviral.jpg", alt: "Superviral" }],
+  ["user-62981c05", { url: "https://superviral.io/", img: "/images/sponsors/superviral.jpg", alt: "Superviral" }],
+  ["bloodycase", { url: "https://bloodycase.com/?promocode=SOCKETIO", img: "/images/sponsors/bloodycase.png", alt: "BloodyCase" }],
 ]);
 
 const customLinks = {
