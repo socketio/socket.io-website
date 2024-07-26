@@ -250,7 +250,7 @@ module.exports = {
     },
     announcementBar: {
       content:
-        'Latest blog post (03/2024): <a href="/blog/three-new-adapters/">Three new adapters</a>.',
+        'Latest blog post (July 25, 2024): <a href="/blog/npm-package-provenance/">npm package provenance</a>.',
       backgroundColor: "#25c2a0",
       isCloseable: true,
     },
