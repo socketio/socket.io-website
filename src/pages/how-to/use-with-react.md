@@ -62,7 +62,7 @@ const io = new Server({
 io.listen(4000);
 ```
 
-Reference: [Handling CORS](/docs/v4/handling-cors)
+Reference: [Handling CORS](/docs/v4/handling-cors/)
 
 :::
 

@@ -69,7 +69,7 @@ const io = new Server({
 });
 ```
 
-Reference: [Handling CORS](/docs/v4/handling-cors)
+Reference: [Handling CORS](/docs/v4/handling-cors/)
 
 :::
 
