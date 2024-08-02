@@ -733,5 +733,15 @@
     "url": "https://bloodycase.com/?promocode=SOCKETIO",
     "img": "/images/sponsors/bloodycase.png",
     "alt": "BloodyCase"
+  },
+  {
+    "url": "https://onlinekasyno-polis.pl/",
+    "img": "https://images.opencollective.com/onlinekasyno-polis/ae01a30/avatar.jpg",
+    "alt": "Online Kasyno Polis"
+  },
+  {
+    "url": "https://musclemight.net/",
+    "img": "https://images.opencollective.com/musclemight-bodybuilding/e015e32/avatar.jpg",
+    "alt": "MuscleMight Bodybuilding"
   }
 ]
