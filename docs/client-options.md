@@ -372,10 +372,11 @@ const socket = io({
 <details className="changelog">
     <summary>History</summary>
 
-| Version | Changes                  |
-|---------|--------------------------|
-| v4.7.0  | `webtransport` is added. |
-| v1.0.0  | First implementation.    |
+| Version | Changes                                                 |
+|---------|---------------------------------------------------------|
+| v4.8.0  | You can now pass an array of transport implementations. |
+| v4.7.0  | `webtransport` is added.                                |
+| v1.0.0  | First implementation.                                   |
 
 </details>
 
@@ -409,6 +410,66 @@ socket.on("connect_error", () => {
 ```
 
 One possible downside is that the validity of your [CORS configuration](categories/02-Server/handling-cors.md) will only be checked if the WebSocket connection fails to be established.
+
+You can also pass an array of transport implementations:
+
+```js
+import { io } from "socket.io-client";
+import { Fetch, WebSocket } from "engine.io-client";
+
+const socket = io({
+  transports: [Fetch, WebSocket]
+});
+```
+
+Here is the list of provided implementations:
+
+| Transport       | Description                                                                                                                                              |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Fetch`         | HTTP long-polling based on the built-in [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch) method.                               |
+| `NodeXHR`       | HTTP long-polling based on the `XMLHttpRequest` object provided by the [`xmlhttprequest-ssl`](https://www.npmjs.com/package/xmlhttprequest-ssl) package. |
+| `XHR`           | HTTP long-polling based on the built-in [`XMLHttpRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) object.                      |
+| `NodeWebSocket` | WebSocket transport based on the `WebSocket` object provided by the [`ws`](https://www.npmjs.com/package/ws) package.                                    |
+| `WebSocket`     | WebSocket transport based on the built-in [`WebSocket`](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) object.                              |
+| `WebTransport`  | WebTransport transport based on the built-in [`WebTransport`](https://developer.mozilla.org/en-US/docs/Web/API/WebTransport) object.                     |
+
+Usage:
+
+| Transport       | browser            | Node.js                | Deno               | Bun                |
+|-----------------|--------------------|------------------------|--------------------|--------------------|
+| `Fetch`         | :white_check_mark: | :white_check_mark: (1) | :white_check_mark: | :white_check_mark: |
+| `NodeXHR`       |                    | :white_check_mark:     | :white_check_mark: | :white_check_mark: |
+| `XHR`           | :white_check_mark: |                        |                    |                    |
+| `NodeWebSocket` |                    | :white_check_mark:     | :white_check_mark: | :white_check_mark: |
+| `WebSocket`     | :white_check_mark: | :white_check_mark: (2) | :white_check_mark: | :white_check_mark: |
+| `WebTransport`  | :white_check_mark: | :white_check_mark:     |                    |                    |
+
+(1) since [v18.0.0](https://nodejs.org/api/globals.html#fetch)
+(2) since [v21.0.0](https://nodejs.org/api/globals.html#websocket)
+
+### `tryAllTransports`
+
+*Added in v4.8.0*
+
+Default value: `false`
+
+When setting the `tryAllTransports` option to `true`, if the first transport (usually, HTTP long-polling) fails, then the other transports will be tested too:
+
+```js
+import { io } from "socket.io-client";
+
+const socket = io({
+  tryAllTransports: true
+});
+```
+
+This feature is useful in two cases:
+
+- when HTTP long-polling is disabled on the server, or if CORS fails
+- when WebSocket is tested first (with `transports: ["websocket", "polling"]`)
+
+The only potential downside is that the connection attempt could take more time in case of failure, as there have been reports of WebSocket connection errors taking several seconds before being detected (that's one reason for using HTTP long-polling first). That's why the option defaults to `false` for now.
+
 
 ### `upgrade`
 
