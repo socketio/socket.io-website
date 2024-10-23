@@ -54,6 +54,7 @@ You can find more detail about that in the ["How it works" section](./how-it-wor
 
 | Language                                      | Website                                                                                                                                                        |
 |-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Golang        | https://github.com/maldikhan/go.socket.io                                                                                                              |
 | JavaScript (browser, Node.js or React Native) | - [Installation steps](../03-Client/client-installation.md)<br/>- [API](../../client-api.md)<br/>- [Source code](https://github.com/socketio/socket.io-client) |
 | JavaScript (for WeChat Mini-Programs)         | https://github.com/weapp-socketio/weapp.socket.io                                                                                                              |
 | Java                                          | https://github.com/socketio/socket.io-client-java                                                                                                              |
