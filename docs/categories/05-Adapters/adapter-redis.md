@@ -53,6 +53,12 @@ npm install @socket.io/redis-adapter
 
 ## Usage
 
+:::tip
+
+For new developments, we recommend using the [sharded adapter](#with-redis-sharded-pubsub), which takes advantage of the [sharded Pub/Sub feature](https://redis.io/docs/latest/develop/interact/pubsub/#sharded-pubsub) introduced in Redis 7.0.
+
+:::
+
 ### With the `redis` package
 
 :::caution
@@ -231,6 +237,14 @@ However, it currently defaults to `false` for backward-compatibility.
 |--------------------|-----------------------------------------------------------------------------------------|---------------|
 | `channelPrefix`    | The prefix for the Redis Pub/Sub channels.                                              | `socket.io`   |
 | `subscriptionMode` | The subscription mode impacts the number of Redis Pub/Sub channels used by the adapter. | `dynamic`     |
+
+Available values for the `subscriptionMode` option:
+
+| Value               | # of Pub/Sub channels                 | Description                                                                                                                                       |
+|---------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| `static`            | 2 per namespace                       | Useful when used with dynamic namespaces.                                                                                                         |
+| `dynamic` (default) | (2 + 1 per public room) per namespace | Useful when some rooms have a low number of clients (so only a few Socket.IO servers are notified).                                               |
+| `dynamic-private`   | (2 + 1 per room) per namespace        | Like `dynamic` but creates separate channels for private rooms as well. Useful when there is lots of 1:1 communication via `socket.emit()` calls. |
 
 ## Common questions
 
