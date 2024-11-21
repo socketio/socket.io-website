@@ -1642,6 +1642,11 @@ io.on("connection", (socket) => {
     // called when the write buffer is drained
   });
 
+  socket.conn.on("heartbeat", () => {
+    // called after each round trip of the heartbeat mechanism
+    console.log("heartbeat");
+  });
+
   socket.conn.on("close", (reason) => {
     // called when the underlying connection is closed
   });
