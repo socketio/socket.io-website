@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
 
 :::info
 
-The latest release is currently `4.8.0`, released in September 2024.
+The latest release is currently `4.8.1`, released in October 2024.
 
-You can find the release notes [here](../../changelog/4.8.0.md).
+You can find the release notes [here](../../changelog/4.8.1.md).
 
 :::
 
@@ -266,6 +266,7 @@ The `engine.io` package brings the engine that is responsible for managing the l
 
 | `socket.io` version | `engine.io` version | `ws` version |
 |---------------------|---------------------|--------------|
+| `4.8.x`             | `6.6.x`             | `8.17.x`     |
 | `4.7.x`             | `6.5.x`             | `8.17.x`     |
 | `4.6.x`             | `6.4.x`             | `8.11.x`     |
 | `4.5.x`             | `6.2.x`             | `8.2.x`      |

@@ -185,10 +185,10 @@ const socket = io("https://example.com", {
 
 In the browser, there is now an official bundle which includes this parser:
 
-- https://cdn.socket.io/4.8.0/socket.io.msgpack.min.js
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.0/socket.io.msgpack.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.8.0/dist/socket.io.msgpack.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.8.0/dist/socket.io.msgpack.min.js
+- https://cdn.socket.io/4.8.1/socket.io.msgpack.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.msgpack.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.8.1/dist/socket.io.msgpack.min.js
+- unpkg: https://unpkg.com/socket.io-client@4.8.1/dist/socket.io.msgpack.min.js
 
 In that case, you don't need to specify the `parser` option.
 

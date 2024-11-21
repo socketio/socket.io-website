@@ -28,7 +28,7 @@ In the examples below, the `io` object comes either from:
 
 ```html
 <script type="module">
-  import { io } from "https://cdn.socket.io/4.8.0/socket.io.esm.min.js";
+  import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
 </script>
 ```
 

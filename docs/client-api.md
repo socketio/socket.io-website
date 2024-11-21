@@ -24,7 +24,7 @@ An ESM bundle is also available since version [4.3.0](/blog/socket-io-4-3-0/):
 
 ```html
 <script type="module">
-  import { io } from "https://cdn.socket.io/4.8.0/socket.io.esm.min.js";
+  import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
 
   const socket = io();
 </script>
@@ -36,7 +36,7 @@ With an [import map](https://caniuse.com/import-maps):
 <script type="importmap">
   {
     "imports": {
-      "socket.io-client": "https://cdn.socket.io/4.8.0/socket.io.esm.min.js"
+      "socket.io-client": "https://cdn.socket.io/4.8.1/socket.io.esm.min.js"
     }
   }
 </script>
