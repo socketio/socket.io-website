@@ -10,12 +10,20 @@ The adapter will use a [Redis stream](https://redis.io/docs/data-types/streams/)
 
 The main difference with the existing Redis adapter (which use the [Redis Pub/Sub mechanism](https://redis.io/docs/manual/pubsub/)) is that this adapter will properly handle any temporary disconnection to the Redis server and resume the stream without losing any packets.
 
-Notes:
+:::info
 
 - a single stream is used for all namespaces
 - the `maxLen` option allows to limit the size of the stream
 - unlike the adapter based on Redis PUB/SUB mechanism, this adapter will properly handle any temporary disconnection to the Redis server and resume the stream
 - if [connection state recovery](../01-Documentation/connection-state-recovery.md) is enabled, the sessions will be stored in Redis as a classic key/value pair
+
+:::
+
+:::tip
+
+This adapter is also compatible with [Valkey](https://valkey.io/).
+
+:::
 
 Source code: https://github.com/socketio/socket.io-redis-streams-adapter
 
@@ -156,6 +164,7 @@ Unlike the classic [Redis adapter](./adapter-redis.md), this adapter will proper
 
 | Version | Release date  | Release notes                                                                          | Diff                                                                                                 |
 |---------|---------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| `0.2.2` | May 2024      | [link](https://github.com/socketio/socket.io-redis-streams-adapter/releases/tag/0.2.2) | [`0.2.1...0.2.2`](https://github.com/socketio/socket.io-redis-streams-adapter/compare/0.2.1...0.2.2) |
 | `0.2.1` | March 2024    | [link](https://github.com/socketio/socket.io-redis-streams-adapter/releases/tag/0.2.1) | [`0.2.0...0.2.1`](https://github.com/socketio/socket.io-redis-streams-adapter/compare/0.2.0...0.2.1) |
 | `0.2.0` | February 2024 | [link](https://github.com/socketio/socket.io-redis-streams-adapter/releases/tag/0.2.0) | [`0.1.0...0.2.0`](https://github.com/socketio/socket.io-redis-streams-adapter/compare/0.1.0...0.2.0) |
 | `0.1.0` | April 2023    | [link](https://github.com/socketio/socket.io-redis-streams-adapter/releases/tag/0.1.0) |                                                                                                      |
