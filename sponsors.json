@@ -15,11 +15,6 @@
     "alt": "Casino Professor"
   },
   {
-    "url": "https://bitcasino.io",
-    "img": "https://images.opencollective.com/bitcasino/fd9ebb5/logo.jpg",
-    "alt": "Bitcasino"
-  },
-  {
     "url": "https://www.minitool.com",
     "img": "https://images.opencollective.com/admin-minitool/1900ab2/avatar.jpg",
     "alt": "Admin MiniTool"
@@ -160,14 +155,14 @@
     "alt": "Crypto Tracker"
   },
   {
-    "url": "https://www.socialboosting.com/buy-tiktok-followers",
-    "img": "https://images.opencollective.com/socialboosting/cd1f0f0/logo.jpg",
-    "alt": "SocialBoosting.com"
-  },
-  {
     "url": "https://www.noneedtostudy.com/take-my-online-class/",
     "img": "/images/sponsors/noneedtostudy.png",
     "alt": "Pay someone to take my online class - NoNeedToStudy.com"
+  },
+  {
+    "url": "https://www.socialboosting.com/buy-tiktok-followers",
+    "img": "https://images.opencollective.com/socialboosting/cd1f0f0/logo.jpg",
+    "alt": "SocialBoosting.com"
   },
   {
     "url": "https://nongamstopcasinos.net/en/",
@@ -505,6 +500,11 @@
     "alt": "Best Crypto & Bitcoin Casinos"
   },
   {
+    "url": "https://casinosapostas.com/",
+    "img": "https://images.opencollective.com/casinos-e-apostas1/2c80df6/avatar.jpg",
+    "alt": "Casinos e Apostas"
+  },
+  {
     "url": "https://betking.com.ua/games/all-slots/",
     "img": "https://images.opencollective.com/slotokinguagamesallslots/logo.jpg",
     "alt": "https://betking.com.ua/games/all-slots/"
@@ -520,14 +520,9 @@
     "alt": "Free Chip No Deposit"
   },
   {
-    "url": "https://thecolorrun.se/",
-    "img": "https://images.opencollective.com/utlandska-casino-med-lag-insattning1/988fad9/avatar.jpg",
-    "alt": "utländska casino med låg insättning"
-  },
-  {
-    "url": "https://guidebook.betwinner.com/",
-    "img": "https://images.opencollective.com/guidebook_betwinner_com/6babe60/avatar.jpg",
-    "alt": "Guidebook.BetWinner"
+    "url": "https://casinoszondercruksonline.com/",
+    "img": "https://images.opencollective.com/casinoszondercruksonline/879284f/avatar.jpg",
+    "alt": "CasinosZonderCruksOnline"
   },
   {
     "url": "https://putneycoop.com/",
@@ -555,14 +550,19 @@
     "alt": "BuyTopLikes"
   },
   {
+    "url": "https://thecolorrun.se/",
+    "img": "https://images.opencollective.com/utlandska-casino-med-lag-insattning1/988fad9/avatar.jpg",
+    "alt": "utländska casino med låg insättning"
+  },
+  {
     "url": "https://www.reddit.com/r/TikTokExpert/comments/1e4lbj3/where_can_i_buy_tiktok_likes_views/",
     "img": "https://images.opencollective.com/tiktok-expert-buy-tiktok-likes-and-views/a2c4344/logo.jpg",
     "alt": "Where Can I Buy TikTok Likes & Views?"
   },
   {
-    "url": "https://casinoszondercruksonline.com/",
-    "img": "https://images.opencollective.com/casinoszondercruksonline/879284f/avatar.jpg",
-    "alt": "CasinosZonderCruksOnline"
+    "url": "https://guidebook.betwinner.com/",
+    "img": "https://images.opencollective.com/guidebook_betwinner_com/6babe60/avatar.jpg",
+    "alt": "Guidebook.BetWinner"
   },
   {
     "url": "https://w.in.ua/",
@@ -583,6 +583,11 @@
     "url": "https://buzzoid.com/buy-instagram-followers/",
     "img": "https://images.opencollective.com/buzzoid-buy-instagram-followers/4e17449/logo.jpg",
     "alt": "Buzzoid - Buy Instagram Followers"
+  },
+  {
+    "url": "https://cceam.org/",
+    "img": "https://images.opencollective.com/casino-uden-rofus/3bee554/avatar.jpg",
+    "alt": "casino uden ROFUS"
   },
   {
     "url": "https://gifkart.com/",
@@ -660,7 +665,7 @@
     "alt": "Jspreadsheet"
   },
   {
-    "url": "https://jabka.skin/ru/",
+    "url": "https://jabka.skin/",
     "img": "https://images.opencollective.com/jabka-skin/4e1d76f/avatar.jpg",
     "alt": "Jabka Skin"
   },
@@ -738,5 +743,15 @@
     "url": "https://parimatch.in.ua/",
     "img": "https://images.opencollective.com/parimatch5/59bcfaf/avatar.jpg",
     "alt": "PariMatch"
+  },
+  {
+    "url": "https://payid-pokies-sites.com/",
+    "img": "https://images.opencollective.com/payid-pokies-sitescom/aaa6701/logo.jpg",
+    "alt": "PayID-Pokies-Sites.com"
+  },
+  {
+    "url": "https://slotscity.ua/",
+    "img": "https://images.opencollective.com/slotscity/ca193db/logo.jpg",
+    "alt": "Slots City"
   }
 ]
