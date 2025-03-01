@@ -205,7 +205,7 @@ And that finally completes our chat application! In this tutorial, we have seen 
 - send an event between the client and the server
 - broadcast an event to all or a subset of connected clients
 - handle temporary disconnections
-- scale up
+- scale out
 
 You should now have a better overview of the features provided by Socket.IO. Now it's your time to build your own realtime application!
 
