@@ -54,7 +54,7 @@ const count = countInNamespace("/chat");
 
 ```js
 function countInRoom(room) {
-  return io.of("/").adapter.rooms.get(room).size;
+  return io.of("/").adapter.rooms.get(room)?.size || 0;
 }
 
 const count = countInRoom("news");
@@ -124,7 +124,7 @@ const count = await totalCount();
 
 ```js
 function localCount(room) {
-  return io.of("/").adapter.rooms.get(room).size;
+  return io.of("/").adapter.rooms.get(room)?.size || 0;
 }
 
 io.on("totalCount", (room, cb) => {
