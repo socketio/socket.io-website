@@ -250,4 +250,6 @@ setInterval(async () => {
 
 That's all folks, thanks for reading!
 
+See also: [How to count the number of connected users](/how-to/count-connected-users)
+
 [Back to the list of examples](/get-started/)

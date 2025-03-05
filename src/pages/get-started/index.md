@@ -45,3 +45,4 @@ If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/t
 - [use with Postman](https://blog.postman.com/postman-now-supports-socket-io/)
 - [get the IP address of the client](/how-to/get-the-ip-address-of-the-client)
 - [count the number of connected clients](/how-to/count-connected-clients)
+- [count the number of connected users](/how-to/count-connected-users)
