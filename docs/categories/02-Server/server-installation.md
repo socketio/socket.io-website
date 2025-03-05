@@ -219,7 +219,7 @@ app.listen(3000, (token) => {
 A basic installation of the server includes **21** packages, of which **6** are maintained by our team:
 
 ```
-└─┬ socket.io@4.7.2
+└─┬ socket.io@4.8.1
   ├─┬ accepts@1.3.8
   │ ├─┬ mime-types@2.1.35
   │ │ └── mime-db@1.52.0
@@ -228,27 +228,28 @@ A basic installation of the server includes **21** packages, of which **6** are 
   ├─┬ cors@2.8.5
   │ ├── object-assign@4.1.1
   │ └── vary@1.1.2
-  ├─┬ debug@4.3.4
-  │ └── ms@2.1.2
-  ├─┬ engine.io@6.5.2
-  │ ├── @types/cookie@0.4.1
-  │ ├─┬ @types/cors@2.8.13
-  │ │ └── @types/node@20.4.6 deduped
-  │ ├── @types/node@20.4.6
+  ├─┬ debug@4.3.7
+  │ └── ms@2.1.3
+  ├─┬ engine.io@6.6.4
+  │ ├─┬ @types/cors@2.8.17
+  │ │ └── @types/node@22.13.9 deduped
+  │ ├─┬ @types/node@22.13.9
+  │ │ └── undici-types@6.20.0
   │ ├── accepts@1.3.8 deduped
   │ ├── base64id@2.0.0 deduped
-  │ ├── cookie@0.4.2
+  │ ├── cookie@0.7.2
   │ ├── cors@2.8.5 deduped
-  │ ├── debug@4.3.4 deduped
-  │ ├── engine.io-parser@5.2.1
-  │ └─┬ ws@8.11.0
+  │ ├── debug@4.3.7 deduped
+  │ ├── engine.io-parser@5.2.3
+  │ └─┬ ws@8.17.1
   │   ├── UNMET OPTIONAL DEPENDENCY bufferutil@^4.0.1
-  │   └── UNMET OPTIONAL DEPENDENCY utf-8-validate@^5.0.2
-  ├─┬ socket.io-adapter@2.5.2
-  │ └── ws@8.11.0 deduped
+  │   └── UNMET OPTIONAL DEPENDENCY utf-8-validate@>=5.0.2
+  ├─┬ socket.io-adapter@2.5.5
+  │ ├── debug@4.3.7 deduped
+  │ └── ws@8.17.1 deduped
   └─┬ socket.io-parser@4.2.4
-    ├── @socket.io/component-emitter@3.1.0
-    └── debug@4.3.4 deduped
+    ├── @socket.io/component-emitter@3.1.2
+    └── debug@4.3.7 deduped
 ```
 
 :::info

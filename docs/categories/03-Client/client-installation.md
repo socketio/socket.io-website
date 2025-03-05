@@ -174,21 +174,21 @@ Object literal may only specify known properties, and 'extraHeaders' does not ex
 A basic installation of the client includes **9** packages, of which **5** are maintained by our team:
 
 ```
-└─┬ socket.io-client@4.7.2
-  ├── @socket.io/component-emitter@3.1.0
-  ├─┬ debug@4.3.4
-  │ └── ms@2.1.2
-  ├─┬ engine.io-client@6.5.2
-  │ ├── @socket.io/component-emitter@3.1.0 deduped
-  │ ├── debug@4.3.4 deduped
-  │ ├── engine.io-parser@5.2.1
-  │ ├─┬ ws@8.11.0
+└─┬ socket.io-client@4.8.1
+  ├── @socket.io/component-emitter@3.1.2
+  ├─┬ debug@4.3.7
+  │ └── ms@2.1.3
+  ├─┬ engine.io-client@6.6.3
+  │ ├── @socket.io/component-emitter@3.1.2 deduped
+  │ ├── debug@4.3.7 deduped
+  │ ├── engine.io-parser@5.2.3
+  │ ├─┬ ws@8.17.1
   │ │ ├── UNMET OPTIONAL DEPENDENCY bufferutil@^4.0.1
-  │ │ └── UNMET OPTIONAL DEPENDENCY utf-8-validate@^5.0.2
-  │ └── xmlhttprequest-ssl@2.0.0
+  │ │ └── UNMET OPTIONAL DEPENDENCY utf-8-validate@>=5.0.2
+  │ └── xmlhttprequest-ssl@2.1.2
   └─┬ socket.io-parser@4.2.4
-    ├── @socket.io/component-emitter@3.1.0 deduped
-    └── debug@4.3.4 deduped
+    ├── @socket.io/component-emitter@3.1.2 deduped
+    └── debug@4.3.7 deduped
 ```
 
 ### Transitive versions
