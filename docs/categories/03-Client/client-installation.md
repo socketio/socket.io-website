@@ -155,6 +155,13 @@ pnpm add socket.io-client
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add socket.io-client
+```
+
+  </TabItem>
 </Tabs>
 
 The client can also be run from Node.js.
