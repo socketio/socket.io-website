@@ -56,6 +56,13 @@ pnpm add @socket.io/cluster-adapter
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add @socket.io/cluster-adapter
+```
+
+  </TabItem>
 </Tabs>
 
 Now we plug it in:

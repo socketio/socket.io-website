@@ -44,6 +44,13 @@ pnpm add socket.io
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add socket.io
+```
+
+  </TabItem>
 </Tabs>
 
 To install a specific version:
@@ -67,6 +74,13 @@ yarn add socket.io@version
 
 ```sh
 pnpm add socket.io@version
+```
+
+  </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add socket.io@version
 ```
 
   </TabItem>
@@ -114,6 +128,13 @@ pnpm add -O bufferutil utf-8-validate
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add --optional bufferutil utf-8-validate
+```
+
+  </TabItem>
 </Tabs>
 
 Please note that these packages are optional, the WebSocket server will fallback to the Javascript implementation if they are not available. More information can be found [here](https://github.com/websockets/ws/#opt-in-for-performance-and-spec-compliance).
@@ -143,6 +164,13 @@ yarn add eiows
 
 ```sh
 pnpm add eiows
+```
+
+  </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add eiows
 ```
 
   </TabItem>
@@ -186,6 +214,13 @@ yarn add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
 
 ```sh
 pnpm add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+```
+
+  </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
 ```
 
   </TabItem>

@@ -48,6 +48,13 @@ pnpm add sqlite sqlite3
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add sqlite sqlite3
+```
+
+  </TabItem>
 </Tabs>
 
 We will simply store each message in a SQL table:
