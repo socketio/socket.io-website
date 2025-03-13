@@ -299,7 +299,7 @@ socket.onAnyOutgoing((eventName, ...args) => {
 As we have seen in [step #5](06-broadcasting.md), you can broadcast an event to all connected clients with `io.emit()`:
 
 ```js
-io.emit('hello', 'world');
+io.broadcast.emit('hello', 'world');
 ```
 
 <ThemedImage
