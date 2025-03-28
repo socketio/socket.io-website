@@ -100,7 +100,7 @@ After:
 
 ## At the OS level
 
-There are lots of good articles on how to tune your OS to accept a large number of connections. Please see [this one](https://blog.jayway.com/2015/04/13/600k-concurrent-websocket-connections-on-aws-using-node-js/) or [this one](https://medium.com/@elliekang/scaling-to-a-millions-websocket-concurrent-connections-at-spoon-radio-bbadd6ec1901) for example.
+There are lots of good articles on how to tune your OS to accept a large number of connections. Please see [this one](https://medium.com/@elliekang/scaling-to-a-millions-websocket-concurrent-connections-at-spoon-radio-bbadd6ec1901) for example.
 
 While [load testing](load-testing.md) your Socket.IO server, you will likely reach the two following limits:
 
@@ -149,4 +149,3 @@ Once you reboot your machine, you will now be able to happily go to 55k concurre
 See also:
 
 - https://unix.stackexchange.com/a/130798
-- https://making.pusher.com/ephemeral-port-exhaustion-and-how-to-avoid-it/
