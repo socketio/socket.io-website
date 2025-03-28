@@ -46,3 +46,4 @@ If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/t
 - [get the IP address of the client](/how-to/get-the-ip-address-of-the-client)
 - [count the number of connected clients](/how-to/count-connected-clients)
 - [count the number of connected users](/how-to/count-connected-users)
+- [disconnect a specific client](/how-to/disconnect-a-specific-client)
