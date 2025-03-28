@@ -739,8 +739,9 @@ These settings are specific to the given Socket instance.
 
 Default value: -
 
-The default timeout in milliseconds used when waiting for an acknowledgement (not to be mixed up with the already existing [timeout](#timeout) option, which is used by the Manager during the connection)
+The default timeout in milliseconds used when waiting for an acknowledgement (not to be mixed up with the already existing [timeout](#timeout) option, which is used by the Manager during the connection).
 
+Must be used in conjunction with [`retries`](#retries).
 
 ### `auth`
 
@@ -820,3 +821,19 @@ socket.emit("my-event", (err, val) => { /* ... */ });
 // custom timeout (in that case the ackTimeout is optional)
 socket.timeout(5000).emit("my-event", (err, val) => { /* ... */ });
 ```
+
+:::caution
+
+The event must be acknowledged by the server (even with implicit ack):
+
+```js
+io.on("connection", (socket) => {
+  socket.on("my-event", (cb) => {
+    cb("got it");
+  });
+});
+```
+
+Else, the client will keep trying to send the event (up to `retries + 1` times).
+
+:::

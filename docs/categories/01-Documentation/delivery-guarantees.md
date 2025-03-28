@@ -44,22 +44,16 @@ As of now, additional delivery guarantees must be implemented in your applicatio
 
 #### From client to server
 
-From the client side, you can achieve an **at least once** guarantee with [acknowledgements and timeouts](../04-Events/emitting-events.md#with-timeout):
+From the client side, you can achieve an **at least once** guarantee with the [`retries`](../../client-options.md#retries) option:
 
 ```js
-function emit(socket, event, arg) {
-  socket.timeout(2000).emit(event, arg, (err) => {
-    if (err) {
-      // no ack from the server, let's retry
-      emit(socket, event, arg);
-    }
-  });
-}
-
-emit(socket, "foo", "bar");
+const socket = io({
+  retries: 3,
+  ackTimeout: 10000
+});
 ```
 
-In the example above, the client will retry to send the event after a given delay, so the server might receive the same event several times.
+The client will try to send the event (up to `retries + 1` times), until it gets an acknowledgement from the server.
 
 :::caution
 
