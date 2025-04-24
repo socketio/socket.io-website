@@ -2280,8 +2280,6 @@ io.on("connection", (socket) => {
 });
 ```
 
-**Note:** acknowledgements are not supported when broadcasting.
-
 #### socket.use(fn)
 
 <details className="changelog">
