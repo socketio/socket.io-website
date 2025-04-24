@@ -160,11 +160,6 @@
     "alt": "Legalbet"
   },
   {
-    "url": "https://mobogift.com",
-    "img": "https://images.opencollective.com/mobogift/cae1424/avatar.jpg",
-    "alt": "mobogift"
-  },
-  {
     "url": "https://betking.com.ua/games/all-slots/",
     "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.jpg",
     "alt": "Ігрові автомати"
@@ -205,6 +200,11 @@
     "alt": "VeePN VPN"
   },
   {
+    "url": "https://www.slotsup.com",
+    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.jpg",
+    "alt": "SlotsUp"
+  },
+  {
     "url": "https://casinolandia.com/",
     "img": "https://images.opencollective.com/viktor-atanasov/8904683/avatar.jpg",
     "alt": "CasinoLandia"
@@ -220,16 +220,6 @@
     "alt": "Quantum AI"
   },
   {
-    "url": "https://www.5bingosites.com",
-    "img": "https://images.opencollective.com/www-5bingosites-com/3ffb7e5/logo.jpg",
-    "alt": "www.5bingosites.com"
-  },
-  {
-    "url": "https://www.slotsup.com",
-    "img": "https://images.opencollective.com/slotsup/5a69a49/logo.jpg",
-    "alt": "SlotsUp"
-  },
-  {
     "url": "https://famoid.com/",
     "img": "https://images.opencollective.com/famoid/90aac79/logo.jpg",
     "alt": "Famoid"
@@ -238,6 +228,11 @@
     "url": "https://www.socialwick.com/instagram/followers",
     "img": "https://images.opencollective.com/socialwick/e244614/logo.jpg",
     "alt": "SocialWick"
+  },
+  {
+    "url": "https://www.5bingosites.com",
+    "img": "https://images.opencollective.com/www-5bingosites-com/3ffb7e5/logo.jpg",
+    "alt": "www.5bingosites.com"
   },
   {
     "url": "https://twicsy.com/buy-instagram-followers",
@@ -263,11 +258,6 @@
     "url": "https://www.bogdancazino.ro/",
     "img": "https://images.opencollective.com/bogdancazino/9327bba/avatar.jpg",
     "alt": "Bogdancazino"
-  },
-  {
-    "url": "https://buzzvoice.com/",
-    "img": "https://images.opencollective.com/buzzvoicecom/c7477dd/logo.jpg",
-    "alt": "buzzvoice.com"
   },
   {
     "url": "https://payid-gambler.net/",
@@ -315,14 +305,14 @@
     "alt": "FruityKing NZ"
   },
   {
-    "url": "https://www.cosabonita.es/",
-    "img": "https://images.opencollective.com/casinos-sin-licencia-espanola/fa40830/logo.jpg",
-    "alt": "casinos sin licencia"
-  },
-  {
     "url": "https://iboysoft.com/",
     "img": "https://images.opencollective.com/iboysoft-software/7f9d60e/avatar.jpg",
     "alt": "iBoysoft"
+  },
+  {
+    "url": "https://www.cosabonita.es/",
+    "img": "https://images.opencollective.com/casinos-sin-licencia-espanola/fa40830/logo.jpg",
+    "alt": "casinos sin licencia"
   },
   {
     "url": "https://www.socialfollowers.uk/",
@@ -530,11 +520,6 @@
     "alt": "SERP Triumph"
   },
   {
-    "url": "https://jabka.skin/",
-    "img": "https://images.opencollective.com/jabka-skin/4e1d76f/avatar.jpg",
-    "alt": "Jabka Skin"
-  },
-  {
     "url": "https://socialboss.org/buy-instagram-followers/",
     "img": "https://images.opencollective.com/socialboss-buy-instagram-follo/fbfb94b/logo.jpg",
     "alt": "SocialBoss - Buy Followers for Instagram"
@@ -635,11 +620,6 @@
     "alt": "Uudetkasinot.com"
   },
   {
-    "url": "https://bitcoininterest.io/",
-    "img": "https://images.opencollective.com/bitcoin-casinos-australia/1370bf9/logo.jpg",
-    "alt": "Bitcoin Casinos Australia"
-  },
-  {
     "url": "https://soleks.com.ua/",
     "img": "https://images.opencollective.com/soleks/70d33df/logo.jpg",
     "alt": "SOleks"
@@ -663,5 +643,15 @@
     "url": "https://www.kasinonetti.com/",
     "img": "https://images.opencollective.com/kasinonetti-com/c98a8f9/logo.jpg",
     "alt": "Kasinonetti.com"
+  },
+  {
+    "url": "https://haircenterofturkey.com/",
+    "img": "https://images.opencollective.com/sinan-ozer/c6a069f/avatar.jpg",
+    "alt": "Hair Center of Turkey"
+  },
+  {
+    "url": "https://guidebook.mostbet.com/",
+    "img": "https://images.opencollective.com/guidebook-mostbet1/916eb2c/avatar.jpg",
+    "alt": "Guidebook.Mostbet"
   }
 ]
