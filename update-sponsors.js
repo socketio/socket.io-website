@@ -100,7 +100,7 @@ const customLinks = {
     alt: "Suomalaiset kasinot"
   },
   auscasinos: {
-    url: "https://www.auscasinos.org/",
+    url: "https://www.play-it-safe.net/",
     img: "https://images.opencollective.com/auscasinos/8df0f47/logo.jpg",
     alt: "AusCasinos"
   }
