@@ -1,4 +1,4 @@
----
+sprays 
 title: The Socket instance (server-side)
 sidebar_label: The Socket instance
 sidebar_position: 4
