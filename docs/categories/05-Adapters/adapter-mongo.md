@@ -114,13 +114,14 @@ io.listen(3000);
 
 ## Options
 
-| Name                | Description                                                                                   | Default value | Added in |
-|---------------------|-----------------------------------------------------------------------------------------------|---------------|----------|
-| `uid`               | the ID of this node                                                                           | a random id   | `v0.1.0` |
-| `requestsTimeout`   | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000`        | `v0.1.0` |
-| `heartbeatInterval` | the number of ms between two heartbeats                                                       | `5000`        | `v0.1.0` |
-| `heartbeatTimeout`  | the number of ms without heartbeat before we consider a node down                             | `10000`       | `v0.1.0` |
-| `addCreatedAtField` | whether to add a `createdAt` field to each MongoDB document                                   | `false`       | `v0.2.0` |
+| Name                  | Description                                                                                   | Default value | Added in |
+|-----------------------|-----------------------------------------------------------------------------------------------|---------------|----------|
+| `uid`                 | the ID of this node                                                                           | a random id   | `v0.1.0` |
+| `requestsTimeout`     | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000`        | `v0.1.0` |
+| `heartbeatInterval`   | the number of ms between two heartbeats                                                       | `5000`        | `v0.1.0` |
+| `heartbeatTimeout`    | the number of ms without heartbeat before we consider a node down                             | `10000`       | `v0.1.0` |
+| `addCreatedAtField`   | whether to add a `createdAt` field to each MongoDB document                                   | `false`       | `v0.2.0` |
+| `changeStreamOptions` | options to pass to the MongoDB change stream                                                  | `{}`          | `v0.4.0` |
 
 ## Common questions
 
@@ -143,12 +144,10 @@ Documentation: http://mongodb.github.io/node-mongodb-native/3.6/api/global.html#
 
 | Version | Release date  | Release notes                                                                  | Diff                                                                                         |
 |---------|---------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `0.4.0` | August 2025   | [link](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.4.0) | [`0.3.2...0.4.0`](https://github.com/socketio/socket.io-mongo-adapter/compare/0.3.2...0.4.0) |
 | `0.3.2` | January 2024  | [link](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.2) | [`0.3.1...0.3.2`](https://github.com/socketio/socket.io-mongo-adapter/compare/0.3.1...0.3.2) |
 | `0.3.1` | January 2024  | [link](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.1) | [`0.3.0...0.3.1`](https://github.com/socketio/socket.io-mongo-adapter/compare/0.3.0...0.3.1) |
 | `0.3.0` | February 2023 | [link](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0) | [`0.2.1...0.3.0`](https://github.com/socketio/socket.io-mongo-adapter/compare/0.2.1...0.3.0) |
-| `0.2.1` | May 2022      | [link](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.2.1) | [`0.2.0...0.2.1`](https://github.com/socketio/socket.io-mongo-adapter/compare/0.2.0...0.2.1) |
-| `0.2.0` | April 2022    | [link](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.2.0) | [`0.1.0...0.2.0`](https://github.com/socketio/socket.io-mongo-adapter/compare/0.1.0...0.2.0) |
-| `0.1.0` | June 2021     | [link](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.1.0) |                                                                                              |
 
 [Complete changelog](https://github.com/socketio/socket.io-mongo-adapter/blob/main/CHANGELOG.md)
 
