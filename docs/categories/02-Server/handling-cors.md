@@ -86,7 +86,7 @@ curl "https://api.example.com/socket.io/?EIO=4&transport=polling"
 should return something like:
 
 ```
-0{"sid":"Lbo5JLzTotvW3g2LAAAA","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":20000}
+0{"sid":"Lbo5JLzTotvW3g2LAAAA","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":20000,"maxPayload":1000000}
 ```
 
 If that's not the case, please check that your server is listening and is actually reachable on the given port.

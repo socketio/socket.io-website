@@ -90,7 +90,7 @@ curl "<the server URL>/socket.io/?EIO=4&transport=polling"
 which should return something like this:
 
 ```
-0{"sid":"Lbo5JLzTotvW3g2LAAAA","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":20000}
+0{"sid":"Lbo5JLzTotvW3g2LAAAA","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":20000,"maxPayload":1000000}
 ```
 
 If that's not the case, please check that the Socket.IO server is running, and that there is nothing in between that prevents the connection.
