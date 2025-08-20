@@ -247,6 +247,48 @@ app.listen(3000, (token) => {
 });
 ```
 
+## Usage with Bun
+
+The `@socket.io/bun-engine` package provides a Bun-specific low-level engine, intended to leverage the speed and scalability of Bun.
+
+### Installation
+
+```
+bun add socket.io @socket.io/bun-engine
+```
+
+### Usage
+
+```js
+import { Server as Engine } from "@socket.io/bun-engine";
+import { Server } from "socket.io";
+
+const io = new Server();
+
+const engine = new Engine({
+  path: "/socket.io/",
+});
+
+io.bind(engine);
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+export default {
+  port: 3000,
+  idleTimeout: 30, // must be greater than the "pingInterval" option of the engine, which defaults to 25 seconds
+
+  ...engine.handler(),
+};
+```
+
+:::tip
+
+Any existing adapter can be used without any modification.
+
+:::
+
 ## Miscellaneous
 
 ### Dependency tree
