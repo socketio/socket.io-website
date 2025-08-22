@@ -695,7 +695,7 @@ io.on("connection", (socket) => {
 
 Reference: https://hono.dev/docs/
 
-## With Hono & Bun
+### With Hono & Bun
 
 ```js
 import { Server as Engine } from "@socket.io/bun-engine";
