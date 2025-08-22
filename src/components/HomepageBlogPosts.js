@@ -13,6 +13,9 @@ export default function HomepageBlogPosts() {
       <div>
         <ul>
           <li className={styles.item}>
+            August 22, 2025 - <Link to="/blog/bun-engine/">Bun engine</Link>
+          </li>
+          <li className={styles.item}>
             July 25, 2024 - <Link to="/blog/npm-package-provenance/">npm package provenance</Link>
           </li>
           <li className={styles.item}>
