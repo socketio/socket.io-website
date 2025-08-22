@@ -165,11 +165,6 @@
     "alt": "PayID Casinos Australia"
   },
   {
-    "url": "https://betking.com.ua/games/all-slots/",
-    "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.jpg",
-    "alt": "Ігрові автомати"
-  },
-  {
     "url": "https://www.sportsbookreviewsonline.com/",
     "img": "https://images.opencollective.com/sportsbook-reviews-online/17b05a6/logo.jpg",
     "alt": "Sportsbook Reviews Online"
@@ -270,6 +265,16 @@
     "alt": "Buy Youtube Views - Views4You"
   },
   {
+    "url": "https://www.fruityking.co.nz",
+    "img": "https://images.opencollective.com/fruityking-nz/de1ffa0/logo.jpg",
+    "alt": "FruityKing NZ"
+  },
+  {
+    "url": "https://iboysoft.com/",
+    "img": "https://images.opencollective.com/iboysoft-software/7f9d60e/avatar.jpg",
+    "alt": "iBoysoft"
+  },
+  {
     "url": "https://thepokies.live/",
     "img": "https://images.opencollective.com/thepokies/6f9353e/logo.jpg",
     "alt": "Thepokies"
@@ -285,19 +290,9 @@
     "alt": "Сasinoenlignefrancebest.com"
   },
   {
-    "url": "https://www.fruityking.co.nz",
-    "img": "https://images.opencollective.com/fruityking-nz/de1ffa0/logo.jpg",
-    "alt": "FruityKing NZ"
-  },
-  {
     "url": "https://www.cosabonita.es/",
     "img": "https://images.opencollective.com/casinos-sin-licencia-espanola/fa40830/logo.jpg",
     "alt": "casinos sin licencia"
-  },
-  {
-    "url": "https://iboysoft.com/",
-    "img": "https://images.opencollective.com/iboysoft-software/7f9d60e/avatar.jpg",
-    "alt": "iBoysoft"
   },
   {
     "url": "https://www.socialfollowers.uk/",
@@ -433,6 +428,11 @@
     "url": "https://besteonlinecasinosoesterreich.at",
     "img": "https://images.opencollective.com/besteonlinecasinosoesterreicha/4339f46/logo.jpg",
     "alt": "besteonlinecasinosoesterreich.at"
+  },
+  {
+    "url": "https://betwinnerpartner.com/",
+    "img": "https://images.opencollective.com/betwinnerpartner/4782dcd/avatar.jpg",
+    "alt": "Betwinner Partner"
   },
   {
     "url": "https://www.casivo.se/",
@@ -658,5 +658,10 @@
     "url": "https://casinononaamsit.com/",
     "img": "https://images.opencollective.com/casinononaamsit-com/0c5b15b/avatar.jpg",
     "alt": "casinononaamsit.com"
+  },
+  {
+    "url": "https://onlinekasyno-polis.pl/",
+    "img": "https://images.opencollective.com/onlinekasyno-polis/ae01a30/avatar.jpg",
+    "alt": "Online Kasyno Polis"
   }
 ]
