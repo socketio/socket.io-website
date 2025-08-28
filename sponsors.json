@@ -95,14 +95,14 @@
     "alt": "Parimatch India"
   },
   {
-    "url": "https://777.ua/",
-    "img": "https://images.opencollective.com/777ua/9f0d388/logo.jpg",
-    "alt": "777"
-  },
-  {
     "url": "https://www.automatenspiele.org/",
     "img": "https://images.opencollective.com/user-f6c2cab7/3a3f6a4/avatar.jpg",
     "alt": "automatenspiele.org"
+  },
+  {
+    "url": "https://777.ua/",
+    "img": "https://images.opencollective.com/777ua/9f0d388/logo.jpg",
+    "alt": "777"
   },
   {
     "url": "https://playcasinoscanada.com/",
@@ -660,8 +660,13 @@
     "alt": "casinononaamsit.com"
   },
   {
-    "url": "https://onlinekasyno-polis.pl/",
-    "img": "https://images.opencollective.com/onlinekasyno-polis/ae01a30/avatar.jpg",
-    "alt": "Online Kasyno Polis"
+    "url": "https://www.socialift.io/buy-youtube-views",
+    "img": "https://images.opencollective.com/socialift-buy-youtube-views/d71b219/avatar.jpg",
+    "alt": "Socialift-Buy YouTube Views"
+  },
+  {
+    "url": "https://freespinz.com/en",
+    "img": "https://images.opencollective.com/maks8/3ff80bf/avatar.jpg",
+    "alt": "Freespinz.com"
   }
 ]
