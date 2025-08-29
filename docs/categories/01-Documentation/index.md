@@ -36,7 +36,7 @@ Socket.IO will automatically pick the best available option, depending on:
 - the capabilities of the browser (see [here](https://caniuse.com/websockets) and [here](https://caniuse.com/webtransport))
 - the network (some networks block WebSocket and/or WebTransport connections)
 
-You can find more detail about that in the ["How it works" section](./how-it-works.md).
+You can find more details about that in the ["How it works" section](./how-it-works.md).
 
 ### Server implementations
 
