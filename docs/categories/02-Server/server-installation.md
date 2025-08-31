@@ -198,28 +198,28 @@ Installation:
   <TabItem value="npm" label="NPM" default>
 
 ```sh
-npm install uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+npm install uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0
 ```
 
   </TabItem>
   <TabItem value="yarn" label="Yarn">
 
 ```sh
-yarn add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+yarn add uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0
 ```
 
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
 
 ```sh
-pnpm add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+pnpm add uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0
 ```
 
   </TabItem>
   <TabItem value="bun" label="Bun">
 
 ```sh
-bun add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+bun add uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0
 ```
 
   </TabItem>
