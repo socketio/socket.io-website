@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>3D Multiplayer Game</title>
+<style>
+body{margin:0;overflow:hidden;background:#87ceeb;}
+canvas{display:block;}
+.btn{position:absolute;width:60px;height:60px;background:rgba(255,255,255,0.4);
+border-radius:10px;text-align:center;line-height:60px;font-size:30px;user-select:none;}
+#up{bottom:100px;left:80px} #down{bottom:20px;left:80px} #left{bottom:20px;left:20px} #right{bottom:20px;left:140px} #jump{bottom:60px;right:40px}
+#score{position:absolute;top:10px;left:10px;color:white;font-family:Arial;font-size:20px;background:rgba(0,0,0,0.3);padding:5px 10px;border-radius:5px;}
+</style>
+</head>
+<body>
+<div id="score">Score: 0</div>
+<div id="up" class="btn">↑</div>
+<div id="down" class="btn">↓</div>
+<div id="left" class="btn">←</div>
+<div id="right" class="btn">→</div>
+<div id="jump" class="btn">⤒</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+let socket = io();
+let scene = new THREE.Scene();
+let camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+let renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+let ground = new THREE.Mesh(new THREE.PlaneGeometry(50,50), new THREE.MeshPhongMaterial({color:0x228B22}));
+ground.rotation.x=-Math.PI/2; scene.add(ground);
+scene.add(new THREE.DirectionalLight(0xffffff,1));
+scene.add(new THREE.AmbientLight(0x404040));
+
+let playerGeo = new THREE.BoxGeometry(1,1,1);
+let playerMat = new THREE.MeshPhongMaterial({color:0x0077ff});
+let player = new THREE.Mesh(playerGeo,playerMat);
+player.position.y=0.5; scene.add(player);
+
+let otherPlayers = {};
+let keys={};
+window.addEventListener("keydown",e=>keys[e.key]=true);
+window.addEventListener("keyup",e=>keys[e.key]=false);
+function bindButton(id,key){let btn=document.getElementById(id);btn.addEventListener("touchstart",()=>keys[key]=true);btn.addEventListener("touchend",()=>keys[key]=false);}
+bindButton("up","ArrowUp"); bindButton("down","ArrowDown"); bindButton("left","ArrowLeft"); bindButton("right","ArrowRight"); bindButton("jump","Space");
+
+let clock = new THREE.Clock();
+let velocityY=0,isOnGround=true;
+const gravity=-20,jumpForce=8;
+let score=0, scoreDiv=document.getElementById("score");
+
+// Socket events
+socket.on('currentPlayers', players=>{
+    for(let id in players){ if(id!==socket.id) addOtherPlayer(id, players[id]); }
+});
+socket.on('newPlayer', data=>addOtherPlayer(data.id,data.player));
+socket.on('playerMoved', data=>{ if(otherPlayers[data.id]) otherPlayers[data.id].position.set(data.pos.x,data.pos.y,data.pos.z); });
+socket.on('playerDisconnected', id=>{ if(otherPlayers[id]) { scene.remove(otherPlayers[id]); delete otherPlayers[id]; } });
+
+function addOtherPlayer(id,data){
+    let geo=new THREE.BoxGeometry(1,1,1);
+    let mat=new THREE.MeshPhongMaterial({color:0xff0000});
+    let p=new THREE.Mesh(geo,mat); p.position.set(data.x,data.y,data.z); scene.add(p); otherPlayers[id]=p;
+}
+
+// Animate
+function animate(){
+    requestAnimationFrame(animate);
+    let dt = clock.getDelta();
+    let speed = 5;
+
+    if(keys["ArrowUp"]) player.position.z-=speed*dt;
+    if(keys["ArrowDown"]) player.position.z+=speed*dt;
+    if(keys["ArrowLeft"]) player.position.x-=speed*dt;
+    if(keys["ArrowRight"]) player.position.x+=speed*dt;
+
+    if(keys["Space"] && isOnGround){ velocityY=jumpForce; isOnGround=false; }
+    velocityY += gravity*dt; player.position.y += velocityY*dt;
+    if(player.position.y<=0.5){ player.position.y=0.5; velocityY=0; isOnGround=true; }
+
+    camera.position.x=player.position.x; camera.position.z=player.position.z+8; camera.lookAt(player.position);
+
+    socket.emit('move',{x:player.position.x,y:player.position.y,z:player.position.z});
+
+    renderer.render(scene,camera);
+}
+animate();
+</script>
+</body>
+</html>
