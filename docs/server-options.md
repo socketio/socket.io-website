@@ -109,6 +109,12 @@ const io = new Server(httpServer, {
 });
 ```
 
+:::caution
+
+The connection state recovery feature is designed for dealing with intermittent disconnections, so please use a sensible value for `maxDisconnectionDuration` (not `Infinity`).
+
+:::
+
 If the `skipMiddlewares` option is set to `true`, then the middlewares will be skipped when the connection is successfully recovered:
 
 ```js
@@ -126,7 +132,7 @@ io.use(async (socket, next) => {
 io.on("connection", (socket) => {
   // the userId attribute will either come:
   // - from the middleware above (first connection or failed recovery)
-  // - from the recevery mechanism
+  // - from the recovery mechanism
   console.log("userId", socket.data.userId);
 });
 ```

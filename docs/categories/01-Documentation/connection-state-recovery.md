@@ -18,9 +18,7 @@ The release notes can be found [here](../../changelog/4.6.0.md).
 
 Under real conditions, a Socket.IO client will inevitably experience temporary disconnections, regardless of the quality of the connection.
 
-This feature will help you cope with such disconnections, but unless you want to store the packets and the sessions forever (by setting `maxDisconnectionDuration` to `Infinity`), you can't be assured that the recovery will always be successful.
-
-That's why you will still need to handle the case where the states of the client and the server must be synchronized.
+This feature will help you cope with such disconnections, but please be aware that the recovery **will not always be successful**. That's why you will still need to handle the case where the states of the client and the server must be synchronized.
 
 ## Usage
 
@@ -36,6 +34,12 @@ const io = new Server(httpServer, {
   }
 });
 ```
+
+:::caution
+
+The connection state recovery feature is designed for dealing with intermittent disconnections, so please use a sensible value for `maxDisconnectionDuration`.
+
+:::
 
 Upon an unexpected disconnection (i.e. no manual disconnection with `socket.disconnect()`), the server will store the `id`, the rooms and the `data` attribute of the socket.
 
@@ -111,7 +115,7 @@ You can also run this example directly in your browser on:
 
 ## How it works under the hood
 
-- the server sends a session ID [during the handshake](../08-Miscellaneous/sio-protocol.md#connection-to-a-namespace-1) (which is different from the current id attribute, which is public and can be freely shared)
+- the server sends a session ID [during the handshake](../08-Miscellaneous/sio-protocol.md#connection-to-a-namespace-1) (which is different from the existing `id` attribute, which is public and can be freely shared)
 
 Example:
 
