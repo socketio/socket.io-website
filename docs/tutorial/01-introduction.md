@@ -77,6 +77,7 @@ import { Server } from "socket.io";
 
   </TabItem>
 </Tabs>
+{ Server } - Uses destructuring to get just the function
 
 
 Ready? Click "Next" to get started.
