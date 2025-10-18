@@ -6,11 +6,11 @@ slug: /cluster-adapter/
 
 ## How it works
 
-The Cluster adapter allows to use Socket.IO within a [Node.js cluster](https://nodejs.org/api/cluster.html).
+The Cluster adapter allows using Socket.IO within a [Node.js cluster](https://nodejs.org/api/cluster.html).
 
-Every packet that is sent to multiple clients (e.g. `io.to("room1").emit()` or `socket.broadcast.emit()`) is also sent to other workers via the IPC channel.
+Every packet sent to multiple clients (e.g. `io.to("room1").emit()` or `socket.broadcast.emit()`) is also sent to other workers via the IPC channel.
 
-The source code of this adapter can be found [here](https://github.com/socketio/socket.io-cluster-adapter).
+The source code of this adapter can be found here: https://github.com/socketio/socket.io/tree/main/packages/socket.io-cluster-adapter
 
 ## Supported features
 
@@ -157,17 +157,19 @@ io.on("connection", (socket) => {
 
 ## Options
 
-| Name              | Description                                                                                   | Default value |
-|-------------------|-----------------------------------------------------------------------------------------------|---------------|
-| `requestsTimeout` | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000`        |
+| Name                | Description                                                        | Default value |
+|---------------------|--------------------------------------------------------------------|---------------|
+| `heartbeatInterval` | The number of ms between two heartbeats.                           | `5_000`       |
+| `heartbeatTimeout`  | The number of ms without heartbeat before we consider a node down. | `10_000`      |
 
 ## Latest releases
 
-| Version | Release date | Release notes                                                                    | Diff                                                                                           |
-|---------|--------------|----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| `0.2.2` | March 2022   | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.2.2) | [`0.2.1...0.2.2`](https://github.com/socketio/socket.io-cluster-adapter/compare/0.2.1...0.2.2) |
-| `0.2.1` | October 2022 | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.2.1) | [`0.2.0...0.2.1`](https://github.com/socketio/socket.io-cluster-adapter/compare/0.2.0...0.2.1) |
-| `0.2.0` | April 2022   | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.2.0) | [`0.1.0...0.2.0`](https://github.com/socketio/socket.io-cluster-adapter/compare/0.1.0...0.2.0) |
-| `0.1.0` | June 2021    | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.1.0) |                                                                                                |
+| Version | Release date | Release notes                                                                                     | Diff                                                                                               |
+|---------|--------------|---------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| `0.3.0` | October 2025 | [link](https://github.com/socketio/socket.io/releases/tag/%40socket.io%2Fcluster-adapter%400.3.0) | [`0.2.2...0c43124`](https://github.com/socketio/socket.io-cluster-adapter/compare/0.2.2...0c43124) |
+| `0.2.2` | March 2022   | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.2.2)                  | [`0.2.1...0.2.2`](https://github.com/socketio/socket.io-cluster-adapter/compare/0.2.1...0.2.2)     |
+| `0.2.1` | October 2022 | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.2.1)                  | [`0.2.0...0.2.1`](https://github.com/socketio/socket.io-cluster-adapter/compare/0.2.0...0.2.1)     |
+| `0.2.0` | April 2022   | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.2.0)                  | [`0.1.0...0.2.0`](https://github.com/socketio/socket.io-cluster-adapter/compare/0.1.0...0.2.0)     |
+| `0.1.0` | June 2021    | [link](https://github.com/socketio/socket.io-cluster-adapter/releases/tag/0.1.0)                  |                                                                                                    |
 
-[Complete changelog](https://github.com/socketio/socket.io-cluster-adapter/blob/main/CHANGELOG.md)
+Complete changelog: https://github.com/socketio/socket.io/blob/main/packages/socket.io-cluster-adapter/CHANGELOG.md
