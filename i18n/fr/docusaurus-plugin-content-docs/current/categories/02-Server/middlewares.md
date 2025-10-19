@@ -141,6 +141,35 @@ socket.on("connect_error", (err) => {
 });
 ```
 
+## Connections rate limiting {#connections-rate-limiting}
+
+Limit number of connections per period of time.
+
+```js
+const { RateLimiterMemory } = require('rate-limiter-flexible');
+
+// 5 connections per minute for authorized users
+const rateLimiter = new RateLimiterMemory({
+  points: 5,
+  duration: 60,
+});
+
+io.use(async (socket, next) => {
+  const authToken = socket.handshake.auth ? socket.handshake.auth.token : null
+  const uniqStr = authToken || socket.handshake.address;
+  const pointsToConsume = authToken ? 1 : 5 // consume 5 points for not authorized users - stricter limits
+
+  try {
+    await rateLimiter.consume(uniqStr, pointsToConsume);
+    next();
+  } catch (error) {
+    next(new Error('Connections rate limit exceeded'));
+  }
+});
+```
+
+For distributed environments, use one of the store limiters from [rate-limiter-flexible](https://www.npmjs.com/package/rate-limiter-flexible).
+
 ## Compatibility with Express middleware {#compatibility-with-express-middleware}
 
 Since they are not bound to a usual HTTP request/response cycle, Socket.IO middlewares are not really compatible with [Express middlewares](https://expressjs.com/en/guide/using-middleware.html).
