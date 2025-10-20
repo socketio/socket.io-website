@@ -1,4 +1,66 @@
----
+---// server.js
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: { origin: '*' },
+});
+
+// ইউজার ব্যালেন্স ট্র্যাক
+let userBalances = {};
+let leaderboard = [];
+
+io.on('connection', (socket) => {
+    console.log('একজন প্লেয়ার যুক্ত হয়েছে:', socket.id);
+
+    // নতুন ইউজারের ব্যালেন্স ইনিশিয়াল
+    userBalances[socket.id] = { name: `Player-${socket.id.slice(0, 5)}`, balance: 100 };
+    updateLeaderboard();
+
+    // ইউজারকে ব্যালেন্স এবং লিডারবোর্ড পাঠানো
+    socket.emit('balance', userBalances[socket.id].balance);
+    io.emit('leaderboard', leaderboard);
+
+    // স্লট স্পিন ইভেন্ট
+    socket.on('spin', () => {
+        const symbols = ['🍒', '🍋', '🍊', '🍇', '⭐'];
+        const result = [
+            symbols[Math.floor(Math.random() * symbols.length)],
+            symbols[Math.floor(Math.random() * symbols.length)],
+            symbols[Math.floor(Math.random() * symbols.length)]
+        ];
+
+        let win = 0;
+        if (result[0] === result[1] && result[1] === result[2]) {
+            win = 50;
+        }
+
+        userBalances[socket.id].balance += win - 10; // স্পিন খরচ
+        socket.emit('spinResult', { result, balance: userBalances[socket.id].balance });
+        updateLeaderboard();
+    });
+
+    socket.on('disconnect', () => {
+        console.log('প্লেয়ার ছেড়ে গেছে:', socket.id);
+        delete userBalances[socket.id];
+        updateLeaderboard();
+    });
+
+    function updateLeaderboard() {
+        leaderboard = Object.values(userBalances)
+            .sort((a, b) => b.balance - a.balance)
+            .slice(0, 5); // টপ ৫
+        io.emit('leaderboard', leaderboard);
+    }
+});
+
+server.listen(3001, () => {
+    console.log('Server চলছে: http://localhost:3001');
+});
+
 title: Client Installation
 sidebar_label: Installation
 sidebar_position: 1
