@@ -270,14 +270,14 @@
     "alt": "FruityKing NZ"
   },
   {
-    "url": "https://www.cosabonita.es/",
-    "img": "https://images.opencollective.com/casinos-sin-licencia-espanola/fa40830/logo.jpg",
-    "alt": "casinos sin licencia"
-  },
-  {
     "url": "https://iboysoft.com/",
     "img": "https://images.opencollective.com/iboysoft-software/7f9d60e/avatar.jpg",
     "alt": "iBoysoft"
+  },
+  {
+    "url": "https://www.cosabonita.es/",
+    "img": "https://images.opencollective.com/casinos-sin-licencia-espanola/fa40830/logo.jpg",
+    "alt": "casinos sin licencia"
   },
   {
     "url": "https://www.socialfollowers.uk/",
@@ -365,16 +365,6 @@
     "alt": "Superviral"
   },
   {
-    "url": "https://casinovanger.com/",
-    "img": "https://images.opencollective.com/sasinovanger-com/c3eebbc/avatar.jpg",
-    "alt": "Сasinovanger.com"
-  },
-  {
-    "url": "https://thecolorrun.se/",
-    "img": "https://images.opencollective.com/utlandska-casino-med-lag-insattning1/988fad9/avatar.jpg",
-    "alt": "utländska casino med låg insättning"
-  },
-  {
     "url": "https://ib88cuan.com/",
     "img": "https://images.opencollective.com/ingatbola88/9e16161/avatar.jpg",
     "alt": "ingatbola88"
@@ -383,6 +373,16 @@
     "url": "https://leofame.com/buy-instagram-followers",
     "img": "https://images.opencollective.com/leofame/2b658cd/avatar.jpg",
     "alt": "Buy Instagram Followers & Likes"
+  },
+  {
+    "url": "https://casinovanger.com/",
+    "img": "https://images.opencollective.com/sasinovanger-com/c3eebbc/avatar.jpg",
+    "alt": "Сasinovanger.com"
+  },
+  {
+    "url": "https://thecolorrun.se/",
+    "img": "https://images.opencollective.com/utlandska-casino-med-lag-insattning1/988fad9/avatar.jpg",
+    "alt": "utländska casino med låg insättning"
   },
   {
     "url": "https://guidebook.betwinner.com/",
@@ -485,7 +485,7 @@
     "alt": "trygge norske casino"
   },
   {
-    "url": "http://superluxuryreps.com/",
+    "url": "https://superluxuryreps.com/",
     "img": "https://images.opencollective.com/superluxuryreps/378b62f/avatar.jpg",
     "alt": "superluxuryreps"
   },
@@ -688,5 +688,10 @@
     "url": "https://www.fbpostlikes.com/",
     "img": "https://images.opencollective.com/pankaj-jangir/avatar.jpg",
     "alt": "FBPostLikes"
+  },
+  {
+    "url": "https://playfortuna.com/en",
+    "img": "https://images.opencollective.com/playfortunacom/6c2f670/logo.jpg",
+    "alt": "playfortuna.com"
   }
 ]
