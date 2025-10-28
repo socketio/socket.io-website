@@ -370,11 +370,6 @@
     "alt": "ingatbola88"
   },
   {
-    "url": "https://leofame.com/buy-instagram-followers",
-    "img": "https://images.opencollective.com/leofame/2b658cd/avatar.jpg",
-    "alt": "Buy Instagram Followers & Likes"
-  },
-  {
     "url": "https://casinovanger.com/",
     "img": "https://images.opencollective.com/sasinovanger-com/c3eebbc/avatar.jpg",
     "alt": "Сasinovanger.com"
@@ -388,6 +383,11 @@
     "url": "https://guidebook.betwinner.com/",
     "img": "https://images.opencollective.com/guidebook_betwinner_com/6babe60/avatar.jpg",
     "alt": "Guidebook.BetWinner"
+  },
+  {
+    "url": "https://leofame.com/buy-instagram-followers",
+    "img": "https://images.opencollective.com/leofame/2b658cd/avatar.jpg",
+    "alt": "Buy Instagram Followers & Likes"
   },
   {
     "url": "https://w.in.ua/",
@@ -693,5 +693,10 @@
     "url": "https://playfortuna.com/en",
     "img": "https://images.opencollective.com/playfortunacom/6c2f670/logo.jpg",
     "alt": "playfortuna.com"
+  },
+  {
+    "url": "https://betking.com.ua/sports-book/",
+    "img": "https://images.opencollective.com/stavki-na-sport-ua/ecee984/logo.jpg",
+    "alt": "Ставки на спорт"
   }
 ]
