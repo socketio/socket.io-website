@@ -65,6 +65,14 @@ const customImages = new Map([
       alt: "Superviral",
     },
   ],
+  [
+    "gem-m",
+    {
+      url: "https://www.noneedtostudy.com/take-my-online-class/",
+      img: "/images/sponsors/noneedtostudy.png",
+      alt: "Pay someone to take my online class - NoNeedToStudy.com",
+    },
+  ],
 ]);
 
 const customLinks = {
