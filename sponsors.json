@@ -370,16 +370,6 @@
     "alt": "Superviral"
   },
   {
-    "url": "https://casinovanger.com/",
-    "img": "https://images.opencollective.com/sasinovanger-com/c3eebbc/avatar.jpg",
-    "alt": "Сasinovanger.com"
-  },
-  {
-    "url": "https://thecolorrun.se/",
-    "img": "https://images.opencollective.com/utlandska-casino-med-lag-insattning1/988fad9/avatar.jpg",
-    "alt": "utländska casino med låg insättning"
-  },
-  {
     "url": "https://ib88cuan.com/",
     "img": "https://images.opencollective.com/ingatbola88/9e16161/avatar.jpg",
     "alt": "ingatbola88"
@@ -388,6 +378,16 @@
     "url": "https://leofame.com/buy-instagram-followers",
     "img": "https://images.opencollective.com/leofame/2b658cd/avatar.jpg",
     "alt": "Buy Instagram Followers & Likes"
+  },
+  {
+    "url": "https://casinovanger.com/",
+    "img": "https://images.opencollective.com/sasinovanger-com/c3eebbc/avatar.jpg",
+    "alt": "Сasinovanger.com"
+  },
+  {
+    "url": "https://thecolorrun.se/",
+    "img": "https://images.opencollective.com/utlandska-casino-med-lag-insattning1/988fad9/avatar.jpg",
+    "alt": "utländska casino med låg insättning"
   },
   {
     "url": "https://guidebook.betwinner.com/",
@@ -425,14 +425,19 @@
     "alt": "gaia-wines.gr"
   },
   {
-    "url": "https://casino.ua/casino/slots/",
-    "img": "https://images.opencollective.com/casino-ua/11d7447/avatar.jpg",
-    "alt": "Ігрові автомати"
-  },
-  {
     "url": "https://cceam.org/",
     "img": "https://images.opencollective.com/casino-uden-rofus/3bee554/avatar.jpg",
     "alt": "casino uden ROFUS"
+  },
+  {
+    "url": "https://betwinnerpartner.com/",
+    "img": "https://images.opencollective.com/betwinnerpartner/4782dcd/avatar.jpg",
+    "alt": "Betwinner Partner"
+  },
+  {
+    "url": "https://casino.ua/casino/slots/",
+    "img": "https://images.opencollective.com/casino-ua/11d7447/avatar.jpg",
+    "alt": "Ігрові автомати"
   },
   {
     "url": "https://payid-pokies.net/",
@@ -470,9 +475,9 @@
     "alt": "casinosfest"
   },
   {
-    "url": "https://www.c19.cl/",
+    "url": "https://casinoinsights.cl/",
     "img": "https://images.opencollective.com/casino-online-chile/91f1057/avatar.jpg",
-    "alt": "Casinos Online C19"
+    "alt": "Casinoinsights.cl - Mejores Casinos Online"
   },
   {
     "url": "https://parik24.io/",
@@ -708,5 +713,10 @@
     "url": "https://www.reddit.com/r/BinanceTrading/comments/1o5hhfh/best_trading_signals_for_crypto_forex_any/",
     "img": "https://images.opencollective.com/trading-signals/f9dc74e/logo.jpg",
     "alt": "Trading Signals"
+  },
+  {
+    "url": "https://www.reddit.com/r/GambleWorld/comments/1ok63g2/best_online_casino_reddit_vote_and_recommendations/",
+    "img": "https://images.opencollective.com/best-online-casino-gambling/254f3fd/logo.jpg",
+    "alt": "Best Online Casino"
   }
 ]
