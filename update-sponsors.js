@@ -73,6 +73,14 @@ const customImages = new Map([
       alt: "Pay someone to take my online class - NoNeedToStudy.com",
     },
   ],
+  [
+    "softorbits",
+    {
+      url: "https://www.softorbits.net/ai-undresser/",
+      img: "/images/sponsors/softorbits.png",
+      alt: "Undress AI by SoftOrbits",
+    }
+  ]
 ]);
 
 const customLinks = {
