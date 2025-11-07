@@ -49,6 +49,8 @@ For TypeScript users, you might also need `@types/pg`.
 
 ## Usage
 
+### Standalone
+
 ```js
 import { Server } from "socket.io";
 import { createAdapter } from "@socket.io/postgres-adapter";
@@ -84,14 +86,12 @@ io.listen(3000);
 
 | Name                | Description                                                                                   | Default value           |
 |---------------------|-----------------------------------------------------------------------------------------------|-------------------------|
-| `uid`               | the ID of this node                                                                           | a random ID             |
 | `channelPrefix`     | the prefix of the notification channel                                                        | `socket.io`             |
 | `tableName`         | the name of the table for payloads over the 8000 bytes limit or containing binary data        | `socket_io_attachments` |
-| `payloadThreshold`  | the threshold for the payload size in bytes                                                   | `8000`                  |
-| `requestsTimeout`   | the timeout for inter-server requests such as `fetchSockets()` or `serverSideEmit()` with ack | `5000`                  |
-| `heartbeatInterval` | the number of ms between two heartbeats                                                       | `5000`                  |
-| `heartbeatTimeout`  | the number of ms without heartbeat before we consider a node down                             | `10000`                 |
-| `cleanupInterval`   | the number of ms between two cleanup queries                                                  | `30000`                 |
+| `payloadThreshold`  | the threshold for the payload size in bytes                                                   | `8_000`                 |
+| `cleanupInterval`   | the number of ms between two cleanup queries                                                  | `30_000`                |
+| `heartbeatInterval` | the number of ms between two heartbeats                                                       | `5_000`                 |
+| `heartbeatTimeout`  | the number of ms without heartbeat before we consider a node down                             | `10_000`                |
 
 ## Common questions
 
@@ -109,12 +109,11 @@ In case the connection to the Postgres server is severed, the packets will only 
 
 | Version | Release date  | Release notes                                                                     | Diff                                                                                            |
 |---------|---------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| `0.5.0` | November 2025 | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.5.0) | [`0.4.0...0.5.0`](https://github.com/socketio/socket.io-postgres-adapter/compare/0.4.0...0.5.0) |
 | `0.4.0` | July 2024     | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.4.0) | [`0.3.1...0.4.0`](https://github.com/socketio/socket.io-postgres-adapter/compare/0.3.1...0.4.0) |
 | `0.3.1` | February 2023 | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.3.1) | [`0.3.0...0.3.1`](https://github.com/socketio/socket.io-postgres-adapter/compare/0.3.0...0.3.1) |
 | `0.3.0` | April 2022    | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.3.0) | [`0.2.0...0.3.0`](https://github.com/socketio/socket.io-postgres-adapter/compare/0.2.0...0.3.0) |
 | `0.2.0` | December 2021 | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.2.0) | [`0.1.1...0.2.0`](https://github.com/socketio/socket.io-postgres-adapter/compare/0.1.1...0.2.0) |
-| `0.1.1` | June 2021     | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.1.1) | [`0.1.0...0.1.1`](https://github.com/socketio/socket.io-postgres-adapter/compare/0.1.0...0.1.1) |
-| `0.1.0` | June 2021     | [link](https://github.com/socketio/socket.io-postgres-adapter/releases/tag/0.1.0) |                                                                                                 |
 
 [Complete changelog](https://github.com/socketio/socket.io-postgres-adapter/blob/main/CHANGELOG.md)
 
@@ -139,15 +138,12 @@ npm install @socket.io/postgres-emitter pg
 ### Usage
 
 ```js
-const { Emitter } = require("@socket.io/postgres-emitter");
-const { Pool } = require("pg");
+import { Emitter } from "@socket.io/postgres-emitter";
+import { Pool } from "pg";
 
 const pool = new Pool({
   user: "postgres",
-  host: "localhost",
-  database: "postgres",
   password: "changeit",
-  port: 5432,
 });
 
 const emitter = new Emitter(pool);
@@ -165,4 +161,4 @@ Please refer to the cheatsheet [here](adapter.md#emitter-cheatsheet).
 |---------|--------------|-----------------------------------------------------------------------------------|------|
 | `0.1.0` | June 2021    | [link](https://github.com/socketio/socket.io-postgres-emitter/releases/tag/0.1.0) |      |
 
-[Complete changelog](https://github.com/socketio/socket.io-postgres-emitter/blob/main/CHANGELOG.md)
+[Complete changelog](https://github.com/socketio/socket.io/blob/main/packages/socket.io-postgres-emitter/CHANGELOG.md)
