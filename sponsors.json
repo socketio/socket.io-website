@@ -165,11 +165,6 @@
     "alt": "PayID Casinos Australia"
   },
   {
-    "url": "https://www.famety.net/",
-    "img": "https://images.opencollective.com/famety-buy-instagram-followers/37314f4/logo.jpg",
-    "alt": "Famety - Buy Instagram Followers"
-  },
-  {
     "url": "https://www.overlyzer.com/",
     "img": "https://images.opencollective.com/overlyzer_com/34ddd64/avatar.jpg",
     "alt": "Overlyzer"
@@ -375,16 +370,6 @@
     "alt": "utländska casino med låg insättning"
   },
   {
-    "url": "https://ib88cuan.com/",
-    "img": "https://images.opencollective.com/ingatbola88/9e16161/avatar.jpg",
-    "alt": "ingatbola88"
-  },
-  {
-    "url": "https://leofame.com/buy-instagram-followers",
-    "img": "https://images.opencollective.com/leofame/2b658cd/avatar.jpg",
-    "alt": "Buy Instagram Followers & Likes"
-  },
-  {
     "url": "https://guidebook.betwinner.com/",
     "img": "https://images.opencollective.com/guidebook_betwinner_com/6babe60/avatar.jpg",
     "alt": "Guidebook.BetWinner"
@@ -405,6 +390,16 @@
     "alt": "Uudetkasinot.com"
   },
   {
+    "url": "https://ib88cuan.com/",
+    "img": "https://images.opencollective.com/ingatbola88/9e16161/avatar.jpg",
+    "alt": "ingatbola88"
+  },
+  {
+    "url": "https://leofame.com/buy-instagram-followers",
+    "img": "https://images.opencollective.com/leofame/2b658cd/avatar.jpg",
+    "alt": "Buy Instagram Followers & Likes"
+  },
+  {
     "url": "https://besteonlinecasinosoesterreich.at",
     "img": "https://images.opencollective.com/besteonlinecasinosoesterreicha/4339f46/logo.jpg",
     "alt": "besteonlinecasinosoesterreich.at"
@@ -418,11 +413,6 @@
     "url": "https://www.gaia-wines.gr/",
     "img": "https://images.opencollective.com/onlinecasinosgr-com/510b9a4/avatar.jpg",
     "alt": "gaia-wines.gr"
-  },
-  {
-    "url": "https://casino.ua/casino/slots/",
-    "img": "https://images.opencollective.com/casino-ua/11d7447/avatar.jpg",
-    "alt": "Ігрові автомати"
   },
   {
     "url": "https://payid-pokies.net/",
@@ -443,6 +433,11 @@
     "url": "https://betwinnerpartner.com/",
     "img": "https://images.opencollective.com/betwinnerpartner/4782dcd/avatar.jpg",
     "alt": "Betwinner Partner"
+  },
+  {
+    "url": "https://casino.ua/casino/slots/",
+    "img": "https://images.opencollective.com/casino-ua/11d7447/avatar.jpg",
+    "alt": "Ігрові автомати"
   },
   {
     "url": "https://tychebets.gr/",
@@ -470,9 +465,9 @@
     "alt": "casinosfest"
   },
   {
-    "url": "https://casinoinsights.cl/",
+    "url": "https://www.c19.cl/",
     "img": "https://images.opencollective.com/casino-online-chile/91f1057/avatar.jpg",
-    "alt": "Casinoinsights.cl - Mejores Casinos Online"
+    "alt": "c19.cl - Mejores Casinos Online"
   },
   {
     "url": "https://parik24.io/",
@@ -523,11 +518,6 @@
     "url": "https://www.casinotopplistan.com",
     "img": "https://images.opencollective.com/casinotopplistan-com/50d0126/logo.jpg",
     "alt": "Casinotopplistan.com"
-  },
-  {
-    "url": "https://buzzoid.com/buy-youtube-views/",
-    "img": "https://images.opencollective.com/buy-youtube-views-on-buzzoid/e6a856f/logo.jpg",
-    "alt": "Buy YouTube Views on Buzzoid"
   },
   {
     "url": "https://affmaven.com/smmpanelserver-review/",
@@ -665,7 +655,7 @@
     "alt": "BDG Win"
   },
   {
-    "url": "https://tirangaagame.io/",
+    "url": "https://tirangaagame.games/",
     "img": "https://images.opencollective.com/tiranga-gameapp/12f77a3/logo.jpg",
     "alt": "Tiranga Game"
   },
@@ -695,7 +685,7 @@
     "alt": "rolex super clone"
   },
   {
-    "url": "https://damanappdownload.io/",
+    "url": "https://damanapp.download/",
     "img": "https://images.opencollective.com/daman-game-login/86bac66/logo.jpg",
     "alt": "Daman Game"
   },
@@ -707,7 +697,7 @@
   {
     "url": "https://www.reddit.com/r/BinanceTrading/comments/1o5hhfh/best_trading_signals_for_crypto_forex_any/",
     "img": "https://images.opencollective.com/trading-signals/f9dc74e/logo.jpg",
-    "alt": "Trading Signals"
+    "alt": "Best crypto trading signals"
   },
   {
     "url": "https://www.reddit.com/r/GambleWorld/comments/1ok63g2/best_online_casino_reddit_vote_and_recommendations/",
@@ -733,5 +723,10 @@
     "url": "https://nl.trustpilot.com/review/casinozonderregistratie.vip",
     "img": "https://images.opencollective.com/casino-zonder-registratie-nl/bbc27e3/logo.jpg",
     "alt": "Casino Zonder Registratie"
+  },
+  {
+    "url": "https://www.bdggame.io",
+    "img": "https://images.opencollective.com/bdg-game-login/b42730e/logo.jpg",
+    "alt": "BDG Game"
   }
 ]
