@@ -1,3 +1,107 @@
+====================================================
+=              CHESS MULTIPLAYER APP               =
+=              FULL PROJECT SOURCE CODE            =
+=       (React + Node.js + Socket.io Realtime)     =
+====================================================
+
+
+====================================================
+=                SERVER FILES                      =
+====================================================
+
+------------------------------------
+FILE: server/package.json
+------------------------------------
+{
+  "name": "chess-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "socket.io": "^4.7.5"
+  }
+}
+
+------------------------------------
+FILE: server/index.js
+------------------------------------
+const express = require("express");
+const http = require("http");
+const { Server } = require("socket.io");
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: { origin: "*" }
+});
+
+let games = {};
+
+io.on("connection", (socket) => {
+  console.log("User connected:", socket.id);
+
+  socket.on("join_game", (roomId) => {
+    socket.join(roomId);
+
+    if (!games[roomId]) {
+      games[roomId] = { board: initialBoard(), turn: "white" };
+    }
+
+    io.to(roomId).emit("game_state", games[roomId]);
+  });
+
+  socket.on("move", ({ roomId, from, to }) => {
+    let game = games[roomId];
+    if (!game) return;
+
+    game.board[to] = game.board[from];
+    game.board[from] = null;
+
+    game.turn = game.turn === "white" ? "black" : "white";
+    io.to(roomId).emit("game_state", game);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+  });
+});
+
+function initialBoard() {
+  return {
+    "a1": "wr","b1": "wn","c1": "wb","d1": "wq",
+    "e1": "wk","f1": "wb","g1": "wn","h1": "wr",
+
+    "a2": "wp","b2": "wp","c2": "wp","d2": "wp",
+    "e2": "wp","f2": "wp","g2": "wp","h2": "wp",
+
+    "a7": "bp","b7": "bp","c7": "bp","d7": "bp",
+    "e7": "bp","f7": "bp","g7": "bp","h7": "bp",
+
+    "a8": "br","b8": "bn","c8": "bb","d8": "bq",
+    "e8": "bk","f8": "bb","g8": "bn","h8": "br"
+  };
+}
+
+server.listen(5000, () => console.log("Server running on http://localhost:5000"));
+
+
+
+====================================================
+=                CLIENT FILES                      =
+====================================================
+
+------------------------------------
+FILE: client/package.json
+------------------------------------
+{
+  "name": "chess-client",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "rea
 ---
 title: "Tutorial step #1 - Project initialization"
 sidebar_label: "Step #1: Project initialization"
