@@ -72,7 +72,27 @@ io.on("connection", (socket) => {
 });
 ```
 
-The ones declared in the `InterServerEvents` interface are used for inter-server communication (added in `socket.io@4.1.0`):
+:::tip
+
+This also works with the Promise-based API:
+
+```ts
+interface ServerToClientEvents {
+  // [...]
+  withAck: (d: string, callback: (result: number) => void) => void;
+}
+
+try {
+  const result = await socket.timeout(5_000).emitWithAck("withAck", "some string");
+  // result is inferred as <number>
+} catch (err) {
+  // handle error
+}
+```
+
+:::
+
+The events declared in the `InterServerEvents` interface are used for inter-server communication (added in `socket.io@4.1.0`):
 
 ```ts
 io.serverSideEmit("ping");
