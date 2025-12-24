@@ -380,16 +380,6 @@
     "alt": "Casivo.se"
   },
   {
-    "url": "https://cceam.org/",
-    "img": "https://images.opencollective.com/casino-uden-rofus/3bee554/avatar.jpg",
-    "alt": "casino uden ROFUS"
-  },
-  {
-    "url": "https://betwinnerpartner.com/",
-    "img": "https://images.opencollective.com/betwinnerpartner/4782dcd/avatar.jpg",
-    "alt": "Betwinner Partner"
-  },
-  {
     "url": "https://www.gaia-wines.gr/",
     "img": "https://images.opencollective.com/onlinecasinosgr-com/510b9a4/avatar.jpg",
     "alt": "gaia-wines.gr"
@@ -408,6 +398,16 @@
     "url": "https://vegas.ua",
     "img": "https://images.opencollective.com/vegas/6cfa195/logo.jpg",
     "alt": "Vegas"
+  },
+  {
+    "url": "https://cceam.org/",
+    "img": "https://images.opencollective.com/casino-uden-rofus/3bee554/avatar.jpg",
+    "alt": "casino uden ROFUS"
+  },
+  {
+    "url": "https://betwinnerpartner.com/",
+    "img": "https://images.opencollective.com/betwinnerpartner/4782dcd/avatar.jpg",
+    "alt": "Betwinner Partner"
   },
   {
     "url": "https://tychebets.gr/",
@@ -590,9 +590,9 @@
     "alt": "betking"
   },
   {
-    "url": "https://nox.com.ua/",
+    "url": "https://betking.com.ua/",
     "img": "https://images.opencollective.com/betking-bk/12244e2/logo.jpg",
-    "alt": "беткінг"
+    "alt": "sloto king"
   },
   {
     "url": "https://billingsgazette.com/exclusive/article_89015226-b949-5860-abc3-e02f5b9377dd.html",
@@ -661,8 +661,8 @@
   },
   {
     "url": "https://nl.trustpilot.com/review/buitenlandsecasino.vip",
-    "img": "https://images.opencollective.com/casino-zonder-registratie-nl/42caa25/logo.jpg",
-    "alt": "Casino Zonder Registratie"
+    "img": "https://images.opencollective.com/buitenlandse-online-casino/42caa25/logo.jpg",
+    "alt": "Buitenlandse Online Casino"
   },
   {
     "url": "https://www.bdggame.io",
@@ -758,5 +758,15 @@
     "url": "https://okwingame.io",
     "img": "https://images.opencollective.com/ok-win-login/e298b6f/logo.jpg",
     "alt": "Ok win"
+  },
+  {
+    "url": "https://nl.trustpilot.com/review/zonderregistratiecasinos.com",
+    "img": "https://images.opencollective.com/no-account-casino/121571f/logo.jpg",
+    "alt": "Online Casino Zonder Registratie"
+  },
+  {
+    "url": "https://releaf.co.uk/medical-cannabis-glossary",
+    "img": "https://images.opencollective.com/medical-cannabis-glossary/logo.jpg",
+    "alt": "Releaf Medical Cannabis Glossary"
   }
 ]
