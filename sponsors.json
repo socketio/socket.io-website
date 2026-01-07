@@ -1,13 +1,13 @@
 [
   {
-    "url": "https://streamlabs.com",
-    "img": "https://images.opencollective.com/streamlabs/63ce158/logo.jpg",
-    "alt": "Streamlabs"
-  },
-  {
     "url": "https://casino-professor.com/",
     "img": "https://images.opencollective.com/casino-professor/9e870a2/logo.jpg",
     "alt": "Casino Professor"
+  },
+  {
+    "url": "https://streamlabs.com",
+    "img": "https://images.opencollective.com/streamlabs/63ce158/logo.jpg",
+    "alt": "Streamlabs"
   },
   {
     "url": "https://www.credimaxx.de/",
@@ -100,11 +100,6 @@
     "alt": "777"
   },
   {
-    "url": "https://playcasinoscanada.com/",
-    "img": "https://images.opencollective.com/playcasinoscanadacom/69b4a7c/logo.jpg",
-    "alt": "Playcasinoscanada.com"
-  },
-  {
     "url": "https://poprey.com/",
     "img": "https://images.opencollective.com/instagram-likes/2a72a03/avatar.jpg",
     "alt": "Poprey - Buy Instagram Likes"
@@ -185,24 +180,24 @@
     "alt": "SocialWick"
   },
   {
-    "url": "https://betking.com.ua/games/all-slots/",
-    "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.jpg",
-    "alt": "Ігрові автомати"
-  },
-  {
-    "url": "https://www.hityah.com/",
-    "img": "https://images.opencollective.com/user-3f7631a8/58f8f59/avatar.jpg",
-    "alt": "Hityah"
-  },
-  {
     "url": "https://famoid.com/",
     "img": "https://images.opencollective.com/famoid/b8421b3/logo.jpg",
     "alt": "Famoid"
   },
   {
+    "url": "https://betking.com.ua/games/all-slots/",
+    "img": "https://images.opencollective.com/igrovye-avtomaty-ua/96bfde3/logo.jpg",
+    "alt": "Ігрові автомати"
+  },
+  {
     "url": "https://twicsy.com/buy-instagram-followers",
     "img": "https://images.opencollective.com/buy-instagram-followers-twicsy/b4c5d7f/logo.jpg",
     "alt": "Buy Instagram Followers Twicsy"
+  },
+  {
+    "url": "https://www.hityah.com/",
+    "img": "https://images.opencollective.com/user-3f7631a8/58f8f59/avatar.jpg",
+    "alt": "Hityah"
   },
   {
     "url": "https://www.cryptolists.com/casinos/",
@@ -253,11 +248,6 @@
     "url": "https://www.cosabonita.es/",
     "img": "https://images.opencollective.com/casinos-sin-licencia-espanola/fa40830/logo.jpg",
     "alt": "casinos sin licencia"
-  },
-  {
-    "url": "https://iboysoft.com/",
-    "img": "https://images.opencollective.com/iboysoft-software/7f9d60e/avatar.jpg",
-    "alt": "iBoysoft"
   },
   {
     "url": "https://www.socialfollowers.uk/",
@@ -316,11 +306,6 @@
   },
   {
     "url": "https://casinos-without-license.com/",
-    "img": "https://images.opencollective.com/minsta-insattning-casino-utan-svensk-licens/490e6c8/avatar.jpg",
-    "alt": "minsta insättning casino utan svensk licens"
-  },
-  {
-    "url": "https://casinos-without-license.com/",
     "img": "https://images.opencollective.com/casino-without-swedish-license1/d902b80/avatar.jpg",
     "alt": "casino without swedish license"
   },
@@ -335,16 +320,6 @@
     "alt": "https://betking.com.ua/games/all-slots/"
   },
   {
-    "url": "https://superviral.io/",
-    "img": "/images/sponsors/superviral.jpg",
-    "alt": "Superviral"
-  },
-  {
-    "url": "https://thecolorrun.se/",
-    "img": "https://images.opencollective.com/utlandska-casino-med-lag-insattning1/988fad9/avatar.jpg",
-    "alt": "utländska casino med låg insättning"
-  },
-  {
     "url": "https://leofame.com/buy-instagram-followers",
     "img": "https://images.opencollective.com/leofame/2b658cd/avatar.jpg",
     "alt": "Buy Instagram Followers & Likes"
@@ -353,6 +328,16 @@
     "url": "https://casinovanger.com/",
     "img": "https://images.opencollective.com/sasinovanger-com/c3eebbc/avatar.jpg",
     "alt": "Сasinovanger.com"
+  },
+  {
+    "url": "https://thecolorrun.se/",
+    "img": "https://images.opencollective.com/utlandska-casino-med-lag-insattning1/988fad9/avatar.jpg",
+    "alt": "utländska casino med låg insättning"
+  },
+  {
+    "url": "https://www.uudetkasinot.com/",
+    "img": "https://images.opencollective.com/simon-johansson/avatar.jpg",
+    "alt": "Uudetkasinot.com"
   },
   {
     "url": "https://guidebook.betwinner.com/",
@@ -370,19 +355,9 @@
     "alt": "luotettavat suomalaiset nettikasinot"
   },
   {
-    "url": "https://www.uudetkasinot.com/",
-    "img": "https://images.opencollective.com/simon-johansson/avatar.jpg",
-    "alt": "Uudetkasinot.com"
-  },
-  {
     "url": "https://www.casivo.se/",
     "img": "https://images.opencollective.com/casivo-sverige/782a747/avatar.jpg",
     "alt": "Casivo.se"
-  },
-  {
-    "url": "https://www.gaia-wines.gr/",
-    "img": "https://images.opencollective.com/onlinecasinosgr-com/510b9a4/avatar.jpg",
-    "alt": "gaia-wines.gr"
   },
   {
     "url": "https://casino.ua/casino/slots/",
@@ -400,6 +375,11 @@
     "alt": "Vegas"
   },
   {
+    "url": "https://tychebets.gr/",
+    "img": "https://images.opencollective.com/tychebets-gr/f23c65c/avatar.jpg",
+    "alt": "tychebets.gr"
+  },
+  {
     "url": "https://cceam.org/",
     "img": "https://images.opencollective.com/casino-uden-rofus/3bee554/avatar.jpg",
     "alt": "casino uden ROFUS"
@@ -410,9 +390,9 @@
     "alt": "Betwinner Partner"
   },
   {
-    "url": "https://tychebets.gr/",
-    "img": "https://images.opencollective.com/tychebets-gr/f23c65c/avatar.jpg",
-    "alt": "tychebets.gr"
+    "url": "https://www.gaia-wines.gr/",
+    "img": "https://images.opencollective.com/onlinecasinosgr-com/510b9a4/avatar.jpg",
+    "alt": "gaia-wines.gr"
   },
   {
     "url": "https://nejlepsiceskacasina.com/",
@@ -440,11 +420,6 @@
     "alt": "Parik24"
   },
   {
-    "url": "https://oddgrenland.no/",
-    "img": "https://images.opencollective.com/trygge-norske-casino/12aea0e/avatar.jpg",
-    "alt": "trygge norske casino"
-  },
-  {
     "url": "https://superluxuryreps.com/",
     "img": "https://images.opencollective.com/superluxuryreps/378b62f/avatar.jpg",
     "alt": "superluxuryreps"
@@ -465,6 +440,11 @@
     "alt": "Onlinecasinoinformatie.com"
   },
   {
+    "url": "https://oddgrenland.no/",
+    "img": "https://images.opencollective.com/trygge-norske-casino/12aea0e/avatar.jpg",
+    "alt": "trygge norske casino"
+  },
+  {
     "url": "https://www.palace-luzern.ch/",
     "img": "https://images.opencollective.com/auslandische-online-casinos-schweiz/091532c/avatar.jpg",
     "alt": "Ausländische Online Casinos Schweiz"
@@ -483,11 +463,6 @@
     "url": "https://affmaven.com/smmpanelserver-review/",
     "img": "https://images.opencollective.com/smmpanelserver123/7810726/avatar.jpg",
     "alt": "smmpanelserver"
-  },
-  {
-    "url": "https://casinossinlicencia.eu/",
-    "img": "https://images.opencollective.com/casinos-sin-licencia-en-espana1/1472650/avatar.jpg",
-    "alt": "casinos sin licencia en España"
   },
   {
     "url": "https://marsbahis.com/tr/",
@@ -523,11 +498,6 @@
     "url": "https://www.youtube.com/@betkingua",
     "img": "https://images.opencollective.com/betking-youtube/d6f932f/logo.jpg",
     "alt": "betking YouTube"
-  },
-  {
-    "url": "https://swipey.ai/",
-    "img": "https://images.opencollective.com/swipey/2fdd0dd/avatar.jpg",
-    "alt": "Swipey AI – NSFW Chat"
   },
   {
     "url": "https://casinononaamsit.com/",
@@ -568,6 +538,11 @@
     "url": "https://interac-casino.com/",
     "img": "https://images.opencollective.com/interac-casino-fr-ca/d10e1a7/logo.jpg",
     "alt": "Interac-casino.com"
+  },
+  {
+    "url": "https://betking.com.ua/sports-book/",
+    "img": "https://images.opencollective.com/stavki-na-sport-ua/ecee984/logo.jpg",
+    "alt": "Ставки на спорт"
   },
   {
     "url": "https://www.slotfruit.co.uk",
@@ -620,11 +595,6 @@
     "alt": "playfortuna.com"
   },
   {
-    "url": "https://betking.com.ua/sports-book/",
-    "img": "https://images.opencollective.com/stavki-na-sport-ua/ecee984/logo.jpg",
-    "alt": "Ставки на спорт"
-  },
-  {
     "url": "https://damanapp.download/",
     "img": "https://images.opencollective.com/daman-game-login/86bac66/logo.jpg",
     "alt": "Daman Game"
@@ -640,11 +610,6 @@
     "alt": "Best crypto trading signals"
   },
   {
-    "url": "https://www.reddit.com/r/GambleWorld/comments/1ok63g2/best_online_casino_reddit_vote_and_recommendations/",
-    "img": "https://images.opencollective.com/best-online-casino-gambling/254f3fd/logo.jpg",
-    "alt": "Best Online Casino"
-  },
-  {
     "url": "https://www.softorbits.net/ai-undresser/",
     "img": "/images/sponsors/softorbits.png",
     "alt": "Undress AI by SoftOrbits"
@@ -658,16 +623,6 @@
     "url": "https://www.timesdaily.com/sponsored/buy-instagram-followers-on-a-budget-2025-top-2-picks/article_8c58d658-0a49-4244-b618-7418f7414470.html",
     "img": "https://images.opencollective.com/buy-instagram-followers-times/logo.jpg",
     "alt": "Buy Instagram Followers - Times Daily"
-  },
-  {
-    "url": "https://nl.trustpilot.com/review/buitenlandsecasino.vip",
-    "img": "https://images.opencollective.com/buitenlandse-online-casino/42caa25/logo.jpg",
-    "alt": "Buitenlandse Online Casino"
-  },
-  {
-    "url": "https://www.bdggame.io",
-    "img": "https://images.opencollective.com/bdg-game-login/b42730e/logo.jpg",
-    "alt": "BDG Game"
   },
   {
     "url": "https://kasinokurko.com/",
@@ -735,11 +690,6 @@
     "alt": "Comprare Follower Instagram"
   },
   {
-    "url": "https://revelop.ai",
-    "img": "https://images.opencollective.com/revelop-ai/logo.jpg",
-    "alt": "Revelop.AI"
-  },
-  {
     "url": "https://scribehow.com/page/10_Best_AI_Futanari_Generator_Tools_in_2025_Ranked_and_Tested__Lzin__dlQIaeH89bkdj9DQ",
     "img": "https://images.opencollective.com/dainis/01e0e4d/avatar.jpg",
     "alt": "AI Futanari Generator"
@@ -768,5 +718,35 @@
     "url": "https://releaf.co.uk/medical-cannabis-glossary",
     "img": "https://images.opencollective.com/medical-cannabis-glossary/logo.jpg",
     "alt": "Releaf Medical Cannabis Glossary"
+  },
+  {
+    "url": "https://billingsgazette.com/exclusive/article_3e5c7645-1a28-54a0-b4c6-8a5d786c182a.html",
+    "img": "https://images.opencollective.com/buy-youtube-subscribers-real/3aeda03/logo.jpg",
+    "alt": "Buy YouTube Subscribers"
+  },
+  {
+    "url": "https://billingsgazette.com/exclusive/article_f0aaec84-9cd5-50a1-9ea1-d98edb57722b.html",
+    "img": "https://images.opencollective.com/buy-instagram-followers-instant/6c1ddaf/logo.jpg",
+    "alt": "Buy Instagram Followers"
+  },
+  {
+    "url": "https://affiliate.fm/",
+    "img": "https://images.opencollective.com/affiliatefm/eb3398c/logo.jpg",
+    "alt": "Affiliate.fm"
+  },
+  {
+    "url": "https://casinolegal.ro/",
+    "img": "https://images.opencollective.com/casinolegalromania/9b73b53/logo.jpg",
+    "alt": "CASINOLEGAL"
+  },
+  {
+    "url": "https://www.kaidonno1.com/index.php",
+    "img": "https://images.opencollective.com/davemorris/29321cf/avatar.jpg",
+    "alt": "สล็อต"
+  },
+  {
+    "url": "https://nl.trustpilot.com/review/idealecasinos.com",
+    "img": "https://images.opencollective.com/trust-ideal-casino/7bf9e7b/logo.jpg",
+    "alt": "iDEAL Online Casino"
   }
 ]
