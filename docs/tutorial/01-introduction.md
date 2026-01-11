@@ -1,4 +1,4 @@
----
+---npm run editor
 title: Tutorial - Introduction
 sidebar_label: Introduction
 slug: introduction
