@@ -44,6 +44,7 @@ You can find more details about that in the ["How it works" section](./how-it-wo
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | JavaScript (Node.js) | - [Installation steps](../02-Server/server-installation.md)<br/>- [API](../../server-api.md)<br/>- [Source code](https://github.com/socketio/socket.io) |
 | JavaScript (Deno)    | https://github.com/socketio/socket.io-deno                                                                                                              |
+| Java (Active development) | https://github.com/socketio4j/netty-socketio |
 | Java                 | https://github.com/mrniko/netty-socketio                                                                                                                |
 | Java                 | https://github.com/trinopoty/socket.io-server-java                                                                                                      |
 | Python               | https://github.com/miguelgrinberg/python-socketio                                                                                                       |
