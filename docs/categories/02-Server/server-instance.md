@@ -274,4 +274,6 @@ io.on("connection", (socket) => {
 
 ## Complete API
 
-The complete API exposed by the Server instance can be found [here](../../server-api.md#server).
+The complete API exposed by the Server instance can be found [here](../../server-api.md#server)
+sockit.io() use to listen 
+
