@@ -415,11 +415,6 @@
     "alt": "Onlinecasinoinformatie.com"
   },
   {
-    "url": "https://oddgrenland.no/",
-    "img": "https://images.opencollective.com/trygge-norske-casino/12aea0e/avatar.jpg",
-    "alt": "trygge norske casino"
-  },
-  {
     "url": "https://www.palace-luzern.ch/",
     "img": "https://images.opencollective.com/auslandische-online-casinos-schweiz/091532c/avatar.jpg",
     "alt": "Ausländische Online Casinos Schweiz"
@@ -743,5 +738,20 @@
     "url": "https://star49s.com/",
     "img": "https://images.opencollective.com/star49s/0166fb9/avatar.jpg",
     "alt": "Star49s"
+  },
+  {
+    "url": "https://tirangagamesapp.co/",
+    "img": "https://images.opencollective.com/tirangagames/0f4257d/avatar.jpg",
+    "alt": "Tiranga Game"
+  },
+  {
+    "url": "https://de.trustpilot.com/review/casinomithandyrechnung.net",
+    "img": "https://images.opencollective.com/casino-mit-handyrechnung/3d10de2/logo.jpg",
+    "alt": "Casino mit Handyrechnung"
+  },
+  {
+    "url": "https://bdg-win-app.com/",
+    "img": "https://images.opencollective.com/bdg-win2/124db31/logo.jpg",
+    "alt": "BDG Win"
   }
 ]
