@@ -184,6 +184,7 @@ module.exports = {
           href: "https://github.com/socketio/socket.io",
           position: "right",
           className: "header-github-link",
+          "aria-label": "GitHub repository",
         },
       ],
     },
