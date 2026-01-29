@@ -350,6 +350,11 @@
     "alt": "Casivo.se"
   },
   {
+    "url": "https://vegas.ua",
+    "img": "https://images.opencollective.com/vegas/6cfa195/logo.jpg",
+    "alt": "Vegas"
+  },
+  {
     "url": "https://www.gaia-wines.gr/",
     "img": "https://images.opencollective.com/onlinecasinosgr-com/510b9a4/avatar.jpg",
     "alt": "gaia-wines.gr"
@@ -363,11 +368,6 @@
     "url": "https://payid-pokies.net/",
     "img": "https://images.opencollective.com/payid-casino/4bfb336/logo.jpg",
     "alt": "payid casino"
-  },
-  {
-    "url": "https://vegas.ua",
-    "img": "https://images.opencollective.com/vegas/6cfa195/logo.jpg",
-    "alt": "Vegas"
   },
   {
     "url": "https://tychebets.gr/",
@@ -420,6 +420,11 @@
     "alt": "Ausländische Online Casinos Schweiz"
   },
   {
+    "url": "https://novecasino.net/",
+    "img": "https://images.opencollective.com/novecasino-net/ad229be/avatar.jpg",
+    "alt": "Nove Casino"
+  },
+  {
     "url": "https://www.kasinonetti.com/",
     "img": "https://images.opencollective.com/kasinonetti-com/d5c3d7a/logo.jpg",
     "alt": "Kasinonetti.com"
@@ -433,6 +438,11 @@
     "url": "https://affmaven.com/smmpanelserver-review/",
     "img": "https://images.opencollective.com/smmpanelserver123/7810726/avatar.jpg",
     "alt": "smmpanelserver"
+  },
+  {
+    "url": "https://www.youtube.com/@betkingua",
+    "img": "https://images.opencollective.com/betking-youtube/d6f932f/logo.jpg",
+    "alt": "betking YouTube"
   },
   {
     "url": "https://marsbahis.com/tr/",
@@ -463,11 +473,6 @@
     "url": "https://nondetected.com/",
     "img": "https://images.opencollective.com/nondetected/b5cc57f/logo.jpg",
     "alt": "NonDetected"
-  },
-  {
-    "url": "https://www.youtube.com/@betkingua",
-    "img": "https://images.opencollective.com/betking-youtube/d6f932f/logo.jpg",
-    "alt": "betking YouTube"
   },
   {
     "url": "https://casinononaamsit.com/",
@@ -753,5 +758,35 @@
     "url": "https://bdg-win-app.com/",
     "img": "https://images.opencollective.com/bdg-win2/124db31/logo.jpg",
     "alt": "BDG Win"
+  },
+  {
+    "url": "https://www.fun88tha.com/th/",
+    "img": "https://images.opencollective.com/fun88-thailand/81e1909/avatar.jpg",
+    "alt": "Fun88 Thailand"
+  },
+  {
+    "url": "https://global.fun88.com/",
+    "img": "https://images.opencollective.com/fun88-official/bf2843c/logo.jpg",
+    "alt": "Fun88"
+  },
+  {
+    "url": "https://apuetasdeportivas.es/",
+    "img": "https://images.opencollective.com/apuetasdeportivases/4453657/avatar.jpg",
+    "alt": "Apuetasdeportivas"
+  },
+  {
+    "url": "https://www.educatransparencia.cl/",
+    "img": "https://images.opencollective.com/educatransparenciacl/88a027e/logo.jpg",
+    "alt": "Transparencia en Casinos Online"
+  },
+  {
+    "url": "https://www.mejorescasinos.com/",
+    "img": "https://images.opencollective.com/mejorescasinos2/512a9f6/logo.jpg",
+    "alt": "MejoresCasinos"
+  },
+  {
+    "url": "https://theethereum.wiki",
+    "img": "https://images.opencollective.com/ethereum-wiki/3464bf5/logo.jpg",
+    "alt": "Ethereum Wiki"
   }
 ]
