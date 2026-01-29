@@ -1,82 +1,76 @@
----
-title: Tutorial - Introduction
-sidebar_label: Introduction
-slug: introduction
----
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MeetingChitChat</title>
+    <style>
+        body { font-family: Arial; background:#f2f2f2; padding:20px; }
+        #chatBox { width:100%; height:300px; background:white; border:1px solid #ccc; padding:10px; overflow-y:scroll; }
+        #msg { width:80%; padding:10px; }
+        #sendBtn { padding:10px 20px; }
+    </style>
+</head>
+<body>
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<h2>MeetingChitChat – Simple Chat</h2>
 
-# Getting started
+<div id="chatBox"></div>
 
-Welcome to the Socket.IO tutorial!
+<br>
 
-In this tutorial we'll create a basic chat application. It requires almost no basic prior knowledge of Node.JS or Socket.IO, so it’s ideal for users of all knowledge levels.
+<input id="msg" type="text" placeholder="Type a message...">
+<button id="sendBtn">Send</button>
 
-## Introduction
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="script.js"></script>
 
-Writing a chat application with popular web applications stacks like LAMP (PHP) has normally been very hard. It involves polling the server for changes, keeping track of timestamps, and it’s a lot slower than it should be.
+</body>
+</html> 
+// Basic Node + Socket.io chat server
 
-Sockets have traditionally been the solution around which most real-time chat systems are architected, providing a bi-directional communication channel between a client and a server.
-
-This means that the server can *push* messages to clients. Whenever you write a chat message, the idea is that the server will get it and push it to all other connected clients.
-
-## How to use this tutorial
-
-### Tooling
-
-Any text editor (from a basic text editor to a complete IDE such as [VS Code](https://code.visualstudio.com/)) should be sufficient to complete this tutorial.
-
-Additionally, at the end of each step you will find a link to some online platforms ([CodeSandbox](https://codesandbox.io) and [StackBlitz](https://stackblitz.com), namely), allowing you to run the code directly from your browser:
-
-![Screenshot of the CodeSandbox platform](/images/codesandbox.png)
-
-### Syntax settings
-
-In the Node.js world, there are two ways to import modules:
-
-- the standard way: ECMAScript modules (or ESM)
-
-```js
+import express from "express";
+import http from "http";
 import { Server } from "socket.io";
-```
 
-Reference: https://nodejs.org/api/esm.html
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
-- the legacy way: CommonJS
+app.use(express.static("."));
 
-```js
-const { Server } = require("socket.io");
-```
+io.on("connection", (socket) => {
+    console.log("User Connected:", socket.id);
 
-Reference: https://nodejs.org/api/modules.html
+    socket.on("chatMessage", (msg) => {
+        io.emit("chatMessage", msg);
+    });
 
-Socket.IO supports both syntax. 
+    socket.on("disconnect", () => {
+        console.log("User Disconnected:", socket.id);
+    });
+});
 
-:::tip
+server.listen(3000, () => {
+    console.log("Server running on http://localhost:3000");
+});
+const socket = io();
 
-We recommend using the ESM syntax in your project, though this might not always be feasible due to some packages not supporting this syntax.
+const chatBox = document.getElementById("chatBox");
+const msgInput = document.getElementById("msg");
+const sendBtn = document.getElementById("sendBtn");
 
-:::
+sendBtn.onclick = () => {
+    const message = msgInput.value.trim();
+    if (message === "") return;
 
-For your convenience, throughout the tutorial, each code block allows you to select your preferred syntax:
+    socket.emit("chatMessage", message);
+    msgInput.value = "";
+};
 
-<Tabs groupId="lang">
-  <TabItem value="cjs" label="CommonJS" default>
-
-```js
-const { Server } = require("socket.io");
-```
-
-  </TabItem>
-  <TabItem value="mjs" label="ES modules">
-
-```js
-import { Server } from "socket.io";
-```
-
-  </TabItem>
-</Tabs>
-
-
-Ready? Click "Next" to get started.
+socket.on("chatMessage", (message) => {
+    chatBox.innerHTML += `<p>${message}</p>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+})js
+npm init -y
+npm install express socket.io
+node server.js
+http://localhost:3000
