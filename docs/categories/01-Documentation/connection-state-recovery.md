@@ -20,6 +20,11 @@ Under real conditions, a Socket.IO client will inevitably experience temporary d
 
 This feature will help you cope with such disconnections, but please be aware that the recovery **will not always be successful**. That's why you will still need to handle the case where the states of the client and the server must be synchronized.
 
+:::tip
+
+Connection State Recovery will NOT be successful unless the client has received *at least* one event from the server
+
+:::
 ## Usage
 
 Connection state recovery must be enabled by the server:
