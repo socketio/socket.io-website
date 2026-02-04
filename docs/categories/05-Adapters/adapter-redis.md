@@ -181,6 +181,13 @@ Reference: https://redis.io/docs/interact/pubsub/#sharded-pubsub
 
 A dedicated adapter can be created with the `createShardedAdapter()` method:
 
+#### With `redis`
+
+Minimum requirements:
+
+- Redis 7.0
+- [`redis@4.6.0`](https://github.com/redis/node-redis/commit/3b1bad229674b421b2bc6424155b20d4d3e45bd1)
+
 ```js
 import { Server } from "socket.io";
 import { createClient } from "redis";
@@ -201,16 +208,47 @@ const io = new Server({
 io.listen(3000);
 ```
 
+#### With `ioredis`
+
 Minimum requirements:
 
 - Redis 7.0
-- [`redis@4.6.0`](https://github.com/redis/node-redis/commit/3b1bad229674b421b2bc6424155b20d4d3e45bd1)
+- [`ioredis@5.9.0`](https://github.com/redis/ioredis/pull/1956)
 
-:::caution
+Please note that the `shardedSubscribers` option is required to enable sharded Pub/Sub.
 
-It is not currently possible to use the sharded adapter with the `ioredis` package and a Redis cluster ([reference](https://github.com/luin/ioredis/issues/1759)).
+```js
+import { Cluster } from "ioredis";
+import { Server } from "socket.io";
+import { createShardedAdapter } from "@socket.io/redis-adapter";
 
-:::
+const pubClient = new Cluster(
+  [
+    {
+      host: "localhost",
+      port: 7000,
+    },
+    {
+      host: "localhost",
+      port: 7001,
+    },
+    {
+      host: "localhost",
+      port: 7002,
+    },
+  ],
+  {
+    shardedSubscribers: true,
+  }
+);
+const subClient = pubClient.duplicate();
+
+const io = new Server({
+  adapter: createShardedAdapter(pubClient, subClient)
+});
+
+io.listen(3000);
+```
 
 ## Options
 
