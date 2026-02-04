@@ -8,6 +8,14 @@ slug: /client-installation/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::info
+
+The latest release is currently `4.8.3`, released in December 2025.
+
+You can find the release notes [here](../../changelog/4.8.3.md).
+
+:::
+
 ## Version compatibility {#version-compatibility}
 
 Here is the compatibility table between the server and the JS client:
@@ -107,14 +115,16 @@ const io = new Server({
 You can also include the client bundle from a CDN:
 
 ```html
-<script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/4.8.3/socket.io.min.js" integrity="sha384-kzavj5fiMwLKzzD1f8S7TeoVIEi7uKHvbTA3ueZkrzYq75pNQUiUi6Dy98Q3fxb0" crossorigin="anonymous"></script>
 ```
 
 Socket.IO is also available from other CDN:
 
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.7.5/dist/socket.io.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.7.5/dist/socket.io.min.js
+| CDN      | URL                                                                       |
+|----------|---------------------------------------------------------------------------|
+| cdnjs    | https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.3/socket.io.min.js   |
+| jsDelivr | https://cdn.jsdelivr.net/npm/socket.io-client@4.8.3/dist/socket.io.min.js |
+| unpkg    | https://unpkg.com/socket.io-client@4.8.3/dist/socket.io.min.js            |
 
 There are several bundles available:
 

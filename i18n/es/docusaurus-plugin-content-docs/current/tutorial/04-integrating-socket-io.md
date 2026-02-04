@@ -126,7 +126,7 @@ Si deseas usar la versión local del archivo JS del lado del cliente, puedes enc
 
 :::tip
 
-También puedes usar un CDN en lugar de los archivos locales (ej. `<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>`).
+También puedes usar un CDN en lugar de los archivos locales (ej. `<script src="https://cdn.socket.io/4.8.3/socket.io.min.js"></script>`).
 
 :::
 

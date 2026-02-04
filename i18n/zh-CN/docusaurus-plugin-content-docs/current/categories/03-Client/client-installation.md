@@ -8,6 +8,14 @@ slug: /client-installation/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::info
+
+The latest release is currently `4.8.3`, released in December 2025.
+
+You can find the release notes [here](../../changelog/4.8.3.md).
+
+:::
+
 ## 版本兼容性 {#version-compatibility}
 
 下面是服务端和JS客户端的兼容性表：
@@ -108,14 +116,16 @@ const io = new Server({
 您还可以包含来自 CDN 的客户端捆绑包：
 
 ```html
-<script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/4.8.3/socket.io.min.js" integrity="sha384-kzavj5fiMwLKzzD1f8S7TeoVIEi7uKHvbTA3ueZkrzYq75pNQUiUi6Dy98Q3fxb0" crossorigin="anonymous"></script>
 ```
 
 Socket.IO 也可从其他 CDN 获得：
 
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.7.5/dist/socket.io.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.7.5/dist/socket.io.min.js
+| CDN      | URL                                                                       |
+|----------|---------------------------------------------------------------------------|
+| cdnjs    | https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.3/socket.io.min.js   |
+| jsDelivr | https://cdn.jsdelivr.net/npm/socket.io-client@4.8.3/dist/socket.io.min.js |
+| unpkg    | https://unpkg.com/socket.io-client@4.8.3/dist/socket.io.min.js            |
 
 有几个可用的捆绑包：
 

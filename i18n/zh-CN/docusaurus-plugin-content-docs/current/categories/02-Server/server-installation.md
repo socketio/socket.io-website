@@ -8,6 +8,14 @@ slug: /server-installation/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::info
+
+The latest release is currently `4.8.3`, released in December 2025.
+
+You can find the release notes [here](../../changelog/4.8.3.md).
+
+:::
+
 ## 必要条件 {#prerequisites}
 
 请确保[Node.js](https://nodejs.org/en/)已安装在您的系统上。推荐使用长期支持（LTS）版本，请参见[此处](https://github.com/nodejs/Release#release-schedule).
