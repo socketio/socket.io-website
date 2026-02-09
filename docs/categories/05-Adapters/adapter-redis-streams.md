@@ -6,15 +6,15 @@ slug: /redis-streams-adapter/
 
 ## How it works
 
-The adapter will use a [Redis stream](https://redis.io/docs/data-types/streams/) to forward packets between the Socket.IO servers.
+The adapter will use a [Redis stream](https://redis.io/docs/latest/develop/data-types/streams/) to forward packets between the Socket.IO servers.
 
-The main difference with the existing Redis adapter (which use the [Redis Pub/Sub mechanism](https://redis.io/docs/manual/pubsub/)) is that this adapter will properly handle any temporary disconnection to the Redis server and resume the stream without losing any packets.
+The main difference with the existing Redis adapter (which use the [Redis Pub/Sub mechanism](https://redis.io/docs/latest/develop/pubsub/)) is that this adapter will properly handle any temporary disconnection to the Redis server and resume the stream without losing any packets.
 
 :::info
 
-- a single stream is used for all namespaces
-- the `maxLen` option allows to limit the size of the stream
-- unlike the adapter based on Redis PUB/SUB mechanism, this adapter will properly handle any temporary disconnection to the Redis server and resume the stream
+- by default, a single stream is used for all namespaces (see the `streamCount` option)
+- the `maxLen` option allows limiting the size of the stream
+- unlike the adapter based on the Redis PUB/SUB mechanism, this adapter will properly handle any temporary disconnection to the Redis server and resume the stream
 - if [connection state recovery](../01-Documentation/connection-state-recovery.md) is enabled, the sessions will be stored in Redis as a classic key/value pair
 
 :::
@@ -139,14 +139,17 @@ io.listen(3000);
 
 ## Options
 
-| Name                | Description                                                                                                       | Default value  |
-|---------------------|-------------------------------------------------------------------------------------------------------------------|----------------|
-| `streamName`        | The name of the Redis stream.                                                                                     | `socket.io`    |
-| `maxLen`            | The maximum size of the stream. Almost exact trimming (~) is used.                                                | `10_000`       |
-| `readCount`         | The number of elements to fetch per XREAD call.                                                                   | `100`          |
-| `sessionKeyPrefix`  | The prefix of the key used to store the Socket.IO session, when the connection state recovery feature is enabled. | `sio:session:` |
-| `heartbeatInterval` | The number of ms between two heartbeats.                                                                          | `5_000`        |
-| `heartbeatTimeout`  | The number of ms without heartbeat before we consider a node down.                                                | `10_000`       |
+| Name                | Description                                                                                                           | Default value  |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------|----------------|
+| `streamName`        | The name of the Redis stream.                                                                                         | `socket.io`    |
+| `streamCount`       | The number of streams to use to scale horizontally.                                                                   | `1`            |
+| `channelPrefix`     | The prefix of the Redis PUB/SUB channels used to communicate between the nodes.                                       | `socket.io`    |
+| `useShardedPubSub`  | Whether to use sharded PUB/SUB (added in Redis 7.0) to communicate between the nodes.                                 | `false`        |
+| `maxLen`            | The maximum size of the stream. Almost exact trimming (~) is used.                                                    | `10_000`       |
+| `readCount`         | The number of elements to fetch per XREAD call.                                                                       | `100`          |
+| `blockTimeInMs`     | The number of ms before the XREAD call times out.                                                                     | `5_000`        |
+| `sessionKeyPrefix`  | The prefix of the key used to store the Socket.IO session, when the connection state recovery feature is enabled.     | `sio:session:` |
+| `onlyPlaintext`     | Whether the transmitted data contains only JSON-serializable objects without binary data (Buffer, ArrayBuffer, etc.). | `false`        |
 
 ## Common questions
 
@@ -164,7 +167,8 @@ Unlike the classic [Redis adapter](./adapter-redis.md), this adapter will proper
 
 | Version | Release date  | Release notes                                                                          | Diff                                                                                                 |
 |---------|---------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| `0.2.2` | May 2024      | [link](https://github.com/socketio/socket.io-redis-streams-adapter/releases/tag/0.2.2) | [`0.2.1...0.2.2`](https://github.com/socketio/socket.io-redis-streams-adapter/compare/0.2.1...0.2.2) |
+| `0.3.0` | February 2026 | [link](https://github.com/socketio/socket.io-redis-streams-adapter/releases/tag/0.3.0) | [`0.2.3...0.3.0`](https://github.com/socketio/socket.io-redis-streams-adapter/compare/0.2.3...0.3.0) |
+| `0.2.3` | November 2025 | [link](https://github.com/socketio/socket.io-redis-streams-adapter/releases/tag/0.2.3) | [`0.2.2...0.2.3`](https://github.com/socketio/socket.io-redis-streams-adapter/compare/0.2.2...0.2.3) |
 | `0.2.1` | March 2024    | [link](https://github.com/socketio/socket.io-redis-streams-adapter/releases/tag/0.2.1) | [`0.2.0...0.2.1`](https://github.com/socketio/socket.io-redis-streams-adapter/compare/0.2.0...0.2.1) |
 | `0.2.0` | February 2024 | [link](https://github.com/socketio/socket.io-redis-streams-adapter/releases/tag/0.2.0) | [`0.1.0...0.2.0`](https://github.com/socketio/socket.io-redis-streams-adapter/compare/0.1.0...0.2.0) |
 | `0.1.0` | April 2023    | [link](https://github.com/socketio/socket.io-redis-streams-adapter/releases/tag/0.1.0) |                                                                                                      |
