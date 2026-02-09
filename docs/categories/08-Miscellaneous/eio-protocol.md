@@ -234,11 +234,15 @@ CLIENT                                                 SERVER
 
   │                   *** Handshake ***                  │
   │                                                      │
-  │  ◄─────────────────────────────────────────────────  │
+  │    GET /engine.io/?EIO=4&transport=polling&sid=...   │
+  │  ─────────────────────────────────────────────────►  │
+  │  ◄────────────────────────────────────────────────┘  │
   │                           2                          │  (ping packet)
   │  ─────────────────────────────────────────────────►  │
   │                           3                          │  (pong packet)
 ```
+
+The client now starts polling the server again (to start receiving the `ping` packet), and includes the `sid` (sent in the handshake process) query parameter in all subsequent requests.
 
 At a given interval (the `pingInterval` value sent in the handshake) the server sends a `ping` packet and the client has a few seconds (the `pingTimeout` value) to send a `pong` packet back.
 
