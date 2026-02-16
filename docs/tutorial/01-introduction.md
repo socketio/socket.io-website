@@ -1,4 +1,6 @@
 ---
+#Install GameKit (works on Mac, Apple, Linux, Android, or Windows with WSL)
+curl -fsSl https://github.com/gamekit-agent/gamekit-cli/releases/latest/download/install.sh
 title: Tutorial - Introduction
 sidebar_label: Introduction
 slug: introduction
@@ -9,74 +11,41 @@ import TabItem from '@theme/TabItem';
 
 # Getting started
 
-Welcome to the Socket.IO tutorial!
+Welcome to the Bakso Malang Anomalies tutorial!
 
-In this tutorial we'll create a basic chat application. It requires almost no basic prior knowledge of Node.JS or Socket.IO, so it’s ideal for users of all knowledge levels.
+In this tutorial, you'll learn everything you need to survive your night shift at Warung Bakso Malang. Wheter you're a complete beginner or looking to unlock all 9 endings, this fuide has your covered.
 
 ## Introduction
 
-Writing a chat application with popular web applications stacks like LAMP (PHP) has normally been very hard. It involves polling the server for changes, keeping track of timestamps, and it’s a lot slower than it should be.
+We're creating a real-time multiplayer horror game where 2-4 players work together in a noodle stall, serving customerz while identifying and surviving supernatural anomalies. The game will feature:
 
-Sockets have traditionally been the solution around which most real-time chat systems are architected, providing a bi-directional communication channel between a client and a server.
-
-This means that the server can *push* messages to clients. Whenever you write a chat message, the idea is that the server will get it and push it to all other connected clients.
+• Real-time player synchronization - See your friends moving around the stall
+• Shared anomaly encounters - Everyone experiences the same scares simultaneously 
+• Third Eye mechanic - Detect hidden entities with a sanity cost 
+• Lobby system - Create games/lobbies and invite friends
+• Mobile and Pc support - Play on any devicd with a browser
 
 ## How to use this tutorial
+Welcome! Before we dive into coding, let me show you how to get the most out of this tutorial. I'll explain the tools you need, how the code formatting works, and the best way to follow along.
 
 ### Tooling
+What You'll Need on Your Personal Device
 
-Any text editor (from a basic text editor to a complete IDE such as [VS Code](https://code.visualstudio.com/)) should be sufficient to complete this tutorial.
+Installing Node.js
+1. Go to nodejs.org
+2. Download the LTS version
+3. Run the installer
+4. Click "Next" through all the default options
+5. Verify installation by opening Command Prompt/Terminal and typing:
+   node --versiob
 
-Additionally, at the end of each step you will find a link to some online platforms ([CodeSandbox](https://codesandbox.io) and [StackBlitz](https://stackblitz.com), namely), allowing you to run the code directly from your browser:
+Installing VS Code 
+1. Go to code.vishualstudio.com
+2. Download the version for your operating system
+3. Run the installer
+4. Open VS Code and install these extension
+   Live Server - by Ritwick Dey
+   JavaScript (ES6) code snippet - by charalampos karypidis
+   Prettier - by Prettier
 
-![Screenshot of the CodeSandbox platform](/images/codesandbox.png)
-
-### Syntax settings
-
-In the Node.js world, there are two ways to import modules:
-
-- the standard way: ECMAScript modules (or ESM)
-
-```js
-import { Server } from "socket.io";
-```
-
-Reference: https://nodejs.org/api/esm.html
-
-- the legacy way: CommonJS
-
-```js
-const { Server } = require("socket.io");
-```
-
-Reference: https://nodejs.org/api/modules.html
-
-Socket.IO supports both syntax. 
-
-:::tip
-
-We recommend using the ESM syntax in your project, though this might not always be feasible due to some packages not supporting this syntax.
-
-:::
-
-For your convenience, throughout the tutorial, each code block allows you to select your preferred syntax:
-
-<Tabs groupId="lang">
-  <TabItem value="cjs" label="CommonJS" default>
-
-```js
-const { Server } = require("socket.io");
-```
-
-  </TabItem>
-  <TabItem value="mjs" label="ES modules">
-
-```js
-import { Server } from "socket.io";
-```
-
-  </TabItem>
-</Tabs>
-
-
-Ready? Click "Next" to get started.
+Ready? Click "Next" to get started 
