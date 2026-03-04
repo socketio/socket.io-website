@@ -335,14 +335,14 @@
     "alt": "Vegas"
   },
   {
-    "url": "https://betwinnerpartner.com/",
-    "img": "https://images.opencollective.com/betwinnerpartner/4782dcd/avatar.jpg",
-    "alt": "Betwinner Partner"
-  },
-  {
     "url": "https://tychebets.gr/",
     "img": "https://images.opencollective.com/tychebets-gr/f23c65c/avatar.jpg",
     "alt": "tychebets.gr"
+  },
+  {
+    "url": "https://betwinnerpartner.com/",
+    "img": "https://images.opencollective.com/betwinnerpartner/4782dcd/avatar.jpg",
+    "alt": "Betwinner Partner"
   },
   {
     "url": "https://nejlepsiceskacasina.com/",
@@ -773,5 +773,10 @@
     "url": "https://www.socialdawn.com/",
     "img": "https://images.opencollective.com/socialdawn/963a6d4/logo.jpg",
     "alt": "SocialDawn"
+  },
+  {
+    "url": "https://instant-famous.com",
+    "img": "https://images.opencollective.com/instant-famous2/54979a5/logo.jpg",
+    "alt": "Instant Famous"
   }
 ]
