@@ -1,3 +1,39 @@
+<canvas id="game" width="400" height="600" style="background:#D1FFBD;"></canvas>
+<script>
+  const canvas = document.getElementById('game');
+  const ctx = canvas.getContext('2d');
+  let player = { x: 200, y: 500, vy: 0 };
+  let platforms = [];
+
+  // Rules: 1 in 100 chance for the Rare Heart
+  function spawn() {
+    let isHeart = Math.random() < 0.01; 
+    platforms.push({ x: Math.random()*350, y: 0, heart: isHeart });
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, 400, 600);
+    player.vy += 0.5; // Gravity
+    player.y += player.vy;
+
+    platforms.forEach(p => {
+      p.y += 2; // Platforms fall down
+      ctx.fillStyle = p.heart ? "red" : "green"; // Heart is red!
+      ctx.fillRect(p.x, p.y, 60, 10);
+
+      // Collision Logic
+      if(player.y > p.y && player.y < p.y+10 && Math.abs(player.x-p.x) < 40) {
+        player.vy = p.heart ? -100 : -15; // THE 1000m LUNCH!
+      }
+    });
+
+    ctx.fillStyle = "blue";
+    ctx.beginPath(); ctx.arc(player.x, player.y, 15, 0, 7); ctx.fill();
+    if(platforms.length < 10) spawn();
+    requestAnimationFrame(loop);
+  }
+  loop();
+</script>
 ---
 title: Ending notes
 slug: ending-notes
