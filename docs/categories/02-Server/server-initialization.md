@@ -526,6 +526,15 @@ io.on("connection", (socket) => {
   // ...
 });
 
+app.addHook('preClose', done => {
+  io.local.disconnectSockets(true);
+  done();
+});
+
+app.addHook('onClose', (_instance, done) => {
+  io.close(done);
+});
+
 fastify.listen({ port: 3000 });
 ```
 
@@ -544,6 +553,15 @@ io.on("connection", (socket) => {
   // ...
 });
 
+app.addHook('preClose', done => {
+  io.local.disconnectSockets(true);
+  done();
+});
+
+app.addHook('onClose', (_instance, done) => {
+  io.close(done);
+});
+
 fastify.listen({ port: 3000 });
 ```
 
@@ -560,6 +578,15 @@ const io = new Server(fastify.server, { /* options */ });
 
 io.on("connection", (socket) => {
   // ...
+});
+
+app.addHook('preClose', done => {
+  io.local.disconnectSockets(true);
+  done();
+});
+
+app.addHook('onClose', (_instance, done) => {
+  io.close(done);
 });
 
 fastify.listen({ port: 3000 });
