@@ -513,82 +513,62 @@ NestJS v7 and below relies on Socket.IO v2, while NestJS v8 relies on Socket.IO 
 
 ### With Fastify
 
-You need to register the [`fastify-socket.io`](https://github.com/alemagio/fastify-socket.io) plugin:
-
 <Tabs groupId="lang">
   <TabItem value="cjs" label="CommonJS" default>
 
 ```js
-const fastify = require("fastify");
-const fastifyIO = require("fastify-socket.io");
+const { Server } = require("socket.io");
 
-const server = fastify();
-server.register(fastifyIO);
+const fastify = require('fastify')();
+const io = new Server(fastify.server, { /* options */ });
 
-server.get("/", (req, reply) => {
-  server.io.emit("hello");
+io.on("connection", (socket) => {
+  // ...
 });
 
-server.ready().then(() => {
-  // we need to wait for the server to be ready, else `server.io` is undefined
-  server.io.on("connection", (socket) => {
-    // ...
-  });
-});
-
-server.listen({ port: 3000 });
+fastify.listen({ port: 3000 });
 ```
 
   </TabItem>
   <TabItem value="mjs" label="ES modules">
 
 ```js
-import fastify from "fastify";
-import fastifyIO from "fastify-socket.io";
+import Fastify from 'fastify';
+import { Server } from "socket.io";
+const { Server } = require("socket.io");
 
-const server = fastify();
-server.register(fastifyIO);
+const fastify = Fastify();
+const io = new Server(fastify.server, { /* options */ });
 
-server.get("/", (req, reply) => {
-  server.io.emit("hello");
+io.on("connection", (socket) => {
+  // ...
 });
 
-server.ready().then(() => {
-  // we need to wait for the server to be ready, else `server.io` is undefined
-  server.io.on("connection", (socket) => {
-    // ...
-  });
-});
-
-server.listen({ port: 3000 });
+fastify.listen({ port: 3000 });
 ```
 
   </TabItem>
   <TabItem value="ts" label="TypeScript">
 
 ```ts
-import fastify from "fastify";
-import fastifyIO from "fastify-socket.io";
+import Fastify from 'fastify';
+import { Server } from "socket.io";
+const { Server } = require("socket.io");
 
-const server = fastify();
-server.register(fastifyIO);
+const fastify = Fastify();
+const io = new Server(fastify.server, { /* options */ });
 
-server.get("/", (req, reply) => {
-  server.io.emit("hello");
+io.on("connection", (socket) => {
+  // ...
 });
 
-server.ready().then(() => {
-  // we need to wait for the server to be ready, else `server.io` is undefined
-  server.io.on("connection", (socket) => {
-    // ...
-  });
-});
-
-server.listen({ port: 3000 });
+fastify.listen({ port: 3000 });
 ```
 
   </TabItem>
 </Tabs>
+
+More information [here](https://fastify.dev/).
 
 ### With µWebSockets.js {#with-uwebsocketsjs}
 
