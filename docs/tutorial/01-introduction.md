@@ -1,82 +1,99 @@
----
-title: Tutorial - Introduction
-sidebar_label: Introduction
-slug: introduction
----
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-# Getting started
-
-Welcome to the Socket.IO tutorial!
-
-In this tutorial we'll create a basic chat application. It requires almost no basic prior knowledge of Node.JS or Socket.IO, so it’s ideal for users of all knowledge levels.
-
-## Introduction
-
-Writing a chat application with popular web applications stacks like LAMP (PHP) has normally been very hard. It involves polling the server for changes, keeping track of timestamps, and it’s a lot slower than it should be.
-
-Sockets have traditionally been the solution around which most real-time chat systems are architected, providing a bi-directional communication channel between a client and a server.
-
-This means that the server can *push* messages to clients. Whenever you write a chat message, the idea is that the server will get it and push it to all other connected clients.
-
-## How to use this tutorial
-
-### Tooling
-
-Any text editor (from a basic text editor to a complete IDE such as [VS Code](https://code.visualstudio.com/)) should be sufficient to complete this tutorial.
-
-Additionally, at the end of each step you will find a link to some online platforms ([CodeSandbox](https://codesandbox.io) and [StackBlitz](https://stackblitz.com), namely), allowing you to run the code directly from your browser:
-
-![Screenshot of the CodeSandbox platform](/images/codesandbox.png)
-
-### Syntax settings
-
-In the Node.js world, there are two ways to import modules:
-
-- the standard way: ECMAScript modules (or ESM)
-
-```js
-import { Server } from "socket.io";
-```
-
-Reference: https://nodejs.org/api/esm.html
-
-- the legacy way: CommonJS
-
-```js
+const express = require("express");
+const http = require("http");
 const { Server } = require("socket.io");
-```
 
-Reference: https://nodejs.org/api/modules.html
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
-Socket.IO supports both syntax. 
+let players = {};
 
-:::tip
+// Serve HTML direct
+app.get("/", (req, res) => {
+    res.send(`
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini GTA</title>
+</head>
+<body style="margin:0; overflow:hidden;">
+<canvas id="game"></canvas>
 
-We recommend using the ESM syntax in your project, though this might not always be feasible due to some packages not supporting this syntax.
+<script src="/socket.io/socket.io.js"></script>
+<script>
+const socket = io();
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
-:::
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-For your convenience, throughout the tutorial, each code block allows you to select your preferred syntax:
+let players = {};
 
-<Tabs groupId="lang">
-  <TabItem value="cjs" label="CommonJS" default>
+socket.on("currentPlayers", data => players = data);
+socket.on("newPlayer", data => players[data.id] = data.player);
+socket.on("updatePlayers", data => players = data);
 
-```js
-const { Server } = require("socket.io");
-```
+document.addEventListener("keydown", e => {
+    let move = { x: 0, y: 0 };
 
-  </TabItem>
-  <TabItem value="mjs" label="ES modules">
+    if (e.key === "w") move.y = -5;
+    if (e.key === "s") move.y = 5;
+    if (e.key === "a") move.x = -5;
+    if (e.key === "d") move.x = 5;
 
-```js
-import { Server } from "socket.io";
-```
+    socket.emit("move", move);
+});
 
-  </TabItem>
-</Tabs>
+function draw() {
+    ctx.fillStyle = "#222";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    for (let id in players) {
+        let p = players[id];
+        ctx.fillStyle = (id === socket.id) ? "red" : "white";
+        ctx.fillRect(p.x, p.y, 20, 20);
+    }
 
-Ready? Click "Next" to get started.
+    requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+</body>
+</html>
+    `);
+});
+
+// Socket logic
+io.on("connection", (socket) => {
+    console.log("Player connected:", socket.id);
+
+    players[socket.id] = {
+        x: Math.random() * 500,
+        y: Math.random() * 500
+    };
+
+    socket.emit("currentPlayers", players);
+    socket.broadcast.emit("newPlayer", {
+        id: socket.id,
+        player: players[socket.id]
+    });
+
+    socket.on("move", (data) => {
+        if (players[socket.id]) {
+            players[socket.id].x += data.x;
+            players[socket.id].y += data.y;
+        }
+        io.emit("updatePlayers", players);
+    });
+
+    socket.on("disconnect", () => {
+        delete players[socket.id];
+        io.emit("updatePlayers", players);
+    });
+});
+
+server.listen(3000, () => {
+    console.log("👉 http://localhost:3000");
+});
