@@ -24,9 +24,9 @@ Here is the complete list of changes:
   - [`autoUnref` option](#autounref-option)
 - [Known migration issues](#known-migration-issues)
 
-### Breaking changes
+### Breaking changes {#breaking-changes}
 
-#### `io.to()` is now immutable
+#### `io.to()` is now immutable {#ioto-is-now-immutable}
 
 Previously, broadcasting to a given room (by calling `io.to()`) would mutate the io instance, which could lead to surprising behaviors, like:
 
@@ -54,7 +54,7 @@ operator3.emit(/* ... */); // to all clients but the sender
 operator4.emit(/* ... */); // to clients in "room3" or in "room4" but the sender
 ```
 
-#### `wsEngine` option
+#### `wsEngine` option {#wsengine-option}
 
 The format of the [`wsEngine`](../../server-options.md#wsengine) option was updated in order to get rid of the following error:
 
@@ -78,9 +78,9 @@ const io = require("socket.io")(httpServer, {
 });
 ```
 
-### Configuration
+### Configuration {#configuration}
 
-#### Ensure compatibility with Swift v15 clients
+#### Ensure compatibility with Swift v15 clients {#ensure-compatibility-with-swift-v15-clients}
 
 Before version 16.0.0, the Swift client would not include the `EIO` query parameter in the HTTP requests, and the Socket.IO v3 server would infer `EIO=4` by default.
 
@@ -96,7 +96,7 @@ let socket = manager.defaultSocket
 
 The Socket.IO v4 server will now infer `EIO=3` if the `EIO` query param is not included.
 
-#### The default value of `pingTimeout` was increased
+#### The default value of `pingTimeout` was increased {#the-default-value-of-pingtimeout-was-increased}
 
 The default value of [`pingTimeout`](../../server-options.md#pingtimeout) (used in the [heartbeat mechanism](../01-Documentation/how-it-works.md#disconnection-detection)) value was updated from 60000 to 5000 in `socket.io@2.1.0` (March 2018).
 
@@ -108,9 +108,9 @@ That being said, the current value (5s) caused unexpected disconnections when a 
 
 The new value (20s) thus seems like a good balance between quick disconnection detection and tolerance to various delays.
 
-### New features
+### New features {#new-features}
 
-#### Allow excluding specific rooms when broadcasting
+#### Allow excluding specific rooms when broadcasting {#allow-excluding-specific-rooms-when-broadcasting}
 
 Thanks to the awesome work of [Sebastiaan Marynissen](https://github.com/sebamarynissen), you can now exclude a specific room when broadcasting:
 
@@ -123,7 +123,7 @@ socket.except("room1").emit(/* ... */); // same as above
 socket.to("room4").except("room5").emit(/* ... */); // to all clients in "room4" except the ones in "room5" and the sender
 ```
 
-#### Allow to pass an array to `io.to()`
+#### Allow to pass an array to `io.to()` {#allow-to-pass-an-array-to-ioto}
 
 The `to()` method now accepts an array of rooms.
 
@@ -147,7 +147,7 @@ io.to(["room1", "room2", "room3"]).emit(/* ... */);
 socket.to(["room1", "room2", "room3"]).emit(/* ... */);
 ```
 
-#### Additional utility methods
+#### Additional utility methods {#additional-utility-methods}
 
 Some (long-awaited) methods were added:
 
@@ -225,7 +225,7 @@ Which makes all Socket instances of the "admin" namespace
 
 disconnect.
 
-#### Typed events
+#### Typed events {#typed-events}
 
 Thanks to the awesome work of [Maxime Kjaer](https://github.com/MaximeKjaer), TypeScript users can now type the events sent between the client and the server.
 
@@ -284,7 +284,7 @@ io.on("connect", (socket) => {
 
 By default, the events are untyped and the arguments will be inferred as `any`.
 
-#### `autoUnref` option
+#### `autoUnref` option {#autounref-option}
 
 And finally, thanks to the awesome work of [KC Erb](https://github.com/KCErb), the `autoUnref` option was added.
 
@@ -298,7 +298,7 @@ const socket = io({
 
 Note: this option only applies to Node.js clients.
 
-### Known migration issues
+### Known migration issues {#known-migration-issues}
 
 - `cannot get emit of undefined`
 

@@ -22,6 +22,14 @@
   width: 100%;
 }
 
+.button {
+  transition: transform 200ms;
+}
+
+.button:hover {
+  transform: scale(105%);
+}
+
 .buttons > a:first-child {
   margin-right: 10px;
 }

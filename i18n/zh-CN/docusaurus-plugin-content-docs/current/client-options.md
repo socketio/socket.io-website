@@ -8,9 +8,9 @@ slug: /client-options/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## IO factory options
+## IO factory options {#io-factory-options}
 
-### `forceNew`
+### `forceNew` {#forcenew}
 
 Default value: `false`
 
@@ -47,7 +47,7 @@ const socket3 = io("/admin"); // reuse the 1st manager
 const socket4 = io("/admin"); // 3rd manager
 ```
 
-### `multiplex`
+### `multiplex` {#multiplex}
 
 Default value: `true`
 
@@ -58,7 +58,7 @@ const socket = io(); // 1st manager
 const adminSocket = io("/admin", { multiplex: false }); // 2nd manager
 ```
 
-## Low-level engine options
+## Low-level engine options {#low-level-engine-options}
 
 :::info
 
@@ -66,7 +66,7 @@ These settings will be shared by all Socket instances attached to the same Manag
 
 :::
 
-### `transports`
+### `transports` {#transports}
 
 Default value: `["polling", "websocket"]`
 
@@ -98,19 +98,19 @@ socket.on("connect_error", () => {
 
 One possible downside is that the validity of your [CORS configuration](categories/02-Server/handling-cors.md) will only be checked if the WebSocket connection fails to be established.
 
-### `upgrade`
+### `upgrade` {#upgrade}
 
 Default value: `true`
 
 Whether the client should try to upgrade the transport from HTTP long-polling to something better.
 
-### `rememberUpgrade`
+### `rememberUpgrade` {#rememberupgrade}
 
 Default value: `false`
 
 If true and if the previous WebSocket connection to the server succeeded, the connection attempt will bypass the normal upgrade process and will initially try WebSocket. A connection attempt following a transport error will use the normal upgrade process. It is recommended you turn this on only when using SSL/TLS connections, or if you know that your network does not block websockets.
 
-### `path`
+### `path` {#path}
 
 Default value: `/socket.io/`
 
@@ -159,7 +159,7 @@ const socket = io("https://example.com/order", {
 - the Socket instance is attached to the "order" Namespace
 - the HTTP requests will look like: `GET https://example.com/my-custom-path/?EIO=4&transport=polling&t=ML4jUwU`
 
-### `query`
+### `query` {#query}
 
 Default value: -
 
@@ -203,7 +203,7 @@ Note: the following query parameters are reserved and can't be used in your appl
 - `j`: if the transport is polling but a JSONP response is required
 - `t`: a hashed-timestamp used for cache-busting
 
-### `extraHeaders`
+### `extraHeaders` {#extraheaders}
 
 Default value: -
 
@@ -252,11 +252,22 @@ This will work in Node.js or in React-Native though.
 
 Documentation: [WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
 
-### `withCredentials`
+### `withCredentials` {#withcredentials}
+
+<details className="changelog">
+    <summary>History</summary>
+
+| Version | Changes                                                      |
+|---------|--------------------------------------------------------------|
+| v4.7.0  | The Node.js client now honors the `withCredentials` setting. |
+| v3.0.0  | `withCredentials` now defaults to `false`.                   |
+| v1.0.0  | First implementation.                                        |
+
+</details>
 
 Default value: `false`
 
-Whether or not cross-site requests should made using credentials such as cookies, authorization headers or TLS client certificates. Setting `withCredentials` has no effect on same-site requests.
+Whether the cross-site requests should be sent including credentials such as cookies, authorization headers or TLS client certificates. Setting `withCredentials` has no effect on same-site requests.
 
 ```js
 import { io } from "socket.io-client";
@@ -294,25 +305,31 @@ Documentation:
 - [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
 - [Handling CORS](categories/02-Server/handling-cors.md)
 
-### `forceBase64`
+:::info
+
+Starting with version `4.7.0`, when setting the `withCredentials` option to `true`, the Node.js client will now include the cookies in the HTTP requests, making it easier to use it with cookie-based sticky sessions.
+
+:::
+
+### `forceBase64` {#forcebase64}
 
 Default value: `false`
 
 Whether to force base64 encoding for binary content sent over WebSocket (always enabled for HTTP long-polling).
 
-### `timestampRequests`
+### `timestampRequests` {#timestamprequests}
 
 Default value: `true`
 
 Whether to add the timestamp query param to each request (for cache busting).
 
-### `timestampParam`
+### `timestampParam` {#timestampparam}
 
 Default value: `"t"`
 
 The name of the query parameter to use as our timestamp key.
 
-### `closeOnBeforeunload`
+### `closeOnBeforeunload` {#closeonbeforeunload}
 
 *Added in v4.1.0*
 
@@ -324,7 +341,7 @@ With `closeOnBeforeunload` set to `false`, a `disconnect` event will be emitted 
 
 With `closeOnBeforeunload` set to `true`, all browsers will have the same behavior (no `disconnect` event when reloading the page). But this might cause issues if you use the `beforeunload` event in your application.
 
-### `protocols`
+### `protocols` {#protocols}
 
 *Added in v2.0.0*
 
@@ -355,7 +372,7 @@ References:
 - https://datatracker.ietf.org/doc/html/rfc6455#section-1.9
 - https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket
 
-### `autoUnref`
+### `autoUnref` {#autounref}
 
 *Added in v4.0.0*
 
@@ -374,7 +391,7 @@ const socket = io({
 See also: https://nodejs.org/api/timers.html#timeoutunref
 
 
-### Node.js-specific options
+### Node.js-specific options {#nodejs-specific-options}
 
 The following options are supported:
 
@@ -460,7 +477,7 @@ const io = new Server(httpServer);
 
 :::
 
-## Manager options
+## Manager options {#manager-options}
 
 :::info
 
@@ -468,7 +485,7 @@ These settings will be shared by all Socket instances attached to the same Manag
 
 :::
 
-### `reconnection`
+### `reconnection` {#reconnection}
 
 Default value: `true`
 
@@ -494,25 +511,25 @@ const tryReconnect = () => {
 socket.io.on("close", tryReconnect);
 ```
 
-### `reconnectionAttempts`
+### `reconnectionAttempts` {#reconnectionattempts}
 
 Default value: `Infinity`
 
 The number of reconnection attempts before giving up.
 
-### `reconnectionDelay`
+### `reconnectionDelay` {#reconnectiondelay}
 
 Default value: `1000`
 
 The initial delay before reconnection in milliseconds (affected by the [randomizationFactor](#randomizationfactor) value).
 
-### `reconnectionDelayMax`
+### `reconnectionDelayMax` {#reconnectiondelaymax}
 
 Default value: `5000`
 
 The maximum delay between two reconnection attempts. Each attempt increases the reconnection delay by 2x.
 
-### `randomizationFactor`
+### `randomizationFactor` {#randomizationfactor}
 
 Default value: `0.5`
 
@@ -525,13 +542,13 @@ Example with the default values:
 - 3rd reconnection attempt happens between 2000 and 5000 ms (`1000 * 2^2 * (<something between -0.5 and 1.5>)`)
 - next reconnection attempts happen after 5000 ms
 
-### `timeout`
+### `timeout` {#timeout}
 
 Default value: `20000`
 
 The timeout in milliseconds for each connection attempt.
 
-### `autoConnect`
+### `autoConnect` {#autoconnect}
 
 Default value: `true`
 
@@ -549,7 +566,7 @@ socket.connect();
 socket.io.open();
 ```
 
-### `parser`
+### `parser` {#parser}
 
 *Added in v2.2.0*
 
@@ -557,7 +574,7 @@ Default value: `require("socket.io-parser")`
 
 The parser used to marshall/unmarshall packets. Please see [here](categories/06-Advanced/custom-parser.md) for more information.
 
-## Socket options
+## Socket options {#socket-options}
 
 :::info
 
@@ -565,7 +582,7 @@ These settings are specific to the given Socket instance.
 
 :::
 
-### `auth`
+### `auth` {#auth}
 
 *Added in v3.0.0*
 

@@ -264,15 +264,25 @@ app.listen(3000, (token) => {
 Advanced use only. Binds the server to a specific engine.io `Server` (or compatible API) instance.
 
 ```js
-import { Server } from "socket.io";
+import { createServer } from "node:http";
 import { Server as Engine } from "engine.io";
+import { Server } from "socket.io";
+
+const httpServer = createServer((req, res) => {
+  res.writeHead(404).end();
+});
 
 const engine = new Engine();
+
+engine.attach(httpServer, {
+  path: "/socket.io/"
+});
+
 const io = new Server();
 
 io.bind(engine);
 
-engine.listen(3000);
+httpServer.listen(3000);
 ```
 
 #### server.close([callback])
@@ -494,7 +504,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", async () => {
     const sockets = await io.in(userId).fetchSockets();
-    if (socket.length === 0) {
+    if (sockets.length === 0) {
       // no more active connections for the given user
     }
   });
@@ -901,7 +911,7 @@ Errors passed to middleware callbacks are sent as special `connect_error` packet
 *Server*
 
 ```js
-io.of("/chat").use((socket, next) => {
+io.use((socket, next) => {
   const err = new Error("not authorized");
   err.data = { content: "Please retry later" }; // additional details
   next(err);
@@ -1557,6 +1567,8 @@ Possible reasons:
 
 #### Event: 'disconnecting'
 
+*Added in v1.5.0*
+
 - `reason` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) the reason of the disconnection (either client or server-side)
 
 Fired when the client is going to be disconnected (but hasn't left its `rooms` yet).
@@ -1569,12 +1581,31 @@ io.on("connection", (socket) => {
 });
 ```
 
-Note: those events, along with `connect`, `connect_error`, `newListener` and `removeListener`, are special events that shouldn't be used in your application:
+With an asynchronous handler, you will need to create a copy of the `rooms` attribute:
+
+```js
+io.on("connection", (socket) => {
+  socket.on("disconnecting", async (reason) => {
+    const rooms = new Set(socket.rooms);
+
+    await someLongRunningOperation();
+
+    // socket.rooms will be empty there
+    console.log(rooms);
+  });
+});
+```
+
+:::caution
+
+Those events, along with `connect`, `connect_error`, `newListener` and `removeListener`, are special events that shouldn't be used in your application:
 
 ```js
 // BAD, will throw an error
 socket.emit("disconnect");
 ```
+
+:::
 
 ### Attributes
 
@@ -1609,6 +1640,11 @@ io.on("connection", (socket) => {
 
   socket.conn.on("drain", () => {
     // called when the write buffer is drained
+  });
+
+  socket.conn.on("heartbeat", () => {
+    // called after each round trip of the heartbeat mechanism
+    console.log("heartbeat");
   });
 
   socket.conn.on("close", (reason) => {
@@ -1726,6 +1762,26 @@ See also:
 - [How to deal with cookies](/how-to/deal-with-cookies)
 
 :::
+
+#### socket.recovered
+
+*Added in v4.6.0*
+
+- [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
+
+Whether the connection state was successfully recovered during the last reconnection.
+
+```js
+io.on("connection", (socket) => {
+  if (socket.recovered) {
+    // recovery was successful: socket.id, socket.rooms and socket.data were restored
+  } else {
+    // new or unrecoverable session
+  }
+});
+```
+
+More information about this feature [here](../docs/categories/01-Documentation/connection-state-recovery.md).
 
 #### socket.request
 
@@ -1875,7 +1931,7 @@ io.on("connection", (socket) => {
   });
 
   // with a specific timeout
-  socket.timeout(10000).emitWithAck("hello", "world", (err, val) => {
+  socket.timeout(10000).emit("hello", "world", (err, val) => {
     // ...
   });
 });
@@ -2223,8 +2279,6 @@ io.on("connection", (socket) => {
   // Please use `io.to(socket.id).emit()` instead.
 });
 ```
-
-**Note:** acknowledgements are not supported when broadcasting.
 
 #### socket.use(fn)
 

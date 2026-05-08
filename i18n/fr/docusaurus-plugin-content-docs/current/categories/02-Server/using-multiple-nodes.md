@@ -128,7 +128,7 @@ Make sure you also configure `worker_processes` in the topmost level to indicate
 
 Links:
 
-- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-nginx)
+- [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-nginx)
 - [NginX Documentation](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
 
 ### Apache HTTPD configuration {#apache-httpd-configuration}
@@ -161,7 +161,7 @@ ProxyTimeout 3
 
 Links:
 
-- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-httpd)
+- [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-httpd)
 - [Documentation](https://httpd.apache.org/docs/2.4/en/mod/mod_proxy.html#proxypass)
 
 ### HAProxy configuration {#haproxy-configuration}
@@ -184,7 +184,7 @@ backend nodes
 
 Links:
 
-- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-haproxy)
+- [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-haproxy)
 - [Documentation](http://cbonte.github.io/haproxy-dconv/2.4/configuration.html#cookie)
 
 ### Traefik {#traefik}
@@ -226,7 +226,7 @@ http:
 
 Links:
 
-- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-traefik)
+- [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-traefik)
 - [Documentation](https://doc.traefik.io/traefik/v2.0/routing/services/#sticky-sessions)
 
 ### Using Node.js Cluster {#using-nodejs-cluster}

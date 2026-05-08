@@ -8,7 +8,7 @@ function Sponsor({ url, img, alt }) {
   return (
     <div className={styles.sponsor}>
       <a href={url} target="_blank" rel="sponsored noopener">
-        <img src={img} alt={alt} />
+        <img src={img} alt={alt} loading={"lazy"} />
       </a>
     </div>
   )

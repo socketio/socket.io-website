@@ -4,9 +4,18 @@ sidebar_position: 1
 slug: /namespaces/
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 A Namespace is a communication channel that allows you to split the logic of your application over a single shared connection (also called "multiplexing").
 
-![Namespace diagram](/images/namespaces.png)
+<ThemedImage
+  alt="Namespace diagram"
+  sources={{
+    light: useBaseUrl('/images/namespaces.png'),
+    dark: useBaseUrl('/images/namespaces-dark.png'),
+  }}
+/>
 
 ## Introduction
 

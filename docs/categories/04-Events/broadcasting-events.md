@@ -101,7 +101,7 @@ io.of("/the-namespace").timeout(5000).emit("hello", "world", (err, responses) =>
 
 Broadcasting also works with multiple Socket.IO servers.
 
-You just need to replace the default adapter by the [Redis Adapter](../05-Adapters/adapter.md) or another [compatible adapter](../05-Adapters/adapter-redis.md).
+You just need to replace the default adapter by the [Redis Adapter](../05-Adapters/adapter-redis.md) or another [compatible adapter](../05-Adapters/adapter.md).
 
 <ThemedImage
   alt="Broadcasting with Redis"

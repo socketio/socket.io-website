@@ -14,6 +14,12 @@ Middleware functions can be useful for:
 
 Note: this function will be executed only once per connection (even if the connection consists in multiple HTTP requests).
 
+:::info
+
+If you are looking for Express middlewares, please check [this section](#compatibility-with-express-middleware).
+
+:::
+
 ## Registering a middleware {#registering-a-middleware}
 
 A middleware function has access to the [Socket instance](server-socket-instance.md) and to the next registered middleware function.
@@ -137,43 +143,52 @@ socket.on("connect_error", (err) => {
 
 ## Compatibility with Express middleware {#compatibility-with-express-middleware}
 
-Most existing [Express middleware](http://expressjs.com/en/resources/middleware.html) modules should be compatible with Socket.IO, you just need a little wrapper function to make the method signatures match:
+Since they are not bound to a usual HTTP request/response cycle, Socket.IO middlewares are not really compatible with [Express middlewares](https://expressjs.com/en/guide/using-middleware.html).
+
+That being said, starting with version `4.6.0`, Express middlewares are now supported by the underlying engine:
 
 ```js
-const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
-```
+io.engine.use((req, res, next) => {
+  // do something
 
-The middleware functions that end the request-response cycle and do not call `next()` will not work though.
-
-Example with [express-session](https://www.npmjs.com/package/express-session):
-
-```js
-const session = require("express-session");
-
-io.use(wrap(session({ secret: "cats" })));
-
-io.on("connection", (socket) => {
-  const session = socket.request.session;
+  next();
 });
 ```
 
-Example with [Passport](http://www.passportjs.org/):
+The middlewares will be called for each incoming HTTP requests, including upgrade requests.
+
+Example with [`express-session`](https://www.npmjs.com/package/express-session):
 
 ```js
-const session = require("express-session");
-const passport = require("passport");
+import session from "express-session";
 
-io.use(wrap(session({ secret: "cats" })));
-io.use(wrap(passport.initialize()));
-io.use(wrap(passport.session()));
+io.engine.use(session({
+  secret: "keyboard cat",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}));
+```
 
-io.use((socket, next) => {
-  if (socket.request.user) {
-    next();
+Example with [`helmet`](https://www.npmjs.com/package/helmet):
+
+```js
+import helmet from "helmet";
+
+io.engine.use(helmet());
+```
+
+If the middleware must be only applied to the handshake request (and not for each HTTP request), you can check for the existence of the `sid` query parameter.
+
+Example with [`passport-jwt`](https://www.npmjs.com/package/passport-jwt):
+
+```js
+io.engine.use((req, res, next) => {
+  const isHandshake = req._query.sid === undefined;
+  if (isHandshake) {
+    passport.authenticate("jwt", { session: false })(req, res, next);
   } else {
-    next(new Error("unauthorized"))
+    next();
   }
 });
 ```
-
-A complete example with Passport can be found [here](https://github.com/socketio/socket.io/tree/master/examples/passport-example).

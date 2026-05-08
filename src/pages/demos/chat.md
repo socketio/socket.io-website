@@ -18,7 +18,7 @@ title: Chat
     https://socketio-chat-h9jt.herokuapp.com/
   </a>
   <a
-    href="https://github.com/socketio/socket.io/tree/master/examples/chat"
+    href="https://github.com/socketio/socket.io/tree/main/examples/chat"
     style={{ float: "right", fontSize: 12 }}
   >
     View source code

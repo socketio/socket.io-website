@@ -166,7 +166,7 @@ socket.timeout(5000).emit("my-event", (err, response) => {
 
 ## Volatile events
 
-Volatile events are events that will not be sent if the underlying connection is not ready (a bit like [UDP](https://fr.wikipedia.org/wiki/User_Datagram_Protocol), in terms of reliability).
+Volatile events are events that will not be sent if the underlying connection is not ready (a bit like [UDP](https://en.wikipedia.org/wiki/User_Datagram_Protocol), in terms of reliability).
 
 This can be interesting for example if you need to send the position of the characters in an online game (as only the latest values are useful).
 

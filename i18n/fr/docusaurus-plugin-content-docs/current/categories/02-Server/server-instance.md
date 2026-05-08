@@ -62,25 +62,25 @@ io.engine.on("connection_error", (err) => {
 
 Here is the list of possible error codes:
 
-| Code | Message |
-|:----:|:-------:|
-| 0 | "Transport unknown"
-| 1 | "Session ID unknown"
-| 2 | "Bad handshake method"
-| 3 | "Bad request"
-| 4 | "Forbidden"
-| 5 | "Unsupported protocol version"
+| Code |            Message             |
+|:----:|:------------------------------:|
+|  0   |      "Transport unknown"       |
+|  1   |      "Session ID unknown"      |
+|  2   |     "Bad handshake method"     |
+|  3   |         "Bad request"          |
+|  4   |          "Forbidden"           |
+|  5   | "Unsupported protocol version" |
 
 ## Utility methods {#utility-methods}
 
 Some utility methods were added in Socket.IO v4.0.0 to manage the Socket instances and their rooms:
 
-- [`socketsJoin`](#socketsJoin): makes the matching socket instances join the specified rooms
-- [̀`socketsLeave`](#socketsLeave): makes the matching socket instances leave the specified rooms
-- [`disconnectSockets`](#disconnectSockets): makes the matching socket instances disconnect
-- [`fetchSockets`](#fetchSockets): returns the matching socket instances
+- [`socketsJoin`](#socketsjoin): makes the matching socket instances join the specified rooms
+- [̀`socketsLeave`](#socketsleave): makes the matching socket instances leave the specified rooms
+- [`disconnectSockets`](#disconnectsockets): makes the matching socket instances disconnect
+- [`fetchSockets`](#fetchsockets): returns the matching socket instances
 
-The [`serverSideEmit`](#serverSideEmit) method was added in Socket.IO v4.1.0.
+The [`serverSideEmit`](#serversideemit) method was added in Socket.IO v4.1.0.
 
 Those methods share the same semantics as broadcasting, and the same filters apply:
 

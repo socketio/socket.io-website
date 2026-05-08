@@ -9,8 +9,9 @@ Since Socket.IO v2.0.0, it is now possible to provide your own parser, in order 
 *Server*
 
 ```js
-const httpServer = require("http").createServer();
-const io = require("socket.io")(httpServer, {
+import { Server } from "socket.io";
+
+const io = new Server({
   parser: myParser
 });
 ```
@@ -18,17 +19,32 @@ const io = require("socket.io")(httpServer, {
 *Client*
 
 ```js
+import { io } from "socket.io-client";
+
 const socket = io({
   parser: myParser
 });
 ```
+
+## Available parsers {#available-parsers}
+
+Besides [the default parser](#the-default-parser), here is the list of available parsers:
+
+| Package                                                                                                      | Description                                                                                                                                                |
+|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`socket.io-circular-parser`](https://www.npmjs.com/package/socket.io-circular-parser)                       | Similar to the default parser, but handles circular references.                                                                                            |
+| [`socket.io-msgpack-parser`](https://www.npmjs.com/package/socket.io-msgpack-parser)                         | Uses [MessagePack](https://msgpack.org/) to encode the packets (based on the [`notepack.io`](https://github.com/darrachequesne/notepack) package).         |
+| [`@skgdev/socket.io-msgpack-javascript`](https://www.npmjs.com/package/@skgdev/socket.io-msgpack-javascript) | Uses [MessagePack](https://msgpack.org/) to encode the packets (based on the [`@msgpack/msgpack`](https://github.com/msgpack/msgpack-javascript) package). |
+| [`socket.io-json-parser`](https://www.npmjs.com/package/socket.io-json-parser)                               | Uses `JSON.stringify()` and `JSON.parse()` to encode the packets.                                                                                          |
+| [`socket.io-cbor-x-parser`](https://www.npmjs.com/package/socket.io-cbor-x-parser)                           | Uses [cbor-x](https://github.com/kriszyp/cbor-x) to encode the packets.                                                                                    |
+| [`@socket.io/devalue-parser`](https://www.npmjs.com/package/@socket.io/devalue-parser)                       | Uses [devalue](https://github.com/Rich-Harris/devalue) to encode the packets.                                                                              |
 
 ## Implementing your own parser {#implementing-your-own-parser}
 
 Here is a basic example with a parser that uses the `JSON.stringify()` and `JSON.parse()` methods:
 
 ```js
-const Emitter = require("component-emitter"); // polyfill of Node.js EventEmitter in the browser 
+import { Emitter } from "@socket.io/component-emitter"; // polyfill of Node.js EventEmitter in the browser
 
 class Encoder {
   /**
@@ -37,6 +53,10 @@ class Encoder {
   encode(packet) {
     return [JSON.stringify(packet)];
   }
+}
+
+function isObject(value) {
+  return Object.prototype.toString.call(value) === "[object Object]";
 }
 
 class Decoder extends Emitter {
@@ -59,15 +79,15 @@ class Decoder extends Emitter {
     }
     switch (type) {
       case 0: // CONNECT
-        return data === undefined || typeof data === "object";
+        return data === undefined || isObject(data);
       case 1: // DISCONNECT
         return data === undefined;
       case 2: // EVENT
-        return Array.isArray(data) && data.length > 0;
+        return Array.isArray(data) && typeof data[0] === "string";
       case 3: // ACK
         return Array.isArray(data);
       case 4: // CONNECT_ERROR
-        return typeof data === "object";
+        return isObject(data);
       default:
         return false;
     }
@@ -78,7 +98,7 @@ class Decoder extends Emitter {
   destroy() {}
 }
 
-module.exports = { Encoder, Decoder };
+export const parser = { Encoder, Decoder };
 ```
 
 ## The default parser {#the-default-parser}
@@ -144,37 +164,46 @@ Sample usage:
 *Server*
 
 ```js
-const httpServer = require("http").createServer();
-const io = require("socket.io")(httpServer, {
-  parser: require("socket.io-msgpack-parser")
+import { Server } from "socket.io";
+import customParser from "socket.io-msgpack-parser";
+
+const io = new Server({
+  parser: customParser
 });
 ```
 
 *Client (Node.js)*
 
 ```js
-const socket = require("socket.io-client")("https://example.com", {
-  parser: require("socket.io-msgpack-parser")
+import { io } from "socket.io-client";
+import customParser from "socket.io-msgpack-parser";
+
+const socket = io("https://example.com", {
+  parser: customParser
 });
 ```
 
 In the browser, there is now an official bundle which includes this parser:
 
-- https://cdn.socket.io/4.4.1/socket.io.msgpack.min.js
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.msgpack.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.4.1/dist/socket.io.msgpack.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.4.1/dist/socket.io.msgpack.min.js
+- https://cdn.socket.io/4.7.5/socket.io.msgpack.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.msgpack.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.7.5/dist/socket.io.msgpack.min.js
+- unpkg: https://unpkg.com/socket.io-client@4.7.5/dist/socket.io.msgpack.min.js
 
 In that case, you don't need to specify the `parser` option.
 
 Pros:
 
 - packets with binary content are sent as one single WebSocket frame (if the WebSocket connection is established)
-- may results in smaller payloads (especially when using a lot of numbers)
+- may result in smaller payloads (especially when using a lot of numbers)
 
 Cons:
 
 - incompatible with browsers that [do not support Arraybuffers](https://caniuse.com/mdn-javascript_builtins_arraybuffer), like IE9
 - harder to debug in the Network tab of the browser
 
+:::info
+
 Please note that `socket.io-msgpack-parser` relies on the [`notepack.io`](https://github.com/darrachequesne/notepack) MessagePack implementation. This implementation mainly focuses on performance and minimal bundle size, and thus does not support features like extension types. For a parser based on the [official JavaScript implementation](https://github.com/msgpack/msgpack-javascript), please check [this package](https://www.npmjs.com/package/@skgdev/socket.io-msgpack-javascript).
+
+:::

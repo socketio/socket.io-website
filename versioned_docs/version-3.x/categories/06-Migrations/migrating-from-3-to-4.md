@@ -269,7 +269,7 @@ import { Server } from "socket.io";
 
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(3000);
 
-io.on("connect", (socket) => {
+io.on("connection", (socket) => {
     socket.on("noArg", () => {
       // ...
     });

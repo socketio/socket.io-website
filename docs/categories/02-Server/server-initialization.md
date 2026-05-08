@@ -536,7 +536,7 @@ server.ready().then(() => {
   });
 });
 
-server.listen(3000);
+server.listen({ port: 3000 });
 ```
 
   </TabItem>
@@ -560,7 +560,7 @@ server.ready().then(() => {
   });
 });
 
-server.listen(3000);
+server.listen({ port: 3000 });
 ```
 
   </TabItem>
@@ -584,7 +584,7 @@ server.ready().then(() => {
   });
 });
 
-server.listen(3000);
+server.listen({ port: 3000 });
 ```
 
   </TabItem>
@@ -613,6 +613,128 @@ app.listen(3000, (token) => {
 ```
 
 Reference: https://github.com/uNetworking/uWebSockets.js
+
+### With Hono (Node.js)
+
+<Tabs groupId="lang">
+  <TabItem value="cjs" label="CommonJS" default>
+
+```js
+const { Hono } = require("hono");
+const { serve } = require("@hono/node-server");
+const { Server } = require("socket.io");
+
+const app = new Hono();
+
+const httpServer = serve({
+    fetch: app.fetch,
+    port: 3000,
+});
+
+const io = new Server(httpServer, {
+    /* options */
+});
+
+io.on("connection", (socket) => {
+    // ...
+});
+```
+
+  </TabItem>
+  <TabItem value="mjs" label="ES modules">
+
+```js
+import { Hono } from "hono";
+import { serve } from "@hono/node-server";
+import { Server } from "socket.io";
+
+const app = new Hono();
+
+const httpServer = serve({
+    fetch: app.fetch,
+    port: 3000,
+});
+
+const io = new Server(httpServer, {
+    /* options */
+});
+
+io.on("connection", (socket) => {
+    // ...
+});
+```
+
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+
+```ts
+import { Hono } from "hono";
+import { serve } from "@hono/node-server";
+import { Server } from "socket.io";
+import type { Server as HTTPServer } from "node:http";
+
+const app = new Hono();
+
+const httpServer = serve({
+    fetch: app.fetch,
+    port: 3000,
+});
+
+const io = new Server(httpServer as HTTPServer, {
+    /* options */
+});
+
+io.on("connection", (socket) => {
+    // ...
+});
+
+```
+
+  </TabItem>
+</Tabs>
+
+Reference: https://hono.dev/docs/
+
+### With Hono & Bun
+
+```js
+import { Server as Engine } from "@socket.io/bun-engine";
+import { Server } from "socket.io";
+import { Hono } from "hono";
+
+const io = new Server();
+
+const engine = new Engine();
+
+io.bind(engine);
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+const app = new Hono();
+
+const { websocket } = engine.handler();
+
+export default {
+  port: 3000,
+  idleTimeout: 30, // must be greater than the "pingInterval" option of the engine, which defaults to 25 seconds
+
+  fetch(req, server) {
+    const url = new URL(req.url);
+
+    if (url.pathname === "/socket.io/") {
+      return engine.handleRequest(req, server);
+    } else {
+      return app.fetch(req, server);
+    }
+  },
+
+  websocket
+}
+```
+
+Reference: https://hono.dev/docs/
 
 ## Options
 

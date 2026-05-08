@@ -44,6 +44,13 @@ pnpm add socket.io
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add socket.io
+```
+
+  </TabItem>
 </Tabs>
 
 安装特定版本：
@@ -67,6 +74,13 @@ yarn add socket.io@version
 
 ```sh
 pnpm add socket.io@version
+```
+
+  </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add socket.io@version
 ```
 
   </TabItem>
@@ -114,6 +128,13 @@ pnpm add -O bufferutil utf-8-validate
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add --optional bufferutil utf-8-validate
+```
+
+  </TabItem>
 </Tabs>
 
 请注意，这些包是可选的，如果它们不可用，WebSocket 服务器将回退到 Javascript 实现。更多信息可以在[这里](https://github.com/websockets/ws/#opt-in-for-performance-and-spec-compliance)找到。
@@ -146,6 +167,13 @@ pnpm add eiows
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add eiows
+```
+
+  </TabItem>
 </Tabs>
 
 然后使用`wsEngine`选项：
@@ -159,7 +187,7 @@ const io = new Server(3000, {
 });
 ```
 
-与默认实现相比，此实现“允许但不保证”显着的性能和内存使用改进。像往常一样，请根据您自己的使用情况对其进行基准测试。
+与默认实现相比，此实现"允许但不保证"显着的性能和内存使用改进。像往常一样，请根据您自己的使用情况对其进行基准测试。
 
 ## 使用 `µWebSockets.js` {#usage-with-µwebsocketsjs}
 
@@ -186,6 +214,13 @@ yarn add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
 
 ```sh
 pnpm add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+```
+
+  </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
 ```
 
   </TabItem>

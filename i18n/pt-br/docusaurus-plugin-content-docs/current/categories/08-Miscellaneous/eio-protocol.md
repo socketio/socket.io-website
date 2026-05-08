@@ -35,7 +35,7 @@ The source of this document can be found [here](https://github.com/socketio/engi
 
 
 
-## Introduction
+## Introduction {#introduction}
 
 The Engine.IO protocol enables [full-duplex](https://en.wikipedia.org/wiki/Duplex_(telecommunications)#FULL-DUPLEX) and low-overhead communication between a client and a server.
 
@@ -48,27 +48,27 @@ The reference implementation is written in [TypeScript](https://www.typescriptla
 
 The [Socket.IO protocol](https://github.com/socketio/socket.io-protocol) is built on top of these foundations, bringing additional features over the communication channel provided by the Engine.IO protocol.
 
-## Transports
+## Transports {#transports}
 
 The connection between an Engine.IO client and an Engine.IO server can be established with:
 
 - [HTTP long-polling](#http-long-polling)
 - [WebSocket](#websocket)
 
-### HTTP long-polling
+### HTTP long-polling {#http-long-polling}
 
 The HTTP long-polling transport (also simply referred as "polling") consists of successive HTTP requests:
 
 - long-running `GET` requests, for receiving data from the server
 - short-running `POST` requests, for sending data to the server
 
-#### Request path
+#### Request path {#request-path}
 
 The path of the HTTP requests is `/engine.io/` by default.
 
 It might be updated by libraries built on top of the protocol (for example, the Socket.IO protocol uses `/socket.io/`).
 
-#### Query parameters
+#### Query parameters {#query-parameters}
 
 The following query parameters are used:
 
@@ -80,7 +80,7 @@ The following query parameters are used:
 
 If a mandatory query parameter is missing, then the server MUST respond with an HTTP 400 error status.
 
-#### Headers
+#### Headers {#headers}
 
 When sending binary data, the sender (client or server) MUST include a `Content-Type: application/octet-stream` header.
 
@@ -88,9 +88,9 @@ Without an explicit `Content-Type` header, the receiver SHOULD infer that the da
 
 Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type
 
-#### Sending and receiving data
+#### Sending and receiving data {#sending-and-receiving-data}
 
-##### Sending data
+##### Sending data {#sending-data}
 
 To send some packets, a client MUST create an HTTP `POST` request with the packets encoded in the request body:
 
@@ -111,7 +111,7 @@ To indicate success, the server MUST return an HTTP 200 response, with the strin
 
 To ensure packet ordering, a client MUST NOT have more than one active `POST` request. Should it happen, the server MUST return an HTTP 400 error status and close the session.
 
-##### Receiving data
+##### Receiving data {#receiving-data}
 
 To receive some packets, a client MUST create an HTTP `GET` request:
 
@@ -134,7 +134,7 @@ The server MAY not respond right away if there are no packets buffered for the g
 
 To ensure packet ordering, a client MUST NOT have more than one active `GET` request. Should it happen, the server MUST return an HTTP 400 error status and close the session.
 
-### WebSocket
+### WebSocket {#websocket}
 
 The WebSocket transport consists of a [WebSocket connection](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), which provides a bidirectional and low-latency communication channel between the server and the client.
 
@@ -152,7 +152,7 @@ Each packet (read or write) is sent its own [WebSocket frame](https://datatracke
 
 A client MUST NOT open more than one WebSocket connection per session. Should it happen, the server MUST close the WebSocket connection.
 
-## Protocol
+## Protocol {#protocol}
 
 An Engine.IO packet consists of:
 
@@ -171,7 +171,7 @@ Here is the list of available packet types:
 | upgrade | 5   | Used during the [upgrade process](#upgrade).     |
 | noop    | 6   | Used during the [upgrade process](#upgrade).     |
 
-### Handshake
+### Handshake {#handshake}
 
 To establish a connection, the client MUST send an HTTP `GET` request to the server:
 
@@ -225,7 +225,7 @@ Example:
 
 The client MUST send the `sid` value in the query parameters of all subsequent requests.
 
-### Heartbeat
+### Heartbeat {#heartbeat}
 
 Once the [handshake](#handshake) is completed, a heartbeat mechanism is started to check the liveness of the connection:
 
@@ -246,7 +246,7 @@ If the server does not receive a `pong` packet back, then it SHOULD consider tha
 
 Conversely, if the client does not receive a `pong` packet within `pingInterval + pingTimeout`, then it SHOULD consider that the connection is closed.
 
-### Upgrade
+### Upgrade {#upgrade}
 
 By default, the client SHOULD create an HTTP long-polling connection, and then upgrade to better transports if available.
 
@@ -282,16 +282,16 @@ CLIENT                                                 SERVER
   │                                                      │
 ```
 
-### Message
+### Message {#message}
 
 Once the [handshake](#handshake) is completed, the client and the server can exchange data by including it in a `message` packet.
 
 
-## Packet encoding
+## Packet encoding {#packet-encoding}
 
 The serialization of an Engine.IO packet depends on the type of the payload (plaintext or binary) and on the transport.
 
-### HTTP long-polling
+### HTTP long-polling {#http-long-polling-1}
 
 Due to the nature of the HTTP long-polling transport, multiple packets might be concatenated in a single payload in order to increase throughput.
 
@@ -337,7 +337,7 @@ AQIDBA==  => buffer <01 02 03 04> encoded as base64
 
 The client SHOULD use the `maxPayload` value sent during the [handshake](#handshake) to decide how many packets should be concatenated.
 
-### WebSocket
+### WebSocket {#websocket-1}
 
 Each Engine.IO packet is sent in its own [WebSocket frame](https://datatracker.ietf.org/doc/html/rfc6455#section-5).
 
@@ -360,9 +360,9 @@ hello  => message payload (UTF-8 encoded)
 
 Binary payloads are sent as is, without modification.
 
-## History
+## History {#history}
 
-### From v2 to v3
+### From v2 to v3 {#from-v2-to-v3}
 
 - add support for binary data
 
@@ -370,7 +370,7 @@ The [2nd version](https://github.com/socketio/engine.io-protocol/tree/v2) of the
 
 The [3rd version](https://github.com/socketio/engine.io-protocol/tree/v3) of the protocol is used in Socket.IO `v1` and `v2`.
 
-### From v3 to v4
+### From v3 to v4 {#from-v3-to-v4}
 
 - reverse ping/pong mechanism
 
@@ -395,7 +395,7 @@ Note: this assumes the record separator is not used in the data.
 
 The 4th version (current) is included in Socket.IO `v3` and above.
 
-## Test suite
+## Test suite {#test-suite}
 
 The test suite in the [`test-suite/`](https://github.com/socketio/engine.io-protocol/tree/main/test-suite) directory lets you check the compliance of a server implementation.
 

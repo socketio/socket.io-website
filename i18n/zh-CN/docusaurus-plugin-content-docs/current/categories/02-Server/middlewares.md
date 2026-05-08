@@ -176,4 +176,4 @@ io.use((socket, next) => {
 });
 ```
 
-可以在[此处](https://github.com/socketio/socket.io/tree/master/examples/passport-example)找到 Passport 的完整示例。
+可以在[此处](https://github.com/socketio/socket.io/tree/main/examples/passport-example)找到 Passport 的完整示例。

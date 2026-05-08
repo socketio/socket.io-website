@@ -8,6 +8,14 @@ slug: /client-installation/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::info
+
+The latest release is currently `4.8.1`, released in October 2024.
+
+You can find the release notes [here](../../changelog/4.8.1.md).
+
+:::
+
 ## Version compatibility
 
 Here is the compatibility table between the server and the JS client:
@@ -68,16 +76,6 @@ Browser compatibility is tested thanks to the awesome Sauce Labs platform:
 
 ![Browser support](/images/saucelabs.svg)
 
-## Latest releases
-
-- 4.6.0 (Feb 2023): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.6.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.4...4.6.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.6.0)
-- 4.5.4 (Nov 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.4) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.3...4.5.4) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.4)
-- 4.5.3 (Oct 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.3) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.2...4.5.3) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.3)
-- 4.5.2 (Sep 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.2) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.1...4.5.2) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.2)
-- 4.5.1 (May 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.5.0...4.5.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.1)
-- [4.5.0](/blog/socket-io-4-5-0/) (Apr 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.5.0) / [diff](https://github.com/socketio/socket.io-client/compare/4.4.1...4.5.0) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.5.0)
-- 4.4.1 (Jan 2022): [GitHub release](https://github.com/socketio/socket.io-client/releases/tag/4.4.1) / [diff](https://github.com/socketio/socket.io-client/compare/4.4.0...4.4.1) / [npm](https://www.npmjs.com/package/socket.io-client/v/4.4.1)
-
 ## Installation
 
 ### Standalone build
@@ -108,14 +106,14 @@ const io = new Server({
 You can also include the client bundle from a CDN:
 
 ```html
-<script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
 ```
 
 Socket.IO is also available from other CDN:
 
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.6.0/dist/socket.io.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.6.0/dist/socket.io.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.8.1/dist/socket.io.min.js
+- unpkg: https://unpkg.com/socket.io-client@4.8.1/dist/socket.io.min.js
 
 There are several bundles available:
 
@@ -157,6 +155,13 @@ pnpm add socket.io-client
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add socket.io-client
+```
+
+  </TabItem>
 </Tabs>
 
 The client can also be run from Node.js.
@@ -173,24 +178,24 @@ Object literal may only specify known properties, and 'extraHeaders' does not ex
 
 ### Dependency tree
 
-A basic installation of the client includes 9 packages:
+A basic installation of the client includes **9** packages, of which **5** are maintained by our team:
 
 ```
-└─┬ socket.io-client@4.6.0
-  ├── @socket.io/component-emitter@3.1.0
-  ├─┬ debug@4.3.4
-  │ └── ms@2.1.2
-  ├─┬ engine.io-client@6.4.0
-  │ ├── @socket.io/component-emitter@3.1.0 deduped
-  │ ├── debug@4.3.4 deduped
-  │ ├── engine.io-parser@5.0.6
-  │ ├─┬ ws@8.11.0
+└─┬ socket.io-client@4.8.1
+  ├── @socket.io/component-emitter@3.1.2
+  ├─┬ debug@4.3.7
+  │ └── ms@2.1.3
+  ├─┬ engine.io-client@6.6.3
+  │ ├── @socket.io/component-emitter@3.1.2 deduped
+  │ ├── debug@4.3.7 deduped
+  │ ├── engine.io-parser@5.2.3
+  │ ├─┬ ws@8.17.1
   │ │ ├── UNMET OPTIONAL DEPENDENCY bufferutil@^4.0.1
-  │ │ └── UNMET OPTIONAL DEPENDENCY utf-8-validate@^5.0.2
-  │ └── xmlhttprequest-ssl@2.0.0
-  └─┬ socket.io-parser@4.2.2
-    ├── @socket.io/component-emitter@3.1.0 deduped
-    └── debug@4.3.4 deduped
+  │ │ └── UNMET OPTIONAL DEPENDENCY utf-8-validate@>=5.0.2
+  │ └── xmlhttprequest-ssl@2.1.2
+  └─┬ socket.io-parser@4.2.4
+    ├── @socket.io/component-emitter@3.1.2 deduped
+    └── debug@4.3.7 deduped
 ```
 
 ### Transitive versions
@@ -199,6 +204,8 @@ The `engine.io-client` package brings the engine that is responsible for managin
 
 | `socket.io-client` version | `engine.io-client` version | `ws` version<sup>1</sup> |
 |----------------------------|----------------------------|--------------------------|
+| `4.8.x`                    | `6.6.x`                    | `8.17.x`                 |
+| `4.7.x`                    | `6.5.x`                    | `8.17.x`                 |
 | `4.6.x`                    | `6.4.x`                    | `8.11.x`                 |
 | `4.5.x`                    | `6.2.x`                    | `8.2.x`                  |
 | `4.4.x`                    | `6.1.x`                    | `8.2.x`                  |
@@ -208,7 +215,7 @@ The `engine.io-client` package brings the engine that is responsible for managin
 | `4.0.x`                    | `5.0.x`                    | `7.4.x`                  |
 | `3.1.x`                    | `4.1.x`                    | `7.4.x`                  |
 | `3.0.x`                    | `4.0.x`                    | `7.4.x`                  |
-| `2.5.x`                    | `3.6.x`                    | `7.4.x`                  |
-| `2.4.x`                    | `3.5.x`                    | `7.4.x`                  |
+| `2.5.x`                    | `3.5.x`                    | `7.5.x`                  |
+| `2.4.x`                    | `3.5.x`                    | `7.5.x`                  |
 
 [1] for Node.js users only. In the browser, the native WebSocket API is used.

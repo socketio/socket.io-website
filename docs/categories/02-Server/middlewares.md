@@ -177,3 +177,18 @@ import helmet from "helmet";
 
 io.engine.use(helmet());
 ```
+
+If the middleware must be only applied to the handshake request (and not for each HTTP request), you can check for the existence of the `sid` query parameter.
+
+Example with [`passport-jwt`](https://www.npmjs.com/package/passport-jwt):
+
+```js
+io.engine.use((req, res, next) => {
+  const isHandshake = req._query.sid === undefined;
+  if (isHandshake) {
+    passport.authenticate("jwt", { session: false })(req, res, next);
+  } else {
+    next();
+  }
+});
+```

@@ -108,14 +108,14 @@ const io = new Server({
 您还可以包含来自 CDN 的客户端捆绑包：
 
 ```html
-<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
 ```
 
 Socket.IO 也可从其他 CDN 获得：
 
-- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js
-- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.4.1/dist/socket.io.min.js
-- unpkg: https://unpkg.com/socket.io-client@4.4.1/dist/socket.io.min.js
+- cdnjs: https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js
+- jsDelivr: https://cdn.jsdelivr.net/npm/socket.io-client@4.7.5/dist/socket.io.min.js
+- unpkg: https://unpkg.com/socket.io-client@4.7.5/dist/socket.io.min.js
 
 有几个可用的捆绑包：
 
@@ -157,13 +157,20 @@ pnpm add socket.io-client
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add socket.io-client
+```
+
+  </TabItem>
 </Tabs>
 
 客户端也可以从 Node.js 运行。
 
 注意：由于上述原因，您可能希望从浏览器包中排除调试。使用 webpack，您可以使用[webpack-remove-debug](https://github.com/johngodley/webpack-remove-debug).
 
-TypeScript 用户注意：这些类型现在包含在`socket.io-client`包中，因此`@types/socket.io-client`不再需要来自的类型，实际上可能会导致错误：
+TypeScript 用户注意：这些类型现在包含在`socket.io-client`包中，因此不再需要来自`@types/socket.io-client`的类型，实际上可能会导致错误：
 
 ```
 Object literal may only specify known properties, and 'extraHeaders' does not exist in type 'ConnectOpts'

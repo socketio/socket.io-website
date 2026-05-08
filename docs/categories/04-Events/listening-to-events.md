@@ -186,6 +186,7 @@ The validation of the event arguments is out of the scope of the Socket.IO libra
 
 There are many packages in the JS ecosystem which cover this use case, among them:
 
+- [zod](https://zod.dev/)
 - [joi](https://www.npmjs.com/package/joi)
 - [ajv](https://www.npmjs.com/package/ajv)
 - [validatorjs](https://www.npmjs.com/package/validatorjs)
