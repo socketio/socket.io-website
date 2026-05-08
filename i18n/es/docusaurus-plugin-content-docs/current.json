@@ -1,0 +1,38 @@
+{
+  "version.label": {
+    "message": "4.x",
+    "description": "La etiqueta para la versión actual"
+  },
+  "sidebar.sidebar.category.Documentation": {
+    "message": "Documentación",
+    "description": "La etiqueta para la categoría Documentation en la barra lateral"
+  },
+  "sidebar.sidebar.category.Server": {
+    "message": "Servidor",
+    "description": "La etiqueta para la categoría Server en la barra lateral"
+  },
+  "sidebar.sidebar.category.Client": {
+    "message": "Cliente",
+    "description": "La etiqueta para la categoría Client en la barra lateral"
+  },
+  "sidebar.sidebar.category.Events": {
+    "message": "Eventos",
+    "description": "La etiqueta para la categoría Events en la barra lateral"
+  },
+  "sidebar.sidebar.category.Adapters": {
+    "message": "Adaptadores",
+    "description": "La etiqueta para la categoría Adapters en la barra lateral"
+  },
+  "sidebar.sidebar.category.Advanced": {
+    "message": "Avanzado",
+    "description": "La etiqueta para la categoría Advanced en la barra lateral"
+  },
+  "sidebar.sidebar.category.Migrations": {
+    "message": "Migraciones",
+    "description": "La etiqueta para la categoría Migrations en la barra lateral"
+  },
+  "sidebar.sidebar.category.Miscellaneous": {
+    "message": "Miscelánea",
+    "description": "La etiqueta para la categoría Miscellaneous en la barra lateral"
+  }
+}

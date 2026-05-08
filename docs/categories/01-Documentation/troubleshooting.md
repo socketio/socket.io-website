@@ -3,7 +3,7 @@ title: Troubleshooting connection issues
 sidebar_label: Troubleshooting
 sidebar_position: 7
 slug: /troubleshooting-connection-issues/
-toc_max_heading_level: 2
+toc_max_heading_level: 4
 ---
 
 :::tip
@@ -17,10 +17,10 @@ Common/known issues:
 - [the socket is not able to connect](#problem-the-socket-is-not-able-to-connect)
 - [the socket gets disconnected](#problem-the-socket-gets-disconnected)
 - [the socket is stuck in HTTP long-polling](#problem-the-socket-is-stuck-in-http-long-polling)
-- [other common gotchas](#other-common-gotchas)
 
 Other common gotchas:
 
+- [Duplicate event registration](#duplicate-event-registration)
 - [Delayed event handler registration](#delayed-event-handler-registration)
 - [Usage of the `socket.id` attribute](#usage-of-the-socketid-attribute)
 - [Deployment on a serverless platform](#deployment-on-a-serverless-platform)
@@ -28,16 +28,48 @@ Other common gotchas:
 
 ## Problem: the socket is not able to connect
 
-Possible explanations:
+### Troubleshooting steps
 
-- [You are trying to reach a plain WebSocket server](#you-are-trying-to-reach-a-plain-websocket-server)
-- [The server is not reachable](#the-server-is-not-reachable)
-- [The client is not compatible with the version of the server](#the-client-is-not-compatible-with-the-version-of-the-server)
-- [The server does not send the necessary CORS headers](#the-server-does-not-send-the-necessary-cors-headers)
-- [You didn’t enable sticky sessions (in a multi server setup)](#you-didnt-enable-sticky-sessions-in-a-multi-server-setup)
-- [The request path does not match on both sides](#the-request-path-does-not-match-on-both-sides)
+On the client side, the `connect_error` event provides additional information:
 
-### You are trying to reach a plain WebSocket server
+```js
+socket.on("connect_error", (err) => {
+  // the reason of the error, for example "xhr poll error"
+  console.log(err.message);
+
+  // some additional description, for example the status code of the initial HTTP response
+  console.log(err.description);
+
+  // some additional context, for example the XMLHttpRequest object
+  console.log(err.context);
+});
+```
+
+On the server side, the `connection_error` event may also provide some additional insights:
+
+```js
+io.engine.on("connection_error", (err) => {
+  console.log(err.req);	     // the request object
+  console.log(err.code);     // the error code, for example 1
+  console.log(err.message);  // the error message, for example "Session ID unknown"
+  console.log(err.context);  // some additional error context
+});
+```
+
+Here is the list of possible error codes:
+
+| Code |            Message             | Possible explanations                                                                                                                                           |
+|:----:|:------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  0   |      "Transport unknown"       | This should not happen under normal circumstances.                                                                                                              |
+|  1   |      "Session ID unknown"      | Usually, this means that sticky sessions are not enabled (see [below](#you-didnt-enable-sticky-sessions-in-a-multi-server-setup)).                              |
+|  2   |     "Bad handshake method"     | This should not happen under normal circumstances.                                                                                                              |
+|  3   |         "Bad request"          | Usually, this means that a proxy in front of your server is not properly forwarding the WebSocket headers (see [here](../02-Server/behind-a-reverse-proxy.md)). |
+|  4   |          "Forbidden"           | The connection was denied by the [`allowRequest()`](../../server-options.md#allowrequest) method.                                                               |
+|  5   | "Unsupported protocol version" | The version of the client is not compatible with the server (see [here](#the-client-is-not-compatible-with-the-version-of-the-server)).                         |
+
+### Possible explanations
+
+#### You are trying to reach a plain WebSocket server
 
 As explained in the ["What Socket.IO is not"](index.md#what-socketio-is-not) section, the Socket.IO client is not a WebSocket implementation and thus will not be able to establish a connection with a WebSocket server, even with `transports: ["websocket"]`:
 
@@ -47,7 +79,7 @@ const socket = io("ws://echo.websocket.org", {
 });
 ```
 
-### The server is not reachable
+#### The server is not reachable
 
 Please make sure the Socket.IO server is actually reachable at the given URL. You can test it with:
 
@@ -58,18 +90,22 @@ curl "<the server URL>/socket.io/?EIO=4&transport=polling"
 which should return something like this:
 
 ```
-0{"sid":"Lbo5JLzTotvW3g2LAAAA","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":20000}
+0{"sid":"Lbo5JLzTotvW3g2LAAAA","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":20000,"maxPayload":1000000}
 ```
 
 If that's not the case, please check that the Socket.IO server is running, and that there is nothing in between that prevents the connection.
 
-Note: v1/v2 servers (which implement the v3 of the protocol, hence the `EIO=3`) will return something like this:
+:::note
+
+v1/v2 servers (which implement the v3 of the protocol, hence the `EIO=3`) will return something like this:
 
 ```
 96:0{"sid":"ptzi_578ycUci8WLB9G1","upgrades":["websocket"],"pingInterval":25000,"pingTimeout":5000}2:40
 ```
 
-### The client is not compatible with the version of the server
+:::
+
+#### The client is not compatible with the version of the server
 
 Maintaining backward compatibility is a top priority for us, but in some particular cases we had to implement some breaking changes at the protocol level:
 
@@ -204,7 +240,7 @@ SocketManager(socketURL: URL(string:"http://localhost:8087/")!, config: [.connec
 SocketManager(socketURL: URL(string:"http://localhost:8087/")!, config: [.version(.two)])
 ```
 
-### The server does not send the necessary CORS headers
+#### The server does not send the necessary CORS headers
 
 If you see the following error in your console:
 
@@ -219,7 +255,7 @@ It probably means that:
 
 Please see the documentation [here](../02-Server/handling-cors.md).
 
-### You didn't enable sticky sessions (in a multi server setup)
+#### You didn't enable sticky sessions (in a multi server setup)
 
 When scaling to multiple Socket.IO servers, you need to make sure that all the requests of a given Socket.IO session reach the same Socket.IO server. The explanation can be found [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
 
@@ -227,7 +263,7 @@ Failure to do so will result in HTTP 400 responses with the code: `{"code":1,"me
 
 Please see the documentation [here](../02-Server/using-multiple-nodes.md).
 
-### The request path does not match on both sides
+#### The request path does not match on both sides
 
 By default, the client sends — and the server expects — HTTP requests with the "/socket.io/" request path.
 
@@ -271,6 +307,8 @@ means the client will try to reach the [namespace](../06-Advanced/namespaces.md)
 
 ## Problem: the socket gets disconnected
 
+### Troubleshooting steps
+
 First and foremost, please note that disconnections are common and expected, even on a stable Internet connection:
 
 - anything between the user and the Socket.IO server may encounter a temporary failure or be restarted
@@ -280,11 +318,39 @@ First and foremost, please note that disconnections are common and expected, eve
 
 That being said, the Socket.IO client will always try to reconnect, unless specifically told [otherwise](../../client-options.md#reconnection).
 
-Possible explanations for a disconnection:
+The `disconnect` event provides additional information:
 
-- [The browser tab was minimized and heartbeat has failed](#the-browser-tab-was-minimized-and-heartbeat-has-failed)
-- [The client is not compatible with the version of the server](#the-client-is-not-compatible-with-the-version-of-the-server-1)
-- [You are trying to send a huge payload](#you-are-trying-to-send-a-huge-payload)
+```js
+socket.on("disconnect", (reason, details) => {
+  // the reason of the disconnection, for example "transport error"
+  console.log(reason);
+
+  // the low-level reason of the disconnection, for example "xhr post error"
+  console.log(details.message);
+
+  // some additional description, for example the status code of the HTTP response
+  console.log(details.description);
+
+  // some additional context, for example the XMLHttpRequest object
+  console.log(details.context);
+});
+```
+
+The possible reasons are listed [here](../03-Client/client-socket-instance.md#disconnect).
+
+### Possible explanations
+
+#### Something between the server and the client closes the connection
+
+If the disconnection happens at a regular interval, this might indicate that something between the server and the client is not properly configured and closes the connection:
+
+- nginx
+
+The value of nginx's [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) (60 seconds by default) must be bigger than Socket.IO's [`pingInterval + pingTimeout`](../../server-options.md#pinginterval) (45 seconds by default), else it will forcefully close the connection if no data is sent after the given delay and the client will get a "transport close" error.
+
+- Apache HTTP Server
+
+The value of httpd's [`ProxyTimeout`](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#proxytimeout) (60 seconds by default) must be bigger than Socket.IO's [`pingInterval + pingTimeout`](../../server-options.md#pinginterval) (45 seconds by default), else it will forcefully close the connection if no data is sent after the given delay and the client will get a "transport close" error.
 
 #### The browser tab was minimized and heartbeat has failed
 
@@ -300,13 +366,13 @@ const io = new Server({
 
 Please note that upgrading to Socket.IO v4 (at least `socket.io-client@4.1.3`, due to [this](https://github.com/socketio/engine.io-client/commit/f30a10b7f45517fcb3abd02511c58a89e0ef498f)) should prevent this kind of issues, as the heartbeat mechanism has been reversed (the server now sends PING packets).
 
-### The client is not compatible with the version of the server
+#### The client is not compatible with the version of the server
 
 Since the format of the packets sent over the WebSocket transport is similar in v2 and v3/v4, you might be able to connect with an incompatible client (see [above](#the-client-is-not-compatible-with-the-version-of-the-server)), but the connection will eventually be closed after a given delay.
 
 So if you are experiencing a regular disconnection after 30 seconds (which was the sum of the values of [pingTimeout](../../server-options.md#pingtimeout) and [pingInterval](../../server-options.md#pinginterval) in Socket.IO v2), this is certainly due to a version incompatibility.
 
-### You are trying to send a huge payload
+#### You are trying to send a huge payload
 
 If you get disconnected while sending a huge payload, this may mean that you have reached the [`maxHttpBufferSize`](../../server-options.md#maxhttpbuffersize) value, which defaults to 1 MB. Please adjust it according to your needs:
 
@@ -325,6 +391,8 @@ const io = require("socket.io")(httpServer, {
 ```
 
 ## Problem: the socket is stuck in HTTP long-polling
+
+### Troubleshooting steps
 
 In most cases, you should see something like this:
 
@@ -366,19 +434,61 @@ io.on("connection", (socket) => {
 });
 ```
 
-Possible explanations:
+### Possible explanations
 
-- [a proxy in front of your servers does not accept the WebSocket connection](#a-proxy-in-front-of-your-servers-does-not-accept-the-WebSocket-connection)
+#### A proxy in front of your servers does not accept the WebSocket connection
 
-### A proxy in front of your servers does not accept the WebSocket connection
+If a proxy like nginx or Apache HTTPD is not properly configured to accept WebSocket connections, then you might get a `TRANSPORT_MISMATCH` error:
+
+```js
+io.engine.on("connection_error", (err) => {
+  console.log(err.code);     // 3
+  console.log(err.message);  // "Bad request"
+  console.log(err.context);  // { name: 'TRANSPORT_MISMATCH', transport: 'websocket', previousTransport: 'polling' }
+});
+```
+
+Which means that the Socket.IO server does not receive the necessary `Connection: upgrade` header (you can check the `err.req.headers` object).
 
 Please see the documentation [here](../02-Server/behind-a-reverse-proxy.md).
 
+#### [`express-status-monitor`](https://www.npmjs.com/package/express-status-monitor) runs its own socket.io instance
+
+Please see the solution [here](https://github.com/RafalWilinski/express-status-monitor).
+
 ## Other common gotchas
+
+### Duplicate event registration
+
+On the client side, the `connect` event will be emitted every time the socket reconnects, so the event listeners must be registered outside the `connect` event listener:
+
+BAD :warning:
+
+```js
+socket.on("connect", () => {
+  socket.on("foo", () => {
+    // ...
+  });
+});
+```
+
+GOOD :+1:
+
+```js
+socket.on("connect", () => {
+  // ...
+});
+
+socket.on("foo", () => {
+  // ...
+});
+```
+
+If that's not the case, your event listener might be called multiple times.
 
 ### Delayed event handler registration
 
-BAD:
+BAD :warning:
 
 ```js
 io.on("connection", async (socket) => {
@@ -391,7 +501,7 @@ io.on("connection", async (socket) => {
 });
 ```
 
-GOOD:
+GOOD :+1:
 
 ```js
 io.on("connection", async (socket) => {

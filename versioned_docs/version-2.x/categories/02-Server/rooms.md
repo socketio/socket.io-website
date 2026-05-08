@@ -66,7 +66,7 @@ io.on('connection', socket => {
 
 ```js
 io.on('connection', async (socket) => {
-  const userId = await fetchUserId(socket);
+  const userId = await computeUserIdFromHeaders(socket);
 
   socket.join(userId);
 

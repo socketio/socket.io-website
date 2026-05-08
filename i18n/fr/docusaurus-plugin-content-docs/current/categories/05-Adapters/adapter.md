@@ -9,13 +9,16 @@ An Adapter is a server-side component which is responsible for broadcasting even
 
 When scaling to multiple Socket.IO servers, you will need to replace the default in-memory adapter by another implementation, so the events are properly routed to all clients.
 
-Besides the in-memory adapter, there are 5 official implementations:
+Here is the list of adapters that are maintained by our team:
 
 - the [Redis adapter](adapter-redis.md)
 - the [Redis Streams adapter](adapter-redis-streams.md)
 - the [MongoDB adapter](adapter-mongo.md)
 - the [Postgres adapter](adapter-postgres.md)
 - the [Cluster adapter](adapter-cluster.md)
+- the [Google Cloud Pub/Sub adapter](adapter-gcp-pubsub.md)
+- the [AWS SQS adapter](adapter-aws-sqs.md)
+- the [Azure Service Bus adapter](adapter-azure-service-bus.md)
 
 There are also several other options which are maintained by the (awesome!) community:
 

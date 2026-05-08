@@ -3,6 +3,9 @@ title: Changelog
 sidebar_position: 1
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 ## Versioning Policy
 
 Socket.IO releases closely follow [Semantic Versioning](https://semver.org/).
@@ -29,3 +32,40 @@ Socket.IO v4 (released in March 2021) did not include any update to the Socket.I
 Reference: [Migrating from 3.x to 4.0](../categories/07-Migrations/migrating-from-3-to-4.md)
 
 :::
+
+## Important milestones
+
+Aside from the breaking changes listed above, here are the latest important changes in Socket.IO:
+
+| Version             | Date          | Description                                                                                              |
+|---------------------|---------------|----------------------------------------------------------------------------------------------------------|
+| [`4.7.0`](4.7.0.md) | June 2023     | Support for WebTransport                                                                                 |
+| [`4.6.0`](4.6.0.md) | February 2023 | Introduction of [Connection state recovery](../categories/01-Documentation/connection-state-recovery.md) |
+| `4.4.0`             | November 2021 | Support for [uWebSockets.js](../categories/02-Server/server-installation.md#usage-with-uwebsockets)      |
+| `4.1.0`             | May 2021      | Introduction of [`serverSideEmit()`](../categories/02-Server/server-instance.md#serversideemit)          |
+| `4.0.0`             | March 2021    | Rewrite to [TypeScript](https://www.typescriptlang.org/)                                                 |
+
+## Version usage
+
+As of June 2024:
+
+`socket.io` package
+
+<ThemedImage
+  alt="Client downloads per version"
+  sources={{
+    light: useBaseUrl('/images/server-downloads-per-version.png'),
+    dark: useBaseUrl('/images/server-downloads-per-version-dark.png'),
+  }}
+/>
+
+
+`socket.io-client` package
+
+<ThemedImage
+  alt="Client downloads per version"
+  sources={{
+    light: useBaseUrl('/images/client-downloads-per-version.png'),
+    dark: useBaseUrl('/images/client-downloads-per-version-dark.png'),
+  }}
+/>

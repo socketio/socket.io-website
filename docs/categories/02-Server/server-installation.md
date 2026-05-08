@@ -8,6 +8,14 @@ slug: /server-installation/
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::info
+
+The latest release is currently `4.8.1`, released in October 2024.
+
+You can find the release notes [here](../../changelog/4.8.1.md).
+
+:::
+
 ## Prerequisites
 
 Please make sure that [Node.js](https://nodejs.org/en/) is installed on your system. The current Long Term Support (LTS) release is an ideal starting point, see [here](https://github.com/nodejs/Release#release-schedule).
@@ -44,6 +52,13 @@ pnpm add socket.io
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add socket.io
+```
+
+  </TabItem>
 </Tabs>
 
 To install a specific version:
@@ -70,17 +85,14 @@ pnpm add socket.io@version
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add socket.io@version
+```
+
+  </TabItem>
 </Tabs>
-
-## Latest releases
-
-- 4.6.0 (Feb 2023): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.6.0) / [diff](https://github.com/socketio/socket.io/compare/4.5.4...4.6.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.6.0)
-- 4.5.4 (Nov 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.4) / [diff](https://github.com/socketio/socket.io/compare/4.5.3...4.5.4) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.4)
-- 4.5.3 (Oct 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.3) / [diff](https://github.com/socketio/socket.io/compare/4.5.2...4.5.3) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.3)
-- 4.5.2 (Sep 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.2) / [diff](https://github.com/socketio/socket.io/compare/4.5.1...4.5.2) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.2)
-- 4.5.1 (May 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.1) / [diff](https://github.com/socketio/socket.io/compare/4.5.0...4.5.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.1)
-- [4.5.0](/blog/socket-io-4-5-0/) (Apr 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.5.0) / [diff](https://github.com/socketio/socket.io/compare/4.4.1...4.5.0) / [npm](https://www.npmjs.com/package/socket.io/v/4.5.0)
-- 4.4.1 (Jan 2022): [GitHub release](https://github.com/socketio/socket.io/releases/tag/4.4.1) / [diff](https://github.com/socketio/socket.io/compare/4.4.0...4.4.1) / [npm](https://www.npmjs.com/package/socket.io/v/4.4.1)
 
 ## Additional packages
 
@@ -112,6 +124,13 @@ yarn add --optional bufferutil utf-8-validate
 
 ```sh
 pnpm add -O bufferutil utf-8-validate
+```
+
+  </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add --optional bufferutil utf-8-validate
 ```
 
   </TabItem>
@@ -147,6 +166,13 @@ pnpm add eiows
 ```
 
   </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add eiows
+```
+
+  </TabItem>
 </Tabs>
 
 And then use the `wsEngine` option:
@@ -172,21 +198,28 @@ Installation:
   <TabItem value="npm" label="NPM" default>
 
 ```sh
-npm install uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+npm install uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0
 ```
 
   </TabItem>
   <TabItem value="yarn" label="Yarn">
 
 ```sh
-yarn add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+yarn add uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0
 ```
 
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
 
 ```sh
-pnpm add uWebSockets.js@uNetworking/uWebSockets.js#v20.4.0
+pnpm add uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0
+```
+
+  </TabItem>
+  <TabItem value="bun" label="Bun">
+
+```sh
+bun add uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0
 ```
 
   </TabItem>
@@ -214,42 +247,86 @@ app.listen(3000, (token) => {
 });
 ```
 
+## Usage with Bun
+
+The `@socket.io/bun-engine` package provides a Bun-specific low-level engine, intended to leverage the speed and scalability of Bun.
+
+### Installation
+
+```
+bun add socket.io @socket.io/bun-engine
+```
+
+### Usage
+
+```js
+import { Server as Engine } from "@socket.io/bun-engine";
+import { Server } from "socket.io";
+
+const io = new Server();
+
+const engine = new Engine({
+  path: "/socket.io/",
+});
+
+io.bind(engine);
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+export default {
+  port: 3000,
+  idleTimeout: 30, // must be greater than the "pingInterval" option of the engine, which defaults to 25 seconds
+
+  ...engine.handler(),
+};
+```
+
+:::tip
+
+Any existing adapter can be used without any modification.
+
+:::
+
 ## Miscellaneous
 
 ### Dependency tree
 
-A basic installation of the server includes 21 packages:
+A basic installation of the server includes **21** packages, of which **6** are maintained by our team:
 
 ```
-└─┬ socket.io@4.6.0
+└─┬ socket.io@4.8.1
   ├─┬ accepts@1.3.8
   │ ├─┬ mime-types@2.1.35
   │ │ └── mime-db@1.52.0
   │ └── negotiator@0.6.3
   ├── base64id@2.0.0
-  ├─┬ debug@4.3.4
-  │ └── ms@2.1.2
-  ├─┬ engine.io@6.4.0
-  │ ├── @types/cookie@0.4.1
-  │ ├─┬ @types/cors@2.8.13
-  │ │ └── @types/node@18.11.19 deduped
-  │ ├── @types/node@18.11.19
+  ├─┬ cors@2.8.5
+  │ ├── object-assign@4.1.1
+  │ └── vary@1.1.2
+  ├─┬ debug@4.3.7
+  │ └── ms@2.1.3
+  ├─┬ engine.io@6.6.4
+  │ ├─┬ @types/cors@2.8.17
+  │ │ └── @types/node@22.13.9 deduped
+  │ ├─┬ @types/node@22.13.9
+  │ │ └── undici-types@6.20.0
   │ ├── accepts@1.3.8 deduped
   │ ├── base64id@2.0.0 deduped
-  │ ├── cookie@0.4.2
-  │ ├─┬ cors@2.8.5
-  │ │ ├── object-assign@4.1.1
-  │ │ └── vary@1.1.2
-  │ ├── debug@4.3.4 deduped
-  │ ├── engine.io-parser@5.0.6
-  │ └─┬ ws@8.11.0
+  │ ├── cookie@0.7.2
+  │ ├── cors@2.8.5 deduped
+  │ ├── debug@4.3.7 deduped
+  │ ├── engine.io-parser@5.2.3
+  │ └─┬ ws@8.17.1
   │   ├── UNMET OPTIONAL DEPENDENCY bufferutil@^4.0.1
-  │   └── UNMET OPTIONAL DEPENDENCY utf-8-validate@^5.0.2
-  ├─┬ socket.io-adapter@2.5.2
-  │ └── ws@8.11.0 deduped
-  └─┬ socket.io-parser@4.2.2
-    ├── @socket.io/component-emitter@3.1.0
-    └── debug@4.3.4 deduped
+  │   └── UNMET OPTIONAL DEPENDENCY utf-8-validate@>=5.0.2
+  ├─┬ socket.io-adapter@2.5.5
+  │ ├── debug@4.3.7 deduped
+  │ └── ws@8.17.1 deduped
+  └─┬ socket.io-parser@4.2.4
+    ├── @socket.io/component-emitter@3.1.2
+    └── debug@4.3.7 deduped
 ```
 
 :::info
@@ -267,6 +344,8 @@ The `engine.io` package brings the engine that is responsible for managing the l
 
 | `socket.io` version | `engine.io` version | `ws` version |
 |---------------------|---------------------|--------------|
+| `4.8.x`             | `6.6.x`             | `8.17.x`     |
+| `4.7.x`             | `6.5.x`             | `8.17.x`     |
 | `4.6.x`             | `6.4.x`             | `8.11.x`     |
 | `4.5.x`             | `6.2.x`             | `8.2.x`      |
 | `4.4.x`             | `6.1.x`             | `8.2.x`      |
@@ -276,5 +355,5 @@ The `engine.io` package brings the engine that is responsible for managing the l
 | `4.0.x`             | `5.0.x`             | `7.4.x`      |
 | `3.1.x`             | `4.1.x`             | `7.4.x`      |
 | `3.0.x`             | `4.0.x`             | `7.4.x`      |
-| `2.5.x`             | `3.6.x`             | `7.4.x`      |
+| `2.5.x`             | `3.6.x`             | `7.5.x`      |
 | `2.4.x`             | `3.5.x`             | `7.4.x`      |

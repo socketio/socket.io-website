@@ -62,25 +62,25 @@ io.engine.on("connection_error", (err) => {
 
 以下是可能的错误代码列表：
 
-| Code | Message |
-|:----:|:-------:|
-| 0 | "Transport unknown"
-| 1 | "Session ID unknown"
-| 2 | "Bad handshake method"
-| 3 | "Bad request"
-| 4 | "Forbidden"
-| 5 | "Unsupported protocol version"
+| Code |            Message             |
+|:----:|:------------------------------:|
+|  0   |      "Transport unknown"       |
+|  1   |      "Session ID unknown"      |
+|  2   |     "Bad handshake method"     |
+|  3   |         "Bad request"          |
+|  4   |          "Forbidden"           |
+|  5   | "Unsupported protocol version" |
 
 ## 实用方法 {#utility-methods}
 
 Socket.IO v4.0.0 中添加了一些实用方法来管理 Socket 实例及其房间：
 
-- [`socketsJoin`](#socketsJoin)：使匹配的Socket实例加入指定的房间
-- [̀`socketsLeave`](#socketsLeave)：使匹配的Socket实例离开指定房间
-- [`disconnectSockets`](#disconnectSockets): 使匹配的Socket实例断开连接
-- [`fetchSockets`](#fetchSockets)：返回匹配的Socket实例
+- [`socketsJoin`](#socketsjoin)：使匹配的Socket实例加入指定的房间
+- [̀`socketsLeave`](#socketsleave)：使匹配的Socket实例离开指定房间
+- [`disconnectSockets`](#disconnectsockets): 使匹配的Socket实例断开连接
+- [`fetchSockets`](#fetchsockets)：返回匹配的Socket实例
 
-[`serverSideEmit`](#serverSideEmit)方法是在 Socket.IO v4.1.0 中添加的。
+[`serverSideEmit`](#serversideemit)方法是在 Socket.IO v4.1.0 中添加的。
 
 这些方法与广播共享相同的语义，并且应用相同的过滤器：
 

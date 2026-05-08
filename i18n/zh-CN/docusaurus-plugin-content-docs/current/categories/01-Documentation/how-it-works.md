@@ -103,7 +103,7 @@ Engine.IO 连接在以下情况下被视为关闭：
 
 还有一个心跳机制检查服务器和客户端之间的连接是否仍然正常运行：
 
-在给定的时间间隔（ `pingInterval`握手中发送的值），服务器发送一个 PING 数据包，客户端有几秒钟（该`pingTimeout`值）发送一个 PONG 数据包。如果服务器没有收到返回的 PONG 数据包，则认为连接已关闭。反之，如果客户端在 内没有收到 PING 包`pingInterval + pingTimeout`，则认为连接已关闭。
+在给定的时间间隔（ `pingInterval`握手中发送的值），服务器发送一个 PING 数据包，客户端有几秒钟（该`pingTimeout`值）发送一个 PONG 数据包。如果服务器没有收到返回的 PONG 数据包，则认为连接已关闭。反之，如果客户端在 `pingInterval + pingTimeout` 内没有收到 PING 包，则认为连接已关闭。
 
 断开连接的原因在[此处](../02-Server/server-socket-instance.md#disconnect) （服务器端）和 [此处](../03-Client/client-socket-instance.md#disconnect) （客户端）列出。
 

@@ -1,0 +1,94 @@
+{
+  "title": {
+    "message": "Socket.IO",
+    "description": "El título en la barra de navegación"
+  },
+  "logo.alt": {
+    "message": "Logo de Socket.IO",
+    "description": "El texto alternativo del logo de la barra de navegación"
+  },
+  "item.label.Docs": {
+    "message": "Documentación",
+    "description": "Elemento de la barra de navegación con etiqueta Docs"
+  },
+  "item.label.Server API": {
+    "message": "API del Servidor",
+    "description": "Elemento de la barra de navegación con etiqueta Server API"
+  },
+  "item.label.Client API": {
+    "message": "API del Cliente",
+    "description": "Elemento de la barra de navegación con etiqueta Client API"
+  },
+  "item.label.Ecosystem": {
+    "message": "Ecosistema",
+    "description": "Elemento de la barra de navegación con etiqueta Ecosystem"
+  },
+  "item.label.About": {
+    "message": "Acerca de",
+    "description": "Elemento de la barra de navegación con etiqueta About"
+  },
+  "item.label.Guide": {
+    "message": "Guía",
+    "description": "Elemento de la barra de navegación con etiqueta Guide"
+  },
+  "item.label.Tutorial": {
+    "message": "Tutorial",
+    "description": "Elemento de la barra de navegación con etiqueta Tutorial"
+  },
+  "item.label.Examples": {
+    "message": "Ejemplos",
+    "description": "Elemento de la barra de navegación con etiqueta Examples"
+  },
+  "item.label.Emit cheatsheet": {
+    "message": "Hoja de referencia de emisión",
+    "description": "Elemento de la barra de navegación con etiqueta Emit cheatsheet"
+  },
+  "item.label.Troubleshooting": {
+    "message": "Solución de problemas",
+    "description": "Elemento de la barra de navegación con etiqueta Troubleshooting"
+  },
+  "item.label.Stack Overflow": {
+    "message": "Stack Overflow",
+    "description": "Elemento de la barra de navegación con etiqueta Stack Overflow"
+  },
+  "item.label.GitHub Discussions": {
+    "message": "Discusiones de GitHub",
+    "description": "Elemento de la barra de navegación con etiqueta GitHub Discussions"
+  },
+  "item.label.Slack": {
+    "message": "Slack",
+    "description": "Elemento de la barra de navegación con etiqueta Slack"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Elemento de la barra de navegación con etiqueta Blog"
+  },
+  "item.label.Twitter": {
+    "message": "Twitter",
+    "description": "Elemento de la barra de navegación con etiqueta Twitter"
+  },
+  "item.label.CDN": {
+    "message": "CDN",
+    "description": "Elemento de la barra de navegación con etiqueta CDN"
+  },
+  "item.label.Admin UI": {
+    "message": "Interfaz de Administración",
+    "description": "Elemento de la barra de navegación con etiqueta Admin UI"
+  },
+  "item.label.FAQ": {
+    "message": "Preguntas frecuentes",
+    "description": "Elemento de la barra de navegación con etiqueta FAQ"
+  },
+  "item.label.Changelog": {
+    "message": "Registro de cambios",
+    "description": "Elemento de la barra de navegación con etiqueta Changelog"
+  },
+  "item.label.Roadmap": {
+    "message": "Hoja de ruta",
+    "description": "Elemento de la barra de navegación con etiqueta Roadmap"
+  },
+  "item.label.Become a sponsor": {
+    "message": "Conviértete en patrocinador",
+    "description": "Elemento de la barra de navegación con etiqueta Become a sponsor"
+  }
+}

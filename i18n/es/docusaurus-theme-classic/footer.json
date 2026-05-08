@@ -1,0 +1,94 @@
+{
+  "link.title.Documentation": {
+    "message": "Documentación",
+    "description": "El título de la columna de enlaces del pie de página con título=Documentation en el pie de página"
+  },
+  "link.title.Help": {
+    "message": "Ayuda",
+    "description": "El título de la columna de enlaces del pie de página con título=Help en el pie de página"
+  },
+  "link.title.News": {
+    "message": "Noticias",
+    "description": "El título de la columna de enlaces del pie de página con título=News en el pie de página"
+  },
+  "link.title.Tools": {
+    "message": "Herramientas",
+    "description": "El título de la columna de enlaces del pie de página con título=Tools en el pie de página"
+  },
+  "link.title.About": {
+    "message": "Acerca de",
+    "description": "El título de la columna de enlaces del pie de página con título=About en el pie de página"
+  },
+  "link.item.label.Guide": {
+    "message": "Guía",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Guide enlazando a /docs/v4/"
+  },
+  "link.item.label.Tutorial": {
+    "message": "Tutorial",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Tutorial enlazando a /docs/v4/tutorial/introduction"
+  },
+  "link.item.label.Examples": {
+    "message": "Ejemplos",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Examples enlazando a /get-started/"
+  },
+  "link.item.label.Server API": {
+    "message": "API del Servidor",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Server API enlazando a /docs/v4/server-api/"
+  },
+  "link.item.label.Client API": {
+    "message": "API del Cliente",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Client API enlazando a /docs/v4/client-api/"
+  },
+  "link.item.label.Troubleshooting": {
+    "message": "Solución de problemas",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Troubleshooting enlazando a /docs/v4/troubleshooting-connection-issues/"
+  },
+  "link.item.label.Stack Overflow": {
+    "message": "Stack Overflow",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Stack Overflow enlazando a https://stackoverflow.com/questions/tagged/socket.io"
+  },
+  "link.item.label.GitHub Discussions": {
+    "message": "Discusiones de GitHub",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=GitHub Discussions enlazando a https://github.com/socketio/socket.io/discussions"
+  },
+  "link.item.label.Slack": {
+    "message": "Slack",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Slack enlazando a https://socketio-slackin.herokuapp.com/"
+  },
+  "link.item.label.Blog": {
+    "message": "Blog",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Blog enlazando a /blog"
+  },
+  "link.item.label.Twitter": {
+    "message": "Twitter",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Twitter enlazando a https://twitter.com/SocketIO"
+  },
+  "link.item.label.CDN": {
+    "message": "CDN",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=CDN enlazando a https://cdn.socket.io"
+  },
+  "link.item.label.Admin UI": {
+    "message": "Interfaz de Administración",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Admin UI enlazando a https://admin.socket.io"
+  },
+  "link.item.label.FAQ": {
+    "message": "Preguntas frecuentes",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=FAQ enlazando a /docs/v4/faq/"
+  },
+  "link.item.label.Changelog": {
+    "message": "Registro de cambios",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Changelog enlazando a /docs/v4/changelog/"
+  },
+  "link.item.label.Roadmap": {
+    "message": "Hoja de ruta",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Roadmap enlazando a https://github.com/orgs/socketio/projects/3"
+  },
+  "link.item.label.Become a sponsor": {
+    "message": "Conviértete en patrocinador",
+    "description": "La etiqueta del enlace del pie de página con etiqueta=Become a sponsor enlazando a https://opencollective.com/socketio"
+  },
+  "copyright": {
+    "message": "Copyright © 2025 Socket.IO",
+    "description": "El copyright del pie de página"
+  }
+}

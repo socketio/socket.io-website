@@ -22,7 +22,7 @@ See also:
 - [Load testing](../06-Advanced/load-testing.md)
 - [Performance tuning](../06-Advanced/performance-tuning.md)
 
-## Memory usage per WebSocket server implementation
+## Memory usage per WebSocket server implementation {#memory-usage-per-websocket-server-implementation}
 
 The memory usage of the Socket.IO server heavily depends on the memory usage of the underlying WebSocket server implementation.
 
@@ -43,7 +43,7 @@ Tested on `Ubuntu 20.04.5 LTS` with Node.js `v16.18.1`, with the following packa
 - `uWebSockets.js@20.4.0`
 - `ws@8.2.3`
 
-## Memory usage over time
+## Memory usage over time {#memory-usage-over-time}
 
 The chart below displays the memory usage of the Socket.IO server over time, from 0 up to 10 000 connected clients.
 

@@ -1,0 +1,8 @@
+flowchart
+    socket.io --> engine.io
+    socket.io --> socket.io-parser
+    socket.io-client --> socket.io-parser
+    socket.io-client --> engine.io-client
+    engine.io --> engine.io-parser
+    engine.io-client --> engine.io-parser
+    socket.io --> socket.io-adapter

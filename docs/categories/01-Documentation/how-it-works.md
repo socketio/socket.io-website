@@ -57,13 +57,15 @@ At the beginning of the Engine.IO connection, the server sends some information:
   "sid": "FSDjX-WRwSA4zTZMALqx",
   "upgrades": ["websocket"],
   "pingInterval": 25000,
-  "pingTimeout": 20000
+  "pingTimeout": 20000,
+  "maxPayload": 1000000
 }
 ```
 
 - the `sid` is the ID of the session, it must be included in the `sid` query parameter in all subsequent HTTP requests
 - the `upgrades` array contains the list of all "better" transports that are supported by the server
 - the `pingInterval` and `pingTimeout` values are used in the heartbeat mechanism
+- the `maxPayload` value indicates the max number of bytes per packet accepted by the server
 
 ### Upgrade mechanism
 

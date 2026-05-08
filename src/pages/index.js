@@ -3,6 +3,7 @@ import Layout from '@theme/Layout';
 import HomepageHeader from "../components/HomepageHeader";
 import HomepageFeatures from '../components/HomepageFeatures';
 import HomepageExample from "../components/HomepageExample";
+import HomepageBlogPosts from "../components/HomepageBlogPosts";
 import HomepageSponsors from "../components/HomepageSponsors";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
       <main>
         <HomepageFeatures />
         <HomepageExample />
+        <HomepageBlogPosts />
         <HomepageSponsors />
       </main>
     </Layout>

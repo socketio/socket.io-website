@@ -128,7 +128,7 @@ http {
 
 链接：
 
-- [例子](https://github.com/socketio/socket.io/tree/master/examples/cluster-nginx)
+- [例子](https://github.com/socketio/socket.io/tree/main/examples/cluster-nginx)
 - [NginX 文档](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
 
 ### Apache HTTPD 配置 {#apache-httpd-configuration}
@@ -161,7 +161,7 @@ ProxyTimeout 3
 
 链接：
 
-- [例子](https://github.com/socketio/socket.io/tree/master/examples/cluster-httpd)
+- [例子](https://github.com/socketio/socket.io/tree/main/examples/cluster-httpd)
 - [文档](https://httpd.apache.org/docs/2.4/en/mod/mod_proxy.html#proxypass)
 
 ### HAProxy 配置 {#haproxy-configuration}
@@ -184,7 +184,7 @@ backend nodes
 
 链接：
 
-- [例子](https://github.com/socketio/socket.io/tree/master/examples/cluster-haproxy)
+- [例子](https://github.com/socketio/socket.io/tree/main/examples/cluster-haproxy)
 - [文档](http://cbonte.github.io/haproxy-dconv/2.4/configuration.html#cookie)
 
 ### Traefik {#traefik}
@@ -226,7 +226,7 @@ http:
 
 链接：
 
-- [例子](https://github.com/socketio/socket.io/tree/master/examples/cluster-traefik)
+- [例子](https://github.com/socketio/socket.io/tree/main/examples/cluster-traefik)
 - [文档](https://doc.traefik.io/traefik/v2.0/routing/services/#sticky-sessions)
 
 ### 使用 Node.js 集群 {#using-nodejs-cluster}

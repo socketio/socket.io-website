@@ -4,6 +4,9 @@ sidebar_position: 7
 slug: /using-multiple-nodes/
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 When deploying multiple Socket.IO servers, there are two things to take care of:
 
 - enabling sticky session, if HTTP long-polling is enabled (which is the default): see [below](#enabling-sticky-session)
@@ -19,7 +22,13 @@ This is because the HTTP long-polling transport sends multiple HTTP requests dur
 
 In fact, Socket.IO could technically work without sticky sessions, with the following synchronization (in dashed lines):
 
-![Using multiple nodes without sticky sessions](/images/mutiple-nodes-no-sticky.png)
+<ThemedImage
+  alt="Using multiple nodes without sticky sessions"
+  sources={{
+    light: useBaseUrl('/images/mutiple-nodes-no-sticky.png'),
+    dark: useBaseUrl('/images/multiple-nodes-no-sticky-dark.png'),
+  }}
+/>
 
 While obviously possible to implement, we think that this synchronization process between the Socket.IO servers would result in a big performance hit for your application.
 
@@ -46,7 +55,8 @@ To achieve sticky-session, there are two main solutions:
 
 You will find below some examples with common load-balancing solutions:
 
-- [NginX](#nginx-configuration) (IP-based)
+- [nginx](#nginx-configuration) (IP-based)
+- [nginx Ingress (Kubernetes)](#nginx-ingress-kubernetes) (IP-based)
 - [Apache HTTPD](#apache-httpd-configuration) (cookie-based)
 - [HAProxy](#haproxy-configuration) (cookie-based)
 - [Traefik](#traefik) (cookie-based)
@@ -84,7 +94,7 @@ const socket = io("https://server-domain.com", {
 
 Without it, the cookie will not be sent by the browser and you will experience HTTP 400 "Session ID unknown" responses. More information [here](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials).
 
-### NginX configuration
+### nginx configuration
 
 Within the `http { }` section of your `nginx.conf` file, you can declare a `upstream` section with a list of Socket.IO process you want to balance load between:
 
@@ -124,12 +134,75 @@ http {
 
 Notice the `hash` instruction that indicates the connections will be sticky.
 
-Make sure you also configure `worker_processes` in the topmost level to indicate how many workers NginX should use. You might also want to look into tweaking the `worker_connections` setting within the `events { }` block.
+Make sure you also configure `worker_processes` in the topmost level to indicate how many workers nginx should use. You might also want to look into tweaking the `worker_connections` setting within the `events { }` block.
 
 Links:
 
-- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-nginx)
-- [NginX Documentation](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
+- [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-nginx)
+- [nginx Documentation](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
+
+:::caution
+
+The value of nginx's [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) (60 seconds by default) must be bigger than Socket.IO's [`pingInterval + pingTimeout`](../../server-options.md#pinginterval) (45 seconds by default), else nginx will forcefully close the connection if no data is sent after the given delay and the client will get a "transport close" error.
+
+:::
+
+### nginx Ingress (Kubernetes)
+
+Within the `annotations` section of your Ingress configuration, you can declare an upstream hashing based on the client's IP address, so that the Ingress controller always assigns the requests from a given IP address to the same pod:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: your-ingress
+  namespace: your-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      set $forwarded_client_ip "";
+      if ($http_x_forwarded_for ~ "^([^,]+)") {
+        set $forwarded_client_ip $1;
+      }
+      set $client_ip $remote_addr;
+      if ($forwarded_client_ip != "") {
+        set $client_ip $forwarded_client_ip;
+      }
+    nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: io.yourhost.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: your-service
+                port:
+                  number: 80
+```
+
+Notes:
+
+- `nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"`
+
+This annotation instructs the NGINX Ingress Controller to use the client's IP address for routing incoming traffic to a specific Pod in your Kubernetes cluster. This is crucial for maintaining sticky sessions.
+
+- `nginx.ingress.kubernetes.io/configuration-snippet`
+
+This custom NGINX configuration snippet serves a dual purpose:
+
+1. If the request passes through upstream reverse proxies or API gateways that append an `X-Forwarded-For` header, this snippet extracts the first IP address from that header and uses it to update the $client_ip.
+
+2. In the absence of such proxies or gateways, the snippet simply uses the remote_addr, which is the IP address of the client directly connected to the ingress.
+
+This ensures that the correct client IP is used for the sticky session logic, enabled by the `nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"` annotation. The snippet is particularly important when your architecture includes upstream network components like reverse proxies or API gateways.
+
+Links:
+
+- [Ingress Nginx Documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-nginx-upstream-hashing)
+- [X-Forwarded-For Header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For)
 
 ### Apache HTTPD configuration
 
@@ -156,12 +229,13 @@ RewriteRule /(.*) balancer://nodes_ws/$1 [P,L]
 RewriteCond %{HTTP:Upgrade} !=websocket [NC]
 RewriteRule /(.*) balancer://nodes_polling/$1 [P,L]
 
-ProxyTimeout 3
+# must be bigger than pingInterval (25s by default) + pingTimeout (20s by default)
+ProxyTimeout 60
 ```
 
 Links:
 
-- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-httpd)
+- [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-httpd)
 - [Documentation](https://httpd.apache.org/docs/2.4/en/mod/mod_proxy.html#proxypass)
 
 ### HAProxy configuration
@@ -184,7 +258,7 @@ backend nodes
 
 Links:
 
-- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-haproxy)
+- [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-haproxy)
 - [Documentation](http://cbonte.github.io/haproxy-dconv/2.4/configuration.html#cookie)
 
 ### Traefik
@@ -226,12 +300,12 @@ http:
 
 Links:
 
-- [Example](https://github.com/socketio/socket.io/tree/master/examples/cluster-traefik)
+- [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-traefik)
 - [Documentation](https://doc.traefik.io/traefik/v2.0/routing/services/#sticky-sessions)
 
 ### Using Node.js Cluster
 
-Just like NginX, Node.js comes with built-in clustering support through the `cluster` module.
+Just like nginx, Node.js comes with built-in clustering support through the `cluster` module.
 
 There are several solutions, depending on your use case:
 

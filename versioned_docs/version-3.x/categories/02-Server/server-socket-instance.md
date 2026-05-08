@@ -128,7 +128,7 @@ io.on("connection", (socket) => {
 
 ## Socket middlewares
 
-Those middlewares looks a lot like the usual [middlewares](/docs/v3/middlewares/), except that they are called for each incoming packet:
+Those middlewares look a lot like the usual [middlewares](/docs/v3/middlewares/), except that they are called for each incoming packet:
 
 ```js
 socket.use(([event, ...args], next) => {
@@ -215,4 +215,4 @@ socket.emit("disconnect");
 
 ## Complete API
 
-The complete API exposed by the Socket instance can be found [here](/docs/v3/server-api/#Socket).
+The complete API exposed by the Socket instance can be found [here](/docs/v3/server-api/#socket).

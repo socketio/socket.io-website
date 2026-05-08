@@ -12,7 +12,7 @@ slug: /emitting-events/
 
 :::
 
-## 基本的 emit
+## 基本的 emit {#基本的-emit}
 
 Socket.IO API 的灵感来自 Node.js [EventEmitter](https://nodejs.org/docs/latest/api/events.html#events_events)，这意味着您可以在一侧发出事件并在另一侧注册侦听器：
 
@@ -112,7 +112,7 @@ class Hero {
 socket.emit("here's a hero", new Hero());
 ```
 
-## 回调
+## 回调 {#回调}
 
 事件很棒，但在某些情况下，您可能需要更经典的请求-响应 API。在 Socket.IO 中，此功能称为确认。
 
@@ -140,7 +140,7 @@ socket.emit("update item", "1", { name: "updated" }, (response) => {
 });
 ```
 
-## 超时
+## 超时 {#超时}
 
 从 Socket.IO v4.4.0 开始，您现在可以为每个发射分配超时：
 
@@ -164,7 +164,7 @@ socket.timeout(5000).emit("my-event", (err, response) => {
 });
 ```
 
-## 易失性事件
+## 易失性事件 {#易失性事件}
 
 易失性事件是在底层连接未准备好时不会发送的事件（有点像[UDP](https://fr.wikipedia.org/wiki/User_Datagram_Protocol)，在可靠性方面）。
 

@@ -31,6 +31,7 @@ You should see two directories:
 
 - `server/`: the server implementation
 - `angular-client/`: a client implementation based on [Angular](https://angular.io/)
+- `vue-client/`: a client implementation based on [Vue](https://vuejs.org/)
 
 ## Running the frontend
 
@@ -72,7 +73,6 @@ You can now open several tabs, and the list of todos should magically be synced 
 ├── lib
 │ ├── index.ts
 │ ├── app.ts
-│ ├── events.ts
 │ ├── todo-management
 │ │ ├── todo.handlers.ts
 │ | └── todo.repository.ts
@@ -88,7 +88,6 @@ Let's detail the duty of each file:
 
 - `index.ts`: the entrypoint of the server which creates the components and initializes the application
 - `app.ts`: the application itself, where the Socket.IO server is created, and the handlers are registered
-- `events.ts`: the types of each event exchanged between the server and the client (this is the only file that is specific to TypeScript users)
 - `todo.handlers.ts`: the handlers of the operations on the Todo entities
 - `todo.repository.ts`: the repository for persisting/retrieving the Todo entities from the database
 - `util.ts`: some common utility methods that are used in the project

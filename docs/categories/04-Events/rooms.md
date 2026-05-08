@@ -39,7 +39,13 @@ And then simply use `to` or `in` (they are the same) when broadcasting or emitti
 io.to("some room").emit("some event");
 ```
 
-You can emit to several rooms at the same time:
+Or exclude a room:
+
+```js
+io.except("some room").emit("some event");
+```
+
+You can also emit to several rooms at the same time:
 
 ```js
 io.to("room1").to("room2").to("room3").emit("some event");
@@ -72,8 +78,12 @@ To leave a channel you call `leave` in the same fashion as `join`.
 - broadcast data to each device / tab of a given user
 
 ```js
+function computeUserIdFromHeaders(headers) {
+  // to be implemented
+}
+
 io.on("connection", async (socket) => {
-  const userId = await fetchUserId(socket);
+  const userId = await computeUserIdFromHeaders(socket.handshake.headers);
 
   socket.join(userId);
 
@@ -143,7 +153,7 @@ Basically, it consists in two [ES6 Maps](https://developer.mozilla.org/en-US/doc
 
 Calling `socket.join("the-room")` will result in:
 
-- in the ̀`sids` Map, adding "the-room" to the Set identified by the socket ID
+- in the `sids` Map, adding "the-room" to the Set identified by the socket ID
 - in the `rooms` Map, adding the socket ID in the Set identified by the string "the-room"
 
 Those two maps are then used when broadcasting:

@@ -185,7 +185,7 @@ instrument(io, {
 });
 ```
 
-#### `mode`
+#### `mode` {#mode}
 
 默认值：`development`
 
@@ -203,7 +203,7 @@ instrument(io, {
 NODE_ENV=production node index.js
 ```
 
-## 这个怎么运作
+## 这个怎么运作 {#这个怎么运作}
 
 源代码可以在这里找到：https://github.com/socketio/socket.io-admin-ui/
 
@@ -214,7 +214,7 @@ NODE_ENV=production node index.js
 - 注册一个计时器，它会定期从服务器向 UI 发送统计信息
 - `join`，`weaw`和`_disconnect`从 UI 发送的命令注册处理程序
 
-## 最新版本
+## 最新版本 {#最新版本}
 
 - `0.4.0` (2022/06/23): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.4.0) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.3.0...0.4.0)
 - `0.3.0` (2022/05/03): [GitHub release](https://github.com/socketio/socket.io-admin-ui/releases/tag/0.3.0) / [diff](https://github.com/socketio/socket.io-admin-ui/compare/0.2.0...0.3.0)

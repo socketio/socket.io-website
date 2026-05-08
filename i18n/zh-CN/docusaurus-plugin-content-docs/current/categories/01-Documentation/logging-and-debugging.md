@@ -28,7 +28,7 @@ DEBUG=* node yourfile.js
 localStorage.debug = '*';
 ```
 
-A然后按您感兴趣的范围进行过滤。您可以在范围前加上前缀，如果有多个，则用逗号分隔。例如，要仅在 Node.js 上查看来自 socket.io 客户端的调试语句，请尝试以下操作：`*`
+然后按您感兴趣的范围进行过滤。您可以在范围前加上前缀，如果有多个，则用逗号分隔。例如，要仅在 Node.js 上查看来自 socket.io 客户端的调试语句，请尝试以下操作：`*`
 
 ```
 DEBUG=socket.io:client* node yourfile.js
@@ -45,7 +45,7 @@ DEBUG=engine,socket.io* node yourfile.js
 
 虽然在开发过程中很有用，但调试包给最终包增加了额外的权重（大约 4KB 压缩和 gzip 压缩），这就是为什么它被排除在 slim 包之外（关于各种浏览器包的更多详细信息可以在[这里](../03-Client/client-installation.md#from-a-cdn)找到）。
 
-I如果你使用 webpack，你可以使用[webpack-remove-debug](https://github.com/johngodley/webpack-remove-debug)删除它：
+如果你使用 webpack，你可以使用[webpack-remove-debug](https://github.com/johngodley/webpack-remove-debug)删除它：
 
 ```js
 {

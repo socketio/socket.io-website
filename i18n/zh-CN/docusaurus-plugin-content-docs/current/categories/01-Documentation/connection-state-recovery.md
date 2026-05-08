@@ -79,6 +79,27 @@ socket.on("connect", () => {
 });
 ```
 
+:::tip
+
+You can also run this example directly in your browser on:
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/socket.io/tree/main/examples/connection-state-recovery-example/esm?file=index.js)
+- [StackBlitz](https://stackblitz.com/github/socketio/socket.io/tree/main/examples/connection-state-recovery-example/esm?file=index.js)
+
+:::
+
+## 与现有适配器的兼容性 {#compatibility-with-existing-adapters}
+
+| 适配器                                                  |                                                         是否支持?                                                         |
+|--------------------------------------------------------|:------------------------------------------------------------------ -----------------------------------------------------:|
+| 内置适配器 (内存中)                                       |                                                  是  :white_check_mark:                                                  |
+| [Redis 适配器](../05-Adapters/adapter-redis.md)         |                                                      不<sup>1</sup>                                                      |
+| [MongoDB 适配器](../05-Adapters/adapter-mongo.md)       | 是 :white_check_mark: (since version [`0.3.0`](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0)) |
+| [Postgres 适配器](../05-Adapters/adapter-postgres.md)   |                                                           开发中                                                            |
+| [Cluster 适配器](../05-Adapters/adapter-cluster.md)     |                                                           开发中                                                            |
+
+[1] 持久数据包与Redis PUB/SUB机制不兼容，所以我们将在[Redis Streams](https://redis.io/docs/data-types/streams/)的基础上创建一个新的适配器，它将支持这一功能。
+
 ## 它的工作原理是什么 {#how-it-works-under-the-hood}
 
 - 服务器端在[握手过程中](../08-Miscellaneous/sio-protocol.md#connection-to-a-namespace-1)发送一个会话ID（这与当前的id属性不同，后者是公开的，可以自由分享）。
@@ -127,15 +148,3 @@ where
 YH...AW   => the private id of the session
 MzUPkW0   => the last processed offset
 ```
-
-## 与现有适配器的兼容性 {#compatibility-with-existing-adapters}
-
-| 适配器                                                  |                                                         是否支持?                                                         |
-|--------------------------------------------------------|:------------------------------------------------------------------ -----------------------------------------------------:|
-| 内置适配器 (内存中)                                       |                                                  是  :white_check_mark:                                                  |
-| [Redis 适配器](../05-Adapters/adapter-redis.md)         |                                                      不<sup>1</sup>                                                      |
-| [MongoDB 适配器](../05-Adapters/adapter-mongo.md)       | 是 :white_check_mark: (since version [`0.3.0`](https://github.com/socketio/socket.io-mongo-adapter/releases/tag/0.3.0)) |
-| [Postgres 适配器](../05-Adapters/adapter-postgres.md)   |                                                           开发中                                                            |
-| [Cluster 适配器](../05-Adapters/adapter-cluster.md)     |                                                           开发中                                                            |
-
-[1] 持久数据包与Redis PUB/SUB机制不兼容，所以我们将在[Redis Streams](https://redis.io/docs/data-types/streams/)的基础上创建一个新的适配器，它将支持这一功能。
