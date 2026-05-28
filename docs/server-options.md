@@ -104,12 +104,12 @@ const io = new Server(httpServer, {
     // the backup duration of the sessions and the packets
     maxDisconnectionDuration: 2 * 60 * 1000,
     // whether to skip middlewares upon successful recovery
-    skipMiddlewares: true,
+    skipMiddlewares: false,
   }
 });
 ```
 
-:::caution
+:::tip
 
 The connection state recovery feature is designed for dealing with intermittent disconnections, so please use a sensible value for `maxDisconnectionDuration` (not `Infinity`).
 
@@ -136,6 +136,12 @@ io.on("connection", (socket) => {
   console.log("userId", socket.data.userId);
 });
 ```
+
+:::caution
+
+This might, for example, allow users blocked during the disconnection period to reconnect without going through the middleware validations. So please use this option with caution.
+
+:::
 
 ### `connectTimeout`
 

@@ -6,14 +6,6 @@ slug: /connection-state-recovery
 
 Connection state recovery is a feature which allows restoring a client's state after a temporary disconnection, including any missed packets.
 
-:::info
-
-This feature was added in version `4.6.0`, released in February 2023.
-
-The release notes can be found [here](../../changelog/4.6.0.md).
-
-:::
-
 ## Disclaimer
 
 Under real conditions, a Socket.IO client will inevitably experience temporary disconnections, regardless of the quality of the connection.
@@ -22,7 +14,7 @@ This feature will help you cope with such disconnections, but please be aware th
 
 ## Usage
 
-Connection state recovery must be enabled by the server:
+The server must explicitly enable connection state recovery:
 
 ```js
 const io = new Server(httpServer, {
@@ -30,14 +22,14 @@ const io = new Server(httpServer, {
     // the backup duration of the sessions and the packets
     maxDisconnectionDuration: 2 * 60 * 1000,
     // whether to skip middlewares upon successful recovery
-    skipMiddlewares: true,
+    skipMiddlewares: false,
   }
 });
 ```
 
-:::caution
+:::tip
 
-The connection state recovery feature is designed for dealing with intermittent disconnections, so please use a sensible value for `maxDisconnectionDuration`.
+The connection state recovery feature is designed for dealing with intermittent disconnections, so please use a sensible value for `maxDisconnectionDuration` (that is, not `Infinity`).
 
 :::
 
@@ -97,6 +89,36 @@ You can also run this example directly in your browser on:
 
 - [CodeSandbox](https://codesandbox.io/p/sandbox/github/socketio/socket.io/tree/main/examples/connection-state-recovery-example/esm?file=index.js)
 - [StackBlitz](https://stackblitz.com/github/socketio/socket.io/tree/main/examples/connection-state-recovery-example/esm?file=index.js)
+
+:::
+
+## `skipMiddlewares` option
+
+If the `skipMiddlewares` option is set to `true`, then the middlewares will be skipped when the connection is successfully recovered:
+
+```js
+function computeUserIdFromHeaders(headers) {
+  // to be implemented
+}
+
+// this middleware will be skipped if the connection is successfully recovered
+io.use(async (socket, next) => {
+  socket.data.userId = await computeUserIdFromHeaders(socket.handshake.headers);
+
+  next();
+});
+
+io.on("connection", (socket) => {
+  // the userId attribute will either come:
+  // - from the middleware above (first connection or failed recovery)
+  // - from the recovery mechanism
+  console.log("userId", socket.data.userId);
+});
+```
+
+:::caution
+
+This might, for example, allow users blocked during the disconnection period to reconnect without going through the middleware validations. So please use this option with caution.
 
 :::
 
