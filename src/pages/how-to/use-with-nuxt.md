@@ -8,7 +8,7 @@ This guide shows how to use Socket.IO within a [Nuxt](https://nuxt.com/) applica
 
 ## Server
 
-Under the hood, Nuxt uses [Nitro](https://nitro.unjs.io/) to handle the HTTP requests.
+Under the hood, Nuxt uses [Nitro](https://nitro.build/) to handle the HTTP requests.
 
 There are two steps to attach a Socket.IO server to a Nitro server:
 
@@ -24,18 +24,18 @@ export default defineNuxtConfig({
     enabled: true
   },
 + nitro: {
-+   experimental: {
++   features: {
 +     websocket: true
 +   },
 + }
 })
 ```
 
-Reference: https://nitro.unjs.io/guide/websocket
+Reference: https://nitro.build/docs/websocket
 
 ### Hook the Socket.IO server
 
-Our Socket.IO server is created in a [Nitro plugin](https://nitro.unjs.io/guide/plugins):
+Our Socket.IO server is created in a [Nitro plugin](https://nitro.build/docs/plugins):
 
 ```ts title="server/plugins/socket.io.ts"
 import type { NitroApp } from "nitropack";
@@ -82,13 +82,14 @@ The only difference is that you need to exclude the Socket.IO client from server
 Structure:
 
 ```
-├── components
-│ ├── Connection.client.vue
-│ └── socket.ts
-...
+app/
+├── app.vue
+└── components
+    ├── Connection.client.vue
+    └── socket.ts
 ```
 
-```js title="components/socket.ts"
+```js title="app/components/socket.ts"
 import { io } from "socket.io-client";
 
 export const socket = io();
@@ -96,7 +97,7 @@ export const socket = io();
 
 
 
-```html title="components/Connection.client.vue"
+```html title="app/components/Connection.client.vue"
 <script setup>
 import { socket } from "./socket";
 
@@ -144,7 +145,7 @@ onBeforeUnmount(() => {
 
 The `.client` suffix in `Connection.client.vue` indicates that the component is meant to be rendered only client-side (no SSR).
 
-Reference: https://nuxt.com/docs/guide/directory-structure/components#client-components
+Reference: https://nuxt.com/docs/4.x/directory-structure/app/components#client-components
 
 :::
 
