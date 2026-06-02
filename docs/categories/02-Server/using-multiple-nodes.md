@@ -460,11 +460,11 @@ The interface in charge of routing messages is what we call the [Adapter](../05-
 
 There are several options available:
 
-- the [Redis adapter](adapter-redis.md)
-- the [Redis Streams adapter](adapter-redis-streams.md)
-- the [MongoDB adapter](adapter-mongo.md)
-- the [Postgres adapter](adapter-postgres.md)
-- the [Cluster adapter](adapter-cluster.md)
-- the [Google Cloud Pub/Sub adapter](adapter-gcp-pubsub.md)
-- the [AWS SQS adapter](adapter-aws-sqs.md)
-- the [Azure Service Bus adapter](adapter-azure-service-bus.md)
+- the [Redis adapter](../05-Adapters/adapter-redis.md)
+- the [Redis Streams adapter](../05-Adapters/adapter-redis-streams.md)
+- the [MongoDB adapter](../05-Adapters/adapter-mongo.md)
+- the [Postgres adapter](../05-Adapters/adapter-postgres.md)
+- the [Cluster adapter](../05-Adapters/adapter-cluster.md)
+- the [Google Cloud Pub/Sub adapter](../05-Adapters/adapter-gcp-pubsub.md)
+- the [AWS SQS adapter](../05-Adapters/adapter-aws-sqs.md)
+- the [Azure Service Bus adapter](../05-Adapters/adapter-azure-service-bus.md)
