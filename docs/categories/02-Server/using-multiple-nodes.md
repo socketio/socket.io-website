@@ -2,6 +2,7 @@
 title: Using multiple nodes
 sidebar_position: 7
 slug: /using-multiple-nodes/
+toc_max_heading_level: 5
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -9,18 +10,22 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 When deploying multiple Socket.IO servers, there are two things to take care of:
 
-- enabling sticky session, if HTTP long-polling is enabled (which is the default): see [below](#enabling-sticky-session)
-- using a compatible adapter, see [here](../05-Adapters/adapter.md)
+- load balancing
+- forwarding messages between the servers
 
-## Sticky load balancing
+## Load balancing
 
 If you plan to distribute the load of connections among different processes or machines, you have to make sure that all requests associated with a particular session ID reach the process that originated them.
 
-### Why is sticky-session required
+There are several ways to achieve this:
 
-This is because the HTTP long-polling transport sends multiple HTTP requests during the lifetime of the Socket.IO session.
+- [sticky sessions](#sticky-sessions)
+- [disabling HTTP long-polling](#disabling-http-long-polling)
+- [client-side load balancing](#client-side-load-balancing)
 
-In fact, Socket.IO could technically work without sticky sessions, with the following synchronization (in dashed lines):
+:::info
+
+In fact, Socket.IO could technically work without sticky sessions by synchronizing the session state between servers, as shown by the dashed lines below:
 
 <ThemedImage
   alt="Using multiple nodes without sticky sessions"
@@ -32,26 +37,24 @@ In fact, Socket.IO could technically work without sticky sessions, with the foll
 
 While obviously possible to implement, we think that this synchronization process between the Socket.IO servers would result in a big performance hit for your application.
 
-Remarks:
+:::
 
-- without enabling sticky-session, you will experience HTTP 400 errors due to "Session ID unknown"
-- the WebSocket transport does not have this limitation, since it relies on a single TCP connection for the whole session. Which means that if you disable the HTTP long-polling transport (which is a perfectly valid choice in 2021), you won't need sticky sessions:
+### Sticky sessions
 
-```js
-const socket = io("https://io.yourhost.com", {
-  // WARNING: in that case, there is no fallback to long-polling
-  transports: [ "websocket" ] // or [ "websocket", "polling" ] (the order matters)
-});
-```
+Sticky sessions (also called session affinity) is a load balancing technique that ensures all HTTP requests from a
+particular client are always routed to the same server instance during the lifetime of a session.
 
-Documentation: [`transports`](../../client-options.md#transports)
+In the context of Socket.IO, sticky sessions work as follows:
 
-### Enabling sticky-session
+1. When a client first connects, the load balancer assigns them to a specific Socket.IO server
+2. All subsequent requests from that client (including HTTP long-polling requests) are routed to the same server
+3. This ensures the server can maintain the client's session state and properly handle the bidirectional communication
 
-To achieve sticky-session, there are two main solutions:
+The load balancer typically achieves this by either:
 
-- routing clients based on a cookie (recommended solution)
-- routing clients based on their originating address
+- Using a cookie that identifies which server the client should connect to
+- Using the client's IP address to consistently route to the same server
+- Using a session identifier in the URL or headers
 
 You will find below some examples with common load-balancing solutions:
 
@@ -69,34 +72,9 @@ For other platforms, please refer to the relevant documentation:
 - GCP: https://cloud.google.com/load-balancing/docs/backend-service#session_affinity
 - Heroku: https://devcenter.heroku.com/articles/session-affinity
 
-**Important note**: if you are in a CORS situation (the front domain is different from the server domain) and session affinity is achieved with a cookie, you need to allow credentials:
+#### nginx configuration
 
-*Server*
-
-```js
-const io = require("socket.io")(httpServer, {
-  cors: {
-    origin: "https://front-domain.com",
-    methods: ["GET", "POST"],
-    credentials: true
-  }
-});
-```
-
-*Client*
-
-```js
-const io = require("socket.io-client");
-const socket = io("https://server-domain.com", {
-  withCredentials: true
-});
-```
-
-Without it, the cookie will not be sent by the browser and you will experience HTTP 400 "Session ID unknown" responses. More information [here](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials).
-
-### nginx configuration
-
-Within the `http { }` section of your `nginx.conf` file, you can declare a `upstream` section with a list of Socket.IO process you want to balance load between:
+Within the `http { }` section of your `nginx.conf` file, you can declare a `upstream` section with a list of Socket.IO processes you want to balance the load between:
 
 ```nginx
 http {
@@ -147,7 +125,7 @@ The value of nginx's [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_h
 
 :::
 
-### nginx Ingress (Kubernetes)
+#### nginx Ingress (Kubernetes)
 
 Within the `annotations` section of your Ingress configuration, you can declare an upstream hashing based on the client's IP address, so that the Ingress controller always assigns the requests from a given IP address to the same pod:
 
@@ -204,7 +182,7 @@ Links:
 - [Ingress Nginx Documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-nginx-upstream-hashing)
 - [X-Forwarded-For Header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For)
 
-### Apache HTTPD configuration
+#### Apache HTTPD configuration
 
 ```apache
 Header add Set-Cookie "SERVERID=sticky.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
@@ -238,7 +216,7 @@ Links:
 - [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-httpd)
 - [Documentation](https://httpd.apache.org/docs/2.4/en/mod/mod_proxy.html#proxypass)
 
-### HAProxy configuration
+#### HAProxy configuration
 
 ```
 # Reference: http://blog.haproxy.com/2012/11/07/websockets-load-balancing-with-haproxy/
@@ -261,7 +239,7 @@ Links:
 - [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-haproxy)
 - [Documentation](http://cbonte.github.io/haproxy-dconv/2.4/configuration.html#cookie)
 
-### Traefik
+#### Traefik
 
 Using container labels:
 
@@ -303,7 +281,7 @@ Links:
 - [Example](https://github.com/socketio/socket.io/tree/main/examples/cluster-traefik)
 - [Documentation](https://doc.traefik.io/traefik/v2.0/routing/services/#sticky-sessions)
 
-### Using Node.js Cluster
+#### Using Node.js Cluster
 
 Just like nginx, Node.js comes with built-in clustering support through the `cluster` module.
 
@@ -376,9 +354,117 @@ if (cluster.isMaster) {
 }
 ```
 
-## Passing events between nodes
+### Disabling HTTP long-polling
 
-Now that you have multiple Socket.IO nodes accepting connections, if you want to broadcast events to all clients (or to the clients in a certain [room](../04-Events/rooms.md)) you&#8217;ll need some way of passing messages between processes or computers.
+When you configure the Socket.IO client to not use HTTP long-polling (using only WebSocket or WebTransport), sticky
+sessions are no longer required. This is because:
+
+1. **Single persistent connection**: WebSocket establishes a single, long-lived TCP connection between the client and
+   server, unlike HTTP long-polling which sends multiple HTTP requests throughout the session.
+
+2. **No session routing issues**: Since all communication happens over one TCP connection, there's no risk of subsequent
+   requests being routed to different servers. The client maintains its connection to the same server for the entire
+   session duration.
+
+3. **Simplified infrastructure**: You can use simple round-robin load balancing without the need for sticky session
+   configuration, reducing complexity in your load balancer setup.
+
+Example (client):
+
+```js
+const socket = io({
+  transports: ["websocket"]
+  // or with WebTransport too (Socket.IO v4.6.0+)
+  // transports: ["websocket", "webtransport"]
+});
+```
+
+#### Pros
+
+##### No sticky sessions required
+
+With WebSocket or WebTransport only, the client uses a single persistent connection. Since there are no repeated HTTP polling requests, you avoid the risk of different requests being routed to different servers.
+
+##### Better performance
+
+WebSocket and WebTransport avoid the overhead of repeated HTTP requests and headers for every polling cycle.
+
+##### Lower latency
+
+Messages can be sent immediately over the persistent connection instead of waiting for polling request cycles.
+
+#### Cons
+
+##### Reduced compatibility
+
+HTTP long-polling is the most widely compatible fallback. Disabling it means clients in restrictive networks may fail to connect.
+
+### Client-side load balancing
+
+Client-side load balancing is an approach where the client application itself decides which server to connect to, rather
+than relying on a load balancer. This eliminates the need for sticky sessions since each client maintains a persistent
+connection to a single server of its choice.
+
+In this approach:
+
+1. The client is provided with a list of available Socket.IO server URLs
+2. The client selects one server from the list (randomly, round-robin, or based on custom logic)
+3. The client establishes a connection directly to the chosen server
+4. All subsequent communication happens with that same server
+
+Example (client):
+
+```js
+const SERVERS = [
+    "https://s1.example.com",
+    "https://s2.example.com",
+    "https://s3.example.com",
+];
+
+function pickServer() {
+    return SERVERS[Math.floor(Math.random() * SERVERS.length)];
+}
+
+const socket = io(pickServer());
+
+socket.io.on("reconnect_attempt", () => {
+    socket.io.uri = pickServer();
+});
+```
+
+#### Pros
+
+##### No sticky sessions required
+
+Each client connects directly to one selected server and keeps using that connection, so you avoid configuring session affinity at the proxy/load-balancer level.
+
+##### Direct control over routing logic
+
+The client can choose a server randomly, by region, by latency, by priority, or using custom business rules.
+
+#### Cons
+
+##### Harder to update server topology
+
+Adding, removing, or draining servers requires a way to update the client-side server list, often through configuration or a discovery endpoint.
+
+##### Uneven load distribution
+
+Random selection can lead to imbalance, especially with a small number of clients or clients with very different traffic volumes.
+
+## Forwarding messages between the servers
+
+Now that you have multiple Socket.IO servers accepting connections, if you want to broadcast events to all clients (or to the clients in a certain [room](../04-Events/rooms.md)) you&#8217;ll need some way of passing messages between processes or computers.
 
 The interface in charge of routing messages is what we call the [Adapter](../05-Adapters/adapter.md).
 
+There are several options available:
+
+- the [Redis adapter](adapter-redis.md)
+- the [Redis Streams adapter](adapter-redis-streams.md)
+- the [MongoDB adapter](adapter-mongo.md)
+- the [Postgres adapter](adapter-postgres.md)
+- the [Cluster adapter](adapter-cluster.md)
+- the [Google Cloud Pub/Sub adapter](adapter-gcp-pubsub.md)
+- the [AWS SQS adapter](adapter-aws-sqs.md)
+- the [Azure Service Bus adapter](adapter-azure-service-bus.md)

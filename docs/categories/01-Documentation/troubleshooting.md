@@ -257,7 +257,7 @@ Please see the documentation [here](../02-Server/handling-cors.md).
 
 #### You didn't enable sticky sessions (in a multi server setup)
 
-When scaling to multiple Socket.IO servers, you need to make sure that all the requests of a given Socket.IO session reach the same Socket.IO server. The explanation can be found [here](../02-Server/using-multiple-nodes.md#why-is-sticky-session-required).
+When scaling to multiple Socket.IO servers, you need to make sure that all the requests of a given Socket.IO session reach the same Socket.IO server. The explanation can be found [here](../02-Server/using-multiple-nodes.md).
 
 Failure to do so will result in HTTP 400 responses with the code: `{"code":1,"message":"Session ID unknown"}`
 
