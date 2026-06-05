@@ -48,3 +48,4 @@ If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/t
 - [count the number of connected users](/how-to/count-connected-users)
 - [disconnect a specific client](/how-to/disconnect-a-specific-client)
 - [implement back pressure](/how-to/implement-back-pressure)
+- [emit to a list of sockets](/how-to/emit-to-a-list-of-sockets)
