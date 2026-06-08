@@ -527,14 +527,10 @@ io.on("connection", (socket) => {
   // ...
 });
 
-app.addHook("preClose", (done) => {
+fastify.addHook("preClose", (done) => {
   // close all active connections on this server
   io.local.disconnectSockets(true);
   done();
-});
-
-app.addHook("onClose", (_instance, done) => {
-  io.close(done);
 });
 
 fastify.listen({ port: 3000 });
@@ -554,14 +550,10 @@ io.on("connection", (socket) => {
   // ...
 });
 
-app.addHook("preClose", (done) => {
+fastify.addHook("preClose", (done) => {
   // close all active connections on this server
   io.local.disconnectSockets(true);
   done();
-});
-
-app.addHook("onClose", (_instance, done) => {
-  io.close(done);
 });
 
 fastify.listen({ port: 3000 });
@@ -581,14 +573,10 @@ io.on("connection", (socket) => {
   // ...
 });
 
-app.addHook("preClose", (done) => {
+fastify.addHook("preClose", (done) => {
   // close all active connections on this server
   io.local.disconnectSockets(true);
   done();
-});
-
-app.addHook("onClose", (_instance, done) => {
-  io.close(done);
 });
 
 fastify.listen({ port: 3000 });
