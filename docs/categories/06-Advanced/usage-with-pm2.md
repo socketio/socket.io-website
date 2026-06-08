@@ -42,13 +42,11 @@ The only difference comes from [this commit](https://github.com/socketio/pm2/com
 
 ## Usage
 
-`worker.js`
-
-```js
-const { createServer } = require("http");
-const { Server } = require("socket.io");
-const { createAdapter } = require("@socket.io/cluster-adapter");
-const { setupWorker } = require("@socket.io/sticky");
+```js title="worker.js"
+import { createServer } from "node:http";
+import { Server } from "socket.io";
+import { createAdapter } from "@socket.io/cluster-adapter";
+import { setupWorker } from "@socket.io/sticky";
 
 const httpServer = createServer();
 const io = new Server(httpServer);
@@ -60,30 +58,35 @@ setupWorker(io);
 io.on("connection", (socket) => {
   console.log(`connect ${socket.id}`);
 });
+
+// graceful shutdown
+process.on("SIGINT", () => {
+  io.close((err) => {
+    process.exit(err ? 1 : 0);
+  });
+});
+
+// important: no httpServer.listen() here
 ```
 
-`ecosystem.config.js`
-
-```js
-module.exports = {
-  apps : [{
-    script    : "worker.js",
-    instances : "max",
-    exec_mode : "cluster"
-  }]
-}
+```js title="ecosystem.config.js"
+export const apps = [{
+  script    : "worker.js",
+  instances : "max", // one process per core
+  exec_mode : "cluster"
+}];
 ```
 
-And then run `pm2 start ecosystem.config.js` (or `pm2 start worker.js -i 0`). That's it! You can now reach the Socket.IO cluster on port 8080.
+And then run `pm2 start ecosystem.config.js` (or `pm2 start worker.js -i 0`). That's it! You can now reach the Socket.IO cluster on port **8080**.
 
 ## How it works
 
 When [scaling to multiple nodes](../02-Server/using-multiple-nodes.md), there are two things to do:
 
-- enable sticky sessions, so that the HTTP requests of a Socket.IO session are routed to the same worker
-- use a custom adapter, so that the packets are broadcast to all clients, even if they are connected to another worker
+- enable sticky sessions so that the HTTP requests of a Socket.IO session are routed to the same worker
+- use a custom adapter so that the packets are broadcast to all clients, even if they are connected to another worker
 
-In order to achieve this, `@socket.io/pm2` includes two additional packages:
+To achieve this, `@socket.io/pm2` includes two additional packages:
 
 - [`@socket.io/sticky`](https://github.com/socketio/socket.io-sticky)
 - [`@socket.io/cluster-adapter`](https://github.com/socketio/socket.io-cluster-adapter)
@@ -95,4 +98,16 @@ The only difference with `pm2` comes from [this commit](https://github.com/socke
 
 Please note that if you have several hosts each running a PM2 cluster, you will have to use another adapter, like the [Redis adapter](../05-Adapters/adapter-redis.md).
 
-The source code of the fork can be found [here](https://github.com/socketio/pm2). We will try to closely follow the releases of the `pm2` package.
+The source code of the fork can be found here: https://github.com/socketio/pm2
+
+## Latest releases
+
+We try to closely follow the releases of the `pm2` package, but if there is any missing release, please ping us.
+
+| Version  | Release date | Release notes                                                                    |
+|----------|--------------|----------------------------------------------------------------------------------|
+| `6.0.14` | June 2026    | [link](https://github.com/socketio/pm2/releases/tag/%40socket.io%2Fpm2%406.0.14) |
+| `6.0.8`  | June 2025    | [link](https://github.com/socketio/pm2/releases/tag/v6.0.8-socket.io)            |
+| `5.3.0`  | May 2023     | [link](https://github.com/socketio/pm2/releases/tag/v5.3.0-socket.io)            |
+| `5.2.2`  | January 2022 | `-`                                                                              |
+| `5.2.1`  | June 2021    | `-`                                                                              |

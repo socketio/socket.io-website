@@ -31,6 +31,7 @@ If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/t
 
 ## How to...
 
+- [use with PM2](/docs/v4/pm2/)
 - [deal with cookies](/how-to/deal-with-cookies)
 - [use with `pkg`](/how-to/use-with-pkg)
 - [use with `express-session`](/how-to/use-with-express-session)
