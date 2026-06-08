@@ -517,21 +517,23 @@ NestJS v7 and below relies on Socket.IO v2, while NestJS v8 relies on Socket.IO 
   <TabItem value="cjs" label="CommonJS" default>
 
 ```js
+const Fastify = require("fastify");
 const { Server } = require("socket.io");
 
-const fastify = require('fastify')();
+const fastify = Fastify();
 const io = new Server(fastify.server, { /* options */ });
 
 io.on("connection", (socket) => {
   // ...
 });
 
-app.addHook('preClose', done => {
+app.addHook("preClose", (done) => {
+  // close all active connections on this server
   io.local.disconnectSockets(true);
   done();
 });
 
-app.addHook('onClose', (_instance, done) => {
+app.addHook("onClose", (_instance, done) => {
   io.close(done);
 });
 
@@ -542,9 +544,8 @@ fastify.listen({ port: 3000 });
   <TabItem value="mjs" label="ES modules">
 
 ```js
-import Fastify from 'fastify';
+import Fastify from "fastify";
 import { Server } from "socket.io";
-const { Server } = require("socket.io");
 
 const fastify = Fastify();
 const io = new Server(fastify.server, { /* options */ });
@@ -553,12 +554,13 @@ io.on("connection", (socket) => {
   // ...
 });
 
-app.addHook('preClose', done => {
+app.addHook("preClose", (done) => {
+  // close all active connections on this server
   io.local.disconnectSockets(true);
   done();
 });
 
-app.addHook('onClose', (_instance, done) => {
+app.addHook("onClose", (_instance, done) => {
   io.close(done);
 });
 
@@ -569,9 +571,8 @@ fastify.listen({ port: 3000 });
   <TabItem value="ts" label="TypeScript">
 
 ```ts
-import Fastify from 'fastify';
+import Fastify from "fastify";
 import { Server } from "socket.io";
-const { Server } = require("socket.io");
 
 const fastify = Fastify();
 const io = new Server(fastify.server, { /* options */ });
@@ -580,12 +581,13 @@ io.on("connection", (socket) => {
   // ...
 });
 
-app.addHook('preClose', done => {
+app.addHook("preClose", (done) => {
+  // close all active connections on this server
   io.local.disconnectSockets(true);
   done();
 });
 
-app.addHook('onClose', (_instance, done) => {
+app.addHook("onClose", (_instance, done) => {
   io.close(done);
 });
 
