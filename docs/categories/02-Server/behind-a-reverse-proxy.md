@@ -10,6 +10,7 @@ You will find below the configuration needed for deploying a Socket.IO server be
 - [Apache HTTPD](#apache-httpd)
 - [Node.js `http-proxy`](#nodejs-http-proxy)
 - [Caddy 2](#caddy-2)
+- [Google Cloud Application Load Balancer](#google-cloud-application-load-balancer)
 
 In a multi-server setup, please check the documentation [here](using-multiple-nodes.md).
 
@@ -203,3 +204,30 @@ Related
 - [Solution forum post](https://caddy.community/t/i-cant-get-socket-io-proxy-to-work-on-v2/8703/2)
 - [Caddyfile reverse proxy](https://caddyserver.com/docs/caddyfile/patterns#reverse-proxy)
 - [Caddyfile directives](https://caddyserver.com/docs/caddyfile/directives)
+
+## Google Cloud Application Load Balancer
+
+If you are using an Application Load Balancer on Google Cloud, you might need to increase the **backend service timeout**.
+
+:::info
+
+The configurable *backend service timeout* represents the maximum amount of time that the load balancer waits for your backend to process an HTTP request and return the corresponding HTTP response. Except for serverless NEGs, the default value for the backend service timeout is 30 seconds.
+
+:::
+
+This timeout also applies to WebSocket connections:
+
+- For the **classic Application Load Balancer**, WebSocket connections, whether idle or active, are closed after the backend service timeout.
+- For the **global external** and **regional external Application Load Balancers**, idle WebSocket connections are closed after the backend service timeout.
+
+You should increase this timeout to a value greater than `pingInterval + pingTimeout` (45 seconds by default).
+
+This can be done in the Google Cloud Console, by modifying the "Timeout" field of the backend service, or via the `gcloud` CLI:
+
+```bash
+gcloud compute backend-services update <BACKEND_SERVICE_NAME> \
+    --global \
+    --timeout=60
+```
+
+Source: https://docs.cloud.google.com/load-balancing/docs/https/request-distribution#timeout-bes
