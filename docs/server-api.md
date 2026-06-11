@@ -366,7 +366,7 @@ See [here](categories/02-Server/server-instance.md#utility-methods).
 - `args` `any[]`
 - **Returns** `true`
 
-Emits an event to all connected clients in the main namespace.
+Alias for [`io.of("/").emit()`](#namespaceemiteventname-args). Emits an event to all connected clients in the main namespace.
 
 ```js
 io.emit("hello");
@@ -593,7 +593,7 @@ io.of((name, query, next) => {
 - `listener` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 - **Returns** [`<Server>`](#server)
 
-Adds the `listener` function to the end of the listeners array for the event named `eventName`.
+Alias for [`io.of("/").on(eventName, listener)`](#namespaceon). Adds the `listener` function to the end of the listeners array for the event named `eventName`.
 
 Available events:
 
