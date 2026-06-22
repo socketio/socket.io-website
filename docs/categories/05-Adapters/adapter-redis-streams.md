@@ -27,6 +27,16 @@ This adapter is also compatible with [Valkey](https://valkey.io/).
 
 Source code: https://github.com/socketio/socket.io-redis-streams-adapter
 
+## Security considerations
+
+The Redis adapter assumes that Redis is part of the trusted internal infrastructure.
+
+Messages exchanged through Redis Streams are not signed, encrypted, or authenticated by the adapter. Anyone able to connect to Redis and publish to the adapter channels may be able to inject packets, spoof inter-server control messages, or send forged events to connected clients. Anyone able to observe Redis traffic or subscribe to the relevant channels may also be able to inspect event payloads.
+
+Redis should therefore not be exposed to untrusted networks or shared with untrusted clients. Avoid sharing the same Redis instance with unrelated applications unless ACLs are properly configured.
+
+Please use Redis ACLs, authentication, TLS, firewall rules, private networking, and dedicated credentials with the minimum required command and channel permissions where appropriate. Avoid sending long-lived secrets or sensitive credentials in event payloads unless the Redis deployment is adequately protected.
+
 ## Supported features
 
 | Feature                         | `socket.io` version                 | Support                                        |

@@ -26,6 +26,16 @@ Every packet that is sent to multiple clients (e.g. `io.to("room1").emit()` or `
 
 The source code of this adapter can be found [here](https://github.com/socketio/socket.io-redis-adapter).
 
+## Security considerations
+
+The Redis adapter assumes that Redis is part of the trusted internal infrastructure.
+
+Messages exchanged through Redis Pub/Sub are not signed, encrypted, or authenticated by the adapter. Anyone able to connect to Redis and publish to the adapter channels may be able to inject packets, spoof inter-server control messages, or send forged events to connected clients. Anyone able to observe Redis traffic or subscribe to the relevant channels may also be able to inspect event payloads.
+
+Redis should therefore not be exposed to untrusted networks or shared with untrusted clients. Avoid sharing the same Redis instance with unrelated applications unless ACLs and Pub/Sub channel isolation are properly configured.
+
+Please use Redis ACLs, authentication, TLS, firewall rules, private networking, and dedicated credentials with the minimum required command and channel permissions where appropriate. Avoid sending long-lived secrets or sensitive credentials in event payloads unless the Redis deployment is adequately protected.
+
 ## Supported features
 
 | Feature                         | `socket.io` version                 | Support                                        |
