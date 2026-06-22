@@ -48,7 +48,7 @@ const userNamespace = io.of("/users");
 
 userNamespace.on("connection", (socket) => {
   socket.join("room1"); // distinct from the room in the "orders" namespace
-  userNamespace.to("room1").emit("holà");
+  userNamespace.to("room1").emit("hola");
 });
 ```
 
@@ -82,19 +82,19 @@ adminNamespace.use((socket, next) => {
   next();
 });
 
-adminNamespace.on("connection", socket => {
+adminNamespace.on("connection", (socket) => {
   socket.on("delete user", () => {
     // ...
   });
 });
 ```
 
-- your application has multiple tenants so you want to dynamically create one namespace per tenant
+- your application has multiple tenants, so you want to dynamically create one namespace per tenant
 
 ```js
 const workspaces = io.of(/^\/\w+$/);
 
-workspaces.on("connection", socket => {
+workspaces.on("connection", (socket) => {
   const workspace = socket.nsp;
 
   workspace.emit("hello");
@@ -128,7 +128,7 @@ To set up a custom namespace, you can call the `of` function on the server-side:
 ```js
 const nsp = io.of("/my-namespace");
 
-nsp.on("connection", socket => {
+nsp.on("connection", (socket) => {
   console.log("someone connected");
 });
 
@@ -153,11 +153,11 @@ const orderSocket = io("https://example.com/orders"); // the "orders" namespace
 const userSocket = io("https://example.com/users"); // the "users" namespace
 ```
 
-In the example above, only one WebSocket connection will be established, and the packets will automatically be routed to the right namespace.
+In the example above, only one low-level connection will be established, and the packets will automatically be routed to the right namespace.
 
 Please note that multiplexing will be disabled in the following cases:
 
-- multiple creation for the same namespace
+- multiple creations for the same namespace
 
 ```js
 const socket1 = io();
@@ -180,6 +180,8 @@ const socket2 = io("/admin", { forceNew: true }); // no multiplexing, two distin
 
 ## Dynamic namespaces
 
+### Usage
+
 It is also possible to dynamically create namespaces, either with a regular expression:
 
 ```js
@@ -190,11 +192,13 @@ or with a function:
 
 ```js
 io.of((name, auth, next) => {
+  // name is the requested namespace, for example "/workspace-123"
+  // auth is the authentication payload sent by the client
   next(null, true); // or false, when the creation is denied
 });
 ```
 
-You can have access to the new namespace in the `connection` event:
+You can access the newly created namespace in the `connection` event:
 
 ```js
 io.of(/^\/dynamic-\d+$/).on("connection", (socket) => {
@@ -202,27 +206,7 @@ io.of(/^\/dynamic-\d+$/).on("connection", (socket) => {
 });
 ```
 
-The return value of the `of()` method is what we call the parent namespace, from which you can:
-
-- register [middlewares](../02-Server/middlewares.md)
-
-```js
-const parentNamespace = io.of(/^\/dynamic-\d+$/);
-
-parentNamespace.use((socket, next) => { next() });
-```
-
-The middleware will automatically be registered on each child namespace.
-
-- [broadcast](../04-Events/broadcasting-events.md) events
-
-```js
-const parentNamespace = io.of(/^\/dynamic-\d+$/);
-
-parentNamespace.emit("hello"); // will be sent to users in /dynamic-1, /dynamic-2, ...
-```
-
-:::caution
+### Priority
 
 Existing namespaces have priority over dynamic namespaces. For example:
 
@@ -235,7 +219,64 @@ io.of(/^\/dynamic-\d+$/).on("connection", (socket) => {
 });
 ```
 
-:::
+### Security considerations
+
+Prefer function-based dynamic namespaces when namespace creation depends on user identity, permissions, or tenant membership.
+
+For example, this pattern:
+
+```js
+io.of(/^\/\w+$/);
+```
+
+allows any client to create a new namespace by connecting to a matching name. Depending on your application, this could lead to unexpected namespace creation or resource usage.
+
+You can use a function-based dynamic namespace to explicitly authorize or deny the creation:
+
+```js
+io.of((name, auth, next) => {
+  // validate both the namespace name and the auth payload
+  next(null, true); // or false, when the creation is denied
+});
+```
+
+### Parent namespace
+
+The return value of the `of()` method is what we call the parent namespace, from which you can:
+
+- register [middlewares](../02-Server/middlewares.md)
+
+```js
+const parentNamespace = io.of(/^\/dynamic-\d+$/);
+
+parentNamespace.use((socket, next) => {
+  next();
+});
+```
+
+The middleware will automatically be registered on each child namespace.
+
+- [broadcast](../04-Events/broadcasting-events.md) events
+
+```js
+const parentNamespace = io.of(/^\/dynamic-\d+$/);
+
+parentNamespace.emit("hello"); // will be sent to users in /dynamic-1, /dynamic-2, ...
+```
+
+### Cleanup of empty child namespaces
+
+By default, dynamically created child namespaces are kept in memory even after the last socket disconnects.
+
+You can enable automatic cleanup with the [`cleanupEmptyChildNamespaces`](../../server-options.md#cleanupemptychildnamespaces) option (available since `v4.6.0`):
+
+```js
+const io = new Server(httpServer, {
+  cleanupEmptyChildNamespaces: true,
+});
+```
+
+With this option enabled, a child namespace created from a dynamic namespace is removed once it has no connected sockets anymore.
 
 ## Complete API
 
