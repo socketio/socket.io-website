@@ -50,6 +50,7 @@ You can find more details about that in the ["How it works" section](./how-it-wo
 | Python               | https://github.com/miguelgrinberg/python-socketio                                                                                                       |
 | Golang               | https://github.com/googollee/go-socket.io                                                                                                               |
 | Rust                 | https://github.com/Totodore/socketioxide                                                                                                                |
+| PHP                  | https://github.com/walkor/phpsocket.io                                                                                                                  |
 
 ### Client implementations
 
