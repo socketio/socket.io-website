@@ -272,10 +272,55 @@ The client will then keep track of the offset:
 
 And finally the server will send the missing messages upon (re)connection:
 
+<Tabs groupId="lang">
+  <TabItem value="cjs" label="CommonJS" default>
+
 ```js title="index.js"
 // [...]
 
+  // highlight-next-line
+  io.on('connection', async (socket) => {
+    // highlight-next-line
+    socket.on('chat message', async (msg) => {
+      let result;
+      try {
+        result = await db.run('INSERT INTO messages (content) VALUES (?)', msg);
+      } catch (e) {
+        // TODO handle the failure
+        return;
+      }
+      io.emit('chat message', msg, result.lastID);
+    });
+
+    // highlight-start
+    if (!socket.recovered) {
+      // if the connection state recovery was not successful
+      try {
+        await db.each('SELECT id, content FROM messages WHERE id > ?',
+          [socket.handshake.auth.serverOffset || 0],
+          (_err, row) => {
+            socket.emit('chat message', row.content, row.id);
+          }
+        )
+      } catch (e) {
+        // something went wrong
+      }
+    }
+    // highlight-end
+  });
+
+// [...]
+```
+
+  </TabItem>
+  <TabItem value="mjs" label="ES modules">
+
+```js title="index.js"
+// [...]
+
+// highlight-next-line
 io.on('connection', async (socket) => {
+  // highlight-next-line
   socket.on('chat message', async (msg) => {
     let result;
     try {
@@ -306,6 +351,9 @@ io.on('connection', async (socket) => {
 
 // [...]
 ```
+
+  </TabItem>
+</Tabs>
 
 Let's see it in action:
 
