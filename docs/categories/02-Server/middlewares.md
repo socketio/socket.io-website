@@ -192,3 +192,28 @@ io.engine.use((req, res, next) => {
   }
 });
 ```
+
+## Applying middleware to all namespaces
+
+By default, a middleware registered with `io.use()` only applies to the main namespace (`/`). If you need a middleware to run for **all namespaces**, you can use the [`new_namespace`](/docs/v4/server-api/#event-new_namespace) event:
+
+```js
+const myMiddleware = (socket, next) => {
+  // ...
+  next();
+};
+
+io.use(myMiddleware);
+
+io.on("new_namespace", (namespace) => {
+  namespace.use(myMiddleware);
+});
+```
+
+:::caution
+
+Namespaces registered before the `new_namespace` listener is added will not be affected.
+
+:::
+
+For more details and additional patterns (manual registration, dynamic namespaces), see [How to register a global middleware](/how-to/register-a-global-middleware).
