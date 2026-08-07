@@ -64,7 +64,7 @@
     "description": "The label of footer link with label=Admin UI linking to https://admin.socket.io"
   },
   "copyright": {
-    "message": "Copyright © 2025 Socket.IO",
+    "message": "Copyright © 2026 Socket.IO",
     "description": "The footer copyright"
   }
 }
