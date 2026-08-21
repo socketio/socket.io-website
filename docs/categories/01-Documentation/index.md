@@ -47,6 +47,7 @@ You can find more details about that in the ["How it works" section](./how-it-wo
 | Java (Active development) | https://github.com/socketio4j/netty-socketio |
 | Java                 | https://github.com/mrniko/netty-socketio                                                                                                                |
 | Java                 | https://github.com/trinopoty/socket.io-server-java                                                                                                      |
+| Swift                | https://github.com/Dean151/swift-server-socket.io                                                                                                       |
 | Python               | https://github.com/miguelgrinberg/python-socketio                                                                                                       |
 | Golang               | https://github.com/googollee/go-socket.io                                                                                                               |
 | Rust                 | https://github.com/Totodore/socketioxide                                                                                                                |
