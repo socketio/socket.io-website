@@ -6,9 +6,10 @@ slug: /gcp-pubsub-adapter/
 
 ## How it works
 
-This adapter uses [Google Cloud Pub/Sub service](https://cloud.google.com/pubsub/docs/overview) to forward messages between the nodes of a Socket.IO cluster.
+This adapter uses [Google Cloud Pub/Sub service](https://docs.cloud.google.com/pubsub/docs/overview) to forward messages between the nodes of a Socket.IO cluster.
 
-The source code of this adapter can be found [here](https://github.com/socketio/socket.io-gcp-pubsub-adapter).
+- Source code: https://github.com/socketio/socket.io-gcp-pubsub-adapter
+- NPM: https://www.npmjs.com/package/@socket.io/gcp-pubsub-adapter
 
 ## Supported features
 
@@ -59,8 +60,9 @@ io.listen(3000);
 
 ## Latest releases
 
-| Version | Release date | Release notes                                                                       | Diff |
-|---------|--------------|-------------------------------------------------------------------------------------|------|
-| `0.1.0` | March 2024   | [link](https://github.com/socketio/socket.io-gcp-pubsub-adapter/releases/tag/0.1.0) | `-`  |
+| Version | Release date   | Release notes                                                                       | Diff                                                                                              |
+|---------|----------------|-------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `0.1.1` | September 2026 | [link](https://github.com/socketio/socket.io-gcp-pubsub-adapter/releases/tag/0.1.1) | [`0.1.0...0.1.1`](https://github.com/socketio/socket.io-gcp-pubsub-adapter/compare/0.1.0...0.1.1) |
+| `0.1.0` | March 2024     | [link](https://github.com/socketio/socket.io-gcp-pubsub-adapter/releases/tag/0.1.0) | `-`                                                                                               |
 
 [Complete changelog](https://github.com/socketio/socket.io-gcp-pubsub-adapter/blob/main/CHANGELOG.md)
