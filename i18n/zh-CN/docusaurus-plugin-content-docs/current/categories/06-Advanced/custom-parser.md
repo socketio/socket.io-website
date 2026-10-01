@@ -187,10 +187,10 @@ const socket = io("https://example.com", {
 
 | CDN           | URL                                                                               |
 |---------------|-----------------------------------------------------------------------------------|
-| Socket.IO CDN | https://cdn.socket.io/4.8.3/socket.io.msgpack.min.js                              |
-| cdnjs         | https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.3/socket.io.msgpack.min.js   |
-| jsDelivr      | https://cdn.jsdelivr.net/npm/socket.io-client@4.8.3/dist/socket.io.msgpack.min.js |
-| unpkg         | https://unpkg.com/socket.io-client@4.8.3/dist/socket.io.msgpack.min.js            |
+| Socket.IO CDN | https://cdn.socket.io/4.8.4/socket.io.msgpack.min.js                              |
+| cdnjs         | https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.4/socket.io.msgpack.min.js   |
+| jsDelivr      | https://cdn.jsdelivr.net/npm/socket.io-client@4.8.4/dist/socket.io.msgpack.min.js |
+| unpkg         | https://unpkg.com/socket.io-client@4.8.4/dist/socket.io.msgpack.min.js            |
 
 在这种情况下，您不需要指定`parser`配置项。
 

@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
 
 :::info
 
-La version la plus récente est `4.8.3`, sortie en Décembre 2025.
+La version la plus récente est `4.8.4`, sortie en septembre 2026.
 
-Vous pouvez trouver les notes de versions [ici](../../changelog/4.8.3.md).
+Vous pouvez trouver les notes de versions [ici](../../changelog/4.8.4.md).
 
 :::
 
