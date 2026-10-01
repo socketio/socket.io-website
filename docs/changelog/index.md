@@ -47,15 +47,15 @@ Aside from the breaking changes listed above, here are the latest important chan
 
 ## Version usage
 
-As of June 2024:
+As of October 2026:
 
 `socket.io` package
 
 <ThemedImage
-  alt="Client downloads per version"
+  alt="Server downloads per version"
   sources={{
-    light: useBaseUrl('/images/server-downloads-per-version.png'),
-    dark: useBaseUrl('/images/server-downloads-per-version-dark.png'),
+    light: useBaseUrl('/images/server-downloads-per-version-20261001.png'),
+    dark: useBaseUrl('/images/server-downloads-per-version-dark-20261001.png'),
   }}
 />
 
@@ -65,7 +65,7 @@ As of June 2024:
 <ThemedImage
   alt="Client downloads per version"
   sources={{
-    light: useBaseUrl('/images/client-downloads-per-version.png'),
-    dark: useBaseUrl('/images/client-downloads-per-version-dark.png'),
+    light: useBaseUrl('/images/client-downloads-per-version-20261001.png'),
+    dark: useBaseUrl('/images/client-downloads-per-version-dark-20261001.png'),
   }}
 />
