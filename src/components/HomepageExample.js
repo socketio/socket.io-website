@@ -20,11 +20,11 @@ export default function HomepageExample() {
       <p className="text--center">
         <Translate>Run this example on</Translate>
         <span> </span>
-        <a href="https://replit.com/@socketio/socketio-minimal-example">Replit</a>
+        <a href="https://stackblitz.com/github/socketio/chat-example/tree/esm/step3?file=index.js">StackBlitz</a>
         <span> / </span>
-        <a href="https://stackblitz.com/edit/socketio-base?file=index.js">StackBlitz</a>
+        <a href="https://codesandbox.io/p/sandbox/github/socketio/chat-example/tree/esm/step3?file=index.js">CodeSandbox</a>
         <span> / </span>
-        <a href="https://codesandbox.io/s/socket-io-minimal-example-k3h2l">CodeSandbox</a>
+        <a href="https://github.com/socketio/chat-example/tree/esm/step3">GitHub</a>
       </p>
 
     </section>
