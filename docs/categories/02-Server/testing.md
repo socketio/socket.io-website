@@ -1,16 +1,287 @@
 ---
 title: Testing
-sidebar_position: 6
+sidebar_position: 11
 slug: /testing/
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You will find below some code examples with common testing libraries:
+Testing a Socket.IO application usually involves writing **integration tests**, where you start a real Socket.IO server, connect a client to it, and assert that events are properly exchanged between the two sides.
+
+The examples below show how to test a basic Socket.IO setup with common testing libraries. Each example covers:
+
+- sending an event from the server to the client
+- sending an event from the client to the server with an acknowledgement
+- using `emitWithAck()`
+- waiting for an event with a small helper function
+
+Select your preferred test runner:
 
 <Tabs>
-  <TabItem value="mocha" label="mocha" default>
+  <TabItem value="node" label="Node.js" default>
+
+<!-- start of node -->
+
+<Tabs groupId="lang">
+  <TabItem value="cjs" label="CommonJS" default>
+
+Installation:
+
+Built-in since Node.js v18, no installation is required.
+
+Test suite:
+
+```js title="test/basic.test.js"
+const { test } = require("node:test");
+const assert = require("node:assert");
+const { createServer } = require("node:http");
+const { Server } = require("socket.io");
+const ioc = require("socket.io-client");
+
+function waitFor(socket, event) {
+  return new Promise((resolve) => {
+    socket.once(event, resolve);
+  });
+}
+
+test("my awesome project", async (t) => {
+  let io, serverSocket, clientSocket;
+
+  await t.test("setup", () => {
+    return new Promise((resolve) => {
+      const httpServer = createServer();
+      io = new Server(httpServer);
+      io.on("connection", (socket) => {
+        serverSocket = socket;
+      });
+      httpServer.listen(() => {
+        const port = httpServer.address().port;
+        clientSocket = ioc(`http://localhost:${port}`);
+        clientSocket.on("connect", resolve);
+      });
+    });
+  });
+
+  t.after(() => {
+    io.close();
+    clientSocket.disconnect();
+  });
+
+  await t.test("should work", () => {
+    return new Promise((resolve) => {
+      clientSocket.on("hello", (arg) => {
+        assert.strictEqual(arg, "world");
+        resolve();
+      });
+      serverSocket.emit("hello", "world");
+    });
+  });
+
+  await t.test("should work with an acknowledgement", () => {
+    return new Promise((resolve) => {
+      serverSocket.on("hi", (cb) => {
+        cb("hola");
+      });
+      clientSocket.emit("hi", (arg) => {
+        assert.strictEqual(arg, "hola");
+        resolve();
+      });
+    });
+  });
+
+  await t.test("should work with emitWithAck()", async () => {
+    serverSocket.on("foo", (cb) => {
+      cb("bar");
+    });
+    const result = await clientSocket.emitWithAck("foo");
+    assert.strictEqual(result, "bar");
+  });
+
+  await t.test("should work with waitFor()", () => {
+    clientSocket.emit("baz");
+
+    return waitFor(serverSocket, "baz");
+  });
+});
+```
+
+  </TabItem>
+  <TabItem value="mjs" label="ES modules">
+
+Installation:
+
+Built-in since Node.js v18, no installation is required.
+
+Test suite:
+
+```js title="test/basic.test.js"
+import { test } from "node:test";
+import assert from "node:assert";
+import { createServer } from "node:http";
+import { Server } from "socket.io";
+import { io as ioc } from "socket.io-client";
+
+function waitFor(socket, event) {
+  return new Promise((resolve) => {
+    socket.once(event, resolve);
+  });
+}
+
+test("my awesome project", async (t) => {
+  let io, serverSocket, clientSocket;
+
+  await t.test("setup", () => {
+    return new Promise((resolve) => {
+      const httpServer = createServer();
+      io = new Server(httpServer);
+      io.on("connection", (socket) => {
+        serverSocket = socket;
+      });
+      httpServer.listen(() => {
+        const port = httpServer.address().port;
+        clientSocket = ioc(`http://localhost:${port}`);
+        clientSocket.on("connect", resolve);
+      });
+    });
+  });
+
+  t.after(() => {
+    io.close();
+    clientSocket.disconnect();
+  });
+
+  await t.test("should work", () => {
+    return new Promise((resolve) => {
+      clientSocket.on("hello", (arg) => {
+        assert.strictEqual(arg, "world");
+        resolve();
+      });
+      serverSocket.emit("hello", "world");
+    });
+  });
+
+  await t.test("should work with an acknowledgement", () => {
+    return new Promise((resolve) => {
+      serverSocket.on("hi", (cb) => {
+        cb("hola");
+      });
+      clientSocket.emit("hi", (arg) => {
+        assert.strictEqual(arg, "hola");
+        resolve();
+      });
+    });
+  });
+
+  await t.test("should work with emitWithAck()", async () => {
+    serverSocket.on("foo", (cb) => {
+      cb("bar");
+    });
+    const result = await clientSocket.emitWithAck("foo");
+    assert.strictEqual(result, "bar");
+  });
+
+  await t.test("should work with waitFor()", () => {
+    clientSocket.emit("baz");
+
+    return waitFor(serverSocket, "baz");
+  });
+});
+```
+
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+
+Installation:
+
+Built-in since Node.js v18, no installation is required.
+
+Test suite:
+
+```ts title="test/basic.test.ts"
+import { test } from "node:test";
+import assert from "node:assert";
+import { createServer } from "node:http";
+import { type AddressInfo } from "node:net";
+import { io as ioc, type Socket as ClientSocket } from "socket.io-client";
+import { Server, type Socket as ServerSocket } from "socket.io";
+
+function waitFor(socket: ServerSocket | ClientSocket, event: string) {
+  return new Promise((resolve) => {
+    socket.once(event, resolve);
+  });
+}
+
+test("my awesome project", async (t) => {
+  let io: Server, serverSocket: ServerSocket, clientSocket: ClientSocket;
+
+  await t.test("setup", () => {
+    return new Promise((resolve) => {
+      const httpServer = createServer();
+      io = new Server(httpServer);
+      io.on("connection", (socket) => {
+        serverSocket = socket;
+      });
+      httpServer.listen(() => {
+        const port = (httpServer.address() as AddressInfo).port;
+        clientSocket = ioc(`http://localhost:${port}`);
+        clientSocket.on("connect", resolve);
+      });
+    });
+  });
+
+  t.after(() => {
+    io.close();
+    clientSocket.disconnect();
+  });
+
+  await t.test("should work", () => {
+    return new Promise((resolve) => {
+      clientSocket.on("hello", (arg) => {
+        assert.strictEqual(arg, "world");
+        resolve();
+      });
+      serverSocket.emit("hello", "world");
+    });
+  });
+
+  await t.test("should work with an acknowledgement", () => {
+    return new Promise((resolve) => {
+      serverSocket.on("hi", (cb) => {
+        cb("hola");
+      });
+      clientSocket.emit("hi", (arg) => {
+        assert.strictEqual(arg, "hola");
+        resolve();
+      });
+    });
+  });
+
+  await t.test("should work with emitWithAck()", async () => {
+    serverSocket.on("foo", (cb) => {
+      cb("bar");
+    });
+    const result = await clientSocket.emitWithAck("foo");
+    assert.strictEqual(result, "bar");
+  });
+
+  await t.test("should work with waitFor()", () => {
+    clientSocket.emit("baz");
+
+    return waitFor(serverSocket, "baz");
+  });
+});
+```
+
+  </TabItem>
+</Tabs>
+
+Reference: https://nodejs.org/api/test.html
+
+<!-- end of node -->
+
+  </TabItem>
+  <TabItem value="mocha" label="mocha">
 
 <!-- start of mocha -->
 
@@ -43,12 +314,12 @@ describe("my awesome project", () => {
   before((done) => {
     const httpServer = createServer();
     io = new Server(httpServer);
+    io.on("connection", (socket) => {
+      serverSocket = socket;
+    });
     httpServer.listen(() => {
       const port = httpServer.address().port;
       clientSocket = ioc(`http://localhost:${port}`);
-      io.on("connection", (socket) => {
-        serverSocket = socket;
-      });
       clientSocket.on("connect", done);
     });
   });
@@ -121,12 +392,12 @@ describe("my awesome project", () => {
   before((done) => {
     const httpServer = createServer();
     io = new Server(httpServer);
+    io.on("connection", (socket) => {
+      serverSocket = socket;
+    });
     httpServer.listen(() => {
       const port = httpServer.address().port;
       clientSocket = ioc(`http://localhost:${port}`);
-      io.on("connection", (socket) => {
-        serverSocket = socket;
-      });
       clientSocket.on("connect", done);
     });
   });
@@ -200,12 +471,12 @@ describe("my awesome project", () => {
   before((done) => {
     const httpServer = createServer();
     io = new Server(httpServer);
+    io.on("connection", (socket) => {
+      serverSocket = socket;
+    });
     httpServer.listen(() => {
       const port = (httpServer.address() as AddressInfo).port;
       clientSocket = ioc(`http://localhost:${port}`);
-      io.on("connection", (socket) => {
-        serverSocket = socket;
-      });
       clientSocket.on("connect", done);
     });
   });
@@ -289,12 +560,12 @@ describe("my awesome project", () => {
   beforeAll((done) => {
     const httpServer = createServer();
     io = new Server(httpServer);
+    io.on("connection", (socket) => {
+      serverSocket = socket;
+    });
     httpServer.listen(() => {
       const port = httpServer.address().port;
       clientSocket = ioc(`http://localhost:${port}`);
-      io.on("connection", (socket) => {
-        serverSocket = socket;
-      });
       clientSocket.on("connect", done);
     });
   });
@@ -366,12 +637,12 @@ describe("my awesome project", () => {
   beforeAll((done) => {
     const httpServer = createServer();
     io = new Server(httpServer);
+    io.on("connection", (socket) => {
+      serverSocket = socket;
+    });
     httpServer.listen(() => {
       const port = httpServer.address().port;
       clientSocket = ioc(`http://localhost:${port}`);
-      io.on("connection", (socket) => {
-        serverSocket = socket;
-      });
       clientSocket.on("connect", done);
     });
   });
@@ -439,17 +710,17 @@ function waitFor(socket: ServerSocket | ClientSocket, event: string) {
 }
 
 describe("my awesome project", () => {
-  let io, serverSocket, clientSocket;
+  let io: Server, serverSocket: ServerSocket, clientSocket: ClientSocket;
 
   beforeAll((done) => {
     const httpServer = createServer();
     io = new Server(httpServer);
+    io.on("connection", (socket) => {
+      serverSocket = socket;
+    });
     httpServer.listen(() => {
       const port = (httpServer.address() as AddressInfo).port;
       clientSocket = ioc(`http://localhost:${port}`);
-      io.on("connection", (socket) => {
-        serverSocket = socket;
-      });
       clientSocket.on("connect", done);
     });
   });
@@ -501,7 +772,7 @@ Reference: https://jestjs.io/
 <!-- end of jest -->
 
   </TabItem>
-  <TabItem value="tape" label="tape" default>
+  <TabItem value="tape" label="tape">
 
 <!-- start of tape -->
 
@@ -533,12 +804,12 @@ function waitFor(socket, event) {
 test("setup", (t) => {
   const httpServer = createServer();
   io = new Server(httpServer);
+  io.on("connection", (socket) => {
+    serverSocket = socket;
+  });
   httpServer.listen(() => {
     const port = httpServer.address().port;
     clientSocket = ioc(`http://localhost:${port}`);
-    io.on("connection", (socket) => {
-      serverSocket = socket;
-    });
     clientSocket.on("connect", t.end);
   });
 });
@@ -612,12 +883,12 @@ function waitFor(socket, event) {
 test("setup", (t) => {
   const httpServer = createServer();
   io = new Server(httpServer);
+  io.on("connection", (socket) => {
+    serverSocket = socket;
+  });
   httpServer.listen(() => {
     const port = httpServer.address().port;
     clientSocket = ioc(`http://localhost:${port}`);
-    io.on("connection", (socket) => {
-      serverSocket = socket;
-    });
     clientSocket.on("connect", t.end);
   });
 });
@@ -692,12 +963,12 @@ function waitFor(socket: ServerSocket | ClientSocket, event: string) {
 test("setup", (t) => {
   const httpServer = createServer();
   io = new Server(httpServer);
+  io.on("connection", (socket) => {
+    serverSocket = socket;
+  });
   httpServer.listen(() => {
     const port = (httpServer.address() as AddressInfo).port;
     clientSocket = ioc(`http://localhost:${port}`);
-    io.on("connection", (socket) => {
-      serverSocket = socket;
-    });
     clientSocket.on("connect", t.end);
   });
 });
@@ -753,6 +1024,8 @@ Reference: https://github.com/ljharb/tape
   </TabItem>
   <TabItem value="vitest" label="vitest">
 
+<!-- start of vitest -->
+
 <Tabs groupId="lang">
   <TabItem value="cjs" label="CommonJS" default>
 
@@ -783,12 +1056,12 @@ describe("my awesome project", () => {
     return new Promise((resolve) => {
       const httpServer = createServer();
       io = new Server(httpServer);
+      io.on("connection", (socket) => {
+        serverSocket = socket;
+      });
       httpServer.listen(() => {
         const port = httpServer.address().port;
         clientSocket = ioc(`http://localhost:${port}`);
-        io.on("connection", (socket) => {
-          serverSocket = socket;
-        });
         clientSocket.on("connect", resolve);
       });
     });
@@ -867,12 +1140,12 @@ describe("my awesome project", () => {
     return new Promise((resolve) => {
       const httpServer = createServer();
       io = new Server(httpServer);
+      io.on("connection", (socket) => {
+        serverSocket = socket;
+      });
       httpServer.listen(() => {
         const port = httpServer.address().port;
         clientSocket = ioc(`http://localhost:${port}`);
-        io.on("connection", (socket) => {
-          serverSocket = socket;
-        });
         clientSocket.on("connect", resolve);
       });
     });
@@ -952,12 +1225,12 @@ describe("my awesome project", () => {
     return new Promise((resolve) => {
       const httpServer = createServer();
       io = new Server(httpServer);
+      io.on("connection", (socket) => {
+        serverSocket = socket;
+      });
       httpServer.listen(() => {
         const port = (httpServer.address() as AddressInfo).port;
         clientSocket = ioc(`http://localhost:${port}`);
-        io.on("connection", (socket) => {
-          serverSocket = socket;
-        });
         clientSocket.on("connect", resolve);
       });
     });
