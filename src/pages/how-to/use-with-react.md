@@ -23,9 +23,7 @@ src
 
 The Socket.IO client is initialized in the `src/socket.js` file:
 
-`src/socket.js`
-
-```js
+```js title="src/socket.js"
 import { io } from 'socket.io-client';
 
 // "undefined" means the URL will be computed from the `window.location` object
@@ -66,13 +64,11 @@ Reference: [Handling CORS](/docs/v4/handling-cors/)
 
 :::
 
-The events listeners are then registered in the `App` component, which stores the state and pass it down to its child components via props.
+The event listeners are then registered in the `App` component, which stores the state and passes it down to its child components via props.
 
 See also: https://react.dev/learn/sharing-state-between-components
 
-`src/App.js`
-
-```js
+```js title="src/App.js"
 import React, { useState, useEffect } from 'react';
 import { socket } from './socket';
 import { ConnectionState } from './components/ConnectionState';
@@ -127,9 +123,7 @@ A few remarks about the usage of the [`useEffect`](https://react.dev/reference/r
 
 The child components can then use the state and the `socket` object like this:
 
-- `src/components/ConnectionState.js`
-
-```js
+```js title="src/components/ConnectionState.js"
 import React from 'react';
 
 export function ConnectionState({ isConnected }) {
@@ -137,9 +131,7 @@ export function ConnectionState({ isConnected }) {
 }
 ```
 
-- `src/components/Events.js`
-
-```js
+```js title="src/components/Events.js"
 import React from 'react';
 
 export function Events({ events }) {
@@ -155,9 +147,7 @@ export function Events({ events }) {
 }
 ```
 
-- `src/components/ConnectionManager.js`
-
-```js
+```js title="src/components/ConnectionManager.js"
 import React from 'react';
 import { socket } from '../socket';
 
@@ -179,9 +169,7 @@ export function ConnectionManager() {
 }
 ```
 
-- `src/components/MyForm.js`
-
-```js
+```js title="src/components/MyForm.js"
 import React, { useState } from 'react';
 import { socket } from '../socket';
 
@@ -193,14 +181,17 @@ export function MyForm() {
     event.preventDefault();
     setIsLoading(true);
 
-    socket.timeout(5000).emit('create-something', value, () => {
+    socket.timeout(5000).emit('create-something', value, (err) => {
+      if (err) {
+        // the server did not acknowledge the event in the given delay
+      }
       setIsLoading(false);
     });
   }
 
   return (
     <form onSubmit={ onSubmit }>
-      <input onChange={ e => setValue(e.target.value) } />
+      <input value={ value } onChange={ e => setValue(e.target.value) } />
 
       <button type="submit" disabled={ isLoading }>Submit</button>
     </form>
@@ -212,7 +203,7 @@ export function MyForm() {
 
 ### Cleanup
 
-Any event listeners registered in the setup function must be removed in the cleanup callback in order to prevent duplicate event registrations.
+Any event listeners registered in the setup function must be removed in the cleanup callback to prevent duplicate event registrations.
 
 ```js
 useEffect(() => {
@@ -283,7 +274,7 @@ useEffect(() => {
 
 :::info
 
-In [Strict Mode](https://react.dev/reference/react/StrictMode), every Effect is run twice in order to catch bugs during development, so you will see:
+In [Strict Mode](https://react.dev/reference/react/StrictMode), every Effect is run twice to catch bugs during development, so you will see:
 
 - setup: `socket.connect()`
 - cleanup: `socket.disconnect()`
@@ -291,7 +282,7 @@ In [Strict Mode](https://react.dev/reference/react/StrictMode), every Effect is 
 
 :::
 
-- have no dependency for this Effect in order to prevent a reconnection on each render:
+- have no dependency for this Effect to prevent a reconnection on each render:
 
 ```js
 useEffect(() => {
@@ -312,7 +303,7 @@ useEffect(() => {
 }, [fooEvents]);
 ```
 
-You could have two Effects instead:
+To avoid reconnecting on every render, you can split this into two Effects:
 
 ```js
 import React, { useState, useEffect } from 'react';
@@ -332,7 +323,7 @@ function App() {
 
   useEffect(() => {
     function onFooEvent(value) {
-      setFooEvents(fooEvents.concat(value));
+      setFooEvents(previous => [...previous, value]);
     }
 
     socket.on('foo', onFooEvent);
@@ -340,7 +331,7 @@ function App() {
     return () => {
       socket.off('foo', onFooEvent);
     };
-  }, [fooEvents]);
+  }, []);
 
   // ...
 }
@@ -369,10 +360,9 @@ Reference: https://webpack.js.org/concepts/hot-module-replacement/
 
 We strongly advise against registering event listeners in your child components, because it ties the state of the UI with the time of reception of the events: if the component is not mounted, then some messages might be missed.
 
-`src/components/MyComponent.js`
-
-```js
-import React from 'react';
+```js title="src/components/MyComponent.js"
+import React, { useState, useEffect } from 'react';
+import { socket } from '../socket';
 
 export default function MyComponent() {
   const [fooEvents, setFooEvents] = useState([]);
