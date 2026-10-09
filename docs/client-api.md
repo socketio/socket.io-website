@@ -48,7 +48,7 @@ With an [import map](https://caniuse.com/import-maps):
 </script>
 ```
 
-Else, in all other cases (with some build tools, in Node.js or React Native), it can be imported from the `socket.io-client` package:
+In all other cases (with build tools, in Node.js or React Native), it can be imported from the `socket.io-client` package:
 
 ```js
 // ES modules
@@ -70,16 +70,16 @@ You can find more information [here](https://github.com/socketio/socket.io-proto
 
 ### io([url][, options])
 
-  - `url` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) (defaults to `window.location.host`)
+  - `url` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) (defaults to `window.location.origin`)
   - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
     - `forceNew` [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type) whether to create a new connection
   - **Returns** [`<Socket>`](#socket)
 
-Creates a new `Manager` for the given URL, and attempts to reuse an existing `Manager` for subsequent calls, unless the `multiplex` option is passed with `false`. Passing this option is the equivalent of passing `"force new connection": true` or `forceNew: true`.
+Creates a new `Manager` for the given URL, and attempts to reuse an existing `Manager` for subsequent calls, unless the `multiplex` option is passed with `false`. This is equivalent to setting `"force new connection": true` or `forceNew: true`.
 
 A new `Socket` instance is returned for the namespace specified by the pathname in the URL, defaulting to `/`. For example, if the `url` is `http://localhost/users`, a transport connection will be established to `http://localhost` and a Socket.IO connection will be established to `/users`.
 
-Query parameters can also be provided, either with the `query` option or directly in the url (example: `http://localhost/users?token=abc`).
+Query parameters can also be provided, either with the `query` option or directly in the URL (example: `http://localhost/users?token=abc`).
 
 To understand what happens under the hood, the following example:
 
@@ -128,13 +128,13 @@ The complete list of available options can be found [here](client-options.md).
   }}
 />
 
-The `Manager` *manages* the Engine.IO [client](https://github.com/socketio/engine.io-client/) instance, which is the low-level engine that establishes the connection to the server (by using transports like WebSocket or HTTP long-polling).
+The `Manager` owns the Engine.IO [client](https://github.com/socketio/engine.io-client/) instance, which is the low-level engine that establishes the connection to the server (by using transports like WebSocket or HTTP long-polling).
 
 The `Manager` handles the reconnection logic.
 
 A single `Manager` can be used by several [Sockets](#socket). You can find more information about this multiplexing feature [here](categories/06-Advanced/namespaces.md).
 
-Please note that, in most cases, you won't use the Manager directly but use the [Socket](#socket) instance instead.
+Please note that, in most cases, you won't use the Manager directly. You will use the [Socket](#socket) instance instead.
 
 ### Constructor
 
@@ -217,7 +217,7 @@ socket.io.on("reconnect_error", (error) => {
 
 #### Event: 'reconnect_failed'
 
-Fired when couldn't reconnect within `reconnectionAttempts`.
+Fired when the client couldn't reconnect within `reconnectionAttempts`.
 
 ```js
 socket.io.on("reconnect_failed", () => {
@@ -236,9 +236,9 @@ Synonym of [manager.open([callback])](#manageropencallback).
 - `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 - **Returns** [`<Manager>`](#manager)
 
-If the manager was initiated with `autoConnect` to `false`, launch a new connection attempt.
+If the manager was initiated with `autoConnect` set to `false`, this method starts a new connection attempt.
 
-The `callback` argument is optional and will be called once the attempt fails/succeeds.
+The `callback` argument is optional and will be called once the attempt fails or succeeds.
 
 ```js
 import { Manager } from "socket.io-client";
@@ -292,7 +292,31 @@ Sets the `reconnectionDelayMax` option, or returns it if no parameters are passe
 - `options` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
 - **Returns** [`<Socket>`](#socket)
 
-Creates a new `Socket` for the given namespace. Only `auth` (`{ auth: {key: "value"} }`) is read from the `options` object. Other keys will be ignored and should be passed when instancing a `new Manager(nsp, options)`.
+Creates a new `Socket` for the given namespace.
+
+Only the `auth` option is read by this method:
+
+```js
+const socket = manager.socket("/admin", {
+  auth: {
+    token: "123"
+  }
+});
+```
+
+Connection-level options, such as `reconnectionDelayMax`, `transports`, or `query`, must be passed when creating the `Manager`:
+
+```js
+const manager = new Manager("https://example.com", {
+  reconnectionDelayMax: 10000,
+  transports: ["websocket"],
+  query: {
+    token: "abc"
+  }
+});
+```
+
+Other keys passed to `manager.socket()` will be ignored.
 
 #### manager.timeout([value])
 
@@ -313,7 +337,7 @@ Sets the `timeout` option, or returns it if no parameters are passed.
 
 A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](categories/06-Advanced/namespaces.md) (by default `/`) and uses an underlying [Manager](#manager) to communicate.
 
-A `Socket` is basically an [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter) which sends events to — and receive events from — the server over the network.
+A `Socket` is basically an [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter) which sends events to — and receives events from — the server over the network.
 
 ```js
 socket.emit("hello", { a: "b", c: [] });
@@ -406,8 +430,8 @@ Here is the list of possible reasons:
 | `io server disconnect` | The server has forcefully disconnected the socket with [socket.disconnect()](server-api.md#socketdisconnectclose) | :x: NO                  |
 | `io client disconnect` | The socket was manually disconnected using [socket.disconnect()](client-api.md#socketdisconnect)                  | :x: NO                  |
 | `ping timeout`         | The server did not send a PING within the `pingInterval + pingTimeout` range                                      | :white_check_mark: YES  |
-| `transport close`      | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G)     | :white_check_mark: YES  |
-| `transport error`      | The connection has encountered an error (example: the server was killed during a HTTP long-polling cycle)         | :white_check_mark: YES  |
+| `transport close`      | The connection was closed (example: the user has lost connection, or the network was changed from Wi-Fi to 4G)    | :white_check_mark: YES  |
+| `transport error`      | The connection has encountered an error (example: the server was killed during an HTTP long-polling cycle)        | :white_check_mark: YES  |
 
 The [`socket.active`](#socketactive) attribute indicates whether the socket will automatically try to reconnect after a small [randomized delay](client-options.md#reconnectiondelay):
 
@@ -515,7 +539,7 @@ The `id` attribute is an **ephemeral** ID that is not meant to be used in your a
 - two different browser tabs will have two different IDs
 - there is no message queue stored for a given ID on the server (i.e. if the client is disconnected, the messages sent from the server to this ID are lost)
 
-Please use a regular session ID instead (either sent in a cookie, or stored in the localStorage and sent in the [`auth`](./client-options.md#auth) payload).
+Please use a regular session ID instead (either sent in a cookie or stored in `localStorage` and sent in the [`auth`](./client-options.md#auth) payload).
 
 See also:
 
@@ -591,7 +615,7 @@ Synonym of [socket.disconnect()](#socketdisconnect).
 - `value` [`<boolean>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#boolean_type)
 - **Returns** [`<Socket>`](#socket)
 
-Sets a modifier for a subsequent event emission that the event data will only be _compressed_ if the value is `true`. Defaults to `true` when you don't call the method.
+Sets a modifier for the next event emission. The event data will only be _compressed_ if `value` is `true`. Defaults to `true` when you don't call the method.
 
 ```js
 socket.compress(false).emit("an event", { some: "data" });
@@ -601,7 +625,7 @@ socket.compress(false).emit("an event", { some: "data" });
 
 *Added in v1.0.0*
 
-  - **Returns** `Socket`
+- **Returns** [`<Socket>`](#socket)
 
 Manually connects the socket.
 
@@ -644,14 +668,14 @@ If this is the last active Socket instance of the Manager, the low-level connect
 - `ack` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 - **Returns** `true`
 
-Emits an event to the socket identified by the string name. Any other parameters can be included. All serializable data structures are supported, including `Buffer`.
+Emits an event with the given name to the server. Any additional parameters can be included. All serializable data structures are supported, including `Buffer`.
 
 ```js
 socket.emit("hello", "world");
 socket.emit("with-binary", 1, "2", { 3: "4", 5: Buffer.from([6, 7, 8]) });
 ```
 
-The `ack` argument is optional and will be called with the server answer.
+The `ack` argument is optional and will be called with the server response.
 
 *Client*
 
@@ -680,7 +704,7 @@ io.on("connection", (socket) => {
 - `args` `any[]`
 - **Returns** [`Promise<any>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-Promised-based version of emitting and expecting an acknowledgement from the server:
+Promise-based version of emitting and expecting an acknowledgement from the server:
 
 ```js
 // without timeout
@@ -690,7 +714,7 @@ const response = await socket.emitWithAck("hello", "world");
 try {
   const response = await socket.timeout(10000).emitWithAck("hello", "world");
 } catch (err) {
-  // the server did not acknowledge the event in the given delay
+  // the server did not acknowledge the event within the given delay
 }
 ```
 
@@ -840,7 +864,7 @@ socket.offAnyOutgoing();
 *Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
 - `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
-- `listener` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+- `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 - **Returns** [`<Socket>`](#socket)
 
 Register a new handler for the given event.
@@ -933,10 +957,10 @@ socket.onAnyOutgoing(() => {
 *Inherited from the [EventEmitter class](https://www.npmjs.com/package/@socket.io/component-emitter).*
 
 - `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
-- `listener` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+- `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 - **Returns** [`<Socket>`](#socket)
 
-Adds a one-time `listener` function for the event named `eventName`. The next time `eventName` is triggered, this listener is removed and then invoked.
+Adds a one-time `callback` function for the event named `eventName`. The next time `eventName` is triggered, this listener is removed and then invoked.
 
 ```js
 socket.once("my-event", () => {
@@ -999,7 +1023,7 @@ given number of milliseconds have elapsed without an acknowledgement from the se
 ```js
 socket.timeout(5000).emit("my-event", (err) => {
   if (err) {
-    // the server did not acknowledge the event in the given delay
+    // the server did not acknowledge the event within the given delay
   }
 });
 ```
