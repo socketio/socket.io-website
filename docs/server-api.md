@@ -362,7 +362,7 @@ httpServer.listen(3000);
 
 - `callback` [`<Function>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
 
-Closes the Socket.IO server and disconnect all clients. The `callback` argument is optional and will be called when all connections are closed.
+Closes the Socket.IO server and disconnects all clients. The `callback` argument is optional and will be called when all connections are closed.
 
 :::info
 
@@ -557,7 +557,7 @@ io.except("room-101").except("room-102").emit("foo", "bar");
 
 *Added in v4.0.0*
 
-Alias for [`io.of("/").fetchSocket()`](#namespacefetchsockets).
+Alias for [`io.of("/").fetchSockets()`](#namespacefetchsockets).
 
 ```js
 // return all Socket instances of the main namespace
@@ -1488,7 +1488,7 @@ io.in(theSocketId).socketsLeave("room1");
 - **Returns** `BroadcastOperator`
 
 Sets a modifier for a subsequent event emission that the callback will be called with an error when the
-given number of milliseconds have elapsed without an acknowledgement from the client:
+given number of milliseconds have elapsed without an acknowledgement from all targeted clients:
 
 ```js
 io.of("/chat").timeout(10000).emit("some-event", (err, responses) => {
