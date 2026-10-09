@@ -18,7 +18,7 @@ Whether to create a new Manager instance.
 
 A Manager instance is in charge of the low-level connection to the server (established with HTTP long-polling or WebSocket). It handles the reconnection logic.
 
-A Socket instance is the interface which is used to sends events to — and receive events from — the server. It belongs to a given [namespace](categories/06-Advanced/namespaces.md).
+A Socket instance is the interface which is used to send events to — and receive events from — the server. It belongs to a given [namespace](categories/06-Advanced/namespaces.md).
 
 A single Manager can be attached to several Socket instances.
 
@@ -70,7 +70,9 @@ These settings will be shared by all Socket instances attached to the same Manag
 
 *Added in v4.6.0*
 
-The trailing slash which was added by default can now be disabled:
+Default value: `true`
+
+Whether to add a trailing slash to the request path.
 
 ```js
 import { io } from "socket.io-client";
@@ -89,7 +91,7 @@ In the example above, the request URL will be `https://example.com/socket.io` in
 
 Default value: `false`
 
-With `autoUnref` set to `true`, the Socket.IO client will allow the program to exit if there is no other active timer/TCP socket in the event system (even if the client is connected):
+With `autoUnref` set to `true`, the Socket.IO client will allow the program to exit if there is no other active timer/TCP socket in the event loop (even if the client is connected):
 
 ```js
 import { io } from "socket.io-client";
@@ -144,7 +146,7 @@ Please check [this issue](https://github.com/socketio/socket.io/issues/3639) for
 
 Default value: -
 
-Additional headers (then found in `socket.handshake.headers` object on the server-side).
+Additional headers, which can then be found in the `socket.handshake.headers` object on the server-side.
 
 Example:
 
@@ -283,7 +285,7 @@ References:
 
 Default value: -
 
-Additional query parameters (then found in `socket.handshake.query` object on the server-side).
+Additional query parameters, which can then be found in the `socket.handshake.query` object on the server-side.
 
 Example:
 
@@ -328,14 +330,14 @@ Note: the following query parameters are reserved and can't be used in your appl
 
 Default value: `false`
 
-If true and if the previous WebSocket connection to the server succeeded, the connection attempt will bypass the normal upgrade process and will initially try WebSocket. A connection attempt following a transport error will use the normal upgrade process. It is recommended you turn this on only when using SSL/TLS connections, or if you know that your network does not block websockets.
+If set to `true` and the previous WebSocket connection to the server succeeded, the connection attempt will bypass the normal upgrade process and will initially try WebSocket. A connection attempt following a transport error will use the normal upgrade process. It is recommended you turn this on only when using SSL/TLS connections, or if you know that your network does not block WebSockets.
 
 
 ### `timestampParam`
 
 Default value: `"t"`
 
-The name of the query parameter to use as our timestamp key.
+The name of the query parameter to use as the timestamp key.
 
 
 ### `timestampRequests`
@@ -503,7 +505,7 @@ const socket = io("https://my-backend.com", {
 });
 ```
 
-The server needs to send the right `Access-Control-Allow-* ` headers to allow the connection:
+The server needs to send the right `Access-Control-Allow-*` headers to allow the connection:
 
 ```js
 import { createServer } from "http";
@@ -656,7 +658,7 @@ socket.io.open();
 
 Default value: `require("socket.io-parser")`
 
-The parser used to marshall/unmarshall packets. Please see [here](categories/06-Advanced/custom-parser.md) for more information.
+The parser used to serialize and deserialize packets. Please see [here](categories/06-Advanced/custom-parser.md) for more information.
 
 
 ### `randomizationFactor`
@@ -739,7 +741,7 @@ These settings are specific to the given Socket instance.
 
 Default value: -
 
-The default timeout in milliseconds used when waiting for an acknowledgement (not to be mixed up with the already existing [timeout](#timeout) option, which is used by the Manager during the connection).
+The default timeout in milliseconds used when waiting for an acknowledgement (not to be confused with the existing [timeout](#timeout) option, which is used by the Manager during the connection).
 
 Must be used in conjunction with [`retries`](#retries).
 

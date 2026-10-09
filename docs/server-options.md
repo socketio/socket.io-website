@@ -88,7 +88,7 @@ Whether to remove [child namespaces](categories/06-Advanced/namespaces.md#dynami
 
 This option might be useful if you create a lot of dynamic namespaces, since each namespace creates its own adapter instance.
 
-With this option enabled (disabled by default), when a socket disconnects from a dynamic namespace and if there are no other sockets connected to it then the namespace will be cleaned up and its adapter will be closed.
+With this option enabled (disabled by default), when a socket disconnects from a dynamic namespace, if there are no other sockets connected to it, the namespace will be cleaned up and its adapter will be closed.
 
 ### `connectionStateRecovery`
 
@@ -96,7 +96,7 @@ With this option enabled (disabled by default), when a socket disconnects from a
 
 Default value: `undefined`
 
-The option for the [Connection state recovery](./categories/01-Documentation/connection-state-recovery.md) feature:
+The options for the [Connection state recovery](./categories/01-Documentation/connection-state-recovery.md) feature:
 
 ```js
 const io = new Server(httpServer, {
@@ -147,7 +147,7 @@ This might, for example, allow users blocked during the disconnection period to 
 
 Default value: `45000`
 
-The number of ms before disconnecting a client that has not successfully joined a namespace.
+The number of milliseconds before disconnecting a client that has not successfully joined a namespace.
 
 ### `parser`
 
@@ -160,7 +160,7 @@ The parser to use. Please see the documentation [here](categories/06-Advanced/cu
 
 Default value: `/socket.io/`
 
-It is the name of the path that is captured on the server side.
+The path that is captured on the server side.
 
 :::caution
 
@@ -215,7 +215,7 @@ The following options affect the behavior of the underlying Engine.IO server.
 
 Default value: `true`
 
-The trailing slash which was added by default can now be disabled:
+Whether to add a trailing slash to the server path.
 
 ```js
 import { createServer } from "node:http";
@@ -223,7 +223,7 @@ import { Server } from "socket.io";
 
 const httpServer = createServer();
 const io = new Server(httpServer, {
-addTrailingSlash: false
+  addTrailingSlash: false
 });
 ```
 
@@ -251,7 +251,7 @@ const io = new Server(httpServer, {
 
 Default: `-`
 
-A function that receives a given handshake or upgrade request as its first parameter, and can decide whether to continue or not.
+A function that receives a given handshake or upgrade request as its first parameter and decides whether to continue or not.
 
 Example:
 
@@ -274,7 +274,7 @@ Whether to allow transport upgrades.
 
 ### `cookie`
 
-Default value: `-`
+Default value: no cookie is sent
 
 The list of options that will be forwarded to the [`cookie`](https://github.com/jshttp/cookie/) module. Available options:
 
@@ -351,7 +351,7 @@ const io = new Server(httpServer, {
 
 :::note
 
-If you want the browser to send credentials such as cookies, authorization headers or TLS client certificates, you also need to set [`withCredentials`](./client-options.md#withcredentials) option to `true` on the client side:
+If you want the browser to send credentials such as cookies, authorization headers or TLS client certificates, you also need to set the [`withCredentials`](./client-options.md#withcredentials) option to `true` on the client side:
 
 ```js
 import { io } from "socket.io-client";
@@ -460,7 +460,7 @@ Please note that in that case, like with `origin: "*"` or `origin: true`, you ar
 
 Default value: `true`
 
-Whether to enable the compression for the HTTP long-polling transport.
+Whether to enable compression for the HTTP long-polling transport.
 
 Please note that if `httpCompression` is set to `false`, the compress flag used when emitting (`socket.compress(true).emit(...)`) will be ignored when the connection is established with HTTP long-polling requests.
 
@@ -486,7 +486,7 @@ const io = new Server(httpServer, {
 
 Default value: `1e6` (1 MB)
 
-This defines how many bytes a single message can be, before closing the socket. You may increase or decrease this value depending on your needs.
+This defines the maximum size, in bytes, of a single message before the socket is closed. You may increase or decrease this value depending on your needs.
 
 ```js
 const io = new Server(httpServer, {
@@ -602,7 +602,7 @@ See also: [How to use Socket.IO with a debugger](/how-to/debug-with-socket-io)
 
 Default value: `["polling", "websocket"]`
 
-The low-level transports that are allowed on the server-side.
+The low-level transports that are allowed on the server side.
 
 Example with WebTransport enabled:
 
@@ -620,7 +620,7 @@ See also: client-side [`transports`](client-options.md#transports)
 
 Default value: `10000`
 
-This is the delay in milliseconds before an uncompleted transport upgrade is cancelled.
+This is the delay in milliseconds before an uncompleted transport upgrade is canceled.
 
 
 ### `wsEngine`
