@@ -228,7 +228,23 @@ io.on("connection", (socket) => {
 });
 ```
 
-Note: this feature only exists on the server-side. For the client-side, you might be interested in [catch-all listeners](../04-Events/listening-to-events.md#catch-all-listeners).
+:::note
+
+If a middleware neither calls `next()` nor `next(err)`, the packet is ignored:
+
+- no event handler is called
+- no error is emitted
+- acknowledgements are not sent
+
+This can be useful for intentionally dropping packets, but for authorization failures you should usually call `next(new Error(...))` or handle the rejection explicitly in the event handler.
+
+:::
+
+:::tip
+
+This feature only exists on the server-side. For the client-side, you might be interested in [catch-all listeners](../04-Events/listening-to-events.md#catch-all-listeners).
+
+:::
 
 ## Events
 
