@@ -359,7 +359,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-Which allows you to easily broadcast an event to all the connections of a given user:
+This allows you to easily broadcast an event to all the connections of a given user:
 
 ```js
 io.to(`user:${userId}`).emit("foo", "bar");

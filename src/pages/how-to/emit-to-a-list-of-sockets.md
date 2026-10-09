@@ -228,6 +228,4 @@ References:
 - a bit less performant, since the payload will be encoded for each socket
 
 
-That's all folks, thanks for reading!
-
 [Back to the list of examples](/get-started/)

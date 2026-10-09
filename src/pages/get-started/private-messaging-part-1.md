@@ -203,7 +203,7 @@ io.use((socket, next) => {
 });
 ```
 
-The `username` is added as an attribute of the `socket` object, in order to be reused later. You can attach any attribute, as long as you don't overwrite an existing one like [`socket.id`](/docs/v4/server-socket-instance/#Socket-id) or [`socket.handshake`](/docs/v4/server-socket-instance/#Socket-handshake).
+The `username` is added as an attribute of the `socket` object, to be reused later. You can attach any attribute, as long as you don't overwrite an existing one like [`socket.id`](/docs/v4/server-socket-instance/#Socket-id) or [`socket.handshake`](/docs/v4/server-socket-instance/#Socket-handshake).
 
 Documentation:
 

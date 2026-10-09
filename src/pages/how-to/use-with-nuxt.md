@@ -70,7 +70,7 @@ export default defineNitroPlugin((nitroApp: NitroApp) => {
 });
 ```
 
-And voilà!
+That's it!
 
 ## Client
 
@@ -177,7 +177,5 @@ socket.on("hello", (value) => {
   // ...
 });
 ```
-
-That's all folks, thanks for reading!
 
 [Back to the list of examples](/get-started/)

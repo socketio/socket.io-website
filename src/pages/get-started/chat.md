@@ -35,7 +35,7 @@ The "name" property must be unique, you cannot use a value like "socket.io" or "
 
 :::
 
-Now, in order to easily populate the `dependencies` property with the things we need, we’ll use `npm install`:
+Now, to easily populate the `dependencies` property with the things we need, we’ll use `npm install`:
 
 ```
 npm install express@4
@@ -248,7 +248,7 @@ The result should be like the following video:
 
 The next goal is for us to emit the event from the server to the rest of the users.
 
-In order to send an event to everyone, Socket.IO gives us the `io.emit()` method.
+To send an event to everyone, Socket.IO gives us the `io.emit()` method.
 
 ```js
 io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' }); // This will emit the event to all connected sockets

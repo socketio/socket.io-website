@@ -168,7 +168,7 @@ class RedisSessionStore extends SessionStore {
 }
 ```
 
-We also set an expiry to the key in order to clean up old sessions.
+We also set an expiry to the key to clean up old sessions.
 
 Fetching the session is quite straightforward, with the [HMGET](https://redis.io/commands/hmget) command:
 

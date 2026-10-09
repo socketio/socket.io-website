@@ -184,6 +184,4 @@ const socket = io("http://localhost:3000", {
 
 https://github.com/socketio/socket.io/tree/main/examples/nwjs-example
 
-That's all folks, thanks for reading!
-
 [Back to the list of examples](/get-started/)

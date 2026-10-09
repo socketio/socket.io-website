@@ -368,7 +368,7 @@ io.on("connection", (socket) => {
 
 ## Manual parsing
 
-In the example above, we use the [`passport-jwt`](https://www.npmjs.com/package/passport-jwt) package, but you can totally verify the bearer token manually with the [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) package:
+In the example above, we use the [`passport-jwt`](https://www.npmjs.com/package/passport-jwt) package, but you can also verify the bearer token manually with the [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) package:
 
 ```js
 io.engine.use((req, res, next) => {
@@ -412,7 +412,7 @@ io.on("connection", (socket) => {
 });
 ```
 
-Which allows you to easily broadcast an event to all the connections of a given user:
+This allows you to easily broadcast an event to all the connections of a given user:
 
 ```js
 io.to(`user:${userId}`).emit("foo", "bar");

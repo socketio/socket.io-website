@@ -68,7 +68,7 @@ Let's review several solutions and their pros and cons:
 
 ### Solution 1: `fetchSockets()`
 
-The `fetchSockets()` method sends a request to every node in the cluster, which respond with their local socket instances (the ones that are currently connected to the node).
+The `fetchSockets()` method sends a request to every node in the cluster, and each node responds with its local socket instances (the ones that are currently connected to the node).
 
 - in the main namespace
 
@@ -247,8 +247,6 @@ setInterval(async () => {
   }
 }, 5000);
 ```
-
-That's all folks, thanks for reading!
 
 See also: [How to count the number of connected users](/how-to/count-connected-users)
 

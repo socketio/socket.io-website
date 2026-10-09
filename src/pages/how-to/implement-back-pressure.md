@@ -389,6 +389,4 @@ httpServer.listen(3000, () => {
 });
 ```
 
-That's all folks, thanks for reading!
-
 [Back to the list of examples](/get-started/)

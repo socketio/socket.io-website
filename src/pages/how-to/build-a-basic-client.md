@@ -4,7 +4,7 @@ title: How to build a basic Socket.IO client
 
 # How to build a basic Socket.IO client
 
-In this guide, we will implement a basic Socket.IO client in JavaScript, in order to get a better understanding of the Socket.IO protocol.
+In this guide, we will implement a basic Socket.IO client in JavaScript to get a better understanding of the Socket.IO protocol.
 
 We will implement the following features:
 
@@ -126,7 +126,7 @@ class EventEmitter {
 }
 ```
 
-Our `Socket` class will then extend this class, in order to expose both the `on()` and the `emit()` methods:
+Our `Socket` class will then extend this class, to expose both the `on()` and the `emit()` methods:
 
 ```js
 class Socket extends EventEmitter {
@@ -404,7 +404,7 @@ class Socket extends EventEmitter {
 
 :::info
 
-The official Socket.IO client uses a fancy exponential delay with some randomness in order to prevent spikes of load when a lot of clients reconnect at the same time, but we'll keep it simple here and use a constant value.
+The official Socket.IO client uses a fancy exponential delay with some randomness to prevent spikes of load when a lot of clients reconnect at the same time, but we'll keep it simple here and use a constant value.
 
 :::
 
@@ -751,6 +751,6 @@ We have implemented the following features:
 
 Hopefully, you now have a better understanding of how the library works under the hood.
 
-The complete source code can be found [there](https://github.com/socketio/socket.io/tree/main/examples/basic-websocket-client).
+The complete source code is available [on GitHub](https://github.com/socketio/socket.io/tree/main/examples/basic-websocket-client).
 
 Thanks for reading!

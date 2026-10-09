@@ -244,7 +244,7 @@ While very powerful, WebSocket connections are not always up and running:
 - the server itself may be killed as part of an autoscaling policy
 - the user may lose connection or switch from Wi-Fi to 4G, in case of a mobile browser
 
-Which means you will need to properly handle the temporary disconnections, in order to provide a great experience to your users.
+This means you will need to properly handle the temporary disconnections to provide a great experience to your users.
 
 The good news is that Socket.IO includes some features that can help you. Please check:
 

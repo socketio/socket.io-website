@@ -75,7 +75,7 @@ A simple yet effective solution to check whether a given user is online is to us
 
 :::note
 
-The `fetchSockets()` method sends a request to every node in the cluster, which respond with their local socket instances (the ones that are currently connected to the node).
+The `fetchSockets()` method sends a request to every node in the cluster, and each node responds with its local socket instances (the ones that are currently connected to the node).
 
 Reference: [`fetchSockets()`](/docs/v4/server-api/#serverfetchsockets)
 
@@ -304,12 +304,10 @@ setInterval(async () => {
       .cleanup("users", `${processId}:users`)
       .sRem("processes", processId)
       .exec();
-    // TODO emit the "user has disconnected" events
+    // TODO emit the "user has disconnected" events, depending on your application logic
   }
 }, 5000);
 ```
-
-That's all folks, thanks for reading!
 
 See also: [How to count the number of connected clients](/how-to/count-connected-clients)
 

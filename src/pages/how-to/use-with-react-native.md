@@ -165,6 +165,4 @@ Reference: https://developer.android.com/privacy-and-security/security-config
 - [Expo Go](https://docs.expo.dev/): https://github.com/socketio/socket.io/tree/main/examples/expo-example
 - React Native CLI: https://github.com/socketio/socket.io/tree/main/examples/ReactNativeExample
 
-That's all folks, thanks for reading!
-
 [Back to the list of examples](/get-started/)

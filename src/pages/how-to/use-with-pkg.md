@@ -40,4 +40,4 @@ And then run:
 $ pkg -c pkg.json -t node14-linux index.js
 ```
 
-And *voilà*!
+That's it!

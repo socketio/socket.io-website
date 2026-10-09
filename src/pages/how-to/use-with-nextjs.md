@@ -65,7 +65,7 @@ The `server.js` file becomes the entrypoint of your application:
 }
 ```
 
-And voilà!
+That's it!
 
 Reference: https://nextjs.org/docs/pages/building-your-application/configuring/custom-server
 
@@ -302,7 +302,5 @@ socket.on("hello", (value) => {
   // ...
 });
 ```
-
-That's all folks, thanks for reading!
 
 [Back to the list of examples](/get-started/)
