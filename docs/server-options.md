@@ -590,6 +590,14 @@ On the contrary, using a bigger value means that a broken connection will take l
 
 :::
 
+:::tip
+
+If you pause your application with a debugger, the heartbeat may time out and the connection may be closed. You can temporarily increase `pingTimeout` and/or `pingInterval` while debugging.
+
+See also: [How to use Socket.IO with a debugger](/how-to/debug-with-socket-io)
+
+:::
+
 ### `transports`
 
 Default value: `["polling", "websocket"]`

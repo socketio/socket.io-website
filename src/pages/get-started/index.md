@@ -51,3 +51,4 @@ If you are new to Socket.IO, we recommend checking out our [tutorial](/docs/v4/t
 - [implement back pressure](/how-to/implement-back-pressure)
 - [emit to a list of sockets](/how-to/emit-to-a-list-of-sockets)
 - [handle BigInts](/how-to/handle-bigints)
+- [use Socket.IO with a debugger](/how-to/debug-with-socket-io)
