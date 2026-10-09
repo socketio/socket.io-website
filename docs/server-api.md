@@ -159,6 +159,79 @@ io.of("/").emit("hi", "everyone");
 
 ### Methods
 
+:::note
+
+The `Server` instance exposes a few convenience methods that target the main namespace (`/`).
+
+For example:
+
+```js
+io.on("connection", (socket) => {});
+io.use((socket, next) => next());
+io.emit("hello");
+```
+
+are equivalent to:
+
+```js
+io.of("/").on("connection", (socket) => {});
+io.of("/").use((socket, next) => next());
+io.of("/").emit("hello");
+```
+
+Please note that this only applies to namespace-related events like `connection` and `connect`. Other events, such as `new_namespace`, are emitted by the `Server` instance itself.
+
+The same applies to the following methods, attributes and flags:
+
+| Shortcut                        | Equivalent                              |
+|---------------------------------|-----------------------------------------|
+| `io.on("connection", listener)` | `io.of("/").on("connection", listener)` |
+| `io.emit(...)`                  | `io.of("/").emit(...)`                  |
+| `io.emitWithAck(...)`           | `io.of("/").emitWithAck(...)`           |
+| `io.to(room)`                   | `io.of("/").to(room)`                   |
+| `io.in(room)`                   | `io.of("/").in(room)`                   |
+| `io.except(room)`               | `io.of("/").except(room)`               |
+| `io.timeout(value)`             | `io.of("/").timeout(value)`             |
+| `io.use(fn)`                    | `io.of("/").use(fn)`                    |
+| `io.allSockets()`               | `io.of("/").allSockets()`               |
+| `io.fetchSockets()`             | `io.of("/").fetchSockets()`             |
+| `io.socketsJoin(rooms)`         | `io.of("/").socketsJoin(rooms)`         |
+| `io.socketsLeave(rooms)`        | `io.of("/").socketsLeave(rooms)`        |
+| `io.disconnectSockets([close])` | `io.of("/").disconnectSockets([close])` |
+| `io.serverSideEmit(...)`        | `io.of("/").serverSideEmit(...)`        |
+| `io.serverSideEmitWithAck(...)` | `io.of("/").serverSideEmitWithAck(...)` |
+| `io.local`                      | `io.of("/").local`                      |
+| `io.volatile`                   | `io.of("/").volatile`                   |
+| `io.sockets`                    | `io.of("/")`                            |
+
+:::
+
+#### server.adapter([value])
+
+The same applies to the following methods and flags:
+
+| Shortcut                        | Equivalent                              |
+|---------------------------------|-----------------------------------------|
+| `io.on("connection", listener)` | `io.of("/").on("connection", listener)` |
+| `io.emit(...)`                  | `io.of("/").emit(...)`                  |
+| `io.emitWithAck(...)`           | `io.of("/").emitWithAck(...)`           |
+| `io.to(room)`                   | `io.of("/").to(room)`                   |
+| `io.in(room)`                   | `io.of("/").in(room)`                   |
+| `io.except(room)`               | `io.of("/").except(room)`               |
+| `io.timeout(value)`             | `io.of("/").timeout(value)`             |
+| `io.use(fn)`                    | `io.of("/").use(fn)`                    |
+| `io.fetchSockets()`             | `io.of("/").fetchSockets()`             |
+| `io.socketsJoin(rooms)`         | `io.of("/").socketsJoin(rooms)`         |
+| `io.socketsLeave(rooms)`        | `io.of("/").socketsLeave(rooms)`        |
+| `io.disconnectSockets([close])` | `io.of("/").disconnectSockets([close])` |
+| `io.serverSideEmit(...)`        | `io.of("/").serverSideEmit(...)`        |
+| `io.serverSideEmitWithAck(...)` | `io.of("/").serverSideEmitWithAck(...)` |
+| `io.local`                      | `io.of("/").local`                      |
+| `io.volatile`                   | `io.of("/").volatile`                   |
+| `io.sockets`                    | `io.of("/")`                            |
+
+:::
+
 #### server.adapter([value])
 
 - `value` [`<Adapter>`](categories/05-Adapters/adapter.md)
