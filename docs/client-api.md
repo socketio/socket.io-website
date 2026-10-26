@@ -294,7 +294,7 @@ Sets the `reconnectionDelayMax` option, or returns it if no parameters are passe
 
 Creates a new `Socket` for the given namespace.
 
-Only the `auth` option is read by this method:
+Only the [Socket options](client-options.md#socket-options) (`auth`, `ackTimeout` and `retries`) are read by this method:
 
 ```js
 const socket = manager.socket("/admin", {
@@ -432,6 +432,7 @@ Here is the list of possible reasons:
 | `ping timeout`         | The server did not send a PING within the `pingInterval + pingTimeout` range                                      | :white_check_mark: YES  |
 | `transport close`      | The connection was closed (example: the user has lost connection, or the network was changed from Wi-Fi to 4G)    | :white_check_mark: YES  |
 | `transport error`      | The connection has encountered an error (example: the server was killed during an HTTP long-polling cycle)        | :white_check_mark: YES  |
+| `parse error`          | The client has received an invalid packet from the server                                                         | :white_check_mark: YES  |
 
 The [`socket.active`](#socketactive) attribute indicates whether the socket will automatically try to reconnect after a small [randomized delay](client-options.md#reconnectiondelay):
 
