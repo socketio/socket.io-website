@@ -205,11 +205,6 @@
     "alt": "Vegas"
   },
   {
-    "url": "https://betking.com.ua/sports-book/",
-    "img": "https://images.opencollective.com/stavki-na-sport-ua/ecee984/logo.jpg",
-    "alt": "Ставки на спорт"
-  },
-  {
     "url": "https://casinosfest.com/",
     "img": "https://images.opencollective.com/casinosfest/422a196/logo.jpg",
     "alt": "casinosfest"
@@ -223,6 +218,11 @@
     "url": "https://www.uudetkasinot.com/",
     "img": "https://images.opencollective.com/simon-johansson/avatar.jpg",
     "alt": "Uudetkasinot.com"
+  },
+  {
+    "url": "https://betking.com.ua/sports-book/",
+    "img": "https://images.opencollective.com/stavki-na-sport-ua/ecee984/logo.jpg",
+    "alt": "Ставки на спорт"
   },
   {
     "url": "https://onlinecasinoinformatie.com/",
@@ -325,6 +325,11 @@
     "alt": "Releaf Medical Cannabis Glossary"
   },
   {
+    "url": "https://www.fun88va.com/vn/",
+    "img": "https://images.opencollective.com/fun88-vietnam/192b9db/avatar.jpg",
+    "alt": "Fun88"
+  },
+  {
     "url": "https://okwingame.io",
     "img": "https://images.opencollective.com/ok-win-login/e298b6f/logo.jpg",
     "alt": "Ok win"
@@ -335,12 +340,7 @@
     "alt": "สล็อตเว็บตรง"
   },
   {
-    "url": "https://www.fun88va.com/vn/",
-    "img": "https://images.opencollective.com/fun88-vietnam/192b9db/avatar.jpg",
-    "alt": "Fun88"
-  },
-  {
-    "url": "https://www.fun88tho.com/th/",
+    "url": "https://www.fun88thx.com/th/",
     "img": "https://images.opencollective.com/fun88-thailand/81e1909/avatar.jpg",
     "alt": "Fun88"
   },
@@ -450,7 +450,7 @@
     "alt": "StreamerPlus"
   },
   {
-    "url": "https://www.jbo88vk.com/vn/",
+    "url": "https://www.jbo88vh.com/vn/",
     "img": "https://images.opencollective.com/jbo-vietnam/5e66f3a/avatar.jpg",
     "alt": "JBO"
   },
@@ -495,7 +495,7 @@
     "alt": "BuyTikTokFollowers.co"
   },
   {
-    "url": "https://superclonereps.com/",
+    "url": "https://superclonereps.is/",
     "img": "https://images.opencollective.com/super-clone/ed04b82/avatar.jpg",
     "alt": "superclonereps"
   },
@@ -560,8 +560,23 @@
     "alt": "rolex super clone"
   },
   {
-    "url": "https://retail.economictimes.indiatimes.com/news/industry/super-clone-watches-explained-the-details-most-first-time-buyers-miss/132070524",
-    "img": "https://images.opencollective.com/indiatimes-super-clones/9dce52c/avatar.jpg",
+    "url": "https://www.globenewswire.com/news-release/2026/08/11/3343112/0/en/superluxuryreps-is-expands-super-clone-watches-collection-with-greater-focus-on-qc-and-precision.html",
+    "img": "https://images.opencollective.com/globenews-super-clones/7af0e46/avatar.jpg",
     "alt": "super clone watches"
+  },
+  {
+    "url": "https://viewsnapstories.com/",
+    "img": "https://images.opencollective.com/viewsnapstories/49b4577/avatar.jpg",
+    "alt": "ViewSnapStories"
+  },
+  {
+    "url": "https://www.spotydownloader.com/",
+    "img": "https://images.opencollective.com/spotydownloader/e7dacff/logo.jpg",
+    "alt": "SpotyDownloader"
+  },
+  {
+    "url": "https://youviews.com/",
+    "img": "https://images.opencollective.com/youviews/7709eb9/logo.jpg",
+    "alt": "YouViews: Buy YouTube Views, Subscribers & Likes"
   }
 ]
