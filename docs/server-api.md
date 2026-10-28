@@ -2101,6 +2101,24 @@ Rooms are left automatically upon disconnection.
 
 :::
 
+#### socket.listeners(eventName)
+
+*Inherited from the [EventEmitter class](https://nodejs.org/api/events.html#emitterlistenerseventname).*
+
+- `eventName` [`<string>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#string_type) | [`<symbol>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#symbol_type)
+- **Returns** [`<Function[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
+
+Returns a copy of the array of listeners registered for the given event.
+
+```js
+const listener = () => { /* ... */ };
+socket.on("hello", listener);
+
+console.log(socket.listeners("hello")); // [listener]
+```
+
+Catch-all listeners are returned by [`socket.listenersAny()`](#socketlistenersany).
+
 #### socket.listenersAny()
 
 - **Returns** [`<Function[]>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
