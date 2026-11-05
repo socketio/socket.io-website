@@ -305,7 +305,7 @@ const socket = io({
 
 ```js
 io.on("connection", (socket) => {
-  console.log(socket.handshake.query); // prints { x: "42", EIO: "4", transport: "polling" }
+  console.log(socket.handshake.query); // prints { x: "42", EIO: "4", transport: "polling", t: "OPAfXv5" }
 });
 ```
 
