@@ -337,7 +337,7 @@ Sets the `timeout` option, or returns it if no parameters are passed.
 
 A `Socket` is the fundamental class for interacting with the server. A `Socket` belongs to a certain [Namespace](categories/06-Advanced/namespaces.md) (by default `/`) and uses an underlying [Manager](#manager) to communicate.
 
-A `Socket` is basically an [EventEmitter](https://nodejs.org/api/events.html#events_class_eventemitter) which sends events to — and receives events from — the server over the network.
+A `Socket` is basically an [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter) which sends events to — and receives events from — the server over the network.
 
 ```js
 socket.emit("hello", { a: "b", c: [] });
