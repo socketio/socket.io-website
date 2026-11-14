@@ -53,6 +53,14 @@ io.use((socket, next) => {
 
 Please make sure to call `next()` in any case. Otherwise, the connection will be left hanging until it is closed after a given timeout.
 
+### Global middlewares (all namespaces)
+
+Starting with Socket.IO v3, a middleware registered with `io.use()` only runs for the [main namespace](namespaces.md#main-namespace). It is **not** applied automatically to custom namespaces.
+
+If you need authentication, authorization, rate limiting, or similar checks on **every** namespace, register a [global middleware](/how-to/register-a-global-middleware) — for example by listening for the [`new_namespace`](/docs/v4/server-api/#event-new_namespace) event and attaching the same function to each namespace.
+
+For HTTP-level security middleware such as [`helmet`](https://www.npmjs.com/package/helmet), prefer [`io.engine.use()`](#compatibility-with-express-middleware) so it runs for every incoming HTTP request (including upgrades), independent of Socket.IO namespaces.
+
 **Important note**: the Socket instance is not actually connected when the middleware gets executed, which means that no `disconnect` event will be emitted if the connection eventually fails.
 
 For example, if the client manually closes the connection:
