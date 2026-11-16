@@ -49,6 +49,7 @@ You can find more details about that in the ["How it works" section](./how-it-wo
 | Java                 | https://github.com/trinopoty/socket.io-server-java                                                                                                      |
 | Python               | https://github.com/miguelgrinberg/python-socketio                                                                                                       |
 | Golang               | https://github.com/googollee/go-socket.io                                                                                                               |
+| Golang (clients v1.x and v2.x) | https://github.com/sshaplygin/go-socket.io                                                                                                              |
 | Rust                 | https://github.com/Totodore/socketioxide                                                                                                                |
 
 ### Client implementations
