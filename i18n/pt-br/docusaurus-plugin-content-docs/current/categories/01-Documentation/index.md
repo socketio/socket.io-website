@@ -47,6 +47,8 @@ You can find more detail about that in the ["How it works" section](./how-it-wor
 | Java                 | https://github.com/mrniko/netty-socketio                                                                                                                |
 | Java                 | https://github.com/trinopoty/socket.io-server-java                                                                                                      |
 | Python               | https://github.com/miguelgrinberg/python-socketio                                                                                                       |
+| PHP (clients v1.3 to v2.x) | https://github.com/walkor/phpsocket.io                                                                                                                  |
+| PHP (clients v3 and v4) | https://github.com/marcosmarcolin/socket.io-server                                                                                                      |
 | Golang               | https://github.com/googollee/go-socket.io                                                                                                               |
 | Rust                 | https://github.com/Totodore/socketioxide                                                                                                                |
 
