@@ -1635,7 +1635,7 @@ Possible reasons:
 | `transport close`             | The connection was closed (example: the user has lost connection, or the network was changed from WiFi to 4G).                               |
 | `transport error`             | The connection has encountered an error.                                                                                                     |
 | `parse error`                 | The server has received an invalid packet from the client.                                                                                   |
-| `forced close`                | The server has received an invalid packet from the client.                                                                                   |
+| `forced close`                | The server has closed the underlying connection (for example with `socket.conn.close()`).                                                    |
 | `forced server close`         | The client did not join a namespace in time (see the [`connectTimeout`](server-options.md#connecttimeout) option) and was forcefully closed. |
 
 #### Event: 'disconnecting'
@@ -2451,7 +2451,7 @@ Its source code can be found here: https://github.com/socketio/engine.io
 
 *Added in v4.1.0*
 
-- `error` [`<Error>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+- `error` [`<Object>`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) a plain object (not an `Error` instance) with the `req`, `code`, `message` and `context` attributes
 
 ```js
 io.engine.on("connection_error", (err) => {
