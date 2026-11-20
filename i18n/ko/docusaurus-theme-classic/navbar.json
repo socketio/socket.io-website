@@ -1,0 +1,94 @@
+{
+  "title": {
+    "message": "Socket.IO",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Socket.IO 로고",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "문서",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Server API": {
+    "message": "서버 API",
+    "description": "Navbar item with label Server API"
+  },
+  "item.label.Client API": {
+    "message": "클라이언트 API",
+    "description": "Navbar item with label Client API"
+  },
+  "item.label.Ecosystem": {
+    "message": "생태계",
+    "description": "Navbar item with label Ecosystem"
+  },
+  "item.label.About": {
+    "message": "소개",
+    "description": "Navbar item with label About"
+  },
+  "item.label.Guide": {
+    "message": "가이드",
+    "description": "Navbar item with label Guide"
+  },
+  "item.label.Tutorial": {
+    "message": "튜토리얼",
+    "description": "Navbar item with label Tutorial"
+  },
+  "item.label.Examples": {
+    "message": "예제",
+    "description": "Navbar item with label Examples"
+  },
+  "item.label.Emit cheatsheet": {
+    "message": "emit 치트 시트",
+    "description": "Navbar item with label Emit cheatsheet"
+  },
+  "item.label.Troubleshooting": {
+    "message": "문제 해결",
+    "description": "Navbar item with label Troubleshooting"
+  },
+  "item.label.Stack Overflow": {
+    "message": "Stack Overflow",
+    "description": "Navbar item with label Stack Overflow"
+  },
+  "item.label.GitHub Discussions": {
+    "message": "GitHub Discussions",
+    "description": "Navbar item with label GitHub Discussions"
+  },
+  "item.label.Slack": {
+    "message": "Slack",
+    "description": "Navbar item with label Slack"
+  },
+  "item.label.Blog": {
+    "message": "블로그",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Twitter": {
+    "message": "Twitter",
+    "description": "Navbar item with label Twitter"
+  },
+  "item.label.CDN": {
+    "message": "CDN",
+    "description": "Navbar item with label CDN"
+  },
+  "item.label.Admin UI": {
+    "message": "Admin UI",
+    "description": "Navbar item with label Admin UI"
+  },
+  "item.label.FAQ": {
+    "message": "FAQ",
+    "description": "Navbar item with label FAQ"
+  },
+  "item.label.Changelog": {
+    "message": "변경 내역",
+    "description": "Navbar item with label Changelog"
+  },
+  "item.label.Roadmap": {
+    "message": "로드맵",
+    "description": "Navbar item with label Roadmap"
+  },
+  "item.label.Become a sponsor": {
+    "message": "후원하기",
+    "description": "Navbar item with label Become a sponsor"
+  }
+}
