@@ -533,5 +533,10 @@
     "url": "https://echofollowers.com/",
     "img": "https://images.opencollective.com/echofollowers11/7d64fb4/logo.jpg",
     "alt": "EchoFollowers"
+  },
+  {
+    "url": "https://likewave.io/",
+    "img": "https://images.opencollective.com/like-wave/68c52e2/avatar.jpg",
+    "alt": "Instagram Likes Viewer"
   }
 ]
