@@ -82,6 +82,26 @@ To run this scenario:
 $ npx artillery run my-scenario.yml
 ```
 
+You can use `connect` to customize handshake request. Here is an example to pass a session cookie:
+
+```yaml
+scenarios:
+  - name: My sample scenario
+    engine: socketio-v3
+    flow:
+      # Login
+      - post:
+          url: "/api/auth"
+          capture:
+            - header: "set-cookie"
+              as: "userCookie"
+
+      # Authenticate socket io connection
+      - connect:
+          extraHeaders:
+            Cookie: "{{ userCookie[0] }}"
+```
+
 Artillery also comes with a lot of awesome features, like the ability to [publish the metrics to various endpoints](https://artillery.io/docs/guides/plugins/plugin-publish-metrics.html) or [run the tests from AWS](https://artillery.io/docs/guides/guides/running-tests-with-artillery-pro.html).
 
 Its only limitation is that you cannot easily test server-to-client events, as the Artillery DSL is more suited for classic client-to-server communication. Which brings us to [our next section](#manual-client-creation).
