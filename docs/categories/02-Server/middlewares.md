@@ -20,6 +20,8 @@ If you are looking for Express middlewares, please check [this section](#compati
 
 :::
 
+The examples below register middleware on the [main namespace](/docs/v4/namespaces/#main-namespace). To apply middleware to every namespace (for example shared authentication), see [How to register a global middleware](/how-to/register-a-global-middleware).
+
 ## Registering a middleware
 
 A middleware function has access to the [Socket instance](server-socket-instance.md) and to the next registered middleware function.
